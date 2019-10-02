@@ -42,19 +42,19 @@ export interface EngineAcceptOfDay {
    * @type {number}
    * @memberof EngineAcceptOfDay
    */
-  weekDay?: number
+  week_day?: number
   /**
    *
    * @type {number}
    * @memberof EngineAcceptOfDay
    */
-  startTimeOfDay?: number
+  start_time_of_day?: number
   /**
    *
    * @type {number}
    * @memberof EngineAcceptOfDay
    */
-  endTimeOfDay?: number
+  end_time_of_day?: number
   /**
    *
    * @type {boolean}
@@ -79,7 +79,7 @@ export interface EngineAgent {
    * @type {string}
    * @memberof EngineAgent
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -122,31 +122,31 @@ export interface EngineAgentSkill {
    * @type {string}
    * @memberof EngineAgentSkill
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineAgentSkill
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineAgentSkill
    */
-  createdBy?: EngineLookup
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineAgentSkill
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineAgentSkill
    */
-  updatedBy?: EngineLookup
+  updated_by?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -208,7 +208,7 @@ export interface EngineAgentStatusRequest {
    * @type {string}
    * @memberof EngineAgentStatusRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -233,7 +233,7 @@ export interface EngineAgentTeam {
    * @type {string}
    * @memberof EngineAgentTeam
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -257,43 +257,43 @@ export interface EngineAgentTeam {
    * @type {number}
    * @memberof EngineAgentTeam
    */
-  maxNoAnswer?: number
+  max_no_answer?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentTeam
    */
-  wrapUpTime?: number
+  wrap_up_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentTeam
    */
-  rejectDelayTime?: number
+  reject_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentTeam
    */
-  busyDelayTime?: number
+  busy_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentTeam
    */
-  noAnswerDelayTime?: number
+  no_answer_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentTeam
    */
-  callTimeout?: number
+  call_timeout?: number
   /**
    *
    * @type {string}
    * @memberof EngineAgentTeam
    */
-  updatedAt?: string
+  updated_at?: string
 }
 /**
  *
@@ -312,31 +312,31 @@ export interface EngineCalendar {
    * @type {string}
    * @memberof EngineCalendar
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineCalendar
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineCalendar
    */
-  createdBy?: EngineLookup
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineCalendar
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineCalendar
    */
-  updatedBy?: EngineLookup
+  updated_by?: EngineLookup
   /**
    *
    * @type {string}
@@ -379,31 +379,31 @@ export interface EngineCreateAcceptOfDayRequest {
    * @type {string}
    * @memberof EngineCreateAcceptOfDayRequest
    */
-  calendarId?: string
+  calendar_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateAcceptOfDayRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {number}
    * @memberof EngineCreateAcceptOfDayRequest
    */
-  weekDay?: number
+  week_day?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateAcceptOfDayRequest
    */
-  startTimeOfDay?: number
+  start_time_of_day?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateAcceptOfDayRequest
    */
-  endTimeOfDay?: number
+  end_time_of_day?: number
   /**
    *
    * @type {boolean}
@@ -422,7 +422,7 @@ export interface EngineCreateAgentRequest {
    * @type {string}
    * @memberof EngineCreateAgentRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -447,13 +447,13 @@ export interface EngineCreateAgentSkillRequest {
    * @type {string}
    * @memberof EngineCreateAgentSkillRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateAgentSkillRequest
    */
-  agentId?: string
+  agent_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -478,7 +478,7 @@ export interface EngineCreateAgentTeamRequest {
    * @type {string}
    * @memberof EngineCreateAgentTeamRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -502,37 +502,37 @@ export interface EngineCreateAgentTeamRequest {
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
-  maxNoAnswer?: number
+  max_no_answer?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
-  wrapUpTime?: number
+  wrap_up_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
-  rejectDelayTime?: number
+  reject_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
-  busyDelayTime?: number
+  busy_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
-  noAnswerDelayTime?: number
+  no_answer_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
-  callTimeout?: number
+  call_timeout?: number
 }
 /**
  *
@@ -540,12 +540,6 @@ export interface EngineCreateAgentTeamRequest {
  * @interface EngineCreateCalendarRequest
  */
 export interface EngineCreateCalendarRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateCalendarRequest
-   */
-  domainId?: string
   /**
    *
    * @type {string}
@@ -576,6 +570,12 @@ export interface EngineCreateCalendarRequest {
    * @memberof EngineCreateCalendarRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -588,13 +588,13 @@ export interface EngineCreateExceptDateRequest {
    * @type {string}
    * @memberof EngineCreateExceptDateRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateExceptDateRequest
    */
-  calendarId?: string
+  calendar_id?: string
   /**
    *
    * @type {string}
@@ -631,7 +631,7 @@ export interface EngineCreateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {number}
@@ -673,7 +673,7 @@ export interface EngineCreateOutboundResourceRequest {
    * @type {number}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  maxSuccessivelyErrors?: number
+  max_successively_errors?: number
   /**
    *
    * @type {string}
@@ -685,13 +685,13 @@ export interface EngineCreateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  dialString?: string
+  dial_string?: string
   /**
    *
    * @type {Array<string>}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  errorIds?: Array<string>
+  error_ids?: Array<string>
 }
 /**
  *
@@ -704,7 +704,7 @@ export interface EngineCreateQueueRequest {
    * @type {string}
    * @memberof EngineCreateQueueRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -740,13 +740,13 @@ export interface EngineCreateQueueRequest {
    * @type {number}
    * @memberof EngineCreateQueueRequest
    */
-  maxCalls?: number
+  max_calls?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateQueueRequest
    */
-  secBetweenRetries?: number
+  sec_between_retries?: number
   /**
    *
    * @type {string}
@@ -758,7 +758,7 @@ export interface EngineCreateQueueRequest {
    * @type {number}
    * @memberof EngineCreateQueueRequest
    */
-  maxOfRetry?: number
+  max_of_retry?: number
   /**
    *
    * @type {{ [key: string]: string; }}
@@ -776,13 +776,13 @@ export interface EngineCreateQueueRequest {
    * @type {EngineLookup}
    * @memberof EngineCreateQueueRequest
    */
-  dncList?: EngineLookup
+  dnc_list?: EngineLookup
   /**
    *
    * @type {number}
    * @memberof EngineCreateQueueRequest
    */
-  secLocateAgent?: number
+  sec_locate_agent?: number
   /**
    *
    * @type {number}
@@ -807,7 +807,7 @@ export interface EngineCreateQueueRoutingRequest {
    * @type {string}
    * @memberof EngineCreateQueueRoutingRequest
    */
-  queueId?: string
+  queue_id?: string
   /**
    *
    * @type {string}
@@ -831,7 +831,7 @@ export interface EngineCreateQueueRoutingRequest {
    * @type {string}
    * @memberof EngineCreateQueueRoutingRequest
    */
-  domainId?: string
+  domain_id?: string
 }
 /**
  *
@@ -844,13 +844,13 @@ export interface EngineCreateResourceTeamRequest {
    * @type {string}
    * @memberof EngineCreateResourceTeamRequest
    */
-  teamId?: string
+  team_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateResourceTeamRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -874,13 +874,13 @@ export interface EngineCreateResourceTeamRequest {
    * @type {number}
    * @memberof EngineCreateResourceTeamRequest
    */
-  minCapacity?: number
+  min_capacity?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateResourceTeamRequest
    */
-  maxCapacity?: number
+  max_capacity?: number
 }
 /**
  *
@@ -893,7 +893,7 @@ export interface EngineCreateRoutingOutboundCallRequest {
    * @type {string}
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -942,7 +942,7 @@ export interface EngineCreateRoutingSchemeRequest {
    * @type {string}
    * @memberof EngineCreateRoutingSchemeRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -991,7 +991,7 @@ export interface EngineCreateRoutingVariableRequest {
    * @type {string}
    * @memberof EngineCreateRoutingVariableRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -1016,7 +1016,7 @@ export interface EngineCreateSkillRequest {
    * @type {string}
    * @memberof EngineCreateSkillRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -1041,13 +1041,13 @@ export interface EngineCreateSupervisorInTeamRequest {
    * @type {string}
    * @memberof EngineCreateSupervisorInTeamRequest
    */
-  teamId?: string
+  team_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateSupervisorInTeamRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -1072,7 +1072,7 @@ export interface EngineExceptDate {
    * @type {string}
    * @memberof EngineExceptDate
    */
-  calendarId?: string
+  calendar_id?: string
   /**
    *
    * @type {string}
@@ -1201,6 +1201,19 @@ export interface EngineListQueue {
    * @memberof EngineListQueue
    */
   items?: Array<EngineQueue>
+}
+/**
+ *
+ * @export
+ * @interface EngineListQueueRouting
+ */
+export interface EngineListQueueRouting {
+  /**
+   *
+   * @type {Array<EngineQueueRouting>}
+   * @memberof EngineListQueueRouting
+   */
+  items?: Array<EngineQueueRouting>
 }
 /**
  *
@@ -1342,31 +1355,31 @@ export interface EngineOutboundResource {
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineOutboundResource
    */
-  createdBy?: EngineLookup
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineOutboundResource
    */
-  updatedBy?: EngineLookup
+  updated_by?: EngineLookup
   /**
    *
    * @type {number}
@@ -1408,7 +1421,7 @@ export interface EngineOutboundResource {
    * @type {number}
    * @memberof EngineOutboundResource
    */
-  maxSuccessivelyErrors?: number
+  max_successively_errors?: number
   /**
    *
    * @type {string}
@@ -1420,31 +1433,31 @@ export interface EngineOutboundResource {
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  dialString?: string
+  dial_string?: string
   /**
    *
    * @type {Array<string>}
    * @memberof EngineOutboundResource
    */
-  errorIds?: Array<string>
+  error_ids?: Array<string>
   /**
    *
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  lastErrorId?: string
+  last_error_id?: string
   /**
    *
    * @type {number}
    * @memberof EngineOutboundResource
    */
-  successivelyErrors?: number
+  successively_errors?: number
   /**
    *
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  lastErrorAt?: string
+  last_error_at?: string
 }
 /**
  *
@@ -1463,31 +1476,31 @@ export interface EngineQueue {
    * @type {string}
    * @memberof EngineQueue
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineQueue
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineQueue
    */
-  createdBy?: EngineLookup
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineQueue
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineQueue
    */
-  updatedBy?: EngineLookup
+  updated_by?: EngineLookup
   /**
    *
    * @type {string}
@@ -1523,13 +1536,13 @@ export interface EngineQueue {
    * @type {number}
    * @memberof EngineQueue
    */
-  maxCalls?: number
+  max_calls?: number
   /**
    *
    * @type {number}
    * @memberof EngineQueue
    */
-  secBetweenRetries?: number
+  sec_between_retries?: number
   /**
    *
    * @type {string}
@@ -1541,7 +1554,7 @@ export interface EngineQueue {
    * @type {number}
    * @memberof EngineQueue
    */
-  maxOfRetry?: number
+  max_of_retry?: number
   /**
    *
    * @type {{ [key: string]: string; }}
@@ -1559,13 +1572,13 @@ export interface EngineQueue {
    * @type {EngineLookup}
    * @memberof EngineQueue
    */
-  dncList?: EngineLookup
+  dnc_list?: EngineLookup
   /**
    *
    * @type {number}
    * @memberof EngineQueue
    */
-  secLocateAgent?: number
+  sec_locate_agent?: number
   /**
    *
    * @type {number}
@@ -1596,7 +1609,7 @@ export interface EngineQueueRouting {
    * @type {string}
    * @memberof EngineQueueRouting
    */
-  queueId?: string
+  queue_id?: string
   /**
    *
    * @type {string}
@@ -1633,13 +1646,13 @@ export interface EngineResourceTeam {
    * @type {string}
    * @memberof EngineResourceTeam
    */
-  teamId?: string
+  team_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineResourceTeam
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -1663,13 +1676,13 @@ export interface EngineResourceTeam {
    * @type {number}
    * @memberof EngineResourceTeam
    */
-  minCapacity?: number
+  min_capacity?: number
   /**
    *
    * @type {number}
    * @memberof EngineResourceTeam
    */
-  maxCapacity?: number
+  max_capacity?: number
 }
 /**
  *
@@ -1701,31 +1714,31 @@ export interface EngineRoutingInboundCall {
    * @type {string}
    * @memberof EngineRoutingInboundCall
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineRoutingInboundCall
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineRoutingInboundCall
    */
-  createdBy?: EngineLookup
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineRoutingInboundCall
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineRoutingInboundCall
    */
-  updatedBy?: EngineLookup
+  updated_by?: EngineLookup
   /**
    *
    * @type {string}
@@ -1743,13 +1756,13 @@ export interface EngineRoutingInboundCall {
    * @type {EngineLookup}
    * @memberof EngineRoutingInboundCall
    */
-  startScheme?: EngineLookup
+  start_scheme?: EngineLookup
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineRoutingInboundCall
    */
-  stopScheme?: EngineLookup
+  stop_scheme?: EngineLookup
   /**
    *
    * @type {Array<string>}
@@ -1798,31 +1811,31 @@ export interface EngineRoutingOutboundCall {
    * @type {string}
    * @memberof EngineRoutingOutboundCall
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineRoutingOutboundCall
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineRoutingOutboundCall
    */
-  createdBy?: EngineLookup
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineRoutingOutboundCall
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineRoutingOutboundCall
    */
-  updatedBy?: EngineLookup
+  updated_by?: EngineLookup
   /**
    *
    * @type {string}
@@ -1877,31 +1890,31 @@ export interface EngineRoutingScheme {
    * @type {string}
    * @memberof EngineRoutingScheme
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineRoutingScheme
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineRoutingScheme
    */
-  createdBy?: EngineLookup
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineRoutingScheme
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineRoutingScheme
    */
-  updatedBy?: EngineLookup
+  updated_by?: EngineLookup
   /**
    *
    * @type {string}
@@ -1956,7 +1969,7 @@ export interface EngineRoutingVariable {
    * @type {string}
    * @memberof EngineRoutingVariable
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -1987,7 +2000,7 @@ export interface EngineSkill {
    * @type {string}
    * @memberof EngineSkill
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -2018,13 +2031,13 @@ export interface EngineSupervisorInTeam {
    * @type {string}
    * @memberof EngineSupervisorInTeam
    */
-  teamId?: string
+  team_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineSupervisorInTeam
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -2068,31 +2081,31 @@ export interface EngineUpdateAcceptOfDayRequest {
    * @type {string}
    * @memberof EngineUpdateAcceptOfDayRequest
    */
-  calendarId?: string
+  calendar_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateAcceptOfDayRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {number}
    * @memberof EngineUpdateAcceptOfDayRequest
    */
-  weekDay?: number
+  week_day?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateAcceptOfDayRequest
    */
-  startTimeOfDay?: number
+  start_time_of_day?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateAcceptOfDayRequest
    */
-  endTimeOfDay?: number
+  end_time_of_day?: number
   /**
    *
    * @type {boolean}
@@ -2123,7 +2136,7 @@ export interface EngineUpdateAgentRequest {
    * @type {string}
    * @memberof EngineUpdateAgentRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -2154,13 +2167,13 @@ export interface EngineUpdateAgentSkillRequest {
    * @type {string}
    * @memberof EngineUpdateAgentSkillRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateAgentSkillRequest
    */
-  agentId?: string
+  agent_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -2191,7 +2204,7 @@ export interface EngineUpdateAgentTeamRequest {
    * @type {string}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -2215,37 +2228,37 @@ export interface EngineUpdateAgentTeamRequest {
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  maxNoAnswer?: number
+  max_no_answer?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  wrapUpTime?: number
+  wrap_up_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  rejectDelayTime?: number
+  reject_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  busyDelayTime?: number
+  busy_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  noAnswerDelayTime?: number
+  no_answer_delay_time?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  callTimeout?: number
+  call_timeout?: number
 }
 /**
  *
@@ -2259,12 +2272,6 @@ export interface EngineUpdateCalendarRequest {
    * @memberof EngineUpdateCalendarRequest
    */
   id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateCalendarRequest
-   */
-  domainId?: string
   /**
    *
    * @type {string}
@@ -2295,6 +2302,12 @@ export interface EngineUpdateCalendarRequest {
    * @memberof EngineUpdateCalendarRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -2313,7 +2326,7 @@ export interface EngineUpdateExceptDateRequest {
    * @type {string}
    * @memberof EngineUpdateExceptDateRequest
    */
-  calendarId?: string
+  calendar_id?: string
   /**
    *
    * @type {string}
@@ -2343,7 +2356,7 @@ export interface EngineUpdateExceptDateRequest {
    * @type {string}
    * @memberof EngineUpdateExceptDateRequest
    */
-  domainId?: string
+  domain_id?: string
 }
 /**
  *
@@ -2362,7 +2375,7 @@ export interface EngineUpdateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {number}
@@ -2404,7 +2417,7 @@ export interface EngineUpdateOutboundResourceRequest {
    * @type {number}
    * @memberof EngineUpdateOutboundResourceRequest
    */
-  maxSuccessivelyErrors?: number
+  max_successively_errors?: number
   /**
    *
    * @type {string}
@@ -2416,13 +2429,13 @@ export interface EngineUpdateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceRequest
    */
-  dialString?: string
+  dial_string?: string
   /**
    *
    * @type {Array<string>}
    * @memberof EngineUpdateOutboundResourceRequest
    */
-  errorIds?: Array<string>
+  error_ids?: Array<string>
 }
 /**
  *
@@ -2435,7 +2448,7 @@ export interface EngineUpdateQueueRequest {
    * @type {string}
    * @memberof EngineUpdateQueueRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -2471,13 +2484,13 @@ export interface EngineUpdateQueueRequest {
    * @type {number}
    * @memberof EngineUpdateQueueRequest
    */
-  maxCalls?: number
+  max_calls?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateQueueRequest
    */
-  secBetweenRetries?: number
+  sec_between_retries?: number
   /**
    *
    * @type {string}
@@ -2489,7 +2502,7 @@ export interface EngineUpdateQueueRequest {
    * @type {number}
    * @memberof EngineUpdateQueueRequest
    */
-  maxOfRetry?: number
+  max_of_retry?: number
   /**
    *
    * @type {{ [key: string]: string; }}
@@ -2507,13 +2520,13 @@ export interface EngineUpdateQueueRequest {
    * @type {EngineLookup}
    * @memberof EngineUpdateQueueRequest
    */
-  dncList?: EngineLookup
+  dnc_list?: EngineLookup
   /**
    *
    * @type {number}
    * @memberof EngineUpdateQueueRequest
    */
-  secLocateAgent?: number
+  sec_locate_agent?: number
   /**
    *
    * @type {number}
@@ -2536,6 +2549,49 @@ export interface EngineUpdateQueueRequest {
 /**
  *
  * @export
+ * @interface EngineUpdateQueueRoutingRequest
+ */
+export interface EngineUpdateQueueRoutingRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRoutingRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRoutingRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRoutingRequest
+   */
+  pattern?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueRoutingRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateQueueRoutingRequest
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRoutingRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
  * @interface EngineUpdateResourceTeamRequest
  */
 export interface EngineUpdateResourceTeamRequest {
@@ -2550,13 +2606,13 @@ export interface EngineUpdateResourceTeamRequest {
    * @type {string}
    * @memberof EngineUpdateResourceTeamRequest
    */
-  teamId?: string
+  team_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateResourceTeamRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -2580,13 +2636,13 @@ export interface EngineUpdateResourceTeamRequest {
    * @type {number}
    * @memberof EngineUpdateResourceTeamRequest
    */
-  minCapacity?: number
+  min_capacity?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateResourceTeamRequest
    */
-  maxCapacity?: number
+  max_capacity?: number
 }
 /**
  *
@@ -2605,7 +2661,7 @@ export interface EngineUpdateRoutingOutboundCallRequest {
    * @type {string}
    * @memberof EngineUpdateRoutingOutboundCallRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -2660,7 +2716,7 @@ export interface EngineUpdateRoutingSchemeRequest {
    * @type {string}
    * @memberof EngineUpdateRoutingSchemeRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -2715,7 +2771,7 @@ export interface EngineUpdateRoutingVariableRequest {
    * @type {string}
    * @memberof EngineUpdateRoutingVariableRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -2746,7 +2802,7 @@ export interface EngineUpdateSkillRequest {
    * @type {string}
    * @memberof EngineUpdateSkillRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -2777,13 +2833,13 @@ export interface EngineUpdateSupervisorInTeamRequest {
    * @type {string}
    * @memberof EngineUpdateSupervisorInTeamRequest
    */
-  teamId?: string
+  team_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateSupervisorInTeamRequest
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -2878,11 +2934,15 @@ export const AgentServiceApiAxiosParamCreator = function(
      *
      * @summary Remove Agent
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgent(id: string, domainId?: string, options: any = {}): RequestArgs {
+    deleteAgent(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
@@ -2916,8 +2976,8 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -2941,11 +3001,11 @@ export const AgentServiceApiAxiosParamCreator = function(
      *
      * @summary Agent item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgent(id: string, domainId?: string, options: any = {}): RequestArgs {
+    readAgent(id: string, domain_id?: string, options: any = {}): RequestArgs {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
@@ -2979,8 +3039,8 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -3003,14 +3063,14 @@ export const AgentServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of Agent
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgent(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -3038,8 +3098,8 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -3070,28 +3130,28 @@ export const AgentServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update Agent
-     * @param {EngineUpdateAgentRequest} body
      * @param {string} id
+     * @param {EngineUpdateAgentRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgent(
-      body: EngineUpdateAgentRequest,
       id: string,
+      body: EngineUpdateAgentRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateAgent.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateAgent.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateAgent.'
         )
       }
       const localVarPath = `/call_center/agents/{id}`.replace(
@@ -3148,28 +3208,28 @@ export const AgentServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Change agent status
-     * @param {EngineAgentStatusRequest} body
      * @param {string} id
+     * @param {EngineAgentStatusRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentStatus(
-      body: EngineAgentStatusRequest,
       id: string,
+      body: EngineAgentStatusRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateAgentStatus.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateAgentStatus.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateAgentStatus.'
         )
       }
       const localVarPath = `/call_center/agents/{id}/status`.replace(
@@ -3261,18 +3321,18 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Remove Agent
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAgent(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).deleteAgent(id, domainId, options)
+      ).deleteAgent(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -3288,18 +3348,18 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Agent item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAgent(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).readAgent(id, domainId, options)
+      ).readAgent(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -3314,14 +3374,14 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of Agent
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgent(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -3331,7 +3391,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgent> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).searchAgent(domainId, size, page, options)
+      ).searchAgent(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -3346,19 +3406,19 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update Agent
-     * @param {EngineUpdateAgentRequest} body
      * @param {string} id
+     * @param {EngineUpdateAgentRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgent(
-      body: EngineUpdateAgentRequest,
       id: string,
+      body: EngineUpdateAgentRequest,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).updateAgent(body, id, options)
+      ).updateAgent(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -3373,14 +3433,14 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Change agent status
-     * @param {EngineAgentStatusRequest} body
      * @param {string} id
+     * @param {EngineAgentStatusRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentStatus(
-      body: EngineAgentStatusRequest,
       id: string,
+      body: EngineAgentStatusRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -3388,7 +3448,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineResponse> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentStatus(body, id, options)
+      ).updateAgentStatus(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -3430,14 +3490,14 @@ export const AgentServiceApiFactory = function(
      *
      * @summary Remove Agent
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgent(id: string, domainId?: string, options?: any) {
+    deleteAgent(id: string, domain_id?: string, options?: any) {
       return AgentServiceApiFp(configuration).deleteAgent(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -3445,12 +3505,12 @@ export const AgentServiceApiFactory = function(
      *
      * @summary Agent item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgent(id: string, domainId?: string, options?: any) {
-      return AgentServiceApiFp(configuration).readAgent(id, domainId, options)(
+    readAgent(id: string, domain_id?: string, options?: any) {
+      return AgentServiceApiFp(configuration).readAgent(id, domain_id, options)(
         axios,
         basePath
       )
@@ -3458,20 +3518,20 @@ export const AgentServiceApiFactory = function(
     /**
      *
      * @summary List of Agent
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgent(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return AgentServiceApiFp(configuration).searchAgent(
-        domainId,
+        domain_id,
         size,
         page,
         options
@@ -3480,13 +3540,13 @@ export const AgentServiceApiFactory = function(
     /**
      *
      * @summary Update Agent
-     * @param {EngineUpdateAgentRequest} body
      * @param {string} id
+     * @param {EngineUpdateAgentRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgent(body: EngineUpdateAgentRequest, id: string, options?: any) {
-      return AgentServiceApiFp(configuration).updateAgent(body, id, options)(
+    updateAgent(id: string, body: EngineUpdateAgentRequest, options?: any) {
+      return AgentServiceApiFp(configuration).updateAgent(id, body, options)(
         axios,
         basePath
       )
@@ -3494,19 +3554,19 @@ export const AgentServiceApiFactory = function(
     /**
      *
      * @summary Change agent status
-     * @param {EngineAgentStatusRequest} body
      * @param {string} id
+     * @param {EngineAgentStatusRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentStatus(
-      body: EngineAgentStatusRequest,
       id: string,
+      body: EngineAgentStatusRequest,
       options?: any
     ) {
       return AgentServiceApiFp(configuration).updateAgentStatus(
-        body,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -3539,15 +3599,15 @@ export class AgentServiceApi extends BaseAPI {
    *
    * @summary Remove Agent
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
-  public deleteAgent(id: string, domainId?: string, options?: any) {
+  public deleteAgent(id: string, domain_id?: string, options?: any) {
     return AgentServiceApiFp(this.configuration).deleteAgent(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -3556,15 +3616,15 @@ export class AgentServiceApi extends BaseAPI {
    *
    * @summary Agent item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
-  public readAgent(id: string, domainId?: string, options?: any) {
+  public readAgent(id: string, domain_id?: string, options?: any) {
     return AgentServiceApiFp(this.configuration).readAgent(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -3572,7 +3632,7 @@ export class AgentServiceApi extends BaseAPI {
   /**
    *
    * @summary List of Agent
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -3580,13 +3640,13 @@ export class AgentServiceApi extends BaseAPI {
    * @memberof AgentServiceApi
    */
   public searchAgent(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).searchAgent(
-      domainId,
+      domain_id,
       size,
       page,
       options
@@ -3596,18 +3656,18 @@ export class AgentServiceApi extends BaseAPI {
   /**
    *
    * @summary Update Agent
-   * @param {EngineUpdateAgentRequest} body
    * @param {string} id
+   * @param {EngineUpdateAgentRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
   public updateAgent(
-    body: EngineUpdateAgentRequest,
     id: string,
+    body: EngineUpdateAgentRequest,
     options?: any
   ) {
-    return AgentServiceApiFp(this.configuration).updateAgent(body, id, options)(
+    return AgentServiceApiFp(this.configuration).updateAgent(id, body, options)(
       this.axios,
       this.basePath
     )
@@ -3616,20 +3676,20 @@ export class AgentServiceApi extends BaseAPI {
   /**
    *
    * @summary Change agent status
-   * @param {EngineAgentStatusRequest} body
    * @param {string} id
+   * @param {EngineAgentStatusRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
   public updateAgentStatus(
-    body: EngineAgentStatusRequest,
     id: string,
+    body: EngineAgentStatusRequest,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).updateAgentStatus(
-      body,
       id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -3646,16 +3706,23 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Create AgentSkill
+     * @param {string} agent_id
      * @param {EngineCreateAgentSkillRequest} body
-     * @param {string} agentId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentSkill(
+      agent_id: string,
       body: EngineCreateAgentSkillRequest,
-      agentId: string,
       options: any = {}
     ): RequestArgs {
+      // verify required parameter 'agent_id' is not null or undefined
+      if (agent_id === null || agent_id === undefined) {
+        throw new RequiredError(
+          'agent_id',
+          'Required parameter agent_id was null or undefined when calling createAgentSkill.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
@@ -3663,16 +3730,9 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createAgentSkill.'
         )
       }
-      // verify required parameter 'agentId' is not null or undefined
-      if (agentId === null || agentId === undefined) {
-        throw new RequiredError(
-          'agentId',
-          'Required parameter agentId was null or undefined when calling createAgentSkill.'
-        )
-      }
       const localVarPath = `/call_center/agents/{agent_id}/skills`.replace(
         `{${'agent_id'}}`,
-        encodeURIComponent(String(agentId))
+        encodeURIComponent(String(agent_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -3724,23 +3784,23 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Remove AgentSkill
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAgentSkill(
-      agentId: string,
+      agent_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'agentId' is not null or undefined
-      if (agentId === null || agentId === undefined) {
+      // verify required parameter 'agent_id' is not null or undefined
+      if (agent_id === null || agent_id === undefined) {
         throw new RequiredError(
-          'agentId',
-          'Required parameter agentId was null or undefined when calling deleteAgentSkill.'
+          'agent_id',
+          'Required parameter agent_id was null or undefined when calling deleteAgentSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -3751,7 +3811,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills/{id}`
-        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agentId)))
+        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agent_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -3775,8 +3835,8 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -3799,23 +3859,23 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary AgentSkill item
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAgentSkill(
-      agentId: string,
+      agent_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'agentId' is not null or undefined
-      if (agentId === null || agentId === undefined) {
+      // verify required parameter 'agent_id' is not null or undefined
+      if (agent_id === null || agent_id === undefined) {
         throw new RequiredError(
-          'agentId',
-          'Required parameter agentId was null or undefined when calling readAgentSkill.'
+          'agent_id',
+          'Required parameter agent_id was null or undefined when calling readAgentSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -3826,7 +3886,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills/{id}`
-        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agentId)))
+        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agent_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -3850,8 +3910,8 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -3874,30 +3934,30 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of AgentSkill
-     * @param {string} agentId
-     * @param {string} [domainId]
+     * @param {string} agent_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentSkill(
-      agentId: string,
-      domainId?: string,
+      agent_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'agentId' is not null or undefined
-      if (agentId === null || agentId === undefined) {
+      // verify required parameter 'agent_id' is not null or undefined
+      if (agent_id === null || agent_id === undefined) {
         throw new RequiredError(
-          'agentId',
-          'Required parameter agentId was null or undefined when calling searchAgentSkill.'
+          'agent_id',
+          'Required parameter agent_id was null or undefined when calling searchAgentSkill.'
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills`.replace(
         `{${'agent_id'}}`,
-        encodeURIComponent(String(agentId))
+        encodeURIComponent(String(agent_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -3921,8 +3981,8 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -3953,30 +4013,23 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update AgentSkill
-     * @param {EngineUpdateAgentSkillRequest} body
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
+     * @param {EngineUpdateAgentSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentSkill(
-      body: EngineUpdateAgentSkillRequest,
-      agentId: string,
+      agent_id: string,
       id: string,
+      body: EngineUpdateAgentSkillRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'agent_id' is not null or undefined
+      if (agent_id === null || agent_id === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateAgentSkill.'
-        )
-      }
-      // verify required parameter 'agentId' is not null or undefined
-      if (agentId === null || agentId === undefined) {
-        throw new RequiredError(
-          'agentId',
-          'Required parameter agentId was null or undefined when calling updateAgentSkill.'
+          'agent_id',
+          'Required parameter agent_id was null or undefined when calling updateAgentSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -3986,8 +4039,15 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling updateAgentSkill.'
         )
       }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateAgentSkill.'
+        )
+      }
       const localVarPath = `/call_center/agents/{agent_id}/skills/{id}`
-        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agentId)))
+        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agent_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -4048,14 +4108,14 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create AgentSkill
+     * @param {string} agent_id
      * @param {EngineCreateAgentSkillRequest} body
-     * @param {string} agentId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentSkill(
+      agent_id: string,
       body: EngineCreateAgentSkillRequest,
-      agentId: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -4063,7 +4123,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAgentSkill> {
       const localVarAxiosArgs = AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).createAgentSkill(body, agentId, options)
+      ).createAgentSkill(agent_id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -4078,16 +4138,16 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Remove AgentSkill
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAgentSkill(
-      agentId: string,
+      agent_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -4095,7 +4155,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAgentSkill> {
       const localVarAxiosArgs = AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).deleteAgentSkill(agentId, id, domainId, options)
+      ).deleteAgentSkill(agent_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -4110,16 +4170,16 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary AgentSkill item
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAgentSkill(
-      agentId: string,
+      agent_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -4127,7 +4187,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAgentSkill> {
       const localVarAxiosArgs = AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).readAgentSkill(agentId, id, domainId, options)
+      ).readAgentSkill(agent_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -4142,16 +4202,16 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of AgentSkill
-     * @param {string} agentId
-     * @param {string} [domainId]
+     * @param {string} agent_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentSkill(
-      agentId: string,
-      domainId?: string,
+      agent_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -4161,7 +4221,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgentSkill> {
       const localVarAxiosArgs = AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentSkill(agentId, domainId, size, page, options)
+      ).searchAgentSkill(agent_id, domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -4176,16 +4236,16 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update AgentSkill
-     * @param {EngineUpdateAgentSkillRequest} body
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
+     * @param {EngineUpdateAgentSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentSkill(
-      body: EngineUpdateAgentSkillRequest,
-      agentId: string,
+      agent_id: string,
       id: string,
+      body: EngineUpdateAgentSkillRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -4193,7 +4253,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAgentSkill> {
       const localVarAxiosArgs = AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentSkill(body, agentId, id, options)
+      ).updateAgentSkill(agent_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -4221,86 +4281,86 @@ export const AgentSkillServiceApiFactory = function(
     /**
      *
      * @summary Create AgentSkill
+     * @param {string} agent_id
      * @param {EngineCreateAgentSkillRequest} body
-     * @param {string} agentId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentSkill(
+      agent_id: string,
       body: EngineCreateAgentSkillRequest,
-      agentId: string,
       options?: any
     ) {
       return AgentSkillServiceApiFp(configuration).createAgentSkill(
+        agent_id,
         body,
-        agentId,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Remove AgentSkill
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAgentSkill(
-      agentId: string,
+      agent_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return AgentSkillServiceApiFp(configuration).deleteAgentSkill(
-        agentId,
+        agent_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary AgentSkill item
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAgentSkill(
-      agentId: string,
+      agent_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return AgentSkillServiceApiFp(configuration).readAgentSkill(
-        agentId,
+        agent_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List of AgentSkill
-     * @param {string} agentId
-     * @param {string} [domainId]
+     * @param {string} agent_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentSkill(
-      agentId: string,
-      domainId?: string,
+      agent_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return AgentSkillServiceApiFp(configuration).searchAgentSkill(
-        agentId,
-        domainId,
+        agent_id,
+        domain_id,
         size,
         page,
         options
@@ -4309,22 +4369,22 @@ export const AgentSkillServiceApiFactory = function(
     /**
      *
      * @summary Update AgentSkill
-     * @param {EngineUpdateAgentSkillRequest} body
-     * @param {string} agentId
+     * @param {string} agent_id
      * @param {string} id
+     * @param {EngineUpdateAgentSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentSkill(
-      body: EngineUpdateAgentSkillRequest,
-      agentId: string,
+      agent_id: string,
       id: string,
+      body: EngineUpdateAgentSkillRequest,
       options?: any
     ) {
       return AgentSkillServiceApiFp(configuration).updateAgentSkill(
-        body,
-        agentId,
+        agent_id,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -4341,20 +4401,20 @@ export class AgentSkillServiceApi extends BaseAPI {
   /**
    *
    * @summary Create AgentSkill
+   * @param {string} agent_id
    * @param {EngineCreateAgentSkillRequest} body
-   * @param {string} agentId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public createAgentSkill(
+    agent_id: string,
     body: EngineCreateAgentSkillRequest,
-    agentId: string,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration).createAgentSkill(
+      agent_id,
       body,
-      agentId,
       options
     )(this.axios, this.basePath)
   }
@@ -4362,23 +4422,23 @@ export class AgentSkillServiceApi extends BaseAPI {
   /**
    *
    * @summary Remove AgentSkill
-   * @param {string} agentId
+   * @param {string} agent_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public deleteAgentSkill(
-    agentId: string,
+    agent_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration).deleteAgentSkill(
-      agentId,
+      agent_id,
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -4386,23 +4446,23 @@ export class AgentSkillServiceApi extends BaseAPI {
   /**
    *
    * @summary AgentSkill item
-   * @param {string} agentId
+   * @param {string} agent_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public readAgentSkill(
-    agentId: string,
+    agent_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration).readAgentSkill(
-      agentId,
+      agent_id,
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -4410,8 +4470,8 @@ export class AgentSkillServiceApi extends BaseAPI {
   /**
    *
    * @summary List of AgentSkill
-   * @param {string} agentId
-   * @param {string} [domainId]
+   * @param {string} agent_id
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -4419,15 +4479,15 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @memberof AgentSkillServiceApi
    */
   public searchAgentSkill(
-    agentId: string,
-    domainId?: string,
+    agent_id: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration).searchAgentSkill(
-      agentId,
-      domainId,
+      agent_id,
+      domain_id,
       size,
       page,
       options
@@ -4437,23 +4497,23 @@ export class AgentSkillServiceApi extends BaseAPI {
   /**
    *
    * @summary Update AgentSkill
-   * @param {EngineUpdateAgentSkillRequest} body
-   * @param {string} agentId
+   * @param {string} agent_id
    * @param {string} id
+   * @param {EngineUpdateAgentSkillRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public updateAgentSkill(
-    body: EngineUpdateAgentSkillRequest,
-    agentId: string,
+    agent_id: string,
     id: string,
+    body: EngineUpdateAgentSkillRequest,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration).updateAgentSkill(
-      body,
-      agentId,
+      agent_id,
       id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -4537,13 +4597,13 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      *
      * @summary Remove AgentTeam
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAgentTeam(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -4579,8 +4639,8 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -4604,13 +4664,13 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      *
      * @summary AgentTeam item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAgentTeam(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -4646,8 +4706,8 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -4670,14 +4730,14 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of AgentTeam
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentTeam(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -4705,8 +4765,8 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -4737,28 +4797,28 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update AgentTeam
-     * @param {EngineUpdateAgentTeamRequest} body
      * @param {string} id
+     * @param {EngineUpdateAgentTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentTeam(
-      body: EngineUpdateAgentTeamRequest,
       id: string,
+      body: EngineUpdateAgentTeamRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateAgentTeam.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateAgentTeam.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateAgentTeam.'
         )
       }
       const localVarPath = `/call_center/teams/{id}`.replace(
@@ -4853,13 +4913,13 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Remove AgentTeam
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAgentTeam(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -4867,7 +4927,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAgentTeam> {
       const localVarAxiosArgs = AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).deleteAgentTeam(id, domainId, options)
+      ).deleteAgentTeam(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -4883,13 +4943,13 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary AgentTeam item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAgentTeam(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -4897,7 +4957,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAgentTeam> {
       const localVarAxiosArgs = AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).readAgentTeam(id, domainId, options)
+      ).readAgentTeam(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -4912,14 +4972,14 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of AgentTeam
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentTeam(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -4929,7 +4989,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgentTeam> {
       const localVarAxiosArgs = AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentTeam(domainId, size, page, options)
+      ).searchAgentTeam(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -4944,14 +5004,14 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update AgentTeam
-     * @param {EngineUpdateAgentTeamRequest} body
      * @param {string} id
+     * @param {EngineUpdateAgentTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentTeam(
-      body: EngineUpdateAgentTeamRequest,
       id: string,
+      body: EngineUpdateAgentTeamRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -4959,7 +5019,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAgentTeam> {
       const localVarAxiosArgs = AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentTeam(body, id, options)
+      ).updateAgentTeam(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -5001,14 +5061,14 @@ export const AgentTeamServiceApiFactory = function(
      *
      * @summary Remove AgentTeam
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentTeam(id: string, domainId?: string, options?: any) {
+    deleteAgentTeam(id: string, domain_id?: string, options?: any) {
       return AgentTeamServiceApiFp(configuration).deleteAgentTeam(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -5016,34 +5076,34 @@ export const AgentTeamServiceApiFactory = function(
      *
      * @summary AgentTeam item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentTeam(id: string, domainId?: string, options?: any) {
+    readAgentTeam(id: string, domain_id?: string, options?: any) {
       return AgentTeamServiceApiFp(configuration).readAgentTeam(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List of AgentTeam
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentTeam(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return AgentTeamServiceApiFp(configuration).searchAgentTeam(
-        domainId,
+        domain_id,
         size,
         page,
         options
@@ -5052,19 +5112,19 @@ export const AgentTeamServiceApiFactory = function(
     /**
      *
      * @summary Update AgentTeam
-     * @param {EngineUpdateAgentTeamRequest} body
      * @param {string} id
+     * @param {EngineUpdateAgentTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentTeam(
-      body: EngineUpdateAgentTeamRequest,
       id: string,
+      body: EngineUpdateAgentTeamRequest,
       options?: any
     ) {
       return AgentTeamServiceApiFp(configuration).updateAgentTeam(
-        body,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -5097,15 +5157,15 @@ export class AgentTeamServiceApi extends BaseAPI {
    *
    * @summary Remove AgentTeam
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
-  public deleteAgentTeam(id: string, domainId?: string, options?: any) {
+  public deleteAgentTeam(id: string, domain_id?: string, options?: any) {
     return AgentTeamServiceApiFp(this.configuration).deleteAgentTeam(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -5114,15 +5174,15 @@ export class AgentTeamServiceApi extends BaseAPI {
    *
    * @summary AgentTeam item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
-  public readAgentTeam(id: string, domainId?: string, options?: any) {
+  public readAgentTeam(id: string, domain_id?: string, options?: any) {
     return AgentTeamServiceApiFp(this.configuration).readAgentTeam(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -5130,7 +5190,7 @@ export class AgentTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary List of AgentTeam
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -5138,13 +5198,13 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @memberof AgentTeamServiceApi
    */
   public searchAgentTeam(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration).searchAgentTeam(
-      domainId,
+      domain_id,
       size,
       page,
       options
@@ -5154,20 +5214,20 @@ export class AgentTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary Update AgentTeam
-   * @param {EngineUpdateAgentTeamRequest} body
    * @param {string} id
+   * @param {EngineUpdateAgentTeamRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
   public updateAgentTeam(
-    body: EngineUpdateAgentTeamRequest,
     id: string,
+    body: EngineUpdateAgentTeamRequest,
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration).updateAgentTeam(
-      body,
       id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -5184,16 +5244,23 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Create AcceptOfDay
+     * @param {string} calendar_id
      * @param {EngineCreateAcceptOfDayRequest} body
-     * @param {string} calendarId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAcceptOfDay(
+      calendar_id: string,
       body: EngineCreateAcceptOfDayRequest,
-      calendarId: string,
       options: any = {}
     ): RequestArgs {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
+        throw new RequiredError(
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling createAcceptOfDay.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
@@ -5201,16 +5268,9 @@ export const CalendarServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createAcceptOfDay.'
         )
       }
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
-        throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling createAcceptOfDay.'
-        )
-      }
       const localVarPath = `/calendars/{calendar_id}/accepts`.replace(
         `{${'calendar_id'}}`,
-        encodeURIComponent(String(calendarId))
+        encodeURIComponent(String(calendar_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -5328,16 +5388,23 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Create ExceptDate
+     * @param {string} calendar_id
      * @param {EngineCreateExceptDateRequest} body
-     * @param {string} calendarId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createExceptDate(
+      calendar_id: string,
       body: EngineCreateExceptDateRequest,
-      calendarId: string,
       options: any = {}
     ): RequestArgs {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
+        throw new RequiredError(
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling createExceptDate.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
@@ -5345,16 +5412,9 @@ export const CalendarServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createExceptDate.'
         )
       }
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
-        throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling createExceptDate.'
-        )
-      }
       const localVarPath = `/calendars/{calendar_id}/excepts`.replace(
         `{${'calendar_id'}}`,
-        encodeURIComponent(String(calendarId))
+        encodeURIComponent(String(calendar_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -5406,23 +5466,23 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Delete AcceptOfDay
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAcceptOfDay(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
         throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling deleteAcceptOfDay.'
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling deleteAcceptOfDay.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -5433,7 +5493,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/calendars/{calendar_id}/accepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendarId)))
+        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -5457,8 +5517,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5482,13 +5542,13 @@ export const CalendarServiceApiAxiosParamCreator = function(
      *
      * @summary Remove calendar
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteCalendar(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -5524,8 +5584,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5548,23 +5608,23 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Delete ExceptDate
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteExceptDate(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
         throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling deleteExceptDate.'
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling deleteExceptDate.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -5575,7 +5635,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/calendars/{calendar_id}/excepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendarId)))
+        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -5599,8 +5659,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5623,23 +5683,23 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Read AcceptOfDay
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAcceptOfDay(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
         throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling readAcceptOfDay.'
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling readAcceptOfDay.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -5650,7 +5710,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/calendars/{calendar_id}/accepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendarId)))
+        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -5674,8 +5734,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5699,13 +5759,13 @@ export const CalendarServiceApiAxiosParamCreator = function(
      *
      * @summary Calendar item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readCalendar(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -5741,8 +5801,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5765,23 +5825,23 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Read ExceptDate
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readExceptDate(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
         throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling readExceptDate.'
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling readExceptDate.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -5792,7 +5852,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/calendars/{calendar_id}/excepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendarId)))
+        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -5816,8 +5876,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5840,26 +5900,26 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List AcceptOfDay
-     * @param {string} calendarId
-     * @param {string} [domainId]
+     * @param {string} calendar_id
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAcceptOfDay(
-      calendarId: string,
-      domainId?: string,
+      calendar_id: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
         throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling searchAcceptOfDay.'
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling searchAcceptOfDay.'
         )
       }
       const localVarPath = `/calendars/{calendar_id}/accepts`.replace(
         `{${'calendar_id'}}`,
-        encodeURIComponent(String(calendarId))
+        encodeURIComponent(String(calendar_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -5883,8 +5943,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5907,14 +5967,14 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of calendar
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchCalendar(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -5942,8 +6002,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -5974,26 +6034,26 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List ExceptDate
-     * @param {string} calendarId
-     * @param {string} [domainId]
+     * @param {string} calendar_id
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchExceptDate(
-      calendarId: string,
-      domainId?: string,
+      calendar_id: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
         throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling searchExceptDate.'
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling searchExceptDate.'
         )
       }
       const localVarPath = `/calendars/{calendar_id}/excepts`.replace(
         `{${'calendar_id'}}`,
-        encodeURIComponent(String(calendarId))
+        encodeURIComponent(String(calendar_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -6017,8 +6077,8 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -6102,30 +6162,23 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update AcceptOfDay
-     * @param {EngineUpdateAcceptOfDayRequest} body
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
+     * @param {EngineUpdateAcceptOfDayRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAcceptOfDay(
-      body: EngineUpdateAcceptOfDayRequest,
-      calendarId: string,
+      calendar_id: string,
       id: string,
+      body: EngineUpdateAcceptOfDayRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateAcceptOfDay.'
-        )
-      }
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
-        throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling updateAcceptOfDay.'
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling updateAcceptOfDay.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -6135,8 +6188,15 @@ export const CalendarServiceApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling updateAcceptOfDay.'
         )
       }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateAcceptOfDay.'
+        )
+      }
       const localVarPath = `/calendars/{calendar_id}/accepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendarId)))
+        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -6188,28 +6248,28 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update calendar
-     * @param {EngineUpdateCalendarRequest} body
      * @param {string} id
+     * @param {EngineUpdateCalendarRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCalendar(
-      body: EngineUpdateCalendarRequest,
       id: string,
+      body: EngineUpdateCalendarRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateCalendar.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateCalendar.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateCalendar.'
         )
       }
       const localVarPath = `/calendars/{id}`.replace(
@@ -6266,30 +6326,23 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update ExceptDate
-     * @param {EngineUpdateExceptDateRequest} body
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
+     * @param {EngineUpdateExceptDateRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateExceptDate(
-      body: EngineUpdateExceptDateRequest,
-      calendarId: string,
+      calendar_id: string,
       id: string,
+      body: EngineUpdateExceptDateRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'calendar_id' is not null or undefined
+      if (calendar_id === null || calendar_id === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateExceptDate.'
-        )
-      }
-      // verify required parameter 'calendarId' is not null or undefined
-      if (calendarId === null || calendarId === undefined) {
-        throw new RequiredError(
-          'calendarId',
-          'Required parameter calendarId was null or undefined when calling updateExceptDate.'
+          'calendar_id',
+          'Required parameter calendar_id was null or undefined when calling updateExceptDate.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -6299,8 +6352,15 @@ export const CalendarServiceApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling updateExceptDate.'
         )
       }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateExceptDate.'
+        )
+      }
       const localVarPath = `/calendars/{calendar_id}/excepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendarId)))
+        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -6361,14 +6421,14 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create AcceptOfDay
+     * @param {string} calendar_id
      * @param {EngineCreateAcceptOfDayRequest} body
-     * @param {string} calendarId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAcceptOfDay(
+      calendar_id: string,
       body: EngineCreateAcceptOfDayRequest,
-      calendarId: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6376,7 +6436,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAcceptOfDay> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).createAcceptOfDay(body, calendarId, options)
+      ).createAcceptOfDay(calendar_id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6419,14 +6479,14 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create ExceptDate
+     * @param {string} calendar_id
      * @param {EngineCreateExceptDateRequest} body
-     * @param {string} calendarId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createExceptDate(
+      calendar_id: string,
       body: EngineCreateExceptDateRequest,
-      calendarId: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6434,7 +6494,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineExceptDate> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).createExceptDate(body, calendarId, options)
+      ).createExceptDate(calendar_id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6449,16 +6509,16 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Delete AcceptOfDay
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAcceptOfDay(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6466,7 +6526,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAcceptOfDay> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).deleteAcceptOfDay(calendarId, id, domainId, options)
+      ).deleteAcceptOfDay(calendar_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6482,13 +6542,13 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Remove calendar
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteCalendar(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6496,7 +6556,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineCalendar> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).deleteCalendar(id, domainId, options)
+      ).deleteCalendar(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6511,16 +6571,16 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Delete ExceptDate
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteExceptDate(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6528,7 +6588,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineExceptDate> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).deleteExceptDate(calendarId, id, domainId, options)
+      ).deleteExceptDate(calendar_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6543,16 +6603,16 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Read AcceptOfDay
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAcceptOfDay(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6560,7 +6620,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAcceptOfDay> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).readAcceptOfDay(calendarId, id, domainId, options)
+      ).readAcceptOfDay(calendar_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6576,13 +6636,13 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Calendar item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readCalendar(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6590,7 +6650,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineCalendar> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).readCalendar(id, domainId, options)
+      ).readCalendar(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6605,16 +6665,16 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Read ExceptDate
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readExceptDate(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6622,7 +6682,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineExceptDate> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).readExceptDate(calendarId, id, domainId, options)
+      ).readExceptDate(calendar_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6637,14 +6697,14 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List AcceptOfDay
-     * @param {string} calendarId
-     * @param {string} [domainId]
+     * @param {string} calendar_id
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAcceptOfDay(
-      calendarId: string,
-      domainId?: string,
+      calendar_id: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6652,7 +6712,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAcceptOfDay> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).searchAcceptOfDay(calendarId, domainId, options)
+      ).searchAcceptOfDay(calendar_id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6667,14 +6727,14 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of calendar
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchCalendar(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -6684,7 +6744,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListCalendar> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).searchCalendar(domainId, size, page, options)
+      ).searchCalendar(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6699,14 +6759,14 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List ExceptDate
-     * @param {string} calendarId
-     * @param {string} [domainId]
+     * @param {string} calendar_id
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchExceptDate(
-      calendarId: string,
-      domainId?: string,
+      calendar_id: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6714,7 +6774,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListExceptDate> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).searchExceptDate(calendarId, domainId, options)
+      ).searchExceptDate(calendar_id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6759,16 +6819,16 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update AcceptOfDay
-     * @param {EngineUpdateAcceptOfDayRequest} body
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
+     * @param {EngineUpdateAcceptOfDayRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAcceptOfDay(
-      body: EngineUpdateAcceptOfDayRequest,
-      calendarId: string,
+      calendar_id: string,
       id: string,
+      body: EngineUpdateAcceptOfDayRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6776,7 +6836,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineAcceptOfDay> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).updateAcceptOfDay(body, calendarId, id, options)
+      ).updateAcceptOfDay(calendar_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6791,14 +6851,14 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update calendar
-     * @param {EngineUpdateCalendarRequest} body
      * @param {string} id
+     * @param {EngineUpdateCalendarRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCalendar(
-      body: EngineUpdateCalendarRequest,
       id: string,
+      body: EngineUpdateCalendarRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6806,7 +6866,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineCalendar> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).updateCalendar(body, id, options)
+      ).updateCalendar(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6821,16 +6881,16 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update ExceptDate
-     * @param {EngineUpdateExceptDateRequest} body
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
+     * @param {EngineUpdateExceptDateRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateExceptDate(
-      body: EngineUpdateExceptDateRequest,
-      calendarId: string,
+      calendar_id: string,
       id: string,
+      body: EngineUpdateExceptDateRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6838,7 +6898,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineExceptDate> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).updateExceptDate(body, calendarId, id, options)
+      ).updateExceptDate(calendar_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6866,19 +6926,19 @@ export const CalendarServiceApiFactory = function(
     /**
      *
      * @summary Create AcceptOfDay
+     * @param {string} calendar_id
      * @param {EngineCreateAcceptOfDayRequest} body
-     * @param {string} calendarId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAcceptOfDay(
+      calendar_id: string,
       body: EngineCreateAcceptOfDayRequest,
-      calendarId: string,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).createAcceptOfDay(
+        calendar_id,
         body,
-        calendarId,
         options
       )(axios, basePath)
     },
@@ -6898,41 +6958,41 @@ export const CalendarServiceApiFactory = function(
     /**
      *
      * @summary Create ExceptDate
+     * @param {string} calendar_id
      * @param {EngineCreateExceptDateRequest} body
-     * @param {string} calendarId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createExceptDate(
+      calendar_id: string,
       body: EngineCreateExceptDateRequest,
-      calendarId: string,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).createExceptDate(
+        calendar_id,
         body,
-        calendarId,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Delete AcceptOfDay
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAcceptOfDay(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).deleteAcceptOfDay(
-        calendarId,
+        calendar_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -6940,58 +7000,58 @@ export const CalendarServiceApiFactory = function(
      *
      * @summary Remove calendar
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCalendar(id: string, domainId?: string, options?: any) {
+    deleteCalendar(id: string, domain_id?: string, options?: any) {
       return CalendarServiceApiFp(configuration).deleteCalendar(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Delete ExceptDate
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteExceptDate(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).deleteExceptDate(
-        calendarId,
+        calendar_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Read AcceptOfDay
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readAcceptOfDay(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).readAcceptOfDay(
-        calendarId,
+        calendar_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -6999,71 +7059,71 @@ export const CalendarServiceApiFactory = function(
      *
      * @summary Calendar item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readCalendar(id: string, domainId?: string, options?: any) {
+    readCalendar(id: string, domain_id?: string, options?: any) {
       return CalendarServiceApiFp(configuration).readCalendar(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Read ExceptDate
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readExceptDate(
-      calendarId: string,
+      calendar_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).readExceptDate(
-        calendarId,
+        calendar_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List AcceptOfDay
-     * @param {string} calendarId
-     * @param {string} [domainId]
+     * @param {string} calendar_id
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAcceptOfDay(calendarId: string, domainId?: string, options?: any) {
+    searchAcceptOfDay(calendar_id: string, domain_id?: string, options?: any) {
       return CalendarServiceApiFp(configuration).searchAcceptOfDay(
-        calendarId,
-        domainId,
+        calendar_id,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List of calendar
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchCalendar(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).searchCalendar(
-        domainId,
+        domain_id,
         size,
         page,
         options
@@ -7072,15 +7132,15 @@ export const CalendarServiceApiFactory = function(
     /**
      *
      * @summary List ExceptDate
-     * @param {string} calendarId
-     * @param {string} [domainId]
+     * @param {string} calendar_id
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchExceptDate(calendarId: string, domainId?: string, options?: any) {
+    searchExceptDate(calendar_id: string, domain_id?: string, options?: any) {
       return CalendarServiceApiFp(configuration).searchExceptDate(
-        calendarId,
-        domainId,
+        calendar_id,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -7102,63 +7162,63 @@ export const CalendarServiceApiFactory = function(
     /**
      *
      * @summary Update AcceptOfDay
-     * @param {EngineUpdateAcceptOfDayRequest} body
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
+     * @param {EngineUpdateAcceptOfDayRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAcceptOfDay(
-      body: EngineUpdateAcceptOfDayRequest,
-      calendarId: string,
+      calendar_id: string,
       id: string,
+      body: EngineUpdateAcceptOfDayRequest,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).updateAcceptOfDay(
-        body,
-        calendarId,
+        calendar_id,
         id,
+        body,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Update calendar
-     * @param {EngineUpdateCalendarRequest} body
      * @param {string} id
+     * @param {EngineUpdateCalendarRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCalendar(
-      body: EngineUpdateCalendarRequest,
       id: string,
+      body: EngineUpdateCalendarRequest,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).updateCalendar(
-        body,
         id,
+        body,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Update ExceptDate
-     * @param {EngineUpdateExceptDateRequest} body
-     * @param {string} calendarId
+     * @param {string} calendar_id
      * @param {string} id
+     * @param {EngineUpdateExceptDateRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateExceptDate(
-      body: EngineUpdateExceptDateRequest,
-      calendarId: string,
+      calendar_id: string,
       id: string,
+      body: EngineUpdateExceptDateRequest,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).updateExceptDate(
-        body,
-        calendarId,
+        calendar_id,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -7175,20 +7235,20 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Create AcceptOfDay
+   * @param {string} calendar_id
    * @param {EngineCreateAcceptOfDayRequest} body
-   * @param {string} calendarId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public createAcceptOfDay(
+    calendar_id: string,
     body: EngineCreateAcceptOfDayRequest,
-    calendarId: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).createAcceptOfDay(
+      calendar_id,
       body,
-      calendarId,
       options
     )(this.axios, this.basePath)
   }
@@ -7211,20 +7271,20 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Create ExceptDate
+   * @param {string} calendar_id
    * @param {EngineCreateExceptDateRequest} body
-   * @param {string} calendarId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public createExceptDate(
+    calendar_id: string,
     body: EngineCreateExceptDateRequest,
-    calendarId: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).createExceptDate(
+      calendar_id,
       body,
-      calendarId,
       options
     )(this.axios, this.basePath)
   }
@@ -7232,23 +7292,23 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Delete AcceptOfDay
-   * @param {string} calendarId
+   * @param {string} calendar_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public deleteAcceptOfDay(
-    calendarId: string,
+    calendar_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).deleteAcceptOfDay(
-      calendarId,
+      calendar_id,
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7257,15 +7317,15 @@ export class CalendarServiceApi extends BaseAPI {
    *
    * @summary Remove calendar
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public deleteCalendar(id: string, domainId?: string, options?: any) {
+  public deleteCalendar(id: string, domain_id?: string, options?: any) {
     return CalendarServiceApiFp(this.configuration).deleteCalendar(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7273,23 +7333,23 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Delete ExceptDate
-   * @param {string} calendarId
+   * @param {string} calendar_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public deleteExceptDate(
-    calendarId: string,
+    calendar_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).deleteExceptDate(
-      calendarId,
+      calendar_id,
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7297,23 +7357,23 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Read AcceptOfDay
-   * @param {string} calendarId
+   * @param {string} calendar_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public readAcceptOfDay(
-    calendarId: string,
+    calendar_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).readAcceptOfDay(
-      calendarId,
+      calendar_id,
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7322,15 +7382,15 @@ export class CalendarServiceApi extends BaseAPI {
    *
    * @summary Calendar item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public readCalendar(id: string, domainId?: string, options?: any) {
+  public readCalendar(id: string, domain_id?: string, options?: any) {
     return CalendarServiceApiFp(this.configuration).readCalendar(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7338,23 +7398,23 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Read ExceptDate
-   * @param {string} calendarId
+   * @param {string} calendar_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public readExceptDate(
-    calendarId: string,
+    calendar_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).readExceptDate(
-      calendarId,
+      calendar_id,
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7362,20 +7422,20 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary List AcceptOfDay
-   * @param {string} calendarId
-   * @param {string} [domainId]
+   * @param {string} calendar_id
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public searchAcceptOfDay(
-    calendarId: string,
-    domainId?: string,
+    calendar_id: string,
+    domain_id?: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).searchAcceptOfDay(
-      calendarId,
-      domainId,
+      calendar_id,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7383,7 +7443,7 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary List of calendar
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -7391,13 +7451,13 @@ export class CalendarServiceApi extends BaseAPI {
    * @memberof CalendarServiceApi
    */
   public searchCalendar(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).searchCalendar(
-      domainId,
+      domain_id,
       size,
       page,
       options
@@ -7407,20 +7467,20 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary List ExceptDate
-   * @param {string} calendarId
-   * @param {string} [domainId]
+   * @param {string} calendar_id
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public searchExceptDate(
-    calendarId: string,
-    domainId?: string,
+    calendar_id: string,
+    domain_id?: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).searchExceptDate(
-      calendarId,
-      domainId,
+      calendar_id,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7445,23 +7505,23 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Update AcceptOfDay
-   * @param {EngineUpdateAcceptOfDayRequest} body
-   * @param {string} calendarId
+   * @param {string} calendar_id
    * @param {string} id
+   * @param {EngineUpdateAcceptOfDayRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public updateAcceptOfDay(
-    body: EngineUpdateAcceptOfDayRequest,
-    calendarId: string,
+    calendar_id: string,
     id: string,
+    body: EngineUpdateAcceptOfDayRequest,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).updateAcceptOfDay(
-      body,
-      calendarId,
+      calendar_id,
       id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -7469,20 +7529,20 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Update calendar
-   * @param {EngineUpdateCalendarRequest} body
    * @param {string} id
+   * @param {EngineUpdateCalendarRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public updateCalendar(
-    body: EngineUpdateCalendarRequest,
     id: string,
+    body: EngineUpdateCalendarRequest,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).updateCalendar(
-      body,
       id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -7490,23 +7550,23 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Update ExceptDate
-   * @param {EngineUpdateExceptDateRequest} body
-   * @param {string} calendarId
+   * @param {string} calendar_id
    * @param {string} id
+   * @param {EngineUpdateExceptDateRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public updateExceptDate(
-    body: EngineUpdateExceptDateRequest,
-    calendarId: string,
+    calendar_id: string,
     id: string,
+    body: EngineUpdateExceptDateRequest,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).updateExceptDate(
-      body,
-      calendarId,
+      calendar_id,
       id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -7590,13 +7650,13 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      *
      * @summary Remove OutboundResource
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteOutboundResource(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -7632,8 +7692,8 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -7657,13 +7717,13 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      *
      * @summary OutboundResource item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readOutboundResource(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -7699,8 +7759,8 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -7723,14 +7783,14 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of OutboundResource
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -7758,8 +7818,8 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -7790,28 +7850,28 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update OutboundResource
-     * @param {EngineUpdateOutboundResourceRequest} body
      * @param {string} id
+     * @param {EngineUpdateOutboundResourceRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResource(
-      body: EngineUpdateOutboundResourceRequest,
       id: string,
+      body: EngineUpdateOutboundResourceRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateOutboundResource.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateOutboundResource.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateOutboundResource.'
         )
       }
       const localVarPath = `/call_center/resources/{id}`.replace(
@@ -7908,13 +7968,13 @@ export const OutboundResourceServiceApiFp = function(
      *
      * @summary Remove OutboundResource
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteOutboundResource(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -7922,7 +7982,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineOutboundResource> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).deleteOutboundResource(id, domainId, options)
+      ).deleteOutboundResource(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -7938,13 +7998,13 @@ export const OutboundResourceServiceApiFp = function(
      *
      * @summary OutboundResource item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readOutboundResource(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -7952,7 +8012,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineOutboundResource> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).readOutboundResource(id, domainId, options)
+      ).readOutboundResource(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -7967,14 +8027,14 @@ export const OutboundResourceServiceApiFp = function(
     /**
      *
      * @summary List of OutboundResource
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -7984,7 +8044,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineListOutboundResource> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).searchOutboundResource(domainId, size, page, options)
+      ).searchOutboundResource(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -7999,14 +8059,14 @@ export const OutboundResourceServiceApiFp = function(
     /**
      *
      * @summary Update OutboundResource
-     * @param {EngineUpdateOutboundResourceRequest} body
      * @param {string} id
+     * @param {EngineUpdateOutboundResourceRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResource(
-      body: EngineUpdateOutboundResourceRequest,
       id: string,
+      body: EngineUpdateOutboundResourceRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -8014,7 +8074,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineOutboundResource> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).updateOutboundResource(body, id, options)
+      ).updateOutboundResource(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -8059,14 +8119,14 @@ export const OutboundResourceServiceApiFactory = function(
      *
      * @summary Remove OutboundResource
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteOutboundResource(id: string, domainId?: string, options?: any) {
+    deleteOutboundResource(id: string, domain_id?: string, options?: any) {
       return OutboundResourceServiceApiFp(configuration).deleteOutboundResource(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -8074,34 +8134,34 @@ export const OutboundResourceServiceApiFactory = function(
      *
      * @summary OutboundResource item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readOutboundResource(id: string, domainId?: string, options?: any) {
+    readOutboundResource(id: string, domain_id?: string, options?: any) {
       return OutboundResourceServiceApiFp(configuration).readOutboundResource(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List of OutboundResource
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return OutboundResourceServiceApiFp(configuration).searchOutboundResource(
-        domainId,
+        domain_id,
         size,
         page,
         options
@@ -8110,19 +8170,19 @@ export const OutboundResourceServiceApiFactory = function(
     /**
      *
      * @summary Update OutboundResource
-     * @param {EngineUpdateOutboundResourceRequest} body
      * @param {string} id
+     * @param {EngineUpdateOutboundResourceRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResource(
-      body: EngineUpdateOutboundResourceRequest,
       id: string,
+      body: EngineUpdateOutboundResourceRequest,
       options?: any
     ) {
       return OutboundResourceServiceApiFp(configuration).updateOutboundResource(
-        body,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -8157,36 +8217,36 @@ export class OutboundResourceServiceApi extends BaseAPI {
    *
    * @summary Remove OutboundResource
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public deleteOutboundResource(id: string, domainId?: string, options?: any) {
+  public deleteOutboundResource(id: string, domain_id?: string, options?: any) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).deleteOutboundResource(id, domainId, options)(this.axios, this.basePath)
+    ).deleteOutboundResource(id, domain_id, options)(this.axios, this.basePath)
   }
 
   /**
    *
    * @summary OutboundResource item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public readOutboundResource(id: string, domainId?: string, options?: any) {
+  public readOutboundResource(id: string, domain_id?: string, options?: any) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).readOutboundResource(id, domainId, options)(this.axios, this.basePath)
+    ).readOutboundResource(id, domain_id, options)(this.axios, this.basePath)
   }
 
   /**
    *
    * @summary List of OutboundResource
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -8194,14 +8254,14 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @memberof OutboundResourceServiceApi
    */
   public searchOutboundResource(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).searchOutboundResource(domainId, size, page, options)(
+    ).searchOutboundResource(domain_id, size, page, options)(
       this.axios,
       this.basePath
     )
@@ -8210,20 +8270,20 @@ export class OutboundResourceServiceApi extends BaseAPI {
   /**
    *
    * @summary Update OutboundResource
-   * @param {EngineUpdateOutboundResourceRequest} body
    * @param {string} id
+   * @param {EngineUpdateOutboundResourceRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
   public updateOutboundResource(
-    body: EngineUpdateOutboundResourceRequest,
     id: string,
+    body: EngineUpdateOutboundResourceRequest,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).updateOutboundResource(body, id, options)(this.axios, this.basePath)
+    ).updateOutboundResource(id, body, options)(this.axios, this.basePath)
   }
 }
 
@@ -8237,16 +8297,24 @@ export const QueueRoutingServiceApiAxiosParamCreator = function(
   return {
     /**
      *
+     * @summary CreateQueueRouting
+     * @param {string} queue_id
      * @param {EngineCreateQueueRoutingRequest} body
-     * @param {string} queueId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueRouting(
+      queue_id: string,
       body: EngineCreateQueueRoutingRequest,
-      queueId: string,
       options: any = {}
     ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling createQueueRouting.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
@@ -8254,16 +8322,9 @@ export const QueueRoutingServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createQueueRouting.'
         )
       }
-      // verify required parameter 'queueId' is not null or undefined
-      if (queueId === null || queueId === undefined) {
-        throw new RequiredError(
-          'queueId',
-          'Required parameter queueId was null or undefined when calling createQueueRouting.'
-        )
-      }
       const localVarPath = `/call_center/queues/{queue_id}/routings`.replace(
         `{${'queue_id'}}`,
-        encodeURIComponent(String(queueId))
+        encodeURIComponent(String(queue_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -8312,6 +8373,321 @@ export const QueueRoutingServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary DeleteQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueRouting(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling deleteQueueRouting.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteQueueRouting.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/routings/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueRouting(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling readQueueRouting.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readQueueRouting.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/routings/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary SearchQueueRouting
+     * @param {string} queue_id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueRouting(
+      queue_id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling searchQueueRouting.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/routings`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary UpdateQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueRoutingRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueRouting(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueRoutingRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling updateQueueRouting.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateQueueRouting.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateQueueRouting.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/routings/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateQueueRoutingRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -8325,14 +8701,15 @@ export const QueueRoutingServiceApiFp = function(
   return {
     /**
      *
+     * @summary CreateQueueRouting
+     * @param {string} queue_id
      * @param {EngineCreateQueueRoutingRequest} body
-     * @param {string} queueId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueRouting(
+      queue_id: string,
       body: EngineCreateQueueRoutingRequest,
-      queueId: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -8340,7 +8717,137 @@ export const QueueRoutingServiceApiFp = function(
     ) => AxiosPromise<EngineQueueRouting> {
       const localVarAxiosArgs = QueueRoutingServiceApiAxiosParamCreator(
         configuration
-      ).createQueueRouting(body, queueId, options)
+      ).createQueueRouting(queue_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary DeleteQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueRouting(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueRouting> {
+      const localVarAxiosArgs = QueueRoutingServiceApiAxiosParamCreator(
+        configuration
+      ).deleteQueueRouting(queue_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueRouting(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueRouting> {
+      const localVarAxiosArgs = QueueRoutingServiceApiAxiosParamCreator(
+        configuration
+      ).readQueueRouting(queue_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary SearchQueueRouting
+     * @param {string} queue_id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueRouting(
+      queue_id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListQueueRouting> {
+      const localVarAxiosArgs = QueueRoutingServiceApiAxiosParamCreator(
+        configuration
+      ).searchQueueRouting(queue_id, domain_id, size, page, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary UpdateQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueRoutingRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueRouting(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueRoutingRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueRouting> {
+      const localVarAxiosArgs = QueueRoutingServiceApiAxiosParamCreator(
+        configuration
+      ).updateQueueRouting(queue_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -8367,19 +8874,111 @@ export const QueueRoutingServiceApiFactory = function(
   return {
     /**
      *
+     * @summary CreateQueueRouting
+     * @param {string} queue_id
      * @param {EngineCreateQueueRoutingRequest} body
-     * @param {string} queueId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueRouting(
+      queue_id: string,
       body: EngineCreateQueueRoutingRequest,
-      queueId: string,
       options?: any
     ) {
       return QueueRoutingServiceApiFp(configuration).createQueueRouting(
+        queue_id,
         body,
-        queueId,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary DeleteQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueRouting(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return QueueRoutingServiceApiFp(configuration).deleteQueueRouting(
+        queue_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueRouting(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return QueueRoutingServiceApiFp(configuration).readQueueRouting(
+        queue_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary SearchQueueRouting
+     * @param {string} queue_id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueRouting(
+      queue_id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options?: any
+    ) {
+      return QueueRoutingServiceApiFp(configuration).searchQueueRouting(
+        queue_id,
+        domain_id,
+        size,
+        page,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary UpdateQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueRoutingRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueRouting(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueRoutingRequest,
+      options?: any
+    ) {
+      return QueueRoutingServiceApiFp(configuration).updateQueueRouting(
+        queue_id,
+        id,
+        body,
         options
       )(axios, basePath)
     },
@@ -8395,20 +8994,120 @@ export const QueueRoutingServiceApiFactory = function(
 export class QueueRoutingServiceApi extends BaseAPI {
   /**
    *
+   * @summary CreateQueueRouting
+   * @param {string} queue_id
    * @param {EngineCreateQueueRoutingRequest} body
-   * @param {string} queueId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueRoutingServiceApi
    */
   public createQueueRouting(
+    queue_id: string,
     body: EngineCreateQueueRoutingRequest,
-    queueId: string,
     options?: any
   ) {
     return QueueRoutingServiceApiFp(this.configuration).createQueueRouting(
+      queue_id,
       body,
-      queueId,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary DeleteQueueRouting
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueRoutingServiceApi
+   */
+  public deleteQueueRouting(
+    queue_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return QueueRoutingServiceApiFp(this.configuration).deleteQueueRouting(
+      queue_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary ReadQueueRouting
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueRoutingServiceApi
+   */
+  public readQueueRouting(
+    queue_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return QueueRoutingServiceApiFp(this.configuration).readQueueRouting(
+      queue_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary SearchQueueRouting
+   * @param {string} queue_id
+   * @param {string} [domain_id]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueRoutingServiceApi
+   */
+  public searchQueueRouting(
+    queue_id: string,
+    domain_id?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ) {
+    return QueueRoutingServiceApiFp(this.configuration).searchQueueRouting(
+      queue_id,
+      domain_id,
+      size,
+      page,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary UpdateQueueRouting
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {EngineUpdateQueueRoutingRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueRoutingServiceApi
+   */
+  public updateQueueRouting(
+    queue_id: string,
+    id: string,
+    body: EngineUpdateQueueRoutingRequest,
+    options?: any
+  ) {
+    return QueueRoutingServiceApiFp(this.configuration).updateQueueRouting(
+      queue_id,
+      id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -8492,11 +9191,15 @@ export const QueueServiceApiAxiosParamCreator = function(
      *
      * @summary Remove Queue
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteQueue(id: string, domainId?: string, options: any = {}): RequestArgs {
+    deleteQueue(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
@@ -8530,8 +9233,8 @@ export const QueueServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -8555,11 +9258,11 @@ export const QueueServiceApiAxiosParamCreator = function(
      *
      * @summary Queue item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readQueue(id: string, domainId?: string, options: any = {}): RequestArgs {
+    readQueue(id: string, domain_id?: string, options: any = {}): RequestArgs {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
@@ -8593,8 +9296,8 @@ export const QueueServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -8617,14 +9320,14 @@ export const QueueServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of Queue
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueue(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -8652,8 +9355,8 @@ export const QueueServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -8684,28 +9387,28 @@ export const QueueServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update Queue
-     * @param {EngineUpdateQueueRequest} body
      * @param {string} id
+     * @param {EngineUpdateQueueRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueue(
-      body: EngineUpdateQueueRequest,
       id: string,
+      body: EngineUpdateQueueRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateQueue.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateQueue.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateQueue.'
         )
       }
       const localVarPath = `/call_center/queues/{id}`.replace(
@@ -8797,18 +9500,18 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Remove Queue
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteQueue(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue> {
       const localVarAxiosArgs = QueueServiceApiAxiosParamCreator(
         configuration
-      ).deleteQueue(id, domainId, options)
+      ).deleteQueue(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -8824,18 +9527,18 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Queue item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readQueue(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue> {
       const localVarAxiosArgs = QueueServiceApiAxiosParamCreator(
         configuration
-      ).readQueue(id, domainId, options)
+      ).readQueue(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -8850,14 +9553,14 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of Queue
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueue(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -8867,7 +9570,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListQueue> {
       const localVarAxiosArgs = QueueServiceApiAxiosParamCreator(
         configuration
-      ).searchQueue(domainId, size, page, options)
+      ).searchQueue(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -8882,19 +9585,19 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update Queue
-     * @param {EngineUpdateQueueRequest} body
      * @param {string} id
+     * @param {EngineUpdateQueueRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueue(
-      body: EngineUpdateQueueRequest,
       id: string,
+      body: EngineUpdateQueueRequest,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue> {
       const localVarAxiosArgs = QueueServiceApiAxiosParamCreator(
         configuration
-      ).updateQueue(body, id, options)
+      ).updateQueue(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -8936,14 +9639,14 @@ export const QueueServiceApiFactory = function(
      *
      * @summary Remove Queue
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteQueue(id: string, domainId?: string, options?: any) {
+    deleteQueue(id: string, domain_id?: string, options?: any) {
       return QueueServiceApiFp(configuration).deleteQueue(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -8951,12 +9654,12 @@ export const QueueServiceApiFactory = function(
      *
      * @summary Queue item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readQueue(id: string, domainId?: string, options?: any) {
-      return QueueServiceApiFp(configuration).readQueue(id, domainId, options)(
+    readQueue(id: string, domain_id?: string, options?: any) {
+      return QueueServiceApiFp(configuration).readQueue(id, domain_id, options)(
         axios,
         basePath
       )
@@ -8964,20 +9667,20 @@ export const QueueServiceApiFactory = function(
     /**
      *
      * @summary List of Queue
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueue(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return QueueServiceApiFp(configuration).searchQueue(
-        domainId,
+        domain_id,
         size,
         page,
         options
@@ -8986,13 +9689,13 @@ export const QueueServiceApiFactory = function(
     /**
      *
      * @summary Update Queue
-     * @param {EngineUpdateQueueRequest} body
      * @param {string} id
+     * @param {EngineUpdateQueueRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateQueue(body: EngineUpdateQueueRequest, id: string, options?: any) {
-      return QueueServiceApiFp(configuration).updateQueue(body, id, options)(
+    updateQueue(id: string, body: EngineUpdateQueueRequest, options?: any) {
+      return QueueServiceApiFp(configuration).updateQueue(id, body, options)(
         axios,
         basePath
       )
@@ -9026,15 +9729,15 @@ export class QueueServiceApi extends BaseAPI {
    *
    * @summary Remove Queue
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public deleteQueue(id: string, domainId?: string, options?: any) {
+  public deleteQueue(id: string, domain_id?: string, options?: any) {
     return QueueServiceApiFp(this.configuration).deleteQueue(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -9043,15 +9746,15 @@ export class QueueServiceApi extends BaseAPI {
    *
    * @summary Queue item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public readQueue(id: string, domainId?: string, options?: any) {
+  public readQueue(id: string, domain_id?: string, options?: any) {
     return QueueServiceApiFp(this.configuration).readQueue(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -9059,7 +9762,7 @@ export class QueueServiceApi extends BaseAPI {
   /**
    *
    * @summary List of Queue
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -9067,13 +9770,13 @@ export class QueueServiceApi extends BaseAPI {
    * @memberof QueueServiceApi
    */
   public searchQueue(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration).searchQueue(
-      domainId,
+      domain_id,
       size,
       page,
       options
@@ -9083,18 +9786,18 @@ export class QueueServiceApi extends BaseAPI {
   /**
    *
    * @summary Update Queue
-   * @param {EngineUpdateQueueRequest} body
    * @param {string} id
+   * @param {EngineUpdateQueueRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
   public updateQueue(
-    body: EngineUpdateQueueRequest,
     id: string,
+    body: EngineUpdateQueueRequest,
     options?: any
   ) {
-    return QueueServiceApiFp(this.configuration).updateQueue(body, id, options)(
+    return QueueServiceApiFp(this.configuration).updateQueue(id, body, options)(
       this.axios,
       this.basePath
     )
@@ -9112,16 +9815,23 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Create ResourceTeam
+     * @param {string} team_id
      * @param {EngineCreateResourceTeamRequest} body
-     * @param {string} teamId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createResourceTeam(
+      team_id: string,
       body: EngineCreateResourceTeamRequest,
-      teamId: string,
       options: any = {}
     ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling createResourceTeam.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
@@ -9129,16 +9839,9 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createResourceTeam.'
         )
       }
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
-        throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling createResourceTeam.'
-        )
-      }
       const localVarPath = `/call_center/teams/{team_id}/resources`.replace(
         `{${'team_id'}}`,
-        encodeURIComponent(String(teamId))
+        encodeURIComponent(String(team_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -9190,23 +9893,23 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Remove ResourceTeam
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteResourceTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
         throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling deleteResourceTeam.'
+          'team_id',
+          'Required parameter team_id was null or undefined when calling deleteResourceTeam.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -9217,7 +9920,7 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/teams/{team_id}/resources/{id}`
-        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -9241,8 +9944,8 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -9265,23 +9968,23 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary ResourceTeam item
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readResourceTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
         throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling readResourceTeam.'
+          'team_id',
+          'Required parameter team_id was null or undefined when calling readResourceTeam.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -9292,7 +9995,7 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/teams/{team_id}/resources/{id}`
-        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -9316,8 +10019,8 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -9340,30 +10043,30 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of ResourceTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
+     * @param {string} team_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchResourceTeam(
-      teamId: string,
-      domainId?: string,
+      team_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
         throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling searchResourceTeam.'
+          'team_id',
+          'Required parameter team_id was null or undefined when calling searchResourceTeam.'
         )
       }
       const localVarPath = `/call_center/teams/{team_id}/resources`.replace(
         `{${'team_id'}}`,
-        encodeURIComponent(String(teamId))
+        encodeURIComponent(String(team_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -9387,8 +10090,8 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -9419,30 +10122,23 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update ResourceTeam
-     * @param {EngineUpdateResourceTeamRequest} body
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
+     * @param {EngineUpdateResourceTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateResourceTeam(
-      body: EngineUpdateResourceTeamRequest,
-      teamId: string,
+      team_id: string,
       id: string,
+      body: EngineUpdateResourceTeamRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateResourceTeam.'
-        )
-      }
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
-        throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling updateResourceTeam.'
+          'team_id',
+          'Required parameter team_id was null or undefined when calling updateResourceTeam.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -9452,8 +10148,15 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling updateResourceTeam.'
         )
       }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateResourceTeam.'
+        )
+      }
       const localVarPath = `/call_center/teams/{team_id}/resources/{id}`
-        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -9516,14 +10219,14 @@ export const ResourceTeamServiceApiFp = function(
     /**
      *
      * @summary Create ResourceTeam
+     * @param {string} team_id
      * @param {EngineCreateResourceTeamRequest} body
-     * @param {string} teamId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createResourceTeam(
+      team_id: string,
       body: EngineCreateResourceTeamRequest,
-      teamId: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -9531,7 +10234,7 @@ export const ResourceTeamServiceApiFp = function(
     ) => AxiosPromise<EngineResourceTeam> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).createResourceTeam(body, teamId, options)
+      ).createResourceTeam(team_id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -9546,16 +10249,16 @@ export const ResourceTeamServiceApiFp = function(
     /**
      *
      * @summary Remove ResourceTeam
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteResourceTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -9563,7 +10266,7 @@ export const ResourceTeamServiceApiFp = function(
     ) => AxiosPromise<EngineResourceTeam> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).deleteResourceTeam(teamId, id, domainId, options)
+      ).deleteResourceTeam(team_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -9578,16 +10281,16 @@ export const ResourceTeamServiceApiFp = function(
     /**
      *
      * @summary ResourceTeam item
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readResourceTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -9595,7 +10298,7 @@ export const ResourceTeamServiceApiFp = function(
     ) => AxiosPromise<EngineResourceTeam> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).readResourceTeam(teamId, id, domainId, options)
+      ).readResourceTeam(team_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -9610,16 +10313,16 @@ export const ResourceTeamServiceApiFp = function(
     /**
      *
      * @summary List of ResourceTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
+     * @param {string} team_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchResourceTeam(
-      teamId: string,
-      domainId?: string,
+      team_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -9629,7 +10332,7 @@ export const ResourceTeamServiceApiFp = function(
     ) => AxiosPromise<EngineListResourceTeam> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).searchResourceTeam(teamId, domainId, size, page, options)
+      ).searchResourceTeam(team_id, domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -9644,16 +10347,16 @@ export const ResourceTeamServiceApiFp = function(
     /**
      *
      * @summary Update ResourceTeam
-     * @param {EngineUpdateResourceTeamRequest} body
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
+     * @param {EngineUpdateResourceTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateResourceTeam(
-      body: EngineUpdateResourceTeamRequest,
-      teamId: string,
+      team_id: string,
       id: string,
+      body: EngineUpdateResourceTeamRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -9661,7 +10364,7 @@ export const ResourceTeamServiceApiFp = function(
     ) => AxiosPromise<EngineResourceTeam> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).updateResourceTeam(body, teamId, id, options)
+      ).updateResourceTeam(team_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -9689,86 +10392,86 @@ export const ResourceTeamServiceApiFactory = function(
     /**
      *
      * @summary Create ResourceTeam
+     * @param {string} team_id
      * @param {EngineCreateResourceTeamRequest} body
-     * @param {string} teamId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createResourceTeam(
+      team_id: string,
       body: EngineCreateResourceTeamRequest,
-      teamId: string,
       options?: any
     ) {
       return ResourceTeamServiceApiFp(configuration).createResourceTeam(
+        team_id,
         body,
-        teamId,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Remove ResourceTeam
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteResourceTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return ResourceTeamServiceApiFp(configuration).deleteResourceTeam(
-        teamId,
+        team_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary ResourceTeam item
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readResourceTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return ResourceTeamServiceApiFp(configuration).readResourceTeam(
-        teamId,
+        team_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List of ResourceTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
+     * @param {string} team_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchResourceTeam(
-      teamId: string,
-      domainId?: string,
+      team_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return ResourceTeamServiceApiFp(configuration).searchResourceTeam(
-        teamId,
-        domainId,
+        team_id,
+        domain_id,
         size,
         page,
         options
@@ -9777,22 +10480,22 @@ export const ResourceTeamServiceApiFactory = function(
     /**
      *
      * @summary Update ResourceTeam
-     * @param {EngineUpdateResourceTeamRequest} body
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
+     * @param {EngineUpdateResourceTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateResourceTeam(
-      body: EngineUpdateResourceTeamRequest,
-      teamId: string,
+      team_id: string,
       id: string,
+      body: EngineUpdateResourceTeamRequest,
       options?: any
     ) {
       return ResourceTeamServiceApiFp(configuration).updateResourceTeam(
-        body,
-        teamId,
+        team_id,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -9809,20 +10512,20 @@ export class ResourceTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary Create ResourceTeam
+   * @param {string} team_id
    * @param {EngineCreateResourceTeamRequest} body
-   * @param {string} teamId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
   public createResourceTeam(
+    team_id: string,
     body: EngineCreateResourceTeamRequest,
-    teamId: string,
     options?: any
   ) {
     return ResourceTeamServiceApiFp(this.configuration).createResourceTeam(
+      team_id,
       body,
-      teamId,
       options
     )(this.axios, this.basePath)
   }
@@ -9830,23 +10533,23 @@ export class ResourceTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary Remove ResourceTeam
-   * @param {string} teamId
+   * @param {string} team_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
   public deleteResourceTeam(
-    teamId: string,
+    team_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return ResourceTeamServiceApiFp(this.configuration).deleteResourceTeam(
-      teamId,
+      team_id,
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -9854,23 +10557,23 @@ export class ResourceTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary ResourceTeam item
-   * @param {string} teamId
+   * @param {string} team_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
   public readResourceTeam(
-    teamId: string,
+    team_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return ResourceTeamServiceApiFp(this.configuration).readResourceTeam(
-      teamId,
+      team_id,
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -9878,8 +10581,8 @@ export class ResourceTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary List of ResourceTeam
-   * @param {string} teamId
-   * @param {string} [domainId]
+   * @param {string} team_id
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -9887,15 +10590,15 @@ export class ResourceTeamServiceApi extends BaseAPI {
    * @memberof ResourceTeamServiceApi
    */
   public searchResourceTeam(
-    teamId: string,
-    domainId?: string,
+    team_id: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return ResourceTeamServiceApiFp(this.configuration).searchResourceTeam(
-      teamId,
-      domainId,
+      team_id,
+      domain_id,
       size,
       page,
       options
@@ -9905,23 +10608,23 @@ export class ResourceTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary Update ResourceTeam
-   * @param {EngineUpdateResourceTeamRequest} body
-   * @param {string} teamId
+   * @param {string} team_id
    * @param {string} id
+   * @param {EngineUpdateResourceTeamRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
   public updateResourceTeam(
-    body: EngineUpdateResourceTeamRequest,
-    teamId: string,
+    team_id: string,
     id: string,
+    body: EngineUpdateResourceTeamRequest,
     options?: any
   ) {
     return ResourceTeamServiceApiFp(this.configuration).updateResourceTeam(
-      body,
-      teamId,
+      team_id,
       id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -10005,13 +10708,13 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
      *
      * @summary Remove RoutingOutboundCall
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRoutingOutboundCall(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -10047,8 +10750,8 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -10072,13 +10775,13 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
      *
      * @summary RoutingOutboundCall item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readRoutingOutboundCall(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -10114,8 +10817,8 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -10138,14 +10841,14 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of RoutingOutboundCall
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingOutboundCall(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -10173,8 +10876,8 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -10205,28 +10908,28 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update RoutingOutboundCall
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingOutboundCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingOutboundCall(
-      body: EngineUpdateRoutingOutboundCallRequest,
       id: string,
+      body: EngineUpdateRoutingOutboundCallRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateRoutingOutboundCall.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateRoutingOutboundCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateRoutingOutboundCall.'
         )
       }
       const localVarPath = `/routing/outbound/calls/{id}`.replace(
@@ -10323,13 +11026,13 @@ export const RoutingOutboundCallServiceApiFp = function(
      *
      * @summary Remove RoutingOutboundCall
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRoutingOutboundCall(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -10337,7 +11040,7 @@ export const RoutingOutboundCallServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingOutboundCall> {
       const localVarAxiosArgs = RoutingOutboundCallServiceApiAxiosParamCreator(
         configuration
-      ).deleteRoutingOutboundCall(id, domainId, options)
+      ).deleteRoutingOutboundCall(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -10353,13 +11056,13 @@ export const RoutingOutboundCallServiceApiFp = function(
      *
      * @summary RoutingOutboundCall item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readRoutingOutboundCall(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -10367,7 +11070,7 @@ export const RoutingOutboundCallServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingOutboundCall> {
       const localVarAxiosArgs = RoutingOutboundCallServiceApiAxiosParamCreator(
         configuration
-      ).readRoutingOutboundCall(id, domainId, options)
+      ).readRoutingOutboundCall(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -10382,14 +11085,14 @@ export const RoutingOutboundCallServiceApiFp = function(
     /**
      *
      * @summary List of RoutingOutboundCall
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingOutboundCall(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -10399,7 +11102,7 @@ export const RoutingOutboundCallServiceApiFp = function(
     ) => AxiosPromise<EngineListRoutingOutboundCall> {
       const localVarAxiosArgs = RoutingOutboundCallServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingOutboundCall(domainId, size, page, options)
+      ).searchRoutingOutboundCall(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -10414,14 +11117,14 @@ export const RoutingOutboundCallServiceApiFp = function(
     /**
      *
      * @summary Update RoutingOutboundCall
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingOutboundCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingOutboundCall(
-      body: EngineUpdateRoutingOutboundCallRequest,
       id: string,
+      body: EngineUpdateRoutingOutboundCallRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -10429,7 +11132,7 @@ export const RoutingOutboundCallServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingOutboundCall> {
       const localVarAxiosArgs = RoutingOutboundCallServiceApiAxiosParamCreator(
         configuration
-      ).updateRoutingOutboundCall(body, id, options)
+      ).updateRoutingOutboundCall(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -10473,46 +11176,46 @@ export const RoutingOutboundCallServiceApiFactory = function(
      *
      * @summary Remove RoutingOutboundCall
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingOutboundCall(id: string, domainId?: string, options?: any) {
+    deleteRoutingOutboundCall(id: string, domain_id?: string, options?: any) {
       return RoutingOutboundCallServiceApiFp(
         configuration
-      ).deleteRoutingOutboundCall(id, domainId, options)(axios, basePath)
+      ).deleteRoutingOutboundCall(id, domain_id, options)(axios, basePath)
     },
     /**
      *
      * @summary RoutingOutboundCall item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingOutboundCall(id: string, domainId?: string, options?: any) {
+    readRoutingOutboundCall(id: string, domain_id?: string, options?: any) {
       return RoutingOutboundCallServiceApiFp(
         configuration
-      ).readRoutingOutboundCall(id, domainId, options)(axios, basePath)
+      ).readRoutingOutboundCall(id, domain_id, options)(axios, basePath)
     },
     /**
      *
      * @summary List of RoutingOutboundCall
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingOutboundCall(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return RoutingOutboundCallServiceApiFp(
         configuration
-      ).searchRoutingOutboundCall(domainId, size, page, options)(
+      ).searchRoutingOutboundCall(domain_id, size, page, options)(
         axios,
         basePath
       )
@@ -10520,19 +11223,19 @@ export const RoutingOutboundCallServiceApiFactory = function(
     /**
      *
      * @summary Update RoutingOutboundCall
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingOutboundCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingOutboundCall(
-      body: EngineUpdateRoutingOutboundCallRequest,
       id: string,
+      body: EngineUpdateRoutingOutboundCallRequest,
       options?: any
     ) {
       return RoutingOutboundCallServiceApiFp(
         configuration
-      ).updateRoutingOutboundCall(body, id, options)(axios, basePath)
+      ).updateRoutingOutboundCall(id, body, options)(axios, basePath)
     },
   }
 }
@@ -10565,19 +11268,19 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
    *
    * @summary Remove RoutingOutboundCall
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingOutboundCallServiceApi
    */
   public deleteRoutingOutboundCall(
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return RoutingOutboundCallServiceApiFp(
       this.configuration
-    ).deleteRoutingOutboundCall(id, domainId, options)(
+    ).deleteRoutingOutboundCall(id, domain_id, options)(
       this.axios,
       this.basePath
     )
@@ -10587,21 +11290,25 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
    *
    * @summary RoutingOutboundCall item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingOutboundCallServiceApi
    */
-  public readRoutingOutboundCall(id: string, domainId?: string, options?: any) {
+  public readRoutingOutboundCall(
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
     return RoutingOutboundCallServiceApiFp(
       this.configuration
-    ).readRoutingOutboundCall(id, domainId, options)(this.axios, this.basePath)
+    ).readRoutingOutboundCall(id, domain_id, options)(this.axios, this.basePath)
   }
 
   /**
    *
    * @summary List of RoutingOutboundCall
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -10609,14 +11316,14 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
    * @memberof RoutingOutboundCallServiceApi
    */
   public searchRoutingOutboundCall(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return RoutingOutboundCallServiceApiFp(
       this.configuration
-    ).searchRoutingOutboundCall(domainId, size, page, options)(
+    ).searchRoutingOutboundCall(domain_id, size, page, options)(
       this.axios,
       this.basePath
     )
@@ -10625,20 +11332,20 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
   /**
    *
    * @summary Update RoutingOutboundCall
-   * @param {EngineUpdateRoutingOutboundCallRequest} body
    * @param {string} id
+   * @param {EngineUpdateRoutingOutboundCallRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingOutboundCallServiceApi
    */
   public updateRoutingOutboundCall(
-    body: EngineUpdateRoutingOutboundCallRequest,
     id: string,
+    body: EngineUpdateRoutingOutboundCallRequest,
     options?: any
   ) {
     return RoutingOutboundCallServiceApiFp(
       this.configuration
-    ).updateRoutingOutboundCall(body, id, options)(this.axios, this.basePath)
+    ).updateRoutingOutboundCall(id, body, options)(this.axios, this.basePath)
   }
 }
 
@@ -10720,13 +11427,13 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
      *
      * @summary Remove RoutingScheme
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRoutingScheme(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -10762,8 +11469,8 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -10787,13 +11494,13 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
      *
      * @summary RoutingScheme item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readRoutingScheme(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -10829,8 +11536,8 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -10853,14 +11560,14 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List RoutingScheme
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingScheme(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -10888,8 +11595,8 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -10920,28 +11627,28 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update RoutingScheme
-     * @param {EngineUpdateRoutingSchemeRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingSchemeRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingScheme(
-      body: EngineUpdateRoutingSchemeRequest,
       id: string,
+      body: EngineUpdateRoutingSchemeRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateRoutingScheme.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateRoutingScheme.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateRoutingScheme.'
         )
       }
       const localVarPath = `/routing/schemes/{id}`.replace(
@@ -11038,13 +11745,13 @@ export const RoutingSchemeServiceApiFp = function(
      *
      * @summary Remove RoutingScheme
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRoutingScheme(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -11052,7 +11759,7 @@ export const RoutingSchemeServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingScheme> {
       const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
         configuration
-      ).deleteRoutingScheme(id, domainId, options)
+      ).deleteRoutingScheme(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -11068,13 +11775,13 @@ export const RoutingSchemeServiceApiFp = function(
      *
      * @summary RoutingScheme item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readRoutingScheme(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -11082,7 +11789,7 @@ export const RoutingSchemeServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingScheme> {
       const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
         configuration
-      ).readRoutingScheme(id, domainId, options)
+      ).readRoutingScheme(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -11097,14 +11804,14 @@ export const RoutingSchemeServiceApiFp = function(
     /**
      *
      * @summary List RoutingScheme
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingScheme(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -11114,7 +11821,7 @@ export const RoutingSchemeServiceApiFp = function(
     ) => AxiosPromise<EngineListRoutingScheme> {
       const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingScheme(domainId, size, page, options)
+      ).searchRoutingScheme(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -11129,14 +11836,14 @@ export const RoutingSchemeServiceApiFp = function(
     /**
      *
      * @summary Update RoutingScheme
-     * @param {EngineUpdateRoutingSchemeRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingSchemeRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingScheme(
-      body: EngineUpdateRoutingSchemeRequest,
       id: string,
+      body: EngineUpdateRoutingSchemeRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -11144,7 +11851,7 @@ export const RoutingSchemeServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingScheme> {
       const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
         configuration
-      ).updateRoutingScheme(body, id, options)
+      ).updateRoutingScheme(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -11186,14 +11893,14 @@ export const RoutingSchemeServiceApiFactory = function(
      *
      * @summary Remove RoutingScheme
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingScheme(id: string, domainId?: string, options?: any) {
+    deleteRoutingScheme(id: string, domain_id?: string, options?: any) {
       return RoutingSchemeServiceApiFp(configuration).deleteRoutingScheme(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -11201,34 +11908,34 @@ export const RoutingSchemeServiceApiFactory = function(
      *
      * @summary RoutingScheme item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingScheme(id: string, domainId?: string, options?: any) {
+    readRoutingScheme(id: string, domain_id?: string, options?: any) {
       return RoutingSchemeServiceApiFp(configuration).readRoutingScheme(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List RoutingScheme
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingScheme(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return RoutingSchemeServiceApiFp(configuration).searchRoutingScheme(
-        domainId,
+        domain_id,
         size,
         page,
         options
@@ -11237,19 +11944,19 @@ export const RoutingSchemeServiceApiFactory = function(
     /**
      *
      * @summary Update RoutingScheme
-     * @param {EngineUpdateRoutingSchemeRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingSchemeRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingScheme(
-      body: EngineUpdateRoutingSchemeRequest,
       id: string,
+      body: EngineUpdateRoutingSchemeRequest,
       options?: any
     ) {
       return RoutingSchemeServiceApiFp(configuration).updateRoutingScheme(
-        body,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -11285,15 +11992,15 @@ export class RoutingSchemeServiceApi extends BaseAPI {
    *
    * @summary Remove RoutingScheme
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingSchemeServiceApi
    */
-  public deleteRoutingScheme(id: string, domainId?: string, options?: any) {
+  public deleteRoutingScheme(id: string, domain_id?: string, options?: any) {
     return RoutingSchemeServiceApiFp(this.configuration).deleteRoutingScheme(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -11302,15 +12009,15 @@ export class RoutingSchemeServiceApi extends BaseAPI {
    *
    * @summary RoutingScheme item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingSchemeServiceApi
    */
-  public readRoutingScheme(id: string, domainId?: string, options?: any) {
+  public readRoutingScheme(id: string, domain_id?: string, options?: any) {
     return RoutingSchemeServiceApiFp(this.configuration).readRoutingScheme(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -11318,7 +12025,7 @@ export class RoutingSchemeServiceApi extends BaseAPI {
   /**
    *
    * @summary List RoutingScheme
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -11326,13 +12033,13 @@ export class RoutingSchemeServiceApi extends BaseAPI {
    * @memberof RoutingSchemeServiceApi
    */
   public searchRoutingScheme(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return RoutingSchemeServiceApiFp(this.configuration).searchRoutingScheme(
-      domainId,
+      domain_id,
       size,
       page,
       options
@@ -11342,20 +12049,20 @@ export class RoutingSchemeServiceApi extends BaseAPI {
   /**
    *
    * @summary Update RoutingScheme
-   * @param {EngineUpdateRoutingSchemeRequest} body
    * @param {string} id
+   * @param {EngineUpdateRoutingSchemeRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingSchemeServiceApi
    */
   public updateRoutingScheme(
-    body: EngineUpdateRoutingSchemeRequest,
     id: string,
+    body: EngineUpdateRoutingSchemeRequest,
     options?: any
   ) {
     return RoutingSchemeServiceApiFp(this.configuration).updateRoutingScheme(
-      body,
       id,
+      body,
       options
     )(this.axios, this.basePath)
   }
@@ -11439,13 +12146,13 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
      *
      * @summary Remove RoutingVariable
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRoutingVariable(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -11481,8 +12188,8 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -11506,13 +12213,13 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
      *
      * @summary RoutingVariable item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readRoutingVariable(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -11548,8 +12255,8 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -11572,14 +12279,14 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of RoutingVariable
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingVariable(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -11607,8 +12314,8 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -11639,28 +12346,28 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update RoutingVariable
-     * @param {EngineUpdateRoutingVariableRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingVariableRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingVariable(
-      body: EngineUpdateRoutingVariableRequest,
       id: string,
+      body: EngineUpdateRoutingVariableRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateRoutingVariable.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateRoutingVariable.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateRoutingVariable.'
         )
       }
       const localVarPath = `/routing/variables/{id}`.replace(
@@ -11757,13 +12464,13 @@ export const RoutingVariableServiceApiFp = function(
      *
      * @summary Remove RoutingVariable
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRoutingVariable(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -11771,7 +12478,7 @@ export const RoutingVariableServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingVariable> {
       const localVarAxiosArgs = RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).deleteRoutingVariable(id, domainId, options)
+      ).deleteRoutingVariable(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -11787,13 +12494,13 @@ export const RoutingVariableServiceApiFp = function(
      *
      * @summary RoutingVariable item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readRoutingVariable(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -11801,7 +12508,7 @@ export const RoutingVariableServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingVariable> {
       const localVarAxiosArgs = RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).readRoutingVariable(id, domainId, options)
+      ).readRoutingVariable(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -11816,14 +12523,14 @@ export const RoutingVariableServiceApiFp = function(
     /**
      *
      * @summary List of RoutingVariable
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingVariable(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -11833,7 +12540,7 @@ export const RoutingVariableServiceApiFp = function(
     ) => AxiosPromise<EngineListRoutingVariable> {
       const localVarAxiosArgs = RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingVariable(domainId, size, page, options)
+      ).searchRoutingVariable(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -11848,14 +12555,14 @@ export const RoutingVariableServiceApiFp = function(
     /**
      *
      * @summary Update RoutingVariable
-     * @param {EngineUpdateRoutingVariableRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingVariableRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingVariable(
-      body: EngineUpdateRoutingVariableRequest,
       id: string,
+      body: EngineUpdateRoutingVariableRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -11863,7 +12570,7 @@ export const RoutingVariableServiceApiFp = function(
     ) => AxiosPromise<EngineRoutingVariable> {
       const localVarAxiosArgs = RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).updateRoutingVariable(body, id, options)
+      ).updateRoutingVariable(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -11908,14 +12615,14 @@ export const RoutingVariableServiceApiFactory = function(
      *
      * @summary Remove RoutingVariable
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingVariable(id: string, domainId?: string, options?: any) {
+    deleteRoutingVariable(id: string, domain_id?: string, options?: any) {
       return RoutingVariableServiceApiFp(configuration).deleteRoutingVariable(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -11923,34 +12630,34 @@ export const RoutingVariableServiceApiFactory = function(
      *
      * @summary RoutingVariable item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingVariable(id: string, domainId?: string, options?: any) {
+    readRoutingVariable(id: string, domain_id?: string, options?: any) {
       return RoutingVariableServiceApiFp(configuration).readRoutingVariable(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List of RoutingVariable
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingVariable(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return RoutingVariableServiceApiFp(configuration).searchRoutingVariable(
-        domainId,
+        domain_id,
         size,
         page,
         options
@@ -11959,19 +12666,19 @@ export const RoutingVariableServiceApiFactory = function(
     /**
      *
      * @summary Update RoutingVariable
-     * @param {EngineUpdateRoutingVariableRequest} body
      * @param {string} id
+     * @param {EngineUpdateRoutingVariableRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingVariable(
-      body: EngineUpdateRoutingVariableRequest,
       id: string,
+      body: EngineUpdateRoutingVariableRequest,
       options?: any
     ) {
       return RoutingVariableServiceApiFp(configuration).updateRoutingVariable(
-        body,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -12006,30 +12713,30 @@ export class RoutingVariableServiceApi extends BaseAPI {
    *
    * @summary Remove RoutingVariable
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
-  public deleteRoutingVariable(id: string, domainId?: string, options?: any) {
+  public deleteRoutingVariable(id: string, domain_id?: string, options?: any) {
     return RoutingVariableServiceApiFp(
       this.configuration
-    ).deleteRoutingVariable(id, domainId, options)(this.axios, this.basePath)
+    ).deleteRoutingVariable(id, domain_id, options)(this.axios, this.basePath)
   }
 
   /**
    *
    * @summary RoutingVariable item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
-  public readRoutingVariable(id: string, domainId?: string, options?: any) {
+  public readRoutingVariable(id: string, domain_id?: string, options?: any) {
     return RoutingVariableServiceApiFp(this.configuration).readRoutingVariable(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -12037,7 +12744,7 @@ export class RoutingVariableServiceApi extends BaseAPI {
   /**
    *
    * @summary List of RoutingVariable
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -12045,14 +12752,14 @@ export class RoutingVariableServiceApi extends BaseAPI {
    * @memberof RoutingVariableServiceApi
    */
   public searchRoutingVariable(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return RoutingVariableServiceApiFp(
       this.configuration
-    ).searchRoutingVariable(domainId, size, page, options)(
+    ).searchRoutingVariable(domain_id, size, page, options)(
       this.axios,
       this.basePath
     )
@@ -12061,20 +12768,20 @@ export class RoutingVariableServiceApi extends BaseAPI {
   /**
    *
    * @summary Update RoutingVariable
-   * @param {EngineUpdateRoutingVariableRequest} body
    * @param {string} id
+   * @param {EngineUpdateRoutingVariableRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
   public updateRoutingVariable(
-    body: EngineUpdateRoutingVariableRequest,
     id: string,
+    body: EngineUpdateRoutingVariableRequest,
     options?: any
   ) {
     return RoutingVariableServiceApiFp(
       this.configuration
-    ).updateRoutingVariable(body, id, options)(this.axios, this.basePath)
+    ).updateRoutingVariable(id, body, options)(this.axios, this.basePath)
   }
 }
 
@@ -12156,11 +12863,15 @@ export const SkillServiceApiAxiosParamCreator = function(
      *
      * @summary Remove Skill
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSkill(id: string, domainId?: string, options: any = {}): RequestArgs {
+    deleteSkill(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
@@ -12194,8 +12905,8 @@ export const SkillServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -12219,11 +12930,11 @@ export const SkillServiceApiAxiosParamCreator = function(
      *
      * @summary Skill item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSkill(id: string, domainId?: string, options: any = {}): RequestArgs {
+    readSkill(id: string, domain_id?: string, options: any = {}): RequestArgs {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
@@ -12257,8 +12968,8 @@ export const SkillServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -12281,14 +12992,14 @@ export const SkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of Skill
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSkill(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
@@ -12316,8 +13027,8 @@ export const SkillServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -12348,28 +13059,28 @@ export const SkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update Skill
-     * @param {EngineUpdateSkillRequest} body
      * @param {string} id
+     * @param {EngineUpdateSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSkill(
-      body: EngineUpdateSkillRequest,
       id: string,
+      body: EngineUpdateSkillRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateSkill.'
-        )
-      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling updateSkill.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateSkill.'
         )
       }
       const localVarPath = `/call_center/skills/{id}`.replace(
@@ -12461,18 +13172,18 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Remove Skill
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteSkill(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill> {
       const localVarAxiosArgs = SkillServiceApiAxiosParamCreator(
         configuration
-      ).deleteSkill(id, domainId, options)
+      ).deleteSkill(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -12488,18 +13199,18 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Skill item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readSkill(
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill> {
       const localVarAxiosArgs = SkillServiceApiAxiosParamCreator(
         configuration
-      ).readSkill(id, domainId, options)
+      ).readSkill(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -12514,14 +13225,14 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of Skill
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSkill(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -12531,7 +13242,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListSkill> {
       const localVarAxiosArgs = SkillServiceApiAxiosParamCreator(
         configuration
-      ).searchSkill(domainId, size, page, options)
+      ).searchSkill(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -12546,19 +13257,19 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update Skill
-     * @param {EngineUpdateSkillRequest} body
      * @param {string} id
+     * @param {EngineUpdateSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSkill(
-      body: EngineUpdateSkillRequest,
       id: string,
+      body: EngineUpdateSkillRequest,
       options?: any
     ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill> {
       const localVarAxiosArgs = SkillServiceApiAxiosParamCreator(
         configuration
-      ).updateSkill(body, id, options)
+      ).updateSkill(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -12600,14 +13311,14 @@ export const SkillServiceApiFactory = function(
      *
      * @summary Remove Skill
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSkill(id: string, domainId?: string, options?: any) {
+    deleteSkill(id: string, domain_id?: string, options?: any) {
       return SkillServiceApiFp(configuration).deleteSkill(
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -12615,12 +13326,12 @@ export const SkillServiceApiFactory = function(
      *
      * @summary Skill item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSkill(id: string, domainId?: string, options?: any) {
-      return SkillServiceApiFp(configuration).readSkill(id, domainId, options)(
+    readSkill(id: string, domain_id?: string, options?: any) {
+      return SkillServiceApiFp(configuration).readSkill(id, domain_id, options)(
         axios,
         basePath
       )
@@ -12628,20 +13339,20 @@ export const SkillServiceApiFactory = function(
     /**
      *
      * @summary List of Skill
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSkill(
-      domainId?: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return SkillServiceApiFp(configuration).searchSkill(
-        domainId,
+        domain_id,
         size,
         page,
         options
@@ -12650,13 +13361,13 @@ export const SkillServiceApiFactory = function(
     /**
      *
      * @summary Update Skill
-     * @param {EngineUpdateSkillRequest} body
      * @param {string} id
+     * @param {EngineUpdateSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateSkill(body: EngineUpdateSkillRequest, id: string, options?: any) {
-      return SkillServiceApiFp(configuration).updateSkill(body, id, options)(
+    updateSkill(id: string, body: EngineUpdateSkillRequest, options?: any) {
+      return SkillServiceApiFp(configuration).updateSkill(id, body, options)(
         axios,
         basePath
       )
@@ -12690,15 +13401,15 @@ export class SkillServiceApi extends BaseAPI {
    *
    * @summary Remove Skill
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
-  public deleteSkill(id: string, domainId?: string, options?: any) {
+  public deleteSkill(id: string, domain_id?: string, options?: any) {
     return SkillServiceApiFp(this.configuration).deleteSkill(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -12707,15 +13418,15 @@ export class SkillServiceApi extends BaseAPI {
    *
    * @summary Skill item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
-  public readSkill(id: string, domainId?: string, options?: any) {
+  public readSkill(id: string, domain_id?: string, options?: any) {
     return SkillServiceApiFp(this.configuration).readSkill(
       id,
-      domainId,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -12723,7 +13434,7 @@ export class SkillServiceApi extends BaseAPI {
   /**
    *
    * @summary List of Skill
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -12731,13 +13442,13 @@ export class SkillServiceApi extends BaseAPI {
    * @memberof SkillServiceApi
    */
   public searchSkill(
-    domainId?: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return SkillServiceApiFp(this.configuration).searchSkill(
-      domainId,
+      domain_id,
       size,
       page,
       options
@@ -12747,18 +13458,18 @@ export class SkillServiceApi extends BaseAPI {
   /**
    *
    * @summary Update Skill
-   * @param {EngineUpdateSkillRequest} body
    * @param {string} id
+   * @param {EngineUpdateSkillRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
   public updateSkill(
-    body: EngineUpdateSkillRequest,
     id: string,
+    body: EngineUpdateSkillRequest,
     options?: any
   ) {
-    return SkillServiceApiFp(this.configuration).updateSkill(body, id, options)(
+    return SkillServiceApiFp(this.configuration).updateSkill(id, body, options)(
       this.axios,
       this.basePath
     )
@@ -12776,16 +13487,23 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Create SupervisorInTeam
+     * @param {string} team_id
      * @param {EngineCreateSupervisorInTeamRequest} body
-     * @param {string} teamId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSupervisorInTeam(
+      team_id: string,
       body: EngineCreateSupervisorInTeamRequest,
-      teamId: string,
       options: any = {}
     ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling createSupervisorInTeam.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
@@ -12793,16 +13511,9 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createSupervisorInTeam.'
         )
       }
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
-        throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling createSupervisorInTeam.'
-        )
-      }
       const localVarPath = `/call_center/teams/{team_id}/supervisors`.replace(
         `{${'team_id'}}`,
-        encodeURIComponent(String(teamId))
+        encodeURIComponent(String(team_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -12854,23 +13565,23 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Remove SupervisorInTeam
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteSupervisorInTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
         throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling deleteSupervisorInTeam.'
+          'team_id',
+          'Required parameter team_id was null or undefined when calling deleteSupervisorInTeam.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -12881,7 +13592,7 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/teams/{team_id}/supervisors/{id}`
-        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -12905,8 +13616,8 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -12929,23 +13640,23 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary SupervisorInTeam item
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readSupervisorInTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
         throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling readSupervisorInTeam.'
+          'team_id',
+          'Required parameter team_id was null or undefined when calling readSupervisorInTeam.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -12956,7 +13667,7 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/teams/{team_id}/supervisors/{id}`
-        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -12980,8 +13691,8 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -13004,30 +13715,30 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
+     * @param {string} team_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSupervisorInTeam(
-      teamId: string,
-      domainId?: string,
+      team_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
         throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling searchSupervisorInTeam.'
+          'team_id',
+          'Required parameter team_id was null or undefined when calling searchSupervisorInTeam.'
         )
       }
       const localVarPath = `/call_center/teams/{team_id}/supervisors`.replace(
         `{${'team_id'}}`,
-        encodeURIComponent(String(teamId))
+        encodeURIComponent(String(team_id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -13051,8 +13762,8 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       if (size !== undefined) {
@@ -13083,30 +13794,23 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary Update SupervisorInTeam
-     * @param {EngineUpdateSupervisorInTeamRequest} body
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
+     * @param {EngineUpdateSupervisorInTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSupervisorInTeam(
-      body: EngineUpdateSupervisorInTeamRequest,
-      teamId: string,
+      team_id: string,
       id: string,
+      body: EngineUpdateSupervisorInTeamRequest,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateSupervisorInTeam.'
-        )
-      }
-      // verify required parameter 'teamId' is not null or undefined
-      if (teamId === null || teamId === undefined) {
-        throw new RequiredError(
-          'teamId',
-          'Required parameter teamId was null or undefined when calling updateSupervisorInTeam.'
+          'team_id',
+          'Required parameter team_id was null or undefined when calling updateSupervisorInTeam.'
         )
       }
       // verify required parameter 'id' is not null or undefined
@@ -13116,8 +13820,15 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling updateSupervisorInTeam.'
         )
       }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateSupervisorInTeam.'
+        )
+      }
       const localVarPath = `/call_center/teams/{team_id}/supervisors/{id}`
-        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -13180,14 +13891,14 @@ export const SupervisorInTeamServiceApiFp = function(
     /**
      *
      * @summary Create SupervisorInTeam
+     * @param {string} team_id
      * @param {EngineCreateSupervisorInTeamRequest} body
-     * @param {string} teamId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSupervisorInTeam(
+      team_id: string,
       body: EngineCreateSupervisorInTeamRequest,
-      teamId: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -13195,7 +13906,7 @@ export const SupervisorInTeamServiceApiFp = function(
     ) => AxiosPromise<EngineSupervisorInTeam> {
       const localVarAxiosArgs = SupervisorInTeamServiceApiAxiosParamCreator(
         configuration
-      ).createSupervisorInTeam(body, teamId, options)
+      ).createSupervisorInTeam(team_id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13210,16 +13921,16 @@ export const SupervisorInTeamServiceApiFp = function(
     /**
      *
      * @summary Remove SupervisorInTeam
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteSupervisorInTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -13227,7 +13938,7 @@ export const SupervisorInTeamServiceApiFp = function(
     ) => AxiosPromise<EngineSupervisorInTeam> {
       const localVarAxiosArgs = SupervisorInTeamServiceApiAxiosParamCreator(
         configuration
-      ).deleteSupervisorInTeam(teamId, id, domainId, options)
+      ).deleteSupervisorInTeam(team_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13242,16 +13953,16 @@ export const SupervisorInTeamServiceApiFp = function(
     /**
      *
      * @summary SupervisorInTeam item
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readSupervisorInTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -13259,7 +13970,7 @@ export const SupervisorInTeamServiceApiFp = function(
     ) => AxiosPromise<EngineSupervisorInTeam> {
       const localVarAxiosArgs = SupervisorInTeamServiceApiAxiosParamCreator(
         configuration
-      ).readSupervisorInTeam(teamId, id, domainId, options)
+      ).readSupervisorInTeam(team_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13274,16 +13985,16 @@ export const SupervisorInTeamServiceApiFp = function(
     /**
      *
      * @summary List of SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
+     * @param {string} team_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSupervisorInTeam(
-      teamId: string,
-      domainId?: string,
+      team_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
@@ -13293,7 +14004,7 @@ export const SupervisorInTeamServiceApiFp = function(
     ) => AxiosPromise<EngineListSupervisorInTeam> {
       const localVarAxiosArgs = SupervisorInTeamServiceApiAxiosParamCreator(
         configuration
-      ).searchSupervisorInTeam(teamId, domainId, size, page, options)
+      ).searchSupervisorInTeam(team_id, domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13308,16 +14019,16 @@ export const SupervisorInTeamServiceApiFp = function(
     /**
      *
      * @summary Update SupervisorInTeam
-     * @param {EngineUpdateSupervisorInTeamRequest} body
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
+     * @param {EngineUpdateSupervisorInTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSupervisorInTeam(
-      body: EngineUpdateSupervisorInTeamRequest,
-      teamId: string,
+      team_id: string,
       id: string,
+      body: EngineUpdateSupervisorInTeamRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -13325,7 +14036,7 @@ export const SupervisorInTeamServiceApiFp = function(
     ) => AxiosPromise<EngineSupervisorInTeam> {
       const localVarAxiosArgs = SupervisorInTeamServiceApiAxiosParamCreator(
         configuration
-      ).updateSupervisorInTeam(body, teamId, id, options)
+      ).updateSupervisorInTeam(team_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13353,86 +14064,86 @@ export const SupervisorInTeamServiceApiFactory = function(
     /**
      *
      * @summary Create SupervisorInTeam
+     * @param {string} team_id
      * @param {EngineCreateSupervisorInTeamRequest} body
-     * @param {string} teamId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSupervisorInTeam(
+      team_id: string,
       body: EngineCreateSupervisorInTeamRequest,
-      teamId: string,
       options?: any
     ) {
       return SupervisorInTeamServiceApiFp(configuration).createSupervisorInTeam(
+        team_id,
         body,
-        teamId,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary Remove SupervisorInTeam
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteSupervisorInTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return SupervisorInTeamServiceApiFp(configuration).deleteSupervisorInTeam(
-        teamId,
+        team_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary SupervisorInTeam item
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readSupervisorInTeam(
-      teamId: string,
+      team_id: string,
       id: string,
-      domainId?: string,
+      domain_id?: string,
       options?: any
     ) {
       return SupervisorInTeamServiceApiFp(configuration).readSupervisorInTeam(
-        teamId,
+        team_id,
         id,
-        domainId,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @summary List of SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
+     * @param {string} team_id
+     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSupervisorInTeam(
-      teamId: string,
-      domainId?: string,
+      team_id: string,
+      domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
       return SupervisorInTeamServiceApiFp(configuration).searchSupervisorInTeam(
-        teamId,
-        domainId,
+        team_id,
+        domain_id,
         size,
         page,
         options
@@ -13441,22 +14152,22 @@ export const SupervisorInTeamServiceApiFactory = function(
     /**
      *
      * @summary Update SupervisorInTeam
-     * @param {EngineUpdateSupervisorInTeamRequest} body
-     * @param {string} teamId
+     * @param {string} team_id
      * @param {string} id
+     * @param {EngineUpdateSupervisorInTeamRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSupervisorInTeam(
-      body: EngineUpdateSupervisorInTeamRequest,
-      teamId: string,
+      team_id: string,
       id: string,
+      body: EngineUpdateSupervisorInTeamRequest,
       options?: any
     ) {
       return SupervisorInTeamServiceApiFp(configuration).updateSupervisorInTeam(
-        body,
-        teamId,
+        team_id,
         id,
+        body,
         options
       )(axios, basePath)
     },
@@ -13473,41 +14184,41 @@ export class SupervisorInTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary Create SupervisorInTeam
+   * @param {string} team_id
    * @param {EngineCreateSupervisorInTeamRequest} body
-   * @param {string} teamId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SupervisorInTeamServiceApi
    */
   public createSupervisorInTeam(
+    team_id: string,
     body: EngineCreateSupervisorInTeamRequest,
-    teamId: string,
     options?: any
   ) {
     return SupervisorInTeamServiceApiFp(
       this.configuration
-    ).createSupervisorInTeam(body, teamId, options)(this.axios, this.basePath)
+    ).createSupervisorInTeam(team_id, body, options)(this.axios, this.basePath)
   }
 
   /**
    *
    * @summary Remove SupervisorInTeam
-   * @param {string} teamId
+   * @param {string} team_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SupervisorInTeamServiceApi
    */
   public deleteSupervisorInTeam(
-    teamId: string,
+    team_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return SupervisorInTeamServiceApiFp(
       this.configuration
-    ).deleteSupervisorInTeam(teamId, id, domainId, options)(
+    ).deleteSupervisorInTeam(team_id, id, domain_id, options)(
       this.axios,
       this.basePath
     )
@@ -13516,22 +14227,22 @@ export class SupervisorInTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary SupervisorInTeam item
-   * @param {string} teamId
+   * @param {string} team_id
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SupervisorInTeamServiceApi
    */
   public readSupervisorInTeam(
-    teamId: string,
+    team_id: string,
     id: string,
-    domainId?: string,
+    domain_id?: string,
     options?: any
   ) {
     return SupervisorInTeamServiceApiFp(
       this.configuration
-    ).readSupervisorInTeam(teamId, id, domainId, options)(
+    ).readSupervisorInTeam(team_id, id, domain_id, options)(
       this.axios,
       this.basePath
     )
@@ -13540,8 +14251,8 @@ export class SupervisorInTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary List of SupervisorInTeam
-   * @param {string} teamId
-   * @param {string} [domainId]
+   * @param {string} team_id
+   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
@@ -13549,15 +14260,15 @@ export class SupervisorInTeamServiceApi extends BaseAPI {
    * @memberof SupervisorInTeamServiceApi
    */
   public searchSupervisorInTeam(
-    teamId: string,
-    domainId?: string,
+    team_id: string,
+    domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
     return SupervisorInTeamServiceApiFp(
       this.configuration
-    ).searchSupervisorInTeam(teamId, domainId, size, page, options)(
+    ).searchSupervisorInTeam(team_id, domain_id, size, page, options)(
       this.axios,
       this.basePath
     )
@@ -13566,22 +14277,22 @@ export class SupervisorInTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary Update SupervisorInTeam
-   * @param {EngineUpdateSupervisorInTeamRequest} body
-   * @param {string} teamId
+   * @param {string} team_id
    * @param {string} id
+   * @param {EngineUpdateSupervisorInTeamRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SupervisorInTeamServiceApi
    */
   public updateSupervisorInTeam(
-    body: EngineUpdateSupervisorInTeamRequest,
-    teamId: string,
+    team_id: string,
     id: string,
+    body: EngineUpdateSupervisorInTeamRequest,
     options?: any
   ) {
     return SupervisorInTeamServiceApiFp(
       this.configuration
-    ).updateSupervisorInTeam(body, teamId, id, options)(
+    ).updateSupervisorInTeam(team_id, id, body, options)(
       this.axios,
       this.basePath
     )
