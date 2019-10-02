@@ -131,6 +131,8 @@ declare module 'brotli-size' {
   export = brotliSize
 }
 
+declare module 'json5'
+
 declare module 'pretty-bytes' {
   type Options = {
     /**

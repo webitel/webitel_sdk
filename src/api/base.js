@@ -13,34 +13,33 @@
  */
 // Some imports not used depending on template conditions
 // @ts-ignore
-import globalAxios from 'axios';
-export const BASE_PATH = "http://10.10.10.25:1907".replace(/\/+$/, "");
+import globalAxios from 'axios'
+export const BASE_PATH = 'http://10.10.10.25:1907'.replace(/\/+$/, '')
 /**
  *
  * @export
  */
 export const COLLECTION_FORMATS = {
-    csv: ",",
-    ssv: " ",
-    tsv: "\t",
-    pipes: "|",
-};
+  csv: ',',
+  ssv: ' ',
+  tsv: '\t',
+  pipes: '|',
+}
 /**
  *
  * @export
  * @class BaseAPI
  */
 export class BaseAPI {
-    constructor(configuration, basePath = BASE_PATH, axios = globalAxios) {
-        this.basePath = basePath;
-        this.axios = axios;
-        if (configuration) {
-            this.configuration = configuration;
-            this.basePath = configuration.basePath || this.basePath;
-        }
+  constructor(configuration, basePath = BASE_PATH, axios = globalAxios) {
+    this.basePath = basePath
+    this.axios = axios
+    if (configuration) {
+      this.configuration = configuration
+      this.basePath = configuration.basePath || this.basePath
     }
+  }
 }
-;
 /**
  *
  * @export
@@ -48,10 +47,10 @@ export class BaseAPI {
  * @extends {Error}
  */
 export class RequiredError extends Error {
-    constructor(field, msg) {
-        super(msg);
-        this.field = field;
-        this.name = "RequiredError";
-    }
+  constructor(field, msg) {
+    super(msg)
+    this.field = field
+    this.name = 'RequiredError'
+  }
 }
 //# sourceMappingURL=base.js.map

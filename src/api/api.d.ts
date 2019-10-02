@@ -10,39 +10,39 @@
  * Do not edit the class manually.
  */
 /// <reference path="custom.d.ts" />
-import { Configuration } from './configuration';
-import { AxiosPromise, AxiosInstance } from 'axios';
-import { RequestArgs, BaseAPI } from './base';
+import { Configuration } from './configuration'
+import { AxiosPromise, AxiosInstance } from 'axios'
+import { RequestArgs, BaseAPI } from './base'
 /**
  *
  * @export
  * @interface EngineAcceptOfDay
  */
 export interface EngineAcceptOfDay {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAcceptOfDay
-     */
-    id?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAcceptOfDay
-     */
-    weekDay?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAcceptOfDay
-     */
-    startTimeOfDay?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAcceptOfDay
-     */
-    endTimeOfDay?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAcceptOfDay
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAcceptOfDay
+   */
+  weekDay?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAcceptOfDay
+   */
+  startTimeOfDay?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAcceptOfDay
+   */
+  endTimeOfDay?: number
 }
 /**
  *
@@ -50,42 +50,42 @@ export interface EngineAcceptOfDay {
  * @interface EngineAgent
  */
 export interface EngineAgent {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgent
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgent
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineAgent
-     */
-    user?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgent
-     */
-    status?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgent
-     */
-    state?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgent
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgent
+   */
+  user?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  status?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  state?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  description?: string
 }
 /**
  *
@@ -93,60 +93,60 @@ export interface EngineAgent {
  * @interface EngineAgentSkill
  */
 export interface EngineAgentSkill {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentSkill
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentSkill
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentSkill
-     */
-    createdAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineAgentSkill
-     */
-    createdBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentSkill
-     */
-    updatedAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineAgentSkill
-     */
-    updatedBy?: EngineLookup;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineAgentSkill
-     */
-    agent?: EngineLookup;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineAgentSkill
-     */
-    skill?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAgentSkill
-     */
-    capacity?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentSkill
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentSkill
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentSkill
+   */
+  createdAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentSkill
+   */
+  createdBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentSkill
+   */
+  updatedAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentSkill
+   */
+  updatedBy?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentSkill
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentSkill
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentSkill
+   */
+  capacity?: number
 }
 /**
  *
@@ -154,24 +154,24 @@ export interface EngineAgentSkill {
  * @interface EngineAgentSkillItem
  */
 export interface EngineAgentSkillItem {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentSkillItem
-     */
-    id?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineAgentSkillItem
-     */
-    skill?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAgentSkillItem
-     */
-    capacity?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentSkillItem
+   */
+  id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentSkillItem
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentSkillItem
+   */
+  capacity?: number
 }
 /**
  *
@@ -179,24 +179,24 @@ export interface EngineAgentSkillItem {
  * @interface EngineAgentStatusRequest
  */
 export interface EngineAgentStatusRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentStatusRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentStatusRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentStatusRequest
-     */
-    status?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatusRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatusRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatusRequest
+   */
+  status?: string
 }
 /**
  *
@@ -204,78 +204,78 @@ export interface EngineAgentStatusRequest {
  * @interface EngineAgentTeam
  */
 export interface EngineAgentTeam {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentTeam
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentTeam
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentTeam
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentTeam
-     */
-    description?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentTeam
-     */
-    strategy?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAgentTeam
-     */
-    maxNoAnswer?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAgentTeam
-     */
-    wrapUpTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAgentTeam
-     */
-    rejectDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAgentTeam
-     */
-    busyDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAgentTeam
-     */
-    noAnswerDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineAgentTeam
-     */
-    callTimeout?: number;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineAgentTeam
-     */
-    updatedAt?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  strategy?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  maxNoAnswer?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  wrapUpTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  rejectDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  busyDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  noAnswerDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  callTimeout?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  updatedAt?: string
 }
 /**
  *
@@ -283,72 +283,72 @@ export interface EngineAgentTeam {
  * @interface EngineCalendar
  */
 export interface EngineCalendar {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCalendar
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCalendar
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCalendar
-     */
-    createdAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCalendar
-     */
-    createdBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCalendar
-     */
-    updatedAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCalendar
-     */
-    updatedBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCalendar
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCalendar
-     */
-    start?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCalendar
-     */
-    finish?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCalendar
-     */
-    timezone?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCalendar
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  createdAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCalendar
+   */
+  createdBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  updatedAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCalendar
+   */
+  updatedBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  start?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  finish?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCalendar
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  description?: string
 }
 /**
  *
@@ -356,24 +356,24 @@ export interface EngineCalendar {
  * @interface EngineCreateAgentRequest
  */
 export interface EngineCreateAgentRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateAgentRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateAgentRequest
-     */
-    user?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateAgentRequest
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateAgentRequest
+   */
+  user?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentRequest
+   */
+  description?: string
 }
 /**
  *
@@ -381,30 +381,30 @@ export interface EngineCreateAgentRequest {
  * @interface EngineCreateAgentSkillRequest
  */
 export interface EngineCreateAgentSkillRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateAgentSkillRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateAgentSkillRequest
-     */
-    agentId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateAgentSkillRequest
-     */
-    skill?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateAgentSkillRequest
-     */
-    capacity?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentSkillRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentSkillRequest
+   */
+  agentId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateAgentSkillRequest
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentSkillRequest
+   */
+  capacity?: number
 }
 /**
  *
@@ -412,66 +412,66 @@ export interface EngineCreateAgentSkillRequest {
  * @interface EngineCreateAgentTeamRequest
  */
 export interface EngineCreateAgentTeamRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    description?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    strategy?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    maxNoAnswer?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    wrapUpTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    rejectDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    busyDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    noAnswerDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateAgentTeamRequest
-     */
-    callTimeout?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  maxNoAnswer?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  wrapUpTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  rejectDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  busyDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  noAnswerDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  callTimeout?: number
 }
 /**
  *
@@ -479,42 +479,42 @@ export interface EngineCreateAgentTeamRequest {
  * @interface EngineCreateCalendarRequest
  */
 export interface EngineCreateCalendarRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateCalendarRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateCalendarRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateCalendarRequest
-     */
-    start?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateCalendarRequest
-     */
-    finish?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateCalendarRequest
-     */
-    timezone?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateCalendarRequest
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  start?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  finish?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateCalendarRequest
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  description?: string
 }
 /**
  *
@@ -522,74 +522,74 @@ export interface EngineCreateCalendarRequest {
  * @interface EngineCreateOutboundResourceRequest
  */
 export interface EngineCreateOutboundResourceRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    limit?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    enabled?: boolean;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    rps?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    reserve?: boolean;
-    /**
-     *
-     * @type {{ [key: string]: string; }}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    variables?: {
-        [key: string]: string;
-    };
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    number?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    maxSuccessivelyErrors?: number;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    dialString?: string;
-    /**
-     *
-     * @type {Array<string>}
-     * @memberof EngineCreateOutboundResourceRequest
-     */
-    errorIds?: Array<string>;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  limit?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  rps?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  reserve?: boolean
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  variables?: {
+    [key: string]: string
+  }
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  number?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  maxSuccessivelyErrors?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  dialString?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  errorIds?: Array<string>
 }
 /**
  *
@@ -597,104 +597,104 @@ export interface EngineCreateOutboundResourceRequest {
  * @interface EngineCreateQueueRequest
  */
 export interface EngineCreateQueueRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateQueueRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateQueueRequest
-     */
-    strategy?: string;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineCreateQueueRequest
-     */
-    enabled?: boolean;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineCreateQueueRequest
-     */
-    payload?: object;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateQueueRequest
-     */
-    calendar?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateQueueRequest
-     */
-    priority?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateQueueRequest
-     */
-    maxCalls?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateQueueRequest
-     */
-    secBetweenRetries?: number;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateQueueRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateQueueRequest
-     */
-    maxOfRetry?: number;
-    /**
-     *
-     * @type {{ [key: string]: string; }}
-     * @memberof EngineCreateQueueRequest
-     */
-    variables?: {
-        [key: string]: string;
-    };
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateQueueRequest
-     */
-    timeout?: number;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateQueueRequest
-     */
-    dncList?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateQueueRequest
-     */
-    secLocateAgent?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateQueueRequest
-     */
-    type?: number;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateQueueRequest
-     */
-    team?: EngineLookup;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateQueueRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {object}
+   * @memberof EngineCreateQueueRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueRequest
+   */
+  calendar?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  maxCalls?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  secBetweenRetries?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  maxOfRetry?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineCreateQueueRequest
+   */
+  variables?: {
+    [key: string]: string
+  }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  timeout?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueRequest
+   */
+  dncList?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  secLocateAgent?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  type?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueRequest
+   */
+  team?: EngineLookup
 }
 /**
  *
@@ -702,48 +702,48 @@ export interface EngineCreateQueueRequest {
  * @interface EngineCreateResourceTeamRequest
  */
 export interface EngineCreateResourceTeamRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateResourceTeamRequest
-     */
-    teamId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateResourceTeamRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateResourceTeamRequest
-     */
-    agent?: EngineLookup;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateResourceTeamRequest
-     */
-    skill?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateResourceTeamRequest
-     */
-    lvl?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateResourceTeamRequest
-     */
-    minCapacity?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateResourceTeamRequest
-     */
-    maxCapacity?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateResourceTeamRequest
+   */
+  teamId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateResourceTeamRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateResourceTeamRequest
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateResourceTeamRequest
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateResourceTeamRequest
+   */
+  lvl?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateResourceTeamRequest
+   */
+  minCapacity?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateResourceTeamRequest
+   */
+  maxCapacity?: number
 }
 /**
  *
@@ -751,48 +751,48 @@ export interface EngineCreateResourceTeamRequest {
  * @interface EngineCreateRoutingOutboundCallRequest
  */
 export interface EngineCreateRoutingOutboundCallRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingOutboundCallRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingOutboundCallRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingOutboundCallRequest
-     */
-    description?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateRoutingOutboundCallRequest
-     */
-    scheme?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingOutboundCallRequest
-     */
-    pattern?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateRoutingOutboundCallRequest
-     */
-    priority?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineCreateRoutingOutboundCallRequest
-     */
-    disabled?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  scheme?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  pattern?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  disabled?: boolean
 }
 /**
  *
@@ -800,48 +800,48 @@ export interface EngineCreateRoutingOutboundCallRequest {
  * @interface EngineCreateRoutingSchemeRequest
  */
 export interface EngineCreateRoutingSchemeRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingSchemeRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingSchemeRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingSchemeRequest
-     */
-    description?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineCreateRoutingSchemeRequest
-     */
-    type?: number;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineCreateRoutingSchemeRequest
-     */
-    scheme?: object;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineCreateRoutingSchemeRequest
-     */
-    payload?: object;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineCreateRoutingSchemeRequest
-     */
-    debug?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingSchemeRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingSchemeRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingSchemeRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateRoutingSchemeRequest
+   */
+  type?: number
+  /**
+   *
+   * @type {object}
+   * @memberof EngineCreateRoutingSchemeRequest
+   */
+  scheme?: object
+  /**
+   *
+   * @type {object}
+   * @memberof EngineCreateRoutingSchemeRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateRoutingSchemeRequest
+   */
+  debug?: boolean
 }
 /**
  *
@@ -849,24 +849,24 @@ export interface EngineCreateRoutingSchemeRequest {
  * @interface EngineCreateRoutingVariableRequest
  */
 export interface EngineCreateRoutingVariableRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingVariableRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingVariableRequest
-     */
-    key?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateRoutingVariableRequest
-     */
-    value?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingVariableRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingVariableRequest
+   */
+  key?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingVariableRequest
+   */
+  value?: string
 }
 /**
  *
@@ -874,24 +874,24 @@ export interface EngineCreateRoutingVariableRequest {
  * @interface EngineCreateSkillRequest
  */
 export interface EngineCreateSkillRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateSkillRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateSkillRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateSkillRequest
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSkillRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSkillRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSkillRequest
+   */
+  description?: string
 }
 /**
  *
@@ -899,24 +899,24 @@ export interface EngineCreateSkillRequest {
  * @interface EngineCreateSupervisorInTeamRequest
  */
 export interface EngineCreateSupervisorInTeamRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateSupervisorInTeamRequest
-     */
-    teamId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineCreateSupervisorInTeamRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineCreateSupervisorInTeamRequest
-     */
-    agent?: EngineLookup;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSupervisorInTeamRequest
+   */
+  teamId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSupervisorInTeamRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateSupervisorInTeamRequest
+   */
+  agent?: EngineLookup
 }
 /**
  *
@@ -924,12 +924,12 @@ export interface EngineCreateSupervisorInTeamRequest {
  * @interface EngineListAcceptOfDay
  */
 export interface EngineListAcceptOfDay {
-    /**
-     *
-     * @type {Array<EngineAcceptOfDay>}
-     * @memberof EngineListAcceptOfDay
-     */
-    items?: Array<EngineAcceptOfDay>;
+  /**
+   *
+   * @type {Array<EngineAcceptOfDay>}
+   * @memberof EngineListAcceptOfDay
+   */
+  items?: Array<EngineAcceptOfDay>
 }
 /**
  *
@@ -937,12 +937,12 @@ export interface EngineListAcceptOfDay {
  * @interface EngineListAgent
  */
 export interface EngineListAgent {
-    /**
-     *
-     * @type {Array<EngineAgent>}
-     * @memberof EngineListAgent
-     */
-    items?: Array<EngineAgent>;
+  /**
+   *
+   * @type {Array<EngineAgent>}
+   * @memberof EngineListAgent
+   */
+  items?: Array<EngineAgent>
 }
 /**
  *
@@ -950,12 +950,12 @@ export interface EngineListAgent {
  * @interface EngineListAgentSkill
  */
 export interface EngineListAgentSkill {
-    /**
-     *
-     * @type {Array<EngineAgentSkillItem>}
-     * @memberof EngineListAgentSkill
-     */
-    items?: Array<EngineAgentSkillItem>;
+  /**
+   *
+   * @type {Array<EngineAgentSkillItem>}
+   * @memberof EngineListAgentSkill
+   */
+  items?: Array<EngineAgentSkillItem>
 }
 /**
  *
@@ -963,12 +963,12 @@ export interface EngineListAgentSkill {
  * @interface EngineListAgentTeam
  */
 export interface EngineListAgentTeam {
-    /**
-     *
-     * @type {Array<EngineAgentTeam>}
-     * @memberof EngineListAgentTeam
-     */
-    items?: Array<EngineAgentTeam>;
+  /**
+   *
+   * @type {Array<EngineAgentTeam>}
+   * @memberof EngineListAgentTeam
+   */
+  items?: Array<EngineAgentTeam>
 }
 /**
  *
@@ -976,12 +976,12 @@ export interface EngineListAgentTeam {
  * @interface EngineListCalendar
  */
 export interface EngineListCalendar {
-    /**
-     *
-     * @type {Array<EngineCalendar>}
-     * @memberof EngineListCalendar
-     */
-    items?: Array<EngineCalendar>;
+  /**
+   *
+   * @type {Array<EngineCalendar>}
+   * @memberof EngineListCalendar
+   */
+  items?: Array<EngineCalendar>
 }
 /**
  *
@@ -989,12 +989,12 @@ export interface EngineListCalendar {
  * @interface EngineListOutboundResource
  */
 export interface EngineListOutboundResource {
-    /**
-     *
-     * @type {Array<EngineOutboundResource>}
-     * @memberof EngineListOutboundResource
-     */
-    items?: Array<EngineOutboundResource>;
+  /**
+   *
+   * @type {Array<EngineOutboundResource>}
+   * @memberof EngineListOutboundResource
+   */
+  items?: Array<EngineOutboundResource>
 }
 /**
  *
@@ -1002,12 +1002,12 @@ export interface EngineListOutboundResource {
  * @interface EngineListQueue
  */
 export interface EngineListQueue {
-    /**
-     *
-     * @type {Array<EngineQueue>}
-     * @memberof EngineListQueue
-     */
-    items?: Array<EngineQueue>;
+  /**
+   *
+   * @type {Array<EngineQueue>}
+   * @memberof EngineListQueue
+   */
+  items?: Array<EngineQueue>
 }
 /**
  *
@@ -1015,12 +1015,12 @@ export interface EngineListQueue {
  * @interface EngineListResourceTeam
  */
 export interface EngineListResourceTeam {
-    /**
-     *
-     * @type {Array<EngineResourceTeam>}
-     * @memberof EngineListResourceTeam
-     */
-    items?: Array<EngineResourceTeam>;
+  /**
+   *
+   * @type {Array<EngineResourceTeam>}
+   * @memberof EngineListResourceTeam
+   */
+  items?: Array<EngineResourceTeam>
 }
 /**
  *
@@ -1028,12 +1028,12 @@ export interface EngineListResourceTeam {
  * @interface EngineListRoutingInboundCall
  */
 export interface EngineListRoutingInboundCall {
-    /**
-     *
-     * @type {Array<EngineRoutingInboundCall>}
-     * @memberof EngineListRoutingInboundCall
-     */
-    items?: Array<EngineRoutingInboundCall>;
+  /**
+   *
+   * @type {Array<EngineRoutingInboundCall>}
+   * @memberof EngineListRoutingInboundCall
+   */
+  items?: Array<EngineRoutingInboundCall>
 }
 /**
  *
@@ -1041,12 +1041,12 @@ export interface EngineListRoutingInboundCall {
  * @interface EngineListRoutingOutboundCall
  */
 export interface EngineListRoutingOutboundCall {
-    /**
-     *
-     * @type {Array<EngineRoutingOutboundCall>}
-     * @memberof EngineListRoutingOutboundCall
-     */
-    items?: Array<EngineRoutingOutboundCall>;
+  /**
+   *
+   * @type {Array<EngineRoutingOutboundCall>}
+   * @memberof EngineListRoutingOutboundCall
+   */
+  items?: Array<EngineRoutingOutboundCall>
 }
 /**
  *
@@ -1054,12 +1054,12 @@ export interface EngineListRoutingOutboundCall {
  * @interface EngineListRoutingScheme
  */
 export interface EngineListRoutingScheme {
-    /**
-     *
-     * @type {Array<EngineRoutingScheme>}
-     * @memberof EngineListRoutingScheme
-     */
-    items?: Array<EngineRoutingScheme>;
+  /**
+   *
+   * @type {Array<EngineRoutingScheme>}
+   * @memberof EngineListRoutingScheme
+   */
+  items?: Array<EngineRoutingScheme>
 }
 /**
  *
@@ -1067,12 +1067,12 @@ export interface EngineListRoutingScheme {
  * @interface EngineListRoutingVariable
  */
 export interface EngineListRoutingVariable {
-    /**
-     *
-     * @type {Array<EngineRoutingVariable>}
-     * @memberof EngineListRoutingVariable
-     */
-    items?: Array<EngineRoutingVariable>;
+  /**
+   *
+   * @type {Array<EngineRoutingVariable>}
+   * @memberof EngineListRoutingVariable
+   */
+  items?: Array<EngineRoutingVariable>
 }
 /**
  *
@@ -1080,12 +1080,12 @@ export interface EngineListRoutingVariable {
  * @interface EngineListSkill
  */
 export interface EngineListSkill {
-    /**
-     *
-     * @type {Array<EngineSkill>}
-     * @memberof EngineListSkill
-     */
-    items?: Array<EngineSkill>;
+  /**
+   *
+   * @type {Array<EngineSkill>}
+   * @memberof EngineListSkill
+   */
+  items?: Array<EngineSkill>
 }
 /**
  *
@@ -1093,12 +1093,12 @@ export interface EngineListSkill {
  * @interface EngineListSupervisorInTeam
  */
 export interface EngineListSupervisorInTeam {
-    /**
-     *
-     * @type {Array<EngineSupervisorInTeam>}
-     * @memberof EngineListSupervisorInTeam
-     */
-    items?: Array<EngineSupervisorInTeam>;
+  /**
+   *
+   * @type {Array<EngineSupervisorInTeam>}
+   * @memberof EngineListSupervisorInTeam
+   */
+  items?: Array<EngineSupervisorInTeam>
 }
 /**
  *
@@ -1106,12 +1106,12 @@ export interface EngineListSupervisorInTeam {
  * @interface EngineListTimezoneResponse
  */
 export interface EngineListTimezoneResponse {
-    /**
-     *
-     * @type {Array<EngineTimezone>}
-     * @memberof EngineListTimezoneResponse
-     */
-    items?: Array<EngineTimezone>;
+  /**
+   *
+   * @type {Array<EngineTimezone>}
+   * @memberof EngineListTimezoneResponse
+   */
+  items?: Array<EngineTimezone>
 }
 /**
  *
@@ -1119,18 +1119,18 @@ export interface EngineListTimezoneResponse {
  * @interface EngineLookup
  */
 export interface EngineLookup {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineLookup
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineLookup
-     */
-    name?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineLookup
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineLookup
+   */
+  name?: string
 }
 /**
  *
@@ -1138,122 +1138,122 @@ export interface EngineLookup {
  * @interface EngineOutboundResource
  */
 export interface EngineOutboundResource {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    createdAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineOutboundResource
-     */
-    createdBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    updatedAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineOutboundResource
-     */
-    updatedBy?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineOutboundResource
-     */
-    limit?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineOutboundResource
-     */
-    enabled?: boolean;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineOutboundResource
-     */
-    rps?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineOutboundResource
-     */
-    reserve?: boolean;
-    /**
-     *
-     * @type {{ [key: string]: string; }}
-     * @memberof EngineOutboundResource
-     */
-    variables?: {
-        [key: string]: string;
-    };
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    number?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineOutboundResource
-     */
-    maxSuccessivelyErrors?: number;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    dialString?: string;
-    /**
-     *
-     * @type {Array<string>}
-     * @memberof EngineOutboundResource
-     */
-    errorIds?: Array<string>;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    lastErrorId?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineOutboundResource
-     */
-    successivelyErrors?: number;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineOutboundResource
-     */
-    lastErrorAt?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  createdAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResource
+   */
+  createdBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  updatedAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResource
+   */
+  updatedBy?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineOutboundResource
+   */
+  limit?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineOutboundResource
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineOutboundResource
+   */
+  rps?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineOutboundResource
+   */
+  reserve?: boolean
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineOutboundResource
+   */
+  variables?: {
+    [key: string]: string
+  }
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  number?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineOutboundResource
+   */
+  maxSuccessivelyErrors?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  dialString?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineOutboundResource
+   */
+  errorIds?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  lastErrorId?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineOutboundResource
+   */
+  successivelyErrors?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  lastErrorAt?: string
 }
 /**
  *
@@ -1261,134 +1261,134 @@ export interface EngineOutboundResource {
  * @interface EngineQueue
  */
 export interface EngineQueue {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineQueue
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineQueue
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineQueue
-     */
-    createdAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineQueue
-     */
-    createdBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineQueue
-     */
-    updatedAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineQueue
-     */
-    updatedBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineQueue
-     */
-    strategy?: string;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineQueue
-     */
-    enabled?: boolean;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineQueue
-     */
-    payload?: object;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineQueue
-     */
-    calendar?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineQueue
-     */
-    priority?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineQueue
-     */
-    maxCalls?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineQueue
-     */
-    secBetweenRetries?: number;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineQueue
-     */
-    name?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineQueue
-     */
-    maxOfRetry?: number;
-    /**
-     *
-     * @type {{ [key: string]: string; }}
-     * @memberof EngineQueue
-     */
-    variables?: {
-        [key: string]: string;
-    };
-    /**
-     *
-     * @type {number}
-     * @memberof EngineQueue
-     */
-    timeout?: number;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineQueue
-     */
-    dncList?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineQueue
-     */
-    secLocateAgent?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineQueue
-     */
-    type?: number;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineQueue
-     */
-    team?: EngineLookup;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  createdAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
+  createdBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  updatedAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
+  updatedBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  strategy?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineQueue
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {object}
+   * @memberof EngineQueue
+   */
+  payload?: object
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
+  calendar?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  priority?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  maxCalls?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  secBetweenRetries?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  maxOfRetry?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineQueue
+   */
+  variables?: {
+    [key: string]: string
+  }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  timeout?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
+  dncList?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  secLocateAgent?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  type?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
+  team?: EngineLookup
 }
 /**
  *
@@ -1396,54 +1396,54 @@ export interface EngineQueue {
  * @interface EngineResourceTeam
  */
 export interface EngineResourceTeam {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineResourceTeam
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineResourceTeam
-     */
-    teamId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineResourceTeam
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineResourceTeam
-     */
-    agent?: EngineLookup;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineResourceTeam
-     */
-    skill?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineResourceTeam
-     */
-    lvl?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineResourceTeam
-     */
-    minCapacity?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineResourceTeam
-     */
-    maxCapacity?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceTeam
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceTeam
+   */
+  teamId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceTeam
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineResourceTeam
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineResourceTeam
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineResourceTeam
+   */
+  lvl?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineResourceTeam
+   */
+  minCapacity?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineResourceTeam
+   */
+  maxCapacity?: number
 }
 /**
  *
@@ -1451,12 +1451,12 @@ export interface EngineResourceTeam {
  * @interface EngineResponse
  */
 export interface EngineResponse {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineResponse
-     */
-    status?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResponse
+   */
+  status?: string
 }
 /**
  *
@@ -1464,96 +1464,96 @@ export interface EngineResponse {
  * @interface EngineRoutingInboundCall
  */
 export interface EngineRoutingInboundCall {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingInboundCall
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingInboundCall
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingInboundCall
-     */
-    createdAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingInboundCall
-     */
-    createdBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingInboundCall
-     */
-    updatedAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingInboundCall
-     */
-    updatedBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingInboundCall
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingInboundCall
-     */
-    description?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingInboundCall
-     */
-    startScheme?: EngineLookup;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingInboundCall
-     */
-    stopScheme?: EngineLookup;
-    /**
-     *
-     * @type {Array<string>}
-     * @memberof EngineRoutingInboundCall
-     */
-    numbers?: Array<string>;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingInboundCall
-     */
-    host?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingInboundCall
-     */
-    timezone?: EngineLookup;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineRoutingInboundCall
-     */
-    debug?: boolean;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineRoutingInboundCall
-     */
-    disabled?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingInboundCall
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingInboundCall
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingInboundCall
+   */
+  createdAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingInboundCall
+   */
+  createdBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingInboundCall
+   */
+  updatedAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingInboundCall
+   */
+  updatedBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingInboundCall
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingInboundCall
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingInboundCall
+   */
+  startScheme?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingInboundCall
+   */
+  stopScheme?: EngineLookup
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineRoutingInboundCall
+   */
+  numbers?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingInboundCall
+   */
+  host?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingInboundCall
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineRoutingInboundCall
+   */
+  debug?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineRoutingInboundCall
+   */
+  disabled?: boolean
 }
 /**
  *
@@ -1561,78 +1561,78 @@ export interface EngineRoutingInboundCall {
  * @interface EngineRoutingOutboundCall
  */
 export interface EngineRoutingOutboundCall {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingOutboundCall
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingOutboundCall
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingOutboundCall
-     */
-    createdAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingOutboundCall
-     */
-    createdBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingOutboundCall
-     */
-    updatedAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingOutboundCall
-     */
-    updatedBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingOutboundCall
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingOutboundCall
-     */
-    description?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingOutboundCall
-     */
-    scheme?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingOutboundCall
-     */
-    pattern?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineRoutingOutboundCall
-     */
-    priority?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineRoutingOutboundCall
-     */
-    disabled?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  createdAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingOutboundCall
+   */
+  createdBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  updatedAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingOutboundCall
+   */
+  updatedBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingOutboundCall
+   */
+  scheme?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  pattern?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineRoutingOutboundCall
+   */
+  priority?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineRoutingOutboundCall
+   */
+  disabled?: boolean
 }
 /**
  *
@@ -1640,78 +1640,78 @@ export interface EngineRoutingOutboundCall {
  * @interface EngineRoutingScheme
  */
 export interface EngineRoutingScheme {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingScheme
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingScheme
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingScheme
-     */
-    createdAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingScheme
-     */
-    createdBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingScheme
-     */
-    updatedAt?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineRoutingScheme
-     */
-    updatedBy?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingScheme
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingScheme
-     */
-    description?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineRoutingScheme
-     */
-    type?: number;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineRoutingScheme
-     */
-    scheme?: object;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineRoutingScheme
-     */
-    payload?: object;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineRoutingScheme
-     */
-    debug?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingScheme
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingScheme
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingScheme
+   */
+  createdAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingScheme
+   */
+  createdBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingScheme
+   */
+  updatedAt?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingScheme
+   */
+  updatedBy?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingScheme
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingScheme
+   */
+  description?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineRoutingScheme
+   */
+  type?: number
+  /**
+   *
+   * @type {object}
+   * @memberof EngineRoutingScheme
+   */
+  scheme?: object
+  /**
+   *
+   * @type {object}
+   * @memberof EngineRoutingScheme
+   */
+  payload?: object
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineRoutingScheme
+   */
+  debug?: boolean
 }
 /**
  *
@@ -1719,30 +1719,30 @@ export interface EngineRoutingScheme {
  * @interface EngineRoutingVariable
  */
 export interface EngineRoutingVariable {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingVariable
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingVariable
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingVariable
-     */
-    key?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineRoutingVariable
-     */
-    value?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingVariable
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingVariable
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingVariable
+   */
+  key?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingVariable
+   */
+  value?: string
 }
 /**
  *
@@ -1750,30 +1750,30 @@ export interface EngineRoutingVariable {
  * @interface EngineSkill
  */
 export interface EngineSkill {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineSkill
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineSkill
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineSkill
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineSkill
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSkill
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSkill
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSkill
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSkill
+   */
+  description?: string
 }
 /**
  *
@@ -1781,30 +1781,30 @@ export interface EngineSkill {
  * @interface EngineSupervisorInTeam
  */
 export interface EngineSupervisorInTeam {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineSupervisorInTeam
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineSupervisorInTeam
-     */
-    teamId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineSupervisorInTeam
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineSupervisorInTeam
-     */
-    agent?: EngineLookup;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSupervisorInTeam
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSupervisorInTeam
+   */
+  teamId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSupervisorInTeam
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineSupervisorInTeam
+   */
+  agent?: EngineLookup
 }
 /**
  *
@@ -1812,24 +1812,24 @@ export interface EngineSupervisorInTeam {
  * @interface EngineTimezone
  */
 export interface EngineTimezone {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineTimezone
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineTimezone
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineTimezone
-     */
-    offset?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineTimezone
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineTimezone
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineTimezone
+   */
+  offset?: string
 }
 /**
  *
@@ -1837,30 +1837,30 @@ export interface EngineTimezone {
  * @interface EngineUpdateAgentRequest
  */
 export interface EngineUpdateAgentRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateAgentRequest
-     */
-    user?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentRequest
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateAgentRequest
+   */
+  user?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentRequest
+   */
+  description?: string
 }
 /**
  *
@@ -1868,36 +1868,36 @@ export interface EngineUpdateAgentRequest {
  * @interface EngineUpdateAgentSkillRequest
  */
 export interface EngineUpdateAgentSkillRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentSkillRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentSkillRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentSkillRequest
-     */
-    agentId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateAgentSkillRequest
-     */
-    skill?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateAgentSkillRequest
-     */
-    capacity?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  agentId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  capacity?: number
 }
 /**
  *
@@ -1905,72 +1905,72 @@ export interface EngineUpdateAgentSkillRequest {
  * @interface EngineUpdateAgentTeamRequest
  */
 export interface EngineUpdateAgentTeamRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    description?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    strategy?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    maxNoAnswer?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    wrapUpTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    rejectDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    busyDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    noAnswerDelayTime?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateAgentTeamRequest
-     */
-    callTimeout?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  maxNoAnswer?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  wrapUpTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  rejectDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  busyDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  noAnswerDelayTime?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  callTimeout?: number
 }
 /**
  *
@@ -1978,48 +1978,48 @@ export interface EngineUpdateAgentTeamRequest {
  * @interface EngineUpdateCalendarRequest
  */
 export interface EngineUpdateCalendarRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateCalendarRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateCalendarRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateCalendarRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateCalendarRequest
-     */
-    start?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateCalendarRequest
-     */
-    finish?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateCalendarRequest
-     */
-    timezone?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateCalendarRequest
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  start?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  finish?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  description?: string
 }
 /**
  *
@@ -2027,80 +2027,80 @@ export interface EngineUpdateCalendarRequest {
  * @interface EngineUpdateOutboundResourceRequest
  */
 export interface EngineUpdateOutboundResourceRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    limit?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    enabled?: boolean;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    rps?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    reserve?: boolean;
-    /**
-     *
-     * @type {{ [key: string]: string; }}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    variables?: {
-        [key: string]: string;
-    };
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    number?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    maxSuccessivelyErrors?: number;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    dialString?: string;
-    /**
-     *
-     * @type {Array<string>}
-     * @memberof EngineUpdateOutboundResourceRequest
-     */
-    errorIds?: Array<string>;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  limit?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  rps?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  reserve?: boolean
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  variables?: {
+    [key: string]: string
+  }
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  number?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  maxSuccessivelyErrors?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  dialString?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  errorIds?: Array<string>
 }
 /**
  *
@@ -2108,110 +2108,110 @@ export interface EngineUpdateOutboundResourceRequest {
  * @interface EngineUpdateQueueRequest
  */
 export interface EngineUpdateQueueRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateQueueRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateQueueRequest
-     */
-    strategy?: string;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineUpdateQueueRequest
-     */
-    enabled?: boolean;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineUpdateQueueRequest
-     */
-    payload?: object;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateQueueRequest
-     */
-    calendar?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateQueueRequest
-     */
-    priority?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateQueueRequest
-     */
-    maxCalls?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateQueueRequest
-     */
-    secBetweenRetries?: number;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateQueueRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateQueueRequest
-     */
-    maxOfRetry?: number;
-    /**
-     *
-     * @type {{ [key: string]: string; }}
-     * @memberof EngineUpdateQueueRequest
-     */
-    variables?: {
-        [key: string]: string;
-    };
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateQueueRequest
-     */
-    timeout?: number;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateQueueRequest
-     */
-    dncList?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateQueueRequest
-     */
-    secLocateAgent?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateQueueRequest
-     */
-    type?: number;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateQueueRequest
-     */
-    team?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateQueueRequest
-     */
-    id?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateQueueRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {object}
+   * @memberof EngineUpdateQueueRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueRequest
+   */
+  calendar?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueRequest
+   */
+  maxCalls?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueRequest
+   */
+  secBetweenRetries?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueRequest
+   */
+  maxOfRetry?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineUpdateQueueRequest
+   */
+  variables?: {
+    [key: string]: string
+  }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueRequest
+   */
+  timeout?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueRequest
+   */
+  dncList?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueRequest
+   */
+  secLocateAgent?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueRequest
+   */
+  type?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueRequest
+   */
+  team?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRequest
+   */
+  id?: string
 }
 /**
  *
@@ -2219,54 +2219,54 @@ export interface EngineUpdateQueueRequest {
  * @interface EngineUpdateResourceTeamRequest
  */
 export interface EngineUpdateResourceTeamRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateResourceTeamRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateResourceTeamRequest
-     */
-    teamId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateResourceTeamRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateResourceTeamRequest
-     */
-    agent?: EngineLookup;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateResourceTeamRequest
-     */
-    skill?: EngineLookup;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateResourceTeamRequest
-     */
-    lvl?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateResourceTeamRequest
-     */
-    minCapacity?: number;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateResourceTeamRequest
-     */
-    maxCapacity?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  teamId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  lvl?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  minCapacity?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  maxCapacity?: number
 }
 /**
  *
@@ -2274,54 +2274,54 @@ export interface EngineUpdateResourceTeamRequest {
  * @interface EngineUpdateRoutingOutboundCallRequest
  */
 export interface EngineUpdateRoutingOutboundCallRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingOutboundCallRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingOutboundCallRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingOutboundCallRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingOutboundCallRequest
-     */
-    description?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateRoutingOutboundCallRequest
-     */
-    scheme?: EngineLookup;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingOutboundCallRequest
-     */
-    pattern?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateRoutingOutboundCallRequest
-     */
-    priority?: number;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineUpdateRoutingOutboundCallRequest
-     */
-    disabled?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  scheme?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  pattern?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  disabled?: boolean
 }
 /**
  *
@@ -2329,54 +2329,54 @@ export interface EngineUpdateRoutingOutboundCallRequest {
  * @interface EngineUpdateRoutingSchemeRequest
  */
 export interface EngineUpdateRoutingSchemeRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingSchemeRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingSchemeRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingSchemeRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingSchemeRequest
-     */
-    description?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof EngineUpdateRoutingSchemeRequest
-     */
-    type?: number;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineUpdateRoutingSchemeRequest
-     */
-    scheme?: object;
-    /**
-     *
-     * @type {object}
-     * @memberof EngineUpdateRoutingSchemeRequest
-     */
-    payload?: object;
-    /**
-     *
-     * @type {boolean}
-     * @memberof EngineUpdateRoutingSchemeRequest
-     */
-    debug?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingSchemeRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingSchemeRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingSchemeRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingSchemeRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateRoutingSchemeRequest
+   */
+  type?: number
+  /**
+   *
+   * @type {object}
+   * @memberof EngineUpdateRoutingSchemeRequest
+   */
+  scheme?: object
+  /**
+   *
+   * @type {object}
+   * @memberof EngineUpdateRoutingSchemeRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateRoutingSchemeRequest
+   */
+  debug?: boolean
 }
 /**
  *
@@ -2384,30 +2384,30 @@ export interface EngineUpdateRoutingSchemeRequest {
  * @interface EngineUpdateRoutingVariableRequest
  */
 export interface EngineUpdateRoutingVariableRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingVariableRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingVariableRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingVariableRequest
-     */
-    key?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateRoutingVariableRequest
-     */
-    value?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingVariableRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingVariableRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingVariableRequest
+   */
+  key?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingVariableRequest
+   */
+  value?: string
 }
 /**
  *
@@ -2415,30 +2415,30 @@ export interface EngineUpdateRoutingVariableRequest {
  * @interface EngineUpdateSkillRequest
  */
 export interface EngineUpdateSkillRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateSkillRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateSkillRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateSkillRequest
-     */
-    name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateSkillRequest
-     */
-    description?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSkillRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSkillRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSkillRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSkillRequest
+   */
+  description?: string
 }
 /**
  *
@@ -2446,30 +2446,30 @@ export interface EngineUpdateSkillRequest {
  * @interface EngineUpdateSupervisorInTeamRequest
  */
 export interface EngineUpdateSupervisorInTeamRequest {
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateSupervisorInTeamRequest
-     */
-    id?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateSupervisorInTeamRequest
-     */
-    teamId?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof EngineUpdateSupervisorInTeamRequest
-     */
-    domainId?: string;
-    /**
-     *
-     * @type {EngineLookup}
-     * @memberof EngineUpdateSupervisorInTeamRequest
-     */
-    agent?: EngineLookup;
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSupervisorInTeamRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSupervisorInTeamRequest
+   */
+  teamId?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSupervisorInTeamRequest
+   */
+  domainId?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateSupervisorInTeamRequest
+   */
+  agent?: EngineLookup
 }
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the  `Value` type union.     The JSON representation for `NullValue` is JSON `null`.   - NULL_VALUE: Null value.
@@ -2477,188 +2477,257 @@ export interface EngineUpdateSupervisorInTeamRequest {
  * @enum {string}
  */
 export declare enum ProtobufNullValue {
-    NULLVALUE = "NULL_VALUE"
+  NULLVALUE = 'NULL_VALUE',
 }
 /**
  * AgentServiceApi - axios parameter creator
  * @export
  */
-export declare const AgentServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create Agent
-     * @param {EngineCreateAgentRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgent(body: EngineCreateAgentRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove Agent
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgent(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Agent item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgent(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of Agent
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgent(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update Agent
-     * @param {EngineUpdateAgentRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgent(body: EngineUpdateAgentRequest, id: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Change agent status
-     * @param {EngineAgentStatusRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentStatus(body: EngineAgentStatusRequest, id: string, options?: any): RequestArgs;
-};
+export declare const AgentServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create Agent
+   * @param {EngineCreateAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgent(body: EngineCreateAgentRequest, options?: any): RequestArgs
+  /**
+   *
+   * @summary Remove Agent
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgent(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary Agent item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgent(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary List of Agent
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgent(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update Agent
+   * @param {EngineUpdateAgentRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgent(
+    body: EngineUpdateAgentRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Change agent status
+   * @param {EngineAgentStatusRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentStatus(
+    body: EngineAgentStatusRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * AgentServiceApi - functional programming interface
  * @export
  */
-export declare const AgentServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create Agent
-     * @param {EngineCreateAgentRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgent(body: EngineCreateAgentRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Remove Agent
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgent(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Agent item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgent(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary List of Agent
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgent(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListAgent>;
-    /**
-     *
-     * @summary Update Agent
-     * @param {EngineUpdateAgentRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgent(body: EngineUpdateAgentRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Change agent status
-     * @param {EngineAgentStatusRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentStatus(body: EngineAgentStatusRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineResponse>;
-};
+export declare const AgentServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create Agent
+   * @param {EngineCreateAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgent(
+    body: EngineCreateAgentRequest,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Remove Agent
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgent(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Agent item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgent(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary List of Agent
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgent(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListAgent>
+  /**
+   *
+   * @summary Update Agent
+   * @param {EngineUpdateAgentRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgent(
+    body: EngineUpdateAgentRequest,
+    id: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Change agent status
+   * @param {EngineAgentStatusRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentStatus(
+    body: EngineAgentStatusRequest,
+    id: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineResponse>
+}
 /**
  * AgentServiceApi - factory interface
  * @export
  */
-export declare const AgentServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create Agent
-     * @param {EngineCreateAgentRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgent(body: EngineCreateAgentRequest, options?: any): AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Remove Agent
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgent(id: string, domainId?: string, options?: any): AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Agent item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgent(id: string, domainId?: string, options?: any): AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary List of Agent
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgent(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListAgent>;
-    /**
-     *
-     * @summary Update Agent
-     * @param {EngineUpdateAgentRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgent(body: EngineUpdateAgentRequest, id: string, options?: any): AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Change agent status
-     * @param {EngineAgentStatusRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentStatus(body: EngineAgentStatusRequest, id: string, options?: any): AxiosPromise<EngineResponse>;
-};
+export declare const AgentServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create Agent
+   * @param {EngineCreateAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgent(
+    body: EngineCreateAgentRequest,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Remove Agent
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgent(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Agent item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgent(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary List of Agent
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgent(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListAgent>
+  /**
+   *
+   * @summary Update Agent
+   * @param {EngineUpdateAgentRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgent(
+    body: EngineUpdateAgentRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Change agent status
+   * @param {EngineAgentStatusRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentStatus(
+    body: EngineAgentStatusRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineResponse>
+}
 /**
  * AgentServiceApi - object-oriented interface
  * @export
@@ -2666,235 +2735,357 @@ export declare const AgentServiceApiFactory: (configuration?: Configuration, bas
  * @extends {BaseAPI}
  */
 export declare class AgentServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create Agent
-     * @param {EngineCreateAgentRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentServiceApi
-     */
-    createAgent(body: EngineCreateAgentRequest, options?: any): AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Remove Agent
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentServiceApi
-     */
-    deleteAgent(id: string, domainId?: string, options?: any): AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Agent item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentServiceApi
-     */
-    readAgent(id: string, domainId?: string, options?: any): AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary List of Agent
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentServiceApi
-     */
-    searchAgent(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListAgent>;
-    /**
-     *
-     * @summary Update Agent
-     * @param {EngineUpdateAgentRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentServiceApi
-     */
-    updateAgent(body: EngineUpdateAgentRequest, id: string, options?: any): AxiosPromise<EngineAgent>;
-    /**
-     *
-     * @summary Change agent status
-     * @param {EngineAgentStatusRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentServiceApi
-     */
-    updateAgentStatus(body: EngineAgentStatusRequest, id: string, options?: any): AxiosPromise<EngineResponse>;
+  /**
+   *
+   * @summary Create Agent
+   * @param {EngineCreateAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  createAgent(
+    body: EngineCreateAgentRequest,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Remove Agent
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  deleteAgent(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Agent item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  readAgent(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary List of Agent
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  searchAgent(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListAgent>
+  /**
+   *
+   * @summary Update Agent
+   * @param {EngineUpdateAgentRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  updateAgent(
+    body: EngineUpdateAgentRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+  /**
+   *
+   * @summary Change agent status
+   * @param {EngineAgentStatusRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  updateAgentStatus(
+    body: EngineAgentStatusRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineResponse>
 }
 /**
  * AgentSkillServiceApi - axios parameter creator
  * @export
  */
-export declare const AgentSkillServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create AgentSkill
-     * @param {EngineCreateAgentSkillRequest} body
-     * @param {string} agentId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgentSkill(body: EngineCreateAgentSkillRequest, agentId: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove AgentSkill
-     * @param {string} agentId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgentSkill(agentId: string, id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary AgentSkill item
-     * @param {string} agentId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgentSkill(agentId: string, id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of AgentSkill
-     * @param {string} agentId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgentSkill(agentId: string, domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update AgentSkill
-     * @param {EngineUpdateAgentSkillRequest} body
-     * @param {string} agentId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentSkill(body: EngineUpdateAgentSkillRequest, agentId: string, id: string, options?: any): RequestArgs;
-};
+export declare const AgentSkillServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create AgentSkill
+   * @param {EngineCreateAgentSkillRequest} body
+   * @param {string} agentId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgentSkill(
+    body: EngineCreateAgentSkillRequest,
+    agentId: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Remove AgentSkill
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary AgentSkill item
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary List of AgentSkill
+   * @param {string} agentId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgentSkill(
+    agentId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update AgentSkill
+   * @param {EngineUpdateAgentSkillRequest} body
+   * @param {string} agentId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentSkill(
+    body: EngineUpdateAgentSkillRequest,
+    agentId: string,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * AgentSkillServiceApi - functional programming interface
  * @export
  */
-export declare const AgentSkillServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create AgentSkill
-     * @param {EngineCreateAgentSkillRequest} body
-     * @param {string} agentId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgentSkill(body: EngineCreateAgentSkillRequest, agentId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary Remove AgentSkill
-     * @param {string} agentId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgentSkill(agentId: string, id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary AgentSkill item
-     * @param {string} agentId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgentSkill(agentId: string, id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary List of AgentSkill
-     * @param {string} agentId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgentSkill(agentId: string, domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListAgentSkill>;
-    /**
-     *
-     * @summary Update AgentSkill
-     * @param {EngineUpdateAgentSkillRequest} body
-     * @param {string} agentId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentSkill(body: EngineUpdateAgentSkillRequest, agentId: string, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentSkill>;
-};
+export declare const AgentSkillServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create AgentSkill
+   * @param {EngineCreateAgentSkillRequest} body
+   * @param {string} agentId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgentSkill(
+    body: EngineCreateAgentSkillRequest,
+    agentId: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary Remove AgentSkill
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary AgentSkill item
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary List of AgentSkill
+   * @param {string} agentId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgentSkill(
+    agentId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListAgentSkill>
+  /**
+   *
+   * @summary Update AgentSkill
+   * @param {EngineUpdateAgentSkillRequest} body
+   * @param {string} agentId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentSkill(
+    body: EngineUpdateAgentSkillRequest,
+    agentId: string,
+    id: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineAgentSkill>
+}
 /**
  * AgentSkillServiceApi - factory interface
  * @export
  */
-export declare const AgentSkillServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create AgentSkill
-     * @param {EngineCreateAgentSkillRequest} body
-     * @param {string} agentId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgentSkill(body: EngineCreateAgentSkillRequest, agentId: string, options?: any): AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary Remove AgentSkill
-     * @param {string} agentId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgentSkill(agentId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary AgentSkill item
-     * @param {string} agentId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgentSkill(agentId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary List of AgentSkill
-     * @param {string} agentId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgentSkill(agentId: string, domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListAgentSkill>;
-    /**
-     *
-     * @summary Update AgentSkill
-     * @param {EngineUpdateAgentSkillRequest} body
-     * @param {string} agentId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentSkill(body: EngineUpdateAgentSkillRequest, agentId: string, id: string, options?: any): AxiosPromise<EngineAgentSkill>;
-};
+export declare const AgentSkillServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create AgentSkill
+   * @param {EngineCreateAgentSkillRequest} body
+   * @param {string} agentId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgentSkill(
+    body: EngineCreateAgentSkillRequest,
+    agentId: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary Remove AgentSkill
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary AgentSkill item
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary List of AgentSkill
+   * @param {string} agentId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgentSkill(
+    agentId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListAgentSkill>
+  /**
+   *
+   * @summary Update AgentSkill
+   * @param {EngineUpdateAgentSkillRequest} body
+   * @param {string} agentId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentSkill(
+    body: EngineUpdateAgentSkillRequest,
+    agentId: string,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+}
 /**
  * AgentSkillServiceApi - object-oriented interface
  * @export
@@ -2902,215 +3093,303 @@ export declare const AgentSkillServiceApiFactory: (configuration?: Configuration
  * @extends {BaseAPI}
  */
 export declare class AgentSkillServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create AgentSkill
-     * @param {EngineCreateAgentSkillRequest} body
-     * @param {string} agentId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentSkillServiceApi
-     */
-    createAgentSkill(body: EngineCreateAgentSkillRequest, agentId: string, options?: any): AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary Remove AgentSkill
-     * @param {string} agentId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentSkillServiceApi
-     */
-    deleteAgentSkill(agentId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary AgentSkill item
-     * @param {string} agentId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentSkillServiceApi
-     */
-    readAgentSkill(agentId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineAgentSkill>;
-    /**
-     *
-     * @summary List of AgentSkill
-     * @param {string} agentId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentSkillServiceApi
-     */
-    searchAgentSkill(agentId: string, domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListAgentSkill>;
-    /**
-     *
-     * @summary Update AgentSkill
-     * @param {EngineUpdateAgentSkillRequest} body
-     * @param {string} agentId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentSkillServiceApi
-     */
-    updateAgentSkill(body: EngineUpdateAgentSkillRequest, agentId: string, id: string, options?: any): AxiosPromise<EngineAgentSkill>;
+  /**
+   *
+   * @summary Create AgentSkill
+   * @param {EngineCreateAgentSkillRequest} body
+   * @param {string} agentId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApi
+   */
+  createAgentSkill(
+    body: EngineCreateAgentSkillRequest,
+    agentId: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary Remove AgentSkill
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApi
+   */
+  deleteAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary AgentSkill item
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApi
+   */
+  readAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+  /**
+   *
+   * @summary List of AgentSkill
+   * @param {string} agentId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApi
+   */
+  searchAgentSkill(
+    agentId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListAgentSkill>
+  /**
+   *
+   * @summary Update AgentSkill
+   * @param {EngineUpdateAgentSkillRequest} body
+   * @param {string} agentId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApi
+   */
+  updateAgentSkill(
+    body: EngineUpdateAgentSkillRequest,
+    agentId: string,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
 }
 /**
  * AgentTeamServiceApi - axios parameter creator
  * @export
  */
-export declare const AgentTeamServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgentTeam(body: EngineCreateAgentTeamRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgentTeam(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgentTeam(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of AgentTeam
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgentTeam(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update AgentTeam
-     * @param {EngineUpdateAgentTeamRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentTeam(body: EngineUpdateAgentTeamRequest, id: string, options?: any): RequestArgs;
-};
+export declare const AgentTeamServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create AgentTeam
+   * @param {EngineCreateAgentTeamRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgentTeam(
+    body: EngineCreateAgentTeamRequest,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Remove AgentTeam
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgentTeam(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary AgentTeam item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgentTeam(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary List of AgentTeam
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgentTeam(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update AgentTeam
+   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentTeam(
+    body: EngineUpdateAgentTeamRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * AgentTeamServiceApi - functional programming interface
  * @export
  */
-export declare const AgentTeamServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgentTeam(body: EngineCreateAgentTeamRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgentTeam(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgentTeam(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary List of AgentTeam
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgentTeam(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListAgentTeam>;
-    /**
-     *
-     * @summary Update AgentTeam
-     * @param {EngineUpdateAgentTeamRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentTeam(body: EngineUpdateAgentTeamRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentTeam>;
-};
+export declare const AgentTeamServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create AgentTeam
+   * @param {EngineCreateAgentTeamRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgentTeam(
+    body: EngineCreateAgentTeamRequest,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary Remove AgentTeam
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgentTeam(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary AgentTeam item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgentTeam(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary List of AgentTeam
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgentTeam(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListAgentTeam>
+  /**
+   *
+   * @summary Update AgentTeam
+   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentTeam(
+    body: EngineUpdateAgentTeamRequest,
+    id: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgentTeam>
+}
 /**
  * AgentTeamServiceApi - factory interface
  * @export
  */
-export declare const AgentTeamServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAgentTeam(body: EngineCreateAgentTeamRequest, options?: any): AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAgentTeam(id: string, domainId?: string, options?: any): AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAgentTeam(id: string, domainId?: string, options?: any): AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary List of AgentTeam
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAgentTeam(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListAgentTeam>;
-    /**
-     *
-     * @summary Update AgentTeam
-     * @param {EngineUpdateAgentTeamRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentTeam(body: EngineUpdateAgentTeamRequest, id: string, options?: any): AxiosPromise<EngineAgentTeam>;
-};
+export declare const AgentTeamServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create AgentTeam
+   * @param {EngineCreateAgentTeamRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createAgentTeam(
+    body: EngineCreateAgentTeamRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary Remove AgentTeam
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteAgentTeam(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary AgentTeam item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readAgentTeam(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary List of AgentTeam
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAgentTeam(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListAgentTeam>
+  /**
+   *
+   * @summary Update AgentTeam
+   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateAgentTeam(
+    body: EngineUpdateAgentTeamRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+}
 /**
  * AgentTeamServiceApi - object-oriented interface
  * @export
@@ -3118,261 +3397,361 @@ export declare const AgentTeamServiceApiFactory: (configuration?: Configuration,
  * @extends {BaseAPI}
  */
 export declare class AgentTeamServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentTeamServiceApi
-     */
-    createAgentTeam(body: EngineCreateAgentTeamRequest, options?: any): AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentTeamServiceApi
-     */
-    deleteAgentTeam(id: string, domainId?: string, options?: any): AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentTeamServiceApi
-     */
-    readAgentTeam(id: string, domainId?: string, options?: any): AxiosPromise<EngineAgentTeam>;
-    /**
-     *
-     * @summary List of AgentTeam
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentTeamServiceApi
-     */
-    searchAgentTeam(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListAgentTeam>;
-    /**
-     *
-     * @summary Update AgentTeam
-     * @param {EngineUpdateAgentTeamRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AgentTeamServiceApi
-     */
-    updateAgentTeam(body: EngineUpdateAgentTeamRequest, id: string, options?: any): AxiosPromise<EngineAgentTeam>;
+  /**
+   *
+   * @summary Create AgentTeam
+   * @param {EngineCreateAgentTeamRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApi
+   */
+  createAgentTeam(
+    body: EngineCreateAgentTeamRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary Remove AgentTeam
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApi
+   */
+  deleteAgentTeam(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary AgentTeam item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApi
+   */
+  readAgentTeam(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+  /**
+   *
+   * @summary List of AgentTeam
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApi
+   */
+  searchAgentTeam(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListAgentTeam>
+  /**
+   *
+   * @summary Update AgentTeam
+   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApi
+   */
+  updateAgentTeam(
+    body: EngineUpdateAgentTeamRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
 }
 /**
  * CalendarServiceApi - axios parameter creator
  * @export
  */
-export declare const CalendarServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create calendar
-     * @param {EngineCreateCalendarRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createCalendar(body: EngineCreateCalendarRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove calendar
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteCalendar(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Calendar item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readCalendar(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary -GET /calendar/:id/accept
-     * @param {string} calendarId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAcceptOfDay(calendarId: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of calendar
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchCalendar(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List timezones
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchTimezones(size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update calendar
-     * @param {EngineUpdateCalendarRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateCalendar(body: EngineUpdateCalendarRequest, id: string, options?: any): RequestArgs;
-};
+export declare const CalendarServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create calendar
+   * @param {EngineCreateCalendarRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createCalendar(body: EngineCreateCalendarRequest, options?: any): RequestArgs
+  /**
+   *
+   * @summary Remove calendar
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteCalendar(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary Calendar item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readCalendar(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary -GET /calendar/:id/accept
+   * @param {string} calendarId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAcceptOfDay(calendarId: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary List of calendar
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchCalendar(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary List timezones
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchTimezones(size?: number, page?: number, options?: any): RequestArgs
+  /**
+   *
+   * @summary Update calendar
+   * @param {EngineUpdateCalendarRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateCalendar(
+    body: EngineUpdateCalendarRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * CalendarServiceApi - functional programming interface
  * @export
  */
-export declare const CalendarServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create calendar
-     * @param {EngineCreateCalendarRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createCalendar(body: EngineCreateCalendarRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary Remove calendar
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteCalendar(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary Calendar item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readCalendar(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary -GET /calendar/:id/accept
-     * @param {string} calendarId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAcceptOfDay(calendarId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListAcceptOfDay>;
-    /**
-     *
-     * @summary List of calendar
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchCalendar(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListCalendar>;
-    /**
-     *
-     * @summary List timezones
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchTimezones(size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListTimezoneResponse>;
-    /**
-     *
-     * @summary Update calendar
-     * @param {EngineUpdateCalendarRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateCalendar(body: EngineUpdateCalendarRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>;
-};
+export declare const CalendarServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create calendar
+   * @param {EngineCreateCalendarRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createCalendar(
+    body: EngineCreateCalendarRequest,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary Remove calendar
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteCalendar(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary Calendar item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readCalendar(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary -GET /calendar/:id/accept
+   * @param {string} calendarId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAcceptOfDay(
+    calendarId: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListAcceptOfDay>
+  /**
+   *
+   * @summary List of calendar
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchCalendar(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListCalendar>
+  /**
+   *
+   * @summary List timezones
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchTimezones(
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListTimezoneResponse>
+  /**
+   *
+   * @summary Update calendar
+   * @param {EngineUpdateCalendarRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateCalendar(
+    body: EngineUpdateCalendarRequest,
+    id: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>
+}
 /**
  * CalendarServiceApi - factory interface
  * @export
  */
-export declare const CalendarServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create calendar
-     * @param {EngineCreateCalendarRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createCalendar(body: EngineCreateCalendarRequest, options?: any): AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary Remove calendar
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteCalendar(id: string, domainId?: string, options?: any): AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary Calendar item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readCalendar(id: string, domainId?: string, options?: any): AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary -GET /calendar/:id/accept
-     * @param {string} calendarId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAcceptOfDay(calendarId: string, options?: any): AxiosPromise<EngineListAcceptOfDay>;
-    /**
-     *
-     * @summary List of calendar
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchCalendar(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListCalendar>;
-    /**
-     *
-     * @summary List timezones
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchTimezones(size?: number, page?: number, options?: any): AxiosPromise<EngineListTimezoneResponse>;
-    /**
-     *
-     * @summary Update calendar
-     * @param {EngineUpdateCalendarRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateCalendar(body: EngineUpdateCalendarRequest, id: string, options?: any): AxiosPromise<EngineCalendar>;
-};
+export declare const CalendarServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create calendar
+   * @param {EngineCreateCalendarRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createCalendar(
+    body: EngineCreateCalendarRequest,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary Remove calendar
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteCalendar(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary Calendar item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readCalendar(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary -GET /calendar/:id/accept
+   * @param {string} calendarId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchAcceptOfDay(
+    calendarId: string,
+    options?: any
+  ): AxiosPromise<EngineListAcceptOfDay>
+  /**
+   *
+   * @summary List of calendar
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchCalendar(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListCalendar>
+  /**
+   *
+   * @summary List timezones
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchTimezones(
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListTimezoneResponse>
+  /**
+   *
+   * @summary Update calendar
+   * @param {EngineUpdateCalendarRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateCalendar(
+    body: EngineUpdateCalendarRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+}
 /**
  * CalendarServiceApi - object-oriented interface
  * @export
@@ -3380,229 +3759,339 @@ export declare const CalendarServiceApiFactory: (configuration?: Configuration, 
  * @extends {BaseAPI}
  */
 export declare class CalendarServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create calendar
-     * @param {EngineCreateCalendarRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CalendarServiceApi
-     */
-    createCalendar(body: EngineCreateCalendarRequest, options?: any): AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary Remove calendar
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CalendarServiceApi
-     */
-    deleteCalendar(id: string, domainId?: string, options?: any): AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary Calendar item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CalendarServiceApi
-     */
-    readCalendar(id: string, domainId?: string, options?: any): AxiosPromise<EngineCalendar>;
-    /**
-     *
-     * @summary -GET /calendar/:id/accept
-     * @param {string} calendarId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CalendarServiceApi
-     */
-    searchAcceptOfDay(calendarId: string, options?: any): AxiosPromise<EngineListAcceptOfDay>;
-    /**
-     *
-     * @summary List of calendar
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CalendarServiceApi
-     */
-    searchCalendar(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListCalendar>;
-    /**
-     *
-     * @summary List timezones
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CalendarServiceApi
-     */
-    searchTimezones(size?: number, page?: number, options?: any): AxiosPromise<EngineListTimezoneResponse>;
-    /**
-     *
-     * @summary Update calendar
-     * @param {EngineUpdateCalendarRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CalendarServiceApi
-     */
-    updateCalendar(body: EngineUpdateCalendarRequest, id: string, options?: any): AxiosPromise<EngineCalendar>;
+  /**
+   *
+   * @summary Create calendar
+   * @param {EngineCreateCalendarRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApi
+   */
+  createCalendar(
+    body: EngineCreateCalendarRequest,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary Remove calendar
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApi
+   */
+  deleteCalendar(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary Calendar item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApi
+   */
+  readCalendar(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+  /**
+   *
+   * @summary -GET /calendar/:id/accept
+   * @param {string} calendarId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApi
+   */
+  searchAcceptOfDay(
+    calendarId: string,
+    options?: any
+  ): AxiosPromise<EngineListAcceptOfDay>
+  /**
+   *
+   * @summary List of calendar
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApi
+   */
+  searchCalendar(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListCalendar>
+  /**
+   *
+   * @summary List timezones
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApi
+   */
+  searchTimezones(
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListTimezoneResponse>
+  /**
+   *
+   * @summary Update calendar
+   * @param {EngineUpdateCalendarRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApi
+   */
+  updateCalendar(
+    body: EngineUpdateCalendarRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
 }
 /**
  * OutboundResourceServiceApi - axios parameter creator
  * @export
  */
-export declare const OutboundResourceServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create OutboundResource
-     * @param {EngineCreateOutboundResourceRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createOutboundResource(body: EngineCreateOutboundResourceRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove OutboundResource
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteOutboundResource(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary OutboundResource item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readOutboundResource(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of OutboundResource
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchOutboundResource(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update OutboundResource
-     * @param {EngineUpdateOutboundResourceRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateOutboundResource(body: EngineUpdateOutboundResourceRequest, id: string, options?: any): RequestArgs;
-};
+export declare const OutboundResourceServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create OutboundResource
+   * @param {EngineCreateOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createOutboundResource(
+    body: EngineCreateOutboundResourceRequest,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Remove OutboundResource
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary OutboundResource item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary List of OutboundResource
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchOutboundResource(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update OutboundResource
+   * @param {EngineUpdateOutboundResourceRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateOutboundResource(
+    body: EngineUpdateOutboundResourceRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * OutboundResourceServiceApi - functional programming interface
  * @export
  */
-export declare const OutboundResourceServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create OutboundResource
-     * @param {EngineCreateOutboundResourceRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createOutboundResource(body: EngineCreateOutboundResourceRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary Remove OutboundResource
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteOutboundResource(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary OutboundResource item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readOutboundResource(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary List of OutboundResource
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchOutboundResource(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListOutboundResource>;
-    /**
-     *
-     * @summary Update OutboundResource
-     * @param {EngineUpdateOutboundResourceRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateOutboundResource(body: EngineUpdateOutboundResourceRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineOutboundResource>;
-};
+export declare const OutboundResourceServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create OutboundResource
+   * @param {EngineCreateOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createOutboundResource(
+    body: EngineCreateOutboundResourceRequest,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary Remove OutboundResource
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary OutboundResource item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary List of OutboundResource
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchOutboundResource(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListOutboundResource>
+  /**
+   *
+   * @summary Update OutboundResource
+   * @param {EngineUpdateOutboundResourceRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateOutboundResource(
+    body: EngineUpdateOutboundResourceRequest,
+    id: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineOutboundResource>
+}
 /**
  * OutboundResourceServiceApi - factory interface
  * @export
  */
-export declare const OutboundResourceServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create OutboundResource
-     * @param {EngineCreateOutboundResourceRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createOutboundResource(body: EngineCreateOutboundResourceRequest, options?: any): AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary Remove OutboundResource
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteOutboundResource(id: string, domainId?: string, options?: any): AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary OutboundResource item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readOutboundResource(id: string, domainId?: string, options?: any): AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary List of OutboundResource
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchOutboundResource(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListOutboundResource>;
-    /**
-     *
-     * @summary Update OutboundResource
-     * @param {EngineUpdateOutboundResourceRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateOutboundResource(body: EngineUpdateOutboundResourceRequest, id: string, options?: any): AxiosPromise<EngineOutboundResource>;
-};
+export declare const OutboundResourceServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create OutboundResource
+   * @param {EngineCreateOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createOutboundResource(
+    body: EngineCreateOutboundResourceRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary Remove OutboundResource
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary OutboundResource item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary List of OutboundResource
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchOutboundResource(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListOutboundResource>
+  /**
+   *
+   * @summary Update OutboundResource
+   * @param {EngineUpdateOutboundResourceRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateOutboundResource(
+    body: EngineUpdateOutboundResourceRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+}
 /**
  * OutboundResourceServiceApi - object-oriented interface
  * @export
@@ -3610,210 +4099,287 @@ export declare const OutboundResourceServiceApiFactory: (configuration?: Configu
  * @extends {BaseAPI}
  */
 export declare class OutboundResourceServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create OutboundResource
-     * @param {EngineCreateOutboundResourceRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OutboundResourceServiceApi
-     */
-    createOutboundResource(body: EngineCreateOutboundResourceRequest, options?: any): AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary Remove OutboundResource
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OutboundResourceServiceApi
-     */
-    deleteOutboundResource(id: string, domainId?: string, options?: any): AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary OutboundResource item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OutboundResourceServiceApi
-     */
-    readOutboundResource(id: string, domainId?: string, options?: any): AxiosPromise<EngineOutboundResource>;
-    /**
-     *
-     * @summary List of OutboundResource
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OutboundResourceServiceApi
-     */
-    searchOutboundResource(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListOutboundResource>;
-    /**
-     *
-     * @summary Update OutboundResource
-     * @param {EngineUpdateOutboundResourceRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OutboundResourceServiceApi
-     */
-    updateOutboundResource(body: EngineUpdateOutboundResourceRequest, id: string, options?: any): AxiosPromise<EngineOutboundResource>;
+  /**
+   *
+   * @summary Create OutboundResource
+   * @param {EngineCreateOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  createOutboundResource(
+    body: EngineCreateOutboundResourceRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary Remove OutboundResource
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  deleteOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary OutboundResource item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  readOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+  /**
+   *
+   * @summary List of OutboundResource
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  searchOutboundResource(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListOutboundResource>
+  /**
+   *
+   * @summary Update OutboundResource
+   * @param {EngineUpdateOutboundResourceRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  updateOutboundResource(
+    body: EngineUpdateOutboundResourceRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
 }
 /**
  * QueueServiceApi - axios parameter creator
  * @export
  */
-export declare const QueueServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create Queue
-     * @param {EngineCreateQueueRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createQueue(body: EngineCreateQueueRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove Queue
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteQueue(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Queue item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readQueue(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of Queue
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchQueue(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update Queue
-     * @param {EngineUpdateQueueRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateQueue(body: EngineUpdateQueueRequest, id: string, options?: any): RequestArgs;
-};
+export declare const QueueServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create Queue
+   * @param {EngineCreateQueueRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createQueue(body: EngineCreateQueueRequest, options?: any): RequestArgs
+  /**
+   *
+   * @summary Remove Queue
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteQueue(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary Queue item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readQueue(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary List of Queue
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchQueue(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update Queue
+   * @param {EngineUpdateQueueRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateQueue(
+    body: EngineUpdateQueueRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * QueueServiceApi - functional programming interface
  * @export
  */
-export declare const QueueServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create Queue
-     * @param {EngineCreateQueueRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createQueue(body: EngineCreateQueueRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary Remove Queue
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteQueue(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary Queue item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readQueue(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary List of Queue
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchQueue(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListQueue>;
-    /**
-     *
-     * @summary Update Queue
-     * @param {EngineUpdateQueueRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateQueue(body: EngineUpdateQueueRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>;
-};
+export declare const QueueServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create Queue
+   * @param {EngineCreateQueueRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createQueue(
+    body: EngineCreateQueueRequest,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary Remove Queue
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteQueue(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary Queue item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readQueue(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary List of Queue
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchQueue(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListQueue>
+  /**
+   *
+   * @summary Update Queue
+   * @param {EngineUpdateQueueRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateQueue(
+    body: EngineUpdateQueueRequest,
+    id: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>
+}
 /**
  * QueueServiceApi - factory interface
  * @export
  */
-export declare const QueueServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create Queue
-     * @param {EngineCreateQueueRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createQueue(body: EngineCreateQueueRequest, options?: any): AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary Remove Queue
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteQueue(id: string, domainId?: string, options?: any): AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary Queue item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readQueue(id: string, domainId?: string, options?: any): AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary List of Queue
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchQueue(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListQueue>;
-    /**
-     *
-     * @summary Update Queue
-     * @param {EngineUpdateQueueRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateQueue(body: EngineUpdateQueueRequest, id: string, options?: any): AxiosPromise<EngineQueue>;
-};
+export declare const QueueServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create Queue
+   * @param {EngineCreateQueueRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createQueue(
+    body: EngineCreateQueueRequest,
+    options?: any
+  ): AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary Remove Queue
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteQueue(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary Queue item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readQueue(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary List of Queue
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchQueue(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListQueue>
+  /**
+   *
+   * @summary Update Queue
+   * @param {EngineUpdateQueueRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateQueue(
+    body: EngineUpdateQueueRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineQueue>
+}
 /**
  * QueueServiceApi - object-oriented interface
  * @export
@@ -3821,225 +4387,343 @@ export declare const QueueServiceApiFactory: (configuration?: Configuration, bas
  * @extends {BaseAPI}
  */
 export declare class QueueServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create Queue
-     * @param {EngineCreateQueueRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QueueServiceApi
-     */
-    createQueue(body: EngineCreateQueueRequest, options?: any): AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary Remove Queue
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QueueServiceApi
-     */
-    deleteQueue(id: string, domainId?: string, options?: any): AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary Queue item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QueueServiceApi
-     */
-    readQueue(id: string, domainId?: string, options?: any): AxiosPromise<EngineQueue>;
-    /**
-     *
-     * @summary List of Queue
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QueueServiceApi
-     */
-    searchQueue(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListQueue>;
-    /**
-     *
-     * @summary Update Queue
-     * @param {EngineUpdateQueueRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QueueServiceApi
-     */
-    updateQueue(body: EngineUpdateQueueRequest, id: string, options?: any): AxiosPromise<EngineQueue>;
+  /**
+   *
+   * @summary Create Queue
+   * @param {EngineCreateQueueRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueServiceApi
+   */
+  createQueue(
+    body: EngineCreateQueueRequest,
+    options?: any
+  ): AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary Remove Queue
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueServiceApi
+   */
+  deleteQueue(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary Queue item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueServiceApi
+   */
+  readQueue(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineQueue>
+  /**
+   *
+   * @summary List of Queue
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueServiceApi
+   */
+  searchQueue(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListQueue>
+  /**
+   *
+   * @summary Update Queue
+   * @param {EngineUpdateQueueRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueServiceApi
+   */
+  updateQueue(
+    body: EngineUpdateQueueRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineQueue>
 }
 /**
  * ResourceTeamServiceApi - axios parameter creator
  * @export
  */
-export declare const ResourceTeamServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create ResourceTeam
-     * @param {EngineCreateResourceTeamRequest} body
-     * @param {string} teamId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createResourceTeam(body: EngineCreateResourceTeamRequest, teamId: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove ResourceTeam
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteResourceTeam(teamId: string, id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary ResourceTeam item
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readResourceTeam(teamId: string, id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of ResourceTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchResourceTeam(teamId: string, domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update ResourceTeam
-     * @param {EngineUpdateResourceTeamRequest} body
-     * @param {string} teamId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateResourceTeam(body: EngineUpdateResourceTeamRequest, teamId: string, id: string, options?: any): RequestArgs;
-};
+export declare const ResourceTeamServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create ResourceTeam
+   * @param {EngineCreateResourceTeamRequest} body
+   * @param {string} teamId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createResourceTeam(
+    body: EngineCreateResourceTeamRequest,
+    teamId: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Remove ResourceTeam
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteResourceTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary ResourceTeam item
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readResourceTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary List of ResourceTeam
+   * @param {string} teamId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchResourceTeam(
+    teamId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update ResourceTeam
+   * @param {EngineUpdateResourceTeamRequest} body
+   * @param {string} teamId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateResourceTeam(
+    body: EngineUpdateResourceTeamRequest,
+    teamId: string,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * ResourceTeamServiceApi - functional programming interface
  * @export
  */
-export declare const ResourceTeamServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create ResourceTeam
-     * @param {EngineCreateResourceTeamRequest} body
-     * @param {string} teamId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createResourceTeam(body: EngineCreateResourceTeamRequest, teamId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary Remove ResourceTeam
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteResourceTeam(teamId: string, id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary ResourceTeam item
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readResourceTeam(teamId: string, id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary List of ResourceTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchResourceTeam(teamId: string, domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListResourceTeam>;
-    /**
-     *
-     * @summary Update ResourceTeam
-     * @param {EngineUpdateResourceTeamRequest} body
-     * @param {string} teamId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateResourceTeam(body: EngineUpdateResourceTeamRequest, teamId: string, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineResourceTeam>;
-};
+export declare const ResourceTeamServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create ResourceTeam
+   * @param {EngineCreateResourceTeamRequest} body
+   * @param {string} teamId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createResourceTeam(
+    body: EngineCreateResourceTeamRequest,
+    teamId: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary Remove ResourceTeam
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteResourceTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary ResourceTeam item
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readResourceTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary List of ResourceTeam
+   * @param {string} teamId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchResourceTeam(
+    teamId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListResourceTeam>
+  /**
+   *
+   * @summary Update ResourceTeam
+   * @param {EngineUpdateResourceTeamRequest} body
+   * @param {string} teamId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateResourceTeam(
+    body: EngineUpdateResourceTeamRequest,
+    teamId: string,
+    id: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineResourceTeam>
+}
 /**
  * ResourceTeamServiceApi - factory interface
  * @export
  */
-export declare const ResourceTeamServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create ResourceTeam
-     * @param {EngineCreateResourceTeamRequest} body
-     * @param {string} teamId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createResourceTeam(body: EngineCreateResourceTeamRequest, teamId: string, options?: any): AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary Remove ResourceTeam
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteResourceTeam(teamId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary ResourceTeam item
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readResourceTeam(teamId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary List of ResourceTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchResourceTeam(teamId: string, domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListResourceTeam>;
-    /**
-     *
-     * @summary Update ResourceTeam
-     * @param {EngineUpdateResourceTeamRequest} body
-     * @param {string} teamId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateResourceTeam(body: EngineUpdateResourceTeamRequest, teamId: string, id: string, options?: any): AxiosPromise<EngineResourceTeam>;
-};
+export declare const ResourceTeamServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create ResourceTeam
+   * @param {EngineCreateResourceTeamRequest} body
+   * @param {string} teamId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createResourceTeam(
+    body: EngineCreateResourceTeamRequest,
+    teamId: string,
+    options?: any
+  ): AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary Remove ResourceTeam
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteResourceTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary ResourceTeam item
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readResourceTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary List of ResourceTeam
+   * @param {string} teamId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchResourceTeam(
+    teamId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListResourceTeam>
+  /**
+   *
+   * @summary Update ResourceTeam
+   * @param {EngineUpdateResourceTeamRequest} body
+   * @param {string} teamId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateResourceTeam(
+    body: EngineUpdateResourceTeamRequest,
+    teamId: string,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineResourceTeam>
+}
 /**
  * ResourceTeamServiceApi - object-oriented interface
  * @export
@@ -4047,215 +4731,323 @@ export declare const ResourceTeamServiceApiFactory: (configuration?: Configurati
  * @extends {BaseAPI}
  */
 export declare class ResourceTeamServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create ResourceTeam
-     * @param {EngineCreateResourceTeamRequest} body
-     * @param {string} teamId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ResourceTeamServiceApi
-     */
-    createResourceTeam(body: EngineCreateResourceTeamRequest, teamId: string, options?: any): AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary Remove ResourceTeam
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ResourceTeamServiceApi
-     */
-    deleteResourceTeam(teamId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary ResourceTeam item
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ResourceTeamServiceApi
-     */
-    readResourceTeam(teamId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineResourceTeam>;
-    /**
-     *
-     * @summary List of ResourceTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ResourceTeamServiceApi
-     */
-    searchResourceTeam(teamId: string, domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListResourceTeam>;
-    /**
-     *
-     * @summary Update ResourceTeam
-     * @param {EngineUpdateResourceTeamRequest} body
-     * @param {string} teamId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ResourceTeamServiceApi
-     */
-    updateResourceTeam(body: EngineUpdateResourceTeamRequest, teamId: string, id: string, options?: any): AxiosPromise<EngineResourceTeam>;
+  /**
+   *
+   * @summary Create ResourceTeam
+   * @param {EngineCreateResourceTeamRequest} body
+   * @param {string} teamId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  createResourceTeam(
+    body: EngineCreateResourceTeamRequest,
+    teamId: string,
+    options?: any
+  ): AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary Remove ResourceTeam
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  deleteResourceTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary ResourceTeam item
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  readResourceTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineResourceTeam>
+  /**
+   *
+   * @summary List of ResourceTeam
+   * @param {string} teamId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  searchResourceTeam(
+    teamId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListResourceTeam>
+  /**
+   *
+   * @summary Update ResourceTeam
+   * @param {EngineUpdateResourceTeamRequest} body
+   * @param {string} teamId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  updateResourceTeam(
+    body: EngineUpdateResourceTeamRequest,
+    teamId: string,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineResourceTeam>
 }
 /**
  * RoutingOutboundCallServiceApi - axios parameter creator
  * @export
  */
-export declare const RoutingOutboundCallServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create RoutingOutboundCall
-     * @param {EngineCreateRoutingOutboundCallRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingOutboundCall(body: EngineCreateRoutingOutboundCallRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove RoutingOutboundCall
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingOutboundCall(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary RoutingOutboundCall item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingOutboundCall(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of RoutingOutboundCall
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingOutboundCall(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update RoutingOutboundCall
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingOutboundCall(body: EngineUpdateRoutingOutboundCallRequest, id: string, options?: any): RequestArgs;
-};
+export declare const RoutingOutboundCallServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create RoutingOutboundCall
+   * @param {EngineCreateRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingOutboundCall(
+    body: EngineCreateRoutingOutboundCallRequest,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Remove RoutingOutboundCall
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary RoutingOutboundCall item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary List of RoutingOutboundCall
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingOutboundCall(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update RoutingOutboundCall
+   * @param {EngineUpdateRoutingOutboundCallRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingOutboundCall(
+    body: EngineUpdateRoutingOutboundCallRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * RoutingOutboundCallServiceApi - functional programming interface
  * @export
  */
-export declare const RoutingOutboundCallServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create RoutingOutboundCall
-     * @param {EngineCreateRoutingOutboundCallRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingOutboundCall(body: EngineCreateRoutingOutboundCallRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary Remove RoutingOutboundCall
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingOutboundCall(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary RoutingOutboundCall item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingOutboundCall(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary List of RoutingOutboundCall
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingOutboundCall(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListRoutingOutboundCall>;
-    /**
-     *
-     * @summary Update RoutingOutboundCall
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingOutboundCall(body: EngineUpdateRoutingOutboundCallRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingOutboundCall>;
-};
+export declare const RoutingOutboundCallServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create RoutingOutboundCall
+   * @param {EngineCreateRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingOutboundCall(
+    body: EngineCreateRoutingOutboundCallRequest,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary Remove RoutingOutboundCall
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary RoutingOutboundCall item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary List of RoutingOutboundCall
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingOutboundCall(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListRoutingOutboundCall>
+  /**
+   *
+   * @summary Update RoutingOutboundCall
+   * @param {EngineUpdateRoutingOutboundCallRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingOutboundCall(
+    body: EngineUpdateRoutingOutboundCallRequest,
+    id: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingOutboundCall>
+}
 /**
  * RoutingOutboundCallServiceApi - factory interface
  * @export
  */
-export declare const RoutingOutboundCallServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create RoutingOutboundCall
-     * @param {EngineCreateRoutingOutboundCallRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingOutboundCall(body: EngineCreateRoutingOutboundCallRequest, options?: any): AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary Remove RoutingOutboundCall
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingOutboundCall(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary RoutingOutboundCall item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingOutboundCall(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary List of RoutingOutboundCall
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingOutboundCall(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListRoutingOutboundCall>;
-    /**
-     *
-     * @summary Update RoutingOutboundCall
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingOutboundCall(body: EngineUpdateRoutingOutboundCallRequest, id: string, options?: any): AxiosPromise<EngineRoutingOutboundCall>;
-};
+export declare const RoutingOutboundCallServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create RoutingOutboundCall
+   * @param {EngineCreateRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingOutboundCall(
+    body: EngineCreateRoutingOutboundCallRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary Remove RoutingOutboundCall
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary RoutingOutboundCall item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary List of RoutingOutboundCall
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingOutboundCall(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListRoutingOutboundCall>
+  /**
+   *
+   * @summary Update RoutingOutboundCall
+   * @param {EngineUpdateRoutingOutboundCallRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingOutboundCall(
+    body: EngineUpdateRoutingOutboundCallRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+}
 /**
  * RoutingOutboundCallServiceApi - object-oriented interface
  * @export
@@ -4263,210 +5055,305 @@ export declare const RoutingOutboundCallServiceApiFactory: (configuration?: Conf
  * @extends {BaseAPI}
  */
 export declare class RoutingOutboundCallServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create RoutingOutboundCall
-     * @param {EngineCreateRoutingOutboundCallRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingOutboundCallServiceApi
-     */
-    createRoutingOutboundCall(body: EngineCreateRoutingOutboundCallRequest, options?: any): AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary Remove RoutingOutboundCall
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingOutboundCallServiceApi
-     */
-    deleteRoutingOutboundCall(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary RoutingOutboundCall item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingOutboundCallServiceApi
-     */
-    readRoutingOutboundCall(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingOutboundCall>;
-    /**
-     *
-     * @summary List of RoutingOutboundCall
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingOutboundCallServiceApi
-     */
-    searchRoutingOutboundCall(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListRoutingOutboundCall>;
-    /**
-     *
-     * @summary Update RoutingOutboundCall
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingOutboundCallServiceApi
-     */
-    updateRoutingOutboundCall(body: EngineUpdateRoutingOutboundCallRequest, id: string, options?: any): AxiosPromise<EngineRoutingOutboundCall>;
+  /**
+   *
+   * @summary Create RoutingOutboundCall
+   * @param {EngineCreateRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApi
+   */
+  createRoutingOutboundCall(
+    body: EngineCreateRoutingOutboundCallRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary Remove RoutingOutboundCall
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApi
+   */
+  deleteRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary RoutingOutboundCall item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApi
+   */
+  readRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+  /**
+   *
+   * @summary List of RoutingOutboundCall
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApi
+   */
+  searchRoutingOutboundCall(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListRoutingOutboundCall>
+  /**
+   *
+   * @summary Update RoutingOutboundCall
+   * @param {EngineUpdateRoutingOutboundCallRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApi
+   */
+  updateRoutingOutboundCall(
+    body: EngineUpdateRoutingOutboundCallRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
 }
 /**
  * RoutingSchemeServiceApi - axios parameter creator
  * @export
  */
-export declare const RoutingSchemeServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create RoutingScheme
-     * @param {EngineCreateRoutingSchemeRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingScheme(body: EngineCreateRoutingSchemeRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove RoutingScheme
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingScheme(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary RoutingScheme item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingScheme(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List RoutingScheme
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingScheme(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update RoutingScheme
-     * @param {EngineUpdateRoutingSchemeRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingScheme(body: EngineUpdateRoutingSchemeRequest, id: string, options?: any): RequestArgs;
-};
+export declare const RoutingSchemeServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create RoutingScheme
+   * @param {EngineCreateRoutingSchemeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingScheme(
+    body: EngineCreateRoutingSchemeRequest,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Remove RoutingScheme
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingScheme(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary RoutingScheme item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingScheme(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary List RoutingScheme
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingScheme(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update RoutingScheme
+   * @param {EngineUpdateRoutingSchemeRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingScheme(
+    body: EngineUpdateRoutingSchemeRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * RoutingSchemeServiceApi - functional programming interface
  * @export
  */
-export declare const RoutingSchemeServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create RoutingScheme
-     * @param {EngineCreateRoutingSchemeRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingScheme(body: EngineCreateRoutingSchemeRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary Remove RoutingScheme
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingScheme(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary RoutingScheme item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingScheme(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary List RoutingScheme
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingScheme(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListRoutingScheme>;
-    /**
-     *
-     * @summary Update RoutingScheme
-     * @param {EngineUpdateRoutingSchemeRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingScheme(body: EngineUpdateRoutingSchemeRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingScheme>;
-};
+export declare const RoutingSchemeServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create RoutingScheme
+   * @param {EngineCreateRoutingSchemeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingScheme(
+    body: EngineCreateRoutingSchemeRequest,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary Remove RoutingScheme
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingScheme(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary RoutingScheme item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingScheme(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary List RoutingScheme
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingScheme(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListRoutingScheme>
+  /**
+   *
+   * @summary Update RoutingScheme
+   * @param {EngineUpdateRoutingSchemeRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingScheme(
+    body: EngineUpdateRoutingSchemeRequest,
+    id: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingScheme>
+}
 /**
  * RoutingSchemeServiceApi - factory interface
  * @export
  */
-export declare const RoutingSchemeServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create RoutingScheme
-     * @param {EngineCreateRoutingSchemeRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingScheme(body: EngineCreateRoutingSchemeRequest, options?: any): AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary Remove RoutingScheme
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingScheme(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary RoutingScheme item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingScheme(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary List RoutingScheme
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingScheme(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListRoutingScheme>;
-    /**
-     *
-     * @summary Update RoutingScheme
-     * @param {EngineUpdateRoutingSchemeRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingScheme(body: EngineUpdateRoutingSchemeRequest, id: string, options?: any): AxiosPromise<EngineRoutingScheme>;
-};
+export declare const RoutingSchemeServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create RoutingScheme
+   * @param {EngineCreateRoutingSchemeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingScheme(
+    body: EngineCreateRoutingSchemeRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary Remove RoutingScheme
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingScheme(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary RoutingScheme item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingScheme(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary List RoutingScheme
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingScheme(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListRoutingScheme>
+  /**
+   *
+   * @summary Update RoutingScheme
+   * @param {EngineUpdateRoutingSchemeRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingScheme(
+    body: EngineUpdateRoutingSchemeRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingScheme>
+}
 /**
  * RoutingSchemeServiceApi - object-oriented interface
  * @export
@@ -4474,210 +5361,309 @@ export declare const RoutingSchemeServiceApiFactory: (configuration?: Configurat
  * @extends {BaseAPI}
  */
 export declare class RoutingSchemeServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create RoutingScheme
-     * @param {EngineCreateRoutingSchemeRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingSchemeServiceApi
-     */
-    createRoutingScheme(body: EngineCreateRoutingSchemeRequest, options?: any): AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary Remove RoutingScheme
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingSchemeServiceApi
-     */
-    deleteRoutingScheme(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary RoutingScheme item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingSchemeServiceApi
-     */
-    readRoutingScheme(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingScheme>;
-    /**
-     *
-     * @summary List RoutingScheme
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingSchemeServiceApi
-     */
-    searchRoutingScheme(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListRoutingScheme>;
-    /**
-     *
-     * @summary Update RoutingScheme
-     * @param {EngineUpdateRoutingSchemeRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingSchemeServiceApi
-     */
-    updateRoutingScheme(body: EngineUpdateRoutingSchemeRequest, id: string, options?: any): AxiosPromise<EngineRoutingScheme>;
+  /**
+   *
+   * @summary Create RoutingScheme
+   * @param {EngineCreateRoutingSchemeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemeServiceApi
+   */
+  createRoutingScheme(
+    body: EngineCreateRoutingSchemeRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary Remove RoutingScheme
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemeServiceApi
+   */
+  deleteRoutingScheme(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary RoutingScheme item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemeServiceApi
+   */
+  readRoutingScheme(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingScheme>
+  /**
+   *
+   * @summary List RoutingScheme
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemeServiceApi
+   */
+  searchRoutingScheme(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListRoutingScheme>
+  /**
+   *
+   * @summary Update RoutingScheme
+   * @param {EngineUpdateRoutingSchemeRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemeServiceApi
+   */
+  updateRoutingScheme(
+    body: EngineUpdateRoutingSchemeRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingScheme>
 }
 /**
  * RoutingVariableServiceApi - axios parameter creator
  * @export
  */
-export declare const RoutingVariableServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create RoutingVariable
-     * @param {EngineCreateRoutingVariableRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingVariable(body: EngineCreateRoutingVariableRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove RoutingVariable
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingVariable(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary RoutingVariable item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingVariable(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of RoutingVariable
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingVariable(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update RoutingVariable
-     * @param {EngineUpdateRoutingVariableRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingVariable(body: EngineUpdateRoutingVariableRequest, id: string, options?: any): RequestArgs;
-};
+export declare const RoutingVariableServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create RoutingVariable
+   * @param {EngineCreateRoutingVariableRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingVariable(
+    body: EngineCreateRoutingVariableRequest,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Remove RoutingVariable
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary RoutingVariable item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingVariable(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary List of RoutingVariable
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingVariable(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update RoutingVariable
+   * @param {EngineUpdateRoutingVariableRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingVariable(
+    body: EngineUpdateRoutingVariableRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * RoutingVariableServiceApi - functional programming interface
  * @export
  */
-export declare const RoutingVariableServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create RoutingVariable
-     * @param {EngineCreateRoutingVariableRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingVariable(body: EngineCreateRoutingVariableRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary Remove RoutingVariable
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingVariable(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary RoutingVariable item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingVariable(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary List of RoutingVariable
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingVariable(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListRoutingVariable>;
-    /**
-     *
-     * @summary Update RoutingVariable
-     * @param {EngineUpdateRoutingVariableRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingVariable(body: EngineUpdateRoutingVariableRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRoutingVariable>;
-};
+export declare const RoutingVariableServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create RoutingVariable
+   * @param {EngineCreateRoutingVariableRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingVariable(
+    body: EngineCreateRoutingVariableRequest,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary Remove RoutingVariable
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary RoutingVariable item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary List of RoutingVariable
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingVariable(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListRoutingVariable>
+  /**
+   *
+   * @summary Update RoutingVariable
+   * @param {EngineUpdateRoutingVariableRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingVariable(
+    body: EngineUpdateRoutingVariableRequest,
+    id: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineRoutingVariable>
+}
 /**
  * RoutingVariableServiceApi - factory interface
  * @export
  */
-export declare const RoutingVariableServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create RoutingVariable
-     * @param {EngineCreateRoutingVariableRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createRoutingVariable(body: EngineCreateRoutingVariableRequest, options?: any): AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary Remove RoutingVariable
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteRoutingVariable(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary RoutingVariable item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readRoutingVariable(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary List of RoutingVariable
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchRoutingVariable(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListRoutingVariable>;
-    /**
-     *
-     * @summary Update RoutingVariable
-     * @param {EngineUpdateRoutingVariableRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingVariable(body: EngineUpdateRoutingVariableRequest, id: string, options?: any): AxiosPromise<EngineRoutingVariable>;
-};
+export declare const RoutingVariableServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create RoutingVariable
+   * @param {EngineCreateRoutingVariableRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createRoutingVariable(
+    body: EngineCreateRoutingVariableRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary Remove RoutingVariable
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary RoutingVariable item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary List of RoutingVariable
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchRoutingVariable(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListRoutingVariable>
+  /**
+   *
+   * @summary Update RoutingVariable
+   * @param {EngineUpdateRoutingVariableRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateRoutingVariable(
+    body: EngineUpdateRoutingVariableRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+}
 /**
  * RoutingVariableServiceApi - object-oriented interface
  * @export
@@ -4685,210 +5671,287 @@ export declare const RoutingVariableServiceApiFactory: (configuration?: Configur
  * @extends {BaseAPI}
  */
 export declare class RoutingVariableServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create RoutingVariable
-     * @param {EngineCreateRoutingVariableRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingVariableServiceApi
-     */
-    createRoutingVariable(body: EngineCreateRoutingVariableRequest, options?: any): AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary Remove RoutingVariable
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingVariableServiceApi
-     */
-    deleteRoutingVariable(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary RoutingVariable item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingVariableServiceApi
-     */
-    readRoutingVariable(id: string, domainId?: string, options?: any): AxiosPromise<EngineRoutingVariable>;
-    /**
-     *
-     * @summary List of RoutingVariable
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingVariableServiceApi
-     */
-    searchRoutingVariable(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListRoutingVariable>;
-    /**
-     *
-     * @summary Update RoutingVariable
-     * @param {EngineUpdateRoutingVariableRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RoutingVariableServiceApi
-     */
-    updateRoutingVariable(body: EngineUpdateRoutingVariableRequest, id: string, options?: any): AxiosPromise<EngineRoutingVariable>;
+  /**
+   *
+   * @summary Create RoutingVariable
+   * @param {EngineCreateRoutingVariableRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApi
+   */
+  createRoutingVariable(
+    body: EngineCreateRoutingVariableRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary Remove RoutingVariable
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApi
+   */
+  deleteRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary RoutingVariable item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApi
+   */
+  readRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+  /**
+   *
+   * @summary List of RoutingVariable
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApi
+   */
+  searchRoutingVariable(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListRoutingVariable>
+  /**
+   *
+   * @summary Update RoutingVariable
+   * @param {EngineUpdateRoutingVariableRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApi
+   */
+  updateRoutingVariable(
+    body: EngineUpdateRoutingVariableRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
 }
 /**
  * SkillServiceApi - axios parameter creator
  * @export
  */
-export declare const SkillServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create Skill
-     * @param {EngineCreateSkillRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createSkill(body: EngineCreateSkillRequest, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove Skill
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteSkill(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Skill item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readSkill(id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of Skill
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchSkill(domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update Skill
-     * @param {EngineUpdateSkillRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateSkill(body: EngineUpdateSkillRequest, id: string, options?: any): RequestArgs;
-};
+export declare const SkillServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create Skill
+   * @param {EngineCreateSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createSkill(body: EngineCreateSkillRequest, options?: any): RequestArgs
+  /**
+   *
+   * @summary Remove Skill
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteSkill(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary Skill item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readSkill(id: string, domainId?: string, options?: any): RequestArgs
+  /**
+   *
+   * @summary List of Skill
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchSkill(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update Skill
+   * @param {EngineUpdateSkillRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateSkill(
+    body: EngineUpdateSkillRequest,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * SkillServiceApi - functional programming interface
  * @export
  */
-export declare const SkillServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create Skill
-     * @param {EngineCreateSkillRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createSkill(body: EngineCreateSkillRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary Remove Skill
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteSkill(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary Skill item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readSkill(id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary List of Skill
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchSkill(domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListSkill>;
-    /**
-     *
-     * @summary Update Skill
-     * @param {EngineUpdateSkillRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateSkill(body: EngineUpdateSkillRequest, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill>;
-};
+export declare const SkillServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create Skill
+   * @param {EngineCreateSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createSkill(
+    body: EngineCreateSkillRequest,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary Remove Skill
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteSkill(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary Skill item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readSkill(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary List of Skill
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchSkill(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListSkill>
+  /**
+   *
+   * @summary Update Skill
+   * @param {EngineUpdateSkillRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateSkill(
+    body: EngineUpdateSkillRequest,
+    id: string,
+    options?: any
+  ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSkill>
+}
 /**
  * SkillServiceApi - factory interface
  * @export
  */
-export declare const SkillServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create Skill
-     * @param {EngineCreateSkillRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createSkill(body: EngineCreateSkillRequest, options?: any): AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary Remove Skill
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteSkill(id: string, domainId?: string, options?: any): AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary Skill item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readSkill(id: string, domainId?: string, options?: any): AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary List of Skill
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchSkill(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListSkill>;
-    /**
-     *
-     * @summary Update Skill
-     * @param {EngineUpdateSkillRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateSkill(body: EngineUpdateSkillRequest, id: string, options?: any): AxiosPromise<EngineSkill>;
-};
+export declare const SkillServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create Skill
+   * @param {EngineCreateSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createSkill(
+    body: EngineCreateSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary Remove Skill
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteSkill(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary Skill item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readSkill(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary List of Skill
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchSkill(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListSkill>
+  /**
+   *
+   * @summary Update Skill
+   * @param {EngineUpdateSkillRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateSkill(
+    body: EngineUpdateSkillRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+}
 /**
  * SkillServiceApi - object-oriented interface
  * @export
@@ -4896,225 +5959,343 @@ export declare const SkillServiceApiFactory: (configuration?: Configuration, bas
  * @extends {BaseAPI}
  */
 export declare class SkillServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create Skill
-     * @param {EngineCreateSkillRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SkillServiceApi
-     */
-    createSkill(body: EngineCreateSkillRequest, options?: any): AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary Remove Skill
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SkillServiceApi
-     */
-    deleteSkill(id: string, domainId?: string, options?: any): AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary Skill item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SkillServiceApi
-     */
-    readSkill(id: string, domainId?: string, options?: any): AxiosPromise<EngineSkill>;
-    /**
-     *
-     * @summary List of Skill
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SkillServiceApi
-     */
-    searchSkill(domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListSkill>;
-    /**
-     *
-     * @summary Update Skill
-     * @param {EngineUpdateSkillRequest} body
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SkillServiceApi
-     */
-    updateSkill(body: EngineUpdateSkillRequest, id: string, options?: any): AxiosPromise<EngineSkill>;
+  /**
+   *
+   * @summary Create Skill
+   * @param {EngineCreateSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  createSkill(
+    body: EngineCreateSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary Remove Skill
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  deleteSkill(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary Skill item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  readSkill(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+  /**
+   *
+   * @summary List of Skill
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  searchSkill(
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListSkill>
+  /**
+   *
+   * @summary Update Skill
+   * @param {EngineUpdateSkillRequest} body
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  updateSkill(
+    body: EngineUpdateSkillRequest,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineSkill>
 }
 /**
  * SupervisorInTeamServiceApi - axios parameter creator
  * @export
  */
-export declare const SupervisorInTeamServiceApiAxiosParamCreator: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create SupervisorInTeam
-     * @param {EngineCreateSupervisorInTeamRequest} body
-     * @param {string} teamId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createSupervisorInTeam(body: EngineCreateSupervisorInTeamRequest, teamId: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Remove SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteSupervisorInTeam(teamId: string, id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary SupervisorInTeam item
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readSupervisorInTeam(teamId: string, id: string, domainId?: string, options?: any): RequestArgs;
-    /**
-     *
-     * @summary List of SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchSupervisorInTeam(teamId: string, domainId?: string, size?: number, page?: number, options?: any): RequestArgs;
-    /**
-     *
-     * @summary Update SupervisorInTeam
-     * @param {EngineUpdateSupervisorInTeamRequest} body
-     * @param {string} teamId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateSupervisorInTeam(body: EngineUpdateSupervisorInTeamRequest, teamId: string, id: string, options?: any): RequestArgs;
-};
+export declare const SupervisorInTeamServiceApiAxiosParamCreator: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create SupervisorInTeam
+   * @param {EngineCreateSupervisorInTeamRequest} body
+   * @param {string} teamId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createSupervisorInTeam(
+    body: EngineCreateSupervisorInTeamRequest,
+    teamId: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Remove SupervisorInTeam
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteSupervisorInTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary SupervisorInTeam item
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readSupervisorInTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary List of SupervisorInTeam
+   * @param {string} teamId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchSupervisorInTeam(
+    teamId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): RequestArgs
+  /**
+   *
+   * @summary Update SupervisorInTeam
+   * @param {EngineUpdateSupervisorInTeamRequest} body
+   * @param {string} teamId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateSupervisorInTeam(
+    body: EngineUpdateSupervisorInTeamRequest,
+    teamId: string,
+    id: string,
+    options?: any
+  ): RequestArgs
+}
 /**
  * SupervisorInTeamServiceApi - functional programming interface
  * @export
  */
-export declare const SupervisorInTeamServiceApiFp: (configuration?: Configuration) => {
-    /**
-     *
-     * @summary Create SupervisorInTeam
-     * @param {EngineCreateSupervisorInTeamRequest} body
-     * @param {string} teamId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createSupervisorInTeam(body: EngineCreateSupervisorInTeamRequest, teamId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary Remove SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteSupervisorInTeam(teamId: string, id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary SupervisorInTeam item
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readSupervisorInTeam(teamId: string, id: string, domainId?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary List of SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchSupervisorInTeam(teamId: string, domainId?: string, size?: number, page?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListSupervisorInTeam>;
-    /**
-     *
-     * @summary Update SupervisorInTeam
-     * @param {EngineUpdateSupervisorInTeamRequest} body
-     * @param {string} teamId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateSupervisorInTeam(body: EngineUpdateSupervisorInTeamRequest, teamId: string, id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineSupervisorInTeam>;
-};
+export declare const SupervisorInTeamServiceApiFp: (
+  configuration?: Configuration
+) => {
+  /**
+   *
+   * @summary Create SupervisorInTeam
+   * @param {EngineCreateSupervisorInTeamRequest} body
+   * @param {string} teamId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createSupervisorInTeam(
+    body: EngineCreateSupervisorInTeamRequest,
+    teamId: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary Remove SupervisorInTeam
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteSupervisorInTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary SupervisorInTeam item
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readSupervisorInTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary List of SupervisorInTeam
+   * @param {string} teamId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchSupervisorInTeam(
+    teamId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineListSupervisorInTeam>
+  /**
+   *
+   * @summary Update SupervisorInTeam
+   * @param {EngineUpdateSupervisorInTeamRequest} body
+   * @param {string} teamId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateSupervisorInTeam(
+    body: EngineUpdateSupervisorInTeamRequest,
+    teamId: string,
+    id: string,
+    options?: any
+  ): (
+    axios?: AxiosInstance,
+    basePath?: string
+  ) => AxiosPromise<EngineSupervisorInTeam>
+}
 /**
  * SupervisorInTeamServiceApi - factory interface
  * @export
  */
-export declare const SupervisorInTeamServiceApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
-    /**
-     *
-     * @summary Create SupervisorInTeam
-     * @param {EngineCreateSupervisorInTeamRequest} body
-     * @param {string} teamId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createSupervisorInTeam(body: EngineCreateSupervisorInTeamRequest, teamId: string, options?: any): AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary Remove SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteSupervisorInTeam(teamId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary SupervisorInTeam item
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readSupervisorInTeam(teamId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary List of SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchSupervisorInTeam(teamId: string, domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListSupervisorInTeam>;
-    /**
-     *
-     * @summary Update SupervisorInTeam
-     * @param {EngineUpdateSupervisorInTeamRequest} body
-     * @param {string} teamId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateSupervisorInTeam(body: EngineUpdateSupervisorInTeamRequest, teamId: string, id: string, options?: any): AxiosPromise<EngineSupervisorInTeam>;
-};
+export declare const SupervisorInTeamServiceApiFactory: (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) => {
+  /**
+   *
+   * @summary Create SupervisorInTeam
+   * @param {EngineCreateSupervisorInTeamRequest} body
+   * @param {string} teamId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  createSupervisorInTeam(
+    body: EngineCreateSupervisorInTeamRequest,
+    teamId: string,
+    options?: any
+  ): AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary Remove SupervisorInTeam
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  deleteSupervisorInTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary SupervisorInTeam item
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  readSupervisorInTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary List of SupervisorInTeam
+   * @param {string} teamId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  searchSupervisorInTeam(
+    teamId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListSupervisorInTeam>
+  /**
+   *
+   * @summary Update SupervisorInTeam
+   * @param {EngineUpdateSupervisorInTeamRequest} body
+   * @param {string} teamId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  updateSupervisorInTeam(
+    body: EngineUpdateSupervisorInTeamRequest,
+    teamId: string,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineSupervisorInTeam>
+}
 /**
  * SupervisorInTeamServiceApi - object-oriented interface
  * @export
@@ -5122,59 +6303,84 @@ export declare const SupervisorInTeamServiceApiFactory: (configuration?: Configu
  * @extends {BaseAPI}
  */
 export declare class SupervisorInTeamServiceApi extends BaseAPI {
-    /**
-     *
-     * @summary Create SupervisorInTeam
-     * @param {EngineCreateSupervisorInTeamRequest} body
-     * @param {string} teamId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SupervisorInTeamServiceApi
-     */
-    createSupervisorInTeam(body: EngineCreateSupervisorInTeamRequest, teamId: string, options?: any): AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary Remove SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SupervisorInTeamServiceApi
-     */
-    deleteSupervisorInTeam(teamId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary SupervisorInTeam item
-     * @param {string} teamId
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SupervisorInTeamServiceApi
-     */
-    readSupervisorInTeam(teamId: string, id: string, domainId?: string, options?: any): AxiosPromise<EngineSupervisorInTeam>;
-    /**
-     *
-     * @summary List of SupervisorInTeam
-     * @param {string} teamId
-     * @param {string} [domainId]
-     * @param {number} [size]
-     * @param {number} [page]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SupervisorInTeamServiceApi
-     */
-    searchSupervisorInTeam(teamId: string, domainId?: string, size?: number, page?: number, options?: any): AxiosPromise<EngineListSupervisorInTeam>;
-    /**
-     *
-     * @summary Update SupervisorInTeam
-     * @param {EngineUpdateSupervisorInTeamRequest} body
-     * @param {string} teamId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SupervisorInTeamServiceApi
-     */
-    updateSupervisorInTeam(body: EngineUpdateSupervisorInTeamRequest, teamId: string, id: string, options?: any): AxiosPromise<EngineSupervisorInTeam>;
+  /**
+   *
+   * @summary Create SupervisorInTeam
+   * @param {EngineCreateSupervisorInTeamRequest} body
+   * @param {string} teamId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SupervisorInTeamServiceApi
+   */
+  createSupervisorInTeam(
+    body: EngineCreateSupervisorInTeamRequest,
+    teamId: string,
+    options?: any
+  ): AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary Remove SupervisorInTeam
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SupervisorInTeamServiceApi
+   */
+  deleteSupervisorInTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary SupervisorInTeam item
+   * @param {string} teamId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SupervisorInTeamServiceApi
+   */
+  readSupervisorInTeam(
+    teamId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSupervisorInTeam>
+  /**
+   *
+   * @summary List of SupervisorInTeam
+   * @param {string} teamId
+   * @param {string} [domainId]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SupervisorInTeamServiceApi
+   */
+  searchSupervisorInTeam(
+    teamId: string,
+    domainId?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ): AxiosPromise<EngineListSupervisorInTeam>
+  /**
+   *
+   * @summary Update SupervisorInTeam
+   * @param {EngineUpdateSupervisorInTeamRequest} body
+   * @param {string} teamId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SupervisorInTeamServiceApi
+   */
+  updateSupervisorInTeam(
+    body: EngineUpdateSupervisorInTeamRequest,
+    teamId: string,
+    id: string,
+    options?: any
+  ): AxiosPromise<EngineSupervisorInTeam>
 }
