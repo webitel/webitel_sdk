@@ -6,7 +6,7 @@ import {
   EngineExceptDate,
 } from '../api'
 
-const succesCode = 200
+const successCode = 200
 
 jest.mock('../environment.ts', () => ({
   IS_DEV: true,
@@ -30,7 +30,7 @@ describe(`Calendar API`, () => {
     /* tslint:disable */
     const res = await api.searchTimezones(10, 0)
     /* tslint:enabled */
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(res.data.items).toBeInstanceOf(Array)
   })
 
@@ -44,7 +44,7 @@ describe(`Calendar API`, () => {
 
     calendar = res.data
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(calendar.name).toBe('test')
     if (!calendar.timezone) {
       return
@@ -61,7 +61,7 @@ describe(`Calendar API`, () => {
     }
     const res = await api.readCalendar(calendar.id, calendar.domain_id)
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(res.data.name).toBe('test')
     expect(res.data.id).toBe(calendar.id)
   })
@@ -77,7 +77,7 @@ describe(`Calendar API`, () => {
       },
     })
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(res.data.name).toBe('update-test')
     expect(res.data.id).toBe(calendar.id)
   })
@@ -94,7 +94,7 @@ describe(`Calendar API`, () => {
       disabled: true,
     })
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
 
     /* tslint:disable */
     expect(res.data.start_time_of_day).toBe(10)
@@ -112,7 +112,7 @@ describe(`Calendar API`, () => {
 
     const res = await api.readAcceptOfDay(calendar.id, acceptOfDay.id)
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     /* tslint:disable */
     expect(res.data.start_time_of_day).toBe(10)
     expect(res.data.end_time_of_day).toBe(100)
@@ -131,7 +131,7 @@ describe(`Calendar API`, () => {
       disabled: false,
     })
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     /* tslint:disable */
     expect(res.data.start_time_of_day).toBe(999)
     expect(res.data.end_time_of_day).toBe(1000)
@@ -150,7 +150,7 @@ describe(`Calendar API`, () => {
       calendar.domain_id
     )
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     /* tslint:disable */
     expect(res.data.start_time_of_day).toBe(999)
     expect(res.data.end_time_of_day).toBe(1000)
@@ -169,7 +169,7 @@ describe(`Calendar API`, () => {
       repeat: 1,
     })
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(res.data.date).toBe('2000')
     expect(res.data.name).toBe('test')
     expect(res.data.repeat).toBe(1)
@@ -184,7 +184,7 @@ describe(`Calendar API`, () => {
 
     const res = await api.readExceptDate(calendar.id, exceptDate.id)
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(res.data.date).toBe('2000')
     expect(res.data.name).toBe('test')
     expect(res.data.repeat).toBe(1)
@@ -204,7 +204,7 @@ describe(`Calendar API`, () => {
       repeat: 2,
     })
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(res.data.date).toBe('0')
     expect(res.data.name).toBe('update-except')
     /* tslint:disable */
@@ -221,7 +221,7 @@ describe(`Calendar API`, () => {
 
     const res = await api.deleteExceptDate(calendar.id, exceptDate.id)
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(res.data.date).toBe('0')
     expect(res.data.name).toBe('update-except')
     /* tslint:disable */
@@ -238,7 +238,7 @@ describe(`Calendar API`, () => {
 
     const res = await api.deleteCalendar(calendar.id, calendar.domain_id)
 
-    expect(res.status).toBe(succesCode)
+    expect(res.status).toBe(successCode)
     expect(res.data.id).toBe(calendar.id)
   })
 })
