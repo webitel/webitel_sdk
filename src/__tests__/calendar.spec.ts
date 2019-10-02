@@ -19,15 +19,12 @@ describe(`Calendar API`, () => {
   let acceptOfDay: EngineAcceptOfDay
   let exceptDate: EngineExceptDate
 
-  beforeEach(() => {
-    const configuration = new Configuration({
-      basePath: 'http://10.10.10.25:1907',
-      apiKey: 'GUEST_TOKEN',
-      accessToken: 'GUEST_TOKEN',
-    })
-
-    api = new CalendarServiceApi(configuration)
+  const configuration = new Configuration({
+    basePath: process.env.WEBITEL_API_BASE_PATH,
+    apiKey: process.env.WEBITEL_API_KEY,
   })
+
+  api = new CalendarServiceApi(configuration)
 
   it(`Read timezones`, async () => {
     /* tslint:disable */
