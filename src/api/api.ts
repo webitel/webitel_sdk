@@ -588,12 +588,6 @@ export interface EngineCreateExceptDateRequest {
    * @type {string}
    * @memberof EngineCreateExceptDateRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateExceptDateRequest
-   */
   calendar_id?: string
   /**
    *
@@ -619,6 +613,12 @@ export interface EngineCreateExceptDateRequest {
    * @memberof EngineCreateExceptDateRequest
    */
   disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateExceptDateRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -5967,16 +5967,16 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of calendar
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchCalendar(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/calendars`
@@ -6002,16 +6002,16 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -6101,14 +6101,14 @@ export const CalendarServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List timezones
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchTimezones(
-      size?: number,
       page?: number,
+      size?: number,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/calendars/timezones`
@@ -6134,12 +6134,12 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
-      }
-
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
       }
 
       localVarUrlObj.query = {
@@ -6727,16 +6727,16 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of calendar
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchCalendar(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6744,7 +6744,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListCalendar> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).searchCalendar(domain_id, size, page, options)
+      ).searchCalendar(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6789,14 +6789,14 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List timezones
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchTimezones(
-      size?: number,
       page?: number,
+      size?: number,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6804,7 +6804,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListTimezoneResponse> {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
-      ).searchTimezones(size, page, options)
+      ).searchTimezones(page, size, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -7110,22 +7110,22 @@ export const CalendarServiceApiFactory = function(
     /**
      *
      * @summary List of calendar
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchCalendar(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return CalendarServiceApiFp(configuration).searchCalendar(
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -7147,15 +7147,15 @@ export const CalendarServiceApiFactory = function(
     /**
      *
      * @summary List timezones
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchTimezones(size?: number, page?: number, options?: any) {
+    searchTimezones(page?: number, size?: number, options?: any) {
       return CalendarServiceApiFp(configuration).searchTimezones(
-        size,
         page,
+        size,
         options
       )(axios, basePath)
     },
@@ -7443,23 +7443,23 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary List of calendar
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public searchCalendar(
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).searchCalendar(
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7488,16 +7488,16 @@ export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary List timezones
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public searchTimezones(size?: number, page?: number, options?: any) {
+  public searchTimezones(page?: number, size?: number, options?: any) {
     return CalendarServiceApiFp(this.configuration).searchTimezones(
-      size,
       page,
+      size,
       options
     )(this.axios, this.basePath)
   }
