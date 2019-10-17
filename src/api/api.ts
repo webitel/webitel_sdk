@@ -371,6 +371,86 @@ export interface EngineCalendar {
 /**
  *
  * @export
+ * @interface EngineCommunicationType
+ */
+export interface EngineCommunicationType {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationType
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationType
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationType
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationType
+   */
+  code?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationType
+   */
+  type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationType
+   */
+  description?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineCommunicationTypeRequest
+ */
+export interface EngineCommunicationTypeRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationTypeRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationTypeRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationTypeRequest
+   */
+  code?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationTypeRequest
+   */
+  type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationTypeRequest
+   */
+  description?: string
+}
+/**
+ *
+ * @export
  * @interface EngineCreateAcceptOfDayRequest
  */
 export interface EngineCreateAcceptOfDayRequest {
@@ -1162,6 +1242,19 @@ export interface EngineListCalendar {
    * @memberof EngineListCalendar
    */
   items?: Array<EngineCalendar>
+}
+/**
+ *
+ * @export
+ * @interface EngineListCommunicationType
+ */
+export interface EngineListCommunicationType {
+  /**
+   *
+   * @type {Array<EngineCommunicationType>}
+   * @memberof EngineListCommunicationType
+   */
+  items?: Array<EngineCommunicationType>
 }
 /**
  *
@@ -2308,6 +2401,49 @@ export interface EngineUpdateCalendarRequest {
    * @memberof EngineUpdateCalendarRequest
    */
   domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateCommunicationTypeRequest
+ */
+export interface EngineUpdateCommunicationTypeRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCommunicationTypeRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCommunicationTypeRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCommunicationTypeRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCommunicationTypeRequest
+   */
+  code?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCommunicationTypeRequest
+   */
+  type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCommunicationTypeRequest
+   */
+  description?: string
 }
 /**
  *
@@ -7569,6 +7705,717 @@ export class CalendarServiceApi extends BaseAPI {
       body,
       options
     )(this.axios, this.basePath)
+  }
+}
+
+/**
+ * CommunicationTypeServiceApi - axios parameter creator
+ * @export
+ */
+export const CommunicationTypeServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create CommunicationType
+     * @param {EngineCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createCommunicationType(
+      body: EngineCommunicationTypeRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createCommunicationType.'
+        )
+      }
+      const localVarPath = `/call_center/communication_type`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCommunicationTypeRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove CommunicationType
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCommunicationType(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteCommunicationType.'
+        )
+      }
+      const localVarPath = `/call_center/communication_type/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary CommunicationType item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readCommunicationType(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readCommunicationType.'
+        )
+      }
+      const localVarPath = `/call_center/communication_type/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of CommunicationType
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCommunicationType(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/communication_type`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update CommunicationType
+     * @param {string} id
+     * @param {EngineUpdateCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCommunicationType(
+      id: string,
+      body: EngineUpdateCommunicationTypeRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateCommunicationType.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateCommunicationType.'
+        )
+      }
+      const localVarPath = `/call_center/communication_type/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateCommunicationTypeRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * CommunicationTypeServiceApi - functional programming interface
+ * @export
+ */
+export const CommunicationTypeServiceApiFp = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create CommunicationType
+     * @param {EngineCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createCommunicationType(
+      body: EngineCommunicationTypeRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineCommunicationType> {
+      const localVarAxiosArgs = CommunicationTypeServiceApiAxiosParamCreator(
+        configuration
+      ).createCommunicationType(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove CommunicationType
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCommunicationType(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineCommunicationType> {
+      const localVarAxiosArgs = CommunicationTypeServiceApiAxiosParamCreator(
+        configuration
+      ).deleteCommunicationType(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary CommunicationType item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readCommunicationType(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineCommunicationType> {
+      const localVarAxiosArgs = CommunicationTypeServiceApiAxiosParamCreator(
+        configuration
+      ).readCommunicationType(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of CommunicationType
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCommunicationType(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListCommunicationType> {
+      const localVarAxiosArgs = CommunicationTypeServiceApiAxiosParamCreator(
+        configuration
+      ).searchCommunicationType(page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update CommunicationType
+     * @param {string} id
+     * @param {EngineUpdateCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCommunicationType(
+      id: string,
+      body: EngineUpdateCommunicationTypeRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineCommunicationType> {
+      const localVarAxiosArgs = CommunicationTypeServiceApiAxiosParamCreator(
+        configuration
+      ).updateCommunicationType(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * CommunicationTypeServiceApi - factory interface
+ * @export
+ */
+export const CommunicationTypeServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Create CommunicationType
+     * @param {EngineCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createCommunicationType(
+      body: EngineCommunicationTypeRequest,
+      options?: any
+    ) {
+      return CommunicationTypeServiceApiFp(
+        configuration
+      ).createCommunicationType(body, options)(axios, basePath)
+    },
+    /**
+     *
+     * @summary Remove CommunicationType
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCommunicationType(id: string, domain_id?: string, options?: any) {
+      return CommunicationTypeServiceApiFp(
+        configuration
+      ).deleteCommunicationType(id, domain_id, options)(axios, basePath)
+    },
+    /**
+     *
+     * @summary CommunicationType item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readCommunicationType(id: string, domain_id?: string, options?: any) {
+      return CommunicationTypeServiceApiFp(configuration).readCommunicationType(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List of CommunicationType
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCommunicationType(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return CommunicationTypeServiceApiFp(
+        configuration
+      ).searchCommunicationType(page, size, domain_id, options)(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update CommunicationType
+     * @param {string} id
+     * @param {EngineUpdateCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCommunicationType(
+      id: string,
+      body: EngineUpdateCommunicationTypeRequest,
+      options?: any
+    ) {
+      return CommunicationTypeServiceApiFp(
+        configuration
+      ).updateCommunicationType(id, body, options)(axios, basePath)
+    },
+  }
+}
+
+/**
+ * CommunicationTypeServiceApi - object-oriented interface
+ * @export
+ * @class CommunicationTypeServiceApi
+ * @extends {BaseAPI}
+ */
+export class CommunicationTypeServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Create CommunicationType
+   * @param {EngineCommunicationTypeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApi
+   */
+  public createCommunicationType(
+    body: EngineCommunicationTypeRequest,
+    options?: any
+  ) {
+    return CommunicationTypeServiceApiFp(
+      this.configuration
+    ).createCommunicationType(body, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Remove CommunicationType
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApi
+   */
+  public deleteCommunicationType(
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return CommunicationTypeServiceApiFp(
+      this.configuration
+    ).deleteCommunicationType(id, domain_id, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary CommunicationType item
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApi
+   */
+  public readCommunicationType(id: string, domain_id?: string, options?: any) {
+    return CommunicationTypeServiceApiFp(
+      this.configuration
+    ).readCommunicationType(id, domain_id, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of CommunicationType
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApi
+   */
+  public searchCommunicationType(
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return CommunicationTypeServiceApiFp(
+      this.configuration
+    ).searchCommunicationType(page, size, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Update CommunicationType
+   * @param {string} id
+   * @param {EngineUpdateCommunicationTypeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApi
+   */
+  public updateCommunicationType(
+    id: string,
+    body: EngineUpdateCommunicationTypeRequest,
+    options?: any
+  ) {
+    return CommunicationTypeServiceApiFp(
+      this.configuration
+    ).updateCommunicationType(id, body, options)(this.axios, this.basePath)
   }
 }
 
