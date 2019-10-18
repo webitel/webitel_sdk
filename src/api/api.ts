@@ -703,6 +703,68 @@ export interface EngineCreateExceptDateRequest {
 /**
  *
  * @export
+ * @interface EngineCreateOutboundResourceGroupRequest
+ */
+export interface EngineCreateOutboundResourceGroupRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  communication?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateOutboundResourceInGroupRequest
+ */
+export interface EngineCreateOutboundResourceInGroupRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceInGroupRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceInGroupRequest
+   */
+  group_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateOutboundResourceInGroupRequest
+   */
+  resource?: EngineLookup
+}
+/**
+ *
+ * @export
  * @interface EngineCreateOutboundResourceRequest
  */
 export interface EngineCreateOutboundResourceRequest {
@@ -1285,6 +1347,32 @@ export interface EngineListOutboundResource {
 /**
  *
  * @export
+ * @interface EngineListOutboundResourceGroup
+ */
+export interface EngineListOutboundResourceGroup {
+  /**
+   *
+   * @type {Array<EngineOutboundResourceGroup>}
+   * @memberof EngineListOutboundResourceGroup
+   */
+  items?: Array<EngineOutboundResourceGroup>
+}
+/**
+ *
+ * @export
+ * @interface EngineListOutboundResourceInGroup
+ */
+export interface EngineListOutboundResourceInGroup {
+  /**
+   *
+   * @type {Array<EngineOutboundResourceInGroup>}
+   * @memberof EngineListOutboundResourceInGroup
+   */
+  items?: Array<EngineOutboundResourceInGroup>
+}
+/**
+ *
+ * @export
  * @interface EngineListQueue
  */
 export interface EngineListQueue {
@@ -1551,6 +1639,98 @@ export interface EngineOutboundResource {
    * @memberof EngineOutboundResource
    */
   last_error_at?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineOutboundResourceGroup
+ */
+export interface EngineOutboundResourceGroup {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceGroup
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceGroup
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceGroup
+   */
+  created_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResourceGroup
+   */
+  created_by?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceGroup
+   */
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResourceGroup
+   */
+  updated_by?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceGroup
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceGroup
+   */
+  strategy?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceGroup
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResourceGroup
+   */
+  communication?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineOutboundResourceInGroup
+ */
+export interface EngineOutboundResourceInGroup {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceInGroup
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceInGroup
+   */
+  group_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResourceInGroup
+   */
+  resource?: EngineLookup
 }
 /**
  *
@@ -2491,6 +2671,80 @@ export interface EngineUpdateExceptDateRequest {
    *
    * @type {string}
    * @memberof EngineUpdateExceptDateRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateOutboundResourceGroupRequest
+ */
+export interface EngineUpdateOutboundResourceGroupRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  communication?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateOutboundResourceInGroupRequest
+ */
+export interface EngineUpdateOutboundResourceInGroupRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceInGroupRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceInGroupRequest
+   */
+  group_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateOutboundResourceInGroupRequest
+   */
+  resource?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceInGroupRequest
    */
   domain_id?: string
 }
@@ -8420,6 +8674,1508 @@ export class CommunicationTypeServiceApi extends BaseAPI {
 }
 
 /**
+ * OutboundResourceGroupServiceApi - axios parameter creator
+ * @export
+ */
+export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create OutboundResourceGroup
+     * @param {EngineCreateOutboundResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceGroup(
+      body: EngineCreateOutboundResourceGroupRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createOutboundResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateOutboundResourceGroupRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Create OutboundResourceGroup
+     * @param {string} group_id
+     * @param {EngineCreateOutboundResourceInGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceInGroup(
+      group_id: string,
+      body: EngineCreateOutboundResourceInGroupRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'group_id' is not null or undefined
+      if (group_id === null || group_id === undefined) {
+        throw new RequiredError(
+          'group_id',
+          'Required parameter group_id was null or undefined when calling createOutboundResourceInGroup.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createOutboundResourceInGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group/{group_id}/resource`.replace(
+        `{${'group_id'}}`,
+        encodeURIComponent(String(group_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateOutboundResourceInGroupRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove OutboundResourceGroup
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOutboundResourceGroup(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteOutboundResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'group_id' is not null or undefined
+      if (group_id === null || group_id === undefined) {
+        throw new RequiredError(
+          'group_id',
+          'Required parameter group_id was null or undefined when calling deleteOutboundResourceInGroup.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteOutboundResourceInGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group/{group_id}/resource/{id}`
+        .replace(`{${'group_id'}}`, encodeURIComponent(String(group_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary OutboundResourceGroup item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceGroup(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readOutboundResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary OutboundResourceInGroup item
+     * @param {string} group_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'group_id' is not null or undefined
+      if (group_id === null || group_id === undefined) {
+        throw new RequiredError(
+          'group_id',
+          'Required parameter group_id was null or undefined when calling readOutboundResourceInGroup.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readOutboundResourceInGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group/{group_id}/resource/{id}`
+        .replace(`{${'group_id'}}`, encodeURIComponent(String(group_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of OutboundResourceGroup
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceGroup(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/resource_group`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceInGroup(
+      group_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'group_id' is not null or undefined
+      if (group_id === null || group_id === undefined) {
+        throw new RequiredError(
+          'group_id',
+          'Required parameter group_id was null or undefined when calling searchOutboundResourceInGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group/{group_id}/resource`.replace(
+        `{${'group_id'}}`,
+        encodeURIComponent(String(group_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update OutboundResourceGroup
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceGroup(
+      id: string,
+      body: EngineUpdateOutboundResourceGroupRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateOutboundResourceGroup.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateOutboundResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateOutboundResourceGroupRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceInGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      body: EngineUpdateOutboundResourceInGroupRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'group_id' is not null or undefined
+      if (group_id === null || group_id === undefined) {
+        throw new RequiredError(
+          'group_id',
+          'Required parameter group_id was null or undefined when calling updateOutboundResourceInGroup.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateOutboundResourceInGroup.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateOutboundResourceInGroup.'
+        )
+      }
+      const localVarPath = `/call_center/resource_group/{group_id}/resource/{id}`
+        .replace(`{${'group_id'}}`, encodeURIComponent(String(group_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateOutboundResourceInGroupRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * OutboundResourceGroupServiceApi - functional programming interface
+ * @export
+ */
+export const OutboundResourceGroupServiceApiFp = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create OutboundResourceGroup
+     * @param {EngineCreateOutboundResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceGroup(
+      body: EngineCreateOutboundResourceGroupRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResourceGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).createOutboundResourceGroup(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Create OutboundResourceGroup
+     * @param {string} group_id
+     * @param {EngineCreateOutboundResourceInGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceInGroup(
+      group_id: string,
+      body: EngineCreateOutboundResourceInGroupRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResourceInGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).createOutboundResourceInGroup(group_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove OutboundResourceGroup
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOutboundResourceGroup(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResourceGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).deleteOutboundResourceGroup(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResourceInGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).deleteOutboundResourceInGroup(group_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary OutboundResourceGroup item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceGroup(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResourceGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).readOutboundResourceGroup(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary OutboundResourceInGroup item
+     * @param {string} group_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResourceInGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).readOutboundResourceInGroup(group_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of OutboundResourceGroup
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceGroup(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListOutboundResourceGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).searchOutboundResourceGroup(page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceInGroup(
+      group_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListOutboundResourceInGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).searchOutboundResourceInGroup(group_id, page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update OutboundResourceGroup
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceGroup(
+      id: string,
+      body: EngineUpdateOutboundResourceGroupRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResourceGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).updateOutboundResourceGroup(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceInGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      body: EngineUpdateOutboundResourceInGroupRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResourceInGroup> {
+      const localVarAxiosArgs = OutboundResourceGroupServiceApiAxiosParamCreator(
+        configuration
+      ).updateOutboundResourceInGroup(group_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * OutboundResourceGroupServiceApi - factory interface
+ * @export
+ */
+export const OutboundResourceGroupServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Create OutboundResourceGroup
+     * @param {EngineCreateOutboundResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceGroup(
+      body: EngineCreateOutboundResourceGroupRequest,
+      options?: any
+    ) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).createOutboundResourceGroup(body, options)(axios, basePath)
+    },
+    /**
+     *
+     * @summary Create OutboundResourceGroup
+     * @param {string} group_id
+     * @param {EngineCreateOutboundResourceInGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceInGroup(
+      group_id: string,
+      body: EngineCreateOutboundResourceInGroupRequest,
+      options?: any
+    ) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).createOutboundResourceInGroup(group_id, body, options)(axios, basePath)
+    },
+    /**
+     *
+     * @summary Remove OutboundResourceGroup
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOutboundResourceGroup(id: string, domain_id?: string, options?: any) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).deleteOutboundResourceGroup(id, domain_id, options)(axios, basePath)
+    },
+    /**
+     *
+     * @summary Remove OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).deleteOutboundResourceInGroup(group_id, id, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary OutboundResourceGroup item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceGroup(id: string, domain_id?: string, options?: any) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).readOutboundResourceGroup(id, domain_id, options)(axios, basePath)
+    },
+    /**
+     *
+     * @summary OutboundResourceInGroup item
+     * @param {string} group_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).readOutboundResourceInGroup(group_id, id, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary List of OutboundResourceGroup
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceGroup(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).searchOutboundResourceGroup(page, size, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary List of OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceInGroup(
+      group_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).searchOutboundResourceInGroup(group_id, page, size, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary Update OutboundResourceGroup
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceGroup(
+      id: string,
+      body: EngineUpdateOutboundResourceGroupRequest,
+      options?: any
+    ) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).updateOutboundResourceGroup(id, body, options)(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update OutboundResourceInGroup
+     * @param {string} group_id
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceInGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceInGroup(
+      group_id: string,
+      id: string,
+      body: EngineUpdateOutboundResourceInGroupRequest,
+      options?: any
+    ) {
+      return OutboundResourceGroupServiceApiFp(
+        configuration
+      ).updateOutboundResourceInGroup(group_id, id, body, options)(
+        axios,
+        basePath
+      )
+    },
+  }
+}
+
+/**
+ * OutboundResourceGroupServiceApi - object-oriented interface
+ * @export
+ * @class OutboundResourceGroupServiceApi
+ * @extends {BaseAPI}
+ */
+export class OutboundResourceGroupServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Create OutboundResourceGroup
+   * @param {EngineCreateOutboundResourceGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public createOutboundResourceGroup(
+    body: EngineCreateOutboundResourceGroupRequest,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).createOutboundResourceGroup(body, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Create OutboundResourceGroup
+   * @param {string} group_id
+   * @param {EngineCreateOutboundResourceInGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public createOutboundResourceInGroup(
+    group_id: string,
+    body: EngineCreateOutboundResourceInGroupRequest,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).createOutboundResourceInGroup(group_id, body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Remove OutboundResourceGroup
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public deleteOutboundResourceGroup(
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).deleteOutboundResourceGroup(id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Remove OutboundResourceInGroup
+   * @param {string} group_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public deleteOutboundResourceInGroup(
+    group_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).deleteOutboundResourceInGroup(group_id, id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary OutboundResourceGroup item
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public readOutboundResourceGroup(
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).readOutboundResourceGroup(id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary OutboundResourceInGroup item
+   * @param {string} group_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public readOutboundResourceInGroup(
+    group_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).readOutboundResourceInGroup(group_id, id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary List of OutboundResourceGroup
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public searchOutboundResourceGroup(
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).searchOutboundResourceGroup(page, size, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary List of OutboundResourceInGroup
+   * @param {string} group_id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public searchOutboundResourceInGroup(
+    group_id: string,
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).searchOutboundResourceInGroup(group_id, page, size, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Update OutboundResourceGroup
+   * @param {string} id
+   * @param {EngineUpdateOutboundResourceGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public updateOutboundResourceGroup(
+    id: string,
+    body: EngineUpdateOutboundResourceGroupRequest,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).updateOutboundResourceGroup(id, body, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Update OutboundResourceInGroup
+   * @param {string} group_id
+   * @param {string} id
+   * @param {EngineUpdateOutboundResourceInGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApi
+   */
+  public updateOutboundResourceInGroup(
+    group_id: string,
+    id: string,
+    body: EngineUpdateOutboundResourceInGroupRequest,
+    options?: any
+  ) {
+    return OutboundResourceGroupServiceApiFp(
+      this.configuration
+    ).updateOutboundResourceInGroup(group_id, id, body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+}
+
+/**
  * OutboundResourceServiceApi - axios parameter creator
  * @export
  */
@@ -8630,16 +10386,16 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of OutboundResource
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/resources`
@@ -8665,16 +10421,16 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -8874,16 +10630,16 @@ export const OutboundResourceServiceApiFp = function(
     /**
      *
      * @summary List of OutboundResource
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -8891,7 +10647,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineListOutboundResource> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).searchOutboundResource(domain_id, size, page, options)
+      ).searchOutboundResource(size, page, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -8995,22 +10751,22 @@ export const OutboundResourceServiceApiFactory = function(
     /**
      *
      * @summary List of OutboundResource
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options?: any
     ) {
       return OutboundResourceServiceApiFp(configuration).searchOutboundResource(
-        domain_id,
         size,
         page,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -9093,22 +10849,22 @@ export class OutboundResourceServiceApi extends BaseAPI {
   /**
    *
    * @summary List of OutboundResource
-   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
   public searchOutboundResource(
-    domain_id?: string,
     size?: number,
     page?: number,
+    domain_id?: string,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).searchOutboundResource(domain_id, size, page, options)(
+    ).searchOutboundResource(size, page, domain_id, options)(
       this.axios,
       this.basePath
     )
