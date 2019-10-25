@@ -17,7 +17,7 @@
     "interface-name": {
       "options": "never-prefix"
     },
-    "no-unsafe-any": true,
+//    "no-unsafe-any": true,
     // core lint rules
     "ban": {
       "options": [
@@ -68,7 +68,7 @@
     },
     "switch-default": true,
     // tslint:recommended overrides
-    "no-any": true,
+    "no-any": false,
     "member-access": {
       "options": [
         "no-public"
