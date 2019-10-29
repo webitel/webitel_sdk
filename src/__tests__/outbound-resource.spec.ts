@@ -61,7 +61,7 @@ describe(`OutboundResourceServiceApi API`, () => {
       throw new Error('domain_id require')
     }
     /* tslint:disable */
-    const res = await api.searchOutboundResource(10, 0, resource.domain_id)
+    const res = await api.searchOutboundResource(0, 10, resource.domain_id)
     /* tslint:enabled */
     expect(res.status).toBe(successCode)
     expect(res.data.items).toBeInstanceOf(Array)
@@ -99,6 +99,34 @@ describe(`OutboundResourceServiceApi API`, () => {
     resource = res.data
 
     expect(res.status).toBe(successCode)
+    expect(resource.name).toBe('test1')
+    expect(resource.dial_string).toBe('test1')
+    expect(resource.number).toBe('12')
+    /* tslint:disable */
+    expect(resource.limit).toBe(15)
+    expect(resource.max_successively_errors).toBe(12)
+    expect(resource.rps).toBe(11)
+    /* tslint:enabled */
+
+    expect(res.data.error_ids).toBeInstanceOf(Array)
+    expect(res.data.variables).toBeInstanceOf(Object)
+  })
+
+  it(`Patch EngineOutboundResource`, async () => {
+    if (!resource.id) {
+      throw new Error('id require')
+    }
+    const res = await api.pathOutboundResource(resource.id, {
+      enabled: true,
+      reserve: true,
+    })
+
+    resource = res.data
+
+    expect(res.status).toBe(successCode)
+    expect(resource.enabled).toBe(true)
+    expect(resource.reserve).toBe(true)
+
     expect(resource.name).toBe('test1')
     expect(resource.dial_string).toBe('test1')
     expect(resource.number).toBe('12')

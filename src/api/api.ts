@@ -1735,6 +1735,91 @@ export interface EngineOutboundResourceInGroup {
 /**
  *
  * @export
+ * @interface EnginePathOutboundResourceRequest
+ */
+export interface EnginePathOutboundResourceRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  limit?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  rps?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  reserve?: boolean
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  number?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  max_successively_errors?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  dial_string?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  error_ids?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  fields?: Array<string>
+}
+/**
+ *
+ * @export
  * @interface EngineQueue
  */
 export interface EngineQueue {
@@ -10318,6 +10403,84 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Path OutboundResource
+     * @param {string} id
+     * @param {EnginePathOutboundResourceRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pathOutboundResource(
+      id: string,
+      body: EnginePathOutboundResourceRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling pathOutboundResource.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling pathOutboundResource.'
+        )
+      }
+      const localVarPath = `/call_center/resources/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EnginePathOutboundResourceRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary OutboundResource item
      * @param {string} id
      * @param {string} [domain_id]
@@ -10386,15 +10549,15 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of OutboundResource
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
@@ -10421,12 +10584,12 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
-      }
-
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
       }
 
       if (domain_id !== undefined) {
@@ -10599,6 +10762,36 @@ export const OutboundResourceServiceApiFp = function(
     },
     /**
      *
+     * @summary Path OutboundResource
+     * @param {string} id
+     * @param {EnginePathOutboundResourceRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pathOutboundResource(
+      id: string,
+      body: EnginePathOutboundResourceRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineOutboundResource> {
+      const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
+        configuration
+      ).pathOutboundResource(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary OutboundResource item
      * @param {string} id
      * @param {string} [domain_id]
@@ -10630,15 +10823,15 @@ export const OutboundResourceServiceApiFp = function(
     /**
      *
      * @summary List of OutboundResource
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options?: any
     ): (
@@ -10647,7 +10840,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineListOutboundResource> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).searchOutboundResource(size, page, domain_id, options)
+      ).searchOutboundResource(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -10735,6 +10928,25 @@ export const OutboundResourceServiceApiFactory = function(
     },
     /**
      *
+     * @summary Path OutboundResource
+     * @param {string} id
+     * @param {EnginePathOutboundResourceRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pathOutboundResource(
+      id: string,
+      body: EnginePathOutboundResourceRequest,
+      options?: any
+    ) {
+      return OutboundResourceServiceApiFp(configuration).pathOutboundResource(
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary OutboundResource item
      * @param {string} id
      * @param {string} [domain_id]
@@ -10751,21 +10963,21 @@ export const OutboundResourceServiceApiFactory = function(
     /**
      *
      * @summary List of OutboundResource
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchOutboundResource(
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options?: any
     ) {
       return OutboundResourceServiceApiFp(configuration).searchOutboundResource(
-        size,
         page,
+        size,
         domain_id,
         options
       )(axios, basePath)
@@ -10833,6 +11045,25 @@ export class OutboundResourceServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary Path OutboundResource
+   * @param {string} id
+   * @param {EnginePathOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  public pathOutboundResource(
+    id: string,
+    body: EnginePathOutboundResourceRequest,
+    options?: any
+  ) {
+    return OutboundResourceServiceApiFp(
+      this.configuration
+    ).pathOutboundResource(id, body, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
    * @summary OutboundResource item
    * @param {string} id
    * @param {string} [domain_id]
@@ -10849,22 +11080,22 @@ export class OutboundResourceServiceApi extends BaseAPI {
   /**
    *
    * @summary List of OutboundResource
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
   public searchOutboundResource(
-    size?: number,
     page?: number,
+    size?: number,
     domain_id?: string,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).searchOutboundResource(size, page, domain_id, options)(
+    ).searchOutboundResource(page, size, domain_id, options)(
       this.axios,
       this.basePath
     )

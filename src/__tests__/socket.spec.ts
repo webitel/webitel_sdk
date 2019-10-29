@@ -1,4 +1,4 @@
-import { Call, Client } from '../socket'
+import { Call, Client } from '../'
 
 jest.mock('../environment.ts', () => ({
   IS_DEV: true,
