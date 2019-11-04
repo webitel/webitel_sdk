@@ -42,7 +42,7 @@ export interface EngineAcceptOfDay {
    * @type {number}
    * @memberof EngineAcceptOfDay
    */
-  week_day?: number
+  day?: number
   /**
    *
    * @type {number}
@@ -298,6 +298,31 @@ export interface EngineAgentTeam {
 /**
  *
  * @export
+ * @interface EngineBucket
+ */
+export interface EngineBucket {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineBucket
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineBucket
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineBucket
+   */
+  description?: string
+}
+/**
+ *
+ * @export
  * @interface EngineCalendar
  */
 export interface EngineCalendar {
@@ -348,13 +373,13 @@ export interface EngineCalendar {
    * @type {string}
    * @memberof EngineCalendar
    */
-  start?: string
+  start_at?: string
   /**
    *
    * @type {string}
    * @memberof EngineCalendar
    */
-  finish?: string
+  end_at?: string
   /**
    *
    * @type {EngineLookup}
@@ -471,7 +496,7 @@ export interface EngineCreateAcceptOfDayRequest {
    * @type {number}
    * @memberof EngineCreateAcceptOfDayRequest
    */
-  week_day?: number
+  day?: number
   /**
    *
    * @type {number}
@@ -617,6 +642,31 @@ export interface EngineCreateAgentTeamRequest {
 /**
  *
  * @export
+ * @interface EngineCreateBucketRequest
+ */
+export interface EngineCreateBucketRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateBucketRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateBucketRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateBucketRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
  * @interface EngineCreateCalendarRequest
  */
 export interface EngineCreateCalendarRequest {
@@ -631,13 +681,13 @@ export interface EngineCreateCalendarRequest {
    * @type {string}
    * @memberof EngineCreateCalendarRequest
    */
-  start?: string
+  start_at?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateCalendarRequest
    */
-  finish?: string
+  end_at?: string
   /**
    *
    * @type {EngineLookup}
@@ -683,10 +733,10 @@ export interface EngineCreateExceptDateRequest {
   date?: string
   /**
    *
-   * @type {number}
+   * @type {boolean}
    * @memberof EngineCreateExceptDateRequest
    */
-  repeat?: number
+  repeat?: boolean
   /**
    *
    * @type {boolean}
@@ -697,6 +747,141 @@ export interface EngineCreateExceptDateRequest {
    *
    * @type {string}
    * @memberof EngineCreateExceptDateRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateMemberBulkItem
+ */
+export interface EngineCreateMemberBulkItem {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  expire_at?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  name?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineMemberCommunicationCreateRequest>}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  communications?: Array<EngineMemberCommunicationCreateRequest>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  bucket?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateMemberBulkRequest
+ */
+export interface EngineCreateMemberBulkRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberBulkRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {Array<EngineCreateMemberBulkItem>}
+   * @memberof EngineCreateMemberBulkRequest
+   */
+  items?: Array<EngineCreateMemberBulkItem>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberBulkRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateMemberRequest
+ */
+export interface EngineCreateMemberRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateMemberRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberRequest
+   */
+  expire_at?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineCreateMemberRequest
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateMemberRequest
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineMemberCommunicationCreateRequest>}
+   * @memberof EngineCreateMemberRequest
+   */
+  communications?: Array<EngineMemberCommunicationCreateRequest>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateMemberRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberRequest
    */
   domain_id?: string
 }
@@ -736,6 +921,12 @@ export interface EngineCreateOutboundResourceGroupRequest {
    * @memberof EngineCreateOutboundResourceGroupRequest
    */
   communication?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineOutboundResourceTimeRange>}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  time?: Array<EngineOutboundResourceTimeRange>
 }
 /**
  *
@@ -834,6 +1025,43 @@ export interface EngineCreateOutboundResourceRequest {
    * @memberof EngineCreateOutboundResourceRequest
    */
   error_ids?: Array<string>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  gateway?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateQueueBucketRequest
+ */
+export interface EngineCreateQueueBucketRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueBucketRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueBucketRequest
+   */
+  ratio?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueBucketRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueBucketRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1229,10 +1457,10 @@ export interface EngineExceptDate {
   date?: string
   /**
    *
-   * @type {number}
+   * @type {boolean}
    * @memberof EngineExceptDate
    */
-  repeat?: number
+  repeat?: boolean
   /**
    *
    * @type {boolean}
@@ -1295,6 +1523,19 @@ export interface EngineListAgentTeam {
 /**
  *
  * @export
+ * @interface EngineListBucket
+ */
+export interface EngineListBucket {
+  /**
+   *
+   * @type {Array<EngineBucket>}
+   * @memberof EngineListBucket
+   */
+  items?: Array<EngineBucket>
+}
+/**
+ *
+ * @export
  * @interface EngineListCalendar
  */
 export interface EngineListCalendar {
@@ -1334,6 +1575,19 @@ export interface EngineListExceptDate {
 /**
  *
  * @export
+ * @interface EngineListMember
+ */
+export interface EngineListMember {
+  /**
+   *
+   * @type {Array<EngineMember>}
+   * @memberof EngineListMember
+   */
+  items?: Array<EngineMember>
+}
+/**
+ *
+ * @export
  * @interface EngineListOutboundResource
  */
 export interface EngineListOutboundResource {
@@ -1352,10 +1606,10 @@ export interface EngineListOutboundResource {
 export interface EngineListOutboundResourceGroup {
   /**
    *
-   * @type {Array<EngineOutboundResourceGroup>}
+   * @type {Array<EngineOutboundResourceViewGroup>}
    * @memberof EngineListOutboundResourceGroup
    */
-  items?: Array<EngineOutboundResourceGroup>
+  items?: Array<EngineOutboundResourceViewGroup>
 }
 /**
  *
@@ -1382,6 +1636,19 @@ export interface EngineListQueue {
    * @memberof EngineListQueue
    */
   items?: Array<EngineQueue>
+}
+/**
+ *
+ * @export
+ * @interface EngineListQueueBucket
+ */
+export interface EngineListQueueBucket {
+  /**
+   *
+   * @type {Array<EngineQueueBucket>}
+   * @memberof EngineListQueueBucket
+   */
+  items?: Array<EngineQueueBucket>
 }
 /**
  *
@@ -1522,6 +1789,165 @@ export interface EngineLookup {
 /**
  *
  * @export
+ * @interface EngineMember
+ */
+export interface EngineMember {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMember
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  expire_at?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineMember
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  name?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMember
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineMemberCommunication>}
+   * @memberof EngineMember
+   */
+  communications?: Array<EngineMemberCommunication>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMember
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  stop_cause?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  last_activity_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMember
+   */
+  attempts?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineMemberCommunication
+ */
+export interface EngineMemberCommunication {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberCommunication
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  destination?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberCommunication
+   */
+  state?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  last_activity_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberCommunication
+   */
+  attempts?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  last_cause?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineMemberCommunicationCreateRequest
+ */
+export interface EngineMemberCommunicationCreateRequest {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  destination?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  description?: string
+}
+/**
+ *
+ * @export
  * @interface EngineOutboundResource
  */
 export interface EngineOutboundResource {
@@ -1639,6 +2065,12 @@ export interface EngineOutboundResource {
    * @memberof EngineOutboundResource
    */
   last_error_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResource
+   */
+  gateway?: EngineLookup
 }
 /**
  *
@@ -1706,6 +2138,12 @@ export interface EngineOutboundResourceGroup {
    * @memberof EngineOutboundResourceGroup
    */
   communication?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineOutboundResourceTimeRange>}
+   * @memberof EngineOutboundResourceGroup
+   */
+  time?: Array<EngineOutboundResourceTimeRange>
 }
 /**
  *
@@ -1731,6 +2169,62 @@ export interface EngineOutboundResourceInGroup {
    * @memberof EngineOutboundResourceInGroup
    */
   resource?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineOutboundResourceTimeRange
+ */
+export interface EngineOutboundResourceTimeRange {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineOutboundResourceTimeRange
+   */
+  start_time_of_day?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineOutboundResourceTimeRange
+   */
+  end_time_of_day?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineOutboundResourceViewGroup
+ */
+export interface EngineOutboundResourceViewGroup {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceViewGroup
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceViewGroup
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceViewGroup
+   */
+  strategy?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceViewGroup
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResourceViewGroup
+   */
+  communication?: EngineLookup
 }
 /**
  *
@@ -1816,6 +2310,12 @@ export interface EnginePathOutboundResourceRequest {
    * @memberof EnginePathOutboundResourceRequest
    */
   fields?: Array<string>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePathOutboundResourceRequest
+   */
+  gateway?: EngineLookup
 }
 /**
  *
@@ -1949,6 +2449,31 @@ export interface EngineQueue {
    * @memberof EngineQueue
    */
   team?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineQueueBucket
+ */
+export interface EngineQueueBucket {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueueBucket
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueBucket
+   */
+  ratio?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueueBucket
+   */
+  bucket?: EngineLookup
 }
 /**
  *
@@ -2451,7 +2976,7 @@ export interface EngineUpdateAcceptOfDayRequest {
    * @type {number}
    * @memberof EngineUpdateAcceptOfDayRequest
    */
-  week_day?: number
+  day?: number
   /**
    *
    * @type {number}
@@ -2621,6 +3146,37 @@ export interface EngineUpdateAgentTeamRequest {
 /**
  *
  * @export
+ * @interface EngineUpdateBucketRequest
+ */
+export interface EngineUpdateBucketRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateBucketRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateBucketRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateBucketRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateBucketRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
  * @interface EngineUpdateCalendarRequest
  */
 export interface EngineUpdateCalendarRequest {
@@ -2641,13 +3197,13 @@ export interface EngineUpdateCalendarRequest {
    * @type {string}
    * @memberof EngineUpdateCalendarRequest
    */
-  start?: string
+  start_at?: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateCalendarRequest
    */
-  finish?: string
+  end_at?: string
   /**
    *
    * @type {EngineLookup}
@@ -2742,10 +3298,10 @@ export interface EngineUpdateExceptDateRequest {
   date?: string
   /**
    *
-   * @type {number}
+   * @type {boolean}
    * @memberof EngineUpdateExceptDateRequest
    */
-  repeat?: number
+  repeat?: boolean
   /**
    *
    * @type {boolean}
@@ -2756,6 +3312,73 @@ export interface EngineUpdateExceptDateRequest {
    *
    * @type {string}
    * @memberof EngineUpdateExceptDateRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateMemberRequest
+ */
+export interface EngineUpdateMemberRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateMemberRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
+   */
+  expire_at?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineUpdateMemberRequest
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateMemberRequest
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineMemberCommunicationCreateRequest>}
+   * @memberof EngineUpdateMemberRequest
+   */
+  communications?: Array<EngineMemberCommunicationCreateRequest>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateMemberRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
    */
   domain_id?: string
 }
@@ -2801,6 +3424,12 @@ export interface EngineUpdateOutboundResourceGroupRequest {
    * @memberof EngineUpdateOutboundResourceGroupRequest
    */
   communication?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineOutboundResourceTimeRange>}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  time?: Array<EngineOutboundResourceTimeRange>
 }
 /**
  *
@@ -2911,6 +3540,49 @@ export interface EngineUpdateOutboundResourceRequest {
    * @memberof EngineUpdateOutboundResourceRequest
    */
   error_ids?: Array<string>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  gateway?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateQueueBucketRequest
+ */
+export interface EngineUpdateQueueBucketRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueBucketRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueBucketRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQueueBucketRequest
+   */
+  ratio?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueBucketRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueBucketRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -5701,6 +6373,711 @@ export class AgentTeamServiceApi extends BaseAPI {
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration).updateAgentTeam(
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+}
+
+/**
+ * BucketServiceApi - axios parameter creator
+ * @export
+ */
+export const BucketServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create Bucket
+     * @param {EngineCreateBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBucket(
+      body: EngineCreateBucketRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createBucket.'
+        )
+      }
+      const localVarPath = `/call_center/buckets`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateBucketRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove Bucket
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteBucket(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteBucket.'
+        )
+      }
+      const localVarPath = `/call_center/buckets/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Bucket item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readBucket(id: string, domain_id?: string, options: any = {}): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readBucket.'
+        )
+      }
+      const localVarPath = `/call_center/buckets/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of Bucket
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchBucket(
+      size?: number,
+      page?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/buckets`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update Bucket
+     * @param {string} id
+     * @param {EngineUpdateBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateBucket(
+      id: string,
+      body: EngineUpdateBucketRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateBucket.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateBucket.'
+        )
+      }
+      const localVarPath = `/call_center/buckets/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateBucketRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * BucketServiceApi - functional programming interface
+ * @export
+ */
+export const BucketServiceApiFp = function(configuration?: Configuration) {
+  return {
+    /**
+     *
+     * @summary Create Bucket
+     * @param {EngineCreateBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBucket(
+      body: EngineCreateBucketRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineBucket> {
+      const localVarAxiosArgs = BucketServiceApiAxiosParamCreator(
+        configuration
+      ).createBucket(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove Bucket
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteBucket(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineBucket> {
+      const localVarAxiosArgs = BucketServiceApiAxiosParamCreator(
+        configuration
+      ).deleteBucket(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Bucket item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readBucket(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineBucket> {
+      const localVarAxiosArgs = BucketServiceApiAxiosParamCreator(
+        configuration
+      ).readBucket(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of Bucket
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchBucket(
+      size?: number,
+      page?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListBucket> {
+      const localVarAxiosArgs = BucketServiceApiAxiosParamCreator(
+        configuration
+      ).searchBucket(size, page, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update Bucket
+     * @param {string} id
+     * @param {EngineUpdateBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateBucket(
+      id: string,
+      body: EngineUpdateBucketRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineBucket> {
+      const localVarAxiosArgs = BucketServiceApiAxiosParamCreator(
+        configuration
+      ).updateBucket(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * BucketServiceApi - factory interface
+ * @export
+ */
+export const BucketServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Create Bucket
+     * @param {EngineCreateBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBucket(body: EngineCreateBucketRequest, options?: any) {
+      return BucketServiceApiFp(configuration).createBucket(body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary Remove Bucket
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteBucket(id: string, domain_id?: string, options?: any) {
+      return BucketServiceApiFp(configuration).deleteBucket(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Bucket item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readBucket(id: string, domain_id?: string, options?: any) {
+      return BucketServiceApiFp(configuration).readBucket(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List of Bucket
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchBucket(
+      size?: number,
+      page?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return BucketServiceApiFp(configuration).searchBucket(
+        size,
+        page,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update Bucket
+     * @param {string} id
+     * @param {EngineUpdateBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateBucket(id: string, body: EngineUpdateBucketRequest, options?: any) {
+      return BucketServiceApiFp(configuration).updateBucket(id, body, options)(
+        axios,
+        basePath
+      )
+    },
+  }
+}
+
+/**
+ * BucketServiceApi - object-oriented interface
+ * @export
+ * @class BucketServiceApi
+ * @extends {BaseAPI}
+ */
+export class BucketServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Create Bucket
+   * @param {EngineCreateBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApi
+   */
+  public createBucket(body: EngineCreateBucketRequest, options?: any) {
+    return BucketServiceApiFp(this.configuration).createBucket(body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Remove Bucket
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApi
+   */
+  public deleteBucket(id: string, domain_id?: string, options?: any) {
+    return BucketServiceApiFp(this.configuration).deleteBucket(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Bucket item
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApi
+   */
+  public readBucket(id: string, domain_id?: string, options?: any) {
+    return BucketServiceApiFp(this.configuration).readBucket(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of Bucket
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApi
+   */
+  public searchBucket(
+    size?: number,
+    page?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return BucketServiceApiFp(this.configuration).searchBucket(
+      size,
+      page,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Update Bucket
+   * @param {string} id
+   * @param {EngineUpdateBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApi
+   */
+  public updateBucket(
+    id: string,
+    body: EngineUpdateBucketRequest,
+    options?: any
+  ) {
+    return BucketServiceApiFp(this.configuration).updateBucket(
       id,
       body,
       options
@@ -8759,6 +10136,975 @@ export class CommunicationTypeServiceApi extends BaseAPI {
 }
 
 /**
+ * MemberServiceApi - axios parameter creator
+ * @export
+ */
+export const MemberServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create Member
+     * @param {string} queue_id
+     * @param {EngineCreateMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createMember(
+      queue_id: string,
+      body: EngineCreateMemberRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling createMember.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createMember.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateMemberRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Create Member
+     * @param {string} queue_id
+     * @param {EngineCreateMemberBulkRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createMemberBulk(
+      queue_id: string,
+      body: EngineCreateMemberBulkRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling createMemberBulk.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createMemberBulk.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/bulk`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateMemberBulkRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary DeleteMember
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMember(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling deleteMember.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteMember.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readMember(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling readMember.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readMember.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of Member
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMember(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling searchMember.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary UpdateMember
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateMember(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateMemberRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling updateMember.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateMember.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateMember.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateMemberRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * MemberServiceApi - functional programming interface
+ * @export
+ */
+export const MemberServiceApiFp = function(configuration?: Configuration) {
+  return {
+    /**
+     *
+     * @summary Create Member
+     * @param {string} queue_id
+     * @param {EngineCreateMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createMember(
+      queue_id: string,
+      body: EngineCreateMemberRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineMember> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).createMember(queue_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Create Member
+     * @param {string} queue_id
+     * @param {EngineCreateMemberBulkRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createMemberBulk(
+      queue_id: string,
+      body: EngineCreateMemberBulkRequest,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).createMemberBulk(queue_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary DeleteMember
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMember(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineMember> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).deleteMember(queue_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readMember(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineMember> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).readMember(queue_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of Member
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMember(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListMember> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).searchMember(queue_id, page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary UpdateMember
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateMember(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateMemberRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineMember> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).updateMember(queue_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * MemberServiceApi - factory interface
+ * @export
+ */
+export const MemberServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Create Member
+     * @param {string} queue_id
+     * @param {EngineCreateMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createMember(
+      queue_id: string,
+      body: EngineCreateMemberRequest,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).createMember(
+        queue_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Create Member
+     * @param {string} queue_id
+     * @param {EngineCreateMemberBulkRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createMemberBulk(
+      queue_id: string,
+      body: EngineCreateMemberBulkRequest,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).createMemberBulk(
+        queue_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary DeleteMember
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMember(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).deleteMember(
+        queue_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readMember(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).readMember(
+        queue_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List of Member
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMember(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).searchMember(
+        queue_id,
+        page,
+        size,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary UpdateMember
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateMember(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateMemberRequest,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).updateMember(
+        queue_id,
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+  }
+}
+
+/**
+ * MemberServiceApi - object-oriented interface
+ * @export
+ * @class MemberServiceApi
+ * @extends {BaseAPI}
+ */
+export class MemberServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Create Member
+   * @param {string} queue_id
+   * @param {EngineCreateMemberRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public createMember(
+    queue_id: string,
+    body: EngineCreateMemberRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).createMember(
+      queue_id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Create Member
+   * @param {string} queue_id
+   * @param {EngineCreateMemberBulkRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public createMemberBulk(
+    queue_id: string,
+    body: EngineCreateMemberBulkRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).createMemberBulk(
+      queue_id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary DeleteMember
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public deleteMember(
+    queue_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).deleteMember(
+      queue_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary ReadQueueRouting
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public readMember(
+    queue_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).readMember(
+      queue_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of Member
+   * @param {string} queue_id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public searchMember(
+    queue_id: string,
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).searchMember(
+      queue_id,
+      page,
+      size,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary UpdateMember
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {EngineUpdateMemberRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public updateMember(
+    queue_id: string,
+    id: string,
+    body: EngineUpdateMemberRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).updateMember(
+      queue_id,
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+}
+
+/**
  * OutboundResourceGroupServiceApi - axios parameter creator
  * @export
  */
@@ -11118,6 +13464,830 @@ export class OutboundResourceServiceApi extends BaseAPI {
     return OutboundResourceServiceApiFp(
       this.configuration
     ).updateOutboundResource(id, body, options)(this.axios, this.basePath)
+  }
+}
+
+/**
+ * QueueBucketServiceApi - axios parameter creator
+ * @export
+ */
+export const QueueBucketServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create QueueBucket
+     * @param {string} queue_id
+     * @param {EngineCreateQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createQueueBucket(
+      queue_id: string,
+      body: EngineCreateQueueBucketRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling createQueueBucket.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createQueueBucket.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/buckets`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateQueueBucketRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary DeleteQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueBucket(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling deleteQueueBucket.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteQueueBucket.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/buckets/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueBucket(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling readQueueBucket.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readQueueBucket.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/buckets/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary SearchQueueRouting
+     * @param {string} queue_id
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueBucket(
+      queue_id: string,
+      size?: number,
+      page?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling searchQueueBucket.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/buckets`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary UpdateQueueBucket
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueBucket(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueBucketRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling updateQueueBucket.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateQueueBucket.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateQueueBucket.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/buckets/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateQueueBucketRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * QueueBucketServiceApi - functional programming interface
+ * @export
+ */
+export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
+  return {
+    /**
+     *
+     * @summary Create QueueBucket
+     * @param {string} queue_id
+     * @param {EngineCreateQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createQueueBucket(
+      queue_id: string,
+      body: EngineCreateQueueBucketRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueBucket> {
+      const localVarAxiosArgs = QueueBucketServiceApiAxiosParamCreator(
+        configuration
+      ).createQueueBucket(queue_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary DeleteQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueBucket(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueBucket> {
+      const localVarAxiosArgs = QueueBucketServiceApiAxiosParamCreator(
+        configuration
+      ).deleteQueueBucket(queue_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueBucket(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueBucket> {
+      const localVarAxiosArgs = QueueBucketServiceApiAxiosParamCreator(
+        configuration
+      ).readQueueBucket(queue_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary SearchQueueRouting
+     * @param {string} queue_id
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueBucket(
+      queue_id: string,
+      size?: number,
+      page?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListQueueBucket> {
+      const localVarAxiosArgs = QueueBucketServiceApiAxiosParamCreator(
+        configuration
+      ).searchQueueBucket(queue_id, size, page, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary UpdateQueueBucket
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueBucket(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueBucketRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueBucket> {
+      const localVarAxiosArgs = QueueBucketServiceApiAxiosParamCreator(
+        configuration
+      ).updateQueueBucket(queue_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * QueueBucketServiceApi - factory interface
+ * @export
+ */
+export const QueueBucketServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Create QueueBucket
+     * @param {string} queue_id
+     * @param {EngineCreateQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createQueueBucket(
+      queue_id: string,
+      body: EngineCreateQueueBucketRequest,
+      options?: any
+    ) {
+      return QueueBucketServiceApiFp(configuration).createQueueBucket(
+        queue_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary DeleteQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueBucket(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return QueueBucketServiceApiFp(configuration).deleteQueueBucket(
+        queue_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary ReadQueueRouting
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueBucket(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return QueueBucketServiceApiFp(configuration).readQueueBucket(
+        queue_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary SearchQueueRouting
+     * @param {string} queue_id
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueBucket(
+      queue_id: string,
+      size?: number,
+      page?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return QueueBucketServiceApiFp(configuration).searchQueueBucket(
+        queue_id,
+        size,
+        page,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary UpdateQueueBucket
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueBucket(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueBucketRequest,
+      options?: any
+    ) {
+      return QueueBucketServiceApiFp(configuration).updateQueueBucket(
+        queue_id,
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+  }
+}
+
+/**
+ * QueueBucketServiceApi - object-oriented interface
+ * @export
+ * @class QueueBucketServiceApi
+ * @extends {BaseAPI}
+ */
+export class QueueBucketServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Create QueueBucket
+   * @param {string} queue_id
+   * @param {EngineCreateQueueBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApi
+   */
+  public createQueueBucket(
+    queue_id: string,
+    body: EngineCreateQueueBucketRequest,
+    options?: any
+  ) {
+    return QueueBucketServiceApiFp(this.configuration).createQueueBucket(
+      queue_id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary DeleteQueueRouting
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApi
+   */
+  public deleteQueueBucket(
+    queue_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return QueueBucketServiceApiFp(this.configuration).deleteQueueBucket(
+      queue_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary ReadQueueRouting
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApi
+   */
+  public readQueueBucket(
+    queue_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return QueueBucketServiceApiFp(this.configuration).readQueueBucket(
+      queue_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary SearchQueueRouting
+   * @param {string} queue_id
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApi
+   */
+  public searchQueueBucket(
+    queue_id: string,
+    size?: number,
+    page?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return QueueBucketServiceApiFp(this.configuration).searchQueueBucket(
+      queue_id,
+      size,
+      page,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary UpdateQueueBucket
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {EngineUpdateQueueBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApi
+   */
+  public updateQueueBucket(
+    queue_id: string,
+    id: string,
+    body: EngineUpdateQueueBucketRequest,
+    options?: any
+  ) {
+    return QueueBucketServiceApiFp(this.configuration).updateQueueBucket(
+      queue_id,
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
   }
 }
 
