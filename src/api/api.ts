@@ -12747,15 +12747,11 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resource_id
-     * @param {string} [display]
-     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceDisplay(
       resource_id: string,
-      display?: string,
-      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'resource_id' is not null or undefined
@@ -12775,7 +12771,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         baseOptions = configuration.baseOptions
       }
       const localVarRequestOptions = {
-        method: 'DELETE',
+        method: 'POST',
         ...baseOptions,
         ...options,
       }
@@ -12789,14 +12785,6 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
             ? configuration.apiKey('X-Webitel-Access')
             : configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (display !== undefined) {
-        localVarQueryParameter['display'] = display
-      }
-
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -13531,15 +13519,11 @@ export const OutboundResourceServiceApiFp = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resource_id
-     * @param {string} [display]
-     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceDisplay(
       resource_id: string,
-      display?: string,
-      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -13547,7 +13531,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineResourceDisplay> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).createOutboundResourceDisplay(resource_id, display, domain_id, options)
+      ).createOutboundResourceDisplay(resource_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13880,23 +13864,13 @@ export const OutboundResourceServiceApiFactory = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resource_id
-     * @param {string} [display]
-     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOutboundResourceDisplay(
-      resource_id: string,
-      display?: string,
-      domain_id?: string,
-      options?: any
-    ) {
+    createOutboundResourceDisplay(resource_id: string, options?: any) {
       return OutboundResourceServiceApiFp(
         configuration
-      ).createOutboundResourceDisplay(resource_id, display, domain_id, options)(
-        axios,
-        basePath
-      )
+      ).createOutboundResourceDisplay(resource_id, options)(axios, basePath)
     },
     /**
      *
@@ -14112,21 +14086,14 @@ export class OutboundResourceServiceApi extends BaseAPI {
    *
    * @summary Create CreateOutboundResourceDisplay
    * @param {string} resource_id
-   * @param {string} [display]
-   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public createOutboundResourceDisplay(
-    resource_id: string,
-    display?: string,
-    domain_id?: string,
-    options?: any
-  ) {
+  public createOutboundResourceDisplay(resource_id: string, options?: any) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).createOutboundResourceDisplay(resource_id, display, domain_id, options)(
+    ).createOutboundResourceDisplay(resource_id, options)(
       this.axios,
       this.basePath
     )
