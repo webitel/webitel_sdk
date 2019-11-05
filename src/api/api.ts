@@ -1601,6 +1601,19 @@ export interface EngineListOutboundResource {
 /**
  *
  * @export
+ * @interface EngineListOutboundResourceDisplay
+ */
+export interface EngineListOutboundResourceDisplay {
+  /**
+   *
+   * @type {Array<EngineResourceDisplay>}
+   * @memberof EngineListOutboundResourceDisplay
+   */
+  items?: Array<EngineResourceDisplay>
+}
+/**
+ *
+ * @export
  * @interface EngineListOutboundResourceGroup
  */
 export interface EngineListOutboundResourceGroup {
@@ -2229,91 +2242,91 @@ export interface EngineOutboundResourceViewGroup {
 /**
  *
  * @export
- * @interface EnginePathOutboundResourceRequest
+ * @interface EnginePatchOutboundResourceRequest
  */
-export interface EnginePathOutboundResourceRequest {
+export interface EnginePatchOutboundResourceRequest {
   /**
    *
    * @type {string}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   domain_id?: string
   /**
    *
    * @type {number}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   limit?: number
   /**
    *
    * @type {boolean}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   enabled?: boolean
   /**
    *
    * @type {number}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   rps?: number
   /**
    *
    * @type {boolean}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   reserve?: boolean
   /**
    *
    * @type {{ [key: string]: string; }}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   variables?: { [key: string]: string }
   /**
    *
    * @type {string}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   number?: string
   /**
    *
    * @type {number}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   max_successively_errors?: number
   /**
    *
    * @type {string}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   dial_string?: string
   /**
    *
    * @type {Array<string>}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   error_ids?: Array<string>
   /**
    *
    * @type {Array<string>}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   fields?: Array<string>
   /**
    *
    * @type {EngineLookup}
-   * @memberof EnginePathOutboundResourceRequest
+   * @memberof EnginePatchOutboundResourceRequest
    */
   gateway?: EngineLookup
 }
@@ -2511,6 +2524,25 @@ export interface EngineQueueRouting {
    * @memberof EngineQueueRouting
    */
   disabled?: boolean
+}
+/**
+ *
+ * @export
+ * @interface EngineResourceDisplay
+ */
+export interface EngineResourceDisplay {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceDisplay
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceDisplay
+   */
+  display?: string
 }
 /**
  *
@@ -3379,6 +3411,37 @@ export interface EngineUpdateMemberRequest {
    *
    * @type {string}
    * @memberof EngineUpdateMemberRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateOutboundResourceDisplayRequest
+ */
+export interface EngineUpdateOutboundResourceDisplayRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceDisplayRequest
+   */
+  resource_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceDisplayRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceDisplayRequest
+   */
+  display?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceDisplayRequest
    */
   domain_id?: string
 }
@@ -12682,6 +12745,79 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Create CreateOutboundResourceDisplay
+     * @param {string} resource_id
+     * @param {string} [display]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceDisplay(
+      resource_id: string,
+      display?: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'resource_id' is not null or undefined
+      if (resource_id === null || resource_id === undefined) {
+        throw new RequiredError(
+          'resource_id',
+          'Required parameter resource_id was null or undefined when calling createOutboundResourceDisplay.'
+        )
+      }
+      const localVarPath = `/call_center/resources/{resource_id}/display`.replace(
+        `{${'resource_id'}}`,
+        encodeURIComponent(String(resource_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (display !== undefined) {
+        localVarQueryParameter['display'] = display
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Remove OutboundResource
      * @param {string} id
      * @param {string} [domain_id]
@@ -12749,29 +12885,104 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Path OutboundResource
+     * @summary Remove ResourceDisplay
+     * @param {string} resource_id
      * @param {string} id
-     * @param {EnginePathOutboundResourceRequest} body
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pathOutboundResource(
+    deleteOutboundResourceDisplay(
+      resource_id: string,
       id: string,
-      body: EnginePathOutboundResourceRequest,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'resource_id' is not null or undefined
+      if (resource_id === null || resource_id === undefined) {
+        throw new RequiredError(
+          'resource_id',
+          'Required parameter resource_id was null or undefined when calling deleteOutboundResourceDisplay.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteOutboundResourceDisplay.'
+        )
+      }
+      const localVarPath = `/call_center/resources/{resource_id}/display/{id}`
+        .replace(`{${'resource_id'}}`, encodeURIComponent(String(resource_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Patch OutboundResource
+     * @param {string} id
+     * @param {EnginePatchOutboundResourceRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchOutboundResource(
+      id: string,
+      body: EnginePatchOutboundResourceRequest,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling pathOutboundResource.'
+          'Required parameter id was null or undefined when calling patchOutboundResource.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling pathOutboundResource.'
+          'Required parameter body was null or undefined when calling patchOutboundResource.'
         )
       }
       const localVarPath = `/call_center/resources/{id}`.replace(
@@ -12814,7 +13025,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        <any>'EnginePathOutboundResourceRequest' !== 'string' ||
+        <any>'EnginePatchOutboundResourceRequest' !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
         ? JSON.stringify(body !== undefined ? body : {})
@@ -12894,6 +13105,81 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary ResourceDisplay item
+     * @param {string} resource_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceDisplay(
+      resource_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'resource_id' is not null or undefined
+      if (resource_id === null || resource_id === undefined) {
+        throw new RequiredError(
+          'resource_id',
+          'Required parameter resource_id was null or undefined when calling readOutboundResourceDisplay.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readOutboundResourceDisplay.'
+        )
+      }
+      const localVarPath = `/call_center/resources/{resource_id}/display/{id}`
+        .replace(`{${'resource_id'}}`, encodeURIComponent(String(resource_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary List of OutboundResource
      * @param {number} [page]
      * @param {number} [size]
@@ -12908,6 +13194,85 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/resources`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of ResourceDisplay
+     * @param {string} resource_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceDisplay(
+      resource_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'resource_id' is not null or undefined
+      if (resource_id === null || resource_id === undefined) {
+        throw new RequiredError(
+          'resource_id',
+          'Required parameter resource_id was null or undefined when calling searchOutboundResourceDisplay.'
+        )
+      }
+      const localVarPath = `/call_center/resources/{resource_id}/display`.replace(
+        `{${'resource_id'}}`,
+        encodeURIComponent(String(resource_id))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -13037,6 +13402,92 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary Update ResourceDisplay
+     * @param {string} resource_id
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceDisplayRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceDisplay(
+      resource_id: string,
+      id: string,
+      body: EngineUpdateOutboundResourceDisplayRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'resource_id' is not null or undefined
+      if (resource_id === null || resource_id === undefined) {
+        throw new RequiredError(
+          'resource_id',
+          'Required parameter resource_id was null or undefined when calling updateOutboundResourceDisplay.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateOutboundResourceDisplay.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateOutboundResourceDisplay.'
+        )
+      }
+      const localVarPath = `/call_center/resources/{resource_id}/display/{id}`
+        .replace(`{${'resource_id'}}`, encodeURIComponent(String(resource_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateOutboundResourceDisplayRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -13065,6 +13516,38 @@ export const OutboundResourceServiceApiFp = function(
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
       ).createOutboundResource(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Create CreateOutboundResourceDisplay
+     * @param {string} resource_id
+     * @param {string} [display]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceDisplay(
+      resource_id: string,
+      display?: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceDisplay> {
+      const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
+        configuration
+      ).createOutboundResourceDisplay(resource_id, display, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13108,15 +13591,47 @@ export const OutboundResourceServiceApiFp = function(
     },
     /**
      *
-     * @summary Path OutboundResource
+     * @summary Remove ResourceDisplay
+     * @param {string} resource_id
      * @param {string} id
-     * @param {EnginePathOutboundResourceRequest} body
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pathOutboundResource(
+    deleteOutboundResourceDisplay(
+      resource_id: string,
       id: string,
-      body: EnginePathOutboundResourceRequest,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceDisplay> {
+      const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
+        configuration
+      ).deleteOutboundResourceDisplay(resource_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Patch OutboundResource
+     * @param {string} id
+     * @param {EnginePatchOutboundResourceRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchOutboundResource(
+      id: string,
+      body: EnginePatchOutboundResourceRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -13124,7 +13639,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineOutboundResource> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).pathOutboundResource(id, body, options)
+      ).patchOutboundResource(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13155,6 +13670,38 @@ export const OutboundResourceServiceApiFp = function(
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
       ).readOutboundResource(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary ResourceDisplay item
+     * @param {string} resource_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceDisplay(
+      resource_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceDisplay> {
+      const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
+        configuration
+      ).readOutboundResourceDisplay(resource_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13200,6 +13747,46 @@ export const OutboundResourceServiceApiFp = function(
     },
     /**
      *
+     * @summary List of ResourceDisplay
+     * @param {string} resource_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceDisplay(
+      resource_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListOutboundResourceDisplay> {
+      const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
+        configuration
+      ).searchOutboundResourceDisplay(
+        resource_id,
+        page,
+        size,
+        domain_id,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Update OutboundResource
      * @param {string} id
      * @param {EngineUpdateOutboundResourceRequest} body
@@ -13217,6 +13804,38 @@ export const OutboundResourceServiceApiFp = function(
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
       ).updateOutboundResource(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update ResourceDisplay
+     * @param {string} resource_id
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceDisplayRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceDisplay(
+      resource_id: string,
+      id: string,
+      body: EngineUpdateOutboundResourceDisplayRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceDisplay> {
+      const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
+        configuration
+      ).updateOutboundResourceDisplay(resource_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13259,6 +13878,28 @@ export const OutboundResourceServiceApiFactory = function(
     },
     /**
      *
+     * @summary Create CreateOutboundResourceDisplay
+     * @param {string} resource_id
+     * @param {string} [display]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceDisplay(
+      resource_id: string,
+      display?: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return OutboundResourceServiceApiFp(
+        configuration
+      ).createOutboundResourceDisplay(resource_id, display, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
      * @summary Remove OutboundResource
      * @param {string} id
      * @param {string} [domain_id]
@@ -13274,18 +13915,40 @@ export const OutboundResourceServiceApiFactory = function(
     },
     /**
      *
-     * @summary Path OutboundResource
+     * @summary Remove ResourceDisplay
+     * @param {string} resource_id
      * @param {string} id
-     * @param {EnginePathOutboundResourceRequest} body
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    pathOutboundResource(
+    deleteOutboundResourceDisplay(
+      resource_id: string,
       id: string,
-      body: EnginePathOutboundResourceRequest,
+      domain_id?: string,
       options?: any
     ) {
-      return OutboundResourceServiceApiFp(configuration).pathOutboundResource(
+      return OutboundResourceServiceApiFp(
+        configuration
+      ).deleteOutboundResourceDisplay(resource_id, id, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary Patch OutboundResource
+     * @param {string} id
+     * @param {EnginePatchOutboundResourceRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchOutboundResource(
+      id: string,
+      body: EnginePatchOutboundResourceRequest,
+      options?: any
+    ) {
+      return OutboundResourceServiceApiFp(configuration).patchOutboundResource(
         id,
         body,
         options
@@ -13305,6 +13968,28 @@ export const OutboundResourceServiceApiFactory = function(
         domain_id,
         options
       )(axios, basePath)
+    },
+    /**
+     *
+     * @summary ResourceDisplay item
+     * @param {string} resource_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readOutboundResourceDisplay(
+      resource_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return OutboundResourceServiceApiFp(
+        configuration
+      ).readOutboundResourceDisplay(resource_id, id, domain_id, options)(
+        axios,
+        basePath
+      )
     },
     /**
      *
@@ -13330,6 +14015,33 @@ export const OutboundResourceServiceApiFactory = function(
     },
     /**
      *
+     * @summary List of ResourceDisplay
+     * @param {string} resource_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchOutboundResourceDisplay(
+      resource_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return OutboundResourceServiceApiFp(
+        configuration
+      ).searchOutboundResourceDisplay(
+        resource_id,
+        page,
+        size,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary Update OutboundResource
      * @param {string} id
      * @param {EngineUpdateOutboundResourceRequest} body
@@ -13346,6 +14058,28 @@ export const OutboundResourceServiceApiFactory = function(
         body,
         options
       )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update ResourceDisplay
+     * @param {string} resource_id
+     * @param {string} id
+     * @param {EngineUpdateOutboundResourceDisplayRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOutboundResourceDisplay(
+      resource_id: string,
+      id: string,
+      body: EngineUpdateOutboundResourceDisplayRequest,
+      options?: any
+    ) {
+      return OutboundResourceServiceApiFp(
+        configuration
+      ).updateOutboundResourceDisplay(resource_id, id, body, options)(
+        axios,
+        basePath
+      )
     },
   }
 }
@@ -13376,6 +14110,30 @@ export class OutboundResourceServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary Create CreateOutboundResourceDisplay
+   * @param {string} resource_id
+   * @param {string} [display]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  public createOutboundResourceDisplay(
+    resource_id: string,
+    display?: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceServiceApiFp(
+      this.configuration
+    ).createOutboundResourceDisplay(resource_id, display, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
    * @summary Remove OutboundResource
    * @param {string} id
    * @param {string} [domain_id]
@@ -13391,21 +14149,45 @@ export class OutboundResourceServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary Path OutboundResource
+   * @summary Remove ResourceDisplay
+   * @param {string} resource_id
    * @param {string} id
-   * @param {EnginePathOutboundResourceRequest} body
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public pathOutboundResource(
+  public deleteOutboundResourceDisplay(
+    resource_id: string,
     id: string,
-    body: EnginePathOutboundResourceRequest,
+    domain_id?: string,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).pathOutboundResource(id, body, options)(this.axios, this.basePath)
+    ).deleteOutboundResourceDisplay(resource_id, id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Patch OutboundResource
+   * @param {string} id
+   * @param {EnginePatchOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  public patchOutboundResource(
+    id: string,
+    body: EnginePatchOutboundResourceRequest,
+    options?: any
+  ) {
+    return OutboundResourceServiceApiFp(
+      this.configuration
+    ).patchOutboundResource(id, body, options)(this.axios, this.basePath)
   }
 
   /**
@@ -13421,6 +14203,30 @@ export class OutboundResourceServiceApi extends BaseAPI {
     return OutboundResourceServiceApiFp(
       this.configuration
     ).readOutboundResource(id, domain_id, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary ResourceDisplay item
+   * @param {string} resource_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  public readOutboundResourceDisplay(
+    resource_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceServiceApiFp(
+      this.configuration
+    ).readOutboundResourceDisplay(resource_id, id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
   }
 
   /**
@@ -13449,6 +14255,35 @@ export class OutboundResourceServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary List of ResourceDisplay
+   * @param {string} resource_id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  public searchOutboundResourceDisplay(
+    resource_id: string,
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return OutboundResourceServiceApiFp(
+      this.configuration
+    ).searchOutboundResourceDisplay(
+      resource_id,
+      page,
+      size,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
    * @summary Update OutboundResource
    * @param {string} id
    * @param {EngineUpdateOutboundResourceRequest} body
@@ -13464,6 +14299,30 @@ export class OutboundResourceServiceApi extends BaseAPI {
     return OutboundResourceServiceApiFp(
       this.configuration
     ).updateOutboundResource(id, body, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Update ResourceDisplay
+   * @param {string} resource_id
+   * @param {string} id
+   * @param {EngineUpdateOutboundResourceDisplayRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  public updateOutboundResourceDisplay(
+    resource_id: string,
+    id: string,
+    body: EngineUpdateOutboundResourceDisplayRequest,
+    options?: any
+  ) {
+    return OutboundResourceServiceApiFp(
+      this.configuration
+    ).updateOutboundResourceDisplay(resource_id, id, body, options)(
+      this.axios,
+      this.basePath
+    )
   }
 }
 

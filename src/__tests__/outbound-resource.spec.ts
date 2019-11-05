@@ -116,7 +116,7 @@ describe(`OutboundResourceServiceApi API`, () => {
     if (!resource.id) {
       throw new Error('id require')
     }
-    const res = await api.pathOutboundResource(resource.id, {
+    const res = await api.patchOutboundResource(resource.id, {
       enabled: true,
       reserve: true,
     })
