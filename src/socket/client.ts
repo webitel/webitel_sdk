@@ -1,5 +1,13 @@
 import { EventEmitter } from 'ee-ts'
-import { Call, CallData, CallEventHandler, CallState } from './call'
+import {
+  Call,
+  CallActions,
+  CallEventData,
+  CallEventDTMF,
+  CallEventExecute,
+  CallHangup,
+  CallInfo,
+} from './call'
 import { Log } from './log'
 import { SipConfiguration, SipPhone } from './sip'
 import { Message, Socket } from './socket'
@@ -51,8 +59,10 @@ export interface ConnectionInfo {
   session: Session
 }
 
+export type CallEventHandler = (action: CallActions, call: Call) => void
+
 interface EventHandler {
-  [WEBSOCKET_EVENT_CALL](call: Call): void
+  [WEBSOCKET_EVENT_CALL](action: CallActions, call: Call): void
   [WEBSOCKET_EVENT_SIP](data: object): void
 }
 
@@ -180,7 +190,7 @@ export class Client {
           )
           break
         case WEBSOCKET_EVENT_CALL:
-          this.handleCallEvents(message.data as CallData)
+          this.handleCallEvents(message.data.call as CallEventData)
           break
 
         case WEBSOCKET_EVENT_SIP:
@@ -230,20 +240,78 @@ export class Client {
     })
   }
 
-  private handleCallEvents(event: CallData) {
+  private handleCallEvents(event: CallEventData) {
     let call: Call | undefined
-    if (this.callStore.has(event.id)) {
-      call = this.callStore.get(event.id)
-      call!.setState(event)
-    } else {
-      call = new Call(this, event)
-      this.callStore.set(event.id, call)
+
+    switch (event.action) {
+      case CallActions.Ringing:
+        call = new Call(this, event as CallInfo)
+        this.callStore.set(call.id, call)
+        break
+
+      case CallActions.Active:
+        call = this.callById(event.id)
+        if (call) {
+          call.setActive(event)
+        }
+        break
+
+      case CallActions.Bridge:
+        call = this.callById(event.id)
+        if (call) {
+          call.setInfo(event as CallInfo)
+        }
+        break
+
+      case CallActions.Execute:
+        call = this.callById(event.id)
+        if (call) {
+          call.setExecute(event as CallEventExecute)
+        }
+        break
+
+      case CallActions.DTMF:
+        call = this.callById(event.id)
+        if (call) {
+          call.addDigit(event as CallEventDTMF)
+        }
+        break
+
+      case CallActions.Voice:
+        call = this.callById(event.id)
+        if (call) {
+          call.setVoice(event)
+        }
+        break
+
+      case CallActions.Silence:
+        call = this.callById(event.id)
+        if (call) {
+          call.setSilence(event)
+        }
+        break
+
+      case CallActions.Hold:
+        call = this.callById(event.id)
+        if (call) {
+          call.setState(event)
+        }
+        break
+
+      case CallActions.Hangup:
+        call = this.callById(event.id)
+        if (call) {
+          call.setHangup(event as CallHangup)
+          this.callStore.delete(call.id)
+        }
+        break
+
+      default:
+        throw new Error('Unhandled action')
     }
 
-    if (call!.state === CallState.Hangup) {
-      this.callStore.delete(call!.id)
+    if (call) {
+      this.eventHandler.emit(WEBSOCKET_EVENT_CALL, event.action, call)
     }
-
-    this.eventHandler.emit(WEBSOCKET_EVENT_CALL, call!)
   }
 }

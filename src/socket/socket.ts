@@ -8,7 +8,7 @@ export interface Message {
   status?: string
   seq?: number
   seq_reply?: number
-  data: object
+  data: any
   error?: Map<string, Error>
 }
 

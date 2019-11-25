@@ -1,11 +1,15 @@
 import { Client } from './client'
 
-export type CallEventHandler = (call: Call) => void
-
-export enum CallState {
+export enum CallActions {
   Ringing = 'ringing',
   Active = 'active',
+  Bridge = 'bridge',
   Hold = 'hold',
+  DTMF = 'dtmf',
+  Voice = 'voice',
+  Silence = 'silence',
+  Execute = 'execute',
+  Update = 'update',
   Hangup = 'hangup',
 }
 
@@ -15,112 +19,134 @@ export enum CallDirection {
   Internal = 'internal',
 }
 
-export interface CallData {
+export interface CallEventData {
   id: string
-  destination: string
-  direction: 'outbound' | 'inbound' | 'internal'
-  domain_id: number
-  event: string
-  from_name: string
-  from_number: string
   node_name: string
-  parent_id?: string
-  state: number
-  state_name: string
-  to_name: string
+  action: string
+}
+
+export interface CallEventExecute extends CallEventData {
+  application: string
+}
+
+export interface CallEventDTMF extends CallEventData {
+  digit: string
+}
+
+export interface CallInfo extends CallEventData {
+  direction: string
+  destination: string
+
+  from_number: string
+  from_name: string
+
   to_number: string
-  user_id: number
-  hangup_cause?: string
+  to_name: string
+}
+
+export interface CallHangup extends CallEventData {
+  cause: string
 }
 
 export class Call {
-  private answeredAt = 0
-  private _muted = false
-  constructor(protected client: Client, protected data: CallData) {}
+  id: string
+  nodeName: string
+  state!: string
 
-  get id(): string {
-    return this.data.id
+  direction!: string
+  destination!: string
+
+  fromNumber!: string
+  fromName!: string
+
+  toNumber!: string
+  toName!: string
+
+  createdAt: number
+  answeredAt: number
+  hangupAt: number
+
+  hangupCause!: string
+
+  parentCallId!: string
+
+  _muted!: boolean
+
+  digits!: string[]
+  applications!: string[]
+  voice: boolean
+  constructor(protected client: Client, e: CallInfo) {
+    this.voice = true
+    this.createdAt = Date.now()
+
+    this.answeredAt = 0
+    this.hangupAt = 0
+
+    this.id = e.id
+    this.digits = []
+    this.applications = []
+    this.nodeName = e.node_name
+    this.setState(e)
+    this.setInfo(e)
   }
-
-  get direction(): string {
-    return this.data.direction
-  }
-
-  get destination(): string {
-    return this.data.destination
-  }
-
-  get userId(): number {
-    return this.data.user_id
-  }
-
-  get toNumber(): string {
-    return this.data.to_number
-  }
-
-  get toName(): string {
-    return this.data.to_name
-  }
-
-  get fromNumber(): string {
-    return this.data.from_number
-  }
-
-  get fromName(): string {
-    return this.data.from_name
-  }
-
-  get state(): string {
-    return this.data.event
-  }
-
-  get parentCallId(): string | null {
-    if (this.data.parent_id) {
-      return this.data.parent_id
+  setActive(e: CallEventData) {
+    if (!this.answeredAt) {
+      this.answeredAt = Date.now()
     }
-
-    return null
+    this.setState(e)
+  }
+  get display() {
+    return `${this.displayNumber} (${this.displayName})`
+  }
+  setInfo(s: CallInfo) {
+    this.destination = s.destination
+    this.direction = s.direction
+    this.fromNumber = s.from_number
+    this.fromName = s.from_name
+    this.toName = s.to_name
+    this.toNumber = s.to_number
+    this.setState(s)
+  }
+  setState(s: CallEventData) {
+    this.state = s.action
   }
 
-  get hangupCause(): string | undefined {
-    return this.data.hangup_cause
+  setHangup(s: CallHangup) {
+    this.hangupAt = Date.now()
+    this.hangupCause = s.cause
+    this.voice = false
+    this.setState(s)
   }
 
-  get nodeId(): string {
-    return this.data.node_name
+  setVoice(s: CallEventData) {
+    this.voice = true
   }
 
-  setState(event: CallData): void {
-    this.data = event
-    switch (this.state) {
-      case 'active':
-        if (this.answeredAt === 0) {
-          this.answeredAt = Date.now()
-        }
-        break
-      default:
-      // throw "FIXME";
-    }
+  setSilence(s: CallEventData) {
+    this.voice = false
   }
 
-  toString(): string {
-    if (this.parentCallId) {
-      return `[${this.data.node_name}:${this.id}<${this.parentCallId}>] ${
-        this.state
-      } ${this.fromNumber} (${this.fromName}) ${this.direction} to: ${
-        this.toNumber
-      } ${this.toName}`
+  setExecute(s: CallEventExecute) {
+    this.applications.push(s.application)
+  }
+
+  addDigit(s: CallEventDTMF) {
+    this.digits.push(s.digit)
+  }
+
+  get displayNumber() {
+    if (this.direction === 'inbound') {
+      return this.fromNumber
     } else {
-      return `[${this.data.node_name}:${this.id}${''}] ${this.state} ${
-        this.fromNumber
-      } (${this.fromName}) ${this.direction} to: ${this.toNumber} ${
-        this.toName
-      }`
+      return this.toNumber
     }
   }
-
-  get muted(): boolean {
-    return this._muted
+  get displayName() {
+    if (this.direction === 'inbound') {
+      return this.fromName
+    } else {
+      return this.toName
+    }
   }
 
   /* Call control */
@@ -150,13 +176,13 @@ export class Call {
 
     return this.client.request('call_hangup', {
       id: this.id,
-      node_id: this.data.node_name,
+      node_id: this.nodeName,
       cause: _cause,
     })
   }
 
   async toggleHold() {
-    if (this.state === CallState.Hold) {
+    if (this.state === CallActions.Hold) {
       return this.unHold()
     } else {
       return this.hold()
@@ -164,31 +190,31 @@ export class Call {
   }
 
   async hold() {
-    if (this.state === CallState.Hold) {
+    if (this.state === CallActions.Hold) {
       throw new Error('Call is hold')
     }
 
     return this.client.request('call_hold', {
       id: this.id,
-      node_id: this.data.node_name,
+      node_id: this.nodeName,
     })
   }
 
   async unHold() {
-    if (this.state !== CallState.Hold) {
+    if (this.state !== CallActions.Hold) {
       throw new Error('Call is active')
     }
 
     return this.client.request('call_unhold', {
       id: this.id,
-      node_id: this.data.node_name,
+      node_id: this.nodeName,
     })
   }
 
   async sendDTMF(dtmf: string) {
     return this.client.request('call_dtmf', {
       id: this.id,
-      node_id: this.data.node_name,
+      node_id: this.nodeName,
       dtmf,
     })
   }
@@ -200,7 +226,7 @@ export class Call {
 
     return this.client.request('call_blind_transfer', {
       id: this.parentCallId,
-      node_id: this.data.node_name,
+      node_id: this.nodeName,
       destination,
     })
   }
@@ -208,7 +234,7 @@ export class Call {
   async mute(mute = false) {
     const res = await this.client.request('call_mute', {
       id: this.id,
-      node_id: this.data.node_name,
+      node_id: this.nodeName,
       mute,
     })
     this._muted = mute
@@ -219,11 +245,9 @@ export class Call {
   async bridgeTo(call: Call) {
     return this.client.request('call_bridge', {
       id: this.id,
-      node_id: this.data.node_name,
-      to: {
-        id: call.id,
-        node_id: call.nodeId,
-      },
+      node_id: this.nodeName,
+      parent_id: call.id,
+      parent_node_id: call.nodeName,
     })
   }
 }

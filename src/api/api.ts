@@ -753,6 +753,62 @@ export interface EngineCreateExceptDateRequest {
 /**
  *
  * @export
+ * @interface EngineCreateListCommunicationRequest
+ */
+export interface EngineCreateListCommunicationRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateListCommunicationRequest
+   */
+  number?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateListCommunicationRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateListCommunicationRequest
+   */
+  list_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateListCommunicationRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateListRequest
+ */
+export interface EngineCreateListRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateListRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateListRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateListRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
  * @interface EngineCreateMemberBulkItem
  */
 export interface EngineCreateMemberBulkItem {
@@ -798,6 +854,12 @@ export interface EngineCreateMemberBulkItem {
    * @memberof EngineCreateMemberBulkItem
    */
   bucket?: EngineLookup
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  skills?: Array<string>
 }
 /**
  *
@@ -880,8 +942,39 @@ export interface EngineCreateMemberRequest {
   bucket?: EngineLookup
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineCreateMemberRequest
+   */
+  skills?: Array<string>
+  /**
+   *
    * @type {string}
    * @memberof EngineCreateMemberRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateOutboundResourceDisplayRequest
+ */
+export interface EngineCreateOutboundResourceDisplayRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceDisplayRequest
+   */
+  resource_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceDisplayRequest
+   */
+  display?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceDisplayRequest
    */
   domain_id?: string
 }
@@ -1471,6 +1564,61 @@ export interface EngineExceptDate {
 /**
  *
  * @export
+ * @interface EngineList
+ */
+export interface EngineList {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineList
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineList
+   */
+  created_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineList
+   */
+  created_by?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineList
+   */
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineList
+   */
+  updated_by?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineList
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineList
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineList
+   */
+  description?: string
+}
+/**
+ *
+ * @export
  * @interface EngineListAcceptOfDay
  */
 export interface EngineListAcceptOfDay {
@@ -1549,6 +1697,37 @@ export interface EngineListCalendar {
 /**
  *
  * @export
+ * @interface EngineListCommunication
+ */
+export interface EngineListCommunication {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineListCommunication
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineListCommunication
+   */
+  list_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineListCommunication
+   */
+  number?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineListCommunication
+   */
+  description?: string
+}
+/**
+ *
+ * @export
  * @interface EngineListCommunicationType
  */
 export interface EngineListCommunicationType {
@@ -1584,6 +1763,32 @@ export interface EngineListMember {
    * @memberof EngineListMember
    */
   items?: Array<EngineMember>
+}
+/**
+ *
+ * @export
+ * @interface EngineListOfList
+ */
+export interface EngineListOfList {
+  /**
+   *
+   * @type {Array<EngineList>}
+   * @memberof EngineListOfList
+   */
+  items?: Array<EngineList>
+}
+/**
+ *
+ * @export
+ * @interface EngineListOfListCommunication
+ */
+export interface EngineListOfListCommunication {
+  /**
+   *
+   * @type {Array<EngineListCommunication>}
+   * @memberof EngineListOfListCommunication
+   */
+  items?: Array<EngineListCommunication>
 }
 /**
  *
@@ -1861,6 +2066,12 @@ export interface EngineMember {
   bucket?: EngineLookup
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineMember
+   */
+  skills?: Array<string>
+  /**
+   *
    * @type {string}
    * @memberof EngineMember
    */
@@ -1877,6 +2088,19 @@ export interface EngineMember {
    * @memberof EngineMember
    */
   attempts?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineMemberBulkResponse
+ */
+export interface EngineMemberBulkResponse {
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineMemberBulkResponse
+   */
+  ids?: Array<string>
 }
 /**
  *
@@ -3350,6 +3574,74 @@ export interface EngineUpdateExceptDateRequest {
 /**
  *
  * @export
+ * @interface EngineUpdateListCommunicationRequest
+ */
+export interface EngineUpdateListCommunicationRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListCommunicationRequest
+   */
+  list_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListCommunicationRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListCommunicationRequest
+   */
+  number?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListCommunicationRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListCommunicationRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateListRequest
+ */
+export interface EngineUpdateListRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
  * @interface EngineUpdateMemberRequest
  */
 export interface EngineUpdateMemberRequest {
@@ -3407,6 +3699,12 @@ export interface EngineUpdateMemberRequest {
    * @memberof EngineUpdateMemberRequest
    */
   bucket?: EngineLookup
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineUpdateMemberRequest
+   */
+  skills?: Array<string>
   /**
    *
    * @type {string}
@@ -10199,6 +10497,1468 @@ export class CommunicationTypeServiceApi extends BaseAPI {
 }
 
 /**
+ * ListServiceApi - axios parameter creator
+ * @export
+ */
+export const ListServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create List
+     * @param {EngineCreateListRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createList(body: EngineCreateListRequest, options: any = {}): RequestArgs {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createList.'
+        )
+      }
+      const localVarPath = `/call_center/list`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateListRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Create ListCommunication
+     * @param {string} list_id
+     * @param {EngineCreateListCommunicationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createListCommunication(
+      list_id: string,
+      body: EngineCreateListCommunicationRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'list_id' is not null or undefined
+      if (list_id === null || list_id === undefined) {
+        throw new RequiredError(
+          'list_id',
+          'Required parameter list_id was null or undefined when calling createListCommunication.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createListCommunication.'
+        )
+      }
+      const localVarPath = `/call_center/list/{list_id}/communication`.replace(
+        `{${'list_id'}}`,
+        encodeURIComponent(String(list_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateListCommunicationRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove list
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteList(id: string, domain_id?: string, options: any = {}): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteList.'
+        )
+      }
+      const localVarPath = `/call_center/list/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove ListCommunication
+     * @param {string} list_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteListCommunication(
+      list_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'list_id' is not null or undefined
+      if (list_id === null || list_id === undefined) {
+        throw new RequiredError(
+          'list_id',
+          'Required parameter list_id was null or undefined when calling deleteListCommunication.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteListCommunication.'
+        )
+      }
+      const localVarPath = `/call_center/list/{list_id}/communication/{id}`
+        .replace(`{${'list_id'}}`, encodeURIComponent(String(list_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readList(id: string, domain_id?: string, options: any = {}): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readList.'
+        )
+      }
+      const localVarPath = `/call_center/list/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List item
+     * @param {string} list_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readListCommunication(
+      list_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'list_id' is not null or undefined
+      if (list_id === null || list_id === undefined) {
+        throw new RequiredError(
+          'list_id',
+          'Required parameter list_id was null or undefined when calling readListCommunication.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readListCommunication.'
+        )
+      }
+      const localVarPath = `/call_center/list/{list_id}/communication/{id}`
+        .replace(`{${'list_id'}}`, encodeURIComponent(String(list_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of List
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchList(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/list`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of List
+     * @param {string} list_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchListCommunication(
+      list_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'list_id' is not null or undefined
+      if (list_id === null || list_id === undefined) {
+        throw new RequiredError(
+          'list_id',
+          'Required parameter list_id was null or undefined when calling searchListCommunication.'
+        )
+      }
+      const localVarPath = `/call_center/list/{list_id}/communication`.replace(
+        `{${'list_id'}}`,
+        encodeURIComponent(String(list_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update list
+     * @param {string} id
+     * @param {EngineUpdateListRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateList(
+      id: string,
+      body: EngineUpdateListRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateList.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateList.'
+        )
+      }
+      const localVarPath = `/call_center/list/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateListRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update ListCommunication
+     * @param {string} list_id
+     * @param {string} id
+     * @param {EngineUpdateListCommunicationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateListCommunication(
+      list_id: string,
+      id: string,
+      body: EngineUpdateListCommunicationRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'list_id' is not null or undefined
+      if (list_id === null || list_id === undefined) {
+        throw new RequiredError(
+          'list_id',
+          'Required parameter list_id was null or undefined when calling updateListCommunication.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateListCommunication.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateListCommunication.'
+        )
+      }
+      const localVarPath = `/call_center/list/{list_id}/communication/{id}`
+        .replace(`{${'list_id'}}`, encodeURIComponent(String(list_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateListCommunicationRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * ListServiceApi - functional programming interface
+ * @export
+ */
+export const ListServiceApiFp = function(configuration?: Configuration) {
+  return {
+    /**
+     *
+     * @summary Create List
+     * @param {EngineCreateListRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createList(
+      body: EngineCreateListRequest,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineList> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).createList(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Create ListCommunication
+     * @param {string} list_id
+     * @param {EngineCreateListCommunicationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createListCommunication(
+      list_id: string,
+      body: EngineCreateListCommunicationRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListCommunication> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).createListCommunication(list_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove list
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteList(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineList> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).deleteList(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove ListCommunication
+     * @param {string} list_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteListCommunication(
+      list_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListCommunication> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).deleteListCommunication(list_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readList(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineList> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).readList(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List item
+     * @param {string} list_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readListCommunication(
+      list_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListCommunication> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).readListCommunication(list_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of List
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchList(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListOfList> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).searchList(page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of List
+     * @param {string} list_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchListCommunication(
+      list_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListOfListCommunication> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).searchListCommunication(list_id, page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update list
+     * @param {string} id
+     * @param {EngineUpdateListRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateList(
+      id: string,
+      body: EngineUpdateListRequest,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineList> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).updateList(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update ListCommunication
+     * @param {string} list_id
+     * @param {string} id
+     * @param {EngineUpdateListCommunicationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateListCommunication(
+      list_id: string,
+      id: string,
+      body: EngineUpdateListCommunicationRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListCommunication> {
+      const localVarAxiosArgs = ListServiceApiAxiosParamCreator(
+        configuration
+      ).updateListCommunication(list_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * ListServiceApi - factory interface
+ * @export
+ */
+export const ListServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Create List
+     * @param {EngineCreateListRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createList(body: EngineCreateListRequest, options?: any) {
+      return ListServiceApiFp(configuration).createList(body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary Create ListCommunication
+     * @param {string} list_id
+     * @param {EngineCreateListCommunicationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createListCommunication(
+      list_id: string,
+      body: EngineCreateListCommunicationRequest,
+      options?: any
+    ) {
+      return ListServiceApiFp(configuration).createListCommunication(
+        list_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Remove list
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteList(id: string, domain_id?: string, options?: any) {
+      return ListServiceApiFp(configuration).deleteList(id, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary Remove ListCommunication
+     * @param {string} list_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteListCommunication(
+      list_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return ListServiceApiFp(configuration).deleteListCommunication(
+        list_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readList(id: string, domain_id?: string, options?: any) {
+      return ListServiceApiFp(configuration).readList(id, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary List item
+     * @param {string} list_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readListCommunication(
+      list_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return ListServiceApiFp(configuration).readListCommunication(
+        list_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List of List
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchList(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return ListServiceApiFp(configuration).searchList(
+        page,
+        size,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List of List
+     * @param {string} list_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchListCommunication(
+      list_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return ListServiceApiFp(configuration).searchListCommunication(
+        list_id,
+        page,
+        size,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update list
+     * @param {string} id
+     * @param {EngineUpdateListRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateList(id: string, body: EngineUpdateListRequest, options?: any) {
+      return ListServiceApiFp(configuration).updateList(id, body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary Update ListCommunication
+     * @param {string} list_id
+     * @param {string} id
+     * @param {EngineUpdateListCommunicationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateListCommunication(
+      list_id: string,
+      id: string,
+      body: EngineUpdateListCommunicationRequest,
+      options?: any
+    ) {
+      return ListServiceApiFp(configuration).updateListCommunication(
+        list_id,
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+  }
+}
+
+/**
+ * ListServiceApi - object-oriented interface
+ * @export
+ * @class ListServiceApi
+ * @extends {BaseAPI}
+ */
+export class ListServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Create List
+   * @param {EngineCreateListRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public createList(body: EngineCreateListRequest, options?: any) {
+    return ListServiceApiFp(this.configuration).createList(body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Create ListCommunication
+   * @param {string} list_id
+   * @param {EngineCreateListCommunicationRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public createListCommunication(
+    list_id: string,
+    body: EngineCreateListCommunicationRequest,
+    options?: any
+  ) {
+    return ListServiceApiFp(this.configuration).createListCommunication(
+      list_id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Remove list
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public deleteList(id: string, domain_id?: string, options?: any) {
+    return ListServiceApiFp(this.configuration).deleteList(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Remove ListCommunication
+   * @param {string} list_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public deleteListCommunication(
+    list_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return ListServiceApiFp(this.configuration).deleteListCommunication(
+      list_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List item
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public readList(id: string, domain_id?: string, options?: any) {
+    return ListServiceApiFp(this.configuration).readList(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List item
+   * @param {string} list_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public readListCommunication(
+    list_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return ListServiceApiFp(this.configuration).readListCommunication(
+      list_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of List
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public searchList(
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return ListServiceApiFp(this.configuration).searchList(
+      page,
+      size,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of List
+   * @param {string} list_id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public searchListCommunication(
+    list_id: string,
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return ListServiceApiFp(this.configuration).searchListCommunication(
+      list_id,
+      page,
+      size,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Update list
+   * @param {string} id
+   * @param {EngineUpdateListRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public updateList(id: string, body: EngineUpdateListRequest, options?: any) {
+    return ListServiceApiFp(this.configuration).updateList(id, body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Update ListCommunication
+   * @param {string} list_id
+   * @param {string} id
+   * @param {EngineUpdateListCommunicationRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApi
+   */
+  public updateListCommunication(
+    list_id: string,
+    id: string,
+    body: EngineUpdateListCommunicationRequest,
+    options?: any
+  ) {
+    return ListServiceApiFp(this.configuration).updateListCommunication(
+      list_id,
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+}
+
+/**
  * MemberServiceApi - axios parameter creator
  * @export
  */
@@ -10728,7 +12488,10 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       queue_id: string,
       body: EngineCreateMemberBulkRequest,
       options?: any
-    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object> {
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineMemberBulkResponse> {
       const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
         configuration
       ).createMemberBulk(queue_id, body, options)
@@ -12747,11 +14510,13 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resource_id
+     * @param {EngineCreateOutboundResourceDisplayRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceDisplay(
       resource_id: string,
+      body: EngineCreateOutboundResourceDisplayRequest,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'resource_id' is not null or undefined
@@ -12759,6 +14524,13 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         throw new RequiredError(
           'resource_id',
           'Required parameter resource_id was null or undefined when calling createOutboundResourceDisplay.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createOutboundResourceDisplay.'
         )
       }
       const localVarPath = `/call_center/resources/{resource_id}/display`.replace(
@@ -12787,6 +14559,8 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -12798,6 +14572,12 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         ...localVarHeaderParameter,
         ...options.headers,
       }
+      const needsSerialization =
+        <any>'EngineCreateOutboundResourceDisplayRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -13519,11 +15299,13 @@ export const OutboundResourceServiceApiFp = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resource_id
+     * @param {EngineCreateOutboundResourceDisplayRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceDisplay(
       resource_id: string,
+      body: EngineCreateOutboundResourceDisplayRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -13531,7 +15313,7 @@ export const OutboundResourceServiceApiFp = function(
     ) => AxiosPromise<EngineResourceDisplay> {
       const localVarAxiosArgs = OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).createOutboundResourceDisplay(resource_id, options)
+      ).createOutboundResourceDisplay(resource_id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -13864,13 +15646,21 @@ export const OutboundResourceServiceApiFactory = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resource_id
+     * @param {EngineCreateOutboundResourceDisplayRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOutboundResourceDisplay(resource_id: string, options?: any) {
+    createOutboundResourceDisplay(
+      resource_id: string,
+      body: EngineCreateOutboundResourceDisplayRequest,
+      options?: any
+    ) {
       return OutboundResourceServiceApiFp(
         configuration
-      ).createOutboundResourceDisplay(resource_id, options)(axios, basePath)
+      ).createOutboundResourceDisplay(resource_id, body, options)(
+        axios,
+        basePath
+      )
     },
     /**
      *
@@ -14086,14 +15876,19 @@ export class OutboundResourceServiceApi extends BaseAPI {
    *
    * @summary Create CreateOutboundResourceDisplay
    * @param {string} resource_id
+   * @param {EngineCreateOutboundResourceDisplayRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public createOutboundResourceDisplay(resource_id: string, options?: any) {
+  public createOutboundResourceDisplay(
+    resource_id: string,
+    body: EngineCreateOutboundResourceDisplayRequest,
+    options?: any
+  ) {
     return OutboundResourceServiceApiFp(
       this.configuration
-    ).createOutboundResourceDisplay(resource_id, options)(
+    ).createOutboundResourceDisplay(resource_id, body, options)(
       this.axios,
       this.basePath
     )
