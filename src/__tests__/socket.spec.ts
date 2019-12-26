@@ -26,7 +26,7 @@ describe(`WebSocket`, () => {
 
     expect(cli.sessionInfo().user_id).toBe(TEST_USER_ID)
 
-    await cli.invite({ toNumber: 'user', toName: 'web cli1' })
+    // await cli.invite({ toNumber: 'user', toName: 'web cli1' })
 
     await cli.disconnect()
   })

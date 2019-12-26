@@ -94,7 +94,7 @@ describe(`OutboundResourceServiceApi API`, () => {
     }
     const res = await api.createOutboundResourceInGroup(group.id, {
       resource: {
-        id: '1',
+        id: '272',
       },
     })
 

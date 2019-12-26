@@ -33,6 +33,9 @@ describe(`OutboundResourceServiceApi API`, () => {
       rps: 123,
       number: '111',
       enabled: true,
+      gateway: {
+        id: '3',
+      },
       reserve: true,
       max_successively_errors: 10,
       dial_string: 'test',
@@ -87,6 +90,9 @@ describe(`OutboundResourceServiceApi API`, () => {
       limit: 15,
       variables: {
         v: 'test1',
+      },
+      gateway: {
+        id: '3',
       },
       rps: 11,
       number: '12',

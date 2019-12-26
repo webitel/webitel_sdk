@@ -16,7 +16,7 @@ export interface Config {
   endpoint: string
   token?: string
   logLvl?: 'debug' | 'info' | 'warn' | 'error'
-  deviceConfig?: SipConfiguration
+  registerWebDevice?: boolean
   phone?: number
 }
 
@@ -28,10 +28,12 @@ interface PromiseCallback {
 export interface OutboundCallRequest {
   toNumber: string
   toName?: string
+  useVideo?: boolean
   variables?: Map<string, string>
 }
 
 const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
+const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
 
 const WEBSOCKET_MAKE_OUTBOUND_CALL = 'call_invite'
 const WEBSOCKET_EVENT_HELLO = 'hello'
@@ -167,7 +169,15 @@ export class Client {
     })
   }
 
-  private onMessage(message: Message) {
+  useWebPhone(): boolean {
+    return this._config.registerWebDevice || false
+  }
+
+  private async deviceConfig(): Promise<SipConfiguration | Error> {
+    return this.request(WEBSOCKET_DEFAULT_DEVICE_CONFIG, {})
+  }
+
+  private async onMessage(message: Message) {
     this.log.debug('receive message: ', message)
     if (message.seq_reply! > 0) {
       if (this.queueRequest.has(message.seq_reply!)) {
@@ -182,7 +192,7 @@ export class Client {
     } else {
       switch (message.event) {
         case WEBSOCKET_EVENT_HELLO:
-          this.connected(message.data as ConnectionInfo)
+          await this.connected(message.data as ConnectionInfo)
           this.log.debug(
             `opened session ${this.connectionInfo.sock_id} for userId=${
               this.connectionInfo.session.user_id
@@ -202,21 +212,35 @@ export class Client {
     }
   }
 
-  private connected(info: ConnectionInfo) {
+  private async connected(info: ConnectionInfo) {
     this.connectionInfo = info
 
     this.phone = new SipPhone(this.instanceId)
-    if (this.deviceSettings) {
-      this.phone.register(this.deviceSettings).catch((e) => this.log.error(e))
-    }
-  }
 
-  private get deviceSettings(): SipConfiguration | null {
-    if (this._config.deviceConfig) {
-      return this._config.deviceConfig
-    }
+    this.phone.on(
+      'peerStreams',
+      (id: string, streams: MediaStream[] | null) => {
+        const call = this.callById(id)
+        if (call && call.peerStreams === null) {
+          call.setPeerStreams(streams)
+          this.eventHandler.emit(
+            WEBSOCKET_EVENT_CALL,
+            CallActions.PeerStream,
+            call
+          )
+        }
+      }
+    )
 
-    return null
+    if (this.useWebPhone()) {
+      try {
+        const conf = await this.deviceConfig()
+        await this.phone.register(conf as SipConfiguration)
+      } catch (e) {
+        // FIXME add handle error
+        this.log.error(e)
+      }
+    }
   }
 
   private connectToSocket(): Promise<Error | null> {
@@ -245,7 +269,11 @@ export class Client {
 
     switch (event.action) {
       case CallActions.Ringing:
-        call = new Call(this, event as CallInfo)
+        call = new Call(
+          this,
+          event as CallInfo,
+          this.phone.getPeerStream(event.id)
+        )
         this.callStore.set(call.id, call)
         break
 

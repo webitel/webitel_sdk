@@ -11,6 +11,7 @@ export enum CallActions {
   Execute = 'execute',
   Update = 'update',
   Hangup = 'hangup',
+  PeerStream = 'peerStream',
 }
 
 export enum CallDirection {
@@ -42,6 +43,9 @@ export interface CallInfo extends CallEventData {
 
   to_number: string
   to_name: string
+
+  payload: Map<string, string>
+  gateway_id: string
 }
 
 export interface CallHangup extends CallEventData {
@@ -61,6 +65,9 @@ export class Call {
 
   toNumber!: string
   toName!: string
+  payload!: Map<string, string>
+
+  peerStreams!: MediaStream[] | null
 
   createdAt: number
   answeredAt: number
@@ -71,16 +78,23 @@ export class Call {
   parentCallId!: string
 
   _muted!: boolean
+  _gatewayId!: string | null
 
   digits!: string[]
   applications!: string[]
   voice: boolean
-  constructor(protected client: Client, e: CallInfo) {
+
+  constructor(
+    protected client: Client,
+    e: CallInfo,
+    peerStreams: MediaStream[] | null
+  ) {
     this.voice = true
     this.createdAt = Date.now()
 
     this.answeredAt = 0
     this.hangupAt = 0
+    this.peerStreams = peerStreams
 
     this.id = e.id
     this.digits = []
@@ -89,15 +103,18 @@ export class Call {
     this.setState(e)
     this.setInfo(e)
   }
+
   setActive(e: CallEventData) {
     if (!this.answeredAt) {
       this.answeredAt = Date.now()
     }
     this.setState(e)
   }
+
   get display() {
     return `${this.displayNumber} (${this.displayName})`
   }
+
   setInfo(s: CallInfo) {
     this.destination = s.destination
     this.direction = s.direction
@@ -105,16 +122,38 @@ export class Call {
     this.fromName = s.from_name
     this.toName = s.to_name
     this.toNumber = s.to_number
+    this.payload = s.payload
+
+    if (s.gateway_id) {
+      this._gatewayId = s.gateway_id
+    } else {
+      this._gatewayId = null // ?
+    }
+
     this.setState(s)
   }
+
+  get gatewayId() {
+    return this._gatewayId
+  }
+
   setState(s: CallEventData) {
     this.state = s.action
+  }
+
+  get active(): boolean {
+    return this.hangupAt === 0
+  }
+
+  setPeerStreams(streams: MediaStream[] | null) {
+    this.peerStreams = streams
   }
 
   setHangup(s: CallHangup) {
     this.hangupAt = Date.now()
     this.hangupCause = s.cause
     this.voice = false
+    this.peerStreams = null
     this.setState(s)
   }
 
@@ -141,6 +180,7 @@ export class Call {
       return this.toNumber
     }
   }
+
   get displayName() {
     if (this.direction === 'inbound') {
       return this.fromName

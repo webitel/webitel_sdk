@@ -860,6 +860,12 @@ export interface EngineCreateMemberBulkItem {
    * @memberof EngineCreateMemberBulkItem
    */
   skills?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  min_offering_at?: string
 }
 /**
  *
@@ -946,6 +952,12 @@ export interface EngineCreateMemberRequest {
    * @memberof EngineCreateMemberRequest
    */
   skills?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberRequest
+   */
+  min_offering_at?: string
   /**
    *
    * @type {string}
@@ -1767,6 +1779,19 @@ export interface EngineListMember {
 /**
  *
  * @export
+ * @interface EngineListMemberAttempt
+ */
+export interface EngineListMemberAttempt {
+  /**
+   *
+   * @type {Array<EngineMemberAttempt>}
+   * @memberof EngineListMemberAttempt
+   */
+  items?: Array<EngineMemberAttempt>
+}
+/**
+ *
+ * @export
  * @interface EngineListOfList
  */
 export interface EngineListOfList {
@@ -2075,6 +2100,12 @@ export interface EngineMember {
    * @type {string}
    * @memberof EngineMember
    */
+  min_offering_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
   stop_cause?: string
   /**
    *
@@ -2088,6 +2119,121 @@ export interface EngineMember {
    * @memberof EngineMember
    */
   attempts?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineMemberAttempt
+ */
+export interface EngineMemberAttempt {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  created_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  destination?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberAttempt
+   */
+  weight?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  originate_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  answered_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  bridged_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  hangup_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberAttempt
+   */
+  resource?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  leg_a_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  leg_b_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  node?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  result?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberAttempt
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberAttempt
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {object}
+   * @memberof EngineMemberAttempt
+   */
+  logs?: object
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineMemberAttempt
+   */
+  success?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineMemberAttempt
+   */
+  active?: boolean
 }
 /**
  *
@@ -2128,16 +2274,28 @@ export interface EngineMemberCommunication {
   destination?: string
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineMemberCommunication
    */
-  state?: number
+  description?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberCommunication
    */
-  description?: string
+  resource_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  display?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberCommunication
+   */
+  state?: number
   /**
    *
    * @type {string}
@@ -2181,6 +2339,18 @@ export interface EngineMemberCommunicationCreateRequest {
    * @memberof EngineMemberCommunicationCreateRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  resource_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  display?: string
 }
 /**
  *
@@ -3705,6 +3875,12 @@ export interface EngineUpdateMemberRequest {
    * @memberof EngineUpdateMemberRequest
    */
   skills?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
+   */
+  min_offering_at?: string
   /**
    *
    * @type {string}
@@ -12353,6 +12529,81 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary SearchMemberAttempts
+     * @param {string} queue_id
+     * @param {string} member_id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMemberAttempts(
+      queue_id: string,
+      member_id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling searchMemberAttempts.'
+        )
+      }
+      // verify required parameter 'member_id' is not null or undefined
+      if (member_id === null || member_id === undefined) {
+        throw new RequiredError(
+          'member_id',
+          'Required parameter member_id was null or undefined when calling searchMemberAttempts.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/{member_id}/attempts`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'member_id'}}`, encodeURIComponent(String(member_id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary UpdateMember
      * @param {string} queue_id
      * @param {string} id
@@ -12606,6 +12857,38 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary SearchMemberAttempts
+     * @param {string} queue_id
+     * @param {string} member_id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMemberAttempts(
+      queue_id: string,
+      member_id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListMemberAttempt> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).searchMemberAttempts(queue_id, member_id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary UpdateMember
      * @param {string} queue_id
      * @param {string} id
@@ -12758,6 +13041,28 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @summary SearchMemberAttempts
+     * @param {string} queue_id
+     * @param {string} member_id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMemberAttempts(
+      queue_id: string,
+      member_id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).searchMemberAttempts(
+        queue_id,
+        member_id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary UpdateMember
      * @param {string} queue_id
      * @param {string} id
@@ -12900,6 +13205,30 @@ export class MemberServiceApi extends BaseAPI {
       queue_id,
       page,
       size,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary SearchMemberAttempts
+   * @param {string} queue_id
+   * @param {string} member_id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public searchMemberAttempts(
+    queue_id: string,
+    member_id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).searchMemberAttempts(
+      queue_id,
+      member_id,
       domain_id,
       options
     )(this.axios, this.basePath)
