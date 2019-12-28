@@ -108,6 +108,80 @@ export interface EngineAgent {
 /**
  *
  * @export
+ * @interface EngineAgentInQueue
+ */
+export interface EngineAgentInQueue {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentInQueue
+   */
+  queue?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentInQueue
+   */
+  priority?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentInQueue
+   */
+  type?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentInQueue
+   */
+  strategy?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAgentInQueue
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentInQueue
+   */
+  count_member?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentInQueue
+   */
+  waiting_member?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentInQueue
+   */
+  active_member?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineAgentInTeam
+ */
+export interface EngineAgentInTeam {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentInTeam
+   */
+  team?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentInTeam
+   */
+  strategy?: string
+}
+/**
+ *
+ * @export
  * @interface EngineAgentSkill
  */
 export interface EngineAgentSkill {
@@ -1340,6 +1414,12 @@ export interface EngineCreateResourceTeamRequest {
   skill?: EngineLookup
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineCreateResourceTeamRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
    * @type {number}
    * @memberof EngineCreateResourceTeamRequest
    */
@@ -1386,7 +1466,7 @@ export interface EngineCreateRoutingOutboundCallRequest {
    * @type {EngineLookup}
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
-  scheme?: EngineLookup
+  schema?: EngineLookup
   /**
    *
    * @type {string}
@@ -1409,49 +1489,49 @@ export interface EngineCreateRoutingOutboundCallRequest {
 /**
  *
  * @export
- * @interface EngineCreateRoutingSchemeRequest
+ * @interface EngineCreateRoutingSchemaRequest
  */
-export interface EngineCreateRoutingSchemeRequest {
+export interface EngineCreateRoutingSchemaRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineCreateRoutingSchemeRequest
+   * @memberof EngineCreateRoutingSchemaRequest
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineCreateRoutingSchemeRequest
+   * @memberof EngineCreateRoutingSchemaRequest
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof EngineCreateRoutingSchemeRequest
+   * @memberof EngineCreateRoutingSchemaRequest
    */
   description?: string
   /**
    *
    * @type {number}
-   * @memberof EngineCreateRoutingSchemeRequest
+   * @memberof EngineCreateRoutingSchemaRequest
    */
   type?: number
   /**
    *
    * @type {object}
-   * @memberof EngineCreateRoutingSchemeRequest
+   * @memberof EngineCreateRoutingSchemaRequest
    */
-  scheme?: object
+  schema?: object
   /**
    *
    * @type {object}
-   * @memberof EngineCreateRoutingSchemeRequest
+   * @memberof EngineCreateRoutingSchemaRequest
    */
   payload?: object
   /**
    *
    * @type {boolean}
-   * @memberof EngineCreateRoutingSchemeRequest
+   * @memberof EngineCreateRoutingSchemaRequest
    */
   debug?: boolean
 }
@@ -1653,6 +1733,32 @@ export interface EngineListAgent {
    * @memberof EngineListAgent
    */
   items?: Array<EngineAgent>
+}
+/**
+ *
+ * @export
+ * @interface EngineListAgentInQueue
+ */
+export interface EngineListAgentInQueue {
+  /**
+   *
+   * @type {Array<EngineAgentInQueue>}
+   * @memberof EngineListAgentInQueue
+   */
+  items?: Array<EngineAgentInQueue>
+}
+/**
+ *
+ * @export
+ * @interface EngineListAgentInTeam
+ */
+export interface EngineListAgentInTeam {
+  /**
+   *
+   * @type {Array<EngineAgentInTeam>}
+   * @memberof EngineListAgentInTeam
+   */
+  items?: Array<EngineAgentInTeam>
 }
 /**
  *
@@ -1922,19 +2028,6 @@ export interface EngineListResourceTeam {
 /**
  *
  * @export
- * @interface EngineListRoutingInboundCall
- */
-export interface EngineListRoutingInboundCall {
-  /**
-   *
-   * @type {Array<EngineRoutingInboundCall>}
-   * @memberof EngineListRoutingInboundCall
-   */
-  items?: Array<EngineRoutingInboundCall>
-}
-/**
- *
- * @export
  * @interface EngineListRoutingOutboundCall
  */
 export interface EngineListRoutingOutboundCall {
@@ -1948,15 +2041,15 @@ export interface EngineListRoutingOutboundCall {
 /**
  *
  * @export
- * @interface EngineListRoutingScheme
+ * @interface EngineListRoutingSchema
  */
-export interface EngineListRoutingScheme {
+export interface EngineListRoutingSchema {
   /**
    *
-   * @type {Array<EngineRoutingScheme>}
-   * @memberof EngineListRoutingScheme
+   * @type {Array<EngineRoutingSchema>}
+   * @memberof EngineListRoutingSchema
    */
-  items?: Array<EngineRoutingScheme>
+  items?: Array<EngineRoutingSchema>
 }
 /**
  *
@@ -2727,6 +2820,128 @@ export interface EnginePatchOutboundResourceRequest {
 /**
  *
  * @export
+ * @interface EnginePatchRoutingOutboundCallRequest
+ */
+export interface EnginePatchRoutingOutboundCallRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  schema?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  pattern?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  fields?: Array<string>
+}
+/**
+ *
+ * @export
+ * @interface EnginePatchRoutingSchemaRequest
+ */
+export interface EnginePatchRoutingSchemaRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  type?: number
+  /**
+   *
+   * @type {object}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  schema?: object
+  /**
+   *
+   * @type {object}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  debug?: boolean
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  fields?: Array<string>
+}
+/**
+ *
+ * @export
  * @interface EngineQueue
  */
 export interface EngineQueue {
@@ -2976,6 +3191,12 @@ export interface EngineResourceTeam {
   skill?: EngineLookup
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineResourceTeam
+   */
+  bucket?: EngineLookup
+  /**
+   *
    * @type {number}
    * @memberof EngineResourceTeam
    */
@@ -3005,103 +3226,6 @@ export interface EngineResponse {
    * @memberof EngineResponse
    */
   status?: string
-}
-/**
- *
- * @export
- * @interface EngineRoutingInboundCall
- */
-export interface EngineRoutingInboundCall {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingInboundCall
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingInboundCall
-   */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingInboundCall
-   */
-  created_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineRoutingInboundCall
-   */
-  created_by?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingInboundCall
-   */
-  updated_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineRoutingInboundCall
-   */
-  updated_by?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingInboundCall
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingInboundCall
-   */
-  description?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineRoutingInboundCall
-   */
-  start_scheme?: EngineLookup
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineRoutingInboundCall
-   */
-  stop_scheme?: EngineLookup
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof EngineRoutingInboundCall
-   */
-  numbers?: Array<string>
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingInboundCall
-   */
-  host?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineRoutingInboundCall
-   */
-  timezone?: EngineLookup
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineRoutingInboundCall
-   */
-  debug?: boolean
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineRoutingInboundCall
-   */
-  disabled?: boolean
 }
 /**
  *
@@ -3162,7 +3286,7 @@ export interface EngineRoutingOutboundCall {
    * @type {EngineLookup}
    * @memberof EngineRoutingOutboundCall
    */
-  scheme?: EngineLookup
+  schema?: EngineLookup
   /**
    *
    * @type {string}
@@ -3185,79 +3309,79 @@ export interface EngineRoutingOutboundCall {
 /**
  *
  * @export
- * @interface EngineRoutingScheme
+ * @interface EngineRoutingSchema
  */
-export interface EngineRoutingScheme {
+export interface EngineRoutingSchema {
   /**
    *
    * @type {string}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   created_at?: string
   /**
    *
    * @type {EngineLookup}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   created_by?: EngineLookup
   /**
    *
    * @type {string}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   updated_at?: string
   /**
    *
    * @type {EngineLookup}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   updated_by?: EngineLookup
   /**
    *
    * @type {string}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   description?: string
   /**
    *
    * @type {number}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   type?: number
   /**
    *
    * @type {object}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
-  scheme?: object
+  schema?: object
   /**
    *
    * @type {object}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   payload?: object
   /**
    *
    * @type {boolean}
-   * @memberof EngineRoutingScheme
+   * @memberof EngineRoutingSchema
    */
   debug?: boolean
 }
@@ -4311,6 +4435,12 @@ export interface EngineUpdateResourceTeamRequest {
   skill?: EngineLookup
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateResourceTeamRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
    * @type {number}
    * @memberof EngineUpdateResourceTeamRequest
    */
@@ -4363,7 +4493,7 @@ export interface EngineUpdateRoutingOutboundCallRequest {
    * @type {EngineLookup}
    * @memberof EngineUpdateRoutingOutboundCallRequest
    */
-  scheme?: EngineLookup
+  schema?: EngineLookup
   /**
    *
    * @type {string}
@@ -4386,55 +4516,55 @@ export interface EngineUpdateRoutingOutboundCallRequest {
 /**
  *
  * @export
- * @interface EngineUpdateRoutingSchemeRequest
+ * @interface EngineUpdateRoutingSchemaRequest
  */
-export interface EngineUpdateRoutingSchemeRequest {
+export interface EngineUpdateRoutingSchemaRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateRoutingSchemeRequest
+   * @memberof EngineUpdateRoutingSchemaRequest
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateRoutingSchemeRequest
+   * @memberof EngineUpdateRoutingSchemaRequest
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateRoutingSchemeRequest
+   * @memberof EngineUpdateRoutingSchemaRequest
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateRoutingSchemeRequest
+   * @memberof EngineUpdateRoutingSchemaRequest
    */
   description?: string
   /**
    *
    * @type {number}
-   * @memberof EngineUpdateRoutingSchemeRequest
+   * @memberof EngineUpdateRoutingSchemaRequest
    */
   type?: number
   /**
    *
    * @type {object}
-   * @memberof EngineUpdateRoutingSchemeRequest
+   * @memberof EngineUpdateRoutingSchemaRequest
    */
-  scheme?: object
+  schema?: object
   /**
    *
    * @type {object}
-   * @memberof EngineUpdateRoutingSchemeRequest
+   * @memberof EngineUpdateRoutingSchemaRequest
    */
   payload?: object
   /**
    *
    * @type {boolean}
-   * @memberof EngineUpdateRoutingSchemeRequest
+   * @memberof EngineUpdateRoutingSchemaRequest
    */
   debug?: boolean
 }
@@ -4813,6 +4943,162 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInQueue(
+      id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling searchAgentInQueue.'
+        )
+      }
+      const localVarPath = `/call_center/agents/{id}/queues`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInTeam(
+      id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling searchAgentInTeam.'
+        )
+      }
+      const localVarPath = `/call_center/agents/{id}/teams`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -5089,6 +5375,72 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInQueue(
+      id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListAgentInQueue> {
+      const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentInQueue(id, domain_id, size, page, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInTeam(
+      id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListAgentInTeam> {
+      const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentInTeam(id, domain_id, size, page, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -5223,6 +5575,54 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInQueue(
+      id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options?: any
+    ) {
+      return AgentServiceApiFp(configuration).searchAgentInQueue(
+        id,
+        domain_id,
+        size,
+        page,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {number} [size]
+     * @param {number} [page]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInTeam(
+      id: string,
+      domain_id?: string,
+      size?: number,
+      page?: number,
+      options?: any
+    ) {
+      return AgentServiceApiFp(configuration).searchAgentInTeam(
+        id,
+        domain_id,
+        size,
+        page,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -5330,6 +5730,58 @@ export class AgentServiceApi extends BaseAPI {
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).searchAgent(
+      domain_id,
+      size,
+      page,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public searchAgentInQueue(
+    id: string,
+    domain_id?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration).searchAgentInQueue(
+      id,
+      domain_id,
+      size,
+      page,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {number} [size]
+   * @param {number} [page]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public searchAgentInTeam(
+    id: string,
+    domain_id?: string,
+    size?: number,
+    page?: number,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration).searchAgentInTeam(
+      id,
       domain_id,
       size,
       page,
@@ -19727,6 +20179,84 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Patch RoutingOutboundCall
+     * @param {string} id
+     * @param {EnginePatchRoutingOutboundCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchRoutingOutboundCall(
+      id: string,
+      body: EnginePatchRoutingOutboundCallRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchRoutingOutboundCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchRoutingOutboundCall.'
+        )
+      }
+      const localVarPath = `/routing/outbound/calls/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EnginePatchRoutingOutboundCallRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary RoutingOutboundCall item
      * @param {string} id
      * @param {string} [domain_id]
@@ -20008,6 +20538,36 @@ export const RoutingOutboundCallServiceApiFp = function(
     },
     /**
      *
+     * @summary Patch RoutingOutboundCall
+     * @param {string} id
+     * @param {EnginePatchRoutingOutboundCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchRoutingOutboundCall(
+      id: string,
+      body: EnginePatchRoutingOutboundCallRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineRoutingOutboundCall> {
+      const localVarAxiosArgs = RoutingOutboundCallServiceApiAxiosParamCreator(
+        configuration
+      ).patchRoutingOutboundCall(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary RoutingOutboundCall item
      * @param {string} id
      * @param {string} [domain_id]
@@ -20141,6 +20701,23 @@ export const RoutingOutboundCallServiceApiFactory = function(
     },
     /**
      *
+     * @summary Patch RoutingOutboundCall
+     * @param {string} id
+     * @param {EnginePatchRoutingOutboundCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchRoutingOutboundCall(
+      id: string,
+      body: EnginePatchRoutingOutboundCallRequest,
+      options?: any
+    ) {
+      return RoutingOutboundCallServiceApiFp(
+        configuration
+      ).patchRoutingOutboundCall(id, body, options)(axios, basePath)
+    },
+    /**
+     *
      * @summary RoutingOutboundCall item
      * @param {string} id
      * @param {string} [domain_id]
@@ -20242,6 +20819,25 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary Patch RoutingOutboundCall
+   * @param {string} id
+   * @param {EnginePatchRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApi
+   */
+  public patchRoutingOutboundCall(
+    id: string,
+    body: EnginePatchRoutingOutboundCallRequest,
+    options?: any
+  ) {
+    return RoutingOutboundCallServiceApiFp(
+      this.configuration
+    ).patchRoutingOutboundCall(id, body, options)(this.axios, this.basePath)
+  }
+
+  /**
+   *
    * @summary RoutingOutboundCall item
    * @param {string} id
    * @param {string} [domain_id]
@@ -20304,32 +20900,32 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
 }
 
 /**
- * RoutingSchemeServiceApi - axios parameter creator
+ * RoutingSchemaServiceApi - axios parameter creator
  * @export
  */
-export const RoutingSchemeServiceApiAxiosParamCreator = function(
+export const RoutingSchemaServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @summary Create RoutingScheme
-     * @param {EngineCreateRoutingSchemeRequest} body
+     * @summary Create RoutingSchema
+     * @param {EngineCreateRoutingSchemaRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRoutingScheme(
-      body: EngineCreateRoutingSchemeRequest,
+    createRoutingSchema(
+      body: EngineCreateRoutingSchemaRequest,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createRoutingScheme.'
+          'Required parameter body was null or undefined when calling createRoutingSchema.'
         )
       }
-      const localVarPath = `/routing/schemes`
+      const localVarPath = `/routing/schema`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -20366,7 +20962,7 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        <any>'EngineCreateRoutingSchemeRequest' !== 'string' ||
+        <any>'EngineCreateRoutingSchemaRequest' !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
         ? JSON.stringify(body !== undefined ? body : {})
@@ -20379,13 +20975,13 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Remove RoutingScheme
+     * @summary Remove RoutingSchema
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingScheme(
+    deleteRoutingSchema(
       id: string,
       domain_id?: string,
       options: any = {}
@@ -20394,10 +20990,10 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteRoutingScheme.'
+          'Required parameter id was null or undefined when calling deleteRoutingSchema.'
         )
       }
-      const localVarPath = `/routing/schemes/{id}`.replace(
+      const localVarPath = `/routing/schema/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -20446,13 +21042,91 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary RoutingScheme item
+     * @summary Patch RoutingSchema
+     * @param {string} id
+     * @param {EnginePatchRoutingSchemaRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchRoutingSchema(
+      id: string,
+      body: EnginePatchRoutingSchemaRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchRoutingSchema.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchRoutingSchema.'
+        )
+      }
+      const localVarPath = `/routing/schema/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EnginePatchRoutingSchemaRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary RoutingSchema item
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingScheme(
+    readRoutingSchema(
       id: string,
       domain_id?: string,
       options: any = {}
@@ -20461,10 +21135,10 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readRoutingScheme.'
+          'Required parameter id was null or undefined when calling readRoutingSchema.'
         )
       }
-      const localVarPath = `/routing/schemes/{id}`.replace(
+      const localVarPath = `/routing/schema/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -20513,20 +21187,20 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List RoutingScheme
+     * @summary List RoutingSchema
      * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingScheme(
+    searchRoutingSchema(
       domain_id?: string,
       size?: number,
       page?: number,
       options: any = {}
     ): RequestArgs {
-      const localVarPath = `/routing/schemes`
+      const localVarPath = `/routing/schema`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -20580,32 +21254,32 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update RoutingScheme
+     * @summary Update RoutingSchema
      * @param {string} id
-     * @param {EngineUpdateRoutingSchemeRequest} body
+     * @param {EngineUpdateRoutingSchemaRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRoutingScheme(
+    updateRoutingSchema(
       id: string,
-      body: EngineUpdateRoutingSchemeRequest,
+      body: EngineUpdateRoutingSchemaRequest,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateRoutingScheme.'
+          'Required parameter id was null or undefined when calling updateRoutingSchema.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateRoutingScheme.'
+          'Required parameter body was null or undefined when calling updateRoutingSchema.'
         )
       }
-      const localVarPath = `/routing/schemes/{id}`.replace(
+      const localVarPath = `/routing/schema/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -20645,7 +21319,7 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        <any>'EngineUpdateRoutingSchemeRequest' !== 'string' ||
+        <any>'EngineUpdateRoutingSchemaRequest' !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
         ? JSON.stringify(body !== undefined ? body : {})
@@ -20660,30 +21334,30 @@ export const RoutingSchemeServiceApiAxiosParamCreator = function(
 }
 
 /**
- * RoutingSchemeServiceApi - functional programming interface
+ * RoutingSchemaServiceApi - functional programming interface
  * @export
  */
-export const RoutingSchemeServiceApiFp = function(
+export const RoutingSchemaServiceApiFp = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @summary Create RoutingScheme
-     * @param {EngineCreateRoutingSchemeRequest} body
+     * @summary Create RoutingSchema
+     * @param {EngineCreateRoutingSchemaRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRoutingScheme(
-      body: EngineCreateRoutingSchemeRequest,
+    createRoutingSchema(
+      body: EngineCreateRoutingSchemaRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineRoutingScheme> {
-      const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
+    ) => AxiosPromise<EngineRoutingSchema> {
+      const localVarAxiosArgs = RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).createRoutingScheme(body, options)
+      ).createRoutingSchema(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -20697,23 +21371,23 @@ export const RoutingSchemeServiceApiFp = function(
     },
     /**
      *
-     * @summary Remove RoutingScheme
+     * @summary Remove RoutingSchema
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingScheme(
+    deleteRoutingSchema(
       id: string,
       domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineRoutingScheme> {
-      const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
+    ) => AxiosPromise<EngineRoutingSchema> {
+      const localVarAxiosArgs = RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).deleteRoutingScheme(id, domain_id, options)
+      ).deleteRoutingSchema(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -20727,23 +21401,53 @@ export const RoutingSchemeServiceApiFp = function(
     },
     /**
      *
-     * @summary RoutingScheme item
+     * @summary Patch RoutingSchema
+     * @param {string} id
+     * @param {EnginePatchRoutingSchemaRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchRoutingSchema(
+      id: string,
+      body: EnginePatchRoutingSchemaRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineRoutingSchema> {
+      const localVarAxiosArgs = RoutingSchemaServiceApiAxiosParamCreator(
+        configuration
+      ).patchRoutingSchema(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary RoutingSchema item
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingScheme(
+    readRoutingSchema(
       id: string,
       domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineRoutingScheme> {
-      const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
+    ) => AxiosPromise<EngineRoutingSchema> {
+      const localVarAxiosArgs = RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).readRoutingScheme(id, domain_id, options)
+      ).readRoutingSchema(id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -20757,14 +21461,14 @@ export const RoutingSchemeServiceApiFp = function(
     },
     /**
      *
-     * @summary List RoutingScheme
+     * @summary List RoutingSchema
      * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingScheme(
+    searchRoutingSchema(
       domain_id?: string,
       size?: number,
       page?: number,
@@ -20772,10 +21476,10 @@ export const RoutingSchemeServiceApiFp = function(
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineListRoutingScheme> {
-      const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
+    ) => AxiosPromise<EngineListRoutingSchema> {
+      const localVarAxiosArgs = RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingScheme(domain_id, size, page, options)
+      ).searchRoutingSchema(domain_id, size, page, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -20789,23 +21493,23 @@ export const RoutingSchemeServiceApiFp = function(
     },
     /**
      *
-     * @summary Update RoutingScheme
+     * @summary Update RoutingSchema
      * @param {string} id
-     * @param {EngineUpdateRoutingSchemeRequest} body
+     * @param {EngineUpdateRoutingSchemaRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRoutingScheme(
+    updateRoutingSchema(
       id: string,
-      body: EngineUpdateRoutingSchemeRequest,
+      body: EngineUpdateRoutingSchemaRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineRoutingScheme> {
-      const localVarAxiosArgs = RoutingSchemeServiceApiAxiosParamCreator(
+    ) => AxiosPromise<EngineRoutingSchema> {
+      const localVarAxiosArgs = RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).updateRoutingScheme(id, body, options)
+      ).updateRoutingSchema(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -20821,10 +21525,10 @@ export const RoutingSchemeServiceApiFp = function(
 }
 
 /**
- * RoutingSchemeServiceApi - factory interface
+ * RoutingSchemaServiceApi - factory interface
  * @export
  */
-export const RoutingSchemeServiceApiFactory = function(
+export const RoutingSchemaServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -20832,27 +21536,27 @@ export const RoutingSchemeServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create RoutingScheme
-     * @param {EngineCreateRoutingSchemeRequest} body
+     * @summary Create RoutingSchema
+     * @param {EngineCreateRoutingSchemaRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRoutingScheme(body: EngineCreateRoutingSchemeRequest, options?: any) {
-      return RoutingSchemeServiceApiFp(configuration).createRoutingScheme(
+    createRoutingSchema(body: EngineCreateRoutingSchemaRequest, options?: any) {
+      return RoutingSchemaServiceApiFp(configuration).createRoutingSchema(
         body,
         options
       )(axios, basePath)
     },
     /**
      *
-     * @summary Remove RoutingScheme
+     * @summary Remove RoutingSchema
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingScheme(id: string, domain_id?: string, options?: any) {
-      return RoutingSchemeServiceApiFp(configuration).deleteRoutingScheme(
+    deleteRoutingSchema(id: string, domain_id?: string, options?: any) {
+      return RoutingSchemaServiceApiFp(configuration).deleteRoutingSchema(
         id,
         domain_id,
         options
@@ -20860,14 +21564,33 @@ export const RoutingSchemeServiceApiFactory = function(
     },
     /**
      *
-     * @summary RoutingScheme item
+     * @summary Patch RoutingSchema
+     * @param {string} id
+     * @param {EnginePatchRoutingSchemaRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchRoutingSchema(
+      id: string,
+      body: EnginePatchRoutingSchemaRequest,
+      options?: any
+    ) {
+      return RoutingSchemaServiceApiFp(configuration).patchRoutingSchema(
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary RoutingSchema item
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingScheme(id: string, domain_id?: string, options?: any) {
-      return RoutingSchemeServiceApiFp(configuration).readRoutingScheme(
+    readRoutingSchema(id: string, domain_id?: string, options?: any) {
+      return RoutingSchemaServiceApiFp(configuration).readRoutingSchema(
         id,
         domain_id,
         options
@@ -20875,20 +21598,20 @@ export const RoutingSchemeServiceApiFactory = function(
     },
     /**
      *
-     * @summary List RoutingScheme
+     * @summary List RoutingSchema
      * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingScheme(
+    searchRoutingSchema(
       domain_id?: string,
       size?: number,
       page?: number,
       options?: any
     ) {
-      return RoutingSchemeServiceApiFp(configuration).searchRoutingScheme(
+      return RoutingSchemaServiceApiFp(configuration).searchRoutingSchema(
         domain_id,
         size,
         page,
@@ -20897,18 +21620,18 @@ export const RoutingSchemeServiceApiFactory = function(
     },
     /**
      *
-     * @summary Update RoutingScheme
+     * @summary Update RoutingSchema
      * @param {string} id
-     * @param {EngineUpdateRoutingSchemeRequest} body
+     * @param {EngineUpdateRoutingSchemaRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRoutingScheme(
+    updateRoutingSchema(
       id: string,
-      body: EngineUpdateRoutingSchemeRequest,
+      body: EngineUpdateRoutingSchemaRequest,
       options?: any
     ) {
-      return RoutingSchemeServiceApiFp(configuration).updateRoutingScheme(
+      return RoutingSchemaServiceApiFp(configuration).updateRoutingSchema(
         id,
         body,
         options
@@ -20918,25 +21641,25 @@ export const RoutingSchemeServiceApiFactory = function(
 }
 
 /**
- * RoutingSchemeServiceApi - object-oriented interface
+ * RoutingSchemaServiceApi - object-oriented interface
  * @export
- * @class RoutingSchemeServiceApi
+ * @class RoutingSchemaServiceApi
  * @extends {BaseAPI}
  */
-export class RoutingSchemeServiceApi extends BaseAPI {
+export class RoutingSchemaServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create RoutingScheme
-   * @param {EngineCreateRoutingSchemeRequest} body
+   * @summary Create RoutingSchema
+   * @param {EngineCreateRoutingSchemaRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemeServiceApi
+   * @memberof RoutingSchemaServiceApi
    */
-  public createRoutingScheme(
-    body: EngineCreateRoutingSchemeRequest,
+  public createRoutingSchema(
+    body: EngineCreateRoutingSchemaRequest,
     options?: any
   ) {
-    return RoutingSchemeServiceApiFp(this.configuration).createRoutingScheme(
+    return RoutingSchemaServiceApiFp(this.configuration).createRoutingSchema(
       body,
       options
     )(this.axios, this.basePath)
@@ -20944,15 +21667,15 @@ export class RoutingSchemeServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary Remove RoutingScheme
+   * @summary Remove RoutingSchema
    * @param {string} id
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemeServiceApi
+   * @memberof RoutingSchemaServiceApi
    */
-  public deleteRoutingScheme(id: string, domain_id?: string, options?: any) {
-    return RoutingSchemeServiceApiFp(this.configuration).deleteRoutingScheme(
+  public deleteRoutingSchema(id: string, domain_id?: string, options?: any) {
+    return RoutingSchemaServiceApiFp(this.configuration).deleteRoutingSchema(
       id,
       domain_id,
       options
@@ -20961,15 +21684,36 @@ export class RoutingSchemeServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary RoutingScheme item
+   * @summary Patch RoutingSchema
+   * @param {string} id
+   * @param {EnginePatchRoutingSchemaRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemaServiceApi
+   */
+  public patchRoutingSchema(
+    id: string,
+    body: EnginePatchRoutingSchemaRequest,
+    options?: any
+  ) {
+    return RoutingSchemaServiceApiFp(this.configuration).patchRoutingSchema(
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary RoutingSchema item
    * @param {string} id
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemeServiceApi
+   * @memberof RoutingSchemaServiceApi
    */
-  public readRoutingScheme(id: string, domain_id?: string, options?: any) {
-    return RoutingSchemeServiceApiFp(this.configuration).readRoutingScheme(
+  public readRoutingSchema(id: string, domain_id?: string, options?: any) {
+    return RoutingSchemaServiceApiFp(this.configuration).readRoutingSchema(
       id,
       domain_id,
       options
@@ -20978,21 +21722,21 @@ export class RoutingSchemeServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary List RoutingScheme
+   * @summary List RoutingSchema
    * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemeServiceApi
+   * @memberof RoutingSchemaServiceApi
    */
-  public searchRoutingScheme(
+  public searchRoutingSchema(
     domain_id?: string,
     size?: number,
     page?: number,
     options?: any
   ) {
-    return RoutingSchemeServiceApiFp(this.configuration).searchRoutingScheme(
+    return RoutingSchemaServiceApiFp(this.configuration).searchRoutingSchema(
       domain_id,
       size,
       page,
@@ -21002,19 +21746,19 @@ export class RoutingSchemeServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary Update RoutingScheme
+   * @summary Update RoutingSchema
    * @param {string} id
-   * @param {EngineUpdateRoutingSchemeRequest} body
+   * @param {EngineUpdateRoutingSchemaRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemeServiceApi
+   * @memberof RoutingSchemaServiceApi
    */
-  public updateRoutingScheme(
+  public updateRoutingSchema(
     id: string,
-    body: EngineUpdateRoutingSchemeRequest,
+    body: EngineUpdateRoutingSchemaRequest,
     options?: any
   ) {
-    return RoutingSchemeServiceApiFp(this.configuration).updateRoutingScheme(
+    return RoutingSchemaServiceApiFp(this.configuration).updateRoutingSchema(
       id,
       body,
       options
