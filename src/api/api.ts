@@ -1385,57 +1385,100 @@ export interface EngineCreateQueueRoutingRequest {
 /**
  *
  * @export
- * @interface EngineCreateResourceTeamRequest
+ * @interface EngineCreateResourceTeamAgentRequest
  */
-export interface EngineCreateResourceTeamRequest {
+export interface EngineCreateResourceTeamAgentRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineCreateResourceTeamRequest
+   * @memberof EngineCreateResourceTeamAgentRequest
    */
   team_id?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineCreateResourceTeamRequest
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
-   * @memberof EngineCreateResourceTeamRequest
+   * @memberof EngineCreateResourceTeamAgentRequest
    */
   agent?: EngineLookup
   /**
    *
    * @type {EngineLookup}
-   * @memberof EngineCreateResourceTeamRequest
-   */
-  skill?: EngineLookup
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineCreateResourceTeamRequest
+   * @memberof EngineCreateResourceTeamAgentRequest
    */
   bucket?: EngineLookup
   /**
    *
    * @type {number}
-   * @memberof EngineCreateResourceTeamRequest
+   * @memberof EngineCreateResourceTeamAgentRequest
    */
   lvl?: number
   /**
    *
    * @type {number}
-   * @memberof EngineCreateResourceTeamRequest
+   * @memberof EngineCreateResourceTeamAgentRequest
    */
   min_capacity?: number
   /**
    *
    * @type {number}
-   * @memberof EngineCreateResourceTeamRequest
+   * @memberof EngineCreateResourceTeamAgentRequest
    */
   max_capacity?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateResourceTeamAgentRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateResourceTeamSkillRequest
+ */
+export interface EngineCreateResourceTeamSkillRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  team_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  lvl?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  min_capacity?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  max_capacity?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -2015,15 +2058,28 @@ export interface EngineListQueueRouting {
 /**
  *
  * @export
- * @interface EngineListResourceTeam
+ * @interface EngineListResourceTeamAgent
  */
-export interface EngineListResourceTeam {
+export interface EngineListResourceTeamAgent {
   /**
    *
-   * @type {Array<EngineResourceTeam>}
-   * @memberof EngineListResourceTeam
+   * @type {Array<EngineResourceTeamAgent>}
+   * @memberof EngineListResourceTeamAgent
    */
-  items?: Array<EngineResourceTeam>
+  items?: Array<EngineResourceTeamAgent>
+}
+/**
+ *
+ * @export
+ * @interface EngineListResourceTeamSkill
+ */
+export interface EngineListResourceTeamSkill {
+  /**
+   *
+   * @type {Array<EngineResourceTeamSkill>}
+   * @memberof EngineListResourceTeamSkill
+   */
+  items?: Array<EngineResourceTeamSkill>
 }
 /**
  *
@@ -3156,61 +3212,98 @@ export interface EngineResourceDisplay {
 /**
  *
  * @export
- * @interface EngineResourceTeam
+ * @interface EngineResourceTeamAgent
  */
-export interface EngineResourceTeam {
+export interface EngineResourceTeamAgent {
   /**
    *
    * @type {string}
-   * @memberof EngineResourceTeam
+   * @memberof EngineResourceTeamAgent
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineResourceTeam
+   * @memberof EngineResourceTeamAgent
    */
   team_id?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineResourceTeam
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
-   * @memberof EngineResourceTeam
+   * @memberof EngineResourceTeamAgent
    */
   agent?: EngineLookup
   /**
    *
    * @type {EngineLookup}
-   * @memberof EngineResourceTeam
-   */
-  skill?: EngineLookup
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineResourceTeam
+   * @memberof EngineResourceTeamAgent
    */
   bucket?: EngineLookup
   /**
    *
    * @type {number}
-   * @memberof EngineResourceTeam
+   * @memberof EngineResourceTeamAgent
    */
   lvl?: number
   /**
    *
    * @type {number}
-   * @memberof EngineResourceTeam
+   * @memberof EngineResourceTeamAgent
    */
   min_capacity?: number
   /**
    *
    * @type {number}
-   * @memberof EngineResourceTeam
+   * @memberof EngineResourceTeamAgent
+   */
+  max_capacity?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineResourceTeamSkill
+ */
+export interface EngineResourceTeamSkill {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceTeamSkill
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceTeamSkill
+   */
+  team_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineResourceTeamSkill
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineResourceTeamSkill
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineResourceTeamSkill
+   */
+  lvl?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineResourceTeamSkill
+   */
+  min_capacity?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineResourceTeamSkill
    */
   max_capacity?: number
 }
@@ -4400,63 +4493,112 @@ export interface EngineUpdateQueueRoutingRequest {
 /**
  *
  * @export
- * @interface EngineUpdateResourceTeamRequest
+ * @interface EngineUpdateResourceTeamAgentRequest
  */
-export interface EngineUpdateResourceTeamRequest {
+export interface EngineUpdateResourceTeamAgentRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateResourceTeamRequest
+   * @memberof EngineUpdateResourceTeamAgentRequest
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateResourceTeamRequest
+   * @memberof EngineUpdateResourceTeamAgentRequest
    */
   team_id?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineUpdateResourceTeamRequest
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
-   * @memberof EngineUpdateResourceTeamRequest
+   * @memberof EngineUpdateResourceTeamAgentRequest
    */
   agent?: EngineLookup
   /**
    *
    * @type {EngineLookup}
-   * @memberof EngineUpdateResourceTeamRequest
-   */
-  skill?: EngineLookup
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineUpdateResourceTeamRequest
+   * @memberof EngineUpdateResourceTeamAgentRequest
    */
   bucket?: EngineLookup
   /**
    *
    * @type {number}
-   * @memberof EngineUpdateResourceTeamRequest
+   * @memberof EngineUpdateResourceTeamAgentRequest
    */
   lvl?: number
   /**
    *
    * @type {number}
-   * @memberof EngineUpdateResourceTeamRequest
+   * @memberof EngineUpdateResourceTeamAgentRequest
    */
   min_capacity?: number
   /**
    *
    * @type {number}
-   * @memberof EngineUpdateResourceTeamRequest
+   * @memberof EngineUpdateResourceTeamAgentRequest
    */
   max_capacity?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamAgentRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateResourceTeamSkillRequest
+ */
+export interface EngineUpdateResourceTeamSkillRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  team_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  lvl?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  min_capacity?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  max_capacity?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -7576,15 +7718,15 @@ export const BucketServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of Bucket
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchBucket(
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
@@ -7611,12 +7753,12 @@ export const BucketServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
-      }
-
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
       }
 
       if (domain_id !== undefined) {
@@ -7818,15 +7960,15 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of Bucket
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchBucket(
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options?: any
     ): (
@@ -7835,7 +7977,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListBucket> {
       const localVarAxiosArgs = BucketServiceApiAxiosParamCreator(
         configuration
-      ).searchBucket(size, page, domain_id, options)
+      ).searchBucket(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -7936,21 +8078,21 @@ export const BucketServiceApiFactory = function(
     /**
      *
      * @summary List of Bucket
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchBucket(
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options?: any
     ) {
       return BucketServiceApiFp(configuration).searchBucket(
-        size,
         page,
+        size,
         domain_id,
         options
       )(axios, basePath)
@@ -8031,22 +8173,22 @@ export class BucketServiceApi extends BaseAPI {
   /**
    *
    * @summary List of Bucket
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BucketServiceApi
    */
   public searchBucket(
-    size?: number,
     page?: number,
+    size?: number,
     domain_id?: string,
     options?: any
   ) {
     return BucketServiceApiFp(this.configuration).searchBucket(
-      size,
       page,
+      size,
       domain_id,
       options
     )(this.axios, this.basePath)
@@ -19220,32 +19362,32 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @summary Create ResourceTeam
+     * @summary Create ResourceTeamAgent
      * @param {string} team_id
-     * @param {EngineCreateResourceTeamRequest} body
+     * @param {EngineCreateResourceTeamAgentRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createResourceTeam(
+    createResourceTeamAgent(
       team_id: string,
-      body: EngineCreateResourceTeamRequest,
+      body: EngineCreateResourceTeamAgentRequest,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'team_id' is not null or undefined
       if (team_id === null || team_id === undefined) {
         throw new RequiredError(
           'team_id',
-          'Required parameter team_id was null or undefined when calling createResourceTeam.'
+          'Required parameter team_id was null or undefined when calling createResourceTeamAgent.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createResourceTeam.'
+          'Required parameter body was null or undefined when calling createResourceTeamAgent.'
         )
       }
-      const localVarPath = `/call_center/teams/{team_id}/resources`.replace(
+      const localVarPath = `/call_center/teams/{team_id}/agents`.replace(
         `{${'team_id'}}`,
         encodeURIComponent(String(team_id))
       )
@@ -19285,7 +19427,7 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        <any>'EngineCreateResourceTeamRequest' !== 'string' ||
+        <any>'EngineCreateResourceTeamAgentRequest' !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
         ? JSON.stringify(body !== undefined ? body : {})
@@ -19298,14 +19440,92 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Remove ResourceTeam
+     * @summary SKill Create ResourceTeamSkill
+     * @param {string} team_id
+     * @param {EngineCreateResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createResourceTeamSkill(
+      team_id: string,
+      body: EngineCreateResourceTeamSkillRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling createResourceTeamSkill.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createResourceTeamSkill.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/skills`.replace(
+        `{${'team_id'}}`,
+        encodeURIComponent(String(team_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateResourceTeamSkillRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove ResourceTeamAgent
      * @param {string} team_id
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteResourceTeam(
+    deleteResourceTeamAgent(
       team_id: string,
       id: string,
       domain_id?: string,
@@ -19315,17 +19535,17 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
       if (team_id === null || team_id === undefined) {
         throw new RequiredError(
           'team_id',
-          'Required parameter team_id was null or undefined when calling deleteResourceTeam.'
+          'Required parameter team_id was null or undefined when calling deleteResourceTeamAgent.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteResourceTeam.'
+          'Required parameter id was null or undefined when calling deleteResourceTeamAgent.'
         )
       }
-      const localVarPath = `/call_center/teams/{team_id}/resources/{id}`
+      const localVarPath = `/call_center/teams/{team_id}/agents/{id}`
         .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -19373,14 +19593,14 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary ResourceTeam item
+     * @summary Remove ResourceTeamSkill
      * @param {string} team_id
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readResourceTeam(
+    deleteResourceTeamSkill(
       team_id: string,
       id: string,
       domain_id?: string,
@@ -19390,17 +19610,92 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
       if (team_id === null || team_id === undefined) {
         throw new RequiredError(
           'team_id',
-          'Required parameter team_id was null or undefined when calling readResourceTeam.'
+          'Required parameter team_id was null or undefined when calling deleteResourceTeamSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readResourceTeam.'
+          'Required parameter id was null or undefined when calling deleteResourceTeamSkill.'
         )
       }
-      const localVarPath = `/call_center/teams/{team_id}/resources/{id}`
+      const localVarPath = `/call_center/teams/{team_id}/skills/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary ResourceTeamAgent item
+     * @param {string} team_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readResourceTeamAgent(
+      team_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling readResourceTeamAgent.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readResourceTeamAgent.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/agents/{id}`
         .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -19448,32 +19743,36 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List of ResourceTeam
+     * @summary ResourceTeamSkill item
      * @param {string} team_id
+     * @param {string} id
      * @param {string} [domain_id]
-     * @param {number} [size]
-     * @param {number} [page]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchResourceTeam(
+    readResourceTeamSkill(
       team_id: string,
+      id: string,
       domain_id?: string,
-      size?: number,
-      page?: number,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'team_id' is not null or undefined
       if (team_id === null || team_id === undefined) {
         throw new RequiredError(
           'team_id',
-          'Required parameter team_id was null or undefined when calling searchResourceTeam.'
+          'Required parameter team_id was null or undefined when calling readResourceTeamSkill.'
         )
       }
-      const localVarPath = `/call_center/teams/{team_id}/resources`.replace(
-        `{${'team_id'}}`,
-        encodeURIComponent(String(team_id))
-      )
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readResourceTeamSkill.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/skills/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -19500,12 +19799,83 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
         localVarQueryParameter['domain_id'] = domain_id
       }
 
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of ResourceTeamAgent
+     * @param {string} team_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchResourceTeamAgent(
+      team_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling searchResourceTeamAgent.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/agents`.replace(
+        `{${'team_id'}}`,
+        encodeURIComponent(String(team_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -19527,41 +19897,120 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update ResourceTeam
+     * @summary List of ResourceTeamSkill
      * @param {string} team_id
-     * @param {string} id
-     * @param {EngineUpdateResourceTeamRequest} body
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateResourceTeam(
+    searchResourceTeamSkill(
       team_id: string,
-      id: string,
-      body: EngineUpdateResourceTeamRequest,
+      page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'team_id' is not null or undefined
       if (team_id === null || team_id === undefined) {
         throw new RequiredError(
           'team_id',
-          'Required parameter team_id was null or undefined when calling updateResourceTeam.'
+          'Required parameter team_id was null or undefined when calling searchResourceTeamSkill.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/skills`.replace(
+        `{${'team_id'}}`,
+        encodeURIComponent(String(team_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EngineUpdateResourceTeamAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateResourceTeamAgent(
+      team_id: string,
+      id: string,
+      body: EngineUpdateResourceTeamAgentRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling updateResourceTeamAgent.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateResourceTeam.'
+          'Required parameter id was null or undefined when calling updateResourceTeamAgent.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateResourceTeam.'
+          'Required parameter body was null or undefined when calling updateResourceTeamAgent.'
         )
       }
-      const localVarPath = `/call_center/teams/{team_id}/resources/{id}`
+      const localVarPath = `/call_center/teams/{team_id}/agents/{id}`
         .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -19600,7 +20049,93 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        <any>'EngineUpdateResourceTeamRequest' !== 'string' ||
+        <any>'EngineUpdateResourceTeamAgentRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update ResourceTeamSkill
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EngineUpdateResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateResourceTeamSkill(
+      team_id: string,
+      id: string,
+      body: EngineUpdateResourceTeamSkillRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling updateResourceTeamSkill.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateResourceTeamSkill.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateResourceTeamSkill.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/skills/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateResourceTeamSkillRequest' !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
         ? JSON.stringify(body !== undefined ? body : {})
@@ -19624,23 +20159,23 @@ export const ResourceTeamServiceApiFp = function(
   return {
     /**
      *
-     * @summary Create ResourceTeam
+     * @summary Create ResourceTeamAgent
      * @param {string} team_id
-     * @param {EngineCreateResourceTeamRequest} body
+     * @param {EngineCreateResourceTeamAgentRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createResourceTeam(
+    createResourceTeamAgent(
       team_id: string,
-      body: EngineCreateResourceTeamRequest,
+      body: EngineCreateResourceTeamAgentRequest,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineResourceTeam> {
+    ) => AxiosPromise<EngineResourceTeamAgent> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).createResourceTeam(team_id, body, options)
+      ).createResourceTeamAgent(team_id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -19654,14 +20189,44 @@ export const ResourceTeamServiceApiFp = function(
     },
     /**
      *
-     * @summary Remove ResourceTeam
+     * @summary SKill Create ResourceTeamSkill
+     * @param {string} team_id
+     * @param {EngineCreateResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createResourceTeamSkill(
+      team_id: string,
+      body: EngineCreateResourceTeamSkillRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceTeamSkill> {
+      const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
+        configuration
+      ).createResourceTeamSkill(team_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove ResourceTeamAgent
      * @param {string} team_id
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteResourceTeam(
+    deleteResourceTeamAgent(
       team_id: string,
       id: string,
       domain_id?: string,
@@ -19669,10 +20234,10 @@ export const ResourceTeamServiceApiFp = function(
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineResourceTeam> {
+    ) => AxiosPromise<EngineResourceTeamAgent> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).deleteResourceTeam(team_id, id, domain_id, options)
+      ).deleteResourceTeamAgent(team_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -19686,14 +20251,14 @@ export const ResourceTeamServiceApiFp = function(
     },
     /**
      *
-     * @summary ResourceTeam item
+     * @summary Remove ResourceTeamSkill
      * @param {string} team_id
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readResourceTeam(
+    deleteResourceTeamSkill(
       team_id: string,
       id: string,
       domain_id?: string,
@@ -19701,10 +20266,10 @@ export const ResourceTeamServiceApiFp = function(
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineResourceTeam> {
+    ) => AxiosPromise<EngineResourceTeamSkill> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).readResourceTeam(team_id, id, domain_id, options)
+      ).deleteResourceTeamSkill(team_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -19718,27 +20283,91 @@ export const ResourceTeamServiceApiFp = function(
     },
     /**
      *
-     * @summary List of ResourceTeam
+     * @summary ResourceTeamAgent item
      * @param {string} team_id
+     * @param {string} id
      * @param {string} [domain_id]
-     * @param {number} [size]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readResourceTeamAgent(
+      team_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceTeamAgent> {
+      const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
+        configuration
+      ).readResourceTeamAgent(team_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary ResourceTeamSkill item
+     * @param {string} team_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readResourceTeamSkill(
+      team_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceTeamSkill> {
+      const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
+        configuration
+      ).readResourceTeamSkill(team_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of ResourceTeamAgent
+     * @param {string} team_id
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchResourceTeam(
+    searchResourceTeamAgent(
       team_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineListResourceTeam> {
+    ) => AxiosPromise<EngineListResourceTeamAgent> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).searchResourceTeam(team_id, domain_id, size, page, options)
+      ).searchResourceTeamAgent(team_id, page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -19752,25 +20381,91 @@ export const ResourceTeamServiceApiFp = function(
     },
     /**
      *
-     * @summary Update ResourceTeam
+     * @summary List of ResourceTeamSkill
      * @param {string} team_id
-     * @param {string} id
-     * @param {EngineUpdateResourceTeamRequest} body
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateResourceTeam(
+    searchResourceTeamSkill(
       team_id: string,
-      id: string,
-      body: EngineUpdateResourceTeamRequest,
+      page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineResourceTeam> {
+    ) => AxiosPromise<EngineListResourceTeamSkill> {
       const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
         configuration
-      ).updateResourceTeam(team_id, id, body, options)
+      ).searchResourceTeamSkill(team_id, page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EngineUpdateResourceTeamAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateResourceTeamAgent(
+      team_id: string,
+      id: string,
+      body: EngineUpdateResourceTeamAgentRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceTeamAgent> {
+      const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
+        configuration
+      ).updateResourceTeamAgent(team_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update ResourceTeamSkill
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EngineUpdateResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateResourceTeamSkill(
+      team_id: string,
+      id: string,
+      body: EngineUpdateResourceTeamSkillRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceTeamSkill> {
+      const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
+        configuration
+      ).updateResourceTeamSkill(team_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -19797,18 +20492,18 @@ export const ResourceTeamServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create ResourceTeam
+     * @summary Create ResourceTeamAgent
      * @param {string} team_id
-     * @param {EngineCreateResourceTeamRequest} body
+     * @param {EngineCreateResourceTeamAgentRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createResourceTeam(
+    createResourceTeamAgent(
       team_id: string,
-      body: EngineCreateResourceTeamRequest,
+      body: EngineCreateResourceTeamAgentRequest,
       options?: any
     ) {
-      return ResourceTeamServiceApiFp(configuration).createResourceTeam(
+      return ResourceTeamServiceApiFp(configuration).createResourceTeamAgent(
         team_id,
         body,
         options
@@ -19816,20 +20511,39 @@ export const ResourceTeamServiceApiFactory = function(
     },
     /**
      *
-     * @summary Remove ResourceTeam
+     * @summary SKill Create ResourceTeamSkill
+     * @param {string} team_id
+     * @param {EngineCreateResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createResourceTeamSkill(
+      team_id: string,
+      body: EngineCreateResourceTeamSkillRequest,
+      options?: any
+    ) {
+      return ResourceTeamServiceApiFp(configuration).createResourceTeamSkill(
+        team_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Remove ResourceTeamAgent
      * @param {string} team_id
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteResourceTeam(
+    deleteResourceTeamAgent(
       team_id: string,
       id: string,
       domain_id?: string,
       options?: any
     ) {
-      return ResourceTeamServiceApiFp(configuration).deleteResourceTeam(
+      return ResourceTeamServiceApiFp(configuration).deleteResourceTeamAgent(
         team_id,
         id,
         domain_id,
@@ -19838,20 +20552,20 @@ export const ResourceTeamServiceApiFactory = function(
     },
     /**
      *
-     * @summary ResourceTeam item
+     * @summary Remove ResourceTeamSkill
      * @param {string} team_id
      * @param {string} id
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readResourceTeam(
+    deleteResourceTeamSkill(
       team_id: string,
       id: string,
       domain_id?: string,
       options?: any
     ) {
-      return ResourceTeamServiceApiFp(configuration).readResourceTeam(
+      return ResourceTeamServiceApiFp(configuration).deleteResourceTeamSkill(
         team_id,
         id,
         domain_id,
@@ -19860,45 +20574,136 @@ export const ResourceTeamServiceApiFactory = function(
     },
     /**
      *
-     * @summary List of ResourceTeam
+     * @summary ResourceTeamAgent item
      * @param {string} team_id
+     * @param {string} id
      * @param {string} [domain_id]
-     * @param {number} [size]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readResourceTeamAgent(
+      team_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return ResourceTeamServiceApiFp(configuration).readResourceTeamAgent(
+        team_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary ResourceTeamSkill item
+     * @param {string} team_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readResourceTeamSkill(
+      team_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return ResourceTeamServiceApiFp(configuration).readResourceTeamSkill(
+        team_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List of ResourceTeamAgent
+     * @param {string} team_id
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchResourceTeam(
+    searchResourceTeamAgent(
       team_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
-      return ResourceTeamServiceApiFp(configuration).searchResourceTeam(
+      return ResourceTeamServiceApiFp(configuration).searchResourceTeamAgent(
         team_id,
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
-     * @summary Update ResourceTeam
+     * @summary List of ResourceTeamSkill
      * @param {string} team_id
-     * @param {string} id
-     * @param {EngineUpdateResourceTeamRequest} body
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateResourceTeam(
+    searchResourceTeamSkill(
       team_id: string,
-      id: string,
-      body: EngineUpdateResourceTeamRequest,
+      page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
-      return ResourceTeamServiceApiFp(configuration).updateResourceTeam(
+      return ResourceTeamServiceApiFp(configuration).searchResourceTeamSkill(
+        team_id,
+        page,
+        size,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EngineUpdateResourceTeamAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateResourceTeamAgent(
+      team_id: string,
+      id: string,
+      body: EngineUpdateResourceTeamAgentRequest,
+      options?: any
+    ) {
+      return ResourceTeamServiceApiFp(configuration).updateResourceTeamAgent(
+        team_id,
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update ResourceTeamSkill
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EngineUpdateResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateResourceTeamSkill(
+      team_id: string,
+      id: string,
+      body: EngineUpdateResourceTeamSkillRequest,
+      options?: any
+    ) {
+      return ResourceTeamServiceApiFp(configuration).updateResourceTeamSkill(
         team_id,
         id,
         body,
@@ -19917,19 +20722,19 @@ export const ResourceTeamServiceApiFactory = function(
 export class ResourceTeamServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create ResourceTeam
+   * @summary Create ResourceTeamAgent
    * @param {string} team_id
-   * @param {EngineCreateResourceTeamRequest} body
+   * @param {EngineCreateResourceTeamAgentRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
-  public createResourceTeam(
+  public createResourceTeamAgent(
     team_id: string,
-    body: EngineCreateResourceTeamRequest,
+    body: EngineCreateResourceTeamAgentRequest,
     options?: any
   ) {
-    return ResourceTeamServiceApiFp(this.configuration).createResourceTeam(
+    return ResourceTeamServiceApiFp(this.configuration).createResourceTeamAgent(
       team_id,
       body,
       options
@@ -19938,7 +20743,28 @@ export class ResourceTeamServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary Remove ResourceTeam
+   * @summary SKill Create ResourceTeamSkill
+   * @param {string} team_id
+   * @param {EngineCreateResourceTeamSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  public createResourceTeamSkill(
+    team_id: string,
+    body: EngineCreateResourceTeamSkillRequest,
+    options?: any
+  ) {
+    return ResourceTeamServiceApiFp(this.configuration).createResourceTeamSkill(
+      team_id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Remove ResourceTeamAgent
    * @param {string} team_id
    * @param {string} id
    * @param {string} [domain_id]
@@ -19946,13 +20772,13 @@ export class ResourceTeamServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
-  public deleteResourceTeam(
+  public deleteResourceTeamAgent(
     team_id: string,
     id: string,
     domain_id?: string,
     options?: any
   ) {
-    return ResourceTeamServiceApiFp(this.configuration).deleteResourceTeam(
+    return ResourceTeamServiceApiFp(this.configuration).deleteResourceTeamAgent(
       team_id,
       id,
       domain_id,
@@ -19962,7 +20788,7 @@ export class ResourceTeamServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary ResourceTeam item
+   * @summary Remove ResourceTeamSkill
    * @param {string} team_id
    * @param {string} id
    * @param {string} [domain_id]
@@ -19970,13 +20796,13 @@ export class ResourceTeamServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
-  public readResourceTeam(
+  public deleteResourceTeamSkill(
     team_id: string,
     id: string,
     domain_id?: string,
     options?: any
   ) {
-    return ResourceTeamServiceApiFp(this.configuration).readResourceTeam(
+    return ResourceTeamServiceApiFp(this.configuration).deleteResourceTeamSkill(
       team_id,
       id,
       domain_id,
@@ -19986,48 +20812,147 @@ export class ResourceTeamServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary List of ResourceTeam
+   * @summary ResourceTeamAgent item
    * @param {string} team_id
+   * @param {string} id
    * @param {string} [domain_id]
-   * @param {number} [size]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  public readResourceTeamAgent(
+    team_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return ResourceTeamServiceApiFp(this.configuration).readResourceTeamAgent(
+      team_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary ResourceTeamSkill item
+   * @param {string} team_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  public readResourceTeamSkill(
+    team_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return ResourceTeamServiceApiFp(this.configuration).readResourceTeamSkill(
+      team_id,
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of ResourceTeamAgent
+   * @param {string} team_id
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
-  public searchResourceTeam(
+  public searchResourceTeamAgent(
     team_id: string,
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
-    return ResourceTeamServiceApiFp(this.configuration).searchResourceTeam(
+    return ResourceTeamServiceApiFp(this.configuration).searchResourceTeamAgent(
       team_id,
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
 
   /**
    *
-   * @summary Update ResourceTeam
+   * @summary List of ResourceTeamSkill
    * @param {string} team_id
-   * @param {string} id
-   * @param {EngineUpdateResourceTeamRequest} body
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ResourceTeamServiceApi
    */
-  public updateResourceTeam(
+  public searchResourceTeamSkill(
     team_id: string,
-    id: string,
-    body: EngineUpdateResourceTeamRequest,
+    page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
-    return ResourceTeamServiceApiFp(this.configuration).updateResourceTeam(
+    return ResourceTeamServiceApiFp(this.configuration).searchResourceTeamSkill(
+      team_id,
+      page,
+      size,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Update ResourceTeamAgent
+   * @param {string} team_id
+   * @param {string} id
+   * @param {EngineUpdateResourceTeamAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  public updateResourceTeamAgent(
+    team_id: string,
+    id: string,
+    body: EngineUpdateResourceTeamAgentRequest,
+    options?: any
+  ) {
+    return ResourceTeamServiceApiFp(this.configuration).updateResourceTeamAgent(
+      team_id,
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Update ResourceTeamSkill
+   * @param {string} team_id
+   * @param {string} id
+   * @param {EngineUpdateResourceTeamSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  public updateResourceTeamSkill(
+    team_id: string,
+    id: string,
+    body: EngineUpdateResourceTeamSkillRequest,
+    options?: any
+  ) {
+    return ResourceTeamServiceApiFp(this.configuration).updateResourceTeamSkill(
       team_id,
       id,
       body,
