@@ -76,12 +76,6 @@ export interface EngineAgent {
   id?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineAgent
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineAgent
    */
@@ -104,6 +98,18 @@ export interface EngineAgent {
    * @memberof EngineAgent
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  last_state_change?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  state_timeout?: string
 }
 /**
  *
@@ -264,6 +270,43 @@ export interface EngineAgentSkillItem {
    * @memberof EngineAgentSkillItem
    */
   capacity?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineAgentState
+ */
+export interface EngineAgentState {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentState
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentState
+   */
+  joined_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentState
+   */
+  state?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentState
+   */
+  timeout_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentState
+   */
+  queue?: EngineLookup
 }
 /**
  *
@@ -1414,18 +1457,6 @@ export interface EngineCreateResourceTeamAgentRequest {
   lvl?: number
   /**
    *
-   * @type {number}
-   * @memberof EngineCreateResourceTeamAgentRequest
-   */
-  min_capacity?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateResourceTeamAgentRequest
-   */
-  max_capacity?: number
-  /**
-   *
    * @type {string}
    * @memberof EngineCreateResourceTeamAgentRequest
    */
@@ -1656,6 +1687,31 @@ export interface EngineCreateSupervisorInTeamRequest {
 /**
  *
  * @export
+ * @interface EngineDeleteMembersRequest
+ */
+export interface EngineDeleteMembersRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineDeleteMembersRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineDeleteMembersRequest
+   */
+  ids?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineDeleteMembersRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
  * @interface EngineExceptDate
  */
 export interface EngineExceptDate {
@@ -1815,6 +1871,19 @@ export interface EngineListAgentSkill {
    * @memberof EngineListAgentSkill
    */
   items?: Array<EngineAgentSkillItem>
+}
+/**
+ *
+ * @export
+ * @interface EngineListAgentStateHistory
+ */
+export interface EngineListAgentStateHistory {
+  /**
+   *
+   * @type {Array<EngineAgentState>}
+   * @memberof EngineListAgentStateHistory
+   */
+  items?: Array<EngineAgentState>
 }
 /**
  *
@@ -3245,18 +3314,6 @@ export interface EngineResourceTeamAgent {
    * @memberof EngineResourceTeamAgent
    */
   lvl?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineResourceTeamAgent
-   */
-  min_capacity?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineResourceTeamAgent
-   */
-  max_capacity?: number
 }
 /**
  *
@@ -4528,18 +4585,6 @@ export interface EngineUpdateResourceTeamAgentRequest {
   lvl?: number
   /**
    *
-   * @type {number}
-   * @memberof EngineUpdateResourceTeamAgentRequest
-   */
-  min_capacity?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateResourceTeamAgentRequest
-   */
-  max_capacity?: number
-  /**
-   *
    * @type {string}
    * @memberof EngineUpdateResourceTeamAgentRequest
    */
@@ -5241,6 +5286,97 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary List of Agent
+     * @param {string} agent_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentStateHistory(
+      agent_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      time_from?: string,
+      time_to?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'agent_id' is not null or undefined
+      if (agent_id === null || agent_id === undefined) {
+        throw new RequiredError(
+          'agent_id',
+          'Required parameter agent_id was null or undefined when calling searchAgentStateHistory.'
+        )
+      }
+      const localVarPath = `/call_center/agents/{agent_id}/states/history`.replace(
+        `{${'agent_id'}}`,
+        encodeURIComponent(String(agent_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (time_from !== undefined) {
+        localVarQueryParameter['time_from'] = time_from
+      }
+
+      if (time_to !== undefined) {
+        localVarQueryParameter['time_to'] = time_to
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -5583,6 +5719,52 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary List of Agent
+     * @param {string} agent_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentStateHistory(
+      agent_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      time_from?: string,
+      time_to?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListAgentStateHistory> {
+      const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentStateHistory(
+        agent_id,
+        page,
+        size,
+        domain_id,
+        time_from,
+        time_to,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -5765,6 +5947,37 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @summary List of Agent
+     * @param {string} agent_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentStateHistory(
+      agent_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      time_from?: string,
+      time_to?: string,
+      options?: any
+    ) {
+      return AgentServiceApiFp(configuration).searchAgentStateHistory(
+        agent_id,
+        page,
+        size,
+        domain_id,
+        time_from,
+        time_to,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -5927,6 +6140,39 @@ export class AgentServiceApi extends BaseAPI {
       domain_id,
       size,
       page,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of Agent
+   * @param {string} agent_id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {string} [time_from]
+   * @param {string} [time_to]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public searchAgentStateHistory(
+    agent_id: string,
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    time_from?: string,
+    time_to?: string,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration).searchAgentStateHistory(
+      agent_id,
+      page,
+      size,
+      domain_id,
+      time_from,
+      time_to,
       options
     )(this.axios, this.basePath)
   }
@@ -12969,6 +13215,84 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary DeleteMembers
+     * @param {string} queue_id
+     * @param {EngineDeleteMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMembers(
+      queue_id: string,
+      body: EngineDeleteMembersRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling deleteMembers.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling deleteMembers.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineDeleteMembersRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queue_id
      * @param {string} id
@@ -13385,6 +13709,36 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary DeleteMembers
+     * @param {string} queue_id
+     * @param {EngineDeleteMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMembers(
+      queue_id: string,
+      body: EngineDeleteMembersRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListMember> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).deleteMembers(queue_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queue_id
      * @param {string} id
@@ -13588,6 +13942,25 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @summary DeleteMembers
+     * @param {string} queue_id
+     * @param {EngineDeleteMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMembers(
+      queue_id: string,
+      body: EngineDeleteMembersRequest,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).deleteMembers(
+        queue_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queue_id
      * @param {string} id
@@ -13749,6 +14122,27 @@ export class MemberServiceApi extends BaseAPI {
       queue_id,
       id,
       domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary DeleteMembers
+   * @param {string} queue_id
+   * @param {EngineDeleteMembersRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public deleteMembers(
+    queue_id: string,
+    body: EngineDeleteMembersRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).deleteMembers(
+      queue_id,
+      body,
       options
     )(this.axios, this.basePath)
   }
