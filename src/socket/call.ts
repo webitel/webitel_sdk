@@ -115,6 +115,10 @@ export class Call {
     return `${this.displayNumber} (${this.displayName})`
   }
 
+  get muted() {
+    return this._muted
+  }
+
   setInfo(s: CallInfo) {
     this.destination = s.destination
     this.direction = s.direction

@@ -325,13 +325,13 @@ export interface EngineAgentStatusRequest {
    * @type {string}
    * @memberof EngineAgentStatusRequest
    */
-  domain_id?: string
+  status?: string
   /**
    *
    * @type {string}
    * @memberof EngineAgentStatusRequest
    */
-  status?: string
+  domain_id?: string
 }
 /**
  *
@@ -564,12 +564,6 @@ export interface EngineCommunicationTypeRequest {
    * @type {string}
    * @memberof EngineCommunicationTypeRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCommunicationTypeRequest
-   */
   name?: string
   /**
    *
@@ -589,6 +583,12 @@ export interface EngineCommunicationTypeRequest {
    * @memberof EngineCommunicationTypeRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationTypeRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -641,12 +641,6 @@ export interface EngineCreateAcceptOfDayRequest {
 export interface EngineCreateAgentRequest {
   /**
    *
-   * @type {string}
-   * @memberof EngineCreateAgentRequest
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCreateAgentRequest
    */
@@ -657,6 +651,12 @@ export interface EngineCreateAgentRequest {
    * @memberof EngineCreateAgentRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -664,12 +664,6 @@ export interface EngineCreateAgentRequest {
  * @interface EngineCreateAgentSkillRequest
  */
 export interface EngineCreateAgentSkillRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateAgentSkillRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -688,6 +682,12 @@ export interface EngineCreateAgentSkillRequest {
    * @memberof EngineCreateAgentSkillRequest
    */
   capacity?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentSkillRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -695,12 +695,6 @@ export interface EngineCreateAgentSkillRequest {
  * @interface EngineCreateAgentTeamRequest
  */
 export interface EngineCreateAgentTeamRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -755,6 +749,12 @@ export interface EngineCreateAgentTeamRequest {
    * @memberof EngineCreateAgentTeamRequest
    */
   call_timeout?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1118,12 +1118,6 @@ export interface EngineCreateOutboundResourceGroupRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceGroupRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceGroupRequest
-   */
   name?: string
   /**
    *
@@ -1149,6 +1143,12 @@ export interface EngineCreateOutboundResourceGroupRequest {
    * @memberof EngineCreateOutboundResourceGroupRequest
    */
   time?: Array<EngineOutboundResourceTimeRange>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1161,12 +1161,6 @@ export interface EngineCreateOutboundResourceInGroupRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceInGroupRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceInGroupRequest
-   */
   group_id?: string
   /**
    *
@@ -1174,6 +1168,12 @@ export interface EngineCreateOutboundResourceInGroupRequest {
    * @memberof EngineCreateOutboundResourceInGroupRequest
    */
   resource?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceInGroupRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1181,12 +1181,6 @@ export interface EngineCreateOutboundResourceInGroupRequest {
  * @interface EngineCreateOutboundResourceRequest
  */
 export interface EngineCreateOutboundResourceRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {number}
@@ -1253,6 +1247,12 @@ export interface EngineCreateOutboundResourceRequest {
    * @memberof EngineCreateOutboundResourceRequest
    */
   gateway?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1296,12 +1296,6 @@ export interface EngineCreateQueueRequest {
    * @type {string}
    * @memberof EngineCreateQueueRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateQueueRequest
-   */
   strategy?: string
   /**
    *
@@ -1329,28 +1323,10 @@ export interface EngineCreateQueueRequest {
   priority?: number
   /**
    *
-   * @type {number}
-   * @memberof EngineCreateQueueRequest
-   */
-  max_calls?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateQueueRequest
-   */
-  sec_between_retries?: number
-  /**
-   *
    * @type {string}
    * @memberof EngineCreateQueueRequest
    */
   name?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateQueueRequest
-   */
-  max_of_retry?: number
   /**
    *
    * @type {{ [key: string]: string; }}
@@ -1387,6 +1363,43 @@ export interface EngineCreateQueueRequest {
    * @memberof EngineCreateQueueRequest
    */
   team?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateQueueResourceGroupRequest
+ */
+export interface EngineCreateQueueResourceGroupRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueResourceGroupRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueResourceGroupRequest
+   */
+  resource_group?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueResourceGroupRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1522,12 +1535,6 @@ export interface EngineCreateRoutingOutboundCallRequest {
    * @type {string}
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateRoutingOutboundCallRequest
-   */
   name?: string
   /**
    *
@@ -1559,6 +1566,12 @@ export interface EngineCreateRoutingOutboundCallRequest {
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
   disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1566,12 +1579,6 @@ export interface EngineCreateRoutingOutboundCallRequest {
  * @interface EngineCreateRoutingSchemaRequest
  */
 export interface EngineCreateRoutingSchemaRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateRoutingSchemaRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -1608,6 +1615,12 @@ export interface EngineCreateRoutingSchemaRequest {
    * @memberof EngineCreateRoutingSchemaRequest
    */
   debug?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingSchemaRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1620,12 +1633,6 @@ export interface EngineCreateRoutingVariableRequest {
    * @type {string}
    * @memberof EngineCreateRoutingVariableRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateRoutingVariableRequest
-   */
   key?: string
   /**
    *
@@ -1633,6 +1640,12 @@ export interface EngineCreateRoutingVariableRequest {
    * @memberof EngineCreateRoutingVariableRequest
    */
   value?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingVariableRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1645,12 +1658,6 @@ export interface EngineCreateSkillRequest {
    * @type {string}
    * @memberof EngineCreateSkillRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateSkillRequest
-   */
   name?: string
   /**
    *
@@ -1658,6 +1665,12 @@ export interface EngineCreateSkillRequest {
    * @memberof EngineCreateSkillRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSkillRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -1673,16 +1686,16 @@ export interface EngineCreateSupervisorInTeamRequest {
   team_id?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineCreateSupervisorInTeamRequest
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCreateSupervisorInTeamRequest
    */
   agent?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSupervisorInTeamRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -2110,6 +2123,19 @@ export interface EngineListQueueBucket {
    * @memberof EngineListQueueBucket
    */
   items?: Array<EngineQueueBucket>
+}
+/**
+ *
+ * @export
+ * @interface EngineListQueueResourceGroup
+ */
+export interface EngineListQueueResourceGroup {
+  /**
+   *
+   * @type {Array<EngineQueueResourceGroup>}
+   * @memberof EngineListQueueResourceGroup
+   */
+  items?: Array<EngineQueueResourceGroup>
 }
 /**
  *
@@ -2865,12 +2891,6 @@ export interface EnginePatchOutboundResourceRequest {
   id?: string
   /**
    *
-   * @type {string}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  domain_id?: string
-  /**
-   *
    * @type {number}
    * @memberof EnginePatchOutboundResourceRequest
    */
@@ -2941,6 +2961,115 @@ export interface EnginePatchOutboundResourceRequest {
    * @memberof EnginePatchOutboundResourceRequest
    */
   gateway?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EnginePatchQueueRequest
+ */
+export interface EnginePatchQueueRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchQueueRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchQueueRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchQueueRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {object}
+   * @memberof EnginePatchQueueRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchQueueRequest
+   */
+  calendar?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchQueueRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EnginePatchQueueRequest
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  timeout?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchQueueRequest
+   */
+  dnc_list?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  sec_locate_agent?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  type?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchQueueRequest
+   */
+  team?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchQueueRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePatchQueueRequest
+   */
+  fields?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchQueueRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -2954,12 +3083,6 @@ export interface EnginePatchRoutingOutboundCallRequest {
    * @memberof EnginePatchRoutingOutboundCallRequest
    */
   id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchRoutingOutboundCallRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -3002,6 +3125,12 @@ export interface EnginePatchRoutingOutboundCallRequest {
    * @memberof EnginePatchRoutingOutboundCallRequest
    */
   fields?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -3015,12 +3144,6 @@ export interface EnginePatchRoutingSchemaRequest {
    * @memberof EnginePatchRoutingSchemaRequest
    */
   id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchRoutingSchemaRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -3063,6 +3186,12 @@ export interface EnginePatchRoutingSchemaRequest {
    * @memberof EnginePatchRoutingSchemaRequest
    */
   fields?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -3138,28 +3267,10 @@ export interface EngineQueue {
   priority?: number
   /**
    *
-   * @type {number}
-   * @memberof EngineQueue
-   */
-  max_calls?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineQueue
-   */
-  sec_between_retries?: number
-  /**
-   *
    * @type {string}
    * @memberof EngineQueue
    */
   name?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineQueue
-   */
-  max_of_retry?: number
   /**
    *
    * @type {{ [key: string]: string; }}
@@ -3192,6 +3303,12 @@ export interface EngineQueue {
   type?: number
   /**
    *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  description?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineQueue
    */
@@ -3221,6 +3338,25 @@ export interface EngineQueueBucket {
    * @memberof EngineQueueBucket
    */
   bucket?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineQueueResourceGroup
+ */
+export interface EngineQueueResourceGroup {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueueResourceGroup
+   */
+  id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueueResourceGroup
+   */
+  resource_group?: EngineLookup
 }
 /**
  *
@@ -3394,12 +3530,6 @@ export interface EngineRoutingOutboundCall {
    * @type {string}
    * @memberof EngineRoutingOutboundCall
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingOutboundCall
-   */
   created_at?: string
   /**
    *
@@ -3455,6 +3585,12 @@ export interface EngineRoutingOutboundCall {
    * @memberof EngineRoutingOutboundCall
    */
   disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  domain_id?: string
 }
 /**
  *
@@ -3468,12 +3604,6 @@ export interface EngineRoutingSchema {
    * @memberof EngineRoutingSchema
    */
   id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingSchema
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -3534,6 +3664,12 @@ export interface EngineRoutingSchema {
    * @memberof EngineRoutingSchema
    */
   debug?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingSchema
+   */
+  domain_id?: string
 }
 /**
  *
@@ -3617,16 +3753,16 @@ export interface EngineSupervisorInTeam {
   team_id?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineSupervisorInTeam
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineSupervisorInTeam
    */
   agent?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSupervisorInTeam
+   */
+  domain_id?: string
 }
 /**
  *
@@ -3716,12 +3852,6 @@ export interface EngineUpdateAgentRequest {
   id?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineUpdateAgentRequest
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineUpdateAgentRequest
    */
@@ -3732,6 +3862,12 @@ export interface EngineUpdateAgentRequest {
    * @memberof EngineUpdateAgentRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -3750,12 +3886,6 @@ export interface EngineUpdateAgentSkillRequest {
    * @type {string}
    * @memberof EngineUpdateAgentSkillRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentSkillRequest
-   */
   agent_id?: string
   /**
    *
@@ -3769,6 +3899,12 @@ export interface EngineUpdateAgentSkillRequest {
    * @memberof EngineUpdateAgentSkillRequest
    */
   capacity?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -3782,12 +3918,6 @@ export interface EngineUpdateAgentTeamRequest {
    * @memberof EngineUpdateAgentTeamRequest
    */
   id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -3842,6 +3972,12 @@ export interface EngineUpdateAgentTeamRequest {
    * @memberof EngineUpdateAgentTeamRequest
    */
   call_timeout?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -3940,12 +4076,6 @@ export interface EngineUpdateCommunicationTypeRequest {
    * @type {string}
    * @memberof EngineUpdateCommunicationTypeRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateCommunicationTypeRequest
-   */
   name?: string
   /**
    *
@@ -3965,6 +4095,12 @@ export interface EngineUpdateCommunicationTypeRequest {
    * @memberof EngineUpdateCommunicationTypeRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCommunicationTypeRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -4210,12 +4346,6 @@ export interface EngineUpdateOutboundResourceGroupRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceGroupRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceGroupRequest
-   */
   name?: string
   /**
    *
@@ -4241,6 +4371,12 @@ export interface EngineUpdateOutboundResourceGroupRequest {
    * @memberof EngineUpdateOutboundResourceGroupRequest
    */
   time?: Array<EngineOutboundResourceTimeRange>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -4285,12 +4421,6 @@ export interface EngineUpdateOutboundResourceRequest {
    * @memberof EngineUpdateOutboundResourceRequest
    */
   id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {number}
@@ -4357,6 +4487,12 @@ export interface EngineUpdateOutboundResourceRequest {
    * @memberof EngineUpdateOutboundResourceRequest
    */
   gateway?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -4406,7 +4542,7 @@ export interface EngineUpdateQueueRequest {
    * @type {string}
    * @memberof EngineUpdateQueueRequest
    */
-  domain_id?: string
+  id?: string
   /**
    *
    * @type {string}
@@ -4439,28 +4575,10 @@ export interface EngineUpdateQueueRequest {
   priority?: number
   /**
    *
-   * @type {number}
-   * @memberof EngineUpdateQueueRequest
-   */
-  max_calls?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateQueueRequest
-   */
-  sec_between_retries?: number
-  /**
-   *
    * @type {string}
    * @memberof EngineUpdateQueueRequest
    */
   name?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateQueueRequest
-   */
-  max_of_retry?: number
   /**
    *
    * @type {{ [key: string]: string; }}
@@ -4502,7 +4620,44 @@ export interface EngineUpdateQueueRequest {
    * @type {string}
    * @memberof EngineUpdateQueueRequest
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRequest
+   */
+  domain_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineUpdateQueueResourceGroupRequest
+ */
+export interface EngineUpdateQueueResourceGroupRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueResourceGroupRequest
+   */
   id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueResourceGroupRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueResourceGroupRequest
+   */
+  resource_group?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueResourceGroupRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -4662,12 +4817,6 @@ export interface EngineUpdateRoutingOutboundCallRequest {
    * @type {string}
    * @memberof EngineUpdateRoutingOutboundCallRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateRoutingOutboundCallRequest
-   */
   name?: string
   /**
    *
@@ -4699,6 +4848,12 @@ export interface EngineUpdateRoutingOutboundCallRequest {
    * @memberof EngineUpdateRoutingOutboundCallRequest
    */
   disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -4712,12 +4867,6 @@ export interface EngineUpdateRoutingSchemaRequest {
    * @memberof EngineUpdateRoutingSchemaRequest
    */
   id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateRoutingSchemaRequest
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -4754,6 +4903,12 @@ export interface EngineUpdateRoutingSchemaRequest {
    * @memberof EngineUpdateRoutingSchemaRequest
    */
   debug?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingSchemaRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -4772,12 +4927,6 @@ export interface EngineUpdateRoutingVariableRequest {
    * @type {string}
    * @memberof EngineUpdateRoutingVariableRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateRoutingVariableRequest
-   */
   key?: string
   /**
    *
@@ -4785,6 +4934,12 @@ export interface EngineUpdateRoutingVariableRequest {
    * @memberof EngineUpdateRoutingVariableRequest
    */
   value?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingVariableRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -4803,12 +4958,6 @@ export interface EngineUpdateSkillRequest {
    * @type {string}
    * @memberof EngineUpdateSkillRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateSkillRequest
-   */
   name?: string
   /**
    *
@@ -4816,6 +4965,12 @@ export interface EngineUpdateSkillRequest {
    * @memberof EngineUpdateSkillRequest
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSkillRequest
+   */
+  domain_id?: string
 }
 /**
  *
@@ -4837,16 +4992,16 @@ export interface EngineUpdateSupervisorInTeamRequest {
   team_id?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineUpdateSupervisorInTeamRequest
-   */
-  domain_id?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineUpdateSupervisorInTeamRequest
    */
   agent?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSupervisorInTeamRequest
+   */
+  domain_id?: string
 }
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the  `Value` type union.     The JSON representation for `NullValue` is JSON `null`.   - NULL_VALUE: Null value.
@@ -5064,16 +5219,16 @@ export const AgentServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of Agent
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgent(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/agents`
@@ -5099,16 +5254,16 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5131,17 +5286,17 @@ export const AgentServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentInQueue(
       id: string,
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -5177,16 +5332,16 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5209,17 +5364,17 @@ export const AgentServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentInTeam(
       id: string,
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'id' is not null or undefined
@@ -5255,16 +5410,16 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5290,9 +5445,9 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {string} agent_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [domain_id]
      * @param {string} [time_from]
      * @param {string} [time_to]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5300,9 +5455,9 @@ export const AgentServiceApiAxiosParamCreator = function(
       agent_id: string,
       page?: number,
       size?: number,
-      domain_id?: string,
       time_from?: string,
       time_to?: string,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'agent_id' is not null or undefined
@@ -5346,16 +5501,16 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
       if (time_from !== undefined) {
         localVarQueryParameter['time_from'] = time_from
       }
 
       if (time_to !== undefined) {
         localVarQueryParameter['time_to'] = time_to
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -5622,16 +5777,16 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of Agent
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgent(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -5639,7 +5794,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgent> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).searchAgent(domain_id, size, page, options)
+      ).searchAgent(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -5654,17 +5809,17 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} id
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentInQueue(
       id: string,
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -5672,7 +5827,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgentInQueue> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentInQueue(id, domain_id, size, page, options)
+      ).searchAgentInQueue(id, size, page, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -5687,17 +5842,17 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} id
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentInTeam(
       id: string,
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -5705,7 +5860,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgentInTeam> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentInTeam(id, domain_id, size, page, options)
+      ).searchAgentInTeam(id, size, page, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -5723,9 +5878,9 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {string} agent_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [domain_id]
      * @param {string} [time_from]
      * @param {string} [time_to]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5733,9 +5888,9 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       agent_id: string,
       page?: number,
       size?: number,
-      domain_id?: string,
       time_from?: string,
       time_to?: string,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -5747,9 +5902,9 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         agent_id,
         page,
         size,
-        domain_id,
         time_from,
         time_to,
+        domain_id,
         options
       )
       return (
@@ -5878,70 +6033,70 @@ export const AgentServiceApiFactory = function(
     /**
      *
      * @summary List of Agent
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgent(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return AgentServiceApiFp(configuration).searchAgent(
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @param {string} id
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentInQueue(
       id: string,
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options?: any
     ) {
       return AgentServiceApiFp(configuration).searchAgentInQueue(
         id,
-        domain_id,
         size,
         page,
+        domain_id,
         options
       )(axios, basePath)
     },
     /**
      *
      * @param {string} id
-     * @param {string} [domain_id]
      * @param {number} [size]
      * @param {number} [page]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentInTeam(
       id: string,
-      domain_id?: string,
       size?: number,
       page?: number,
+      domain_id?: string,
       options?: any
     ) {
       return AgentServiceApiFp(configuration).searchAgentInTeam(
         id,
-        domain_id,
         size,
         page,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -5951,9 +6106,9 @@ export const AgentServiceApiFactory = function(
      * @param {string} agent_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [domain_id]
      * @param {string} [time_from]
      * @param {string} [time_to]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -5961,18 +6116,18 @@ export const AgentServiceApiFactory = function(
       agent_id: string,
       page?: number,
       size?: number,
-      domain_id?: string,
       time_from?: string,
       time_to?: string,
+      domain_id?: string,
       options?: any
     ) {
       return AgentServiceApiFp(configuration).searchAgentStateHistory(
         agent_id,
         page,
         size,
-        domain_id,
         time_from,
         time_to,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -6071,23 +6226,23 @@ export class AgentServiceApi extends BaseAPI {
   /**
    *
    * @summary List of Agent
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
   public searchAgent(
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).searchAgent(
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -6095,25 +6250,25 @@ export class AgentServiceApi extends BaseAPI {
   /**
    *
    * @param {string} id
-   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
   public searchAgentInQueue(
     id: string,
-    domain_id?: string,
     size?: number,
     page?: number,
+    domain_id?: string,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).searchAgentInQueue(
       id,
-      domain_id,
       size,
       page,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -6121,25 +6276,25 @@ export class AgentServiceApi extends BaseAPI {
   /**
    *
    * @param {string} id
-   * @param {string} [domain_id]
    * @param {number} [size]
    * @param {number} [page]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
   public searchAgentInTeam(
     id: string,
-    domain_id?: string,
     size?: number,
     page?: number,
+    domain_id?: string,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).searchAgentInTeam(
       id,
-      domain_id,
       size,
       page,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -6150,9 +6305,9 @@ export class AgentServiceApi extends BaseAPI {
    * @param {string} agent_id
    * @param {number} [page]
    * @param {number} [size]
-   * @param {string} [domain_id]
    * @param {string} [time_from]
    * @param {string} [time_to]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
@@ -6161,18 +6316,18 @@ export class AgentServiceApi extends BaseAPI {
     agent_id: string,
     page?: number,
     size?: number,
-    domain_id?: string,
     time_from?: string,
     time_to?: string,
+    domain_id?: string,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).searchAgentStateHistory(
       agent_id,
       page,
       size,
-      domain_id,
       time_from,
       time_to,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -6459,17 +6614,17 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      *
      * @summary List of AgentSkill
      * @param {string} agent_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentSkill(
       agent_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'agent_id' is not null or undefined
@@ -6505,16 +6660,16 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -6727,17 +6882,17 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary List of AgentSkill
      * @param {string} agent_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentSkill(
       agent_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -6745,7 +6900,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgentSkill> {
       const localVarAxiosArgs = AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentSkill(agent_id, domain_id, size, page, options)
+      ).searchAgentSkill(agent_id, page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -6869,24 +7024,24 @@ export const AgentSkillServiceApiFactory = function(
      *
      * @summary List of AgentSkill
      * @param {string} agent_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentSkill(
       agent_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return AgentSkillServiceApiFp(configuration).searchAgentSkill(
         agent_id,
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -6995,25 +7150,25 @@ export class AgentSkillServiceApi extends BaseAPI {
    *
    * @summary List of AgentSkill
    * @param {string} agent_id
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public searchAgentSkill(
     agent_id: string,
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration).searchAgentSkill(
       agent_id,
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -7254,16 +7409,16 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of AgentTeam
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentTeam(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/teams`
@@ -7289,16 +7444,16 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -7496,16 +7651,16 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of AgentTeam
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentTeam(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -7513,7 +7668,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgentTeam> {
       const localVarAxiosArgs = AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentTeam(domain_id, size, page, options)
+      ).searchAgentTeam(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -7614,22 +7769,22 @@ export const AgentTeamServiceApiFactory = function(
     /**
      *
      * @summary List of AgentTeam
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentTeam(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return AgentTeamServiceApiFp(configuration).searchAgentTeam(
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -7714,23 +7869,23 @@ export class AgentTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary List of AgentTeam
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
   public searchAgentTeam(
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration).searchAgentTeam(
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -17645,16 +17800,16 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      *
      * @summary SearchQueueRouting
      * @param {string} queue_id
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueueBucket(
       queue_id: string,
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
@@ -17691,12 +17846,12 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
-      }
-
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
       }
 
       if (domain_id !== undefined) {
@@ -17913,16 +18068,16 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary SearchQueueRouting
      * @param {string} queue_id
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueueBucket(
       queue_id: string,
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options?: any
     ): (
@@ -17931,7 +18086,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListQueueBucket> {
       const localVarAxiosArgs = QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).searchQueueBucket(queue_id, size, page, domain_id, options)
+      ).searchQueueBucket(queue_id, page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -18055,23 +18210,23 @@ export const QueueBucketServiceApiFactory = function(
      *
      * @summary SearchQueueRouting
      * @param {string} queue_id
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueueBucket(
       queue_id: string,
-      size?: number,
       page?: number,
+      size?: number,
       domain_id?: string,
       options?: any
     ) {
       return QueueBucketServiceApiFp(configuration).searchQueueBucket(
         queue_id,
-        size,
         page,
+        size,
         domain_id,
         options
       )(axios, basePath)
@@ -18181,8 +18336,8 @@ export class QueueBucketServiceApi extends BaseAPI {
    *
    * @summary SearchQueueRouting
    * @param {string} queue_id
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -18190,15 +18345,15 @@ export class QueueBucketServiceApi extends BaseAPI {
    */
   public searchQueueBucket(
     queue_id: string,
-    size?: number,
     page?: number,
+    size?: number,
     domain_id?: string,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration).searchQueueBucket(
       queue_id,
-      size,
       page,
+      size,
       domain_id,
       options
     )(this.axios, this.basePath)
@@ -18226,6 +18381,832 @@ export class QueueBucketServiceApi extends BaseAPI {
       body,
       options
     )(this.axios, this.basePath)
+  }
+}
+
+/**
+ * QueueResourcesServiceApi - axios parameter creator
+ * @export
+ */
+export const QueueResourcesServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary CreateQueueResourceGroup
+     * @param {string} queue_id
+     * @param {EngineCreateQueueResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createQueueResourceGroup(
+      queue_id: string,
+      body: EngineCreateQueueResourceGroupRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling createQueueResourceGroup.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createQueueResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/resource_groups`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateQueueResourceGroupRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary DeleteQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling deleteQueueResourceGroup.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteQueueResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/resource_groups/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary ReadQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling readQueueResourceGroup.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readQueueResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/resource_groups/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary SearchQueueResourceGroup
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueResourceGroup(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling searchQueueResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/resource_groups`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary UpdateQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueResourceGroupRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling updateQueueResourceGroup.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateQueueResourceGroup.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateQueueResourceGroup.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/resource_groups/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateQueueResourceGroupRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * QueueResourcesServiceApi - functional programming interface
+ * @export
+ */
+export const QueueResourcesServiceApiFp = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary CreateQueueResourceGroup
+     * @param {string} queue_id
+     * @param {EngineCreateQueueResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createQueueResourceGroup(
+      queue_id: string,
+      body: EngineCreateQueueResourceGroupRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueResourceGroup> {
+      const localVarAxiosArgs = QueueResourcesServiceApiAxiosParamCreator(
+        configuration
+      ).createQueueResourceGroup(queue_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary DeleteQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueResourceGroup> {
+      const localVarAxiosArgs = QueueResourcesServiceApiAxiosParamCreator(
+        configuration
+      ).deleteQueueResourceGroup(queue_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary ReadQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueResourceGroup> {
+      const localVarAxiosArgs = QueueResourcesServiceApiAxiosParamCreator(
+        configuration
+      ).readQueueResourceGroup(queue_id, id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary SearchQueueResourceGroup
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueResourceGroup(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListQueueResourceGroup> {
+      const localVarAxiosArgs = QueueResourcesServiceApiAxiosParamCreator(
+        configuration
+      ).searchQueueResourceGroup(queue_id, page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary UpdateQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueResourceGroupRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineQueueResourceGroup> {
+      const localVarAxiosArgs = QueueResourcesServiceApiAxiosParamCreator(
+        configuration
+      ).updateQueueResourceGroup(queue_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * QueueResourcesServiceApi - factory interface
+ * @export
+ */
+export const QueueResourcesServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary CreateQueueResourceGroup
+     * @param {string} queue_id
+     * @param {EngineCreateQueueResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createQueueResourceGroup(
+      queue_id: string,
+      body: EngineCreateQueueResourceGroupRequest,
+      options?: any
+    ) {
+      return QueueResourcesServiceApiFp(configuration).createQueueResourceGroup(
+        queue_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary DeleteQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return QueueResourcesServiceApiFp(configuration).deleteQueueResourceGroup(
+        queue_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary ReadQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return QueueResourcesServiceApiFp(configuration).readQueueResourceGroup(
+        queue_id,
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary SearchQueueResourceGroup
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueResourceGroup(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return QueueResourcesServiceApiFp(configuration).searchQueueResourceGroup(
+        queue_id,
+        page,
+        size,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary UpdateQueueResourceGroup
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EngineUpdateQueueResourceGroupRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateQueueResourceGroup(
+      queue_id: string,
+      id: string,
+      body: EngineUpdateQueueResourceGroupRequest,
+      options?: any
+    ) {
+      return QueueResourcesServiceApiFp(configuration).updateQueueResourceGroup(
+        queue_id,
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+  }
+}
+
+/**
+ * QueueResourcesServiceApi - object-oriented interface
+ * @export
+ * @class QueueResourcesServiceApi
+ * @extends {BaseAPI}
+ */
+export class QueueResourcesServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary CreateQueueResourceGroup
+   * @param {string} queue_id
+   * @param {EngineCreateQueueResourceGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApi
+   */
+  public createQueueResourceGroup(
+    queue_id: string,
+    body: EngineCreateQueueResourceGroupRequest,
+    options?: any
+  ) {
+    return QueueResourcesServiceApiFp(
+      this.configuration
+    ).createQueueResourceGroup(queue_id, body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary DeleteQueueResourceGroup
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApi
+   */
+  public deleteQueueResourceGroup(
+    queue_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return QueueResourcesServiceApiFp(
+      this.configuration
+    ).deleteQueueResourceGroup(queue_id, id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary ReadQueueResourceGroup
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApi
+   */
+  public readQueueResourceGroup(
+    queue_id: string,
+    id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return QueueResourcesServiceApiFp(
+      this.configuration
+    ).readQueueResourceGroup(queue_id, id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary SearchQueueResourceGroup
+   * @param {string} queue_id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApi
+   */
+  public searchQueueResourceGroup(
+    queue_id: string,
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return QueueResourcesServiceApiFp(
+      this.configuration
+    ).searchQueueResourceGroup(queue_id, page, size, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary UpdateQueueResourceGroup
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {EngineUpdateQueueResourceGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApi
+   */
+  public updateQueueResourceGroup(
+    queue_id: string,
+    id: string,
+    body: EngineUpdateQueueResourceGroupRequest,
+    options?: any
+  ) {
+    return QueueResourcesServiceApiFp(
+      this.configuration
+    ).updateQueueResourceGroup(queue_id, id, body, options)(
+      this.axios,
+      this.basePath
+    )
   }
 }
 
@@ -18469,17 +19450,17 @@ export const QueueRoutingServiceApiAxiosParamCreator = function(
      *
      * @summary SearchQueueRouting
      * @param {string} queue_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueueRouting(
       queue_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'queue_id' is not null or undefined
@@ -18515,16 +19496,16 @@ export const QueueRoutingServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -18739,17 +19720,17 @@ export const QueueRoutingServiceApiFp = function(
      *
      * @summary SearchQueueRouting
      * @param {string} queue_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueueRouting(
       queue_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -18757,7 +19738,7 @@ export const QueueRoutingServiceApiFp = function(
     ) => AxiosPromise<EngineListQueueRouting> {
       const localVarAxiosArgs = QueueRoutingServiceApiAxiosParamCreator(
         configuration
-      ).searchQueueRouting(queue_id, domain_id, size, page, options)
+      ).searchQueueRouting(queue_id, page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -18881,24 +19862,24 @@ export const QueueRoutingServiceApiFactory = function(
      *
      * @summary SearchQueueRouting
      * @param {string} queue_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueueRouting(
       queue_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return QueueRoutingServiceApiFp(configuration).searchQueueRouting(
         queue_id,
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -19007,25 +19988,25 @@ export class QueueRoutingServiceApi extends BaseAPI {
    *
    * @summary SearchQueueRouting
    * @param {string} queue_id
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueRoutingServiceApi
    */
   public searchQueueRouting(
     queue_id: string,
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return QueueRoutingServiceApiFp(this.configuration).searchQueueRouting(
       queue_id,
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -19198,6 +20179,84 @@ export const QueueServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Patch Queue
+     * @param {string} id
+     * @param {EnginePatchQueueRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchQueue(
+      id: string,
+      body: EnginePatchQueueRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchQueue.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchQueue.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EnginePatchQueueRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Queue item
      * @param {string} id
      * @param {string} [domain_id]
@@ -19262,16 +20321,16 @@ export const QueueServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of Queue
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueue(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/queues`
@@ -19297,16 +20356,16 @@ export const QueueServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -19467,6 +20526,33 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary Patch Queue
+     * @param {string} id
+     * @param {EnginePatchQueueRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchQueue(
+      id: string,
+      body: EnginePatchQueueRequest,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue> {
+      const localVarAxiosArgs = QueueServiceApiAxiosParamCreator(
+        configuration
+      ).patchQueue(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Queue item
      * @param {string} id
      * @param {string} [domain_id]
@@ -19495,16 +20581,16 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of Queue
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueue(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -19512,7 +20598,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListQueue> {
       const localVarAxiosArgs = QueueServiceApiAxiosParamCreator(
         configuration
-      ).searchQueue(domain_id, size, page, options)
+      ).searchQueue(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -19594,6 +20680,20 @@ export const QueueServiceApiFactory = function(
     },
     /**
      *
+     * @summary Patch Queue
+     * @param {string} id
+     * @param {EnginePatchQueueRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchQueue(id: string, body: EnginePatchQueueRequest, options?: any) {
+      return QueueServiceApiFp(configuration).patchQueue(id, body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
      * @summary Queue item
      * @param {string} id
      * @param {string} [domain_id]
@@ -19609,22 +20709,22 @@ export const QueueServiceApiFactory = function(
     /**
      *
      * @summary List of Queue
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchQueue(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return QueueServiceApiFp(configuration).searchQueue(
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -19686,6 +20786,22 @@ export class QueueServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary Patch Queue
+   * @param {string} id
+   * @param {EnginePatchQueueRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueServiceApi
+   */
+  public patchQueue(id: string, body: EnginePatchQueueRequest, options?: any) {
+    return QueueServiceApiFp(this.configuration).patchQueue(id, body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
    * @summary Queue item
    * @param {string} id
    * @param {string} [domain_id]
@@ -19704,23 +20820,23 @@ export class QueueServiceApi extends BaseAPI {
   /**
    *
    * @summary List of Queue
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
   public searchQueue(
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration).searchQueue(
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -21644,16 +22760,16 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of RoutingOutboundCall
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingOutboundCall(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/routing/outbound/calls`
@@ -21679,16 +22795,16 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -21918,16 +23034,16 @@ export const RoutingOutboundCallServiceApiFp = function(
     /**
      *
      * @summary List of RoutingOutboundCall
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingOutboundCall(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -21935,7 +23051,7 @@ export const RoutingOutboundCallServiceApiFp = function(
     ) => AxiosPromise<EngineListRoutingOutboundCall> {
       const localVarAxiosArgs = RoutingOutboundCallServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingOutboundCall(domain_id, size, page, options)
+      ).searchRoutingOutboundCall(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -22051,21 +23167,21 @@ export const RoutingOutboundCallServiceApiFactory = function(
     /**
      *
      * @summary List of RoutingOutboundCall
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingOutboundCall(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return RoutingOutboundCallServiceApiFp(
         configuration
-      ).searchRoutingOutboundCall(domain_id, size, page, options)(
+      ).searchRoutingOutboundCall(page, size, domain_id, options)(
         axios,
         basePath
       )
@@ -22177,22 +23293,22 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
   /**
    *
    * @summary List of RoutingOutboundCall
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingOutboundCallServiceApi
    */
   public searchRoutingOutboundCall(
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return RoutingOutboundCallServiceApiFp(
       this.configuration
-    ).searchRoutingOutboundCall(domain_id, size, page, options)(
+    ).searchRoutingOutboundCall(page, size, domain_id, options)(
       this.axios,
       this.basePath
     )
@@ -22507,16 +23623,16 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List RoutingSchema
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingSchema(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/routing/schema`
@@ -22542,16 +23658,16 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -22781,16 +23897,16 @@ export const RoutingSchemaServiceApiFp = function(
     /**
      *
      * @summary List RoutingSchema
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingSchema(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -22798,7 +23914,7 @@ export const RoutingSchemaServiceApiFp = function(
     ) => AxiosPromise<EngineListRoutingSchema> {
       const localVarAxiosArgs = RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingSchema(domain_id, size, page, options)
+      ).searchRoutingSchema(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -22918,22 +24034,22 @@ export const RoutingSchemaServiceApiFactory = function(
     /**
      *
      * @summary List RoutingSchema
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingSchema(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return RoutingSchemaServiceApiFp(configuration).searchRoutingSchema(
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -23042,23 +24158,23 @@ export class RoutingSchemaServiceApi extends BaseAPI {
   /**
    *
    * @summary List RoutingSchema
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
    */
   public searchRoutingSchema(
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration).searchRoutingSchema(
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -23296,16 +24412,16 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of RoutingVariable
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingVariable(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/routing/variables`
@@ -23331,16 +24447,16 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -23540,16 +24656,16 @@ export const RoutingVariableServiceApiFp = function(
     /**
      *
      * @summary List of RoutingVariable
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingVariable(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -23557,7 +24673,7 @@ export const RoutingVariableServiceApiFp = function(
     ) => AxiosPromise<EngineListRoutingVariable> {
       const localVarAxiosArgs = RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingVariable(domain_id, size, page, options)
+      ).searchRoutingVariable(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -23661,22 +24777,22 @@ export const RoutingVariableServiceApiFactory = function(
     /**
      *
      * @summary List of RoutingVariable
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchRoutingVariable(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return RoutingVariableServiceApiFp(configuration).searchRoutingVariable(
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -23761,22 +24877,22 @@ export class RoutingVariableServiceApi extends BaseAPI {
   /**
    *
    * @summary List of RoutingVariable
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
   public searchRoutingVariable(
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return RoutingVariableServiceApiFp(
       this.configuration
-    ).searchRoutingVariable(domain_id, size, page, options)(
+    ).searchRoutingVariable(page, size, domain_id, options)(
       this.axios,
       this.basePath
     )
@@ -24009,16 +25125,16 @@ export const SkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of Skill
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSkill(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/skills`
@@ -24044,16 +25160,16 @@ export const SkillServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -24242,16 +25358,16 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of Skill
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSkill(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -24259,7 +25375,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListSkill> {
       const localVarAxiosArgs = SkillServiceApiAxiosParamCreator(
         configuration
-      ).searchSkill(domain_id, size, page, options)
+      ).searchSkill(page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -24356,22 +25472,22 @@ export const SkillServiceApiFactory = function(
     /**
      *
      * @summary List of Skill
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSkill(
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return SkillServiceApiFp(configuration).searchSkill(
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -24451,23 +25567,23 @@ export class SkillServiceApi extends BaseAPI {
   /**
    *
    * @summary List of Skill
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
   public searchSkill(
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return SkillServiceApiFp(this.configuration).searchSkill(
-      domain_id,
-      size,
       page,
+      size,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -24733,17 +25849,17 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
      *
      * @summary List of SupervisorInTeam
      * @param {string} team_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSupervisorInTeam(
       team_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options: any = {}
     ): RequestArgs {
       // verify required parameter 'team_id' is not null or undefined
@@ -24779,16 +25895,16 @@ export const SupervisorInTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
       }
 
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
       localVarUrlObj.query = {
@@ -25003,17 +26119,17 @@ export const SupervisorInTeamServiceApiFp = function(
      *
      * @summary List of SupervisorInTeam
      * @param {string} team_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSupervisorInTeam(
       team_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -25021,7 +26137,7 @@ export const SupervisorInTeamServiceApiFp = function(
     ) => AxiosPromise<EngineListSupervisorInTeam> {
       const localVarAxiosArgs = SupervisorInTeamServiceApiAxiosParamCreator(
         configuration
-      ).searchSupervisorInTeam(team_id, domain_id, size, page, options)
+      ).searchSupervisorInTeam(team_id, page, size, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -25145,24 +26261,24 @@ export const SupervisorInTeamServiceApiFactory = function(
      *
      * @summary List of SupervisorInTeam
      * @param {string} team_id
-     * @param {string} [domain_id]
-     * @param {number} [size]
      * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchSupervisorInTeam(
       team_id: string,
-      domain_id?: string,
-      size?: number,
       page?: number,
+      size?: number,
+      domain_id?: string,
       options?: any
     ) {
       return SupervisorInTeamServiceApiFp(configuration).searchSupervisorInTeam(
         team_id,
-        domain_id,
-        size,
         page,
+        size,
+        domain_id,
         options
       )(axios, basePath)
     },
@@ -25269,23 +26385,23 @@ export class SupervisorInTeamServiceApi extends BaseAPI {
    *
    * @summary List of SupervisorInTeam
    * @param {string} team_id
-   * @param {string} [domain_id]
-   * @param {number} [size]
    * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SupervisorInTeamServiceApi
    */
   public searchSupervisorInTeam(
     team_id: string,
-    domain_id?: string,
-    size?: number,
     page?: number,
+    size?: number,
+    domain_id?: string,
     options?: any
   ) {
     return SupervisorInTeamServiceApiFp(
       this.configuration
-    ).searchSupervisorInTeam(team_id, domain_id, size, page, options)(
+    ).searchSupervisorInTeam(team_id, page, size, domain_id, options)(
       this.axios,
       this.basePath
     )
