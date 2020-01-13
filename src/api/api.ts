@@ -2506,6 +2506,18 @@ export interface EngineMemberCommunication {
   id?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  destination?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberCommunication
+   */
+  type?: EngineLookup
+  /**
+   *
    * @type {number}
    * @memberof EngineMemberCommunication
    */
@@ -2515,19 +2527,13 @@ export interface EngineMemberCommunication {
    * @type {string}
    * @memberof EngineMemberCommunication
    */
-  destination?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMemberCommunication
-   */
   description?: string
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineMemberCommunication
    */
-  resource_id?: string
+  resource?: EngineLookup
   /**
    *
    * @type {string}
@@ -2567,6 +2573,18 @@ export interface EngineMemberCommunication {
 export interface EngineMemberCommunicationCreateRequest {
   /**
    *
+   * @type {string}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  destination?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  type?: EngineLookup
+  /**
+   *
    * @type {number}
    * @memberof EngineMemberCommunicationCreateRequest
    */
@@ -2576,19 +2594,13 @@ export interface EngineMemberCommunicationCreateRequest {
    * @type {string}
    * @memberof EngineMemberCommunicationCreateRequest
    */
-  destination?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMemberCommunicationCreateRequest
-   */
   description?: string
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineMemberCommunicationCreateRequest
    */
-  resource_id?: string
+  resource?: EngineLookup
   /**
    *
    * @type {string}

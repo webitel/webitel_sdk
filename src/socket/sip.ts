@@ -1,5 +1,6 @@
 import { EventEmitter } from 'ee-ts'
 import * as SipClient from 'jssip'
+import { AnswerRequest } from './call'
 import { Log } from './log'
 
 export interface SipConfiguration {
@@ -30,6 +31,12 @@ interface SipSession {
   on(name: string, arg?: object): void
 }
 
+export interface CallSession {
+  sip: SipSession
+  incoming: boolean
+  instance_id: string
+}
+
 interface PeerConnectionEvent {
   peerconnection: RTCPeerConnection
 }
@@ -38,12 +45,13 @@ interface SipHoneEvent {
   unregistered(): void
   error(err: Error): void
   peerStreams(id: string, e: MediaStream[] | null): void
+  newSession(id: string, session: CallSession): void
 }
 
 export class SipPhone extends EventEmitter<SipHoneEvent> {
   static readonly userAgent = 'Webitel-Phone/0.0.1'
   private ua!: SipClient.UA
-  private sessionCache = new Map<string, SipSession>()
+  private sessionCache = new Map<string, CallSession>()
   private log: Log
 
   constructor(private instanceId: string) {
@@ -58,26 +66,26 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     })
   }
 
-  private get callOption(): object {
+  callOption(req: AnswerRequest): object {
     return {
       sessionTimersExpires: 120,
-      pcConfig1: {
+      pcConfig: {
         iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }],
       },
-      // rtcOfferConstraints: {
-      //   offerToReceiveAudio: true,
-      //   offerToReceiveVideo: false,
-      // },
+      rtcOfferConstraints: {
+        offerToReceiveAudio: true,
+        offerToReceiveVideo: req.useVideo,
+      },
       mediaConstraints: {
         audio: true,
-        video: false,
+        video: req.useVideo,
       },
     }
   }
 
-  getSession(id: string): SipSession | null {
+  getSession(id: string): CallSession | null {
     if (this.sessionCache.has(id)) {
-      return this.sessionCache.get(id) as SipSession
+      return this.sessionCache.get(id) as CallSession
     }
 
     return null
@@ -89,9 +97,9 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
 
   getPeerStream(id: string): MediaStream[] | null {
     const session = this.getSession(id)
-    if (session && session.connection) {
+    if (session && session.sip.connection) {
       // @ts-ignore
-      const streams = session.connection.getRemoteStreams() as MediaStream[]
+      const streams = session.sip.connection.getRemoteStreams() as MediaStream[]
       if (streams && streams.length) {
         return streams
       }
@@ -100,9 +108,9 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     return null
   }
 
-  answer(id: string): boolean {
+  answer(id: string, req: AnswerRequest): boolean {
     if (this.sessionCache.has(id)) {
-      this.sessionCache.get(id)!.answer(this.callOption)
+      this.sessionCache.get(id)!.sip.answer(this.callOption(req))
 
       return true
     }
@@ -136,10 +144,15 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
 
     ua.on('newRTCSession', (e: RTCSession) => {
       const session = e.session
-
       const id = e.request.getHeader('X-Webitel-Uuid') || session.id
 
-      this.storeSession(id, session)
+      const callSession = {
+        sip: session,
+        incoming: session.direction === 'incoming',
+        instance_id: e.request.getHeader('X-Webitel-Sock-Id'),
+      }
+
+      this.storeSession(id, callSession)
 
       session.on('peerconnection', (peer: PeerConnectionEvent) => {
         peer.peerconnection.addEventListener(
@@ -173,12 +186,7 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
         // this handler will be called for incoming calls too
       })
 
-      if (
-        session.direction === 'incoming' &&
-        e.request.getHeader('X-Webitel-Sock-Id') === this.instanceId
-      ) {
-        session.answer(this.callOption)
-      }
+      this.emit('newSession', id, callSession)
     })
 
     ua.on('disconnected', (e: object) => {
@@ -207,13 +215,22 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     ua.start()
   }
 
+  isOutboundCall(id: string): boolean {
+    const session = this.getSession(id)
+    if (session) {
+      return session.incoming && session.instance_id === this.instanceId
+    }
+
+    return false
+  }
+
   async unregister() {
     if (this.ua) {
       this.ua.unregister()
     }
   }
 
-  get allSession(): SipSession[] {
+  get allSession(): CallSession[] {
     return Array.from(this.sessionCache.values())
   }
 
@@ -227,7 +244,7 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     return false
   }
 
-  protected storeSession(id: string, session: SipSession) {
+  protected storeSession(id: string, session: CallSession) {
     if (this.sessionCache.has(id)) {
       throw new Error('Session already store')
     }

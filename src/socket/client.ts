@@ -1,5 +1,6 @@
 import { EventEmitter } from 'ee-ts'
 import {
+  AnswerRequest,
   Call,
   CallActions,
   CallEventData,
@@ -9,7 +10,7 @@ import {
   CallInfo,
 } from './call'
 import { Log } from './log'
-import { SipConfiguration, SipPhone } from './sip'
+import { CallSession, SipConfiguration, SipPhone } from './sip'
 import { Message, Socket } from './socket'
 
 export interface Config {
@@ -154,8 +155,8 @@ export class Client {
     return this.request(WEBSOCKET_MAKE_OUTBOUND_CALL, req)
   }
 
-  answer(id: string): boolean {
-    return this.phone.answer(id)
+  answer(id: string, req: AnswerRequest): boolean {
+    return this.phone.answer(id, req)
   }
 
   request(action: string, data?: object): Promise<Error> {
@@ -232,6 +233,8 @@ export class Client {
       }
     )
 
+    this.phone.on('newSession', this.onNewCallSession.bind(this))
+
     if (this.useWebPhone()) {
       try {
         const conf = await this.deviceConfig()
@@ -240,6 +243,19 @@ export class Client {
         // FIXME add handle error
         this.log.error(e)
       }
+    }
+  }
+
+  private onNewCallSession(id: string, session: CallSession) {
+    this.checkAutoAnswer(id)
+  }
+
+  private checkAutoAnswer(id: string) {
+    const call = this.callById(id)
+    if (call && this.phone.isOutboundCall(id)) {
+      call.answer({
+        useVideo: call.videoRequest,
+      })
     }
   }
 
@@ -257,6 +273,7 @@ export class Client {
       this.socket.on('message', this.onMessage.bind(this))
       this.socket.on('close', (code: number) => {
         this.log.error('socket close code: ', code)
+        reject(new Error(`close socket code: ${code}`))
       })
       this.socket.on('open', () => {
         resolve(null)
@@ -274,7 +291,10 @@ export class Client {
           event as CallInfo,
           this.phone.getPeerStream(event.id)
         )
+
         this.callStore.set(call.id, call)
+
+        this.checkAutoAnswer(event.id)
         break
 
       case CallActions.Active:

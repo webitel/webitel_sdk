@@ -20,6 +20,10 @@ export enum CallDirection {
   Internal = 'internal',
 }
 
+export interface AnswerRequest {
+  useVideo?: boolean
+}
+
 export interface CallEventData {
   id: string
   node_name: string
@@ -46,6 +50,8 @@ export interface CallInfo extends CallEventData {
 
   payload: Map<string, string>
   gateway_id: string
+  video_request: string
+  video_flow: string
 }
 
 export interface CallHangup extends CallEventData {
@@ -67,6 +73,8 @@ export class Call {
   toName!: string
   payload!: Map<string, string>
 
+  videoRequest!: boolean
+  videoFlow!: string | null
   peerStreams!: MediaStream[] | null
 
   createdAt: number
@@ -119,6 +127,22 @@ export class Call {
     return this._muted
   }
 
+  get allowInboundVideo(): boolean {
+    if (this.videoFlow) {
+      return this.videoFlow.indexOf('send') > -1
+    }
+
+    return false
+  }
+
+  get allowOutboundVideo(): boolean {
+    if (this.videoFlow) {
+      return this.videoFlow.indexOf('recv') > -1
+    }
+
+    return false
+  }
+
   setInfo(s: CallInfo) {
     this.destination = s.destination
     this.direction = s.direction
@@ -133,6 +157,14 @@ export class Call {
     } else {
       this._gatewayId = null // ?
     }
+
+    if (s.video_flow) {
+      this.videoFlow = s.video_flow
+    } else {
+      this.videoFlow = null
+    }
+
+    this.videoRequest = s.video_request === 'true' //
 
     this.setState(s)
   }
@@ -194,7 +226,7 @@ export class Call {
   }
 
   /* Call control */
-  answer(): boolean {
+  answer(req: AnswerRequest): boolean {
     let sessionId = null
     if (this.client.phone.hasSession(this.id)) {
       sessionId = this.id
@@ -203,7 +235,7 @@ export class Call {
     }
 
     if (sessionId) {
-      return this.client.phone.answer(sessionId)
+      return this.client.phone.answer(sessionId, req)
     }
 
     return false
