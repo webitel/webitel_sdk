@@ -1,10 +1,4 @@
-import {
-  CalendarServiceApi,
-  Configuration,
-  EngineAcceptOfDay,
-  EngineCalendar,
-  EngineExceptDate,
-} from '../'
+import { CalendarServiceApi, Configuration, EngineCalendar } from '../'
 
 const successCode = 200
 
@@ -16,8 +10,6 @@ jest.mock('../environment.ts', () => ({
 describe(`Calendar API`, () => {
   let calendar: EngineCalendar
   let api: CalendarServiceApi
-  let acceptOfDay: EngineAcceptOfDay
-  let exceptDate: EngineExceptDate
 
   const configuration = new Configuration({
     basePath: process.env.WEBITEL_API_BASE_PATH,
@@ -40,6 +32,14 @@ describe(`Calendar API`, () => {
       timezone: {
         id: '1',
       },
+      accepts: [
+        {
+          day: 1,
+          disabled: false,
+          start_time_of_day: 0,
+          end_time_of_day: 1440,
+        },
+      ],
     })
 
     calendar = res.data
@@ -84,151 +84,12 @@ describe(`Calendar API`, () => {
       timezone: {
         id: '2',
       },
+      accepts: calendar.accepts,
     })
 
     expect(res.status).toBe(successCode)
     expect(res.data.name).toBe('update-test')
     expect(res.data.id).toBe(calendar.id)
-  })
-
-  it('Create accept of day', async () => {
-    if (!calendar.id) {
-      throw new Error('calendar id require')
-    }
-
-    const res = await api.createAcceptOfDay(calendar.id, {
-      day: 1,
-      start_time_of_day: 10,
-      end_time_of_day: 100,
-      disabled: true,
-    })
-
-    expect(res.status).toBe(successCode)
-
-    /* tslint:disable */
-    expect(res.data.start_time_of_day).toBe(10)
-    expect(res.data.end_time_of_day).toBe(100)
-    /* tslint:enable */
-    expect(res.data.disabled).toBe(true)
-
-    acceptOfDay = res.data
-  })
-
-  it('Read accept of day', async () => {
-    if (!calendar.id || !acceptOfDay.id) {
-      throw new Error('calendar id require')
-    }
-
-    const res = await api.readAcceptOfDay(calendar.id, acceptOfDay.id)
-
-    expect(res.status).toBe(successCode)
-    /* tslint:disable */
-    expect(res.data.start_time_of_day).toBe(10)
-    expect(res.data.end_time_of_day).toBe(100)
-    /* tslint:enable */
-  })
-
-  it('Update accept of day', async () => {
-    if (!calendar.id || !acceptOfDay.id) {
-      throw new Error('calendar id require')
-    }
-
-    const res = await api.updateAcceptOfDay(calendar.id, acceptOfDay.id, {
-      end_time_of_day: 1000,
-      start_time_of_day: 999,
-      disabled: false,
-    })
-
-    expect(res.status).toBe(successCode)
-    /* tslint:disable */
-    expect(res.data.start_time_of_day).toBe(999)
-    expect(res.data.end_time_of_day).toBe(1000)
-    /* tslint:enable */
-  })
-
-  it('Remove accept of day', async () => {
-    if (!calendar.id || !acceptOfDay.id) {
-      throw new Error('calendar id require')
-    }
-
-    const res = await api.readAcceptOfDay(
-      calendar.id,
-      acceptOfDay.id,
-      calendar.domain_id
-    )
-
-    expect(res.status).toBe(successCode)
-    /* tslint:disable */
-    expect(res.data.start_time_of_day).toBe(999)
-    expect(res.data.end_time_of_day).toBe(1000)
-    /* tslint:enable */
-  })
-
-  it('Create except', async () => {
-    if (!calendar.id) {
-      throw new Error('calendar id require')
-    }
-
-    const res = await api.createExceptDate(calendar.id, {
-      date: '2000',
-      name: 'test',
-      repeat: true,
-    })
-
-    expect(res.status).toBe(successCode)
-    expect(res.data.date).toBe('2000')
-    expect(res.data.name).toBe('test')
-    expect(res.data.repeat).toBe(true)
-
-    exceptDate = res.data
-  })
-
-  it('Read except', async () => {
-    if (!calendar.id || !exceptDate.id) {
-      throw new Error('calendar id require')
-    }
-
-    const res = await api.readExceptDate(calendar.id, exceptDate.id)
-
-    expect(res.status).toBe(successCode)
-    expect(res.data.date).toBe('2000')
-    expect(res.data.name).toBe('test')
-    expect(res.data.repeat).toBe(true)
-
-    exceptDate = res.data
-  })
-
-  it('Update except', async () => {
-    if (!calendar.id || !exceptDate.id) {
-      throw new Error('calendar id require')
-    }
-
-    const res = await api.updateExceptDate(calendar.id, exceptDate.id, {
-      ...exceptDate,
-      name: 'update-except',
-      date: '1',
-      repeat: false,
-    })
-
-    expect(res.status).toBe(successCode)
-    expect(res.data.date).toBe('1')
-    expect(res.data.name).toBe('update-except')
-
-    exceptDate = res.data
-  })
-
-  it('Remove except', async () => {
-    if (!calendar.id || !exceptDate.id) {
-      throw new Error('calendar id require')
-    }
-
-    const res = await api.deleteExceptDate(calendar.id, exceptDate.id)
-
-    expect(res.status).toBe(successCode)
-    expect(res.data.date).toBe('1')
-    expect(res.data.name).toBe('update-except')
-
-    exceptDate = res.data
   })
 
   it(`Remove calendar`, async () => {

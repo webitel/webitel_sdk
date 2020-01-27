@@ -33,22 +33,16 @@ import {
 export interface EngineAcceptOfDay {
   /**
    *
-   * @type {string}
-   * @memberof EngineAcceptOfDay
-   */
-  id?: string
-  /**
-   *
    * @type {number}
    * @memberof EngineAcceptOfDay
    */
   day?: number
   /**
    *
-   * @type {number}
+   * @type {boolean}
    * @memberof EngineAcceptOfDay
    */
-  start_time_of_day?: number
+  disabled?: boolean
   /**
    *
    * @type {number}
@@ -57,10 +51,10 @@ export interface EngineAcceptOfDay {
   end_time_of_day?: number
   /**
    *
-   * @type {boolean}
+   * @type {number}
    * @memberof EngineAcceptOfDay
    */
-  disabled?: boolean
+  start_time_of_day?: number
 }
 /**
  *
@@ -73,31 +67,13 @@ export interface EngineAgent {
    * @type {string}
    * @memberof EngineAgent
    */
-  id?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineAgent
-   */
-  user?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgent
-   */
-  status?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgent
-   */
-  state?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgent
-   */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  id?: string
   /**
    *
    * @type {string}
@@ -109,7 +85,25 @@ export interface EngineAgent {
    * @type {string}
    * @memberof EngineAgent
    */
+  state?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
   state_timeout?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  status?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgent
+   */
+  user?: EngineLookup
 }
 /**
  *
@@ -119,28 +113,16 @@ export interface EngineAgent {
 export interface EngineAgentInQueue {
   /**
    *
-   * @type {EngineLookup}
+   * @type {number}
    * @memberof EngineAgentInQueue
    */
-  queue?: EngineLookup
+  active_member?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentInQueue
    */
-  priority?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentInQueue
-   */
-  type?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentInQueue
-   */
-  strategy?: string
+  count_member?: number
   /**
    *
    * @type {boolean}
@@ -152,19 +134,31 @@ export interface EngineAgentInQueue {
    * @type {number}
    * @memberof EngineAgentInQueue
    */
-  count_member?: number
+  priority?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentInQueue
+   */
+  queue?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentInQueue
+   */
+  strategy?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentInQueue
+   */
+  type?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentInQueue
    */
   waiting_member?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentInQueue
-   */
-  active_member?: number
 }
 /**
  *
@@ -174,16 +168,16 @@ export interface EngineAgentInQueue {
 export interface EngineAgentInTeam {
   /**
    *
-   * @type {EngineLookup}
-   * @memberof EngineAgentInTeam
-   */
-  team?: EngineLookup
-  /**
-   *
    * @type {string}
    * @memberof EngineAgentInTeam
    */
   strategy?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentInTeam
+   */
+  team?: EngineLookup
 }
 /**
  *
@@ -193,16 +187,16 @@ export interface EngineAgentInTeam {
 export interface EngineAgentSkill {
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineAgentSkill
    */
-  id?: string
+  agent?: EngineLookup
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof EngineAgentSkill
    */
-  domain_id?: string
+  capacity?: number
   /**
    *
    * @type {string}
@@ -220,19 +214,13 @@ export interface EngineAgentSkill {
    * @type {string}
    * @memberof EngineAgentSkill
    */
-  updated_at?: string
+  domain_id?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineAgentSkill
    */
-  updated_by?: EngineLookup
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineAgentSkill
-   */
-  agent?: EngineLookup
+  id?: string
   /**
    *
    * @type {EngineLookup}
@@ -241,10 +229,16 @@ export interface EngineAgentSkill {
   skill?: EngineLookup
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineAgentSkill
    */
-  capacity?: number
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentSkill
+   */
+  updated_by?: EngineLookup
 }
 /**
  *
@@ -252,6 +246,12 @@ export interface EngineAgentSkill {
  * @interface EngineAgentSkillItem
  */
 export interface EngineAgentSkillItem {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentSkillItem
+   */
+  capacity?: number
   /**
    *
    * @type {string}
@@ -264,12 +264,6 @@ export interface EngineAgentSkillItem {
    * @memberof EngineAgentSkillItem
    */
   skill?: EngineLookup
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentSkillItem
-   */
-  capacity?: number
 }
 /**
  *
@@ -291,6 +285,12 @@ export interface EngineAgentState {
   joined_at?: string
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineAgentState
+   */
+  queue?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentState
    */
@@ -301,12 +301,6 @@ export interface EngineAgentState {
    * @memberof EngineAgentState
    */
   timeout_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineAgentState
-   */
-  queue?: EngineLookup
 }
 /**
  *
@@ -319,6 +313,12 @@ export interface EngineAgentStatusRequest {
    * @type {string}
    * @memberof EngineAgentStatusRequest
    */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatusRequest
+   */
   id?: string
   /**
    *
@@ -326,12 +326,6 @@ export interface EngineAgentStatusRequest {
    * @memberof EngineAgentStatusRequest
    */
   status?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentStatusRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -339,54 +333,6 @@ export interface EngineAgentStatusRequest {
  * @interface EngineAgentTeam
  */
 export interface EngineAgentTeam {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentTeam
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentTeam
-   */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentTeam
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentTeam
-   */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentTeam
-   */
-  strategy?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentTeam
-   */
-  max_no_answer?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentTeam
-   */
-  wrap_up_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentTeam
-   */
-  reject_delay_time?: number
   /**
    *
    * @type {number}
@@ -398,19 +344,67 @@ export interface EngineAgentTeam {
    * @type {number}
    * @memberof EngineAgentTeam
    */
-  no_answer_delay_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentTeam
-   */
   call_timeout?: number
   /**
    *
    * @type {string}
    * @memberof EngineAgentTeam
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  max_no_answer?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  no_answer_delay_time?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  reject_delay_time?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
+  strategy?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentTeam
+   */
   updated_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  wrap_up_time?: number
 }
 /**
  *
@@ -423,6 +417,12 @@ export interface EngineBucket {
    * @type {string}
    * @memberof EngineBucket
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineBucket
+   */
   id?: string
   /**
    *
@@ -430,12 +430,6 @@ export interface EngineBucket {
    * @memberof EngineBucket
    */
   name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineBucket
-   */
-  description?: string
 }
 /**
  *
@@ -445,16 +439,10 @@ export interface EngineBucket {
 export interface EngineCalendar {
   /**
    *
-   * @type {string}
+   * @type {Array<EngineAcceptOfDay>}
    * @memberof EngineCalendar
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCalendar
-   */
-  domain_id?: string
+  accepts?: Array<EngineAcceptOfDay>
   /**
    *
    * @type {string}
@@ -472,13 +460,31 @@ export interface EngineCalendar {
    * @type {string}
    * @memberof EngineCalendar
    */
-  updated_at?: string
+  description?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineCalendar
    */
-  updated_by?: EngineLookup
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  end_at?: string
+  /**
+   *
+   * @type {Array<EngineExceptDate>}
+   * @memberof EngineCalendar
+   */
+  excepts?: Array<EngineExceptDate>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCalendar
+   */
+  id?: string
   /**
    *
    * @type {string}
@@ -493,12 +499,6 @@ export interface EngineCalendar {
   start_at?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineCalendar
-   */
-  end_at?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCalendar
    */
@@ -508,7 +508,13 @@ export interface EngineCalendar {
    * @type {string}
    * @memberof EngineCalendar
    */
-  description?: string
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCalendar
+   */
+  updated_by?: EngineLookup
 }
 /**
  *
@@ -521,7 +527,13 @@ export interface EngineCommunicationType {
    * @type {string}
    * @memberof EngineCommunicationType
    */
-  id?: string
+  code?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationType
+   */
+  description?: string
   /**
    *
    * @type {string}
@@ -533,25 +545,19 @@ export interface EngineCommunicationType {
    * @type {string}
    * @memberof EngineCommunicationType
    */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCommunicationType
+   */
   name?: string
   /**
    *
    * @type {string}
    * @memberof EngineCommunicationType
    */
-  code?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCommunicationType
-   */
   type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCommunicationType
-   */
-  description?: string
 }
 /**
  *
@@ -564,19 +570,7 @@ export interface EngineCommunicationTypeRequest {
    * @type {string}
    * @memberof EngineCommunicationTypeRequest
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCommunicationTypeRequest
-   */
   code?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCommunicationTypeRequest
-   */
-  type?: string
   /**
    *
    * @type {string}
@@ -589,49 +583,18 @@ export interface EngineCommunicationTypeRequest {
    * @memberof EngineCommunicationTypeRequest
    */
   domain_id?: string
-}
-/**
- *
- * @export
- * @interface EngineCreateAcceptOfDayRequest
- */
-export interface EngineCreateAcceptOfDayRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineCreateAcceptOfDayRequest
+   * @memberof EngineCommunicationTypeRequest
    */
-  calendar_id?: string
+  name?: string
   /**
    *
    * @type {string}
-   * @memberof EngineCreateAcceptOfDayRequest
+   * @memberof EngineCommunicationTypeRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAcceptOfDayRequest
-   */
-  day?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAcceptOfDayRequest
-   */
-  start_time_of_day?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAcceptOfDayRequest
-   */
-  end_time_of_day?: number
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineCreateAcceptOfDayRequest
-   */
-  disabled?: boolean
+  type?: string
 }
 /**
  *
@@ -641,12 +604,6 @@ export interface EngineCreateAcceptOfDayRequest {
 export interface EngineCreateAgentRequest {
   /**
    *
-   * @type {EngineLookup}
-   * @memberof EngineCreateAgentRequest
-   */
-  user?: EngineLookup
-  /**
-   *
    * @type {string}
    * @memberof EngineCreateAgentRequest
    */
@@ -657,6 +614,12 @@ export interface EngineCreateAgentRequest {
    * @memberof EngineCreateAgentRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateAgentRequest
+   */
+  user?: EngineLookup
 }
 /**
  *
@@ -672,12 +635,6 @@ export interface EngineCreateAgentSkillRequest {
   agent_id?: string
   /**
    *
-   * @type {EngineLookup}
-   * @memberof EngineCreateAgentSkillRequest
-   */
-  skill?: EngineLookup
-  /**
-   *
    * @type {number}
    * @memberof EngineCreateAgentSkillRequest
    */
@@ -688,6 +645,12 @@ export interface EngineCreateAgentSkillRequest {
    * @memberof EngineCreateAgentSkillRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateAgentSkillRequest
+   */
+  skill?: EngineLookup
 }
 /**
  *
@@ -695,42 +658,6 @@ export interface EngineCreateAgentSkillRequest {
  * @interface EngineCreateAgentTeamRequest
  */
 export interface EngineCreateAgentTeamRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  strategy?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  max_no_answer?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  wrap_up_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  reject_delay_time?: number
   /**
    *
    * @type {number}
@@ -742,19 +669,55 @@ export interface EngineCreateAgentTeamRequest {
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
-  no_answer_delay_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAgentTeamRequest
-   */
   call_timeout?: number
   /**
    *
    * @type {string}
    * @memberof EngineCreateAgentTeamRequest
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentTeamRequest
+   */
   domain_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  max_no_answer?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  no_answer_delay_time?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  reject_delay_time?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  wrap_up_time?: number
 }
 /**
  *
@@ -767,12 +730,6 @@ export interface EngineCreateBucketRequest {
    * @type {string}
    * @memberof EngineCreateBucketRequest
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateBucketRequest
-   */
   description?: string
   /**
    *
@@ -780,6 +737,12 @@ export interface EngineCreateBucketRequest {
    * @memberof EngineCreateBucketRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateBucketRequest
+   */
+  name?: string
 }
 /**
  *
@@ -787,6 +750,36 @@ export interface EngineCreateBucketRequest {
  * @interface EngineCreateCalendarRequest
  */
 export interface EngineCreateCalendarRequest {
+  /**
+   *
+   * @type {Array<EngineAcceptOfDay>}
+   * @memberof EngineCreateCalendarRequest
+   */
+  accepts?: Array<EngineAcceptOfDay>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCalendarRequest
+   */
+  end_at?: string
+  /**
+   *
+   * @type {Array<EngineExceptDate>}
+   * @memberof EngineCreateCalendarRequest
+   */
+  excepts?: Array<EngineExceptDate>
   /**
    *
    * @type {string}
@@ -801,71 +794,10 @@ export interface EngineCreateCalendarRequest {
   start_at?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineCreateCalendarRequest
-   */
-  end_at?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCreateCalendarRequest
    */
   timezone?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateCalendarRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateCalendarRequest
-   */
-  domain_id?: string
-}
-/**
- *
- * @export
- * @interface EngineCreateExceptDateRequest
- */
-export interface EngineCreateExceptDateRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateExceptDateRequest
-   */
-  calendar_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateExceptDateRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateExceptDateRequest
-   */
-  date?: string
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineCreateExceptDateRequest
-   */
-  repeat?: boolean
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineCreateExceptDateRequest
-   */
-  disabled?: boolean
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateExceptDateRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -878,13 +810,13 @@ export interface EngineCreateListCommunicationRequest {
    * @type {string}
    * @memberof EngineCreateListCommunicationRequest
    */
-  number?: string
+  description?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateListCommunicationRequest
    */
-  description?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -896,7 +828,7 @@ export interface EngineCreateListCommunicationRequest {
    * @type {string}
    * @memberof EngineCreateListCommunicationRequest
    */
-  domain_id?: string
+  number?: string
 }
 /**
  *
@@ -909,12 +841,6 @@ export interface EngineCreateListRequest {
    * @type {string}
    * @memberof EngineCreateListRequest
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateListRequest
-   */
   description?: string
   /**
    *
@@ -922,6 +848,12 @@ export interface EngineCreateListRequest {
    * @memberof EngineCreateListRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateListRequest
+   */
+  name?: string
 }
 /**
  *
@@ -931,34 +863,10 @@ export interface EngineCreateListRequest {
 export interface EngineCreateMemberBulkItem {
   /**
    *
-   * @type {number}
-   * @memberof EngineCreateMemberBulkItem
-   */
-  priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateMemberBulkItem
-   */
-  expire_at?: string
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineCreateMemberBulkItem
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateMemberBulkItem
-   */
-  name?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCreateMemberBulkItem
    */
-  timezone?: EngineLookup
+  bucket?: EngineLookup
   /**
    *
    * @type {Array<EngineMemberCommunicationCreateRequest>}
@@ -967,10 +875,28 @@ export interface EngineCreateMemberBulkItem {
   communications?: Array<EngineMemberCommunicationCreateRequest>
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineCreateMemberBulkItem
    */
-  bucket?: EngineLookup
+  expire_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  min_offering_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  priority?: number
   /**
    *
    * @type {Array<string>}
@@ -979,10 +905,16 @@ export interface EngineCreateMemberBulkItem {
   skills?: Array<string>
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineCreateMemberBulkItem
    */
-  min_offering_at?: string
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineCreateMemberBulkItem
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -995,7 +927,7 @@ export interface EngineCreateMemberBulkRequest {
    * @type {string}
    * @memberof EngineCreateMemberBulkRequest
    */
-  queue_id?: string
+  domain_id?: string
   /**
    *
    * @type {Array<EngineCreateMemberBulkItem>}
@@ -1007,7 +939,7 @@ export interface EngineCreateMemberBulkRequest {
    * @type {string}
    * @memberof EngineCreateMemberBulkRequest
    */
-  domain_id?: string
+  queue_id?: string
 }
 /**
  *
@@ -1017,40 +949,10 @@ export interface EngineCreateMemberBulkRequest {
 export interface EngineCreateMemberRequest {
   /**
    *
-   * @type {string}
-   * @memberof EngineCreateMemberRequest
-   */
-  queue_id?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateMemberRequest
-   */
-  priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateMemberRequest
-   */
-  expire_at?: string
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineCreateMemberRequest
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateMemberRequest
-   */
-  name?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCreateMemberRequest
    */
-  timezone?: EngineLookup
+  bucket?: EngineLookup
   /**
    *
    * @type {Array<EngineMemberCommunicationCreateRequest>}
@@ -1059,16 +961,16 @@ export interface EngineCreateMemberRequest {
   communications?: Array<EngineMemberCommunicationCreateRequest>
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineCreateMemberRequest
    */
-  bucket?: EngineLookup
+  domain_id?: string
   /**
    *
-   * @type {Array<string>}
+   * @type {string}
    * @memberof EngineCreateMemberRequest
    */
-  skills?: Array<string>
+  expire_at?: string
   /**
    *
    * @type {string}
@@ -1080,7 +982,37 @@ export interface EngineCreateMemberRequest {
    * @type {string}
    * @memberof EngineCreateMemberRequest
    */
-  domain_id?: string
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateMemberRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateMemberRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineCreateMemberRequest
+   */
+  skills?: Array<string>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateMemberRequest
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineCreateMemberRequest
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -1093,12 +1025,6 @@ export interface EngineCreateOutboundResourceDisplayRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceDisplayRequest
    */
-  resource_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceDisplayRequest
-   */
   display?: string
   /**
    *
@@ -1106,6 +1032,12 @@ export interface EngineCreateOutboundResourceDisplayRequest {
    * @memberof EngineCreateOutboundResourceDisplayRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceDisplayRequest
+   */
+  resource_id?: string
 }
 /**
  *
@@ -1113,6 +1045,24 @@ export interface EngineCreateOutboundResourceDisplayRequest {
  * @interface EngineCreateOutboundResourceGroupRequest
  */
 export interface EngineCreateOutboundResourceGroupRequest {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  communication?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceGroupRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -1127,28 +1077,10 @@ export interface EngineCreateOutboundResourceGroupRequest {
   strategy?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceGroupRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineCreateOutboundResourceGroupRequest
-   */
-  communication?: EngineLookup
-  /**
-   *
    * @type {Array<EngineOutboundResourceTimeRange>}
    * @memberof EngineCreateOutboundResourceGroupRequest
    */
   time?: Array<EngineOutboundResourceTimeRange>
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceGroupRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -1161,6 +1093,12 @@ export interface EngineCreateOutboundResourceInGroupRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceInGroupRequest
    */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceInGroupRequest
+   */
   group_id?: string
   /**
    *
@@ -1168,12 +1106,6 @@ export interface EngineCreateOutboundResourceInGroupRequest {
    * @memberof EngineCreateOutboundResourceInGroupRequest
    */
   resource?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceInGroupRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -1183,10 +1115,16 @@ export interface EngineCreateOutboundResourceInGroupRequest {
 export interface EngineCreateOutboundResourceRequest {
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  limit?: number
+  dial_string?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {boolean}
@@ -1195,28 +1133,22 @@ export interface EngineCreateOutboundResourceRequest {
   enabled?: boolean
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  error_ids?: Array<string>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  gateway?: EngineLookup
+  /**
+   *
    * @type {number}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  rps?: number
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineCreateOutboundResourceRequest
-   */
-  reserve?: boolean
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineCreateOutboundResourceRequest
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceRequest
-   */
-  number?: string
+  limit?: number
   /**
    *
    * @type {number}
@@ -1234,25 +1166,25 @@ export interface EngineCreateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  dial_string?: string
+  number?: string
   /**
    *
-   * @type {Array<string>}
+   * @type {boolean}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  error_ids?: Array<string>
+  reserve?: boolean
   /**
    *
-   * @type {EngineLookup}
+   * @type {number}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  gateway?: EngineLookup
+  rps?: number
   /**
    *
-   * @type {string}
+   * @type {{ [key: string]: string; }}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  domain_id?: string
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -1260,6 +1192,18 @@ export interface EngineCreateOutboundResourceRequest {
  * @interface EngineCreateQueueBucketRequest
  */
 export interface EngineCreateQueueBucketRequest {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueBucketRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueBucketRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -1272,18 +1216,6 @@ export interface EngineCreateQueueBucketRequest {
    * @memberof EngineCreateQueueBucketRequest
    */
   ratio?: number
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineCreateQueueBucketRequest
-   */
-  bucket?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateQueueBucketRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -1293,76 +1225,10 @@ export interface EngineCreateQueueBucketRequest {
 export interface EngineCreateQueueRequest {
   /**
    *
-   * @type {string}
-   * @memberof EngineCreateQueueRequest
-   */
-  strategy?: string
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineCreateQueueRequest
-   */
-  enabled?: boolean
-  /**
-   *
-   * @type {object}
-   * @memberof EngineCreateQueueRequest
-   */
-  payload?: object
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCreateQueueRequest
    */
   calendar?: EngineLookup
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateQueueRequest
-   */
-  priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateQueueRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineCreateQueueRequest
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateQueueRequest
-   */
-  timeout?: number
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineCreateQueueRequest
-   */
-  dnc_list?: EngineLookup
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateQueueRequest
-   */
-  sec_locate_agent?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateQueueRequest
-   */
-  type?: number
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineCreateQueueRequest
-   */
-  team?: EngineLookup
   /**
    *
    * @type {string}
@@ -1371,10 +1237,76 @@ export interface EngineCreateQueueRequest {
   description?: string
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueRequest
+   */
+  dnc_list?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineCreateQueueRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateQueueRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {object}
+   * @memberof EngineCreateQueueRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  sec_locate_agent?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueRequest
+   */
+  team?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  timeout?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  type?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineCreateQueueRequest
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -1387,6 +1319,12 @@ export interface EngineCreateQueueResourceGroupRequest {
    * @type {string}
    * @memberof EngineCreateQueueResourceGroupRequest
    */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQueueResourceGroupRequest
+   */
   queue_id?: string
   /**
    *
@@ -1394,12 +1332,6 @@ export interface EngineCreateQueueResourceGroupRequest {
    * @memberof EngineCreateQueueResourceGroupRequest
    */
   resource_group?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateQueueResourceGroupRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -1409,10 +1341,16 @@ export interface EngineCreateQueueResourceGroupRequest {
 export interface EngineCreateQueueRoutingRequest {
   /**
    *
+   * @type {boolean}
+   * @memberof EngineCreateQueueRoutingRequest
+   */
+  disabled?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineCreateQueueRoutingRequest
    */
-  queue_id?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -1427,16 +1365,10 @@ export interface EngineCreateQueueRoutingRequest {
   priority?: number
   /**
    *
-   * @type {boolean}
-   * @memberof EngineCreateQueueRoutingRequest
-   */
-  disabled?: boolean
-  /**
-   *
    * @type {string}
    * @memberof EngineCreateQueueRoutingRequest
    */
-  domain_id?: string
+  queue_id?: string
 }
 /**
  *
@@ -1444,12 +1376,6 @@ export interface EngineCreateQueueRoutingRequest {
  * @interface EngineCreateResourceTeamAgentRequest
  */
 export interface EngineCreateResourceTeamAgentRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateResourceTeamAgentRequest
-   */
-  team_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -1464,6 +1390,12 @@ export interface EngineCreateResourceTeamAgentRequest {
   bucket?: EngineLookup
   /**
    *
+   * @type {string}
+   * @memberof EngineCreateResourceTeamAgentRequest
+   */
+  domain_id?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineCreateResourceTeamAgentRequest
    */
@@ -1473,7 +1405,7 @@ export interface EngineCreateResourceTeamAgentRequest {
    * @type {string}
    * @memberof EngineCreateResourceTeamAgentRequest
    */
-  domain_id?: string
+  team_id?: string
 }
 /**
  *
@@ -1483,22 +1415,16 @@ export interface EngineCreateResourceTeamAgentRequest {
 export interface EngineCreateResourceTeamSkillRequest {
   /**
    *
-   * @type {string}
-   * @memberof EngineCreateResourceTeamSkillRequest
-   */
-  team_id?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineCreateResourceTeamSkillRequest
-   */
-  skill?: EngineLookup
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCreateResourceTeamSkillRequest
    */
   bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {number}
@@ -1510,19 +1436,25 @@ export interface EngineCreateResourceTeamSkillRequest {
    * @type {number}
    * @memberof EngineCreateResourceTeamSkillRequest
    */
-  min_capacity?: number
+  max_capacity?: number
   /**
    *
    * @type {number}
    * @memberof EngineCreateResourceTeamSkillRequest
    */
-  max_capacity?: number
+  min_capacity?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateResourceTeamSkillRequest
+   */
+  skill?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineCreateResourceTeamSkillRequest
    */
-  domain_id?: string
+  team_id?: string
 }
 /**
  *
@@ -1535,19 +1467,25 @@ export interface EngineCreateRoutingOutboundCallRequest {
    * @type {string}
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
-  name?: string
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateRoutingOutboundCallRequest
+   */
+  disabled?: boolean
   /**
    *
    * @type {string}
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
-  description?: string
+  domain_id?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
-  schema?: EngineLookup
+  name?: string
   /**
    *
    * @type {string}
@@ -1562,16 +1500,10 @@ export interface EngineCreateRoutingOutboundCallRequest {
   priority?: number
   /**
    *
-   * @type {boolean}
+   * @type {EngineLookup}
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
-  disabled?: boolean
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateRoutingOutboundCallRequest
-   */
-  domain_id?: string
+  schema?: EngineLookup
 }
 /**
  *
@@ -1579,36 +1511,6 @@ export interface EngineCreateRoutingOutboundCallRequest {
  * @interface EngineCreateRoutingSchemaRequest
  */
 export interface EngineCreateRoutingSchemaRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateRoutingSchemaRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateRoutingSchemaRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateRoutingSchemaRequest
-   */
-  type?: number
-  /**
-   *
-   * @type {object}
-   * @memberof EngineCreateRoutingSchemaRequest
-   */
-  schema?: object
-  /**
-   *
-   * @type {object}
-   * @memberof EngineCreateRoutingSchemaRequest
-   */
-  payload?: object
   /**
    *
    * @type {boolean}
@@ -1620,7 +1522,37 @@ export interface EngineCreateRoutingSchemaRequest {
    * @type {string}
    * @memberof EngineCreateRoutingSchemaRequest
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingSchemaRequest
+   */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingSchemaRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {object}
+   * @memberof EngineCreateRoutingSchemaRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {object}
+   * @memberof EngineCreateRoutingSchemaRequest
+   */
+  schema?: object
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateRoutingSchemaRequest
+   */
+  type?: number
 }
 /**
  *
@@ -1633,6 +1565,12 @@ export interface EngineCreateRoutingVariableRequest {
    * @type {string}
    * @memberof EngineCreateRoutingVariableRequest
    */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateRoutingVariableRequest
+   */
   key?: string
   /**
    *
@@ -1640,12 +1578,6 @@ export interface EngineCreateRoutingVariableRequest {
    * @memberof EngineCreateRoutingVariableRequest
    */
   value?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateRoutingVariableRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -1658,12 +1590,6 @@ export interface EngineCreateSkillRequest {
    * @type {string}
    * @memberof EngineCreateSkillRequest
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateSkillRequest
-   */
   description?: string
   /**
    *
@@ -1671,6 +1597,12 @@ export interface EngineCreateSkillRequest {
    * @memberof EngineCreateSkillRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSkillRequest
+   */
+  name?: string
 }
 /**
  *
@@ -1678,12 +1610,6 @@ export interface EngineCreateSkillRequest {
  * @interface EngineCreateSupervisorInTeamRequest
  */
 export interface EngineCreateSupervisorInTeamRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateSupervisorInTeamRequest
-   */
-  team_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -1696,6 +1622,12 @@ export interface EngineCreateSupervisorInTeamRequest {
    * @memberof EngineCreateSupervisorInTeamRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSupervisorInTeamRequest
+   */
+  team_id?: string
 }
 /**
  *
@@ -1708,7 +1640,7 @@ export interface EngineDeleteMembersRequest {
    * @type {string}
    * @memberof EngineDeleteMembersRequest
    */
-  queue_id?: string
+  domain_id?: string
   /**
    *
    * @type {Array<string>}
@@ -1720,7 +1652,7 @@ export interface EngineDeleteMembersRequest {
    * @type {string}
    * @memberof EngineDeleteMembersRequest
    */
-  domain_id?: string
+  queue_id?: string
 }
 /**
  *
@@ -1733,13 +1665,13 @@ export interface EngineExceptDate {
    * @type {string}
    * @memberof EngineExceptDate
    */
-  id?: string
+  date?: string
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EngineExceptDate
    */
-  calendar_id?: string
+  disabled?: boolean
   /**
    *
    * @type {string}
@@ -1748,22 +1680,10 @@ export interface EngineExceptDate {
   name?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineExceptDate
-   */
-  date?: string
-  /**
-   *
    * @type {boolean}
    * @memberof EngineExceptDate
    */
   repeat?: boolean
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineExceptDate
-   */
-  disabled?: boolean
 }
 /**
  *
@@ -1771,12 +1691,6 @@ export interface EngineExceptDate {
  * @interface EngineList
  */
 export interface EngineList {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineList
-   */
-  id?: string
   /**
    *
    * @type {string}
@@ -1794,13 +1708,7 @@ export interface EngineList {
    * @type {string}
    * @memberof EngineList
    */
-  updated_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineList
-   */
-  updated_by?: EngineLookup
+  description?: string
   /**
    *
    * @type {string}
@@ -1812,26 +1720,25 @@ export interface EngineList {
    * @type {string}
    * @memberof EngineList
    */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineList
+   */
   name?: string
   /**
    *
    * @type {string}
    * @memberof EngineList
    */
-  description?: string
-}
-/**
- *
- * @export
- * @interface EngineListAcceptOfDay
- */
-export interface EngineListAcceptOfDay {
+  updated_at?: string
   /**
    *
-   * @type {Array<EngineAcceptOfDay>}
-   * @memberof EngineListAcceptOfDay
+   * @type {EngineLookup}
+   * @memberof EngineList
    */
-  items?: Array<EngineAcceptOfDay>
+  updated_by?: EngineLookup
 }
 /**
  *
@@ -1948,6 +1855,12 @@ export interface EngineListCommunication {
    * @type {string}
    * @memberof EngineListCommunication
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineListCommunication
+   */
   id?: string
   /**
    *
@@ -1961,12 +1874,6 @@ export interface EngineListCommunication {
    * @memberof EngineListCommunication
    */
   number?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineListCommunication
-   */
-  description?: string
 }
 /**
  *
@@ -1980,19 +1887,6 @@ export interface EngineListCommunicationType {
    * @memberof EngineListCommunicationType
    */
   items?: Array<EngineCommunicationType>
-}
-/**
- *
- * @export
- * @interface EngineListExceptDate
- */
-export interface EngineListExceptDate {
-  /**
-   *
-   * @type {Array<EngineExceptDate>}
-   * @memberof EngineListExceptDate
-   */
-  items?: Array<EngineExceptDate>
 }
 /**
  *
@@ -2281,6 +2175,36 @@ export interface EngineLookup {
 export interface EngineMember {
   /**
    *
+   * @type {number}
+   * @memberof EngineMember
+   */
+  attempts?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMember
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineMemberCommunication>}
+   * @memberof EngineMember
+   */
+  communications?: Array<EngineMemberCommunication>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  created_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  expire_at?: string
+  /**
+   *
    * @type {string}
    * @memberof EngineMember
    */
@@ -2290,55 +2214,7 @@ export interface EngineMember {
    * @type {string}
    * @memberof EngineMember
    */
-  queue_id?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineMember
-   */
-  priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  expire_at?: string
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineMember
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  name?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineMember
-   */
-  timezone?: EngineLookup
-  /**
-   *
-   * @type {Array<EngineMemberCommunication>}
-   * @memberof EngineMember
-   */
-  communications?: Array<EngineMemberCommunication>
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineMember
-   */
-  bucket?: EngineLookup
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof EngineMember
-   */
-  skills?: Array<string>
+  last_activity_at?: string
   /**
    *
    * @type {string}
@@ -2350,19 +2226,43 @@ export interface EngineMember {
    * @type {string}
    * @memberof EngineMember
    */
-  stop_cause?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  last_activity_at?: string
+  name?: string
   /**
    *
    * @type {number}
    * @memberof EngineMember
    */
-  attempts?: number
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineMember
+   */
+  skills?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMember
+   */
+  stop_cause?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMember
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineMember
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -2372,34 +2272,16 @@ export interface EngineMember {
 export interface EngineMemberAttempt {
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EngineMemberAttempt
    */
-  id?: string
+  active?: boolean
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineMemberAttempt
    */
-  created_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMemberAttempt
-   */
-  destination?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineMemberAttempt
-   */
-  weight?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMemberAttempt
-   */
-  originate_at?: string
+  agent?: EngineLookup
   /**
    *
    * @type {string}
@@ -2414,16 +2296,34 @@ export interface EngineMemberAttempt {
   bridged_at?: string
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineMemberAttempt
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  created_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
+  destination?: string
+  /**
+   *
    * @type {string}
    * @memberof EngineMemberAttempt
    */
   hangup_at?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineMemberAttempt
    */
-  resource?: EngineLookup
+  id?: string
   /**
    *
    * @type {string}
@@ -2438,6 +2338,12 @@ export interface EngineMemberAttempt {
   leg_b_id?: string
   /**
    *
+   * @type {object}
+   * @memberof EngineMemberAttempt
+   */
+  logs?: object
+  /**
+   *
    * @type {string}
    * @memberof EngineMemberAttempt
    */
@@ -2447,25 +2353,19 @@ export interface EngineMemberAttempt {
    * @type {string}
    * @memberof EngineMemberAttempt
    */
+  originate_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberAttempt
+   */
+  resource?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberAttempt
+   */
   result?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineMemberAttempt
-   */
-  agent?: EngineLookup
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineMemberAttempt
-   */
-  bucket?: EngineLookup
-  /**
-   *
-   * @type {object}
-   * @memberof EngineMemberAttempt
-   */
-  logs?: object
   /**
    *
    * @type {boolean}
@@ -2474,10 +2374,10 @@ export interface EngineMemberAttempt {
   success?: boolean
   /**
    *
-   * @type {boolean}
+   * @type {number}
    * @memberof EngineMemberAttempt
    */
-  active?: boolean
+  weight?: number
 }
 /**
  *
@@ -2500,60 +2400,6 @@ export interface EngineMemberBulkResponse {
 export interface EngineMemberCommunication {
   /**
    *
-   * @type {string}
-   * @memberof EngineMemberCommunication
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMemberCommunication
-   */
-  destination?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineMemberCommunication
-   */
-  type?: EngineLookup
-  /**
-   *
-   * @type {number}
-   * @memberof EngineMemberCommunication
-   */
-  priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMemberCommunication
-   */
-  description?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineMemberCommunication
-   */
-  resource?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMemberCommunication
-   */
-  display?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineMemberCommunication
-   */
-  state?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMemberCommunication
-   */
-  last_activity_at?: string
-  /**
-   *
    * @type {number}
    * @memberof EngineMemberCommunication
    */
@@ -2563,7 +2409,61 @@ export interface EngineMemberCommunication {
    * @type {string}
    * @memberof EngineMemberCommunication
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  destination?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  display?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  last_activity_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
   last_cause?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberCommunication
+   */
+  priority?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberCommunication
+   */
+  resource?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberCommunication
+   */
+  state?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberCommunication
+   */
+  type?: EngineLookup
 }
 /**
  *
@@ -2576,13 +2476,19 @@ export interface EngineMemberCommunicationCreateRequest {
    * @type {string}
    * @memberof EngineMemberCommunicationCreateRequest
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
   destination?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineMemberCommunicationCreateRequest
    */
-  type?: EngineLookup
+  display?: string
   /**
    *
    * @type {number}
@@ -2591,22 +2497,16 @@ export interface EngineMemberCommunicationCreateRequest {
   priority?: number
   /**
    *
-   * @type {string}
-   * @memberof EngineMemberCommunicationCreateRequest
-   */
-  description?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineMemberCommunicationCreateRequest
    */
   resource?: EngineLookup
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineMemberCommunicationCreateRequest
    */
-  display?: string
+  type?: EngineLookup
 }
 /**
  *
@@ -2614,18 +2514,6 @@ export interface EngineMemberCommunicationCreateRequest {
  * @interface EngineOutboundResource
  */
 export interface EngineOutboundResource {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineOutboundResource
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineOutboundResource
-   */
-  domain_id?: string
   /**
    *
    * @type {string}
@@ -2643,19 +2531,13 @@ export interface EngineOutboundResource {
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  updated_at?: string
+  dial_string?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineOutboundResource
    */
-  updated_by?: EngineLookup
-  /**
-   *
-   * @type {number}
-   * @memberof EngineOutboundResource
-   */
-  limit?: number
+  domain_id?: string
   /**
    *
    * @type {boolean}
@@ -2664,28 +2546,40 @@ export interface EngineOutboundResource {
   enabled?: boolean
   /**
    *
-   * @type {number}
+   * @type {Array<string>}
    * @memberof EngineOutboundResource
    */
-  rps?: number
+  error_ids?: Array<string>
   /**
    *
-   * @type {boolean}
+   * @type {EngineLookup}
    * @memberof EngineOutboundResource
    */
-  reserve?: boolean
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineOutboundResource
-   */
-  variables?: { [key: string]: string }
+  gateway?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  number?: string
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  last_error_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
+  last_error_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineOutboundResource
+   */
+  limit?: number
   /**
    *
    * @type {number}
@@ -2703,19 +2597,19 @@ export interface EngineOutboundResource {
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  dial_string?: string
+  number?: string
   /**
    *
-   * @type {Array<string>}
+   * @type {boolean}
    * @memberof EngineOutboundResource
    */
-  error_ids?: Array<string>
+  reserve?: boolean
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof EngineOutboundResource
    */
-  last_error_id?: string
+  rps?: number
   /**
    *
    * @type {number}
@@ -2727,13 +2621,19 @@ export interface EngineOutboundResource {
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  last_error_at?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineOutboundResource
    */
-  gateway?: EngineLookup
+  updated_by?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineOutboundResource
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -2743,16 +2643,10 @@ export interface EngineOutboundResource {
 export interface EngineOutboundResourceGroup {
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineOutboundResourceGroup
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineOutboundResourceGroup
-   */
-  domain_id?: string
+  communication?: EngineLookup
   /**
    *
    * @type {string}
@@ -2770,13 +2664,19 @@ export interface EngineOutboundResourceGroup {
    * @type {string}
    * @memberof EngineOutboundResourceGroup
    */
-  updated_at?: string
+  description?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineOutboundResourceGroup
    */
-  updated_by?: EngineLookup
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceGroup
+   */
+  id?: string
   /**
    *
    * @type {string}
@@ -2791,22 +2691,22 @@ export interface EngineOutboundResourceGroup {
   strategy?: string
   /**
    *
+   * @type {Array<EngineOutboundResourceTimeRange>}
+   * @memberof EngineOutboundResourceGroup
+   */
+  time?: Array<EngineOutboundResourceTimeRange>
+  /**
+   *
    * @type {string}
    * @memberof EngineOutboundResourceGroup
    */
-  description?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineOutboundResourceGroup
    */
-  communication?: EngineLookup
-  /**
-   *
-   * @type {Array<EngineOutboundResourceTimeRange>}
-   * @memberof EngineOutboundResourceGroup
-   */
-  time?: Array<EngineOutboundResourceTimeRange>
+  updated_by?: EngineLookup
 }
 /**
  *
@@ -2819,13 +2719,13 @@ export interface EngineOutboundResourceInGroup {
    * @type {string}
    * @memberof EngineOutboundResourceInGroup
    */
-  id?: string
+  group_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineOutboundResourceInGroup
    */
-  group_id?: string
+  id?: string
   /**
    *
    * @type {EngineLookup}
@@ -2844,13 +2744,13 @@ export interface EngineOutboundResourceTimeRange {
    * @type {number}
    * @memberof EngineOutboundResourceTimeRange
    */
-  start_time_of_day?: number
+  end_time_of_day?: number
   /**
    *
    * @type {number}
    * @memberof EngineOutboundResourceTimeRange
    */
-  end_time_of_day?: number
+  start_time_of_day?: number
 }
 /**
  *
@@ -2858,6 +2758,18 @@ export interface EngineOutboundResourceTimeRange {
  * @interface EngineOutboundResourceViewGroup
  */
 export interface EngineOutboundResourceViewGroup {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResourceViewGroup
+   */
+  communication?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResourceViewGroup
+   */
+  description?: string
   /**
    *
    * @type {string}
@@ -2876,18 +2788,6 @@ export interface EngineOutboundResourceViewGroup {
    * @memberof EngineOutboundResourceViewGroup
    */
   strategy?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineOutboundResourceViewGroup
-   */
-  description?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineOutboundResourceViewGroup
-   */
-  communication?: EngineLookup
 }
 /**
  *
@@ -2900,61 +2800,19 @@ export interface EnginePatchOutboundResourceRequest {
    * @type {string}
    * @memberof EnginePatchOutboundResourceRequest
    */
-  id?: string
+  dial_string?: string
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EnginePatchOutboundResourceRequest
    */
-  limit?: number
+  domain_id?: string
   /**
    *
    * @type {boolean}
    * @memberof EnginePatchOutboundResourceRequest
    */
   enabled?: boolean
-  /**
-   *
-   * @type {number}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  rps?: number
-  /**
-   *
-   * @type {boolean}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  reserve?: boolean
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  number?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  max_successively_errors?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  dial_string?: string
   /**
    *
    * @type {Array<string>}
@@ -2978,7 +2836,49 @@ export interface EnginePatchOutboundResourceRequest {
    * @type {string}
    * @memberof EnginePatchOutboundResourceRequest
    */
-  domain_id?: string
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  limit?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  max_successively_errors?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  number?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  reserve?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  rps?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -2988,58 +2888,16 @@ export interface EnginePatchOutboundResourceRequest {
 export interface EnginePatchQueueRequest {
   /**
    *
-   * @type {string}
-   * @memberof EnginePatchQueueRequest
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchQueueRequest
-   */
-  strategy?: string
-  /**
-   *
-   * @type {boolean}
-   * @memberof EnginePatchQueueRequest
-   */
-  enabled?: boolean
-  /**
-   *
-   * @type {object}
-   * @memberof EnginePatchQueueRequest
-   */
-  payload?: object
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EnginePatchQueueRequest
    */
   calendar?: EngineLookup
   /**
    *
-   * @type {number}
-   * @memberof EnginePatchQueueRequest
-   */
-  priority?: number
-  /**
-   *
    * @type {string}
    * @memberof EnginePatchQueueRequest
    */
-  name?: string
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EnginePatchQueueRequest
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {number}
-   * @memberof EnginePatchQueueRequest
-   */
-  timeout?: number
+  description?: string
   /**
    *
    * @type {EngineLookup}
@@ -3048,28 +2906,16 @@ export interface EnginePatchQueueRequest {
   dnc_list?: EngineLookup
   /**
    *
-   * @type {number}
-   * @memberof EnginePatchQueueRequest
-   */
-  sec_locate_agent?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EnginePatchQueueRequest
-   */
-  type?: number
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EnginePatchQueueRequest
-   */
-  team?: EngineLookup
-  /**
-   *
    * @type {string}
    * @memberof EnginePatchQueueRequest
    */
-  description?: string
+  domain_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchQueueRequest
+   */
+  enabled?: boolean
   /**
    *
    * @type {Array<string>}
@@ -3081,7 +2927,61 @@ export interface EnginePatchQueueRequest {
    * @type {string}
    * @memberof EnginePatchQueueRequest
    */
-  domain_id?: string
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchQueueRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {object}
+   * @memberof EnginePatchQueueRequest
+   */
+  payload?: object
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  sec_locate_agent?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchQueueRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchQueueRequest
+   */
+  team?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  timeout?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  type?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EnginePatchQueueRequest
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -3094,6 +2994,30 @@ export interface EnginePatchRoutingOutboundCallRequest {
    * @type {string}
    * @memberof EnginePatchRoutingOutboundCallRequest
    */
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
+  fields?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingOutboundCallRequest
+   */
   id?: string
   /**
    *
@@ -3101,18 +3025,6 @@ export interface EnginePatchRoutingOutboundCallRequest {
    * @memberof EnginePatchRoutingOutboundCallRequest
    */
   name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchRoutingOutboundCallRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EnginePatchRoutingOutboundCallRequest
-   */
-  schema?: EngineLookup
   /**
    *
    * @type {string}
@@ -3127,22 +3039,10 @@ export interface EnginePatchRoutingOutboundCallRequest {
   priority?: number
   /**
    *
-   * @type {boolean}
+   * @type {EngineLookup}
    * @memberof EnginePatchRoutingOutboundCallRequest
    */
-  disabled?: boolean
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof EnginePatchRoutingOutboundCallRequest
-   */
-  fields?: Array<string>
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchRoutingOutboundCallRequest
-   */
-  domain_id?: string
+  schema?: EngineLookup
 }
 /**
  *
@@ -3150,6 +3050,30 @@ export interface EnginePatchRoutingOutboundCallRequest {
  * @interface EnginePatchRoutingSchemaRequest
  */
 export interface EnginePatchRoutingSchemaRequest {
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  debug?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  fields?: Array<string>
   /**
    *
    * @type {string}
@@ -3164,16 +3088,10 @@ export interface EnginePatchRoutingSchemaRequest {
   name?: string
   /**
    *
-   * @type {string}
+   * @type {object}
    * @memberof EnginePatchRoutingSchemaRequest
    */
-  description?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EnginePatchRoutingSchemaRequest
-   */
-  type?: number
+  payload?: object
   /**
    *
    * @type {object}
@@ -3182,28 +3100,10 @@ export interface EnginePatchRoutingSchemaRequest {
   schema?: object
   /**
    *
-   * @type {object}
+   * @type {number}
    * @memberof EnginePatchRoutingSchemaRequest
    */
-  payload?: object
-  /**
-   *
-   * @type {boolean}
-   * @memberof EnginePatchRoutingSchemaRequest
-   */
-  debug?: boolean
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof EnginePatchRoutingSchemaRequest
-   */
-  fields?: Array<string>
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchRoutingSchemaRequest
-   */
-  domain_id?: string
+  type?: number
 }
 /**
  *
@@ -3213,16 +3113,10 @@ export interface EnginePatchRoutingSchemaRequest {
 export interface EngineQueue {
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineQueue
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineQueue
-   */
-  domain_id?: string
+  calendar?: EngineLookup
   /**
    *
    * @type {string}
@@ -3240,61 +3134,7 @@ export interface EngineQueue {
    * @type {string}
    * @memberof EngineQueue
    */
-  updated_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineQueue
-   */
-  updated_by?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineQueue
-   */
-  strategy?: string
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineQueue
-   */
-  enabled?: boolean
-  /**
-   *
-   * @type {object}
-   * @memberof EngineQueue
-   */
-  payload?: object
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineQueue
-   */
-  calendar?: EngineLookup
-  /**
-   *
-   * @type {number}
-   * @memberof EngineQueue
-   */
-  priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineQueue
-   */
-  name?: string
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineQueue
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {number}
-   * @memberof EngineQueue
-   */
-  timeout?: number
+  description?: string
   /**
    *
    * @type {EngineLookup}
@@ -3303,10 +3143,64 @@ export interface EngineQueue {
   dnc_list?: EngineLookup
   /**
    *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineQueue
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  name?: string
+  /**
+   *
+   * @type {object}
+   * @memberof EngineQueue
+   */
+  payload?: object
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  priority?: number
+  /**
+   *
    * @type {number}
    * @memberof EngineQueue
    */
   sec_locate_agent?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueue
+   */
+  strategy?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
+  team?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  timeout?: number
   /**
    *
    * @type {number}
@@ -3318,13 +3212,19 @@ export interface EngineQueue {
    * @type {string}
    * @memberof EngineQueue
    */
-  description?: string
+  updated_at?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineQueue
    */
-  team?: EngineLookup
+  updated_by?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineQueue
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -3332,6 +3232,12 @@ export interface EngineQueue {
  * @interface EngineQueueBucket
  */
 export interface EngineQueueBucket {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueueBucket
+   */
+  bucket?: EngineLookup
   /**
    *
    * @type {string}
@@ -3344,12 +3250,6 @@ export interface EngineQueueBucket {
    * @memberof EngineQueueBucket
    */
   ratio?: number
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineQueueBucket
-   */
-  bucket?: EngineLookup
 }
 /**
  *
@@ -3378,16 +3278,16 @@ export interface EngineQueueResourceGroup {
 export interface EngineQueueRouting {
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EngineQueueRouting
    */
-  id?: string
+  disabled?: boolean
   /**
    *
    * @type {string}
    * @memberof EngineQueueRouting
    */
-  queue_id?: string
+  id?: string
   /**
    *
    * @type {string}
@@ -3402,10 +3302,10 @@ export interface EngineQueueRouting {
   priority?: number
   /**
    *
-   * @type {boolean}
+   * @type {string}
    * @memberof EngineQueueRouting
    */
-  disabled?: boolean
+  queue_id?: string
 }
 /**
  *
@@ -3418,13 +3318,13 @@ export interface EngineResourceDisplay {
    * @type {string}
    * @memberof EngineResourceDisplay
    */
-  id?: string
+  display?: string
   /**
    *
    * @type {string}
    * @memberof EngineResourceDisplay
    */
-  display?: string
+  id?: string
 }
 /**
  *
@@ -3432,18 +3332,6 @@ export interface EngineResourceDisplay {
  * @interface EngineResourceTeamAgent
  */
 export interface EngineResourceTeamAgent {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineResourceTeamAgent
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineResourceTeamAgent
-   */
-  team_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -3458,10 +3346,22 @@ export interface EngineResourceTeamAgent {
   bucket?: EngineLookup
   /**
    *
+   * @type {string}
+   * @memberof EngineResourceTeamAgent
+   */
+  id?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineResourceTeamAgent
    */
   lvl?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceTeamAgent
+   */
+  team_id?: string
 }
 /**
  *
@@ -3471,28 +3371,16 @@ export interface EngineResourceTeamAgent {
 export interface EngineResourceTeamSkill {
   /**
    *
-   * @type {string}
-   * @memberof EngineResourceTeamSkill
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineResourceTeamSkill
-   */
-  team_id?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineResourceTeamSkill
-   */
-  skill?: EngineLookup
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineResourceTeamSkill
    */
   bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceTeamSkill
+   */
+  id?: string
   /**
    *
    * @type {number}
@@ -3504,13 +3392,25 @@ export interface EngineResourceTeamSkill {
    * @type {number}
    * @memberof EngineResourceTeamSkill
    */
-  min_capacity?: number
+  max_capacity?: number
   /**
    *
    * @type {number}
    * @memberof EngineResourceTeamSkill
    */
-  max_capacity?: number
+  min_capacity?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineResourceTeamSkill
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineResourceTeamSkill
+   */
+  team_id?: string
 }
 /**
  *
@@ -3536,12 +3436,6 @@ export interface EngineRoutingOutboundCall {
    * @type {string}
    * @memberof EngineRoutingOutboundCall
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingOutboundCall
-   */
   created_at?: string
   /**
    *
@@ -3554,31 +3448,31 @@ export interface EngineRoutingOutboundCall {
    * @type {string}
    * @memberof EngineRoutingOutboundCall
    */
-  updated_at?: string
+  description?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {boolean}
    * @memberof EngineRoutingOutboundCall
    */
-  updated_by?: EngineLookup
+  disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCall
+   */
+  id?: string
   /**
    *
    * @type {string}
    * @memberof EngineRoutingOutboundCall
    */
   name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingOutboundCall
-   */
-  description?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineRoutingOutboundCall
-   */
-  schema?: EngineLookup
   /**
    *
    * @type {string}
@@ -3593,16 +3487,22 @@ export interface EngineRoutingOutboundCall {
   priority?: number
   /**
    *
-   * @type {boolean}
+   * @type {EngineLookup}
    * @memberof EngineRoutingOutboundCall
    */
-  disabled?: boolean
+  schema?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineRoutingOutboundCall
    */
-  domain_id?: string
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingOutboundCall
+   */
+  updated_by?: EngineLookup
 }
 /**
  *
@@ -3610,12 +3510,6 @@ export interface EngineRoutingOutboundCall {
  * @interface EngineRoutingSchema
  */
 export interface EngineRoutingSchema {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingSchema
-   */
-  id?: string
   /**
    *
    * @type {string}
@@ -3630,6 +3524,54 @@ export interface EngineRoutingSchema {
   created_by?: EngineLookup
   /**
    *
+   * @type {boolean}
+   * @memberof EngineRoutingSchema
+   */
+  debug?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingSchema
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingSchema
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingSchema
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingSchema
+   */
+  name?: string
+  /**
+   *
+   * @type {object}
+   * @memberof EngineRoutingSchema
+   */
+  payload?: object
+  /**
+   *
+   * @type {object}
+   * @memberof EngineRoutingSchema
+   */
+  schema?: object
+  /**
+   *
+   * @type {number}
+   * @memberof EngineRoutingSchema
+   */
+  type?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineRoutingSchema
    */
@@ -3640,48 +3582,6 @@ export interface EngineRoutingSchema {
    * @memberof EngineRoutingSchema
    */
   updated_by?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingSchema
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingSchema
-   */
-  description?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineRoutingSchema
-   */
-  type?: number
-  /**
-   *
-   * @type {object}
-   * @memberof EngineRoutingSchema
-   */
-  schema?: object
-  /**
-   *
-   * @type {object}
-   * @memberof EngineRoutingSchema
-   */
-  payload?: object
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineRoutingSchema
-   */
-  debug?: boolean
-  /**
-   *
-   * @type {string}
-   * @memberof EngineRoutingSchema
-   */
-  domain_id?: string
 }
 /**
  *
@@ -3694,13 +3594,13 @@ export interface EngineRoutingVariable {
    * @type {string}
    * @memberof EngineRoutingVariable
    */
-  id?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineRoutingVariable
    */
-  domain_id?: string
+  id?: string
   /**
    *
    * @type {string}
@@ -3725,7 +3625,7 @@ export interface EngineSkill {
    * @type {string}
    * @memberof EngineSkill
    */
-  id?: string
+  description?: string
   /**
    *
    * @type {string}
@@ -3737,13 +3637,13 @@ export interface EngineSkill {
    * @type {string}
    * @memberof EngineSkill
    */
-  name?: string
+  id?: string
   /**
    *
    * @type {string}
    * @memberof EngineSkill
    */
-  description?: string
+  name?: string
 }
 /**
  *
@@ -3751,18 +3651,6 @@ export interface EngineSkill {
  * @interface EngineSupervisorInTeam
  */
 export interface EngineSupervisorInTeam {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineSupervisorInTeam
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineSupervisorInTeam
-   */
-  team_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -3775,6 +3663,18 @@ export interface EngineSupervisorInTeam {
    * @memberof EngineSupervisorInTeam
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSupervisorInTeam
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSupervisorInTeam
+   */
+  team_id?: string
 }
 /**
  *
@@ -3804,58 +3704,21 @@ export interface EngineTimezone {
 /**
  *
  * @export
- * @interface EngineUpdateAcceptOfDayRequest
- */
-export interface EngineUpdateAcceptOfDayRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAcceptOfDayRequest
-   */
-  calendar_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAcceptOfDayRequest
-   */
-  domain_id?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAcceptOfDayRequest
-   */
-  day?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAcceptOfDayRequest
-   */
-  start_time_of_day?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAcceptOfDayRequest
-   */
-  end_time_of_day?: number
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineUpdateAcceptOfDayRequest
-   */
-  disabled?: boolean
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAcceptOfDayRequest
-   */
-  id?: string
-}
-/**
- *
- * @export
  * @interface EngineUpdateAgentRequest
  */
 export interface EngineUpdateAgentRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -3868,18 +3731,6 @@ export interface EngineUpdateAgentRequest {
    * @memberof EngineUpdateAgentRequest
    */
   user?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -3892,19 +3743,7 @@ export interface EngineUpdateAgentSkillRequest {
    * @type {string}
    * @memberof EngineUpdateAgentSkillRequest
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentSkillRequest
-   */
   agent_id?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineUpdateAgentSkillRequest
-   */
-  skill?: EngineLookup
   /**
    *
    * @type {number}
@@ -3917,6 +3756,18 @@ export interface EngineUpdateAgentSkillRequest {
    * @memberof EngineUpdateAgentSkillRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  skill?: EngineLookup
 }
 /**
  *
@@ -3924,48 +3775,6 @@ export interface EngineUpdateAgentSkillRequest {
  * @interface EngineUpdateAgentTeamRequest
  */
 export interface EngineUpdateAgentTeamRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  strategy?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  max_no_answer?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  wrap_up_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  reject_delay_time?: number
   /**
    *
    * @type {number}
@@ -3977,19 +3786,61 @@ export interface EngineUpdateAgentTeamRequest {
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  no_answer_delay_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
   call_timeout?: number
   /**
    *
    * @type {string}
    * @memberof EngineUpdateAgentTeamRequest
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  max_no_answer?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  no_answer_delay_time?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  reject_delay_time?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  strategy?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  wrap_up_time?: number
 }
 /**
  *
@@ -4002,18 +3853,6 @@ export interface EngineUpdateBucketRequest {
    * @type {string}
    * @memberof EngineUpdateBucketRequest
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateBucketRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateBucketRequest
-   */
   description?: string
   /**
    *
@@ -4021,6 +3860,18 @@ export interface EngineUpdateBucketRequest {
    * @memberof EngineUpdateBucketRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateBucketRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateBucketRequest
+   */
+  name?: string
 }
 /**
  *
@@ -4028,6 +3879,36 @@ export interface EngineUpdateBucketRequest {
  * @interface EngineUpdateCalendarRequest
  */
 export interface EngineUpdateCalendarRequest {
+  /**
+   *
+   * @type {Array<EngineAcceptOfDay>}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  accepts?: Array<EngineAcceptOfDay>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  end_at?: string
+  /**
+   *
+   * @type {Array<EngineExceptDate>}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  excepts?: Array<EngineExceptDate>
   /**
    *
    * @type {string}
@@ -4048,28 +3929,10 @@ export interface EngineUpdateCalendarRequest {
   start_at?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineUpdateCalendarRequest
-   */
-  end_at?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineUpdateCalendarRequest
    */
   timezone?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateCalendarRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateCalendarRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -4082,25 +3945,7 @@ export interface EngineUpdateCommunicationTypeRequest {
    * @type {string}
    * @memberof EngineUpdateCommunicationTypeRequest
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateCommunicationTypeRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateCommunicationTypeRequest
-   */
   code?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateCommunicationTypeRequest
-   */
-  type?: string
   /**
    *
    * @type {string}
@@ -4113,55 +3958,24 @@ export interface EngineUpdateCommunicationTypeRequest {
    * @memberof EngineUpdateCommunicationTypeRequest
    */
   domain_id?: string
-}
-/**
- *
- * @export
- * @interface EngineUpdateExceptDateRequest
- */
-export interface EngineUpdateExceptDateRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateExceptDateRequest
+   * @memberof EngineUpdateCommunicationTypeRequest
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateExceptDateRequest
-   */
-  calendar_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateExceptDateRequest
+   * @memberof EngineUpdateCommunicationTypeRequest
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateExceptDateRequest
+   * @memberof EngineUpdateCommunicationTypeRequest
    */
-  date?: string
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineUpdateExceptDateRequest
-   */
-  repeat?: boolean
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineUpdateExceptDateRequest
-   */
-  disabled?: boolean
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateExceptDateRequest
-   */
-  domain_id?: string
+  type?: string
 }
 /**
  *
@@ -4174,7 +3988,13 @@ export interface EngineUpdateListCommunicationRequest {
    * @type {string}
    * @memberof EngineUpdateListCommunicationRequest
    */
-  list_id?: string
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListCommunicationRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -4186,19 +4006,13 @@ export interface EngineUpdateListCommunicationRequest {
    * @type {string}
    * @memberof EngineUpdateListCommunicationRequest
    */
+  list_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListCommunicationRequest
+   */
   number?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateListCommunicationRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateListCommunicationRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -4211,18 +4025,6 @@ export interface EngineUpdateListRequest {
    * @type {string}
    * @memberof EngineUpdateListRequest
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateListRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateListRequest
-   */
   description?: string
   /**
    *
@@ -4230,6 +4032,18 @@ export interface EngineUpdateListRequest {
    * @memberof EngineUpdateListRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateListRequest
+   */
+  name?: string
 }
 /**
  *
@@ -4239,46 +4053,10 @@ export interface EngineUpdateListRequest {
 export interface EngineUpdateMemberRequest {
   /**
    *
-   * @type {string}
-   * @memberof EngineUpdateMemberRequest
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateMemberRequest
-   */
-  queue_id?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateMemberRequest
-   */
-  priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateMemberRequest
-   */
-  expire_at?: string
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineUpdateMemberRequest
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateMemberRequest
-   */
-  name?: string
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineUpdateMemberRequest
    */
-  timezone?: EngineLookup
+  bucket?: EngineLookup
   /**
    *
    * @type {Array<EngineMemberCommunicationCreateRequest>}
@@ -4287,16 +4065,22 @@ export interface EngineUpdateMemberRequest {
   communications?: Array<EngineMemberCommunicationCreateRequest>
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof EngineUpdateMemberRequest
    */
-  bucket?: EngineLookup
+  domain_id?: string
   /**
    *
-   * @type {Array<string>}
+   * @type {string}
    * @memberof EngineUpdateMemberRequest
    */
-  skills?: Array<string>
+  expire_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
+   */
+  id?: string
   /**
    *
    * @type {string}
@@ -4308,7 +4092,37 @@ export interface EngineUpdateMemberRequest {
    * @type {string}
    * @memberof EngineUpdateMemberRequest
    */
-  domain_id?: string
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateMemberRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineUpdateMemberRequest
+   */
+  skills?: Array<string>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateMemberRequest
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineUpdateMemberRequest
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -4321,7 +4135,13 @@ export interface EngineUpdateOutboundResourceDisplayRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceDisplayRequest
    */
-  resource_id?: string
+  display?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceDisplayRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -4333,13 +4153,7 @@ export interface EngineUpdateOutboundResourceDisplayRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceDisplayRequest
    */
-  display?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceDisplayRequest
-   */
-  domain_id?: string
+  resource_id?: string
 }
 /**
  *
@@ -4347,6 +4161,24 @@ export interface EngineUpdateOutboundResourceDisplayRequest {
  * @interface EngineUpdateOutboundResourceGroupRequest
  */
 export interface EngineUpdateOutboundResourceGroupRequest {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  communication?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceGroupRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -4367,28 +4199,10 @@ export interface EngineUpdateOutboundResourceGroupRequest {
   strategy?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceGroupRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineUpdateOutboundResourceGroupRequest
-   */
-  communication?: EngineLookup
-  /**
-   *
    * @type {Array<EngineOutboundResourceTimeRange>}
    * @memberof EngineUpdateOutboundResourceGroupRequest
    */
   time?: Array<EngineOutboundResourceTimeRange>
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceGroupRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -4401,7 +4215,7 @@ export interface EngineUpdateOutboundResourceInGroupRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceInGroupRequest
    */
-  id?: string
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -4410,16 +4224,16 @@ export interface EngineUpdateOutboundResourceInGroupRequest {
   group_id?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceInGroupRequest
+   */
+  id?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineUpdateOutboundResourceInGroupRequest
    */
   resource?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceInGroupRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -4432,61 +4246,19 @@ export interface EngineUpdateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceRequest
    */
-  id?: string
+  dial_string?: string
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineUpdateOutboundResourceRequest
    */
-  limit?: number
+  domain_id?: string
   /**
    *
    * @type {boolean}
    * @memberof EngineUpdateOutboundResourceRequest
    */
   enabled?: boolean
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  rps?: number
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  reserve?: boolean
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  number?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  max_successively_errors?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  dial_string?: string
   /**
    *
    * @type {Array<string>}
@@ -4504,7 +4276,49 @@ export interface EngineUpdateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceRequest
    */
-  domain_id?: string
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  limit?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  max_successively_errors?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  number?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  reserve?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  rps?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineUpdateOutboundResourceRequest
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -4512,6 +4326,18 @@ export interface EngineUpdateOutboundResourceRequest {
  * @interface EngineUpdateQueueBucketRequest
  */
 export interface EngineUpdateQueueBucketRequest {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueBucketRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueBucketRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -4530,18 +4356,6 @@ export interface EngineUpdateQueueBucketRequest {
    * @memberof EngineUpdateQueueBucketRequest
    */
   ratio?: number
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineUpdateQueueBucketRequest
-   */
-  bucket?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateQueueBucketRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -4549,6 +4363,36 @@ export interface EngineUpdateQueueBucketRequest {
  * @interface EngineUpdateQueueRequest
  */
 export interface EngineUpdateQueueRequest {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueRequest
+   */
+  calendar?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueRequest
+   */
+  dnc_list?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateQueueRequest
+   */
+  enabled?: boolean
   /**
    *
    * @type {string}
@@ -4560,13 +4404,7 @@ export interface EngineUpdateQueueRequest {
    * @type {string}
    * @memberof EngineUpdateQueueRequest
    */
-  strategy?: string
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineUpdateQueueRequest
-   */
-  enabled?: boolean
+  name?: string
   /**
    *
    * @type {object}
@@ -4575,40 +4413,10 @@ export interface EngineUpdateQueueRequest {
   payload?: object
   /**
    *
-   * @type {EngineLookup}
-   * @memberof EngineUpdateQueueRequest
-   */
-  calendar?: EngineLookup
-  /**
-   *
    * @type {number}
    * @memberof EngineUpdateQueueRequest
    */
   priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateQueueRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineUpdateQueueRequest
-   */
-  variables?: { [key: string]: string }
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateQueueRequest
-   */
-  timeout?: number
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineUpdateQueueRequest
-   */
-  dnc_list?: EngineLookup
   /**
    *
    * @type {number}
@@ -4617,10 +4425,10 @@ export interface EngineUpdateQueueRequest {
   sec_locate_agent?: number
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineUpdateQueueRequest
    */
-  type?: number
+  strategy?: string
   /**
    *
    * @type {EngineLookup}
@@ -4629,16 +4437,22 @@ export interface EngineUpdateQueueRequest {
   team?: EngineLookup
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof EngineUpdateQueueRequest
    */
-  description?: string
+  timeout?: number
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof EngineUpdateQueueRequest
    */
-  domain_id?: string
+  type?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineUpdateQueueRequest
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -4646,6 +4460,12 @@ export interface EngineUpdateQueueRequest {
  * @interface EngineUpdateQueueResourceGroupRequest
  */
 export interface EngineUpdateQueueResourceGroupRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueResourceGroupRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -4664,12 +4484,6 @@ export interface EngineUpdateQueueResourceGroupRequest {
    * @memberof EngineUpdateQueueResourceGroupRequest
    */
   resource_group?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateQueueResourceGroupRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -4679,16 +4493,22 @@ export interface EngineUpdateQueueResourceGroupRequest {
 export interface EngineUpdateQueueRoutingRequest {
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EngineUpdateQueueRoutingRequest
    */
-  id?: string
+  disabled?: boolean
   /**
    *
    * @type {string}
    * @memberof EngineUpdateQueueRoutingRequest
    */
-  queue_id?: string
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateQueueRoutingRequest
+   */
+  id?: string
   /**
    *
    * @type {string}
@@ -4703,16 +4523,10 @@ export interface EngineUpdateQueueRoutingRequest {
   priority?: number
   /**
    *
-   * @type {boolean}
-   * @memberof EngineUpdateQueueRoutingRequest
-   */
-  disabled?: boolean
-  /**
-   *
    * @type {string}
    * @memberof EngineUpdateQueueRoutingRequest
    */
-  domain_id?: string
+  queue_id?: string
 }
 /**
  *
@@ -4720,18 +4534,6 @@ export interface EngineUpdateQueueRoutingRequest {
  * @interface EngineUpdateResourceTeamAgentRequest
  */
 export interface EngineUpdateResourceTeamAgentRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateResourceTeamAgentRequest
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateResourceTeamAgentRequest
-   */
-  team_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -4746,6 +4548,18 @@ export interface EngineUpdateResourceTeamAgentRequest {
   bucket?: EngineLookup
   /**
    *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamAgentRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamAgentRequest
+   */
+  id?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineUpdateResourceTeamAgentRequest
    */
@@ -4755,7 +4569,7 @@ export interface EngineUpdateResourceTeamAgentRequest {
    * @type {string}
    * @memberof EngineUpdateResourceTeamAgentRequest
    */
-  domain_id?: string
+  team_id?: string
 }
 /**
  *
@@ -4765,28 +4579,22 @@ export interface EngineUpdateResourceTeamAgentRequest {
 export interface EngineUpdateResourceTeamSkillRequest {
   /**
    *
-   * @type {string}
-   * @memberof EngineUpdateResourceTeamSkillRequest
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateResourceTeamSkillRequest
-   */
-  team_id?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineUpdateResourceTeamSkillRequest
-   */
-  skill?: EngineLookup
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineUpdateResourceTeamSkillRequest
    */
   bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  id?: string
   /**
    *
    * @type {number}
@@ -4798,19 +4606,25 @@ export interface EngineUpdateResourceTeamSkillRequest {
    * @type {number}
    * @memberof EngineUpdateResourceTeamSkillRequest
    */
-  min_capacity?: number
+  max_capacity?: number
   /**
    *
    * @type {number}
    * @memberof EngineUpdateResourceTeamSkillRequest
    */
-  max_capacity?: number
+  min_capacity?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateResourceTeamSkillRequest
+   */
+  skill?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineUpdateResourceTeamSkillRequest
    */
-  domain_id?: string
+  team_id?: string
 }
 /**
  *
@@ -4823,6 +4637,24 @@ export interface EngineUpdateRoutingOutboundCallRequest {
    * @type {string}
    * @memberof EngineUpdateRoutingOutboundCallRequest
    */
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingOutboundCallRequest
+   */
   id?: string
   /**
    *
@@ -4830,18 +4662,6 @@ export interface EngineUpdateRoutingOutboundCallRequest {
    * @memberof EngineUpdateRoutingOutboundCallRequest
    */
   name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateRoutingOutboundCallRequest
-   */
-  description?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineUpdateRoutingOutboundCallRequest
-   */
-  schema?: EngineLookup
   /**
    *
    * @type {string}
@@ -4856,16 +4676,10 @@ export interface EngineUpdateRoutingOutboundCallRequest {
   priority?: number
   /**
    *
-   * @type {boolean}
+   * @type {EngineLookup}
    * @memberof EngineUpdateRoutingOutboundCallRequest
    */
-  disabled?: boolean
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateRoutingOutboundCallRequest
-   */
-  domain_id?: string
+  schema?: EngineLookup
 }
 /**
  *
@@ -4873,6 +4687,24 @@ export interface EngineUpdateRoutingOutboundCallRequest {
  * @interface EngineUpdateRoutingSchemaRequest
  */
 export interface EngineUpdateRoutingSchemaRequest {
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateRoutingSchemaRequest
+   */
+  debug?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingSchemaRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingSchemaRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -4887,16 +4719,10 @@ export interface EngineUpdateRoutingSchemaRequest {
   name?: string
   /**
    *
-   * @type {string}
+   * @type {object}
    * @memberof EngineUpdateRoutingSchemaRequest
    */
-  description?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateRoutingSchemaRequest
-   */
-  type?: number
+  payload?: object
   /**
    *
    * @type {object}
@@ -4905,22 +4731,10 @@ export interface EngineUpdateRoutingSchemaRequest {
   schema?: object
   /**
    *
-   * @type {object}
+   * @type {number}
    * @memberof EngineUpdateRoutingSchemaRequest
    */
-  payload?: object
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineUpdateRoutingSchemaRequest
-   */
-  debug?: boolean
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateRoutingSchemaRequest
-   */
-  domain_id?: string
+  type?: number
 }
 /**
  *
@@ -4928,6 +4742,12 @@ export interface EngineUpdateRoutingSchemaRequest {
  * @interface EngineUpdateRoutingVariableRequest
  */
 export interface EngineUpdateRoutingVariableRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateRoutingVariableRequest
+   */
+  domain_id?: string
   /**
    *
    * @type {string}
@@ -4946,12 +4766,6 @@ export interface EngineUpdateRoutingVariableRequest {
    * @memberof EngineUpdateRoutingVariableRequest
    */
   value?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateRoutingVariableRequest
-   */
-  domain_id?: string
 }
 /**
  *
@@ -4964,18 +4778,6 @@ export interface EngineUpdateSkillRequest {
    * @type {string}
    * @memberof EngineUpdateSkillRequest
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateSkillRequest
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateSkillRequest
-   */
   description?: string
   /**
    *
@@ -4983,6 +4785,18 @@ export interface EngineUpdateSkillRequest {
    * @memberof EngineUpdateSkillRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSkillRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSkillRequest
+   */
+  name?: string
 }
 /**
  *
@@ -4990,18 +4804,6 @@ export interface EngineUpdateSkillRequest {
  * @interface EngineUpdateSupervisorInTeamRequest
  */
 export interface EngineUpdateSupervisorInTeamRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateSupervisorInTeamRequest
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateSupervisorInTeamRequest
-   */
-  team_id?: string
   /**
    *
    * @type {EngineLookup}
@@ -5014,6 +4816,18 @@ export interface EngineUpdateSupervisorInTeamRequest {
    * @memberof EngineUpdateSupervisorInTeamRequest
    */
   domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSupervisorInTeamRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateSupervisorInTeamRequest
+   */
+  team_id?: string
 }
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the  `Value` type union.     The JSON representation for `NullValue` is JSON `null`.   - NULL_VALUE: Null value.
@@ -5022,6 +4836,325 @@ export interface EngineUpdateSupervisorInTeamRequest {
  */
 export enum ProtobufNullValue {
   NULLVALUE = 'NULL_VALUE',
+}
+
+/**
+ *
+ * @export
+ * @interface StorageBackendProfile
+ */
+export interface StorageBackendProfile {
+  /**
+   *
+   * @type {string}
+   * @memberof StorageBackendProfile
+   */
+  created_at?: string
+  /**
+   *
+   * @type {StorageLookup}
+   * @memberof StorageBackendProfile
+   */
+  created_by?: StorageLookup
+  /**
+   *
+   * @type {string}
+   * @memberof StorageBackendProfile
+   */
+  data_count?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageBackendProfile
+   */
+  data_size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageBackendProfile
+   */
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof StorageBackendProfile
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof StorageBackendProfile
+   */
+  expire_days?: number
+  /**
+   *
+   * @type {string}
+   * @memberof StorageBackendProfile
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageBackendProfile
+   */
+  max_size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageBackendProfile
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof StorageBackendProfile
+   */
+  priority?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof StorageBackendProfile
+   */
+  properties?: { [key: string]: string }
+  /**
+   *
+   * @type {StorageLookup}
+   * @memberof StorageBackendProfile
+   */
+  type?: StorageLookup
+  /**
+   *
+   * @type {string}
+   * @memberof StorageBackendProfile
+   */
+  updated_at?: string
+  /**
+   *
+   * @type {StorageLookup}
+   * @memberof StorageBackendProfile
+   */
+  updated_by?: StorageLookup
+}
+/**
+ *
+ * @export
+ * @interface StorageCreateBackendProfileRequest
+ */
+export interface StorageCreateBackendProfileRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  expire_days?: number
+  /**
+   *
+   * @type {string}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  max_size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  properties?: { [key: string]: string }
+  /**
+   *
+   * @type {StorageLookup}
+   * @memberof StorageCreateBackendProfileRequest
+   */
+  type?: StorageLookup
+}
+/**
+ *
+ * @export
+ * @interface StorageListBackendProfile
+ */
+export interface StorageListBackendProfile {
+  /**
+   *
+   * @type {Array<StorageBackendProfile>}
+   * @memberof StorageListBackendProfile
+   */
+  items?: Array<StorageBackendProfile>
+}
+/**
+ *
+ * @export
+ * @interface StorageLookup
+ */
+export interface StorageLookup {
+  /**
+   *
+   * @type {string}
+   * @memberof StorageLookup
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageLookup
+   */
+  name?: string
+}
+/**
+ *
+ * @export
+ * @interface StoragePatchBackendProfileRequest
+ */
+export interface StoragePatchBackendProfileRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  expire_days?: number
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  fields?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  max_size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof StoragePatchBackendProfileRequest
+   */
+  properties?: { [key: string]: string }
+}
+/**
+ *
+ * @export
+ * @interface StorageUpdateBackendProfileRequest
+ */
+export interface StorageUpdateBackendProfileRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  expire_days?: number
+  /**
+   *
+   * @type {string}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  max_size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof StorageUpdateBackendProfileRequest
+   */
+  properties?: { [key: string]: string }
 }
 
 /**
@@ -7925,6 +8058,876 @@ export class AgentTeamServiceApi extends BaseAPI {
 }
 
 /**
+ * BackendProfileServiceApi - axios parameter creator
+ * @export
+ */
+export const BackendProfileServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create BackendProfile
+     * @param {StorageCreateBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBackendProfile(
+      body: StorageCreateBackendProfileRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createBackendProfile.'
+        )
+      }
+      const localVarPath = `/storage/backend_profiles`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'StorageCreateBackendProfileRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove BackendProfile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteBackendProfile(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteBackendProfile.'
+        )
+      }
+      const localVarPath = `/storage/backend_profiles/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Patch BackendProfile
+     * @param {string} id
+     * @param {StoragePatchBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchBackendProfile(
+      id: string,
+      body: StoragePatchBackendProfileRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchBackendProfile.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchBackendProfile.'
+        )
+      }
+      const localVarPath = `/storage/backend_profiles/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'StoragePatchBackendProfileRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary BackendProfile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readBackendProfile(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readBackendProfile.'
+        )
+      }
+      const localVarPath = `/storage/backend_profiles/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of BackendProfile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchBackendProfile(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/storage/backend_profiles`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update BackendProfile
+     * @param {string} id
+     * @param {StorageUpdateBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateBackendProfile(
+      id: string,
+      body: StorageUpdateBackendProfileRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateBackendProfile.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateBackendProfile.'
+        )
+      }
+      const localVarPath = `/storage/backend_profiles/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'StorageUpdateBackendProfileRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * BackendProfileServiceApi - functional programming interface
+ * @export
+ */
+export const BackendProfileServiceApiFp = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create BackendProfile
+     * @param {StorageCreateBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBackendProfile(
+      body: StorageCreateBackendProfileRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageBackendProfile> {
+      const localVarAxiosArgs = BackendProfileServiceApiAxiosParamCreator(
+        configuration
+      ).createBackendProfile(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove BackendProfile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteBackendProfile(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageBackendProfile> {
+      const localVarAxiosArgs = BackendProfileServiceApiAxiosParamCreator(
+        configuration
+      ).deleteBackendProfile(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Patch BackendProfile
+     * @param {string} id
+     * @param {StoragePatchBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchBackendProfile(
+      id: string,
+      body: StoragePatchBackendProfileRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageBackendProfile> {
+      const localVarAxiosArgs = BackendProfileServiceApiAxiosParamCreator(
+        configuration
+      ).patchBackendProfile(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary BackendProfile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readBackendProfile(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageBackendProfile> {
+      const localVarAxiosArgs = BackendProfileServiceApiAxiosParamCreator(
+        configuration
+      ).readBackendProfile(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of BackendProfile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchBackendProfile(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageListBackendProfile> {
+      const localVarAxiosArgs = BackendProfileServiceApiAxiosParamCreator(
+        configuration
+      ).searchBackendProfile(page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update BackendProfile
+     * @param {string} id
+     * @param {StorageUpdateBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateBackendProfile(
+      id: string,
+      body: StorageUpdateBackendProfileRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageBackendProfile> {
+      const localVarAxiosArgs = BackendProfileServiceApiAxiosParamCreator(
+        configuration
+      ).updateBackendProfile(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * BackendProfileServiceApi - factory interface
+ * @export
+ */
+export const BackendProfileServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Create BackendProfile
+     * @param {StorageCreateBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createBackendProfile(
+      body: StorageCreateBackendProfileRequest,
+      options?: any
+    ) {
+      return BackendProfileServiceApiFp(configuration).createBackendProfile(
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Remove BackendProfile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteBackendProfile(id: string, domain_id?: string, options?: any) {
+      return BackendProfileServiceApiFp(configuration).deleteBackendProfile(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Patch BackendProfile
+     * @param {string} id
+     * @param {StoragePatchBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchBackendProfile(
+      id: string,
+      body: StoragePatchBackendProfileRequest,
+      options?: any
+    ) {
+      return BackendProfileServiceApiFp(configuration).patchBackendProfile(
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary BackendProfile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readBackendProfile(id: string, domain_id?: string, options?: any) {
+      return BackendProfileServiceApiFp(configuration).readBackendProfile(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List of BackendProfile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchBackendProfile(
+      page?: number,
+      size?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return BackendProfileServiceApiFp(configuration).searchBackendProfile(
+        page,
+        size,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update BackendProfile
+     * @param {string} id
+     * @param {StorageUpdateBackendProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateBackendProfile(
+      id: string,
+      body: StorageUpdateBackendProfileRequest,
+      options?: any
+    ) {
+      return BackendProfileServiceApiFp(configuration).updateBackendProfile(
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+  }
+}
+
+/**
+ * BackendProfileServiceApi - object-oriented interface
+ * @export
+ * @class BackendProfileServiceApi
+ * @extends {BaseAPI}
+ */
+export class BackendProfileServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Create BackendProfile
+   * @param {StorageCreateBackendProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApi
+   */
+  public createBackendProfile(
+    body: StorageCreateBackendProfileRequest,
+    options?: any
+  ) {
+    return BackendProfileServiceApiFp(this.configuration).createBackendProfile(
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Remove BackendProfile
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApi
+   */
+  public deleteBackendProfile(id: string, domain_id?: string, options?: any) {
+    return BackendProfileServiceApiFp(this.configuration).deleteBackendProfile(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Patch BackendProfile
+   * @param {string} id
+   * @param {StoragePatchBackendProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApi
+   */
+  public patchBackendProfile(
+    id: string,
+    body: StoragePatchBackendProfileRequest,
+    options?: any
+  ) {
+    return BackendProfileServiceApiFp(this.configuration).patchBackendProfile(
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary BackendProfile item
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApi
+   */
+  public readBackendProfile(id: string, domain_id?: string, options?: any) {
+    return BackendProfileServiceApiFp(this.configuration).readBackendProfile(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of BackendProfile
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApi
+   */
+  public searchBackendProfile(
+    page?: number,
+    size?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return BackendProfileServiceApiFp(this.configuration).searchBackendProfile(
+      page,
+      size,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Update BackendProfile
+   * @param {string} id
+   * @param {StorageUpdateBackendProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApi
+   */
+  public updateBackendProfile(
+    id: string,
+    body: StorageUpdateBackendProfileRequest,
+    options?: any
+  ) {
+    return BackendProfileServiceApiFp(this.configuration).updateBackendProfile(
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+}
+
+/**
  * BucketServiceApi - axios parameter creator
  * @export
  */
@@ -8639,84 +9642,6 @@ export const CalendarServiceApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @summary Create AcceptOfDay
-     * @param {string} calendar_id
-     * @param {EngineCreateAcceptOfDayRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAcceptOfDay(
-      calendar_id: string,
-      body: EngineCreateAcceptOfDayRequest,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling createAcceptOfDay.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createAcceptOfDay.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/accepts`.replace(
-        `{${'calendar_id'}}`,
-        encodeURIComponent(String(calendar_id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-      const needsSerialization =
-        <any>'EngineCreateAcceptOfDayRequest' !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
      * @summary Create calendar
      * @param {EngineCreateCalendarRequest} body
      * @param {*} [options] Override http request option.
@@ -8783,159 +9708,6 @@ export const CalendarServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Create ExceptDate
-     * @param {string} calendar_id
-     * @param {EngineCreateExceptDateRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createExceptDate(
-      calendar_id: string,
-      body: EngineCreateExceptDateRequest,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling createExceptDate.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createExceptDate.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/excepts`.replace(
-        `{${'calendar_id'}}`,
-        encodeURIComponent(String(calendar_id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'POST',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-      const needsSerialization =
-        <any>'EngineCreateExceptDateRequest' !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary Delete AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling deleteAcceptOfDay.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling deleteAcceptOfDay.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/accepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'DELETE',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
      * @summary Remove calendar
      * @param {string} id
      * @param {string} [domain_id]
@@ -8965,156 +9737,6 @@ export const CalendarServiceApiAxiosParamCreator = function(
       }
       const localVarRequestOptions = {
         method: 'DELETE',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary Delete ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteExceptDate(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling deleteExceptDate.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling deleteExceptDate.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/excepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'DELETE',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary Read AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling readAcceptOfDay.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling readAcceptOfDay.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/accepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
         ...baseOptions,
         ...options,
       }
@@ -9220,148 +9842,6 @@ export const CalendarServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Read ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readExceptDate(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling readExceptDate.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling readExceptDate.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/excepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary List AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAcceptOfDay(
-      calendar_id: string,
-      domain_id?: string,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling searchAcceptOfDay.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/accepts`.replace(
-        `{${'calendar_id'}}`,
-        encodeURIComponent(String(calendar_id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
      * @summary List of calendar
      * @param {number} [page]
      * @param {number} [size]
@@ -9404,73 +9884,6 @@ export const CalendarServiceApiAxiosParamCreator = function(
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
-      }
-
-      if (domain_id !== undefined) {
-        localVarQueryParameter['domain_id'] = domain_id
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary List ExceptDate
-     * @param {string} calendar_id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchExceptDate(
-      calendar_id: string,
-      domain_id?: string,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling searchExceptDate.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/excepts`.replace(
-        `{${'calendar_id'}}`,
-        encodeURIComponent(String(calendar_id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
       if (domain_id !== undefined) {
@@ -9557,92 +9970,6 @@ export const CalendarServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {EngineUpdateAcceptOfDayRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      body: EngineUpdateAcceptOfDayRequest,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling updateAcceptOfDay.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling updateAcceptOfDay.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateAcceptOfDay.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/accepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PUT',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-      const needsSerialization =
-        <any>'EngineUpdateAcceptOfDayRequest' !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
      * @summary Update calendar
      * @param {string} id
      * @param {EngineUpdateCalendarRequest} body
@@ -9719,92 +10046,6 @@ export const CalendarServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
-    /**
-     *
-     * @summary Update ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {EngineUpdateExceptDateRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateExceptDate(
-      calendar_id: string,
-      id: string,
-      body: EngineUpdateExceptDateRequest,
-      options: any = {}
-    ): RequestArgs {
-      // verify required parameter 'calendar_id' is not null or undefined
-      if (calendar_id === null || calendar_id === undefined) {
-        throw new RequiredError(
-          'calendar_id',
-          'Required parameter calendar_id was null or undefined when calling updateExceptDate.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling updateExceptDate.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateExceptDate.'
-        )
-      }
-      const localVarPath = `/calendars/{calendar_id}/excepts/{id}`
-        .replace(`{${'calendar_id'}}`, encodeURIComponent(String(calendar_id)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PUT',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? configuration.apiKey('X-Webitel-Access')
-            : configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...options.headers,
-      }
-      const needsSerialization =
-        <any>'EngineUpdateExceptDateRequest' !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
   }
 }
 
@@ -9814,36 +10055,6 @@ export const CalendarServiceApiAxiosParamCreator = function(
  */
 export const CalendarServiceApiFp = function(configuration?: Configuration) {
   return {
-    /**
-     *
-     * @summary Create AcceptOfDay
-     * @param {string} calendar_id
-     * @param {EngineCreateAcceptOfDayRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAcceptOfDay(
-      calendar_id: string,
-      body: EngineCreateAcceptOfDayRequest,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineAcceptOfDay> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).createAcceptOfDay(calendar_id, body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
     /**
      *
      * @summary Create calendar
@@ -9861,68 +10072,6 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
       ).createCalendar(body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Create ExceptDate
-     * @param {string} calendar_id
-     * @param {EngineCreateExceptDateRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createExceptDate(
-      calendar_id: string,
-      body: EngineCreateExceptDateRequest,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineExceptDate> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).createExceptDate(calendar_id, body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Delete AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineAcceptOfDay> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).deleteAcceptOfDay(calendar_id, id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -9966,70 +10115,6 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Delete ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteExceptDate(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineExceptDate> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).deleteExceptDate(calendar_id, id, domain_id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Read AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineAcceptOfDay> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).readAcceptOfDay(calendar_id, id, domain_id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
      * @summary Calendar item
      * @param {string} id
      * @param {string} [domain_id]
@@ -10047,68 +10132,6 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
       ).readCalendar(id, domain_id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Read ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readExceptDate(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineExceptDate> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).readExceptDate(calendar_id, id, domain_id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary List AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAcceptOfDay(
-      calendar_id: string,
-      domain_id?: string,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineListAcceptOfDay> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).searchAcceptOfDay(calendar_id, domain_id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -10154,36 +10177,6 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary List ExceptDate
-     * @param {string} calendar_id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchExceptDate(
-      calendar_id: string,
-      domain_id?: string,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineListExceptDate> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).searchExceptDate(calendar_id, domain_id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
      * @summary List timezones
      * @param {number} [page]
      * @param {number} [size]
@@ -10201,38 +10194,6 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
         configuration
       ).searchTimezones(page, size, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Update AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {EngineUpdateAcceptOfDayRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      body: EngineUpdateAcceptOfDayRequest,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineAcceptOfDay> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).updateAcceptOfDay(calendar_id, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -10274,38 +10235,6 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
         return axios.request(axiosRequestArgs)
       }
     },
-    /**
-     *
-     * @summary Update ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {EngineUpdateExceptDateRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateExceptDate(
-      calendar_id: string,
-      id: string,
-      body: EngineUpdateExceptDateRequest,
-      options?: any
-    ): (
-      axios?: AxiosInstance,
-      basePath?: string
-    ) => AxiosPromise<EngineExceptDate> {
-      const localVarAxiosArgs = CalendarServiceApiAxiosParamCreator(
-        configuration
-      ).updateExceptDate(calendar_id, id, body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
   }
 }
 
@@ -10321,25 +10250,6 @@ export const CalendarServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create AcceptOfDay
-     * @param {string} calendar_id
-     * @param {EngineCreateAcceptOfDayRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAcceptOfDay(
-      calendar_id: string,
-      body: EngineCreateAcceptOfDayRequest,
-      options?: any
-    ) {
-      return CalendarServiceApiFp(configuration).createAcceptOfDay(
-        calendar_id,
-        body,
-        options
-      )(axios, basePath)
-    },
-    /**
-     *
      * @summary Create calendar
      * @param {EngineCreateCalendarRequest} body
      * @param {*} [options] Override http request option.
@@ -10350,47 +10260,6 @@ export const CalendarServiceApiFactory = function(
         axios,
         basePath
       )
-    },
-    /**
-     *
-     * @summary Create ExceptDate
-     * @param {string} calendar_id
-     * @param {EngineCreateExceptDateRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createExceptDate(
-      calendar_id: string,
-      body: EngineCreateExceptDateRequest,
-      options?: any
-    ) {
-      return CalendarServiceApiFp(configuration).createExceptDate(
-        calendar_id,
-        body,
-        options
-      )(axios, basePath)
-    },
-    /**
-     *
-     * @summary Delete AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options?: any
-    ) {
-      return CalendarServiceApiFp(configuration).deleteAcceptOfDay(
-        calendar_id,
-        id,
-        domain_id,
-        options
-      )(axios, basePath)
     },
     /**
      *
@@ -10409,50 +10278,6 @@ export const CalendarServiceApiFactory = function(
     },
     /**
      *
-     * @summary Delete ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteExceptDate(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options?: any
-    ) {
-      return CalendarServiceApiFp(configuration).deleteExceptDate(
-        calendar_id,
-        id,
-        domain_id,
-        options
-      )(axios, basePath)
-    },
-    /**
-     *
-     * @summary Read AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options?: any
-    ) {
-      return CalendarServiceApiFp(configuration).readAcceptOfDay(
-        calendar_id,
-        id,
-        domain_id,
-        options
-      )(axios, basePath)
-    },
-    /**
-     *
      * @summary Calendar item
      * @param {string} id
      * @param {string} [domain_id]
@@ -10462,43 +10287,6 @@ export const CalendarServiceApiFactory = function(
     readCalendar(id: string, domain_id?: string, options?: any) {
       return CalendarServiceApiFp(configuration).readCalendar(
         id,
-        domain_id,
-        options
-      )(axios, basePath)
-    },
-    /**
-     *
-     * @summary Read ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readExceptDate(
-      calendar_id: string,
-      id: string,
-      domain_id?: string,
-      options?: any
-    ) {
-      return CalendarServiceApiFp(configuration).readExceptDate(
-        calendar_id,
-        id,
-        domain_id,
-        options
-      )(axios, basePath)
-    },
-    /**
-     *
-     * @summary List AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAcceptOfDay(calendar_id: string, domain_id?: string, options?: any) {
-      return CalendarServiceApiFp(configuration).searchAcceptOfDay(
-        calendar_id,
         domain_id,
         options
       )(axios, basePath)
@@ -10527,21 +10315,6 @@ export const CalendarServiceApiFactory = function(
     },
     /**
      *
-     * @summary List ExceptDate
-     * @param {string} calendar_id
-     * @param {string} [domain_id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchExceptDate(calendar_id: string, domain_id?: string, options?: any) {
-      return CalendarServiceApiFp(configuration).searchExceptDate(
-        calendar_id,
-        domain_id,
-        options
-      )(axios, basePath)
-    },
-    /**
-     *
      * @summary List timezones
      * @param {number} [page]
      * @param {number} [size]
@@ -10552,28 +10325,6 @@ export const CalendarServiceApiFactory = function(
       return CalendarServiceApiFp(configuration).searchTimezones(
         page,
         size,
-        options
-      )(axios, basePath)
-    },
-    /**
-     *
-     * @summary Update AcceptOfDay
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {EngineUpdateAcceptOfDayRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAcceptOfDay(
-      calendar_id: string,
-      id: string,
-      body: EngineUpdateAcceptOfDayRequest,
-      options?: any
-    ) {
-      return CalendarServiceApiFp(configuration).updateAcceptOfDay(
-        calendar_id,
-        id,
-        body,
         options
       )(axios, basePath)
     },
@@ -10596,28 +10347,6 @@ export const CalendarServiceApiFactory = function(
         options
       )(axios, basePath)
     },
-    /**
-     *
-     * @summary Update ExceptDate
-     * @param {string} calendar_id
-     * @param {string} id
-     * @param {EngineUpdateExceptDateRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateExceptDate(
-      calendar_id: string,
-      id: string,
-      body: EngineUpdateExceptDateRequest,
-      options?: any
-    ) {
-      return CalendarServiceApiFp(configuration).updateExceptDate(
-        calendar_id,
-        id,
-        body,
-        options
-      )(axios, basePath)
-    },
   }
 }
 
@@ -10630,27 +10359,6 @@ export const CalendarServiceApiFactory = function(
 export class CalendarServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create AcceptOfDay
-   * @param {string} calendar_id
-   * @param {EngineCreateAcceptOfDayRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public createAcceptOfDay(
-    calendar_id: string,
-    body: EngineCreateAcceptOfDayRequest,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).createAcceptOfDay(
-      calendar_id,
-      body,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
    * @summary Create calendar
    * @param {EngineCreateCalendarRequest} body
    * @param {*} [options] Override http request option.
@@ -10660,51 +10368,6 @@ export class CalendarServiceApi extends BaseAPI {
   public createCalendar(body: EngineCreateCalendarRequest, options?: any) {
     return CalendarServiceApiFp(this.configuration).createCalendar(
       body,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
-   * @summary Create ExceptDate
-   * @param {string} calendar_id
-   * @param {EngineCreateExceptDateRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public createExceptDate(
-    calendar_id: string,
-    body: EngineCreateExceptDateRequest,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).createExceptDate(
-      calendar_id,
-      body,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
-   * @summary Delete AcceptOfDay
-   * @param {string} calendar_id
-   * @param {string} id
-   * @param {string} [domain_id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public deleteAcceptOfDay(
-    calendar_id: string,
-    id: string,
-    domain_id?: string,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).deleteAcceptOfDay(
-      calendar_id,
-      id,
-      domain_id,
       options
     )(this.axios, this.basePath)
   }
@@ -10728,54 +10391,6 @@ export class CalendarServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary Delete ExceptDate
-   * @param {string} calendar_id
-   * @param {string} id
-   * @param {string} [domain_id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public deleteExceptDate(
-    calendar_id: string,
-    id: string,
-    domain_id?: string,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).deleteExceptDate(
-      calendar_id,
-      id,
-      domain_id,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
-   * @summary Read AcceptOfDay
-   * @param {string} calendar_id
-   * @param {string} id
-   * @param {string} [domain_id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public readAcceptOfDay(
-    calendar_id: string,
-    id: string,
-    domain_id?: string,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).readAcceptOfDay(
-      calendar_id,
-      id,
-      domain_id,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
    * @summary Calendar item
    * @param {string} id
    * @param {string} [domain_id]
@@ -10786,51 +10401,6 @@ export class CalendarServiceApi extends BaseAPI {
   public readCalendar(id: string, domain_id?: string, options?: any) {
     return CalendarServiceApiFp(this.configuration).readCalendar(
       id,
-      domain_id,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
-   * @summary Read ExceptDate
-   * @param {string} calendar_id
-   * @param {string} id
-   * @param {string} [domain_id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public readExceptDate(
-    calendar_id: string,
-    id: string,
-    domain_id?: string,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).readExceptDate(
-      calendar_id,
-      id,
-      domain_id,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
-   * @summary List AcceptOfDay
-   * @param {string} calendar_id
-   * @param {string} [domain_id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public searchAcceptOfDay(
-    calendar_id: string,
-    domain_id?: string,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).searchAcceptOfDay(
-      calendar_id,
       domain_id,
       options
     )(this.axios, this.basePath)
@@ -10862,27 +10432,6 @@ export class CalendarServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary List ExceptDate
-   * @param {string} calendar_id
-   * @param {string} [domain_id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public searchExceptDate(
-    calendar_id: string,
-    domain_id?: string,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).searchExceptDate(
-      calendar_id,
-      domain_id,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
    * @summary List timezones
    * @param {number} [page]
    * @param {number} [size]
@@ -10894,30 +10443,6 @@ export class CalendarServiceApi extends BaseAPI {
     return CalendarServiceApiFp(this.configuration).searchTimezones(
       page,
       size,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
-   * @summary Update AcceptOfDay
-   * @param {string} calendar_id
-   * @param {string} id
-   * @param {EngineUpdateAcceptOfDayRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public updateAcceptOfDay(
-    calendar_id: string,
-    id: string,
-    body: EngineUpdateAcceptOfDayRequest,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).updateAcceptOfDay(
-      calendar_id,
-      id,
-      body,
       options
     )(this.axios, this.basePath)
   }
@@ -10937,30 +10462,6 @@ export class CalendarServiceApi extends BaseAPI {
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration).updateCalendar(
-      id,
-      body,
-      options
-    )(this.axios, this.basePath)
-  }
-
-  /**
-   *
-   * @summary Update ExceptDate
-   * @param {string} calendar_id
-   * @param {string} id
-   * @param {EngineUpdateExceptDateRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApi
-   */
-  public updateExceptDate(
-    calendar_id: string,
-    id: string,
-    body: EngineUpdateExceptDateRequest,
-    options?: any
-  ) {
-    return CalendarServiceApiFp(this.configuration).updateExceptDate(
-      calendar_id,
       id,
       body,
       options
