@@ -4852,10 +4852,10 @@ export interface StorageBackendProfile {
   created_at?: string
   /**
    *
-   * @type {StorageLookup}
+   * @type {EngineLookup}
    * @memberof StorageBackendProfile
    */
-  created_by?: StorageLookup
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
@@ -4918,10 +4918,10 @@ export interface StorageBackendProfile {
   properties?: { [key: string]: string }
   /**
    *
-   * @type {StorageLookup}
+   * @type {EngineLookup}
    * @memberof StorageBackendProfile
    */
-  type?: StorageLookup
+  type?: EngineLookup
   /**
    *
    * @type {string}
@@ -4930,10 +4930,10 @@ export interface StorageBackendProfile {
   updated_at?: string
   /**
    *
-   * @type {StorageLookup}
+   * @type {EngineLookup}
    * @memberof StorageBackendProfile
    */
-  updated_by?: StorageLookup
+  updated_by?: EngineLookup
 }
 /**
  *
@@ -4991,10 +4991,10 @@ export interface StorageCreateBackendProfileRequest {
   properties?: { [key: string]: string }
   /**
    *
-   * @type {StorageLookup}
+   * @type {EngineLookup}
    * @memberof StorageCreateBackendProfileRequest
    */
-  type?: StorageLookup
+  type?: EngineLookup
 }
 /**
  *
@@ -5012,21 +5012,76 @@ export interface StorageListBackendProfile {
 /**
  *
  * @export
- * @interface StorageLookup
+ * @interface StorageListMedia
  */
-export interface StorageLookup {
+export interface StorageListMedia {
+  /**
+   *
+   * @type {Array<StorageMediaFile>}
+   * @memberof StorageListMedia
+   */
+  items?: Array<StorageMediaFile>
+  /**
+   *
+   * @type {boolean}
+   * @memberof StorageListMedia
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
+ * @interface StorageMediaFile
+ */
+export interface StorageMediaFile {
   /**
    *
    * @type {string}
-   * @memberof StorageLookup
+   * @memberof StorageMediaFile
+   */
+  created_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof StorageMediaFile
+   */
+  created_by?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof StorageMediaFile
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageLookup
+   * @memberof StorageMediaFile
+   */
+  mime_type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageMediaFile
    */
   name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageMediaFile
+   */
+  size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageMediaFile
+   */
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof StorageMediaFile
+   */
+  updated_by?: EngineLookup
 }
 /**
  *
@@ -12637,6 +12692,464 @@ export class ListServiceApi extends BaseAPI {
       list_id,
       id,
       body,
+      options
+    )(this.axios, this.basePath)
+  }
+}
+
+/**
+ * MediaFileServiceApi - axios parameter creator
+ * @export
+ */
+export const MediaFileServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Remove MediaFile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMediaFile(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteMediaFile.'
+        )
+      }
+      const localVarPath = `/storage/media/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary MediaFile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readMediaFile(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readMediaFile.'
+        )
+      }
+      const localVarPath = `/storage/media/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Search MediaFile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMediaFile(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/storage/media`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * MediaFileServiceApi - functional programming interface
+ * @export
+ */
+export const MediaFileServiceApiFp = function(configuration?: Configuration) {
+  return {
+    /**
+     *
+     * @summary Remove MediaFile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMediaFile(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageMediaFile> {
+      const localVarAxiosArgs = MediaFileServiceApiAxiosParamCreator(
+        configuration
+      ).deleteMediaFile(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary MediaFile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readMediaFile(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageMediaFile> {
+      const localVarAxiosArgs = MediaFileServiceApiAxiosParamCreator(
+        configuration
+      ).readMediaFile(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Search MediaFile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMediaFile(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<StorageListMedia> {
+      const localVarAxiosArgs = MediaFileServiceApiAxiosParamCreator(
+        configuration
+      ).searchMediaFile(page, size, q, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * MediaFileServiceApi - factory interface
+ * @export
+ */
+export const MediaFileServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Remove MediaFile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteMediaFile(id: string, domain_id?: string, options?: any) {
+      return MediaFileServiceApiFp(configuration).deleteMediaFile(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary MediaFile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readMediaFile(id: string, domain_id?: string, options?: any) {
+      return MediaFileServiceApiFp(configuration).readMediaFile(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Search MediaFile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMediaFile(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return MediaFileServiceApiFp(configuration).searchMediaFile(
+        page,
+        size,
+        q,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+  }
+}
+
+/**
+ * MediaFileServiceApi - object-oriented interface
+ * @export
+ * @class MediaFileServiceApi
+ * @extends {BaseAPI}
+ */
+export class MediaFileServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Remove MediaFile
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MediaFileServiceApi
+   */
+  public deleteMediaFile(id: string, domain_id?: string, options?: any) {
+    return MediaFileServiceApiFp(this.configuration).deleteMediaFile(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary MediaFile item
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MediaFileServiceApi
+   */
+  public readMediaFile(id: string, domain_id?: string, options?: any) {
+    return MediaFileServiceApiFp(this.configuration).readMediaFile(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Search MediaFile
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MediaFileServiceApi
+   */
+  public searchMediaFile(
+    page?: number,
+    size?: number,
+    q?: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return MediaFileServiceApiFp(this.configuration).searchMediaFile(
+      page,
+      size,
+      q,
+      domain_id,
       options
     )(this.axios, this.basePath)
   }

@@ -6233,6 +6233,110 @@
           }
         }
       }
+    },
+    "/storage/media": {
+      "get": {
+        "tags": [
+          "MediaFileService"
+        ],
+        "summary": "Search MediaFile",
+        "operationId": "SearchMediaFile",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/storageListMedia"
+            }
+          }
+        }
+      }
+    },
+    "/storage/media/{id}": {
+      "get": {
+        "tags": [
+          "MediaFileService"
+        ],
+        "summary": "MediaFile item",
+        "operationId": "ReadMediaFile",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/storageMediaFile"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MediaFileService"
+        ],
+        "summary": "Remove MediaFile",
+        "operationId": "DeleteMediaFile",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/storageMediaFile"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -9383,7 +9487,7 @@
           "format": "int64"
         },
         "created_by": {
-          "$ref": "#/definitions/storageLookup"
+          "$ref": "#/definitions/engineLookup"
         },
         "data_count": {
           "type": "string",
@@ -9426,14 +9530,14 @@
           }
         },
         "type": {
-          "$ref": "#/definitions/storageLookup"
+          "$ref": "#/definitions/engineLookup"
         },
         "updated_at": {
           "type": "string",
           "format": "int64"
         },
         "updated_by": {
-          "$ref": "#/definitions/storageLookup"
+          "$ref": "#/definitions/engineLookup"
         }
       }
     },
@@ -9473,7 +9577,7 @@
           }
         },
         "type": {
-          "$ref": "#/definitions/storageLookup"
+          "$ref": "#/definitions/engineLookup"
         }
       }
     },
@@ -9488,15 +9592,51 @@
         }
       }
     },
-    "storageLookup": {
+    "storageListMedia": {
       "type": "object",
       "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/storageMediaFile"
+          }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "storageMediaFile": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "created_by": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "id": {
           "type": "string",
           "format": "int64"
         },
+        "mime_type": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
+        },
+        "size": {
+          "type": "string",
+          "format": "int64"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "updated_by": {
+          "$ref": "#/definitions/engineLookup"
         }
       }
     },
