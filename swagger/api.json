@@ -9530,7 +9530,7 @@
           }
         },
         "type": {
-          "$ref": "#/definitions/engineLookup"
+          "type": "string"
         },
         "updated_at": {
           "type": "string",
@@ -9577,7 +9577,7 @@
           }
         },
         "type": {
-          "$ref": "#/definitions/engineLookup"
+          "type": "string"
         }
       }
     },

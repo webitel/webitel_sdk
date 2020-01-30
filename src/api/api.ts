@@ -4918,10 +4918,10 @@ export interface StorageBackendProfile {
   properties?: { [key: string]: string }
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof StorageBackendProfile
    */
-  type?: EngineLookup
+  type?: string
   /**
    *
    * @type {string}
@@ -4991,10 +4991,10 @@ export interface StorageCreateBackendProfileRequest {
   properties?: { [key: string]: string }
   /**
    *
-   * @type {EngineLookup}
+   * @type {string}
    * @memberof StorageCreateBackendProfileRequest
    */
-  type?: EngineLookup
+  type?: string
 }
 /**
  *
