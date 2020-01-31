@@ -5411,6 +5411,58 @@
         }
       }
     },
+    "/routing/outbound/calls/{from_id}/to/{to_id}": {
+      "patch": {
+        "tags": [
+          "RoutingOutboundCallService"
+        ],
+        "summary": "Move RoutingOutboundCall",
+        "operationId": "MovePositionRoutingOutboundCall",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "from_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "to_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineMovePositionRoutingOutboundCallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineMovePositionRoutingOutboundCallResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
     "/routing/outbound/calls/{id}": {
       "get": {
         "tags": [
@@ -7278,10 +7330,6 @@
         "pattern": {
           "type": "string"
         },
-        "priority": {
-          "type": "integer",
-          "format": "int32"
-        },
         "schema": {
           "$ref": "#/definitions/engineLookup"
         }
@@ -7713,7 +7761,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/engineRoutingOutboundCall"
+            "$ref": "#/definitions/engineRoutingOutboundCallCompact"
           }
         }
       }
@@ -7997,6 +8045,32 @@
         },
         "type": {
           "$ref": "#/definitions/engineLookup"
+        }
+      }
+    },
+    "engineMovePositionRoutingOutboundCallRequest": {
+      "type": "object",
+      "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "from_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "to_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "engineMovePositionRoutingOutboundCallResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -8336,10 +8410,6 @@
         "pattern": {
           "type": "string"
         },
-        "priority": {
-          "type": "integer",
-          "format": "int32"
-        },
         "schema": {
           "$ref": "#/definitions/engineLookup"
         }
@@ -8615,10 +8685,6 @@
         "pattern": {
           "type": "string"
         },
-        "priority": {
-          "type": "integer",
-          "format": "int32"
-        },
         "schema": {
           "$ref": "#/definitions/engineLookup"
         },
@@ -8627,6 +8693,39 @@
           "format": "int64"
         },
         "updated_by": {
+          "$ref": "#/definitions/engineLookup"
+        }
+      }
+    },
+    "engineRoutingOutboundCallCompact": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "schema": {
           "$ref": "#/definitions/engineLookup"
         }
       }
@@ -9370,10 +9469,6 @@
         },
         "pattern": {
           "type": "string"
-        },
-        "priority": {
-          "type": "integer",
-          "format": "int32"
         },
         "schema": {
           "$ref": "#/definitions/engineLookup"

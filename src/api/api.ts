@@ -1494,12 +1494,6 @@ export interface EngineCreateRoutingOutboundCallRequest {
   pattern?: string
   /**
    *
-   * @type {number}
-   * @memberof EngineCreateRoutingOutboundCallRequest
-   */
-  priority?: number
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineCreateRoutingOutboundCallRequest
    */
@@ -2078,10 +2072,10 @@ export interface EngineListResourceTeamSkill {
 export interface EngineListRoutingOutboundCall {
   /**
    *
-   * @type {Array<EngineRoutingOutboundCall>}
+   * @type {Array<EngineRoutingOutboundCallCompact>}
    * @memberof EngineListRoutingOutboundCall
    */
-  items?: Array<EngineRoutingOutboundCall>
+  items?: Array<EngineRoutingOutboundCallCompact>
 }
 /**
  *
@@ -2507,6 +2501,44 @@ export interface EngineMemberCommunicationCreateRequest {
    * @memberof EngineMemberCommunicationCreateRequest
    */
   type?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineMovePositionRoutingOutboundCallRequest
+ */
+export interface EngineMovePositionRoutingOutboundCallRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMovePositionRoutingOutboundCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMovePositionRoutingOutboundCallRequest
+   */
+  from_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMovePositionRoutingOutboundCallRequest
+   */
+  to_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineMovePositionRoutingOutboundCallResponse
+ */
+export interface EngineMovePositionRoutingOutboundCallResponse {
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineMovePositionRoutingOutboundCallResponse
+   */
+  success?: boolean
 }
 /**
  *
@@ -3033,12 +3065,6 @@ export interface EnginePatchRoutingOutboundCallRequest {
   pattern?: string
   /**
    *
-   * @type {number}
-   * @memberof EnginePatchRoutingOutboundCallRequest
-   */
-  priority?: number
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EnginePatchRoutingOutboundCallRequest
    */
@@ -3481,12 +3507,6 @@ export interface EngineRoutingOutboundCall {
   pattern?: string
   /**
    *
-   * @type {number}
-   * @memberof EngineRoutingOutboundCall
-   */
-  priority?: number
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineRoutingOutboundCall
    */
@@ -3503,6 +3523,61 @@ export interface EngineRoutingOutboundCall {
    * @memberof EngineRoutingOutboundCall
    */
   updated_by?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineRoutingOutboundCallCompact
+ */
+export interface EngineRoutingOutboundCallCompact {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCallCompact
+   */
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineRoutingOutboundCallCompact
+   */
+  disabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCallCompact
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCallCompact
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCallCompact
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineRoutingOutboundCallCompact
+   */
+  pattern?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineRoutingOutboundCallCompact
+   */
+  position?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineRoutingOutboundCallCompact
+   */
+  schema?: EngineLookup
 }
 /**
  *
@@ -4668,12 +4743,6 @@ export interface EngineUpdateRoutingOutboundCallRequest {
    * @memberof EngineUpdateRoutingOutboundCallRequest
    */
   pattern?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateRoutingOutboundCallRequest
-   */
-  priority?: number
   /**
    *
    * @type {EngineLookup}
@@ -22640,6 +22709,92 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Move RoutingOutboundCall
+     * @param {string} from_id
+     * @param {string} to_id
+     * @param {EngineMovePositionRoutingOutboundCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    movePositionRoutingOutboundCall(
+      from_id: string,
+      to_id: string,
+      body: EngineMovePositionRoutingOutboundCallRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'from_id' is not null or undefined
+      if (from_id === null || from_id === undefined) {
+        throw new RequiredError(
+          'from_id',
+          'Required parameter from_id was null or undefined when calling movePositionRoutingOutboundCall.'
+        )
+      }
+      // verify required parameter 'to_id' is not null or undefined
+      if (to_id === null || to_id === undefined) {
+        throw new RequiredError(
+          'to_id',
+          'Required parameter to_id was null or undefined when calling movePositionRoutingOutboundCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling movePositionRoutingOutboundCall.'
+        )
+      }
+      const localVarPath = `/routing/outbound/calls/{from_id}/to/{to_id}`
+        .replace(`{${'from_id'}}`, encodeURIComponent(String(from_id)))
+        .replace(`{${'to_id'}}`, encodeURIComponent(String(to_id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineMovePositionRoutingOutboundCallRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Patch RoutingOutboundCall
      * @param {string} id
      * @param {EnginePatchRoutingOutboundCallRequest} body
@@ -22999,6 +23154,38 @@ export const RoutingOutboundCallServiceApiFp = function(
     },
     /**
      *
+     * @summary Move RoutingOutboundCall
+     * @param {string} from_id
+     * @param {string} to_id
+     * @param {EngineMovePositionRoutingOutboundCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    movePositionRoutingOutboundCall(
+      from_id: string,
+      to_id: string,
+      body: EngineMovePositionRoutingOutboundCallRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineMovePositionRoutingOutboundCallResponse> {
+      const localVarAxiosArgs = RoutingOutboundCallServiceApiAxiosParamCreator(
+        configuration
+      ).movePositionRoutingOutboundCall(from_id, to_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Patch RoutingOutboundCall
      * @param {string} id
      * @param {EnginePatchRoutingOutboundCallRequest} body
@@ -23162,6 +23349,28 @@ export const RoutingOutboundCallServiceApiFactory = function(
     },
     /**
      *
+     * @summary Move RoutingOutboundCall
+     * @param {string} from_id
+     * @param {string} to_id
+     * @param {EngineMovePositionRoutingOutboundCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    movePositionRoutingOutboundCall(
+      from_id: string,
+      to_id: string,
+      body: EngineMovePositionRoutingOutboundCallRequest,
+      options?: any
+    ) {
+      return RoutingOutboundCallServiceApiFp(
+        configuration
+      ).movePositionRoutingOutboundCall(from_id, to_id, body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
      * @summary Patch RoutingOutboundCall
      * @param {string} id
      * @param {EnginePatchRoutingOutboundCallRequest} body
@@ -23273,6 +23482,30 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
     return RoutingOutboundCallServiceApiFp(
       this.configuration
     ).deleteRoutingOutboundCall(id, domain_id, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Move RoutingOutboundCall
+   * @param {string} from_id
+   * @param {string} to_id
+   * @param {EngineMovePositionRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApi
+   */
+  public movePositionRoutingOutboundCall(
+    from_id: string,
+    to_id: string,
+    body: EngineMovePositionRoutingOutboundCallRequest,
+    options?: any
+  ) {
+    return RoutingOutboundCallServiceApiFp(
+      this.configuration
+    ).movePositionRoutingOutboundCall(from_id, to_id, body, options)(
       this.axios,
       this.basePath
     )
