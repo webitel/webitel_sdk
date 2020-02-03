@@ -47,6 +47,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -127,6 +132,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           }
         ],
@@ -296,6 +306,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -977,6 +992,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -1188,6 +1208,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -1395,6 +1420,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -1613,6 +1643,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -1852,6 +1887,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -3232,6 +3272,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -3685,6 +3730,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -4189,6 +4239,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -4396,6 +4451,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -5349,6 +5409,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -5651,6 +5716,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -6116,6 +6186,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -7491,6 +7566,10 @@
           "items": {
             "$ref": "#/definitions/engineAgent"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7546,6 +7625,10 @@
           "items": {
             "$ref": "#/definitions/engineAgentTeam"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7557,6 +7640,10 @@
           "items": {
             "$ref": "#/definitions/engineBucket"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7568,6 +7655,10 @@
           "items": {
             "$ref": "#/definitions/engineCalendar"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7598,6 +7689,10 @@
           "items": {
             "$ref": "#/definitions/engineCommunicationType"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7631,6 +7726,10 @@
           "items": {
             "$ref": "#/definitions/engineList"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7642,6 +7741,10 @@
           "items": {
             "$ref": "#/definitions/engineListCommunication"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7653,6 +7756,10 @@
           "items": {
             "$ref": "#/definitions/engineOutboundResource"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7675,6 +7782,10 @@
           "items": {
             "$ref": "#/definitions/engineOutboundResourceViewGroup"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7697,6 +7808,10 @@
           "items": {
             "$ref": "#/definitions/engineQueue"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7763,6 +7878,10 @@
           "items": {
             "$ref": "#/definitions/engineRoutingOutboundCallCompact"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7774,6 +7893,10 @@
           "items": {
             "$ref": "#/definitions/engineRoutingSchema"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7796,6 +7919,10 @@
           "items": {
             "$ref": "#/definitions/engineSkill"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7818,6 +7945,10 @@
           "items": {
             "$ref": "#/definitions/engineTimezone"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -9684,6 +9815,10 @@
           "items": {
             "$ref": "#/definitions/storageBackendProfile"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },

@@ -34,7 +34,7 @@ describe(`OutboundResourceServiceApi API`, () => {
       number: '111',
       enabled: true,
       gateway: {
-        id: '3',
+        id: '6',
       },
       reserve: true,
       max_successively_errors: 10,
@@ -64,7 +64,7 @@ describe(`OutboundResourceServiceApi API`, () => {
       throw new Error('domain_id require')
     }
     /* tslint:disable */
-    const res = await api.searchOutboundResource(0, 10, resource.domain_id)
+    const res = await api.searchOutboundResource(0, 10, '', resource.domain_id)
     /* tslint:enabled */
     expect(res.status).toBe(successCode)
     expect(res.data.items).toBeInstanceOf(Array)
@@ -92,7 +92,7 @@ describe(`OutboundResourceServiceApi API`, () => {
         v: 'test1',
       },
       gateway: {
-        id: '3',
+        id: '6',
       },
       rps: 11,
       number: '12',

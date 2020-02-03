@@ -45,7 +45,7 @@ describe(`Communication type API`, () => {
       throw new Error('type domain_id require')
     }
     /* tslint:disable */
-    const res = await api.searchCommunicationType(0, 10, type.domain_id)
+    const res = await api.searchCommunicationType(0, 10, '', type.domain_id)
     /* tslint:enabled */
     expect(res.status).toBe(successCode)
     expect(res.data.items).toBeInstanceOf(Array)

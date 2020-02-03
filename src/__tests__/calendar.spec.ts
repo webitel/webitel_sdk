@@ -59,7 +59,7 @@ describe(`Calendar API`, () => {
     if (!calendar.domain_id) {
       throw new Error('calendar domain_id require')
     }
-    const res = await api.searchCalendar(0, 10, calendar.domain_id)
+    const res = await api.searchCalendar(0, 10, '', calendar.domain_id)
     expect(res.status).toBe(successCode)
     expect(res.data.items).toBeInstanceOf(Array)
   })

@@ -49,7 +49,12 @@ describe(`OutboundResourceServiceApi API`, () => {
       throw new Error('domain_id require')
     }
     /* tslint:disable */
-    const res = await api.searchOutboundResourceGroup(0, 10, group.domain_id)
+    const res = await api.searchOutboundResourceGroup(
+      0,
+      10,
+      '',
+      group.domain_id
+    )
     /* tslint:enabled */
     expect(res.status).toBe(successCode)
     expect(res.data.items).toBeInstanceOf(Array)

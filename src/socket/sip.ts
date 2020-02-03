@@ -72,10 +72,10 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
       pcConfig: {
         iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }],
       },
-      rtcOfferConstraints: {
-        offerToReceiveAudio: true,
-        offerToReceiveVideo: req.useVideo,
-      },
+      // rtcOfferConstraints: {
+      //   offerToReceiveAudio: true,
+      //   offerToReceiveVideo: req.useVideo,
+      // },
       mediaConstraints: {
         audio: true,
         video: req.useVideo,
@@ -110,7 +110,8 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
 
   answer(id: string, req: AnswerRequest): boolean {
     if (this.sessionCache.has(id)) {
-      this.sessionCache.get(id)!.sip.answer(this.callOption(req))
+      const session = this.sessionCache.get(id)
+      session!.sip.answer(this.callOption(req))
 
       return true
     }
