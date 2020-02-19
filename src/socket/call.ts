@@ -1,4 +1,4 @@
-import { Client } from './client'
+import { Client, UserCallRequest } from './client'
 
 export enum CallActions {
   Ringing = 'ringing',
@@ -22,6 +22,8 @@ export enum CallDirection {
 
 export interface AnswerRequest {
   useVideo?: boolean
+  useAudio?: boolean
+  useScreen?: boolean
 }
 
 export interface CallEventData {
@@ -39,6 +41,8 @@ export interface CallEventDTMF extends CallEventData {
 }
 
 export interface CallInfo extends CallEventData {
+  parent_id: string
+  owner_id: string
   direction: string
   destination: string
 
@@ -52,6 +56,7 @@ export interface CallInfo extends CallEventData {
   gateway_id: string
   video_request: string
   video_flow: string
+  screen_request: string
 }
 
 export interface CallHangup extends CallEventData {
@@ -74,8 +79,10 @@ export class Call {
   payload!: Map<string, string>
 
   videoRequest!: boolean
+  screenRequest!: boolean
   videoFlow!: string | null
   peerStreams!: MediaStream[] | null
+  screen!: string | null
 
   createdAt: number
   answeredAt: number
@@ -84,6 +91,7 @@ export class Call {
   hangupCause!: string
 
   parentCallId!: string
+  ownerCallId!: string
 
   _muted!: boolean
   _gatewayId!: string | null
@@ -144,6 +152,8 @@ export class Call {
   }
 
   setInfo(s: CallInfo) {
+    this.ownerCallId = s.owner_id
+    this.parentCallId = s.parent_id
     this.destination = s.destination
     this.direction = s.direction
     this.fromNumber = s.from_number
@@ -164,6 +174,7 @@ export class Call {
       this.videoFlow = null
     }
 
+    this.screenRequest = s.screen_request === 'true'
     this.videoRequest = s.video_request === 'true' //
 
     this.setState(s)
@@ -325,5 +336,13 @@ export class Call {
       parent_id: call.id,
       parent_node_id: call.nodeName,
     })
+  }
+
+  async callToUser(req: UserCallRequest) {
+    req.nodeId = this.nodeName
+    req.parentCallId = this.id || null
+    req.sendToCallId = this.parentCallId || null
+
+    return this.client.inviteToUser(req)
   }
 }

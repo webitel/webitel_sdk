@@ -27,9 +27,23 @@ interface PromiseCallback {
 }
 
 export interface OutboundCallRequest {
+  parentCallId?: string
   toNumber: string
   toName?: string
   useVideo?: boolean
+  useScreen?: boolean
+  useAudio?: boolean
+  variables?: Map<string, string>
+}
+
+export interface UserCallRequest {
+  nodeId?: string | null
+  parentCallId?: string | null
+  sendToCallId?: string | null
+  toUserId: string
+  useVideo?: boolean
+  useScreen?: boolean
+  useAudio?: boolean
   variables?: Map<string, string>
 }
 
@@ -37,6 +51,7 @@ const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
 const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
 
 const WEBSOCKET_MAKE_OUTBOUND_CALL = 'call_invite'
+const WEBSOCKET_MAKE_USER_CALL = 'call_user'
 const WEBSOCKET_EVENT_HELLO = 'hello'
 const WEBSOCKET_EVENT_CALL = 'call'
 const WEBSOCKET_EVENT_SIP = 'sip'
@@ -155,6 +170,10 @@ export class Client {
     return this.request(WEBSOCKET_MAKE_OUTBOUND_CALL, req)
   }
 
+  inviteToUser(req: UserCallRequest) {
+    return this.request(WEBSOCKET_MAKE_USER_CALL, req)
+  }
+
   answer(id: string, req: AnswerRequest): boolean {
     return this.phone.answer(id, req)
   }
@@ -255,6 +274,7 @@ export class Client {
     if (call && this.phone.isOutboundCall(id)) {
       call.answer({
         useVideo: call.videoRequest,
+        useScreen: call.screenRequest,
       })
     }
   }
@@ -307,6 +327,10 @@ export class Client {
       case CallActions.Bridge:
         call = this.callById(event.id)
         if (call) {
+          // const session = this.phone.getSession(event.id);
+          // if (session) {
+          //   debugger
+          // }
           call.setInfo(event as CallInfo)
         }
         break

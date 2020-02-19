@@ -66,20 +66,32 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     })
   }
 
+  getMediaConstraints(req: AnswerRequest): object {
+    if (req.useScreen) {
+      return {
+        video: false,
+        audio: false,
+        screen: true,
+      }
+    }
+
+    return {
+      video: req.useVideo || false,
+      audio: req.useAudio || true,
+    }
+  }
+
   callOption(req: AnswerRequest): object {
     return {
       sessionTimersExpires: 120,
       pcConfig: {
         iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }],
       },
-      // rtcOfferConstraints: {
-      //   offerToReceiveAudio: true,
-      //   offerToReceiveVideo: req.useVideo,
-      // },
-      mediaConstraints: {
-        audio: true,
-        video: req.useVideo,
+      rtcOfferConstraints: {
+        offerToReceiveAudio: req.useAudio || true,
+        offerToReceiveVideo: req.useVideo,
       },
+      mediaConstraints: this.getMediaConstraints(req),
     }
   }
 
@@ -181,6 +193,9 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
 
       session.on('accepted', () => {
         // the call has answered
+        if (!this.isOutboundCall(id)) {
+          this.emit('peerStreams', id, this.getPeerStream(id))
+        }
       })
 
       session.on('confirmed', () => {

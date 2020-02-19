@@ -406,6 +406,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -664,6 +669,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -834,13 +844,18 @@
           {
             "type": "integer",
             "format": "int32",
-            "name": "size",
+            "name": "page",
             "in": "query"
           },
           {
             "type": "integer",
             "format": "int32",
-            "name": "page",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -933,13 +948,18 @@
           {
             "type": "integer",
             "format": "int32",
-            "name": "size",
+            "name": "page",
             "in": "query"
           },
           {
             "type": "integer",
             "format": "int32",
-            "name": "page",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -1869,6 +1889,119 @@
         }
       }
     },
+    "/call_center/lookups/agents/skills/{agent_id}": {
+      "get": {
+        "tags": [
+          "AgentSkillService"
+        ],
+        "summary": "SearchLookupAgentNotExistsSkill",
+        "operationId": "SearchLookupAgentNotExistsSkill",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "agent_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListSkill"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/call_center/lookups/agents/users": {
+      "get": {
+        "tags": [
+          "AgentService"
+        ],
+        "summary": "SearchLookupAgentNotExistsUser",
+        "operationId": "SearchLookupUsersAgentNotExists",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListAgentUser"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
     "/call_center/queues": {
       "get": {
         "tags": [
@@ -2153,6 +2286,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -2787,6 +2925,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -3364,6 +3507,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -3996,6 +4144,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -4678,6 +4831,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -4924,6 +5082,11 @@
           },
           {
             "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "format": "int64",
             "name": "domain_id",
             "in": "query"
@@ -5166,6 +5329,11 @@
             "type": "integer",
             "format": "int32",
             "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
             "in": "query"
           },
           {
@@ -6705,6 +6873,18 @@
         }
       }
     },
+    "engineAgentUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "engineBucket": {
       "type": "object",
       "properties": {
@@ -7265,6 +7445,9 @@
           "type": "integer",
           "format": "int32"
         },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "sec_locate_agent": {
           "type": "integer",
           "format": "int32"
@@ -7581,6 +7764,10 @@
           "items": {
             "$ref": "#/definitions/engineAgentInQueue"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7592,6 +7779,10 @@
           "items": {
             "$ref": "#/definitions/engineAgentInTeam"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7603,6 +7794,10 @@
           "items": {
             "$ref": "#/definitions/engineAgentSkillItem"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7614,6 +7809,10 @@
           "items": {
             "$ref": "#/definitions/engineAgentState"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7624,6 +7823,21 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/engineAgentTeam"
+          }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "engineListAgentUser": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineAgentUser"
           }
         },
         "next": {
@@ -7771,6 +7985,10 @@
           "items": {
             "$ref": "#/definitions/engineResourceDisplay"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7797,6 +8015,10 @@
           "items": {
             "$ref": "#/definitions/engineOutboundResourceInGroup"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7823,6 +8045,10 @@
           "items": {
             "$ref": "#/definitions/engineQueueBucket"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7834,6 +8060,10 @@
           "items": {
             "$ref": "#/definitions/engineQueueResourceGroup"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7856,6 +8086,10 @@
           "items": {
             "$ref": "#/definitions/engineResourceTeamAgent"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7867,6 +8101,10 @@
           "items": {
             "$ref": "#/definitions/engineResourceTeamSkill"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -7934,6 +8172,10 @@
           "items": {
             "$ref": "#/definitions/engineSupervisorInTeam"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -8485,6 +8727,9 @@
           "type": "integer",
           "format": "int32"
         },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "sec_locate_agent": {
           "type": "integer",
           "format": "int32"
@@ -8625,6 +8870,9 @@
         "priority": {
           "type": "integer",
           "format": "int32"
+        },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
         },
         "sec_locate_agent": {
           "type": "integer",
@@ -9440,6 +9688,9 @@
         "priority": {
           "type": "integer",
           "format": "int32"
+        },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
         },
         "sec_locate_agent": {
           "type": "integer",

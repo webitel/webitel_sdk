@@ -436,6 +436,12 @@
             "format": "int32"
           },
           {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "domain_id",
             "in": "query",
             "required": false,
@@ -701,6 +707,12 @@
             "format": "int64"
           },
           {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "domain_id",
             "in": "query",
             "required": false,
@@ -873,6 +885,13 @@
             "format": "int64"
           },
           {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
             "name": "size",
             "in": "query",
             "required": false,
@@ -880,11 +899,10 @@
             "format": "int32"
           },
           {
-            "name": "page",
+            "name": "q",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "domain_id",
@@ -975,6 +993,13 @@
             "format": "int64"
           },
           {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
             "name": "size",
             "in": "query",
             "required": false,
@@ -982,11 +1007,10 @@
             "format": "int32"
           },
           {
-            "name": "page",
+            "name": "q",
             "in": "query",
             "required": false,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
           {
             "name": "domain_id",
@@ -1924,6 +1948,127 @@
         ]
       }
     },
+    "/call_center/lookups/agents/skills/{agent_id}": {
+      "get": {
+        "summary": "SearchLookupAgentNotExistsSkill",
+        "operationId": "SearchLookupAgentNotExistsSkill",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListSkill"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "domain_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AgentSkillService"
+        ]
+      }
+    },
+    "/call_center/lookups/agents/users": {
+      "get": {
+        "summary": "SearchLookupAgentNotExistsUser",
+        "operationId": "SearchLookupUsersAgentNotExists",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListAgentUser"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "domain_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AgentService"
+        ]
+      }
+    },
     "/call_center/queues": {
       "get": {
         "summary": "List of Queue",
@@ -2233,6 +2378,12 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "domain_id",
@@ -2876,6 +3027,12 @@
             "format": "int32"
           },
           {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "domain_id",
             "in": "query",
             "required": false,
@@ -3469,6 +3626,12 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "domain_id",
@@ -4114,6 +4277,12 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "domain_id",
@@ -4811,6 +4980,12 @@
             "format": "int32"
           },
           {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "domain_id",
             "in": "query",
             "required": false,
@@ -5062,6 +5237,12 @@
             "format": "int32"
           },
           {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "domain_id",
             "in": "query",
             "required": false,
@@ -5311,6 +5492,12 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "domain_id",
@@ -6556,6 +6743,18 @@
         }
       }
     },
+    "engineAgentUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "engineBucket": {
       "type": "object",
       "properties": {
@@ -7136,6 +7335,9 @@
         "description": {
           "type": "string"
         },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "domain_id": {
           "type": "string",
           "format": "int64"
@@ -7427,6 +7629,10 @@
     "engineListAgentInQueue": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7438,6 +7644,10 @@
     "engineListAgentInTeam": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7449,6 +7659,10 @@
     "engineListAgentSkill": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7460,6 +7674,10 @@
     "engineListAgentStateHistory": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7479,6 +7697,21 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/engineAgentTeam"
+          }
+        }
+      }
+    },
+    "engineListAgentUser": {
+      "type": "object",
+      "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineAgentUser"
           }
         }
       }
@@ -7617,6 +7850,10 @@
     "engineListOutboundResourceDisplay": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7643,6 +7880,10 @@
     "engineListOutboundResourceInGroup": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7669,6 +7910,10 @@
     "engineListQueueBucket": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7680,6 +7925,10 @@
     "engineListQueueResourceGroup": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7702,6 +7951,10 @@
     "engineListResourceTeamAgent": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7713,6 +7966,10 @@
     "engineListResourceTeamSkill": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -7780,6 +8037,10 @@
     "engineListSupervisorInTeam": {
       "type": "object",
       "properties": {
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "items": {
           "type": "array",
           "items": {
@@ -8350,6 +8611,9 @@
         "description": {
           "type": "string"
         },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "fields": {
           "type": "array",
           "items": {
@@ -8506,6 +8770,9 @@
           "type": "string"
         },
         "team": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "schema": {
           "$ref": "#/definitions/engineLookup"
         }
       }
@@ -9311,6 +9578,9 @@
         },
         "description": {
           "type": "string"
+        },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
         },
         "domain_id": {
           "type": "string",
