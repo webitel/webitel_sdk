@@ -29,7 +29,9 @@ export interface AnswerRequest {
 export interface CallEventData {
   id: string
   node_name: string
+  activity_at: number
   action: string
+  data?: object
 }
 
 export interface CallEventExecute extends CallEventData {
@@ -61,6 +63,7 @@ export interface CallInfo extends CallEventData {
 
 export interface CallHangup extends CallEventData {
   cause: string
+  sip: number
 }
 
 export class Call {
@@ -89,6 +92,7 @@ export class Call {
   hangupAt: number
 
   hangupCause!: string
+  hangupSipCode!: number
 
   parentCallId!: string
   ownerCallId!: string
@@ -102,11 +106,11 @@ export class Call {
 
   constructor(
     protected client: Client,
-    e: CallInfo,
+    e: CallEventData,
     peerStreams: MediaStream[] | null
   ) {
     this.voice = true
-    this.createdAt = Date.now()
+    this.createdAt = +e.activity_at
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -117,12 +121,12 @@ export class Call {
     this.applications = []
     this.nodeName = e.node_name
     this.setState(e)
-    this.setInfo(e)
+    this.setInfo(e.data as CallInfo)
   }
 
   setActive(e: CallEventData) {
     if (!this.answeredAt) {
-      this.answeredAt = Date.now()
+      this.answeredAt = +e.activity_at
     }
     this.setState(e)
   }
@@ -196,19 +200,21 @@ export class Call {
     this.peerStreams = streams
   }
 
-  setHangup(s: CallHangup) {
-    this.hangupAt = Date.now()
-    this.hangupCause = s.cause
+  setHangup(s: CallEventData) {
+    const hangup = s.data as CallHangup
+    this.hangupAt = +s.activity_at
+    this.hangupCause = hangup.cause
+    this.hangupSipCode = hangup.sip
     this.voice = false
     this.peerStreams = null
     this.setState(s)
   }
 
-  setVoice(s: CallEventData) {
+  setVoice() {
     this.voice = true
   }
 
-  setSilence(s: CallEventData) {
+  setSilence() {
     this.voice = false
   }
 

@@ -6,7 +6,6 @@ import {
   CallEventData,
   CallEventDTMF,
   CallEventExecute,
-  CallHangup,
   CallInfo,
 } from './call'
 import { Log } from './log'
@@ -306,11 +305,7 @@ export class Client {
 
     switch (event.action) {
       case CallActions.Ringing:
-        call = new Call(
-          this,
-          event as CallInfo,
-          this.phone.getPeerStream(event.id)
-        )
+        call = new Call(this, event, this.phone.getPeerStream(event.id))
 
         this.callStore.set(call.id, call)
 
@@ -331,35 +326,35 @@ export class Client {
           // if (session) {
           //   debugger
           // }
-          call.setInfo(event as CallInfo)
+          call.setInfo(event.data as CallInfo)
         }
         break
 
       case CallActions.Execute:
         call = this.callById(event.id)
         if (call) {
-          call.setExecute(event as CallEventExecute)
+          call.setExecute(event.data as CallEventExecute)
         }
         break
 
       case CallActions.DTMF:
         call = this.callById(event.id)
         if (call) {
-          call.addDigit(event as CallEventDTMF)
+          call.addDigit(event.data as CallEventDTMF)
         }
         break
 
       case CallActions.Voice:
         call = this.callById(event.id)
         if (call) {
-          call.setVoice(event)
+          call.setVoice()
         }
         break
 
       case CallActions.Silence:
         call = this.callById(event.id)
         if (call) {
-          call.setSilence(event)
+          call.setSilence()
         }
         break
 
@@ -373,7 +368,7 @@ export class Client {
       case CallActions.Hangup:
         call = this.callById(event.id)
         if (call) {
-          call.setHangup(event as CallHangup)
+          call.setHangup(event)
           this.callStore.delete(call.id)
         }
         break
