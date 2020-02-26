@@ -6,7 +6,6 @@ import {
   CallEventData,
   CallEventDTMF,
   CallEventExecute,
-  CallInfo,
 } from './call'
 import { Log } from './log'
 import { CallSession, SipConfiguration, SipPhone } from './sip'
@@ -272,6 +271,7 @@ export class Client {
     const call = this.callById(id)
     if (call && this.phone.isOutboundCall(id)) {
       call.answer({
+        useAudio: true,
         useVideo: call.videoRequest,
         useScreen: call.screenRequest,
       })
@@ -322,11 +322,7 @@ export class Client {
       case CallActions.Bridge:
         call = this.callById(event.id)
         if (call) {
-          // const session = this.phone.getSession(event.id);
-          // if (session) {
-          //   debugger
-          // }
-          call.setInfo(event.data as CallInfo)
+          call.setBridged(event)
         }
         break
 
@@ -361,7 +357,7 @@ export class Client {
       case CallActions.Hold:
         call = this.callById(event.id)
         if (call) {
-          call.setState(event)
+          call.setHold(event)
         }
         break
 

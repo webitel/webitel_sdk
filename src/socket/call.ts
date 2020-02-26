@@ -80,6 +80,7 @@ export class Call {
   toNumber!: string
   toName!: string
   payload!: Map<string, string>
+  queue!: Map<string, string>
 
   videoRequest!: boolean
   screenRequest!: boolean
@@ -89,6 +90,7 @@ export class Call {
 
   createdAt: number
   answeredAt: number
+  bridgedAt: number
   hangupAt: number
 
   hangupCause!: string
@@ -114,6 +116,7 @@ export class Call {
 
     this.answeredAt = 0
     this.hangupAt = 0
+    this.bridgedAt = 0
     this.peerStreams = peerStreams
 
     this.id = e.id
@@ -123,6 +126,10 @@ export class Call {
     this.setState(e)
     this.setInfo(e.data as CallInfo)
   }
+  // set private
+  setState(s: CallEventData) {
+    this.state = s.action
+  }
 
   setActive(e: CallEventData) {
     if (!this.answeredAt) {
@@ -131,28 +138,16 @@ export class Call {
     this.setState(e)
   }
 
-  get display() {
-    return `${this.displayNumber} (${this.displayName})`
-  }
-
-  get muted() {
-    return this._muted
-  }
-
-  get allowInboundVideo(): boolean {
-    if (this.videoFlow) {
-      return this.videoFlow.indexOf('send') > -1
+  setBridged(s: CallEventData) {
+    if (!this.bridgedAt) {
+      this.bridgedAt = +s.activity_at
     }
 
-    return false
+    this.setInfo(s.data as CallInfo)
   }
 
-  get allowOutboundVideo(): boolean {
-    if (this.videoFlow) {
-      return this.videoFlow.indexOf('recv') > -1
-    }
-
-    return false
+  setHold(e: CallEventData) {
+    this.setState(e)
   }
 
   setInfo(s: CallInfo) {
@@ -179,35 +174,11 @@ export class Call {
     }
 
     this.screenRequest = s.screen_request === 'true'
-    this.videoRequest = s.video_request === 'true' //
-
-    this.setState(s)
-  }
-
-  get gatewayId() {
-    return this._gatewayId
-  }
-
-  setState(s: CallEventData) {
-    this.state = s.action
-  }
-
-  get active(): boolean {
-    return this.hangupAt === 0
+    this.videoRequest = s.video_request === 'true'
   }
 
   setPeerStreams(streams: MediaStream[] | null) {
     this.peerStreams = streams
-  }
-
-  setHangup(s: CallEventData) {
-    const hangup = s.data as CallHangup
-    this.hangupAt = +s.activity_at
-    this.hangupCause = hangup.cause
-    this.hangupSipCode = hangup.sip
-    this.voice = false
-    this.peerStreams = null
-    this.setState(s)
   }
 
   setVoice() {
@@ -224,6 +195,48 @@ export class Call {
 
   addDigit(s: CallEventDTMF) {
     this.digits.push(s.digit)
+  }
+
+  setHangup(s: CallEventData) {
+    const hangup = s.data as CallHangup
+    this.hangupAt = +s.activity_at
+    this.hangupCause = hangup.cause
+    this.hangupSipCode = hangup.sip
+    this.voice = false
+    this.peerStreams = null
+    this.setState(s)
+  }
+
+  get display() {
+    return `${this.displayNumber} (${this.displayName})`
+  }
+
+  get muted() {
+    return this._muted
+  }
+
+  get allowInboundVideo(): boolean {
+    if (this.videoFlow) {
+      return this.videoFlow.indexOf('send') > -1
+    }
+
+    return false
+  }
+
+  get allowOutboundVideo(): boolean {
+    if (this.videoFlow) {
+      return this.videoFlow.indexOf('recv') > -1
+    }
+
+    return false
+  }
+
+  get gatewayId() {
+    return this._gatewayId
+  }
+
+  get active(): boolean {
+    return this.hangupAt === 0
   }
 
   get displayNumber() {

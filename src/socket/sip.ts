@@ -81,7 +81,7 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     }
   }
 
-  callOption(req: AnswerRequest): object {
+  callOption(req: AnswerRequest = {}): object {
     return {
       sessionTimersExpires: 120,
       pcConfig: {
