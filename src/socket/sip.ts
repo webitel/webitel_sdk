@@ -54,9 +54,13 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
   private sessionCache = new Map<string, CallSession>()
   private log: Log
 
-  constructor(private instanceId: string) {
+  constructor(private instanceId: string, debug?: boolean) {
     super()
-    SipClient.debug.enable('*')
+    if (debug) {
+      SipClient.debug.enable('*')
+    } else {
+      SipClient.debug.disable('*')
+    }
     this.log = new Log()
 
     this.on('unregistered', () => {

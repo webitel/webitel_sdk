@@ -11,6 +11,7 @@ import {
 import { Log } from './log'
 import { CallSession, SipConfiguration, SipPhone } from './sip'
 import { Message, Socket } from './socket'
+import { UserState } from './user'
 
 export interface Config {
   endpoint: string
@@ -44,6 +45,7 @@ const WEBSOCKET_MAKE_OUTBOUND_CALL = 'call_invite'
 const WEBSOCKET_MAKE_USER_CALL = 'call_user'
 const WEBSOCKET_EVENT_HELLO = 'hello'
 const WEBSOCKET_EVENT_CALL = 'call'
+const WEBSOCKET_EVENT_USER_STATE = 'user_state'
 const WEBSOCKET_EVENT_SIP = 'sip'
 
 export enum Response {
@@ -68,9 +70,11 @@ export interface ConnectionInfo {
 }
 
 export type CallEventHandler = (action: CallActions, call: Call) => void
+export type UsersStatusEventHandler = (state: UserState) => void
 
 interface EventHandler {
   [WEBSOCKET_EVENT_CALL](action: CallActions, call: Call): void
+  [WEBSOCKET_EVENT_USER_STATE](state: UserState): void
   [WEBSOCKET_EVENT_SIP](data: object): void
 }
 
@@ -108,6 +112,16 @@ export class Client {
   ): Promise<null | Error> {
     const res = await this.request(`subscribe_call`, data)
     this.eventHandler.on(WEBSOCKET_EVENT_CALL, handler)
+
+    return res
+  }
+
+  async subscribeUsersStatus(
+    handler: UsersStatusEventHandler,
+    data?: object
+  ): Promise<null | Error> {
+    const res = await this.request(`subscribe_users_status`, data)
+    this.eventHandler.on(WEBSOCKET_EVENT_USER_STATE, handler)
 
     return res
   }
@@ -223,6 +237,9 @@ export class Client {
         case WEBSOCKET_EVENT_CALL:
           this.handleCallEvents(message.data.call as CallEventData)
           break
+        case WEBSOCKET_EVENT_USER_STATE:
+          this.handleUserStateEvent(message.data.state as UserState)
+          break
 
         case WEBSOCKET_EVENT_SIP:
           this.eventHandler.emit(WEBSOCKET_EVENT_SIP, message.data)
@@ -236,7 +253,7 @@ export class Client {
   private async connected(info: ConnectionInfo) {
     this.connectionInfo = info
 
-    this.phone = new SipPhone(this.instanceId)
+    this.phone = new SipPhone(this.instanceId, this._config.debug)
 
     this.phone.on(
       'peerStreams',
@@ -301,6 +318,10 @@ export class Client {
         resolve(null)
       })
     })
+  }
+
+  private handleUserStateEvent(event: UserState) {
+    this.eventHandler.emit(WEBSOCKET_EVENT_USER_STATE, event)
   }
 
   private handleCallEvents(event: CallEventData) {
