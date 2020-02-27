@@ -1,5 +1,15 @@
 import { Client, UserCallRequest } from './client'
 
+export interface OutboundCallRequest {
+  parentCallId?: string
+  toNumber: string
+  toName?: string
+  useVideo?: boolean
+  useScreen?: boolean
+  useAudio?: boolean
+  variables?: Map<string, string>
+}
+
 export enum CallActions {
   Ringing = 'ringing',
   Active = 'active',
@@ -28,9 +38,10 @@ export interface AnswerRequest {
 
 export interface CallEventData {
   id: string
-  node_name: string
-  activity_at: number
-  action: string
+  app_id: string
+  cc_app_id: string
+  timestamp: number
+  event: string
   data?: object
 }
 
@@ -43,6 +54,7 @@ export interface CallEventDTMF extends CallEventData {
 }
 
 export interface CallInfo extends CallEventData {
+  sip_id: string
   parent_id: string
   owner_id: string
   direction: string
@@ -68,7 +80,8 @@ export interface CallHangup extends CallEventData {
 
 export class Call {
   id: string
-  nodeName: string
+  appId: string
+  sipId!: string | null
   state!: string
 
   direction!: string
@@ -112,7 +125,7 @@ export class Call {
     peerStreams: MediaStream[] | null
   ) {
     this.voice = true
-    this.createdAt = +e.activity_at
+    this.createdAt = +e.timestamp
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -122,25 +135,25 @@ export class Call {
     this.id = e.id
     this.digits = []
     this.applications = []
-    this.nodeName = e.node_name
+    this.appId = e.app_id
     this.setState(e)
     this.setInfo(e.data as CallInfo)
   }
   // set private
   setState(s: CallEventData) {
-    this.state = s.action
+    this.state = s.event
   }
 
   setActive(e: CallEventData) {
     if (!this.answeredAt) {
-      this.answeredAt = +e.activity_at
+      this.answeredAt = +e.timestamp
     }
     this.setState(e)
   }
 
   setBridged(s: CallEventData) {
     if (!this.bridgedAt) {
-      this.bridgedAt = +s.activity_at
+      this.bridgedAt = +s.timestamp
     }
 
     this.setInfo(s.data as CallInfo)
@@ -160,6 +173,8 @@ export class Call {
     this.toName = s.to_name
     this.toNumber = s.to_number
     this.payload = s.payload
+
+    this.sipId = s.sip_id || null
 
     if (s.gateway_id) {
       this._gatewayId = s.gateway_id
@@ -199,7 +214,7 @@ export class Call {
 
   setHangup(s: CallEventData) {
     const hangup = s.data as CallHangup
-    this.hangupAt = +s.activity_at
+    this.hangupAt = +s.timestamp
     this.hangupCause = hangup.cause
     this.hangupSipCode = hangup.sip
     this.voice = false
@@ -213,6 +228,10 @@ export class Call {
 
   get muted() {
     return this._muted
+  }
+
+  get isHold(): boolean {
+    return this.state === CallActions.Hold
   }
 
   get allowInboundVideo(): boolean {
@@ -282,7 +301,7 @@ export class Call {
 
     return this.client.request('call_hangup', {
       id: this.id,
-      node_id: this.nodeName,
+      app_id: this.appId,
       cause: _cause,
     })
   }
@@ -302,7 +321,7 @@ export class Call {
 
     return this.client.request('call_hold', {
       id: this.id,
-      node_id: this.nodeName,
+      app_id: this.appId,
     })
   }
 
@@ -313,14 +332,14 @@ export class Call {
 
     return this.client.request('call_unhold', {
       id: this.id,
-      node_id: this.nodeName,
+      app_id: this.appId,
     })
   }
 
   async sendDTMF(dtmf: string) {
     return this.client.request('call_dtmf', {
       id: this.id,
-      node_id: this.nodeName,
+      app_id: this.appId,
       dtmf,
     })
   }
@@ -332,7 +351,7 @@ export class Call {
 
     return this.client.request('call_blind_transfer', {
       id: this.parentCallId,
-      node_id: this.nodeName,
+      app_id: this.appId,
       destination,
     })
   }
@@ -340,7 +359,7 @@ export class Call {
   async mute(mute = false) {
     const res = await this.client.request('call_mute', {
       id: this.id,
-      node_id: this.nodeName,
+      app_id: this.appId,
       mute,
     })
     this._muted = mute
@@ -351,14 +370,14 @@ export class Call {
   async bridgeTo(call: Call) {
     return this.client.request('call_bridge', {
       id: this.id,
-      node_id: this.nodeName,
+      app_id: this.appId,
       parent_id: call.id,
-      parent_node_id: call.nodeName,
+      parent_app_id: call.appId,
     })
   }
 
   async callToUser(req: UserCallRequest) {
-    req.nodeId = this.nodeName
+    req.nodeId = this.appId
     req.parentCallId = this.id || null
     req.sendToCallId = this.parentCallId || null
 

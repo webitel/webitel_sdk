@@ -1,6 +1,6 @@
 import { EventEmitter } from 'ee-ts'
 import * as SipClient from 'jssip'
-import { AnswerRequest } from './call'
+import { AnswerRequest, OutboundCallRequest } from './call'
 import { Log } from './log'
 
 export interface SipConfiguration {
@@ -44,7 +44,7 @@ interface PeerConnectionEvent {
 interface SipHoneEvent {
   unregistered(): void
   error(err: Error): void
-  peerStreams(id: string, e: MediaStream[] | null): void
+  peerStreams(id: string, e: MediaStream[] | null, incoming: boolean): void
   newSession(id: string, session: CallSession): void
 }
 
@@ -131,6 +131,10 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     return false
   }
 
+  call(req: OutboundCallRequest) {
+    this.ua.call(req.toNumber, this.callOption(req))
+  }
+
   async register(sipConf: SipConfiguration) {
     const socket = new SipClient.WebSocketInterface(sipConf.server)
 
@@ -158,10 +162,11 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     ua.on('newRTCSession', (e: RTCSession) => {
       const session = e.session
       const id = e.request.getHeader('X-Webitel-Uuid') || session.id
+      const incoming = session.direction === 'incoming'
 
       const callSession = {
         sip: session,
-        incoming: session.direction === 'incoming',
+        incoming,
         instance_id: e.request.getHeader('X-Webitel-Sock-Id'),
       }
 
@@ -175,7 +180,8 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
             this.emit(
               'peerStreams',
               id,
-              new Array((evt as MediaStreamEvent).stream as MediaStream)
+              new Array((evt as MediaStreamEvent).stream as MediaStream),
+              incoming
             )
           }
         )
@@ -194,7 +200,7 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
       session.on('accepted', () => {
         // the call has answered
         if (!this.isOutboundCall(id)) {
-          this.emit('peerStreams', id, this.getPeerStream(id))
+          this.emit('peerStreams', id, this.getPeerStream(id), incoming)
         }
       })
 

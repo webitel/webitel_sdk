@@ -6,6 +6,7 @@ import {
   CallEventData,
   CallEventDTMF,
   CallEventExecute,
+  OutboundCallRequest,
 } from './call'
 import { Log } from './log'
 import { CallSession, SipConfiguration, SipPhone } from './sip'
@@ -17,21 +18,12 @@ export interface Config {
   logLvl?: 'debug' | 'info' | 'warn' | 'error'
   registerWebDevice?: boolean
   phone?: number
+  debug?: boolean
 }
 
 interface PromiseCallback {
   resolve: (res: object) => void
   reject: (err: object) => void
-}
-
-export interface OutboundCallRequest {
-  parentCallId?: string
-  toNumber: string
-  toName?: string
-  useVideo?: boolean
-  useScreen?: boolean
-  useAudio?: boolean
-  variables?: Map<string, string>
 }
 
 export interface UserCallRequest {
@@ -142,8 +134,15 @@ export class Client {
     if (this.callStore.has(id)) {
       return this.callStore.get(id)
     }
+  }
 
-    return undefined
+  callBySipId(id: string): Call | undefined {
+    for (const call of this.allCall()) {
+      if (call.sipId && id.startsWith(call.sipId)) {
+        // FIXME
+        return call
+      }
+    }
   }
 
   async auth() {
@@ -166,6 +165,10 @@ export class Client {
 
   invite(req: OutboundCallRequest) {
     return this.request(WEBSOCKET_MAKE_OUTBOUND_CALL, req)
+  }
+
+  call(req: OutboundCallRequest) {
+    this.phone.call(req)
   }
 
   inviteToUser(req: UserCallRequest) {
@@ -237,8 +240,8 @@ export class Client {
 
     this.phone.on(
       'peerStreams',
-      (id: string, streams: MediaStream[] | null) => {
-        const call = this.callById(id)
+      (id: string, streams: MediaStream[] | null, incoming: boolean) => {
+        const call = incoming ? this.callById(id) : this.callBySipId(id)
         if (call && call.peerStreams === null) {
           call.setPeerStreams(streams)
           this.eventHandler.emit(
@@ -303,7 +306,7 @@ export class Client {
   private handleCallEvents(event: CallEventData) {
     let call: Call | undefined
 
-    switch (event.action) {
+    switch (event.event) {
       case CallActions.Ringing:
         call = new Call(this, event, this.phone.getPeerStream(event.id))
 
@@ -374,7 +377,7 @@ export class Client {
     }
 
     if (call) {
-      this.eventHandler.emit(WEBSOCKET_EVENT_CALL, event.action, call)
+      this.eventHandler.emit(WEBSOCKET_EVENT_CALL, event.event, call)
     }
   }
 }
