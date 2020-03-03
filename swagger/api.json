@@ -2653,6 +2653,102 @@
         }
       }
     },
+    "/call_center/queues/{queue_id}/members/attempts": {
+      "get": {
+        "tags": [
+          "MemberService"
+        ],
+        "summary": "SearchMemberAttempts",
+        "operationId": "SearchMembersAttempts",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "queue_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "time_from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "time_to",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "member_id",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "state",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "result",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "agent_id",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "resource_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListMemberAttempt"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
     "/call_center/queues/{queue_id}/members/bulk": {
       "post": {
         "tags": [
@@ -5555,6 +5651,350 @@
         }
       }
     },
+    "/calls": {
+      "get": {
+        "tags": [
+          "CallService"
+        ],
+        "summary": "List of call",
+        "operationId": "SearchCall",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListCall"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CallService"
+        ],
+        "summary": "Create e call",
+        "operationId": "CreateCall",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineCreateCallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineCreateCallResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/calls/{id}": {
+      "get": {
+        "tags": [
+          "CallService"
+        ],
+        "summary": "Call item",
+        "operationId": "ReadCall",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineCall"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CallService"
+        ],
+        "operationId": "HangupCall",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineHangupCallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineHangupCallResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/calls/{id}/dtmf": {
+      "patch": {
+        "tags": [
+          "CallService"
+        ],
+        "operationId": "DtmfCall",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineDtmfCallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineDtmfCallResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/calls/{id}/eavesdrop": {
+      "post": {
+        "tags": [
+          "CallService"
+        ],
+        "operationId": "EavesdropCall",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineEavesdropCallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineCreateCallResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/calls/{id}/hold": {
+      "patch": {
+        "tags": [
+          "CallService"
+        ],
+        "operationId": "UnHoldCall",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineUserCallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineHoldCallResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/calls/{id}/transfer": {
+      "patch": {
+        "tags": [
+          "CallService"
+        ],
+        "operationId": "BlindTransferCall",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineBlindTransferCallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineBlindTransferCallResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
     "/routing/outbound/calls": {
       "get": {
         "tags": [
@@ -6635,6 +7075,52 @@
     }
   },
   "definitions": {
+    "CreateCallRequestCallSettings": {
+      "type": "object",
+      "properties": {
+        "audio": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "record": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "screen": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "timeout": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "video": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "CreateCallRequestEndpointRequest": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
     "engineAcceptOfDay": {
       "type": "object",
       "properties": {
@@ -6885,6 +7371,27 @@
         }
       }
     },
+    "engineBlindTransferCallRequest": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "engineBlindTransferCallResponse": {
+      "type": "object"
+    },
     "engineBucket": {
       "type": "object",
       "properties": {
@@ -6953,6 +7460,43 @@
         },
         "updated_by": {
           "$ref": "#/definitions/engineLookup"
+        }
+      }
+    },
+    "engineCall": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "created_by": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "direction": {
+          "type": "string"
+        },
+        "from": {
+          "$ref": "#/definitions/engineEndpoint"
+        },
+        "id": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "to": {
+          "$ref": "#/definitions/engineEndpoint"
         }
       }
     },
@@ -7129,6 +7673,35 @@
         },
         "timezone": {
           "$ref": "#/definitions/engineLookup"
+        }
+      }
+    },
+    "engineCreateCallRequest": {
+      "type": "object",
+      "properties": {
+        "destination": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "from": {
+          "$ref": "#/definitions/CreateCallRequestEndpointRequest"
+        },
+        "params": {
+          "$ref": "#/definitions/CreateCallRequestCallSettings"
+        },
+        "to": {
+          "$ref": "#/definitions/CreateCallRequestEndpointRequest"
+        }
+      }
+    },
+    "engineCreateCallResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
         }
       }
     },
@@ -7688,6 +8261,80 @@
         }
       }
     },
+    "engineDtmfCallRequest": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "digit": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "engineDtmfCallResponse": {
+      "type": "object"
+    },
+    "engineEavesdropCallRequest": {
+      "type": "object",
+      "properties": {
+        "a_leg": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "b_leg": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "dtmf": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "whisper_a_leg": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "whisper_b_leg": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "engineEndpoint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
     "engineExceptDate": {
       "type": "object",
       "properties": {
@@ -7705,6 +8352,35 @@
         "repeat": {
           "type": "boolean",
           "format": "boolean"
+        }
+      }
+    },
+    "engineHangupCallRequest": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "cause": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "engineHangupCallResponse": {
+      "type": "object"
+    },
+    "engineHoldCallResponse": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string"
         }
       }
     },
@@ -7876,6 +8552,21 @@
         }
       }
     },
+    "engineListCall": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineCall"
+          }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
     "engineListCommunication": {
       "type": "object",
       "properties": {
@@ -7929,6 +8620,10 @@
           "items": {
             "$ref": "#/definitions/engineMemberAttempt"
           }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -8319,6 +9014,9 @@
         "logs": {
           "type": "object"
         },
+        "member": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "node": {
           "type": "string"
         },
@@ -8331,10 +9029,6 @@
         },
         "result": {
           "type": "string"
-        },
-        "success": {
-          "type": "boolean",
-          "format": "boolean"
         },
         "weight": {
           "type": "integer",
@@ -9945,6 +10639,21 @@
         "team_id": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "engineUserCallRequest": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string"
         }
       }
     },
