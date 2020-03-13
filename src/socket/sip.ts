@@ -71,7 +71,7 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
   }
 
   getMediaConstraints(req: AnswerRequest): object {
-    if (req.useScreen) {
+    if (req.screen) {
       return {
         video: false,
         audio: false,
@@ -80,8 +80,8 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     }
 
     return {
-      video: req.useVideo || false,
-      audio: req.useAudio || true,
+      video: req.video || false,
+      audio: true,
     }
   }
 
@@ -92,8 +92,8 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
         iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }],
       },
       rtcOfferConstraints: {
-        offerToReceiveAudio: req.useAudio || true,
-        offerToReceiveVideo: req.useVideo,
+        offerToReceiveAudio: true,
+        offerToReceiveVideo: req.video,
       },
       mediaConstraints: this.getMediaConstraints(req),
     }
@@ -136,7 +136,13 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
   }
 
   call(req: OutboundCallRequest) {
-    this.ua.call(req.toNumber, this.callOption(req))
+    const params = {} as AnswerRequest
+    if (req.params) {
+      params.video = req.params.video || false
+      params.screen = req.params.screen || false
+    }
+
+    this.ua.call(req.destination, this.callOption(params))
   }
 
   async register(sipConf: SipConfiguration) {

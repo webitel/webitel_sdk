@@ -28,6 +28,74 @@ import {
 /**
  *
  * @export
+ * @interface CreateCallRequestCallSettings
+ */
+export interface CreateCallRequestCallSettings {
+  /**
+   *
+   * @type {boolean}
+   * @memberof CreateCallRequestCallSettings
+   */
+  audio?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof CreateCallRequestCallSettings
+   */
+  record?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof CreateCallRequestCallSettings
+   */
+  screen?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof CreateCallRequestCallSettings
+   */
+  timeout?: number
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof CreateCallRequestCallSettings
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {boolean}
+   * @memberof CreateCallRequestCallSettings
+   */
+  video?: boolean
+}
+/**
+ *
+ * @export
+ * @interface CreateCallRequestEndpointRequest
+ */
+export interface CreateCallRequestEndpointRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof CreateCallRequestEndpointRequest
+   */
+  app_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CreateCallRequestEndpointRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CreateCallRequestEndpointRequest
+   */
+  type?: string
+}
+/**
+ *
+ * @export
  * @interface EngineAcceptOfDay
  */
 export interface EngineAcceptOfDay {
@@ -428,6 +496,37 @@ export interface EngineAgentUser {
 /**
  *
  * @export
+ * @interface EngineBlindTransferCallRequest
+ */
+export interface EngineBlindTransferCallRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineBlindTransferCallRequest
+   */
+  app_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineBlindTransferCallRequest
+   */
+  destination?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineBlindTransferCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineBlindTransferCallRequest
+   */
+  id?: string
+}
+/**
+ *
+ * @export
  * @interface EngineBucket
  */
 export interface EngineBucket {
@@ -534,6 +633,73 @@ export interface EngineCalendar {
    * @memberof EngineCalendar
    */
   updated_by?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineCall
+ */
+export interface EngineCall {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCall
+   */
+  app_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCall
+   */
+  created_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCall
+   */
+  created_by?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCall
+   */
+  direction?: string
+  /**
+   *
+   * @type {EngineEndpoint}
+   * @memberof EngineCall
+   */
+  from?: EngineEndpoint
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCall
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCall
+   */
+  parent_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCall
+   */
+  state?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCall
+   */
+  timestamp?: string
+  /**
+   *
+   * @type {EngineEndpoint}
+   * @memberof EngineCall
+   */
+  to?: EngineEndpoint
 }
 /**
  *
@@ -817,6 +983,56 @@ export interface EngineCreateCalendarRequest {
    * @memberof EngineCreateCalendarRequest
    */
   timezone?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateCallRequest
+ */
+export interface EngineCreateCallRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCallRequest
+   */
+  destination?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {CreateCallRequestEndpointRequest}
+   * @memberof EngineCreateCallRequest
+   */
+  from?: CreateCallRequestEndpointRequest
+  /**
+   *
+   * @type {CreateCallRequestCallSettings}
+   * @memberof EngineCreateCallRequest
+   */
+  params?: CreateCallRequestCallSettings
+  /**
+   *
+   * @type {CreateCallRequestEndpointRequest}
+   * @memberof EngineCreateCallRequest
+   */
+  to?: CreateCallRequestEndpointRequest
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateCallResponse
+ */
+export interface EngineCreateCallResponse {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateCallResponse
+   */
+  id?: string
 }
 /**
  *
@@ -1676,6 +1892,123 @@ export interface EngineDeleteMembersRequest {
 /**
  *
  * @export
+ * @interface EngineDtmfCallRequest
+ */
+export interface EngineDtmfCallRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineDtmfCallRequest
+   */
+  app_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineDtmfCallRequest
+   */
+  digit?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineDtmfCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineDtmfCallRequest
+   */
+  id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineEavesdropCallRequest
+ */
+export interface EngineEavesdropCallRequest {
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineEavesdropCallRequest
+   */
+  a_leg?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEavesdropCallRequest
+   */
+  app_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineEavesdropCallRequest
+   */
+  b_leg?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEavesdropCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineEavesdropCallRequest
+   */
+  dtmf?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEavesdropCallRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineEavesdropCallRequest
+   */
+  whisper_a_leg?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineEavesdropCallRequest
+   */
+  whisper_b_leg?: boolean
+}
+/**
+ *
+ * @export
+ * @interface EngineEndpoint
+ */
+export interface EngineEndpoint {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEndpoint
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEndpoint
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEndpoint
+   */
+  number?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEndpoint
+   */
+  type?: string
+}
+/**
+ *
+ * @export
  * @interface EngineExceptDate
  */
 export interface EngineExceptDate {
@@ -1703,6 +2036,50 @@ export interface EngineExceptDate {
    * @memberof EngineExceptDate
    */
   repeat?: boolean
+}
+/**
+ *
+ * @export
+ * @interface EngineHangupCallRequest
+ */
+export interface EngineHangupCallRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHangupCallRequest
+   */
+  app_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHangupCallRequest
+   */
+  cause?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHangupCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHangupCallRequest
+   */
+  id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineHoldCallResponse
+ */
+export interface EngineHoldCallResponse {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHoldCallResponse
+   */
+  state?: string
 }
 /**
  *
@@ -1933,6 +2310,25 @@ export interface EngineListCalendar {
 /**
  *
  * @export
+ * @interface EngineListCall
+ */
+export interface EngineListCall {
+  /**
+   *
+   * @type {Array<EngineCall>}
+   * @memberof EngineListCall
+   */
+  items?: Array<EngineCall>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListCall
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
  * @interface EngineListCommunication
  */
 export interface EngineListCommunication {
@@ -2005,6 +2401,12 @@ export interface EngineListMemberAttempt {
    * @memberof EngineListMemberAttempt
    */
   items?: Array<EngineMemberAttempt>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListMemberAttempt
+   */
+  next?: boolean
 }
 /**
  *
@@ -2532,6 +2934,12 @@ export interface EngineMemberAttempt {
   logs?: object
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineMemberAttempt
+   */
+  member?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineMemberAttempt
    */
@@ -2554,12 +2962,6 @@ export interface EngineMemberAttempt {
    * @memberof EngineMemberAttempt
    */
   result?: string
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineMemberAttempt
-   */
-  success?: boolean
   /**
    *
    * @type {number}
@@ -5109,6 +5511,31 @@ export interface EngineUpdateSupervisorInTeamRequest {
    * @memberof EngineUpdateSupervisorInTeamRequest
    */
   team_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineUserCallRequest
+ */
+export interface EngineUserCallRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUserCallRequest
+   */
+  app_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUserCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUserCallRequest
+   */
+  id?: string
 }
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the  `Value` type union.     The JSON representation for `NullValue` is JSON `null`.   - NULL_VALUE: Null value.
@@ -11304,6 +11731,1122 @@ export class CalendarServiceApi extends BaseAPI {
 }
 
 /**
+ * CallServiceApi - axios parameter creator
+ * @export
+ */
+export const CallServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @param {string} id
+     * @param {EngineBlindTransferCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    blindTransferCall(
+      id: string,
+      body: EngineBlindTransferCallRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling blindTransferCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling blindTransferCall.'
+        )
+      }
+      const localVarPath = `/calls/{id}/transfer`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineBlindTransferCallRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Create e call
+     * @param {EngineCreateCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createCall(body: EngineCreateCallRequest, options: any = {}): RequestArgs {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createCall.'
+        )
+      }
+      const localVarPath = `/calls`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateCallRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineDtmfCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    dtmfCall(
+      id: string,
+      body: EngineDtmfCallRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling dtmfCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling dtmfCall.'
+        )
+      }
+      const localVarPath = `/calls/{id}/dtmf`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineDtmfCallRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineEavesdropCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    eavesdropCall(
+      id: string,
+      body: EngineEavesdropCallRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling eavesdropCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling eavesdropCall.'
+        )
+      }
+      const localVarPath = `/calls/{id}/eavesdrop`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineEavesdropCallRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineHangupCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    hangupCall(
+      id: string,
+      body: EngineHangupCallRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling hangupCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling hangupCall.'
+        )
+      }
+      const localVarPath = `/calls/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineHangupCallRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Call item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readCall(id: string, domain_id?: string, options: any = {}): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readCall.'
+        )
+      }
+      const localVarPath = `/calls/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List of call
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCall(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/calls`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineUserCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    unHoldCall(
+      id: string,
+      body: EngineUserCallRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling unHoldCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling unHoldCall.'
+        )
+      }
+      const localVarPath = `/calls/{id}/hold`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUserCallRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * CallServiceApi - functional programming interface
+ * @export
+ */
+export const CallServiceApiFp = function(configuration?: Configuration) {
+  return {
+    /**
+     *
+     * @param {string} id
+     * @param {EngineBlindTransferCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    blindTransferCall(
+      id: string,
+      body: EngineBlindTransferCallRequest,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).blindTransferCall(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Create e call
+     * @param {EngineCreateCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createCall(
+      body: EngineCreateCallRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineCreateCallResponse> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).createCall(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineDtmfCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    dtmfCall(
+      id: string,
+      body: EngineDtmfCallRequest,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).dtmfCall(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineEavesdropCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    eavesdropCall(
+      id: string,
+      body: EngineEavesdropCallRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineCreateCallResponse> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).eavesdropCall(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineHangupCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    hangupCall(
+      id: string,
+      body: EngineHangupCallRequest,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).hangupCall(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Call item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readCall(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCall> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).readCall(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of call
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCall(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListCall> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).searchCall(page, size, q, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineUserCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    unHoldCall(
+      id: string,
+      body: EngineUserCallRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineHoldCallResponse> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).unHoldCall(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * CallServiceApi - factory interface
+ * @export
+ */
+export const CallServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @param {string} id
+     * @param {EngineBlindTransferCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    blindTransferCall(
+      id: string,
+      body: EngineBlindTransferCallRequest,
+      options?: any
+    ) {
+      return CallServiceApiFp(configuration).blindTransferCall(
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Create e call
+     * @param {EngineCreateCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createCall(body: EngineCreateCallRequest, options?: any) {
+      return CallServiceApiFp(configuration).createCall(body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineDtmfCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    dtmfCall(id: string, body: EngineDtmfCallRequest, options?: any) {
+      return CallServiceApiFp(configuration).dtmfCall(id, body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineEavesdropCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    eavesdropCall(id: string, body: EngineEavesdropCallRequest, options?: any) {
+      return CallServiceApiFp(configuration).eavesdropCall(id, body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineHangupCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    hangupCall(id: string, body: EngineHangupCallRequest, options?: any) {
+      return CallServiceApiFp(configuration).hangupCall(id, body, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary Call item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readCall(id: string, domain_id?: string, options?: any) {
+      return CallServiceApiFp(configuration).readCall(id, domain_id, options)(
+        axios,
+        basePath
+      )
+    },
+    /**
+     *
+     * @summary List of call
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCall(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return CallServiceApiFp(configuration).searchCall(
+        page,
+        size,
+        q,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineUserCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    unHoldCall(id: string, body: EngineUserCallRequest, options?: any) {
+      return CallServiceApiFp(configuration).unHoldCall(id, body, options)(
+        axios,
+        basePath
+      )
+    },
+  }
+}
+
+/**
+ * CallServiceApi - object-oriented interface
+ * @export
+ * @class CallServiceApi
+ * @extends {BaseAPI}
+ */
+export class CallServiceApi extends BaseAPI {
+  /**
+   *
+   * @param {string} id
+   * @param {EngineBlindTransferCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public blindTransferCall(
+    id: string,
+    body: EngineBlindTransferCallRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration).blindTransferCall(
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Create e call
+   * @param {EngineCreateCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public createCall(body: EngineCreateCallRequest, options?: any) {
+    return CallServiceApiFp(this.configuration).createCall(body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineDtmfCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public dtmfCall(id: string, body: EngineDtmfCallRequest, options?: any) {
+    return CallServiceApiFp(this.configuration).dtmfCall(id, body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineEavesdropCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public eavesdropCall(
+    id: string,
+    body: EngineEavesdropCallRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration).eavesdropCall(
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineHangupCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public hangupCall(id: string, body: EngineHangupCallRequest, options?: any) {
+    return CallServiceApiFp(this.configuration).hangupCall(id, body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+
+  /**
+   *
+   * @summary Call item
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public readCall(id: string, domain_id?: string, options?: any) {
+    return CallServiceApiFp(this.configuration).readCall(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of call
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public searchCall(
+    page?: number,
+    size?: number,
+    q?: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration).searchCall(
+      page,
+      size,
+      q,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineUserCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public unHoldCall(id: string, body: EngineUserCallRequest, options?: any) {
+    return CallServiceApiFp(this.configuration).unHoldCall(id, body, options)(
+      this.axios,
+      this.basePath
+    )
+  }
+}
+
+/**
  * CommunicationTypeServiceApi - axios parameter creator
  * @export
  */
@@ -14525,6 +16068,127 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary SearchMemberAttempts
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {string} [member_id]
+     * @param {number} [state]
+     * @param {string} [result]
+     * @param {number} [agent_id]
+     * @param {number} [resource_id]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMembersAttempts(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      member_id?: string,
+      state?: number,
+      result?: string,
+      agent_id?: number,
+      resource_id?: number,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling searchMembersAttempts.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/attempts`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queue_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (time_from !== undefined) {
+        localVarQueryParameter['time_from'] = time_from
+      }
+
+      if (time_to !== undefined) {
+        localVarQueryParameter['time_to'] = time_to
+      }
+
+      if (member_id !== undefined) {
+        localVarQueryParameter['member_id'] = member_id
+      }
+
+      if (state !== undefined) {
+        localVarQueryParameter['state'] = state
+      }
+
+      if (result !== undefined) {
+        localVarQueryParameter['result'] = result
+      }
+
+      if (agent_id !== undefined) {
+        localVarQueryParameter['agent_id'] = agent_id
+      }
+
+      if (resource_id !== undefined) {
+        localVarQueryParameter['resource_id'] = resource_id
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary UpdateMember
      * @param {string} queue_id
      * @param {string} id
@@ -14840,6 +16504,67 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary SearchMemberAttempts
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {string} [member_id]
+     * @param {number} [state]
+     * @param {string} [result]
+     * @param {number} [agent_id]
+     * @param {number} [resource_id]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMembersAttempts(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      member_id?: string,
+      state?: number,
+      result?: string,
+      agent_id?: number,
+      resource_id?: number,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListMemberAttempt> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).searchMembersAttempts(
+        queue_id,
+        page,
+        size,
+        time_from,
+        time_to,
+        member_id,
+        state,
+        result,
+        agent_id,
+        resource_id,
+        domain_id,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary UpdateMember
      * @param {string} queue_id
      * @param {string} id
@@ -15033,6 +16758,52 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @summary SearchMemberAttempts
+     * @param {string} queue_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {string} [member_id]
+     * @param {number} [state]
+     * @param {string} [result]
+     * @param {number} [agent_id]
+     * @param {number} [resource_id]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMembersAttempts(
+      queue_id: string,
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      member_id?: string,
+      state?: number,
+      result?: string,
+      agent_id?: number,
+      resource_id?: number,
+      domain_id?: string,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).searchMembersAttempts(
+        queue_id,
+        page,
+        size,
+        time_from,
+        time_to,
+        member_id,
+        state,
+        result,
+        agent_id,
+        resource_id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary UpdateMember
      * @param {string} queue_id
      * @param {string} id
@@ -15220,6 +16991,54 @@ export class MemberServiceApi extends BaseAPI {
     return MemberServiceApiFp(this.configuration).searchMemberAttempts(
       queue_id,
       member_id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary SearchMemberAttempts
+   * @param {string} queue_id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [time_from]
+   * @param {string} [time_to]
+   * @param {string} [member_id]
+   * @param {number} [state]
+   * @param {string} [result]
+   * @param {number} [agent_id]
+   * @param {number} [resource_id]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public searchMembersAttempts(
+    queue_id: string,
+    page?: number,
+    size?: number,
+    time_from?: string,
+    time_to?: string,
+    member_id?: string,
+    state?: number,
+    result?: string,
+    agent_id?: number,
+    resource_id?: number,
+    domain_id?: string,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).searchMembersAttempts(
+      queue_id,
+      page,
+      size,
+      time_from,
+      time_to,
+      member_id,
+      state,
+      result,
+      agent_id,
+      resource_id,
       domain_id,
       options
     )(this.axios, this.basePath)

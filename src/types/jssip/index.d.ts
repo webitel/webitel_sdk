@@ -6,7 +6,7 @@ declare module 'jssip' {
     register(): void
     unregister(): void
     start(): void
-    call(destination: string, options?: object): void
+    call(destination: string | undefined, options?: object): void
   }
 
   export class WebSocketInterface {

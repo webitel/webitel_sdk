@@ -1,13 +1,27 @@
 import { Client, UserCallRequest } from './client'
 
-export interface OutboundCallRequest {
-  parentCallId?: string
-  toNumber: string
-  toName?: string
-  useVideo?: boolean
-  useScreen?: boolean
-  useAudio?: boolean
+export interface CallParameters {
+  timeout?: number
+  video?: boolean
+  screen?: boolean
   variables?: Map<string, string>
+}
+
+export interface OutboundCallRequest {
+  sdp?: string
+  destination?: string
+  params?: CallParameters
+}
+
+export interface EavesdropRequest {
+  id: string
+
+  control?: boolean
+  listenA?: boolean
+  listenB?: boolean
+  whisperA?: boolean
+  whisperB?: boolean
+  group?: string
 }
 
 export enum CallActions {
@@ -27,13 +41,11 @@ export enum CallActions {
 export enum CallDirection {
   Inbound = 'inbound',
   Outbound = 'outbound',
-  Internal = 'internal',
 }
 
 export interface AnswerRequest {
-  useVideo?: boolean
-  useAudio?: boolean
-  useScreen?: boolean
+  video?: boolean
+  screen?: boolean
 }
 
 export interface CallEventData {
@@ -53,24 +65,32 @@ export interface CallEventDTMF extends CallEventData {
   digit: string
 }
 
+export interface CallEndpoint {
+  type: string
+  number?: string
+  id?: string
+  name?: string
+}
+
+export interface CallBridged extends CallEventData {
+  bridged_id: string
+  to?: CallEndpoint
+}
+
 export interface CallInfo extends CallEventData {
   sip_id: string
+
   parent_id: string
-  owner_id: string
+  user_id?: string
   direction: string
   destination: string
 
-  from_number: string
-  from_name: string
-
-  to_number: string
-  to_name: string
+  from: CallEndpoint
+  to?: CallEndpoint
 
   payload: Map<string, string>
-  gateway_id: string
-  video_request: string
-  video_flow: string
-  screen_request: string
+
+  params?: CallParams
 }
 
 export interface CallHangup extends CallEventData {
@@ -78,26 +98,30 @@ export interface CallHangup extends CallEventData {
   sip: number
 }
 
+export interface CallParams {
+  audio?: boolean
+  video?: boolean
+  screen?: boolean
+}
+
 export class Call {
   id: string
   appId: string
   sipId!: string | null
   state!: string
+  params!: CallParams
 
   direction!: string
   destination!: string
 
-  fromNumber!: string
-  fromName!: string
+  from!: CallEndpoint
+  to?: CallEndpoint
 
   toNumber!: string
   toName!: string
   payload!: Map<string, string>
   queue!: Map<string, string>
 
-  videoRequest!: boolean
-  screenRequest!: boolean
-  videoFlow!: string | null
   peerStreams!: MediaStream[] | null
   screen!: string | null
 
@@ -109,11 +133,10 @@ export class Call {
   hangupCause!: string
   hangupSipCode!: number
 
-  parentCallId!: string
-  ownerCallId!: string
+  parentId!: string
+  bridgedId!: string
 
   _muted!: boolean
-  _gatewayId!: string | null
 
   digits!: string[]
   applications!: string[]
@@ -124,6 +147,8 @@ export class Call {
     e: CallEventData,
     peerStreams: MediaStream[] | null
   ) {
+    // FIXME check _muted from channel
+    this._muted = false
     this.voice = true
     this.createdAt = +e.timestamp
 
@@ -131,6 +156,7 @@ export class Call {
     this.hangupAt = 0
     this.bridgedAt = 0
     this.peerStreams = peerStreams
+    this.params = {}
 
     this.id = e.id
     this.digits = []
@@ -144,19 +170,62 @@ export class Call {
     this.state = s.event
   }
 
+  get duration() {
+    if (this.hangupAt === 0) {
+      return Math.round((Date.now() - this.createdAt) / 1000) // tslint:disable-line
+    } else {
+      return Math.round((this.hangupAt - this.createdAt) / 1000) // tslint:disable-line
+    }
+  }
+
+  get allowDtmf(): boolean {
+    return this.answeredAt > 0 && this.allowHangup
+  }
+
+  get allowHangup() {
+    return this.hangupAt === 0
+  }
+
+  get allowHold() {
+    return (
+      this.hangupAt === 0 &&
+      (this.state === 'active' || this.state === 'bridge')
+    )
+  }
+
+  get allowAnswer() {
+    return this.hangupAt === 0 && this.answeredAt === 0
+  }
+
+  get allowUnHold() {
+    return this.hangupAt === 0 && this.state === 'hold'
+  }
+
   setActive(e: CallEventData) {
     if (!this.answeredAt) {
+      if (this.direction === CallDirection.Inbound) {
+        this.bridgedAt = +e.timestamp
+        if (this.parentId) {
+          this.bridgedId = this.parentId
+        }
+      }
       this.answeredAt = +e.timestamp
     }
     this.setState(e)
   }
 
   setBridged(s: CallEventData) {
+    const bridged = s.data as CallBridged
     if (!this.bridgedAt) {
       this.bridgedAt = +s.timestamp
     }
 
-    this.setInfo(s.data as CallInfo)
+    this.bridgedId = bridged.bridged_id
+    if (bridged.to) {
+      this.to = bridged.to
+    }
+
+    this.bridgedId = (s.data as CallBridged).bridged_id
   }
 
   setHold(e: CallEventData) {
@@ -164,32 +233,16 @@ export class Call {
   }
 
   setInfo(s: CallInfo) {
-    this.ownerCallId = s.owner_id
-    this.parentCallId = s.parent_id
+    this.parentId = s.parent_id
     this.destination = s.destination
     this.direction = s.direction
-    this.fromNumber = s.from_number
-    this.fromName = s.from_name
-    this.toName = s.to_name
-    this.toNumber = s.to_number
+
+    this.from = s.from
+    this.to = s.to
     this.payload = s.payload
 
     this.sipId = s.sip_id || null
-
-    if (s.gateway_id) {
-      this._gatewayId = s.gateway_id
-    } else {
-      this._gatewayId = null // ?
-    }
-
-    if (s.video_flow) {
-      this.videoFlow = s.video_flow
-    } else {
-      this.videoFlow = null
-    }
-
-    this.screenRequest = s.screen_request === 'true'
-    this.videoRequest = s.video_request === 'true'
+    this.params = s.params as CallParams
   }
 
   setPeerStreams(streams: MediaStream[] | null) {
@@ -235,23 +288,19 @@ export class Call {
   }
 
   get allowInboundVideo(): boolean {
-    if (this.videoFlow) {
-      return this.videoFlow.indexOf('send') > -1
+    if (this.params) {
+      return this.params.video || false
     }
 
     return false
   }
 
   get allowOutboundVideo(): boolean {
-    if (this.videoFlow) {
-      return this.videoFlow.indexOf('recv') > -1
+    if (this.params) {
+      return this.params.video || false
     }
 
     return false
-  }
-
-  get gatewayId() {
-    return this._gatewayId
   }
 
   get active(): boolean {
@@ -260,17 +309,25 @@ export class Call {
 
   get displayNumber() {
     if (this.direction === 'inbound') {
-      return this.fromNumber
+      return this.from.number
     } else {
-      return this.toNumber
+      if (this.to) {
+        return this.to.number
+      }
+
+      return this.destination
     }
   }
 
   get displayName() {
     if (this.direction === 'inbound') {
-      return this.fromName
+      return this.from.name
     } else {
-      return this.toName
+      if (this.to) {
+        return this.to.name
+      }
+
+      return this.destination
     }
   }
 
@@ -279,8 +336,6 @@ export class Call {
     let sessionId = null
     if (this.client.phone.hasSession(this.id)) {
       sessionId = this.id
-    } else if (this.client.phone.hasSession(this.parentCallId)) {
-      sessionId = this.parentCallId
     }
 
     if (sessionId) {
@@ -304,6 +359,12 @@ export class Call {
       app_id: this.appId,
       cause: _cause,
     })
+  }
+
+  async eavesdrop(req: EavesdropRequest) {
+    req.id = this.id
+
+    return this.client.request('call_eavesdrop', req)
   }
 
   async toggleHold() {
@@ -345,12 +406,8 @@ export class Call {
   }
 
   async blindTransfer(destination: string) {
-    if (!this.parentCallId) {
-      throw new Error('Not allow one leg')
-    }
-
     return this.client.request('call_blind_transfer', {
-      id: this.parentCallId,
+      id: this.id,
       app_id: this.appId,
       destination,
     })
@@ -379,7 +436,7 @@ export class Call {
   async callToUser(req: UserCallRequest) {
     req.nodeId = this.appId
     req.parentCallId = this.id || null
-    req.sendToCallId = this.parentCallId || null
+    req.sendToCallId = this.parentId || null
 
     return this.client.inviteToUser(req)
   }

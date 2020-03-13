@@ -6,6 +6,7 @@ import {
   CallEventData,
   CallEventDTMF,
   CallEventExecute,
+  EavesdropRequest,
   OutboundCallRequest,
 } from './call'
 import { Log } from './log'
@@ -177,12 +178,16 @@ export class Client {
     return this.connectionInfo.sock_id
   }
 
-  invite(req: OutboundCallRequest) {
+  async invite(req: OutboundCallRequest) {
     return this.request(WEBSOCKET_MAKE_OUTBOUND_CALL, req)
   }
 
   call(req: OutboundCallRequest) {
     this.phone.call(req)
+  }
+
+  async eavesdrop(req: EavesdropRequest) {
+    return this.request('call_eavesdrop', req)
   }
 
   inviteToUser(req: UserCallRequest) {
@@ -291,9 +296,8 @@ export class Client {
     const call = this.callById(id)
     if (call && this.phone.isOutboundCall(id)) {
       call.answer({
-        useAudio: true,
-        useVideo: call.videoRequest,
-        useScreen: call.screenRequest,
+        video: call.params.video,
+        screen: call.params.screen,
       })
     }
   }
