@@ -1,4 +1,5 @@
 import { EventEmitter } from 'ee-ts'
+import { Agent, AgentSession, AgentStatusEvent } from './agent'
 import {
   AnswerRequest,
   Call,
@@ -12,7 +13,7 @@ import {
 import { Log } from './log'
 import { CallSession, SipConfiguration, SipPhone } from './sip'
 import { Message, Socket } from './socket'
-import { UserState } from './user'
+import { UserStatus } from './user'
 
 export interface Config {
   endpoint: string
@@ -41,12 +42,14 @@ export interface UserCallRequest {
 
 const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
 const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
+const WEBSOCKET_AGENT_SESSION = 'cc_agent_session'
 
 const WEBSOCKET_MAKE_OUTBOUND_CALL = 'call_invite'
 const WEBSOCKET_MAKE_USER_CALL = 'call_user'
 const WEBSOCKET_EVENT_HELLO = 'hello'
 const WEBSOCKET_EVENT_CALL = 'call'
 const WEBSOCKET_EVENT_USER_STATE = 'user_state'
+const WEBSOCKET_EVENT_AGENT_STATUS = 'agent_status'
 const WEBSOCKET_EVENT_SIP = 'sip'
 
 export enum Response {
@@ -71,15 +74,18 @@ export interface ConnectionInfo {
 }
 
 export type CallEventHandler = (action: CallActions, call: Call) => void
-export type UsersStatusEventHandler = (state: UserState) => void
+export type UsersStatusEventHandler = (state: UserStatus) => void
+export type AgentStatusEventHandler = (state: AgentStatusEvent) => void
 
 interface EventHandler {
   [WEBSOCKET_EVENT_CALL](action: CallActions, call: Call): void
-  [WEBSOCKET_EVENT_USER_STATE](state: UserState): void
+  [WEBSOCKET_EVENT_USER_STATE](state: UserStatus): void
   [WEBSOCKET_EVENT_SIP](data: object): void
+  [WEBSOCKET_EVENT_AGENT_STATUS](status: AgentStatusEvent): void
 }
 
 export class Client {
+  agent!: Agent
   phone!: SipPhone
   private socket!: Socket
   private connectionInfo!: ConnectionInfo
@@ -107,31 +113,28 @@ export class Client {
     this.socket.close()
   }
 
-  async subscribeCall(
-    handler: CallEventHandler,
-    data?: object
-  ): Promise<null | Error> {
+  async subscribeCall(handler: CallEventHandler, data?: object) {
     const res = await this.request(`subscribe_call`, data)
     this.eventHandler.on(WEBSOCKET_EVENT_CALL, handler)
 
     return res
   }
 
-  async subscribeUsersStatus(
-    handler: UsersStatusEventHandler,
-    data?: object
-  ): Promise<null | Error> {
+  async subscribeUsersStatus(handler: UsersStatusEventHandler, data?: object) {
     const res = await this.request(`subscribe_users_status`, data)
     this.eventHandler.on(WEBSOCKET_EVENT_USER_STATE, handler)
 
     return res
   }
 
-  async unSubscribe(
-    action: string,
-    handler: CallEventHandler,
-    data?: object
-  ): Promise<null | Error> {
+  async subscribeAgentsStatus(handler: AgentStatusEventHandler, data?: object) {
+    const res = await this.request(`cc_agent_subscribe_status`, data)
+    this.eventHandler.on(WEBSOCKET_EVENT_AGENT_STATUS, handler)
+
+    return res
+  }
+
+  async unSubscribe(action: string, handler: CallEventHandler, data?: object) {
     const res = await this.request(`un_subscribe_${action}`, data)
 
     // this.eventHandler.listeners(action)
@@ -178,6 +181,14 @@ export class Client {
     return this.connectionInfo.sock_id
   }
 
+  async agentSession() {
+    const info = await this.request(WEBSOCKET_AGENT_SESSION)
+
+    this.agent = new Agent(this, info as AgentSession)
+
+    return this.agent
+  }
+
   async invite(req: OutboundCallRequest) {
     return this.request(WEBSOCKET_MAKE_OUTBOUND_CALL, req)
   }
@@ -198,7 +209,7 @@ export class Client {
     return this.phone.answer(id, req)
   }
 
-  request(action: string, data?: object): Promise<Error> {
+  request(action: string, data?: object): Promise<object> {
     return new Promise<Error>((resolve: () => void, reject: () => void) => {
       this.queueRequest.set(++this.reqSeq, { resolve, reject })
       this.socket.send({
@@ -213,7 +224,7 @@ export class Client {
     return this._config.registerWebDevice || false
   }
 
-  private async deviceConfig(): Promise<SipConfiguration | Error> {
+  private async deviceConfig() {
     return this.request(WEBSOCKET_DEFAULT_DEVICE_CONFIG, {})
   }
 
@@ -243,11 +254,16 @@ export class Client {
           this.handleCallEvents(message.data.call as CallEventData)
           break
         case WEBSOCKET_EVENT_USER_STATE:
-          this.handleUserStateEvent(message.data.state as UserState)
+          this.handleUserStateEvent(message.data.state as UserStatus)
           break
 
         case WEBSOCKET_EVENT_SIP:
           this.eventHandler.emit(WEBSOCKET_EVENT_SIP, message.data)
+          break
+
+        case WEBSOCKET_EVENT_AGENT_STATUS:
+          this.eventHandler.emit(WEBSOCKET_EVENT_AGENT_STATUS, message.data
+            .status as AgentStatusEvent)
           break
         default:
           this.log.error(`event ${message.event} not handler`)
@@ -324,7 +340,7 @@ export class Client {
     })
   }
 
-  private handleUserStateEvent(event: UserState) {
+  private handleUserStateEvent(event: UserStatus) {
     this.eventHandler.emit(WEBSOCKET_EVENT_USER_STATE, event)
   }
 

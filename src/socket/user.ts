@@ -1,7 +1,15 @@
-export interface UserState {
-  app_id: string
-  timestamp: number
-  user_id: number
-  channels: number
-  state: string
+export interface UserStatus {
+  id: string
+  app?: string
+  status?: string
+  note?: string
+  open?: number
+  closed?: boolean
+  contact?: string
+  priority?: number
+  sequence?: number
+  expires?: number
+  timestamp?: number
+  domain_id?: number
+  presence?: any
 }

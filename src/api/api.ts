@@ -496,6 +496,121 @@ export interface EngineAgentUser {
 /**
  *
  * @export
+ * @interface EngineAttempt
+ */
+export interface EngineAttempt {
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAttempt
+   */
+  active?: boolean
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttempt
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  answered_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  bridged_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttempt
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  created_at?: string
+  /**
+   *
+   * @type {EngineMemberCommunication}
+   * @memberof EngineAttempt
+   */
+  destination?: EngineMemberCommunication
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  hangup_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  leg_a_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  leg_b_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttempt
+   */
+  member?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  originate_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttempt
+   */
+  queue?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttempt
+   */
+  resource?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  result?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineAttempt
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAttempt
+   */
+  weight?: number
+}
+/**
+ *
+ * @export
  * @interface EngineBlindTransferCallRequest
  */
 export interface EngineBlindTransferCallRequest {
@@ -1928,12 +2043,6 @@ export interface EngineDtmfCallRequest {
 export interface EngineEavesdropCallRequest {
   /**
    *
-   * @type {boolean}
-   * @memberof EngineEavesdropCallRequest
-   */
-  a_leg?: boolean
-  /**
-   *
    * @type {string}
    * @memberof EngineEavesdropCallRequest
    */
@@ -1943,19 +2052,13 @@ export interface EngineEavesdropCallRequest {
    * @type {boolean}
    * @memberof EngineEavesdropCallRequest
    */
-  b_leg?: boolean
+  control?: boolean
   /**
    *
    * @type {string}
    * @memberof EngineEavesdropCallRequest
    */
   domain_id?: string
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineEavesdropCallRequest
-   */
-  dtmf?: boolean
   /**
    *
    * @type {string}
@@ -1967,13 +2070,25 @@ export interface EngineEavesdropCallRequest {
    * @type {boolean}
    * @memberof EngineEavesdropCallRequest
    */
-  whisper_a_leg?: boolean
+  listen_a?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineEavesdropCallRequest
    */
-  whisper_b_leg?: boolean
+  listen_b?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineEavesdropCallRequest
+   */
+  whisper_a?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineEavesdropCallRequest
+   */
+  whisper_b?: boolean
 }
 /**
  *
@@ -2040,6 +2155,25 @@ export interface EngineExceptDate {
 /**
  *
  * @export
+ * @interface EngineFilterBetween
+ */
+export interface EngineFilterBetween {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineFilterBetween
+   */
+  from?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineFilterBetween
+   */
+  to?: string
+}
+/**
+ *
+ * @export
  * @interface EngineHangupCallRequest
  */
 export interface EngineHangupCallRequest {
@@ -2067,6 +2201,97 @@ export interface EngineHangupCallRequest {
    * @memberof EngineHangupCallRequest
    */
   id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineHistoryCall
+ */
+export interface EngineHistoryCall {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  answered_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  app_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  bridged_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  cause?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  created_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  destination?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  direction?: string
+  /**
+   *
+   * @type {EngineEndpoint}
+   * @memberof EngineHistoryCall
+   */
+  from?: EngineEndpoint
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  hangup_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  hold_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  parent_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  sip_code?: number
+  /**
+   *
+   * @type {EngineEndpoint}
+   * @memberof EngineHistoryCall
+   */
+  to?: EngineEndpoint
 }
 /**
  *
@@ -2272,6 +2497,25 @@ export interface EngineListAgentUser {
 /**
  *
  * @export
+ * @interface EngineListAttempt
+ */
+export interface EngineListAttempt {
+  /**
+   *
+   * @type {Array<EngineAttempt>}
+   * @memberof EngineListAttempt
+   */
+  items?: Array<EngineAttempt>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListAttempt
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
  * @interface EngineListBucket
  */
 export interface EngineListBucket {
@@ -2379,15 +2623,40 @@ export interface EngineListCommunicationType {
 /**
  *
  * @export
+ * @interface EngineListHistoryCall
+ */
+export interface EngineListHistoryCall {
+  /**
+   *
+   * @type {Array<EngineHistoryCall>}
+   * @memberof EngineListHistoryCall
+   */
+  items?: Array<EngineHistoryCall>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListHistoryCall
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
  * @interface EngineListMember
  */
 export interface EngineListMember {
   /**
    *
-   * @type {Array<EngineMember>}
+   * @type {Array<EngineMemberInQueue>}
    * @memberof EngineListMember
    */
-  items?: Array<EngineMember>
+  items?: Array<EngineMemberInQueue>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListMember
+   */
+  next?: boolean
 }
 /**
  *
@@ -2760,103 +3029,6 @@ export interface EngineLookup {
 /**
  *
  * @export
- * @interface EngineMember
- */
-export interface EngineMember {
-  /**
-   *
-   * @type {number}
-   * @memberof EngineMember
-   */
-  attempts?: number
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineMember
-   */
-  bucket?: EngineLookup
-  /**
-   *
-   * @type {Array<EngineMemberCommunication>}
-   * @memberof EngineMember
-   */
-  communications?: Array<EngineMemberCommunication>
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  created_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  expire_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  last_activity_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  min_offering_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  name?: string
-  /**
-   *
-   * @type {number}
-   * @memberof EngineMember
-   */
-  priority?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  queue_id?: string
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof EngineMember
-   */
-  skills?: Array<string>
-  /**
-   *
-   * @type {string}
-   * @memberof EngineMember
-   */
-  stop_cause?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineMember
-   */
-  timezone?: EngineLookup
-  /**
-   *
-   * @type {{ [key: string]: string; }}
-   * @memberof EngineMember
-   */
-  variables?: { [key: string]: string }
-}
-/**
- *
- * @export
  * @interface EngineMemberAttempt
  */
 export interface EngineMemberAttempt {
@@ -3097,6 +3269,109 @@ export interface EngineMemberCommunicationCreateRequest {
    * @memberof EngineMemberCommunicationCreateRequest
    */
   type?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineMemberInQueue
+ */
+export interface EngineMemberInQueue {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberInQueue
+   */
+  attempts?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberInQueue
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineMemberCommunication>}
+   * @memberof EngineMemberInQueue
+   */
+  communications?: Array<EngineMemberCommunication>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberInQueue
+   */
+  created_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberInQueue
+   */
+  expire_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberInQueue
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberInQueue
+   */
+  last_activity_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberInQueue
+   */
+  min_offering_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberInQueue
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineMemberInQueue
+   */
+  priority?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberInQueue
+   */
+  queue?: EngineLookup
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineMemberInQueue
+   */
+  reserved?: boolean
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineMemberInQueue
+   */
+  skills?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberInQueue
+   */
+  stop_cause?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineMemberInQueue
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineMemberInQueue
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -3741,10 +4016,22 @@ export interface EnginePatchRoutingSchemaRequest {
 export interface EngineQueue {
   /**
    *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  active?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineQueue
    */
   calendar?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  count?: number
   /**
    *
    * @type {string}
@@ -3859,6 +4146,12 @@ export interface EngineQueue {
    * @memberof EngineQueue
    */
   variables?: { [key: string]: string }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  waiting?: number
 }
 /**
  *
@@ -11764,7 +12057,7 @@ export const CallServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling blindTransferCall.'
         )
       }
-      const localVarPath = `/calls/{id}/transfer`.replace(
+      const localVarPath = `/calls/active/{id}/transfer`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -11904,7 +12197,7 @@ export const CallServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling dtmfCall.'
         )
       }
-      const localVarPath = `/calls/{id}/dtmf`.replace(
+      const localVarPath = `/calls/active/{id}/dtmf`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -11981,7 +12274,7 @@ export const CallServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling eavesdropCall.'
         )
       }
-      const localVarPath = `/calls/{id}/eavesdrop`.replace(
+      const localVarPath = `/calls/active/{id}/eavesdrop`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -12058,7 +12351,7 @@ export const CallServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling hangupCall.'
         )
       }
-      const localVarPath = `/calls/{id}`.replace(
+      const localVarPath = `/calls/active/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -12125,7 +12418,7 @@ export const CallServiceApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling readCall.'
         )
       }
-      const localVarPath = `/calls/{id}`.replace(
+      const localVarPath = `/calls/active/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -12174,7 +12467,6 @@ export const CallServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List of call
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -12182,14 +12474,14 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchCall(
+    searchActiveCall(
       page?: number,
       size?: number,
       q?: string,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      const localVarPath = `/calls`
+      const localVarPath = `/calls/active`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -12247,6 +12539,91 @@ export const CallServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary List of call
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {string} [user_id]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchHistoryCall(
+      page?: number,
+      size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      user_id?: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/calls/history`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (created_at_from !== undefined) {
+        localVarQueryParameter['created_at.from'] = created_at_from
+      }
+
+      if (created_at_to !== undefined) {
+        localVarQueryParameter['created_at.to'] = created_at_to
+      }
+
+      if (user_id !== undefined) {
+        localVarQueryParameter['user_id'] = user_id
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {EngineUserCallRequest} body
      * @param {*} [options] Override http request option.
@@ -12271,7 +12648,7 @@ export const CallServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling unHoldCall.'
         )
       }
-      const localVarPath = `/calls/{id}/hold`.replace(
+      const localVarPath = `/calls/active/{id}/hold`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -12495,7 +12872,6 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary List of call
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -12503,7 +12879,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchCall(
+    searchActiveCall(
       page?: number,
       size?: number,
       q?: string,
@@ -12515,7 +12891,53 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListCall> {
       const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
         configuration
-      ).searchCall(page, size, q, domain_id, options)
+      ).searchActiveCall(page, size, q, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of call
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {string} [user_id]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchHistoryCall(
+      page?: number,
+      size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      user_id?: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListHistoryCall> {
+      const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
+        configuration
+      ).searchHistoryCall(
+        page,
+        size,
+        created_at_from,
+        created_at_to,
+        user_id,
+        domain_id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -12655,7 +13077,6 @@ export const CallServiceApiFactory = function(
     },
     /**
      *
-     * @summary List of call
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -12663,17 +13084,48 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchCall(
+    searchActiveCall(
       page?: number,
       size?: number,
       q?: string,
       domain_id?: string,
       options?: any
     ) {
-      return CallServiceApiFp(configuration).searchCall(
+      return CallServiceApiFp(configuration).searchActiveCall(
         page,
         size,
         q,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary List of call
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {string} [user_id]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchHistoryCall(
+      page?: number,
+      size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      user_id?: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return CallServiceApiFp(configuration).searchHistoryCall(
+        page,
+        size,
+        created_at_from,
+        created_at_to,
+        user_id,
         domain_id,
         options
       )(axios, basePath)
@@ -12805,7 +13257,6 @@ export class CallServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary List of call
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
@@ -12814,17 +13265,50 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public searchCall(
+  public searchActiveCall(
     page?: number,
     size?: number,
     q?: string,
     domain_id?: string,
     options?: any
   ) {
-    return CallServiceApiFp(this.configuration).searchCall(
+    return CallServiceApiFp(this.configuration).searchActiveCall(
       page,
       size,
       q,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary List of call
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [created_at_from]
+   * @param {string} [created_at_to]
+   * @param {string} [user_id]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public searchHistoryCall(
+    page?: number,
+    size?: number,
+    created_at_from?: string,
+    created_at_to?: string,
+    user_id?: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration).searchHistoryCall(
+      page,
+      size,
+      created_at_from,
+      created_at_to,
+      user_id,
       domain_id,
       options
     )(this.axios, this.basePath)
@@ -15914,32 +16398,36 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List of Member
-     * @param {string} queue_id
+     * @summary SearchMemberAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {string} [id]
+     * @param {string} [member_id]
+     * @param {string} [queue_id]
+     * @param {string} [agent_id]
+     * @param {string} [result]
+     * @param {string} [bucket_id]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchMember(
-      queue_id: string,
+    searchAttempts(
       page?: number,
       size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      id?: string,
+      member_id?: string,
+      queue_id?: string,
+      agent_id?: string,
+      result?: string,
+      bucket_id?: string,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'queue_id' is not null or undefined
-      if (queue_id === null || queue_id === undefined) {
-        throw new RequiredError(
-          'queue_id',
-          'Required parameter queue_id was null or undefined when calling searchMember.'
-        )
-      }
-      const localVarPath = `/call_center/queues/{queue_id}/members`.replace(
-        `{${'queue_id'}}`,
-        encodeURIComponent(String(queue_id))
-      )
+      const localVarPath = `/call_center/queues/attempts/history`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -15968,6 +16456,38 @@ export const MemberServiceApiAxiosParamCreator = function(
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
+      }
+
+      if (created_at_from !== undefined) {
+        localVarQueryParameter['created_at.from'] = created_at_from
+      }
+
+      if (created_at_to !== undefined) {
+        localVarQueryParameter['created_at.to'] = created_at_to
+      }
+
+      if (id !== undefined) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (member_id !== undefined) {
+        localVarQueryParameter['member_id'] = member_id
+      }
+
+      if (queue_id !== undefined) {
+        localVarQueryParameter['queue_id'] = queue_id
+      }
+
+      if (agent_id !== undefined) {
+        localVarQueryParameter['agent_id'] = agent_id
+      }
+
+      if (result !== undefined) {
+        localVarQueryParameter['result'] = result
+      }
+
+      if (bucket_id !== undefined) {
+        localVarQueryParameter['bucket_id'] = bucket_id
       }
 
       if (domain_id !== undefined) {
@@ -16068,32 +16588,18 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary SearchMemberAttempts
+     * @summary List of Member
      * @param {string} queue_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [time_from]
-     * @param {string} [time_to]
-     * @param {string} [member_id]
-     * @param {number} [state]
-     * @param {string} [result]
-     * @param {number} [agent_id]
-     * @param {number} [resource_id]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchMembersAttempts(
+    searchMemberInQueue(
       queue_id: string,
       page?: number,
       size?: number,
-      time_from?: string,
-      time_to?: string,
-      member_id?: string,
-      state?: number,
-      result?: string,
-      agent_id?: number,
-      resource_id?: number,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
@@ -16101,10 +16607,10 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queue_id === null || queue_id === undefined) {
         throw new RequiredError(
           'queue_id',
-          'Required parameter queue_id was null or undefined when calling searchMembersAttempts.'
+          'Required parameter queue_id was null or undefined when calling searchMemberInQueue.'
         )
       }
-      const localVarPath = `/call_center/queues/{queue_id}/members/attempts`.replace(
+      const localVarPath = `/call_center/queues/{queue_id}/members`.replace(
         `{${'queue_id'}}`,
         encodeURIComponent(String(queue_id))
       )
@@ -16138,32 +16644,95 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (time_from !== undefined) {
-        localVarQueryParameter['time_from'] = time_from
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
       }
 
-      if (time_to !== undefined) {
-        localVarQueryParameter['time_to'] = time_to
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
       }
 
-      if (member_id !== undefined) {
-        localVarQueryParameter['member_id'] = member_id
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Search of Member
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [id]
+     * @param {string} [queue_id]
+     * @param {number} [bucket_id]
+     * @param {string} [destination]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMembers(
+      page?: number,
+      size?: number,
+      id?: string,
+      queue_id?: string,
+      bucket_id?: number,
+      destination?: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/members`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (state !== undefined) {
-        localVarQueryParameter['state'] = state
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
-      if (result !== undefined) {
-        localVarQueryParameter['result'] = result
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
       }
 
-      if (agent_id !== undefined) {
-        localVarQueryParameter['agent_id'] = agent_id
+      if (id !== undefined) {
+        localVarQueryParameter['id'] = id
       }
 
-      if (resource_id !== undefined) {
-        localVarQueryParameter['resource_id'] = resource_id
+      if (queue_id !== undefined) {
+        localVarQueryParameter['queue_id'] = queue_id
+      }
+
+      if (bucket_id !== undefined) {
+        localVarQueryParameter['bucket_id'] = bucket_id
+      }
+
+      if (destination !== undefined) {
+        localVarQueryParameter['destination'] = destination
       }
 
       if (domain_id !== undefined) {
@@ -16297,7 +16866,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineMember> {
+    ) => AxiosPromise<EngineMemberInQueue> {
       const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
         configuration
       ).createMember(queue_id, body, options)
@@ -16359,7 +16928,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineMember> {
+    ) => AxiosPromise<EngineMemberInQueue> {
       const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
         configuration
       ).deleteMember(queue_id, id, domain_id, options)
@@ -16421,7 +16990,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineMember> {
+    ) => AxiosPromise<EngineMemberInQueue> {
       const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
         configuration
       ).readMember(queue_id, id, domain_id, options)
@@ -16438,27 +17007,54 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary List of Member
-     * @param {string} queue_id
+     * @summary SearchMemberAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {string} [id]
+     * @param {string} [member_id]
+     * @param {string} [queue_id]
+     * @param {string} [agent_id]
+     * @param {string} [result]
+     * @param {string} [bucket_id]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchMember(
-      queue_id: string,
+    searchAttempts(
       page?: number,
       size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      id?: string,
+      member_id?: string,
+      queue_id?: string,
+      agent_id?: string,
+      result?: string,
+      bucket_id?: string,
       domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineListMember> {
+    ) => AxiosPromise<EngineListAttempt> {
       const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
         configuration
-      ).searchMember(queue_id, page, size, domain_id, options)
+      ).searchAttempts(
+        page,
+        size,
+        created_at_from,
+        created_at_to,
+        id,
+        member_id,
+        queue_id,
+        agent_id,
+        result,
+        bucket_id,
+        domain_id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -16504,51 +17100,73 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary SearchMemberAttempts
+     * @summary List of Member
      * @param {string} queue_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [time_from]
-     * @param {string} [time_to]
-     * @param {string} [member_id]
-     * @param {number} [state]
-     * @param {string} [result]
-     * @param {number} [agent_id]
-     * @param {number} [resource_id]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchMembersAttempts(
+    searchMemberInQueue(
       queue_id: string,
       page?: number,
       size?: number,
-      time_from?: string,
-      time_to?: string,
-      member_id?: string,
-      state?: number,
-      result?: string,
-      agent_id?: number,
-      resource_id?: number,
       domain_id?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineListMemberAttempt> {
+    ) => AxiosPromise<EngineListMember> {
       const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
         configuration
-      ).searchMembersAttempts(
-        queue_id,
+      ).searchMemberInQueue(queue_id, page, size, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Search of Member
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [id]
+     * @param {string} [queue_id]
+     * @param {number} [bucket_id]
+     * @param {string} [destination]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMembers(
+      page?: number,
+      size?: number,
+      id?: string,
+      queue_id?: string,
+      bucket_id?: number,
+      destination?: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListMember> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).searchMembers(
         page,
         size,
-        time_from,
-        time_to,
-        member_id,
-        state,
-        result,
-        agent_id,
-        resource_id,
+        id,
+        queue_id,
+        bucket_id,
+        destination,
         domain_id,
         options
       )
@@ -16580,7 +17198,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     ): (
       axios?: AxiosInstance,
       basePath?: string
-    ) => AxiosPromise<EngineMember> {
+    ) => AxiosPromise<EngineMemberInQueue> {
       const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
         configuration
       ).updateMember(queue_id, id, body, options)
@@ -16711,25 +17329,46 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
-     * @summary List of Member
-     * @param {string} queue_id
+     * @summary SearchMemberAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {string} [id]
+     * @param {string} [member_id]
+     * @param {string} [queue_id]
+     * @param {string} [agent_id]
+     * @param {string} [result]
+     * @param {string} [bucket_id]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchMember(
-      queue_id: string,
+    searchAttempts(
       page?: number,
       size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      id?: string,
+      member_id?: string,
+      queue_id?: string,
+      agent_id?: string,
+      result?: string,
+      bucket_id?: string,
       domain_id?: string,
       options?: any
     ) {
-      return MemberServiceApiFp(configuration).searchMember(
-        queue_id,
+      return MemberServiceApiFp(configuration).searchAttempts(
         page,
         size,
+        created_at_from,
+        created_at_to,
+        id,
+        member_id,
+        queue_id,
+        agent_id,
+        result,
+        bucket_id,
         domain_id,
         options
       )(axios, basePath)
@@ -16758,46 +17397,59 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
-     * @summary SearchMemberAttempts
+     * @summary List of Member
      * @param {string} queue_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [time_from]
-     * @param {string} [time_to]
-     * @param {string} [member_id]
-     * @param {number} [state]
-     * @param {string} [result]
-     * @param {number} [agent_id]
-     * @param {number} [resource_id]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchMembersAttempts(
+    searchMemberInQueue(
       queue_id: string,
       page?: number,
       size?: number,
-      time_from?: string,
-      time_to?: string,
-      member_id?: string,
-      state?: number,
-      result?: string,
-      agent_id?: number,
-      resource_id?: number,
       domain_id?: string,
       options?: any
     ) {
-      return MemberServiceApiFp(configuration).searchMembersAttempts(
+      return MemberServiceApiFp(configuration).searchMemberInQueue(
         queue_id,
         page,
         size,
-        time_from,
-        time_to,
-        member_id,
-        state,
-        result,
-        agent_id,
-        resource_id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Search of Member
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [id]
+     * @param {string} [queue_id]
+     * @param {number} [bucket_id]
+     * @param {string} [destination]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchMembers(
+      page?: number,
+      size?: number,
+      id?: string,
+      queue_id?: string,
+      bucket_id?: number,
+      destination?: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).searchMembers(
+        page,
+        size,
+        id,
+        queue_id,
+        bucket_id,
+        destination,
         domain_id,
         options
       )(axios, basePath)
@@ -16947,26 +17599,47 @@ export class MemberServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary List of Member
-   * @param {string} queue_id
+   * @summary SearchMemberAttempts
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [created_at_from]
+   * @param {string} [created_at_to]
+   * @param {string} [id]
+   * @param {string} [member_id]
+   * @param {string} [queue_id]
+   * @param {string} [agent_id]
+   * @param {string} [result]
+   * @param {string} [bucket_id]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public searchMember(
-    queue_id: string,
+  public searchAttempts(
     page?: number,
     size?: number,
+    created_at_from?: string,
+    created_at_to?: string,
+    id?: string,
+    member_id?: string,
+    queue_id?: string,
+    agent_id?: string,
+    result?: string,
+    bucket_id?: string,
     domain_id?: string,
     options?: any
   ) {
-    return MemberServiceApiFp(this.configuration).searchMember(
-      queue_id,
+    return MemberServiceApiFp(this.configuration).searchAttempts(
       page,
       size,
+      created_at_from,
+      created_at_to,
+      id,
+      member_id,
+      queue_id,
+      agent_id,
+      result,
+      bucket_id,
       domain_id,
       options
     )(this.axios, this.basePath)
@@ -16998,47 +17671,62 @@ export class MemberServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary SearchMemberAttempts
+   * @summary List of Member
    * @param {string} queue_id
    * @param {number} [page]
    * @param {number} [size]
-   * @param {string} [time_from]
-   * @param {string} [time_to]
-   * @param {string} [member_id]
-   * @param {number} [state]
-   * @param {string} [result]
-   * @param {number} [agent_id]
-   * @param {number} [resource_id]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public searchMembersAttempts(
+  public searchMemberInQueue(
     queue_id: string,
     page?: number,
     size?: number,
-    time_from?: string,
-    time_to?: string,
-    member_id?: string,
-    state?: number,
-    result?: string,
-    agent_id?: number,
-    resource_id?: number,
     domain_id?: string,
     options?: any
   ) {
-    return MemberServiceApiFp(this.configuration).searchMembersAttempts(
+    return MemberServiceApiFp(this.configuration).searchMemberInQueue(
       queue_id,
       page,
       size,
-      time_from,
-      time_to,
-      member_id,
-      state,
-      result,
-      agent_id,
-      resource_id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Search of Member
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [id]
+   * @param {string} [queue_id]
+   * @param {number} [bucket_id]
+   * @param {string} [destination]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public searchMembers(
+    page?: number,
+    size?: number,
+    id?: string,
+    queue_id?: string,
+    bucket_id?: number,
+    destination?: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).searchMembers(
+      page,
+      size,
+      id,
+      queue_id,
+      bucket_id,
+      destination,
       domain_id,
       options
     )(this.axios, this.basePath)
