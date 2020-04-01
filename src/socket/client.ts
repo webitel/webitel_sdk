@@ -11,6 +11,7 @@ import {
   OutboundCallRequest,
 } from './call'
 import { Log } from './log'
+import { QueueJoinMemberEvent } from './queue'
 import { CallSession, SipConfiguration, SipPhone } from './sip'
 import { Message, Socket } from './socket'
 import { UserStatus } from './user'
@@ -50,6 +51,8 @@ const WEBSOCKET_EVENT_HELLO = 'hello'
 const WEBSOCKET_EVENT_CALL = 'call'
 const WEBSOCKET_EVENT_USER_STATE = 'user_state'
 const WEBSOCKET_EVENT_AGENT_STATUS = 'agent_status'
+const WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER = 'queue_join_member'
+
 const WEBSOCKET_EVENT_SIP = 'sip'
 
 export enum Response {
@@ -77,11 +80,15 @@ export type CallEventHandler = (action: CallActions, call: Call) => void
 export type UsersStatusEventHandler = (state: UserStatus) => void
 export type AgentStatusEventHandler = (state: AgentStatusEvent) => void
 
+export type QueueJoinMemberHandler = (member: QueueJoinMemberEvent) => void
+
 interface EventHandler {
   [WEBSOCKET_EVENT_CALL](action: CallActions, call: Call): void
   [WEBSOCKET_EVENT_USER_STATE](state: UserStatus): void
   [WEBSOCKET_EVENT_SIP](data: object): void
   [WEBSOCKET_EVENT_AGENT_STATUS](status: AgentStatusEvent): void
+
+  [WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER](member: QueueJoinMemberEvent): void
 }
 
 export class Client {
@@ -116,6 +123,16 @@ export class Client {
   async subscribeCall(handler: CallEventHandler, data?: object) {
     const res = await this.request(`subscribe_call`, data)
     this.eventHandler.on(WEBSOCKET_EVENT_CALL, handler)
+
+    return res
+  }
+
+  async subscribeQueueJoinMember(
+    handler: QueueJoinMemberHandler,
+    data?: object
+  ) {
+    const res = await this.request(`subscribe_queue_join_member`, data)
+    this.eventHandler.on(WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER, handler)
 
     return res
   }
@@ -310,10 +327,15 @@ export class Client {
 
   private checkAutoAnswer(id: string) {
     const call = this.callById(id)
-    if (call && this.phone.isOutboundCall(id)) {
+    if (
+      call &&
+      !document.hidden &&
+      (this.phone.isOutboundCall(id) || call.autoAnswer)
+    ) {
       call.answer({
         video: call.params.video,
         screen: call.params.screen,
+        disableStun: call.params.disableStun,
       })
     }
   }

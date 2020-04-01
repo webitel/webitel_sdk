@@ -4,6 +4,7 @@ export interface CallParameters {
   timeout?: number
   video?: boolean
   screen?: boolean
+  disableStun?: boolean
   variables?: Map<string, string>
 }
 
@@ -11,6 +12,18 @@ export interface OutboundCallRequest {
   sdp?: string
   destination?: string
   params?: CallParameters
+}
+
+export interface QueueParameters {
+  attempt_id: number
+  member_id: number
+  queue_id: number
+  queue_name: string
+  queue_type: string
+
+  side: string
+
+  resource_id?: number
 }
 
 export interface EavesdropRequest {
@@ -46,6 +59,7 @@ export enum CallDirection {
 export interface AnswerRequest {
   video?: boolean
   screen?: boolean
+  disableStun?: boolean
 }
 
 export interface CallEventData {
@@ -84,6 +98,7 @@ export interface CallInfo extends CallEventData {
   user_id?: string
   direction: string
   destination: string
+  queue?: QueueParameters
 
   from: CallEndpoint
   to?: CallEndpoint
@@ -102,6 +117,7 @@ export interface CallParams {
   audio?: boolean
   video?: boolean
   screen?: boolean
+  disableStun?: boolean
 }
 
 export class Call {
@@ -120,7 +136,6 @@ export class Call {
   toNumber!: string
   toName!: string
   payload!: Map<string, string>
-  queue!: Map<string, string>
 
   peerStreams!: MediaStream[] | null
   screen!: string | null
@@ -135,6 +150,7 @@ export class Call {
 
   parentId!: string
   bridgedId!: string
+  queue!: QueueParameters | null
 
   _muted!: boolean
 
@@ -240,6 +256,7 @@ export class Call {
     this.from = s.from
     this.to = s.to
     this.payload = s.payload
+    this.queue = s.queue || null
 
     this.sipId = s.sip_id || null
     this.params = s.params as CallParams
@@ -329,6 +346,14 @@ export class Call {
 
       return this.destination
     }
+  }
+
+  get autoAnswer() {
+    return (
+      this.queue &&
+      (this.queue.queue_type === 'offline' ||
+        this.queue.queue_type === 'preview')
+    )
   }
 
   /* Call control */
@@ -426,10 +451,10 @@ export class Call {
 
   async bridgeTo(call: Call) {
     return this.client.request('call_bridge', {
-      id: this.id,
-      app_id: this.appId,
-      parent_id: call.id,
-      parent_app_id: call.appId,
+      from_id: this.id,
+      from_app_id: this.appId,
+      to_id: call.id,
+      to_app_id: call.appId,
     })
   }
 

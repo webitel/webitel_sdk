@@ -88,9 +88,11 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
   callOption(req: AnswerRequest = {}): object {
     return {
       sessionTimersExpires: 120,
-      pcConfig: {
-        iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }],
-      },
+      pcConfig: req.disableStun
+        ? undefined
+        : {
+            iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }],
+          },
       rtcOfferConstraints: {
         offerToReceiveAudio: true,
         offerToReceiveVideo: req.video,
@@ -140,6 +142,7 @@ export class SipPhone extends EventEmitter<SipHoneEvent> {
     if (req.params) {
       params.video = req.params.video || false
       params.screen = req.params.screen || false
+      params.disableStun = req.params.disableStun || false
     }
 
     this.ua.call(req.destination, this.callOption(params))

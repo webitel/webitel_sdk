@@ -23,6 +23,17 @@ export enum AgentStatus {
   Pause = 'pause',
 }
 
+export enum AgentState {
+  Offline = 'offline',
+  Waiting = 'waiting',
+  Offering = 'offering',
+  Ringing = 'ringing',
+  Talking = 'talking',
+  Reporting = 'reporting',
+  Break = 'break',
+  Fine = 'fine',
+}
+
 export class Agent {
   constructor(
     protected readonly client: Client,
@@ -64,6 +75,23 @@ export class Agent {
       agent_id: this.agentId,
       payload,
       timeout,
+    })
+  }
+
+  async directMember(memberId: number, communicationId: number) {
+    return this.client.request(`cc_member_direct`, {
+      agent_id: this.agentId,
+      member_id: memberId,
+      communication_id: communicationId,
+    })
+  }
+
+  async offlineMembers(q: string, page: number, perPage: number) {
+    return this.client.request(`cc_fetch_offline_members`, {
+      agent_id: this.agentId,
+      page,
+      q,
+      per_page: perPage,
     })
   }
 }

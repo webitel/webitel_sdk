@@ -4,6 +4,10 @@
 const config = {
   preset: 'ts-jest',
   rootDir: '..',
+  verbose: true,
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.ts?(x)',
     '<rootDir>/src/**/?(*.)+(spec|test).ts?(x)',
