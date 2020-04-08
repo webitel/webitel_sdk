@@ -1,8 +1,10 @@
 import { Client, UserCallRequest } from './client'
+import { SipSession } from './sip'
 
 export interface CallParameters {
   timeout?: number
   video?: boolean
+  audio?: boolean
   screen?: boolean
   disableStun?: boolean
   variables?: Map<string, string>
@@ -11,6 +13,7 @@ export interface CallParameters {
 export interface OutboundCallRequest {
   sdp?: string
   destination?: string
+  stream?: MediaStream
   params?: CallParameters
 }
 
@@ -49,6 +52,7 @@ export enum CallActions {
   Update = 'update',
   Hangup = 'hangup',
   PeerStream = 'peerStream',
+  LocalStream = 'localStream',
 }
 
 export enum CallDirection {
@@ -57,6 +61,7 @@ export enum CallDirection {
 }
 
 export interface AnswerRequest {
+  audio?: boolean
   video?: boolean
   screen?: boolean
   disableStun?: boolean
@@ -138,6 +143,8 @@ export class Call {
   payload!: Map<string, string>
 
   peerStreams!: MediaStream[] | null
+  localStreams!: MediaStream[] | null
+  sip!: SipSession | null
   screen!: string | null
 
   createdAt: number
@@ -158,12 +165,9 @@ export class Call {
   applications!: string[]
   voice: boolean
 
-  constructor(
-    protected client: Client,
-    e: CallEventData,
-    peerStreams: MediaStream[] | null
-  ) {
+  constructor(protected client: Client, e: CallEventData) {
     // FIXME check _muted from channel
+    const callInfo = e.data as CallInfo
     this._muted = false
     this.voice = true
     this.createdAt = +e.timestamp
@@ -171,7 +175,15 @@ export class Call {
     this.answeredAt = 0
     this.hangupAt = 0
     this.bridgedAt = 0
-    this.peerStreams = peerStreams
+
+    if (callInfo.sip_id) {
+      this.setSip(client.phone.sipSessionBySipId(callInfo.sip_id))
+    } else {
+      this.setSip(client.phone.sipSessionByCallId(e.id))
+    }
+
+    this.peerStreams = null
+    this.localStreams = null
     this.params = {}
 
     this.id = e.id
@@ -179,11 +191,33 @@ export class Call {
     this.applications = []
     this.appId = e.app_id
     this.setState(e)
-    this.setInfo(e.data as CallInfo)
+    this.setInfo(callInfo)
   }
   // set private
   setState(s: CallEventData) {
     this.state = s.event
+  }
+
+  setSip(sip: SipSession | null) {
+    if (sip && !this.sip) {
+      this.sip = sip
+      if (sip.connection) {
+        const local = (sip.connection as any).getLocalStreams()
+        const peer = (sip.connection as any).getRemoteStreams()
+
+        if (local.length) {
+          this.localStreams = local
+        } else {
+          this.localStreams = null
+        }
+
+        if (peer.length) {
+          this.peerStreams = peer
+        } else {
+          this.peerStreams = null
+        }
+      }
+    }
   }
 
   get duration() {
@@ -264,6 +298,10 @@ export class Call {
 
   setPeerStreams(streams: MediaStream[] | null) {
     this.peerStreams = streams
+  }
+
+  setLocalStreams(streams: MediaStream[] | null) {
+    this.localStreams = streams
   }
 
   setVoice() {
@@ -357,14 +395,12 @@ export class Call {
   }
 
   /* Call control */
-  answer(req: AnswerRequest): boolean {
-    let sessionId = null
-    if (this.client.phone.hasSession(this.id)) {
-      sessionId = this.id
-    }
+  async answer(req: AnswerRequest) {
+    if (this.sip) {
+      const params = await this.client.phone.callOption(req)
+      this.sip.answer(params)
 
-    if (sessionId) {
-      return this.client.phone.answer(sessionId, req)
+      return true
     }
 
     return false

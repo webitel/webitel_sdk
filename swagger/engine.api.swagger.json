@@ -13,9 +13,8 @@
     }
   },
   "host": "dev.webitel.com",
-  "basePath": "/",
+  "basePath": "/api",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [
@@ -711,6 +710,49 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "domain_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "AgentService"
+        ]
+      }
+    },
+    "/call_center/agents/{agent_id}/statistics/queues": {
+      "get": {
+        "operationId": "SearchAgentInQueueStatistics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineAgentInQueueStatisticsList"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "domain_id",
@@ -3163,6 +3205,55 @@
         "tags": [
           "MemberService"
         ]
+      },
+      "post": {
+        "operationId": "CreateAttempt",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineCreateAttemptResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "queue_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "member_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineCreateAttemptRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MemberService"
+        ]
       }
     },
     "/call_center/queues/{queue_id}/members/{member_id}/attempts/{attempt_id}": {
@@ -5431,6 +5522,56 @@
         "tags": [
           "ResourceTeamService"
         ]
+      },
+      "patch": {
+        "summary": "Patch ResourceTeamAgent",
+        "operationId": "PatchResourceTeamAgent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineResourceTeamAgent"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/enginePatchResourceTeamAgentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ResourceTeamService"
+        ]
       }
     },
     "/call_center/teams/{team_id}/skills": {
@@ -5682,6 +5823,56 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/engineUpdateResourceTeamSkillRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ResourceTeamService"
+        ]
+      },
+      "patch": {
+        "summary": "Patch ResourceTeamAgent",
+        "operationId": "PatchResourceTeamSkill",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineResourceTeamSkill"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/enginePatchResourceTeamSkillRequest"
             }
           }
         ],
@@ -6398,6 +6589,40 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "agent_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "queue_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "team_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "member_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "number",
+            "in": "query",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "domain_id",
@@ -7212,6 +7437,21 @@
     }
   },
   "definitions": {
+    "AgentInQueueStatisticsAgentInQueueStatisticsItem": {
+      "type": "object",
+      "properties": {
+        "bucket": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "skill": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "member_waiting": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "CreateCallRequestCallSettings": {
       "type": "object",
       "properties": {
@@ -7305,6 +7545,10 @@
         "state_timeout": {
           "type": "string",
           "format": "int64"
+        },
+        "progressive_count": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -7340,6 +7584,31 @@
         "active_member": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "engineAgentInQueueStatistics": {
+      "type": "object",
+      "properties": {
+        "queue": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "statistics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AgentInQueueStatisticsAgentInQueueStatisticsItem"
+          }
+        }
+      }
+    },
+    "engineAgentInQueueStatisticsList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineAgentInQueueStatistics"
+          }
         }
       }
     },
@@ -7493,6 +7762,14 @@
         "updated_at": {
           "type": "string",
           "format": "int64"
+        },
+        "post_processing": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "post_processing_timeout": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -7764,6 +8041,25 @@
         }
       }
     },
+    "engineCallFile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mime_type": {
+          "type": "string"
+        }
+      }
+    },
     "engineCommunicationType": {
       "type": "object",
       "properties": {
@@ -7818,6 +8114,10 @@
         },
         "description": {
           "type": "string"
+        },
+        "progressive_count": {
+          "type": "integer",
+          "format": "int32"
         },
         "domain_id": {
           "type": "string",
@@ -7881,7 +8181,45 @@
           "type": "integer",
           "format": "int32"
         },
+        "post_processing": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "post_processing_timeout": {
+          "type": "integer",
+          "format": "int32"
+        },
         "domain_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "engineCreateAttemptRequest": {
+      "type": "object",
+      "properties": {
+        "queue_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "member_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "agent_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "engineCreateAttemptResponse": {
+      "type": "object",
+      "properties": {
+        "attempt_id": {
           "type": "string",
           "format": "int64"
         }
@@ -8035,12 +8373,8 @@
         "bucket": {
           "$ref": "#/definitions/engineLookup"
         },
-        "skills": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
+        "skill": {
+          "$ref": "#/definitions/engineLookup"
         },
         "min_offering_at": {
           "type": "string",
@@ -8103,12 +8437,8 @@
         "bucket": {
           "$ref": "#/definitions/engineLookup"
         },
-        "skills": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
+        "skill": {
+          "$ref": "#/definitions/engineLookup"
         },
         "min_offering_at": {
           "type": "string",
@@ -8361,8 +8691,11 @@
         "agent": {
           "$ref": "#/definitions/engineLookup"
         },
-        "bucket": {
-          "$ref": "#/definitions/engineLookup"
+        "buckets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
         },
         "lvl": {
           "type": "integer",
@@ -8384,8 +8717,11 @@
         "skill": {
           "$ref": "#/definitions/engineLookup"
         },
-        "bucket": {
-          "$ref": "#/definitions/engineLookup"
+        "buckets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
         },
         "lvl": {
           "type": "integer",
@@ -8702,6 +9038,24 @@
         "sip_code": {
           "type": "integer",
           "format": "int32"
+        },
+        "queue": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "team": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "agent": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "member": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineCallFile"
+          }
         }
       }
     },
@@ -9453,12 +9807,8 @@
         "bucket": {
           "$ref": "#/definitions/engineLookup"
         },
-        "skills": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
+        "skill": {
+          "$ref": "#/definitions/engineLookup"
         },
         "min_offering_at": {
           "type": "string",
@@ -9816,6 +10166,86 @@
         }
       }
     },
+    "enginePatchResourceTeamAgentRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "team_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "agent": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "buckets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
+        },
+        "lvl": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "enginePatchResourceTeamSkillRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "team_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "skill": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "buckets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
+        },
+        "lvl": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_capacity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_capacity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "enginePatchRoutingOutboundCallRequest": {
       "type": "object",
       "properties": {
@@ -10057,8 +10487,11 @@
         "agent": {
           "$ref": "#/definitions/engineLookup"
         },
-        "bucket": {
-          "$ref": "#/definitions/engineLookup"
+        "buckets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
         },
         "lvl": {
           "type": "integer",
@@ -10080,8 +10513,11 @@
         "skill": {
           "$ref": "#/definitions/engineLookup"
         },
-        "bucket": {
-          "$ref": "#/definitions/engineLookup"
+        "buckets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
         },
         "lvl": {
           "type": "integer",
@@ -10314,6 +10750,10 @@
         "description": {
           "type": "string"
         },
+        "progressive_count": {
+          "type": "integer",
+          "format": "int32"
+        },
         "domain_id": {
           "type": "string",
           "format": "int64"
@@ -10381,6 +10821,14 @@
           "format": "int32"
         },
         "call_timeout": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "post_processing": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "post_processing_timeout": {
           "type": "integer",
           "format": "int32"
         },
@@ -10558,12 +11006,8 @@
         "bucket": {
           "$ref": "#/definitions/engineLookup"
         },
-        "skills": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
+        "skill": {
+          "$ref": "#/definitions/engineLookup"
         },
         "min_offering_at": {
           "type": "string",
@@ -10852,8 +11296,11 @@
         "agent": {
           "$ref": "#/definitions/engineLookup"
         },
-        "bucket": {
-          "$ref": "#/definitions/engineLookup"
+        "buckets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
         },
         "lvl": {
           "type": "integer",
@@ -10879,8 +11326,11 @@
         "skill": {
           "$ref": "#/definitions/engineLookup"
         },
-        "bucket": {
-          "$ref": "#/definitions/engineLookup"
+        "buckets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
         },
         "lvl": {
           "type": "integer",

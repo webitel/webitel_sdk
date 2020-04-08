@@ -210,8 +210,8 @@ export class Client {
     return this.request(WEBSOCKET_MAKE_OUTBOUND_CALL, req)
   }
 
-  call(req: OutboundCallRequest) {
-    this.phone.call(req)
+  async call(req: OutboundCallRequest) {
+    await this.phone.call(req)
   }
 
   async eavesdrop(req: EavesdropRequest) {
@@ -222,7 +222,7 @@ export class Client {
     return this.request(WEBSOCKET_MAKE_USER_CALL, req)
   }
 
-  answer(id: string, req: AnswerRequest): boolean {
+  async answer(id: string, req: AnswerRequest) {
     return this.phone.answer(id, req)
   }
 
@@ -268,7 +268,7 @@ export class Client {
           )
           break
         case WEBSOCKET_EVENT_CALL:
-          this.handleCallEvents(message.data.call as CallEventData)
+          await this.handleCallEvents(message.data.call as CallEventData)
           break
         case WEBSOCKET_EVENT_USER_STATE:
           this.handleUserStateEvent(message.data.state as UserStatus)
@@ -295,13 +295,28 @@ export class Client {
 
     this.phone.on(
       'peerStreams',
-      (id: string, streams: MediaStream[] | null, incoming: boolean) => {
-        const call = incoming ? this.callById(id) : this.callBySipId(id)
+      (session: CallSession, streams: MediaStream[] | null) => {
+        const call = this.callBySession(session)
         if (call && call.peerStreams === null) {
           call.setPeerStreams(streams)
           this.eventHandler.emit(
             WEBSOCKET_EVENT_CALL,
             CallActions.PeerStream,
+            call
+          )
+        }
+      }
+    )
+
+    this.phone.on(
+      'localStreams',
+      (session: CallSession, streams: MediaStream[] | null) => {
+        const call = this.callBySession(session)
+        if (call && call.localStreams === null) {
+          call.setLocalStreams(streams)
+          this.eventHandler.emit(
+            WEBSOCKET_EVENT_CALL,
+            CallActions.LocalStream,
             call
           )
         }
@@ -321,18 +336,31 @@ export class Client {
     }
   }
 
-  private onNewCallSession(id: string, session: CallSession) {
-    this.checkAutoAnswer(id)
+  private callBySession(session: CallSession): Call | undefined {
+    for (const call of this.allCall()) {
+      if (call.sip === session.sip) {
+        return call
+      }
+    }
   }
 
-  private checkAutoAnswer(id: string) {
-    const call = this.callById(id)
-    if (
-      call &&
-      !document.hidden &&
-      (this.phone.isOutboundCall(id) || call.autoAnswer)
-    ) {
-      call.answer({
+  private async onNewCallSession(session: CallSession) {
+    let call: Call | undefined
+    if (session.callId) {
+      call = this.callById(session.callId)
+    } else {
+      call = this.callBySipId(session.sip.id)
+    }
+
+    if (call) {
+      call.setSip(session.sip)
+      await this.checkAutoAnswer(call)
+    }
+  }
+
+  private async checkAutoAnswer(call: Call) {
+    if (!document.hidden && call.autoAnswer) {
+      return call.answer({
         video: call.params.video,
         screen: call.params.screen,
         disableStun: call.params.disableStun,
@@ -366,16 +394,15 @@ export class Client {
     this.eventHandler.emit(WEBSOCKET_EVENT_USER_STATE, event)
   }
 
-  private handleCallEvents(event: CallEventData) {
+  private async handleCallEvents(event: CallEventData) {
     let call: Call | undefined
 
     switch (event.event) {
       case CallActions.Ringing:
-        call = new Call(this, event, this.phone.getPeerStream(event.id))
+        call = new Call(this, event)
 
         this.callStore.set(call.id, call)
-
-        this.checkAutoAnswer(event.id)
+        await this.checkAutoAnswer(call)
         break
 
       case CallActions.Active:

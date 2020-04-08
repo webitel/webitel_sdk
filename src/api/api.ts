@@ -28,6 +28,31 @@ import {
 /**
  *
  * @export
+ * @interface AgentInQueueStatisticsAgentInQueueStatisticsItem
+ */
+export interface AgentInQueueStatisticsAgentInQueueStatisticsItem {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof AgentInQueueStatisticsAgentInQueueStatisticsItem
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof AgentInQueueStatisticsAgentInQueueStatisticsItem
+   */
+  member_waiting?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof AgentInQueueStatisticsAgentInQueueStatisticsItem
+   */
+  skill?: EngineLookup
+}
+/**
+ *
+ * @export
  * @interface CreateCallRequestCallSettings
  */
 export interface CreateCallRequestCallSettings {
@@ -150,6 +175,12 @@ export interface EngineAgent {
   last_state_change?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineAgent
+   */
+  progressive_count?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineAgent
    */
@@ -227,6 +258,38 @@ export interface EngineAgentInQueue {
    * @memberof EngineAgentInQueue
    */
   waiting_member?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineAgentInQueueStatistics
+ */
+export interface EngineAgentInQueueStatistics {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentInQueueStatistics
+   */
+  queue?: EngineLookup
+  /**
+   *
+   * @type {Array<AgentInQueueStatisticsAgentInQueueStatisticsItem>}
+   * @memberof EngineAgentInQueueStatistics
+   */
+  statistics?: Array<AgentInQueueStatisticsAgentInQueueStatisticsItem>
+}
+/**
+ *
+ * @export
+ * @interface EngineAgentInQueueStatisticsList
+ */
+export interface EngineAgentInQueueStatisticsList {
+  /**
+   *
+   * @type {Array<EngineAgentInQueueStatistics>}
+   * @memberof EngineAgentInQueueStatisticsList
+   */
+  items?: Array<EngineAgentInQueueStatistics>
 }
 /**
  *
@@ -449,6 +512,18 @@ export interface EngineAgentTeam {
    * @memberof EngineAgentTeam
    */
   no_answer_delay_time?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAgentTeam
+   */
+  post_processing?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  post_processing_timeout?: number
   /**
    *
    * @type {number}
@@ -905,6 +980,37 @@ export interface EngineCall {
 /**
  *
  * @export
+ * @interface EngineCallFile
+ */
+export interface EngineCallFile {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCallFile
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCallFile
+   */
+  mime_type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCallFile
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCallFile
+   */
+  size?: string
+}
+/**
+ *
+ * @export
  * @interface EngineCommunicationType
  */
 export interface EngineCommunicationType {
@@ -1002,6 +1108,12 @@ export interface EngineCreateAgentRequest {
   domain_id?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineCreateAgentRequest
+   */
+  progressive_count?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineCreateAgentRequest
    */
@@ -1088,6 +1200,18 @@ export interface EngineCreateAgentTeamRequest {
   no_answer_delay_time?: number
   /**
    *
+   * @type {boolean}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  post_processing?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
+  post_processing_timeout?: number
+  /**
+   *
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
@@ -1104,6 +1228,50 @@ export interface EngineCreateAgentTeamRequest {
    * @memberof EngineCreateAgentTeamRequest
    */
   wrap_up_time?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateAttemptRequest
+ */
+export interface EngineCreateAttemptRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAttemptRequest
+   */
+  agent_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAttemptRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAttemptRequest
+   */
+  member_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAttemptRequest
+   */
+  queue_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineCreateAttemptResponse
+ */
+export interface EngineCreateAttemptResponse {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateAttemptResponse
+   */
+  attempt_id?: string
 }
 /**
  *
@@ -1335,10 +1503,10 @@ export interface EngineCreateMemberBulkItem {
   priority?: number
   /**
    *
-   * @type {Array<string>}
+   * @type {EngineLookup}
    * @memberof EngineCreateMemberBulkItem
    */
-  skills?: Array<string>
+  skill?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -1433,10 +1601,10 @@ export interface EngineCreateMemberRequest {
   queue_id?: string
   /**
    *
-   * @type {Array<string>}
+   * @type {EngineLookup}
    * @memberof EngineCreateMemberRequest
    */
-  skills?: Array<string>
+  skill?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -1826,10 +1994,10 @@ export interface EngineCreateResourceTeamAgentRequest {
   agent?: EngineLookup
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineCreateResourceTeamAgentRequest
    */
-  bucket?: EngineLookup
+  buckets?: Array<EngineLookup>
   /**
    *
    * @type {string}
@@ -1857,10 +2025,10 @@ export interface EngineCreateResourceTeamAgentRequest {
 export interface EngineCreateResourceTeamSkillRequest {
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineCreateResourceTeamSkillRequest
    */
-  bucket?: EngineLookup
+  buckets?: Array<EngineLookup>
   /**
    *
    * @type {string}
@@ -2296,6 +2464,12 @@ export interface EngineHangupCallRequest {
 export interface EngineHistoryCall {
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineHistoryCall
+   */
+  agent?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineHistoryCall
    */
@@ -2338,6 +2512,12 @@ export interface EngineHistoryCall {
   direction?: string
   /**
    *
+   * @type {Array<EngineCallFile>}
+   * @memberof EngineHistoryCall
+   */
+  files?: Array<EngineCallFile>
+  /**
+   *
    * @type {EngineEndpoint}
    * @memberof EngineHistoryCall
    */
@@ -2362,16 +2542,34 @@ export interface EngineHistoryCall {
   id?: string
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineHistoryCall
+   */
+  member?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineHistoryCall
    */
   parent_id?: string
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineHistoryCall
+   */
+  queue?: EngineLookup
+  /**
+   *
    * @type {number}
    * @memberof EngineHistoryCall
    */
   sip_code?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineHistoryCall
+   */
+  team?: EngineLookup
   /**
    *
    * @type {EngineEndpoint}
@@ -3436,10 +3634,10 @@ export interface EngineMemberInQueue {
   reserved?: boolean
   /**
    *
-   * @type {Array<string>}
+   * @type {EngineLookup}
    * @memberof EngineMemberInQueue
    */
-  skills?: Array<string>
+  skill?: EngineLookup
   /**
    *
    * @type {string}
@@ -3981,6 +4179,116 @@ export interface EnginePatchQueueRequest {
 /**
  *
  * @export
+ * @interface EnginePatchResourceTeamAgentRequest
+ */
+export interface EnginePatchResourceTeamAgentRequest {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchResourceTeamAgentRequest
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineLookup>}
+   * @memberof EnginePatchResourceTeamAgentRequest
+   */
+  buckets?: Array<EngineLookup>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchResourceTeamAgentRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePatchResourceTeamAgentRequest
+   */
+  fields?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchResourceTeamAgentRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchResourceTeamAgentRequest
+   */
+  lvl?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchResourceTeamAgentRequest
+   */
+  team_id?: string
+}
+/**
+ *
+ * @export
+ * @interface EnginePatchResourceTeamSkillRequest
+ */
+export interface EnginePatchResourceTeamSkillRequest {
+  /**
+   *
+   * @type {Array<EngineLookup>}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  buckets?: Array<EngineLookup>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  fields?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  lvl?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  max_capacity?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  min_capacity?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchResourceTeamSkillRequest
+   */
+  team_id?: string
+}
+/**
+ *
+ * @export
  * @interface EnginePatchRoutingOutboundCallRequest
  */
 export interface EnginePatchRoutingOutboundCallRequest {
@@ -4353,10 +4661,10 @@ export interface EngineResourceTeamAgent {
   agent?: EngineLookup
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineResourceTeamAgent
    */
-  bucket?: EngineLookup
+  buckets?: Array<EngineLookup>
   /**
    *
    * @type {string}
@@ -4384,10 +4692,10 @@ export interface EngineResourceTeamAgent {
 export interface EngineResourceTeamSkill {
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineResourceTeamSkill
    */
-  bucket?: EngineLookup
+  buckets?: Array<EngineLookup>
   /**
    *
    * @type {string}
@@ -4789,6 +5097,12 @@ export interface EngineUpdateAgentRequest {
   id?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineUpdateAgentRequest
+   */
+  progressive_count?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineUpdateAgentRequest
    */
@@ -4885,6 +5199,18 @@ export interface EngineUpdateAgentTeamRequest {
    * @memberof EngineUpdateAgentTeamRequest
    */
   no_answer_delay_time?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  post_processing?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  post_processing_timeout?: number
   /**
    *
    * @type {number}
@@ -5169,10 +5495,10 @@ export interface EngineUpdateMemberRequest {
   queue_id?: string
   /**
    *
-   * @type {Array<string>}
+   * @type {EngineLookup}
    * @memberof EngineUpdateMemberRequest
    */
-  skills?: Array<string>
+  skill?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -5610,10 +5936,10 @@ export interface EngineUpdateResourceTeamAgentRequest {
   agent?: EngineLookup
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineUpdateResourceTeamAgentRequest
    */
-  bucket?: EngineLookup
+  buckets?: Array<EngineLookup>
   /**
    *
    * @type {string}
@@ -5647,10 +5973,10 @@ export interface EngineUpdateResourceTeamAgentRequest {
 export interface EngineUpdateResourceTeamSkillRequest {
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineUpdateResourceTeamSkillRequest
    */
-  bucket?: EngineLookup
+  buckets?: Array<EngineLookup>
   /**
    *
    * @type {string}
@@ -6668,6 +6994,72 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} agent_id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInQueueStatistics(
+      agent_id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'agent_id' is not null or undefined
+      if (agent_id === null || agent_id === undefined) {
+        throw new RequiredError(
+          'agent_id',
+          'Required parameter agent_id was null or undefined when calling searchAgentInQueueStatistics.'
+        )
+      }
+      const localVarPath = `/call_center/agents/{agent_id}/statistics/queues`.replace(
+        `{${'agent_id'}}`,
+        encodeURIComponent(String(agent_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -7235,6 +7627,35 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} agent_id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInQueueStatistics(
+      agent_id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineAgentInQueueStatisticsList> {
+      const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentInQueueStatistics(agent_id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -7517,6 +7938,24 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} agent_id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentInQueueStatistics(
+      agent_id: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return AgentServiceApiFp(configuration).searchAgentInQueueStatistics(
+        agent_id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -7744,6 +8183,26 @@ export class AgentServiceApi extends BaseAPI {
       page,
       size,
       q,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {string} agent_id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public searchAgentInQueueStatistics(
+    agent_id: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration).searchAgentInQueueStatistics(
+      agent_id,
       domain_id,
       options
     )(this.axios, this.basePath)
@@ -12708,6 +13167,11 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {string} [created_at_from]
      * @param {string} [created_at_to]
      * @param {string} [user_id]
+     * @param {string} [agent_id]
+     * @param {string} [queue_id]
+     * @param {string} [team_id]
+     * @param {string} [member_id]
+     * @param {string} [number]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -12718,6 +13182,11 @@ export const CallServiceApiAxiosParamCreator = function(
       created_at_from?: string,
       created_at_to?: string,
       user_id?: string,
+      agent_id?: string,
+      queue_id?: string,
+      team_id?: string,
+      member_id?: string,
+      number?: string,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
@@ -12762,6 +13231,26 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (user_id !== undefined) {
         localVarQueryParameter['user_id'] = user_id
+      }
+
+      if (agent_id !== undefined) {
+        localVarQueryParameter['agent_id'] = agent_id
+      }
+
+      if (queue_id !== undefined) {
+        localVarQueryParameter['queue_id'] = queue_id
+      }
+
+      if (team_id !== undefined) {
+        localVarQueryParameter['team_id'] = team_id
+      }
+
+      if (member_id !== undefined) {
+        localVarQueryParameter['member_id'] = member_id
+      }
+
+      if (number !== undefined) {
+        localVarQueryParameter['number'] = number
       }
 
       if (domain_id !== undefined) {
@@ -13103,6 +13592,11 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [created_at_from]
      * @param {string} [created_at_to]
      * @param {string} [user_id]
+     * @param {string} [agent_id]
+     * @param {string} [queue_id]
+     * @param {string} [team_id]
+     * @param {string} [member_id]
+     * @param {string} [number]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -13113,6 +13607,11 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       created_at_from?: string,
       created_at_to?: string,
       user_id?: string,
+      agent_id?: string,
+      queue_id?: string,
+      team_id?: string,
+      member_id?: string,
+      number?: string,
       domain_id?: string,
       options?: any
     ): (
@@ -13127,6 +13626,11 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         created_at_from,
         created_at_to,
         user_id,
+        agent_id,
+        queue_id,
+        team_id,
+        member_id,
+        number,
         domain_id,
         options
       )
@@ -13312,6 +13816,11 @@ export const CallServiceApiFactory = function(
      * @param {string} [created_at_from]
      * @param {string} [created_at_to]
      * @param {string} [user_id]
+     * @param {string} [agent_id]
+     * @param {string} [queue_id]
+     * @param {string} [team_id]
+     * @param {string} [member_id]
+     * @param {string} [number]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -13322,6 +13831,11 @@ export const CallServiceApiFactory = function(
       created_at_from?: string,
       created_at_to?: string,
       user_id?: string,
+      agent_id?: string,
+      queue_id?: string,
+      team_id?: string,
+      member_id?: string,
+      number?: string,
       domain_id?: string,
       options?: any
     ) {
@@ -13331,6 +13845,11 @@ export const CallServiceApiFactory = function(
         created_at_from,
         created_at_to,
         user_id,
+        agent_id,
+        queue_id,
+        team_id,
+        member_id,
+        number,
         domain_id,
         options
       )(axios, basePath)
@@ -13509,6 +14028,11 @@ export class CallServiceApi extends BaseAPI {
    * @param {string} [created_at_from]
    * @param {string} [created_at_to]
    * @param {string} [user_id]
+   * @param {string} [agent_id]
+   * @param {string} [queue_id]
+   * @param {string} [team_id]
+   * @param {string} [member_id]
+   * @param {string} [number]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -13520,6 +14044,11 @@ export class CallServiceApi extends BaseAPI {
     created_at_from?: string,
     created_at_to?: string,
     user_id?: string,
+    agent_id?: string,
+    queue_id?: string,
+    team_id?: string,
+    member_id?: string,
+    number?: string,
     domain_id?: string,
     options?: any
   ) {
@@ -13529,6 +14058,11 @@ export class CallServiceApi extends BaseAPI {
       created_at_from,
       created_at_to,
       user_id,
+      agent_id,
+      queue_id,
+      team_id,
+      member_id,
+      number,
       domain_id,
       options
     )(this.axios, this.basePath)
@@ -16329,6 +16863,91 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} queue_id
+     * @param {string} member_id
+     * @param {EngineCreateAttemptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAttempt(
+      queue_id: string,
+      member_id: string,
+      body: EngineCreateAttemptRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling createAttempt.'
+        )
+      }
+      // verify required parameter 'member_id' is not null or undefined
+      if (member_id === null || member_id === undefined) {
+        throw new RequiredError(
+          'member_id',
+          'Required parameter member_id was null or undefined when calling createAttempt.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createAttempt.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/{member_id}/attempts`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'member_id'}}`, encodeURIComponent(String(member_id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateAttemptRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Create Member
      * @param {string} queue_id
      * @param {EngineCreateMemberRequest} body
@@ -17201,6 +17820,37 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} queue_id
+     * @param {string} member_id
+     * @param {EngineCreateAttemptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAttempt(
+      queue_id: string,
+      member_id: string,
+      body: EngineCreateAttemptRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineCreateAttemptResponse> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).createAttempt(queue_id, member_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Create Member
      * @param {string} queue_id
      * @param {EngineCreateMemberRequest} body
@@ -17600,6 +18250,27 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} queue_id
+     * @param {string} member_id
+     * @param {EngineCreateAttemptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAttempt(
+      queue_id: string,
+      member_id: string,
+      body: EngineCreateAttemptRequest,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).createAttempt(
+        queue_id,
+        member_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary Create Member
      * @param {string} queue_id
      * @param {EngineCreateMemberRequest} body
@@ -17879,6 +18550,29 @@ export class MemberServiceApi extends BaseAPI {
       queue_id,
       member_id,
       attempt_id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {string} queue_id
+   * @param {string} member_id
+   * @param {EngineCreateAttemptRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public createAttempt(
+    queue_id: string,
+    member_id: string,
+    body: EngineCreateAttemptRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).createAttempt(
+      queue_id,
+      member_id,
       body,
       options
     )(this.axios, this.basePath)
@@ -25039,6 +25733,178 @@ export const ResourceTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Patch ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EnginePatchResourceTeamAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchResourceTeamAgent(
+      team_id: string,
+      id: string,
+      body: EnginePatchResourceTeamAgentRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling patchResourceTeamAgent.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchResourceTeamAgent.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchResourceTeamAgent.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/agents/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EnginePatchResourceTeamAgentRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Patch ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EnginePatchResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchResourceTeamSkill(
+      team_id: string,
+      id: string,
+      body: EnginePatchResourceTeamSkillRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'team_id' is not null or undefined
+      if (team_id === null || team_id === undefined) {
+        throw new RequiredError(
+          'team_id',
+          'Required parameter team_id was null or undefined when calling patchResourceTeamSkill.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchResourceTeamSkill.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchResourceTeamSkill.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/skills/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(team_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EnginePatchResourceTeamSkillRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary ResourceTeamAgent item
      * @param {string} team_id
      * @param {string} id
@@ -25666,6 +26532,70 @@ export const ResourceTeamServiceApiFp = function(
     },
     /**
      *
+     * @summary Patch ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EnginePatchResourceTeamAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchResourceTeamAgent(
+      team_id: string,
+      id: string,
+      body: EnginePatchResourceTeamAgentRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceTeamAgent> {
+      const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
+        configuration
+      ).patchResourceTeamAgent(team_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Patch ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EnginePatchResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchResourceTeamSkill(
+      team_id: string,
+      id: string,
+      body: EnginePatchResourceTeamSkillRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineResourceTeamSkill> {
+      const localVarAxiosArgs = ResourceTeamServiceApiAxiosParamCreator(
+        configuration
+      ).patchResourceTeamSkill(team_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary ResourceTeamAgent item
      * @param {string} team_id
      * @param {string} id
@@ -25961,6 +26891,50 @@ export const ResourceTeamServiceApiFactory = function(
     },
     /**
      *
+     * @summary Patch ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EnginePatchResourceTeamAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchResourceTeamAgent(
+      team_id: string,
+      id: string,
+      body: EnginePatchResourceTeamAgentRequest,
+      options?: any
+    ) {
+      return ResourceTeamServiceApiFp(configuration).patchResourceTeamAgent(
+        team_id,
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Patch ResourceTeamAgent
+     * @param {string} team_id
+     * @param {string} id
+     * @param {EnginePatchResourceTeamSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchResourceTeamSkill(
+      team_id: string,
+      id: string,
+      body: EnginePatchResourceTeamSkillRequest,
+      options?: any
+    ) {
+      return ResourceTeamServiceApiFp(configuration).patchResourceTeamSkill(
+        team_id,
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary ResourceTeamAgent item
      * @param {string} team_id
      * @param {string} id
@@ -26199,6 +27173,54 @@ export class ResourceTeamServiceApi extends BaseAPI {
       team_id,
       id,
       domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Patch ResourceTeamAgent
+   * @param {string} team_id
+   * @param {string} id
+   * @param {EnginePatchResourceTeamAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  public patchResourceTeamAgent(
+    team_id: string,
+    id: string,
+    body: EnginePatchResourceTeamAgentRequest,
+    options?: any
+  ) {
+    return ResourceTeamServiceApiFp(this.configuration).patchResourceTeamAgent(
+      team_id,
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Patch ResourceTeamAgent
+   * @param {string} team_id
+   * @param {string} id
+   * @param {EnginePatchResourceTeamSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ResourceTeamServiceApi
+   */
+  public patchResourceTeamSkill(
+    team_id: string,
+    id: string,
+    body: EnginePatchResourceTeamSkillRequest,
+    options?: any
+  ) {
+    return ResourceTeamServiceApiFp(this.configuration).patchResourceTeamSkill(
+      team_id,
+      id,
+      body,
       options
     )(this.axios, this.basePath)
   }
