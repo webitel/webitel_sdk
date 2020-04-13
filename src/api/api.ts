@@ -2512,6 +2512,12 @@ export interface EngineHistoryCall {
   direction?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  duration?: number
+  /**
+   *
    * @type {Array<EngineCallFile>}
    * @memberof EngineHistoryCall
    */
@@ -13166,12 +13172,18 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {number} [size]
      * @param {string} [created_at_from]
      * @param {string} [created_at_to]
-     * @param {string} [user_id]
-     * @param {string} [agent_id]
-     * @param {string} [queue_id]
-     * @param {string} [team_id]
-     * @param {string} [member_id]
+     * @param {Array<string>} [user_id]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [team_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [gateway_id]
      * @param {string} [number]
+     * @param {string} [duration_from]
+     * @param {string} [duration_to]
+     * @param {boolean} [skip_parent]
+     * @param {string} [parent_id]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -13181,12 +13193,18 @@ export const CallServiceApiAxiosParamCreator = function(
       size?: number,
       created_at_from?: string,
       created_at_to?: string,
-      user_id?: string,
-      agent_id?: string,
-      queue_id?: string,
-      team_id?: string,
-      member_id?: string,
+      user_id?: Array<string>,
+      agent_id?: Array<string>,
+      queue_id?: Array<string>,
+      team_id?: Array<string>,
+      member_id?: Array<string>,
+      gateway_id?: Array<string>,
       number?: string,
+      duration_from?: string,
+      duration_to?: string,
+      skip_parent?: boolean,
+      parent_id?: string,
+      sort?: string,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
@@ -13229,28 +13247,52 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['created_at.to'] = created_at_to
       }
 
-      if (user_id !== undefined) {
+      if (user_id) {
         localVarQueryParameter['user_id'] = user_id
       }
 
-      if (agent_id !== undefined) {
+      if (agent_id) {
         localVarQueryParameter['agent_id'] = agent_id
       }
 
-      if (queue_id !== undefined) {
+      if (queue_id) {
         localVarQueryParameter['queue_id'] = queue_id
       }
 
-      if (team_id !== undefined) {
+      if (team_id) {
         localVarQueryParameter['team_id'] = team_id
       }
 
-      if (member_id !== undefined) {
+      if (member_id) {
         localVarQueryParameter['member_id'] = member_id
+      }
+
+      if (gateway_id) {
+        localVarQueryParameter['gateway_id'] = gateway_id
       }
 
       if (number !== undefined) {
         localVarQueryParameter['number'] = number
+      }
+
+      if (duration_from !== undefined) {
+        localVarQueryParameter['duration.from'] = duration_from
+      }
+
+      if (duration_to !== undefined) {
+        localVarQueryParameter['duration.to'] = duration_to
+      }
+
+      if (skip_parent !== undefined) {
+        localVarQueryParameter['skip_parent'] = skip_parent
+      }
+
+      if (parent_id !== undefined) {
+        localVarQueryParameter['parent_id'] = parent_id
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (domain_id !== undefined) {
@@ -13591,12 +13633,18 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [size]
      * @param {string} [created_at_from]
      * @param {string} [created_at_to]
-     * @param {string} [user_id]
-     * @param {string} [agent_id]
-     * @param {string} [queue_id]
-     * @param {string} [team_id]
-     * @param {string} [member_id]
+     * @param {Array<string>} [user_id]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [team_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [gateway_id]
      * @param {string} [number]
+     * @param {string} [duration_from]
+     * @param {string} [duration_to]
+     * @param {boolean} [skip_parent]
+     * @param {string} [parent_id]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -13606,12 +13654,18 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       size?: number,
       created_at_from?: string,
       created_at_to?: string,
-      user_id?: string,
-      agent_id?: string,
-      queue_id?: string,
-      team_id?: string,
-      member_id?: string,
+      user_id?: Array<string>,
+      agent_id?: Array<string>,
+      queue_id?: Array<string>,
+      team_id?: Array<string>,
+      member_id?: Array<string>,
+      gateway_id?: Array<string>,
       number?: string,
+      duration_from?: string,
+      duration_to?: string,
+      skip_parent?: boolean,
+      parent_id?: string,
+      sort?: string,
       domain_id?: string,
       options?: any
     ): (
@@ -13630,7 +13684,13 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         queue_id,
         team_id,
         member_id,
+        gateway_id,
         number,
+        duration_from,
+        duration_to,
+        skip_parent,
+        parent_id,
+        sort,
         domain_id,
         options
       )
@@ -13815,12 +13875,18 @@ export const CallServiceApiFactory = function(
      * @param {number} [size]
      * @param {string} [created_at_from]
      * @param {string} [created_at_to]
-     * @param {string} [user_id]
-     * @param {string} [agent_id]
-     * @param {string} [queue_id]
-     * @param {string} [team_id]
-     * @param {string} [member_id]
+     * @param {Array<string>} [user_id]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [team_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [gateway_id]
      * @param {string} [number]
+     * @param {string} [duration_from]
+     * @param {string} [duration_to]
+     * @param {boolean} [skip_parent]
+     * @param {string} [parent_id]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -13830,12 +13896,18 @@ export const CallServiceApiFactory = function(
       size?: number,
       created_at_from?: string,
       created_at_to?: string,
-      user_id?: string,
-      agent_id?: string,
-      queue_id?: string,
-      team_id?: string,
-      member_id?: string,
+      user_id?: Array<string>,
+      agent_id?: Array<string>,
+      queue_id?: Array<string>,
+      team_id?: Array<string>,
+      member_id?: Array<string>,
+      gateway_id?: Array<string>,
       number?: string,
+      duration_from?: string,
+      duration_to?: string,
+      skip_parent?: boolean,
+      parent_id?: string,
+      sort?: string,
       domain_id?: string,
       options?: any
     ) {
@@ -13849,7 +13921,13 @@ export const CallServiceApiFactory = function(
         queue_id,
         team_id,
         member_id,
+        gateway_id,
         number,
+        duration_from,
+        duration_to,
+        skip_parent,
+        parent_id,
+        sort,
         domain_id,
         options
       )(axios, basePath)
@@ -14027,12 +14105,18 @@ export class CallServiceApi extends BaseAPI {
    * @param {number} [size]
    * @param {string} [created_at_from]
    * @param {string} [created_at_to]
-   * @param {string} [user_id]
-   * @param {string} [agent_id]
-   * @param {string} [queue_id]
-   * @param {string} [team_id]
-   * @param {string} [member_id]
+   * @param {Array<string>} [user_id]
+   * @param {Array<string>} [agent_id]
+   * @param {Array<string>} [queue_id]
+   * @param {Array<string>} [team_id]
+   * @param {Array<string>} [member_id]
+   * @param {Array<string>} [gateway_id]
    * @param {string} [number]
+   * @param {string} [duration_from]
+   * @param {string} [duration_to]
+   * @param {boolean} [skip_parent]
+   * @param {string} [parent_id]
+   * @param {string} [sort]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -14043,12 +14127,18 @@ export class CallServiceApi extends BaseAPI {
     size?: number,
     created_at_from?: string,
     created_at_to?: string,
-    user_id?: string,
-    agent_id?: string,
-    queue_id?: string,
-    team_id?: string,
-    member_id?: string,
+    user_id?: Array<string>,
+    agent_id?: Array<string>,
+    queue_id?: Array<string>,
+    team_id?: Array<string>,
+    member_id?: Array<string>,
+    gateway_id?: Array<string>,
     number?: string,
+    duration_from?: string,
+    duration_to?: string,
+    skip_parent?: boolean,
+    parent_id?: string,
+    sort?: string,
     domain_id?: string,
     options?: any
   ) {
@@ -14062,7 +14152,13 @@ export class CallServiceApi extends BaseAPI {
       queue_id,
       team_id,
       member_id,
+      gateway_id,
       number,
+      duration_from,
+      duration_to,
+      skip_parent,
+      parent_id,
+      sort,
       domain_id,
       options
     )(this.axios, this.basePath)

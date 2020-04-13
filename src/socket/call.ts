@@ -176,14 +176,15 @@ export class Call {
     this.hangupAt = 0
     this.bridgedAt = 0
 
+    this.peerStreams = null
+    this.localStreams = null
+
     if (callInfo.sip_id) {
       this.setSip(client.phone.sipSessionBySipId(callInfo.sip_id))
     } else {
       this.setSip(client.phone.sipSessionByCallId(e.id))
     }
 
-    this.peerStreams = null
-    this.localStreams = null
     this.params = {}
 
     this.id = e.id
