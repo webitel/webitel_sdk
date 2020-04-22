@@ -157,6 +157,12 @@ export interface EngineAcceptOfDay {
 export interface EngineAgent {
   /**
    *
+   * @type {Array<EngineAgentChannel>}
+   * @memberof EngineAgent
+   */
+  channels?: Array<EngineAgentChannel>
+  /**
+   *
    * @type {string}
    * @memberof EngineAgent
    */
@@ -172,25 +178,19 @@ export interface EngineAgent {
    * @type {string}
    * @memberof EngineAgent
    */
-  last_state_change?: string
+  last_status_change?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  name?: string
   /**
    *
    * @type {number}
    * @memberof EngineAgent
    */
   progressive_count?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgent
-   */
-  state?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgent
-   */
-  state_timeout?: string
   /**
    *
    * @type {string}
@@ -203,6 +203,37 @@ export interface EngineAgent {
    * @memberof EngineAgent
    */
   user?: EngineLookup
+}
+/**
+ *
+ * @export
+ * @interface EngineAgentChannel
+ */
+export interface EngineAgentChannel {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentChannel
+   */
+  channel?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentChannel
+   */
+  joined_at?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAgentChannel
+   */
+  online?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentChannel
+   */
+  state?: string
 }
 /**
  *
@@ -451,6 +482,12 @@ export interface EngineAgentStatusRequest {
    * @memberof EngineAgentStatusRequest
    */
   id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAgentStatusRequest
+   */
+  on_demand?: boolean
   /**
    *
    * @type {string}
@@ -1406,6 +1443,79 @@ export interface EngineCreateCallResponse {
 /**
  *
  * @export
+ * @interface EngineCreateEmailProfileRequest
+ */
+export interface EngineCreateEmailProfileRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  host?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  imap_port?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  login?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  mailbox?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  password?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  schema?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  smtp_port?: number
+}
+/**
+ *
+ * @export
  * @interface EngineCreateListCommunicationRequest
  */
 export interface EngineCreateListCommunicationRequest {
@@ -2347,6 +2457,103 @@ export interface EngineEavesdropCallRequest {
 /**
  *
  * @export
+ * @interface EngineEmailProfile
+ */
+export interface EngineEmailProfile {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  created_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineEmailProfile
+   */
+  created_by?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineEmailProfile
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  host?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineEmailProfile
+   */
+  imap_port?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  login?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  mailbox?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  name?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineEmailProfile
+   */
+  schema?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineEmailProfile
+   */
+  smtp_port?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineEmailProfile
+   */
+  updated_by?: EngineLookup
+}
+/**
+ *
+ * @export
  * @interface EngineEndpoint
  */
 export interface EngineEndpoint {
@@ -2482,6 +2689,12 @@ export interface EngineHistoryCall {
   app_id?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  bill_sec?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineHistoryCall
    */
@@ -2530,10 +2743,22 @@ export interface EngineHistoryCall {
   from?: EngineEndpoint
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineHistoryCall
+   */
+  gateway?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineHistoryCall
    */
   hangup_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  hangup_by?: string
   /**
    *
    * @type {number}
@@ -2546,6 +2771,18 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  joined_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  leaving_at?: string
   /**
    *
    * @type {EngineLookup}
@@ -2566,6 +2803,42 @@ export interface EngineHistoryCall {
   queue?: EngineLookup
   /**
    *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  queue_bridged_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  queue_duration_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  queue_wait_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  reporting_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  reporting_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  result?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineHistoryCall
    */
@@ -2582,6 +2855,30 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   to?: EngineEndpoint
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  type?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineHistoryCall
+   */
+  user?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineHistoryCall
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  wait_sec?: number
 }
 /**
  *
@@ -2907,6 +3204,25 @@ export interface EngineListCommunicationType {
    *
    * @type {boolean}
    * @memberof EngineListCommunicationType
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
+ * @interface EngineListEmailProfile
+ */
+export interface EngineListEmailProfile {
+  /**
+   *
+   * @type {Array<EngineEmailProfile>}
+   * @memberof EngineListEmailProfile
+   */
+  items?: Array<EngineEmailProfile>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListEmailProfile
    */
   next?: boolean
 }
@@ -5374,6 +5690,85 @@ export interface EngineUpdateCommunicationTypeRequest {
 /**
  *
  * @export
+ * @interface EngineUpdateEmailProfileRequest
+ */
+export interface EngineUpdateEmailProfileRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  host?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  imap_port?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  login?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  mailbox?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  password?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  schema?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  smtp_port?: number
+}
+/**
+ *
+ * @export
  * @interface EngineUpdateListCommunicationRequest
  */
 export interface EngineUpdateListCommunicationRequest {
@@ -6848,6 +7243,9 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -6856,6 +7254,9 @@ export const AgentServiceApiAxiosParamCreator = function(
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/agents`
@@ -6895,6 +7296,18 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (domain_id !== undefined) {
         localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -7569,6 +7982,9 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -7577,6 +7993,9 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -7584,7 +8003,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgent> {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
-      ).searchAgent(page, size, q, domain_id, options)
+      ).searchAgent(page, size, q, domain_id, fields, sort, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -7897,6 +8316,9 @@ export const AgentServiceApiFactory = function(
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -7905,6 +8327,9 @@ export const AgentServiceApiFactory = function(
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options?: any
     ) {
       return AgentServiceApiFp(configuration).searchAgent(
@@ -7912,6 +8337,9 @@ export const AgentServiceApiFactory = function(
         size,
         q,
         domain_id,
+        fields,
+        sort,
+        id,
         options
       )(axios, basePath)
     },
@@ -8145,6 +8573,9 @@ export class AgentServiceApi extends BaseAPI {
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [domain_id]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
+   * @param {Array<string>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
@@ -8154,6 +8585,9 @@ export class AgentServiceApi extends BaseAPI {
     size?: number,
     q?: string,
     domain_id?: string,
+    fields?: Array<string>,
+    sort?: string,
+    id?: Array<string>,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).searchAgent(
@@ -8161,6 +8595,9 @@ export class AgentServiceApi extends BaseAPI {
       size,
       q,
       domain_id,
+      fields,
+      sort,
+      id,
       options
     )(this.axios, this.basePath)
   }
@@ -9590,6 +10027,9 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -9598,6 +10038,9 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/teams`
@@ -9637,6 +10080,18 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
 
       if (domain_id !== undefined) {
         localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -9838,6 +10293,9 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -9846,6 +10304,9 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -9853,7 +10314,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListAgentTeam> {
       const localVarAxiosArgs = AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentTeam(page, size, q, domain_id, options)
+      ).searchAgentTeam(page, size, q, domain_id, fields, sort, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -9958,6 +10419,9 @@ export const AgentTeamServiceApiFactory = function(
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -9966,6 +10430,9 @@ export const AgentTeamServiceApiFactory = function(
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options?: any
     ) {
       return AgentTeamServiceApiFp(configuration).searchAgentTeam(
@@ -9973,6 +10440,9 @@ export const AgentTeamServiceApiFactory = function(
         size,
         q,
         domain_id,
+        fields,
+        sort,
+        id,
         options
       )(axios, basePath)
     },
@@ -10061,6 +10531,9 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [domain_id]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
+   * @param {Array<string>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
@@ -10070,6 +10543,9 @@ export class AgentTeamServiceApi extends BaseAPI {
     size?: number,
     q?: string,
     domain_id?: string,
+    fields?: Array<string>,
+    sort?: string,
+    id?: Array<string>,
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration).searchAgentTeam(
@@ -10077,6 +10553,9 @@ export class AgentTeamServiceApi extends BaseAPI {
       size,
       q,
       domain_id,
+      fields,
+      sort,
+      id,
       options
     )(this.axios, this.basePath)
   }
@@ -13183,6 +13662,9 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {string} [duration_to]
      * @param {boolean} [skip_parent]
      * @param {string} [parent_id]
+     * @param {string} [cause]
+     * @param {boolean} [exists_file]
+     * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -13204,6 +13686,9 @@ export const CallServiceApiAxiosParamCreator = function(
       duration_to?: string,
       skip_parent?: boolean,
       parent_id?: string,
+      cause?: string,
+      exists_file?: boolean,
+      fields?: Array<string>,
       sort?: string,
       domain_id?: string,
       options: any = {}
@@ -13289,6 +13774,18 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (parent_id !== undefined) {
         localVarQueryParameter['parent_id'] = parent_id
+      }
+
+      if (cause !== undefined) {
+        localVarQueryParameter['cause'] = cause
+      }
+
+      if (exists_file !== undefined) {
+        localVarQueryParameter['exists_file'] = exists_file
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       if (sort !== undefined) {
@@ -13644,6 +14141,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [duration_to]
      * @param {boolean} [skip_parent]
      * @param {string} [parent_id]
+     * @param {string} [cause]
+     * @param {boolean} [exists_file]
+     * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -13665,6 +14165,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       duration_to?: string,
       skip_parent?: boolean,
       parent_id?: string,
+      cause?: string,
+      exists_file?: boolean,
+      fields?: Array<string>,
       sort?: string,
       domain_id?: string,
       options?: any
@@ -13690,6 +14193,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         duration_to,
         skip_parent,
         parent_id,
+        cause,
+        exists_file,
+        fields,
         sort,
         domain_id,
         options
@@ -13886,6 +14392,9 @@ export const CallServiceApiFactory = function(
      * @param {string} [duration_to]
      * @param {boolean} [skip_parent]
      * @param {string} [parent_id]
+     * @param {string} [cause]
+     * @param {boolean} [exists_file]
+     * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -13907,6 +14416,9 @@ export const CallServiceApiFactory = function(
       duration_to?: string,
       skip_parent?: boolean,
       parent_id?: string,
+      cause?: string,
+      exists_file?: boolean,
+      fields?: Array<string>,
       sort?: string,
       domain_id?: string,
       options?: any
@@ -13927,6 +14439,9 @@ export const CallServiceApiFactory = function(
         duration_to,
         skip_parent,
         parent_id,
+        cause,
+        exists_file,
+        fields,
         sort,
         domain_id,
         options
@@ -14116,6 +14631,9 @@ export class CallServiceApi extends BaseAPI {
    * @param {string} [duration_to]
    * @param {boolean} [skip_parent]
    * @param {string} [parent_id]
+   * @param {string} [cause]
+   * @param {boolean} [exists_file]
+   * @param {Array<string>} [fields]
    * @param {string} [sort]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
@@ -14138,6 +14656,9 @@ export class CallServiceApi extends BaseAPI {
     duration_to?: string,
     skip_parent?: boolean,
     parent_id?: string,
+    cause?: string,
+    exists_file?: boolean,
+    fields?: Array<string>,
     sort?: string,
     domain_id?: string,
     options?: any
@@ -14158,6 +14679,9 @@ export class CallServiceApi extends BaseAPI {
       duration_to,
       skip_parent,
       parent_id,
+      cause,
+      exists_file,
+      fields,
       sort,
       domain_id,
       options
@@ -14903,6 +15427,767 @@ export class CommunicationTypeServiceApi extends BaseAPI {
     return CommunicationTypeServiceApiFp(
       this.configuration
     ).updateCommunicationType(id, body, options)(this.axios, this.basePath)
+  }
+}
+
+/**
+ * EmailProfileServiceApi - axios parameter creator
+ * @export
+ */
+export const EmailProfileServiceApiAxiosParamCreator = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create EmailProfile
+     * @param {EngineCreateEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createEmailProfile(
+      body: EngineCreateEmailProfileRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createEmailProfile.'
+        )
+      }
+      const localVarPath = `/email/profile`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineCreateEmailProfileRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove EmailProfile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailProfile(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteEmailProfile.'
+        )
+      }
+      const localVarPath = `/email/profile/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary EmailProfile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readEmailProfile(
+      id: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readEmailProfile.'
+        )
+      }
+      const localVarPath = `/email/profile/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Search EmailProfile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchEmailProfile(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/email/profile`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Update EmailProfile
+     * @param {string} id
+     * @param {EngineUpdateEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailProfile(
+      id: string,
+      body: EngineUpdateEmailProfileRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateEmailProfile.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateEmailProfile.'
+        )
+      }
+      const localVarPath = `/email/profile/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineUpdateEmailProfileRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * EmailProfileServiceApi - functional programming interface
+ * @export
+ */
+export const EmailProfileServiceApiFp = function(
+  configuration?: Configuration
+) {
+  return {
+    /**
+     *
+     * @summary Create EmailProfile
+     * @param {EngineCreateEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createEmailProfile(
+      body: EngineCreateEmailProfileRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineEmailProfile> {
+      const localVarAxiosArgs = EmailProfileServiceApiAxiosParamCreator(
+        configuration
+      ).createEmailProfile(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove EmailProfile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailProfile(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineEmailProfile> {
+      const localVarAxiosArgs = EmailProfileServiceApiAxiosParamCreator(
+        configuration
+      ).deleteEmailProfile(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary EmailProfile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readEmailProfile(
+      id: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineEmailProfile> {
+      const localVarAxiosArgs = EmailProfileServiceApiAxiosParamCreator(
+        configuration
+      ).readEmailProfile(id, domain_id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Search EmailProfile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchEmailProfile(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListEmailProfile> {
+      const localVarAxiosArgs = EmailProfileServiceApiAxiosParamCreator(
+        configuration
+      ).searchEmailProfile(page, size, q, domain_id, fields, sort, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update EmailProfile
+     * @param {string} id
+     * @param {EngineUpdateEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailProfile(
+      id: string,
+      body: EngineUpdateEmailProfileRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineEmailProfile> {
+      const localVarAxiosArgs = EmailProfileServiceApiAxiosParamCreator(
+        configuration
+      ).updateEmailProfile(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+  }
+}
+
+/**
+ * EmailProfileServiceApi - factory interface
+ * @export
+ */
+export const EmailProfileServiceApiFactory = function(
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance
+) {
+  return {
+    /**
+     *
+     * @summary Create EmailProfile
+     * @param {EngineCreateEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createEmailProfile(body: EngineCreateEmailProfileRequest, options?: any) {
+      return EmailProfileServiceApiFp(configuration).createEmailProfile(
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Remove EmailProfile
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailProfile(id: string, domain_id?: string, options?: any) {
+      return EmailProfileServiceApiFp(configuration).deleteEmailProfile(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary EmailProfile item
+     * @param {string} id
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readEmailProfile(id: string, domain_id?: string, options?: any) {
+      return EmailProfileServiceApiFp(configuration).readEmailProfile(
+        id,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Search EmailProfile
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchEmailProfile(
+      page?: number,
+      size?: number,
+      q?: string,
+      domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      options?: any
+    ) {
+      return EmailProfileServiceApiFp(configuration).searchEmailProfile(
+        page,
+        size,
+        q,
+        domain_id,
+        fields,
+        sort,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary Update EmailProfile
+     * @param {string} id
+     * @param {EngineUpdateEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailProfile(
+      id: string,
+      body: EngineUpdateEmailProfileRequest,
+      options?: any
+    ) {
+      return EmailProfileServiceApiFp(configuration).updateEmailProfile(
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+  }
+}
+
+/**
+ * EmailProfileServiceApi - object-oriented interface
+ * @export
+ * @class EmailProfileServiceApi
+ * @extends {BaseAPI}
+ */
+export class EmailProfileServiceApi extends BaseAPI {
+  /**
+   *
+   * @summary Create EmailProfile
+   * @param {EngineCreateEmailProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApi
+   */
+  public createEmailProfile(
+    body: EngineCreateEmailProfileRequest,
+    options?: any
+  ) {
+    return EmailProfileServiceApiFp(this.configuration).createEmailProfile(
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Remove EmailProfile
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApi
+   */
+  public deleteEmailProfile(id: string, domain_id?: string, options?: any) {
+    return EmailProfileServiceApiFp(this.configuration).deleteEmailProfile(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary EmailProfile item
+   * @param {string} id
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApi
+   */
+  public readEmailProfile(id: string, domain_id?: string, options?: any) {
+    return EmailProfileServiceApiFp(this.configuration).readEmailProfile(
+      id,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Search EmailProfile
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [domain_id]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApi
+   */
+  public searchEmailProfile(
+    page?: number,
+    size?: number,
+    q?: string,
+    domain_id?: string,
+    fields?: Array<string>,
+    sort?: string,
+    options?: any
+  ) {
+    return EmailProfileServiceApiFp(this.configuration).searchEmailProfile(
+      page,
+      size,
+      q,
+      domain_id,
+      fields,
+      sort,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Update EmailProfile
+   * @param {string} id
+   * @param {EngineUpdateEmailProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApi
+   */
+  public updateEmailProfile(
+    id: string,
+    body: EngineUpdateEmailProfileRequest,
+    options?: any
+  ) {
+    return EmailProfileServiceApiFp(this.configuration).updateEmailProfile(
+      id,
+      body,
+      options
+    )(this.axios, this.basePath)
   }
 }
 
@@ -24962,6 +26247,9 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -24970,6 +26258,9 @@ export const QueueServiceApiAxiosParamCreator = function(
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/queues`
@@ -25009,6 +26300,18 @@ export const QueueServiceApiAxiosParamCreator = function(
 
       if (domain_id !== undefined) {
         localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -25228,6 +26531,9 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -25236,6 +26542,9 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -25243,7 +26552,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListQueue> {
       const localVarAxiosArgs = QueueServiceApiAxiosParamCreator(
         configuration
-      ).searchQueue(page, size, q, domain_id, options)
+      ).searchQueue(page, size, q, domain_id, fields, sort, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -25358,6 +26667,9 @@ export const QueueServiceApiFactory = function(
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<string>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -25366,6 +26678,9 @@ export const QueueServiceApiFactory = function(
       size?: number,
       q?: string,
       domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      id?: Array<string>,
       options?: any
     ) {
       return QueueServiceApiFp(configuration).searchQueue(
@@ -25373,6 +26688,9 @@ export const QueueServiceApiFactory = function(
         size,
         q,
         domain_id,
+        fields,
+        sort,
+        id,
         options
       )(axios, basePath)
     },
@@ -25472,6 +26790,9 @@ export class QueueServiceApi extends BaseAPI {
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [domain_id]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
+   * @param {Array<string>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
@@ -25481,6 +26802,9 @@ export class QueueServiceApi extends BaseAPI {
     size?: number,
     q?: string,
     domain_id?: string,
+    fields?: Array<string>,
+    sort?: string,
+    id?: Array<string>,
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration).searchQueue(
@@ -25488,6 +26812,9 @@ export class QueueServiceApi extends BaseAPI {
       size,
       q,
       domain_id,
+      fields,
+      sort,
+      id,
       options
     )(this.axios, this.basePath)
   }

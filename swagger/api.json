@@ -317,6 +317,29 @@
             "format": "int64",
             "name": "domain_id",
             "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "fields",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "id",
+            "in": "query"
           }
         ],
         "responses": {
@@ -2143,6 +2166,29 @@
             "type": "string",
             "format": "int64",
             "name": "domain_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "fields",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "id",
             "in": "query"
           }
         ],
@@ -4930,6 +4976,29 @@
             "format": "int64",
             "name": "domain_id",
             "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "fields",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "id",
+            "in": "query"
           }
         ],
         "responses": {
@@ -6479,6 +6548,26 @@
           },
           {
             "type": "string",
+            "name": "cause",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "exists_file",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "fields",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "name": "sort",
             "in": "query"
           },
@@ -6494,6 +6583,236 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/engineListHistoryCall"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/email/profile": {
+      "get": {
+        "tags": [
+          "EmailProfileService"
+        ],
+        "summary": "Search EmailProfile",
+        "operationId": "SearchEmailProfile",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "fields",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListEmailProfile"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "EmailProfileService"
+        ],
+        "summary": "Create EmailProfile",
+        "operationId": "CreateEmailProfile",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineCreateEmailProfileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineEmailProfile"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/email/profile/{id}": {
+      "get": {
+        "tags": [
+          "EmailProfileService"
+        ],
+        "summary": "EmailProfile item",
+        "operationId": "ReadEmailProfile",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineEmailProfile"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "EmailProfileService"
+        ],
+        "summary": "Update EmailProfile",
+        "operationId": "UpdateEmailProfile",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineUpdateEmailProfileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineEmailProfile"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "EmailProfileService"
+        ],
+        "summary": "Remove EmailProfile",
+        "operationId": "DeleteEmailProfile",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineEmailProfile"
             }
           },
           "403": {
@@ -7675,6 +7994,12 @@
     "engineAgent": {
       "type": "object",
       "properties": {
+        "channels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineAgentChannel"
+          }
+        },
         "description": {
           "type": "string"
         },
@@ -7682,26 +8007,41 @@
           "type": "string",
           "format": "int64"
         },
-        "last_state_change": {
+        "last_status_change": {
           "type": "string",
           "format": "int64"
+        },
+        "name": {
+          "type": "string"
         },
         "progressive_count": {
           "type": "integer",
           "format": "int32"
-        },
-        "state": {
-          "type": "string"
-        },
-        "state_timeout": {
-          "type": "string",
-          "format": "int64"
         },
         "status": {
           "type": "string"
         },
         "user": {
           "$ref": "#/definitions/engineLookup"
+        }
+      }
+    },
+    "engineAgentChannel": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string"
+        },
+        "joined_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "online": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "state": {
+          "type": "string"
         }
       }
     },
@@ -7862,6 +8202,10 @@
         "id": {
           "type": "string",
           "format": "int64"
+        },
+        "on_demand": {
+          "type": "boolean",
+          "format": "boolean"
         },
         "status": {
           "type": "string"
@@ -8457,6 +8801,48 @@
       "properties": {
         "id": {
           "type": "string"
+        }
+      }
+    },
+    "engineCreateEmailProfileRequest": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "enabled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "host": {
+          "type": "string"
+        },
+        "imap_port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "login": {
+          "type": "string"
+        },
+        "mailbox": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "smtp_port": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -9070,6 +9456,63 @@
         }
       }
     },
+    "engineEmailProfile": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "created_by": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "description": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "enabled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "host": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "imap_port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "login": {
+          "type": "string"
+        },
+        "mailbox": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "smtp_port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "updated_by": {
+          "$ref": "#/definitions/engineLookup"
+        }
+      }
+    },
     "engineEndpoint": {
       "type": "object",
       "properties": {
@@ -9154,6 +9597,10 @@
         "app_id": {
           "type": "string"
         },
+        "bill_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
         "bridged_at": {
           "type": "string",
           "format": "int64"
@@ -9184,9 +9631,15 @@
         "from": {
           "$ref": "#/definitions/engineEndpoint"
         },
+        "gateway": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "hangup_at": {
           "type": "string",
           "format": "int64"
+        },
+        "hangup_by": {
+          "type": "string"
         },
         "hold_sec": {
           "type": "integer",
@@ -9194,6 +9647,14 @@
         },
         "id": {
           "type": "string"
+        },
+        "joined_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "leaving_at": {
+          "type": "string",
+          "format": "int64"
         },
         "member": {
           "$ref": "#/definitions/engineLookup"
@@ -9204,6 +9665,29 @@
         "queue": {
           "$ref": "#/definitions/engineLookup"
         },
+        "queue_bridged_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "queue_duration_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "queue_wait_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "reporting_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "reporting_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "result": {
+          "type": "string"
+        },
         "sip_code": {
           "type": "integer",
           "format": "int32"
@@ -9213,6 +9697,22 @@
         },
         "to": {
           "$ref": "#/definitions/engineEndpoint"
+        },
+        "type": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "wait_sec": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -9448,6 +9948,21 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/engineCommunicationType"
+          }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "engineListEmailProfile": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineEmailProfile"
           }
         },
         "next": {
@@ -11078,6 +11593,52 @@
         },
         "type": {
           "type": "string"
+        }
+      }
+    },
+    "engineUpdateEmailProfileRequest": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "enabled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "host": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "imap_port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "login": {
+          "type": "string"
+        },
+        "mailbox": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "schema": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "smtp_port": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
