@@ -14,6 +14,7 @@ import { Log } from './log'
 import { QueueJoinMemberEvent } from './queue'
 import { CallSession, SipConfiguration, SipPhone } from './sip'
 import { Message, Socket } from './socket'
+import { ChannelEvent, Task } from './task'
 import { UserStatus } from './user'
 
 export interface Config {
@@ -51,7 +52,10 @@ const WEBSOCKET_EVENT_HELLO = 'hello'
 const WEBSOCKET_EVENT_CALL = 'call'
 const WEBSOCKET_EVENT_USER_STATE = 'user_state'
 const WEBSOCKET_EVENT_AGENT_STATUS = 'agent_status'
+const WEBSOCKET_EVENT_CHANNEL_STATUS = 'channel'
 const WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER = 'queue_join_member'
+
+const TASK_EVENT = 'task'
 
 const WEBSOCKET_EVENT_SIP = 'sip'
 
@@ -80,6 +84,8 @@ export type CallEventHandler = (action: CallActions, call: Call) => void
 export type UsersStatusEventHandler = (state: UserStatus) => void
 export type AgentStatusEventHandler = (state: AgentStatusEvent) => void
 
+export type TaskEventHandler = (action: string, task: Task | undefined) => void
+
 export type QueueJoinMemberHandler = (member: QueueJoinMemberEvent) => void
 
 interface EventHandler {
@@ -89,6 +95,7 @@ interface EventHandler {
   [WEBSOCKET_EVENT_AGENT_STATUS](status: AgentStatusEvent): void
 
   [WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER](member: QueueJoinMemberEvent): void
+  [TASK_EVENT](name: string, task: Task | undefined): void
 }
 
 export class Client {
@@ -149,6 +156,10 @@ export class Client {
     this.eventHandler.on(WEBSOCKET_EVENT_AGENT_STATUS, handler)
 
     return res
+  }
+
+  subscribeTask(handler: TaskEventHandler) {
+    this.eventHandler.on(TASK_EVENT, handler)
   }
 
   async unSubscribe(action: string, handler: CallEventHandler, data?: object) {
@@ -279,12 +290,29 @@ export class Client {
           break
 
         case WEBSOCKET_EVENT_AGENT_STATUS:
-          this.eventHandler.emit(WEBSOCKET_EVENT_AGENT_STATUS, message.data
-            .status as AgentStatusEvent)
+          this.handleAgentStatus(message.data as AgentStatusEvent)
+          break
+        case WEBSOCKET_EVENT_CHANNEL_STATUS:
+          this.handleChannelEvents(message.data as ChannelEvent)
           break
         default:
           this.log.error(`event ${message.event} not handler`)
       }
+    }
+  }
+
+  private handleAgentStatus(e: AgentStatusEvent) {
+    if (this.agent && e.agent_id === this.agent.agentId) {
+      this.agent.setStatus(e)
+    }
+
+    this.eventHandler.emit(WEBSOCKET_EVENT_AGENT_STATUS, e)
+  }
+
+  private handleChannelEvents(e: ChannelEvent) {
+    if (this.agent) {
+      const task = this.agent.onChannelEvent(e) || undefined
+      this.eventHandler.emit(TASK_EVENT, e.status, task)
     }
   }
 

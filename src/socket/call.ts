@@ -1,5 +1,6 @@
 import { Client, UserCallRequest } from './client'
 import { SipSession } from './sip'
+import { Task } from './task'
 
 export interface CallParameters {
   timeout?: number
@@ -164,6 +165,7 @@ export class Call {
   digits!: string[]
   applications!: string[]
   voice: boolean
+  task: Task | null
 
   constructor(protected client: Client, e: CallEventData) {
     // FIXME check _muted from channel
@@ -171,6 +173,7 @@ export class Call {
     this._muted = false
     this.voice = true
     this.createdAt = +e.timestamp
+    this.task = null
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -193,6 +196,10 @@ export class Call {
     this.appId = e.app_id
     this.setState(e)
     this.setInfo(callInfo)
+
+    if (this.queue && this.client.agent) {
+      this.task = this.client.agent.task.get(+this.queue.attempt_id) || null
+    }
   }
   // set private
   setState(s: CallEventData) {
@@ -388,11 +395,7 @@ export class Call {
   }
 
   get autoAnswer() {
-    return (
-      this.queue &&
-      (this.queue.queue_type === 'offline' ||
-        this.queue.queue_type === 'preview')
-    )
+    return this.queue && this.queue.queue_type === 'offline'
   }
 
   /* Call control */

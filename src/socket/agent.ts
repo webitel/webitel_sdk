@@ -1,11 +1,28 @@
 import { Client } from './client'
+import {
+  ChannelEvent,
+  DistributeEvent,
+  MissedEvent,
+  Task,
+  WrapTimeEvent,
+} from './task'
+
+export interface Channel {
+  channel: ChannelType
+  state: string
+  joined_at: number
+  timeout?: number
+  enabled: boolean
+}
 
 export interface AgentSession {
   agent_id: number
   status: string
-  last_state_change: number
-  state_timeout?: number
+  on_demand: boolean
+  last_status_change: number
+  status_duration: number
   status_payload: any
+  channels: Channel[]
 }
 
 export interface AgentStatusEvent {
@@ -15,10 +32,12 @@ export interface AgentStatusEvent {
   status: string
   status_payload?: any
   timeout?: number
+  channels?: Channel[]
+  on_demand?: boolean
 }
 
 export enum AgentStatus {
-  Waiting = 'waiting',
+  Online = 'online',
   Offline = 'offline',
   Pause = 'pause',
 }
@@ -34,48 +53,153 @@ export enum AgentState {
   Fine = 'fine',
 }
 
+export enum ChannelState {
+  Waiting = 'waiting',
+
+  Distribute = 'distribute', // ring
+  Offering = 'offering', // ring
+
+  Answered = 'answered',
+  Active = 'active',
+  Hold = 'hold', // TODO
+  Reporting = 'reporting',
+  Missed = 'missed',
+  WrapTime = 'wrap_time',
+}
+
+export enum ChannelType {
+  Call = 'call',
+  Email = 'email',
+}
+
 export class Agent {
-  constructor(
-    protected readonly client: Client,
-    protected info: AgentSession
-  ) {}
+  task: Map<number, Task>
+
+  lastStatusChange: number
+  constructor(protected readonly client: Client, protected info: AgentSession) {
+    this.task = new Map<number, Task>()
+
+    this.lastStatusChange = Date.now() - this.info.status_duration * 1000
+  }
 
   get agentId() {
     return this.info.agent_id
+  }
+
+  get onDemand() {
+    return this.info.on_demand
   }
 
   get status() {
     return this.info.status
   }
 
+  get channels() {
+    return this.info.channels
+  }
+
   get stateDuration() {
-    return Math.round((Date.now() - this.info.last_state_change) / 1000)
+    return Math.round((Date.now() - this.lastStatusChange) / 1000)
   }
 
-  async waiting() {
-    return this.client.request('cc_agent_waiting', { agent_id: this.agentId })
+  onChannelEvent(e: ChannelEvent) {
+    let task: Task | undefined
+
+    switch (e.status) {
+      case ChannelState.Missed:
+        if (e.attempt_id) {
+          task = this.task.get(e.attempt_id) as Task
+          if (task) {
+            // FIXME!!!
+            this.setChannelStateTimeout(
+              `call`,
+              e,
+              (e as MissedEvent).missed!.timeout
+            )
+            this.task.delete(e.attempt_id)
+
+            return task
+          }
+        }
+
+        break
+      case ChannelState.WrapTime:
+        if (e.attempt_id) {
+          task = this.task.get(e.attempt_id) as Task
+          if (task) {
+            // FIXME!!!
+            this.setChannelStateTimeout(
+              `call`,
+              e,
+              (e as WrapTimeEvent).wrap_time!.timeout
+            )
+            this.task.delete(e.attempt_id)
+
+            return task
+          }
+        }
+
+        break
+
+      case ChannelState.Distribute:
+        const ev = e as DistributeEvent
+        task = new Task(e, ev.distribute!)
+        this.task.set(task.id, task)
+        break
+
+      case ChannelState.Offering:
+        task = this.task.get(e.attempt_id!)
+
+        break
+
+      // TODO
+      case ChannelState.Waiting:
+        // task = this.task.get(e.attempt_id)
+        // this.task.delete(e.attempt_id)
+        break
+
+      default:
+      // throw new Error("not found task")
+    }
+
+    this.setChannelState('call', e)
+
+    return task || undefined
   }
 
-  async logout() {
-    return this.client.request('cc_agent_logout', { agent_id: this.agentId })
+  async online(channels: string[]) {
+    return this.client.request('cc_agent_online', {
+      agent_id: this.agentId,
+      channels,
+    })
   }
 
-  async listenStatus() {
-    await this.client.subscribeAgentsStatus(
-      (e: AgentStatusEvent) => {
-        this.info.status = e.status
-        this.info.last_state_change = e.timestamp
-      },
-      { agent_id: this.agentId }
-    )
+  async waiting(channel: string) {
+    return this.client.request('cc_agent_waiting', {
+      agent_id: this.agentId,
+      channel,
+    })
   }
 
-  async pause(payload?: any, timeout?: number) {
+  async pause(payload?: any) {
     return this.client.request('cc_agent_pause', {
       agent_id: this.agentId,
       payload,
-      timeout,
     })
+  }
+
+  async offline() {
+    return this.client.request('cc_agent_offline', { agent_id: this.agentId })
+  }
+
+  setStatus(e: AgentStatusEvent) {
+    if (e.status === AgentStatus.Online) {
+      this.info.on_demand = e.on_demand || false
+      this.info.channels = e.channels || []
+    }
+
+    this.info.status = e.status
+    this.lastStatusChange = Date.now()
   }
 
   async directMember(memberId: number, communicationId: number) {
@@ -93,5 +217,29 @@ export class Agent {
       q,
       per_page: perPage,
     })
+  }
+
+  private setChannelState(name: string, e: ChannelEvent) {
+    for (const chan of this.channels) {
+      if (chan.channel === name) {
+        chan.state = e.status
+        chan.joined_at = e.timestamp
+        chan.timeout = undefined
+      }
+    }
+  }
+
+  private setChannelStateTimeout(
+    name: string,
+    e: ChannelEvent,
+    timeout: number
+  ) {
+    for (const chan of this.channels) {
+      if (chan.channel === name) {
+        chan.state = e.status // FIXME
+        chan.timeout = timeout
+        chan.joined_at = e.timestamp
+      }
+    }
   }
 }
