@@ -24,6 +24,7 @@ export interface QueueParameters {
   queue_id: number
   queue_name: string
   queue_type: string
+  reporting: string // TODO
 
   side: string
 
@@ -52,6 +53,7 @@ export enum CallActions {
   Execute = 'execute',
   Update = 'update',
   Hangup = 'hangup',
+  Reporting = 'reporting',
   PeerStream = 'peerStream',
   LocalStream = 'localStream',
 }
@@ -117,6 +119,7 @@ export interface CallInfo extends CallEventData {
 export interface CallHangup extends CallEventData {
   cause: string
   sip: number
+  reporting_at: number
 }
 
 export interface CallParams {
@@ -141,7 +144,9 @@ export class Call {
 
   toNumber!: string
   toName!: string
-  payload!: Map<string, string>
+  variables!: Map<string, string>
+
+  postProcessData!: object
 
   peerStreams!: MediaStream[] | null
   localStreams!: MediaStream[] | null
@@ -152,6 +157,7 @@ export class Call {
   answeredAt: number
   bridgedAt: number
   hangupAt: number
+  reportingAt: number
 
   hangupCause!: string
   hangupSipCode!: number
@@ -178,6 +184,7 @@ export class Call {
     this.answeredAt = 0
     this.hangupAt = 0
     this.bridgedAt = 0
+    this.reportingAt = 0
 
     this.peerStreams = null
     this.localStreams = null
@@ -297,7 +304,7 @@ export class Call {
 
     this.from = s.from
     this.to = s.to
-    this.payload = s.payload
+    this.variables = s.payload
     this.queue = s.queue || null
 
     this.sipId = s.sip_id || null
@@ -335,7 +342,18 @@ export class Call {
     this.hangupSipCode = hangup.sip
     this.voice = false
     this.peerStreams = null
+    if (+hangup.reporting_at) {
+      this.reportingAt = +hangup.reporting_at // FIXME type number
+    }
     this.setState(s)
+  }
+
+  get allowReporting() {
+    if (this.answeredAt > 0 && this.queue) {
+      return this.queue.reporting === 'true'
+    }
+
+    return false
   }
 
   get display() {
@@ -495,6 +513,13 @@ export class Call {
       from_app_id: this.appId,
       to_id: call.id,
       to_app_id: call.appId,
+    })
+  }
+
+  async reporting(status?: string) {
+    return this.client.request('cc_reporting', {
+      attempt_id: this.task!.id,
+      status,
     })
   }
 

@@ -45,6 +45,7 @@ export interface UserCallRequest {
 const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
 const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
 const WEBSOCKET_AGENT_SESSION = 'cc_agent_session'
+// const WEBSOCKET_CALL_BY_USER = 'call_by_user'
 
 const WEBSOCKET_MAKE_OUTBOUND_CALL = 'call_invite'
 const WEBSOCKET_MAKE_USER_CALL = 'call_user'
@@ -130,6 +131,28 @@ export class Client {
   async subscribeCall(handler: CallEventHandler, data?: object) {
     const res = await this.request(`subscribe_call`, data)
     this.eventHandler.on(WEBSOCKET_EVENT_CALL, handler)
+
+    // const calls = await this.request(WEBSOCKET_CALL_BY_USER, {})
+    // if (calls.items.length) {
+    //   for (let c of calls.items) {
+    //     const call = new Call(this, {
+    //       id: c.id,
+    //       event: 'ringing',
+    //       timestamp: c.timestamp,
+    //       user_id: 3, // FIXME
+    //       app_id: c.app_id,
+    //       data: {
+    //         destination: 'fixme', // FIXME
+    //         direction: c.direction,
+    //         from: c.from,
+    //         to: c.to,
+    //         sip_id: 'e8bu8nc4m9hka86r9pe4', // FIXME
+    //         user_id: 3, // FIXME
+    //       },
+    //     })
+    //     this.callStore.set(call.id, call)
+    //   }
+    // }
 
     return res
   }
@@ -250,6 +273,20 @@ export class Client {
 
   useWebPhone(): boolean {
     return this._config.registerWebDevice || false
+  }
+
+  reportingCallTask(task: Task) {
+    for (const [, call] of this.callStore.entries()) {
+      if (call.task === task) {
+        this.callStore.delete(call.id)
+        this.eventHandler.emit(
+          WEBSOCKET_EVENT_CALL,
+          CallActions.Reporting,
+          call
+        )
+        break
+      }
+    }
   }
 
   private async deviceConfig() {
@@ -486,7 +523,9 @@ export class Client {
         call = this.callById(event.id)
         if (call) {
           call.setHangup(event)
-          this.callStore.delete(call.id)
+          if (!call.allowReporting) {
+            this.callStore.delete(call.id)
+          }
         }
         break
 

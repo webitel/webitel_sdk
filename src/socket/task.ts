@@ -26,16 +26,24 @@ export interface WrapTime {
   timeout: number
 }
 
+export interface Reporting {
+  timeout: number
+}
+
 export interface DistributeEvent extends ChannelEvent {
-  distribute?: Distribute
+  distribute: Distribute
 }
 
 export interface MissedEvent extends ChannelEvent {
-  missed?: Missed
+  missed: Missed
 }
 
 export interface WrapTimeEvent extends ChannelEvent {
-  wrap_time?: WrapTime
+  wrap_time: WrapTime
+}
+
+export interface ReportingEvent extends ChannelEvent {
+  reporting?: Reporting
 }
 
 export class Task {

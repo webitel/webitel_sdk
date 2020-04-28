@@ -3,6 +3,7 @@ import {
   ChannelEvent,
   DistributeEvent,
   MissedEvent,
+  ReportingEvent,
   Task,
   WrapTimeEvent,
 } from './task'
@@ -106,45 +107,77 @@ export class Agent {
     let task: Task | undefined
 
     switch (e.status) {
+      case ChannelState.Distribute:
+        const distributeEvent: DistributeEvent = e as DistributeEvent
+        if (!distributeEvent) {
+          throw new Error('bad event')
+        }
+
+        task = new Task(e, distributeEvent.distribute)
+        this.task.set(task.id, task)
+        break
+
       case ChannelState.Missed:
         if (e.attempt_id) {
           task = this.task.get(e.attempt_id) as Task
           if (task) {
-            // FIXME!!!
-            this.setChannelStateTimeout(
-              `call`,
-              e,
-              (e as MissedEvent).missed!.timeout
-            )
+            const missedEvent: MissedEvent = e as MissedEvent
+            if (!missedEvent) {
+              throw new Error('bad event')
+            }
+
+            this.setChannelStateTimeout(`call`, e, missedEvent.missed.timeout)
+
+            // if (task.allowReporting) {
+            //   this.client.reportingCallTask(task)
+            // }
             this.task.delete(e.attempt_id)
 
             return task
           }
         }
-
         break
+
       case ChannelState.WrapTime:
         if (e.attempt_id) {
+          const wrapTimeEvent: WrapTimeEvent = e as WrapTimeEvent
+          if (!wrapTimeEvent) {
+            throw new Error('bad event')
+          }
+
           task = this.task.get(e.attempt_id) as Task
           if (task) {
-            // FIXME!!!
             this.setChannelStateTimeout(
               `call`,
               e,
-              (e as WrapTimeEvent).wrap_time!.timeout
+              wrapTimeEvent.wrap_time.timeout
             )
+
             this.task.delete(e.attempt_id)
 
             return task
           }
         }
-
         break
 
-      case ChannelState.Distribute:
-        const ev = e as DistributeEvent
-        task = new Task(e, ev.distribute!)
-        this.task.set(task.id, task)
+      case ChannelState.Reporting:
+        if (e.attempt_id) {
+          const reportingEvent: ReportingEvent = e as ReportingEvent
+          if (!reportingEvent) {
+            throw new Error('bad event')
+          }
+
+          task = this.task.get(e.attempt_id) as Task
+          if (task) {
+            this.setChannelStateTimeout(
+              `call`,
+              e,
+              reportingEvent.reporting!.timeout
+            )
+
+            return task
+          }
+        }
         break
 
       case ChannelState.Offering:
@@ -154,8 +187,11 @@ export class Agent {
 
       // TODO
       case ChannelState.Waiting:
-        // task = this.task.get(e.attempt_id)
-        // this.task.delete(e.attempt_id)
+        if (e.attempt_id) {
+          task = this.task.get(e.attempt_id)
+          this.client.reportingCallTask(task!)
+          this.task.delete(e.attempt_id)
+        }
         break
 
       default:
