@@ -613,12 +613,6 @@ export interface EngineAgentUser {
 export interface EngineAttempt {
   /**
    *
-   * @type {boolean}
-   * @memberof EngineAttempt
-   */
-  active?: boolean
-  /**
-   *
    * @type {EngineLookup}
    * @memberof EngineAttempt
    */
@@ -628,7 +622,7 @@ export interface EngineAttempt {
    * @type {string}
    * @memberof EngineAttempt
    */
-  answered_at?: string
+  agent_call_id?: string
   /**
    *
    * @type {string}
@@ -646,7 +640,7 @@ export interface EngineAttempt {
    * @type {string}
    * @memberof EngineAttempt
    */
-  created_at?: string
+  channel?: string
   /**
    *
    * @type {EngineMemberCommunication}
@@ -658,7 +652,7 @@ export interface EngineAttempt {
    * @type {string}
    * @memberof EngineAttempt
    */
-  hangup_at?: string
+  display?: string
   /**
    *
    * @type {string}
@@ -670,13 +664,25 @@ export interface EngineAttempt {
    * @type {string}
    * @memberof EngineAttempt
    */
-  leg_a_id?: string
+  joined_at?: string
   /**
    *
    * @type {string}
    * @memberof EngineAttempt
    */
-  leg_b_id?: string
+  last_state_change?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  leaving_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttempt
+   */
+  list?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -688,13 +694,31 @@ export interface EngineAttempt {
    * @type {string}
    * @memberof EngineAttempt
    */
-  originate_at?: string
+  member_call_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  offering_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAttempt
+   */
+  position?: number
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineAttempt
    */
   queue?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  reporting_at?: string
   /**
    *
    * @type {EngineLookup}
@@ -709,16 +733,149 @@ export interface EngineAttempt {
   result?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  state?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttempt
+   */
+  timeout?: string
+  /**
+   *
    * @type {{ [key: string]: string; }}
    * @memberof EngineAttempt
    */
   variables?: { [key: string]: string }
+}
+/**
+ *
+ * @export
+ * @interface EngineAttemptHistory
+ */
+export interface EngineAttemptHistory {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttemptHistory
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  agent_call_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  bridged_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttemptHistory
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  channel?: string
+  /**
+   *
+   * @type {EngineMemberCommunication}
+   * @memberof EngineAttemptHistory
+   */
+  destination?: EngineMemberCommunication
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  display?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  joined_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  leaving_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttemptHistory
+   */
+  list?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttemptHistory
+   */
+  member?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  member_call_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  offering_at?: string
   /**
    *
    * @type {number}
-   * @memberof EngineAttempt
+   * @memberof EngineAttemptHistory
    */
-  weight?: number
+  position?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttemptHistory
+   */
+  queue?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  reporting_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAttemptHistory
+   */
+  resource?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
+  result?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineAttemptHistory
+   */
+  variables?: { [key: string]: string }
 }
 /**
  *
@@ -2731,6 +2888,12 @@ export interface EngineHistoryCall {
   duration?: number
   /**
    *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  extension?: string
+  /**
+   *
    * @type {Array<EngineCallFile>}
    * @memberof EngineHistoryCall
    */
@@ -2843,6 +3006,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   sip_code?: number
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineHistoryCall
+   */
+  tags?: Array<string>
   /**
    *
    * @type {EngineLookup}
@@ -3223,6 +3392,25 @@ export interface EngineListEmailProfile {
    *
    * @type {boolean}
    * @memberof EngineListEmailProfile
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
+ * @interface EngineListHistoryAttempt
+ */
+export interface EngineListHistoryAttempt {
+  /**
+   *
+   * @type {Array<EngineAttemptHistory>}
+   * @memberof EngineListHistoryAttempt
+   */
+  items?: Array<EngineAttemptHistory>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListHistoryAttempt
    */
   next?: boolean
 }
@@ -18244,6 +18432,7 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Offline queue
      * @param {string} queue_id
      * @param {string} member_id
      * @param {EngineCreateAttemptRequest} body
@@ -18713,17 +18902,19 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary SearchMemberAttempts
+     * @summary SearchAttempts
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [created_at_from]
-     * @param {string} [created_at_to]
-     * @param {string} [id]
-     * @param {string} [member_id]
-     * @param {string} [queue_id]
-     * @param {string} [agent_id]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [bucket_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [agent_id]
      * @param {string} [result]
-     * @param {string} [bucket_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -18731,14 +18922,143 @@ export const MemberServiceApiAxiosParamCreator = function(
     searchAttempts(
       page?: number,
       size?: number,
-      created_at_from?: string,
-      created_at_to?: string,
-      id?: string,
-      member_id?: string,
-      queue_id?: string,
-      agent_id?: string,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      id?: Array<string>,
+      queue_id?: Array<string>,
+      bucket_id?: Array<string>,
+      member_id?: Array<string>,
+      agent_id?: Array<string>,
       result?: string,
-      bucket_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/queues/attempts/active`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (joined_at_from !== undefined) {
+        localVarQueryParameter['joined_at.from'] = joined_at_from
+      }
+
+      if (joined_at_to !== undefined) {
+        localVarQueryParameter['joined_at.to'] = joined_at_to
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (queue_id) {
+        localVarQueryParameter['queue_id'] = queue_id
+      }
+
+      if (bucket_id) {
+        localVarQueryParameter['bucket_id'] = bucket_id
+      }
+
+      if (member_id) {
+        localVarQueryParameter['member_id'] = member_id
+      }
+
+      if (agent_id) {
+        localVarQueryParameter['agent_id'] = agent_id
+      }
+
+      if (result !== undefined) {
+        localVarQueryParameter['result'] = result
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary SearchMemberAttempts
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [bucket_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [agent_id]
+     * @param {string} [result]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAttemptsHistory(
+      page?: number,
+      size?: number,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      id?: Array<string>,
+      queue_id?: Array<string>,
+      bucket_id?: Array<string>,
+      member_id?: Array<string>,
+      agent_id?: Array<string>,
+      result?: string,
+      fields?: Array<string>,
+      sort?: string,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
@@ -18773,27 +19093,31 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (created_at_from !== undefined) {
-        localVarQueryParameter['created_at.from'] = created_at_from
+      if (joined_at_from !== undefined) {
+        localVarQueryParameter['joined_at.from'] = joined_at_from
       }
 
-      if (created_at_to !== undefined) {
-        localVarQueryParameter['created_at.to'] = created_at_to
+      if (joined_at_to !== undefined) {
+        localVarQueryParameter['joined_at.to'] = joined_at_to
       }
 
-      if (id !== undefined) {
+      if (id) {
         localVarQueryParameter['id'] = id
       }
 
-      if (member_id !== undefined) {
-        localVarQueryParameter['member_id'] = member_id
-      }
-
-      if (queue_id !== undefined) {
+      if (queue_id) {
         localVarQueryParameter['queue_id'] = queue_id
       }
 
-      if (agent_id !== undefined) {
+      if (bucket_id) {
+        localVarQueryParameter['bucket_id'] = bucket_id
+      }
+
+      if (member_id) {
+        localVarQueryParameter['member_id'] = member_id
+      }
+
+      if (agent_id) {
         localVarQueryParameter['agent_id'] = agent_id
       }
 
@@ -18801,8 +19125,12 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['result'] = result
       }
 
-      if (bucket_id !== undefined) {
-        localVarQueryParameter['bucket_id'] = bucket_id
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (domain_id !== undefined) {
@@ -19201,6 +19529,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary Offline queue
      * @param {string} queue_id
      * @param {string} member_id
      * @param {EngineCreateAttemptRequest} body
@@ -19386,17 +19715,19 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary SearchMemberAttempts
+     * @summary SearchAttempts
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [created_at_from]
-     * @param {string} [created_at_to]
-     * @param {string} [id]
-     * @param {string} [member_id]
-     * @param {string} [queue_id]
-     * @param {string} [agent_id]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [bucket_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [agent_id]
      * @param {string} [result]
-     * @param {string} [bucket_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -19404,14 +19735,16 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     searchAttempts(
       page?: number,
       size?: number,
-      created_at_from?: string,
-      created_at_to?: string,
-      id?: string,
-      member_id?: string,
-      queue_id?: string,
-      agent_id?: string,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      id?: Array<string>,
+      queue_id?: Array<string>,
+      bucket_id?: Array<string>,
+      member_id?: Array<string>,
+      agent_id?: Array<string>,
       result?: string,
-      bucket_id?: string,
+      fields?: Array<string>,
+      sort?: string,
       domain_id?: string,
       options?: any
     ): (
@@ -19423,14 +19756,83 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       ).searchAttempts(
         page,
         size,
-        created_at_from,
-        created_at_to,
+        joined_at_from,
+        joined_at_to,
         id,
-        member_id,
         queue_id,
+        bucket_id,
+        member_id,
         agent_id,
         result,
+        fields,
+        sort,
+        domain_id,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary SearchMemberAttempts
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [bucket_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [agent_id]
+     * @param {string} [result]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAttemptsHistory(
+      page?: number,
+      size?: number,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      id?: Array<string>,
+      queue_id?: Array<string>,
+      bucket_id?: Array<string>,
+      member_id?: Array<string>,
+      agent_id?: Array<string>,
+      result?: string,
+      fields?: Array<string>,
+      sort?: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListHistoryAttempt> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).searchAttemptsHistory(
+        page,
+        size,
+        joined_at_from,
+        joined_at_to,
+        id,
+        queue_id,
         bucket_id,
+        member_id,
+        agent_id,
+        result,
+        fields,
+        sort,
         domain_id,
         options
       )
@@ -19631,6 +20033,7 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @summary Offline queue
      * @param {string} queue_id
      * @param {string} member_id
      * @param {EngineCreateAttemptRequest} body
@@ -19753,17 +20156,19 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
-     * @summary SearchMemberAttempts
+     * @summary SearchAttempts
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [created_at_from]
-     * @param {string} [created_at_to]
-     * @param {string} [id]
-     * @param {string} [member_id]
-     * @param {string} [queue_id]
-     * @param {string} [agent_id]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [bucket_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [agent_id]
      * @param {string} [result]
-     * @param {string} [bucket_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -19771,28 +20176,84 @@ export const MemberServiceApiFactory = function(
     searchAttempts(
       page?: number,
       size?: number,
-      created_at_from?: string,
-      created_at_to?: string,
-      id?: string,
-      member_id?: string,
-      queue_id?: string,
-      agent_id?: string,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      id?: Array<string>,
+      queue_id?: Array<string>,
+      bucket_id?: Array<string>,
+      member_id?: Array<string>,
+      agent_id?: Array<string>,
       result?: string,
-      bucket_id?: string,
+      fields?: Array<string>,
+      sort?: string,
       domain_id?: string,
       options?: any
     ) {
       return MemberServiceApiFp(configuration).searchAttempts(
         page,
         size,
-        created_at_from,
-        created_at_to,
+        joined_at_from,
+        joined_at_to,
         id,
-        member_id,
         queue_id,
+        bucket_id,
+        member_id,
         agent_id,
         result,
+        fields,
+        sort,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
+     * @summary SearchMemberAttempts
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [bucket_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [agent_id]
+     * @param {string} [result]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAttemptsHistory(
+      page?: number,
+      size?: number,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      id?: Array<string>,
+      queue_id?: Array<string>,
+      bucket_id?: Array<string>,
+      member_id?: Array<string>,
+      agent_id?: Array<string>,
+      result?: string,
+      fields?: Array<string>,
+      sort?: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).searchAttemptsHistory(
+        page,
+        size,
+        joined_at_from,
+        joined_at_to,
+        id,
+        queue_id,
         bucket_id,
+        member_id,
+        agent_id,
+        result,
+        fields,
+        sort,
         domain_id,
         options
       )(axios, basePath)
@@ -19938,6 +20399,7 @@ export class MemberServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary Offline queue
    * @param {string} queue_id
    * @param {string} member_id
    * @param {EngineCreateAttemptRequest} body
@@ -20072,17 +20534,19 @@ export class MemberServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary SearchMemberAttempts
+   * @summary SearchAttempts
    * @param {number} [page]
    * @param {number} [size]
-   * @param {string} [created_at_from]
-   * @param {string} [created_at_to]
-   * @param {string} [id]
-   * @param {string} [member_id]
-   * @param {string} [queue_id]
-   * @param {string} [agent_id]
+   * @param {string} [joined_at_from]
+   * @param {string} [joined_at_to]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [queue_id]
+   * @param {Array<string>} [bucket_id]
+   * @param {Array<string>} [member_id]
+   * @param {Array<string>} [agent_id]
    * @param {string} [result]
-   * @param {string} [bucket_id]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -20091,28 +20555,86 @@ export class MemberServiceApi extends BaseAPI {
   public searchAttempts(
     page?: number,
     size?: number,
-    created_at_from?: string,
-    created_at_to?: string,
-    id?: string,
-    member_id?: string,
-    queue_id?: string,
-    agent_id?: string,
+    joined_at_from?: string,
+    joined_at_to?: string,
+    id?: Array<string>,
+    queue_id?: Array<string>,
+    bucket_id?: Array<string>,
+    member_id?: Array<string>,
+    agent_id?: Array<string>,
     result?: string,
-    bucket_id?: string,
+    fields?: Array<string>,
+    sort?: string,
     domain_id?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration).searchAttempts(
       page,
       size,
-      created_at_from,
-      created_at_to,
+      joined_at_from,
+      joined_at_to,
       id,
-      member_id,
       queue_id,
+      bucket_id,
+      member_id,
       agent_id,
       result,
+      fields,
+      sort,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary SearchMemberAttempts
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [joined_at_from]
+   * @param {string} [joined_at_to]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [queue_id]
+   * @param {Array<string>} [bucket_id]
+   * @param {Array<string>} [member_id]
+   * @param {Array<string>} [agent_id]
+   * @param {string} [result]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public searchAttemptsHistory(
+    page?: number,
+    size?: number,
+    joined_at_from?: string,
+    joined_at_to?: string,
+    id?: Array<string>,
+    queue_id?: Array<string>,
+    bucket_id?: Array<string>,
+    member_id?: Array<string>,
+    agent_id?: Array<string>,
+    result?: string,
+    fields?: Array<string>,
+    sort?: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).searchAttemptsHistory(
+      page,
+      size,
+      joined_at_from,
+      joined_at_to,
+      id,
+      queue_id,
       bucket_id,
+      member_id,
+      agent_id,
+      result,
+      fields,
+      sort,
       domain_id,
       options
     )(this.axios, this.basePath)
