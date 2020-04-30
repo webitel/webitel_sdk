@@ -275,15 +275,16 @@ export class Client {
     return this._config.registerWebDevice || false
   }
 
+  callDestroyed(call: Call) {
+    return call.hangupAt > 0 && !this.hasAgentTask(call)
+  }
+
   reportingCallTask(task: Task) {
-    for (const [, call] of this.callStore.entries()) {
-      if (call.task === task) {
-        this.callStore.delete(call.id)
-        this.eventHandler.emit(
-          WEBSOCKET_EVENT_CALL,
-          CallActions.Reporting,
-          call
-        )
+    // TODO
+
+    for (const call of this.allCall()) {
+      if (this.callDestroyed(call)) {
+        this.destroyCall(call)
         break
       }
     }
@@ -523,9 +524,6 @@ export class Client {
         call = this.callById(event.id)
         if (call) {
           call.setHangup(event)
-          if (!call.allowReporting) {
-            this.callStore.delete(call.id)
-          }
         }
         break
 
@@ -535,6 +533,23 @@ export class Client {
 
     if (call) {
       this.eventHandler.emit(WEBSOCKET_EVENT_CALL, event.event, call)
+
+      if (this.callDestroyed(call)) {
+        this.destroyCall(call)
+      }
     }
+  }
+
+  private hasAgentTask(call: Call): boolean {
+    if (!this.agent || !call.task) {
+      return false
+    }
+
+    return this.agent.hasTask(call.task)
+  }
+
+  private destroyCall(call: Call) {
+    this.callStore.delete(call.id)
+    this.eventHandler.emit(WEBSOCKET_EVENT_CALL, CallActions.Destroy, call)
   }
 }

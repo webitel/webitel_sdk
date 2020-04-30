@@ -1,6 +1,6 @@
 import { Client, UserCallRequest } from './client'
 import { SipSession } from './sip'
-import { Task } from './task'
+import { MemberCommunication, Task } from './task'
 
 export interface CallParameters {
   timeout?: number
@@ -9,6 +9,38 @@ export interface CallParameters {
   screen?: boolean
   disableStun?: boolean
   variables?: Map<string, string>
+}
+
+export enum CallReportingStatus {
+  Abandoned = 'abandoned',
+  Cancel = 'cancel',
+  Success = 'success',
+}
+
+export interface Categories {
+  [key: string]: string
+}
+
+export interface CallVariables {
+  [key: string]: string
+}
+
+export interface CallReporting {
+  success?: boolean
+  next_distribute_at?: number
+  categories?: Categories
+
+  communication?: MemberCommunication
+  new_communication?: MemberCommunication[]
+  description?: string
+
+  // integration fields
+  display?: boolean
+  expire?: number
+  variables?: CallVariables
+  agent_id?: number
+  name?: string
+  timezone?: object
 }
 
 export interface OutboundCallRequest {
@@ -56,6 +88,7 @@ export enum CallActions {
   Reporting = 'reporting',
   PeerStream = 'peerStream',
   LocalStream = 'localStream',
+  Destroy = 'destroy',
 }
 
 export enum CallDirection {
@@ -264,6 +297,14 @@ export class Call {
 
   get allowUnHold() {
     return this.hangupAt === 0 && this.state === 'hold'
+  }
+
+  get memberCommunication(): MemberCommunication | null {
+    if (!this.task) {
+      return null
+    } else {
+      return this.task.communication
+    }
   }
 
   setActive(e: CallEventData) {
@@ -516,10 +557,10 @@ export class Call {
     })
   }
 
-  async reporting(status?: string) {
+  async reporting(reporting: CallReporting) {
     return this.client.request('cc_reporting', {
       attempt_id: this.task!.id,
-      status,
+      ...reporting,
     })
   }
 

@@ -1,3 +1,22 @@
+export interface Node {
+  id: number
+  name: string
+  value: object // ?
+  children?: Node[]
+}
+
+export interface CommunicationType {
+  id: number
+  name: string
+}
+
+export interface MemberCommunication {
+  destination: string
+  type: CommunicationType
+  display?: string
+  state?: number // TODO
+}
+
 export interface ChannelEvent {
   status: string
   attempt_id?: number
@@ -11,6 +30,7 @@ export interface Distribute extends ChannelEvent {
   agent_id?: number
   member_channel_id?: string
   agent_channel_id?: string
+  communication: MemberCommunication
 }
 
 export interface Offering {
@@ -20,6 +40,7 @@ export interface Offering {
 
 export interface Missed {
   timeout: number
+  no_answers: number
 }
 
 export interface WrapTime {
@@ -48,14 +69,20 @@ export interface ReportingEvent extends ChannelEvent {
 
 export class Task {
   history!: Distribute[]
+  communication: MemberCommunication
   id: number
   status: string
-  laStatusChange: number
-  constructor(e: ChannelEvent, protected distribute: Distribute) {
+  lastStatusChange: number
+  _channel: string
+  reporting: boolean
+  constructor(e: ChannelEvent, distribute: Distribute) {
     this.id = e.attempt_id!
     this.status = e.status
-    this.laStatusChange = e.timestamp
+    this.lastStatusChange = e.timestamp
+    this.communication = distribute.communication
     this.history = [distribute]
+    this._channel = distribute.channel
+    this.reporting = false
   }
 
   // get status() {
@@ -63,7 +90,7 @@ export class Task {
   // }
 
   get channel() {
-    return this.distribute.channel
+    return this._channel
   }
 
   // ban() {

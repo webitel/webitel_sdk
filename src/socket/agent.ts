@@ -13,7 +13,10 @@ export interface Channel {
   state: string
   joined_at: number
   timeout?: number
-  enabled: boolean
+  active: boolean
+  max_open: number
+  open: number
+  no_answer: number
 }
 
 export interface AgentSession {
@@ -117,6 +120,11 @@ export class Agent {
         this.task.set(task.id, task)
         break
 
+      case ChannelState.Offering:
+        task = this.task.get(e.attempt_id!)
+
+        break
+
       case ChannelState.Missed:
         if (e.attempt_id) {
           task = this.task.get(e.attempt_id) as Task
@@ -127,11 +135,8 @@ export class Agent {
             }
 
             this.setChannelStateTimeout(`call`, e, missedEvent.missed.timeout)
-
-            // if (task.allowReporting) {
-            //   this.client.reportingCallTask(task)
-            // }
             this.task.delete(e.attempt_id)
+            this.client.reportingCallTask(task)
 
             return task
           }
@@ -146,14 +151,15 @@ export class Agent {
           }
 
           task = this.task.get(e.attempt_id) as Task
+
           if (task) {
             this.setChannelStateTimeout(
               `call`,
               e,
               wrapTimeEvent.wrap_time.timeout
             )
-
             this.task.delete(e.attempt_id)
+            this.client.reportingCallTask(task)
 
             return task
           }
@@ -180,17 +186,12 @@ export class Agent {
         }
         break
 
-      case ChannelState.Offering:
-        task = this.task.get(e.attempt_id!)
-
-        break
-
       // TODO
       case ChannelState.Waiting:
         if (e.attempt_id) {
           task = this.task.get(e.attempt_id)
-          this.client.reportingCallTask(task!)
           this.task.delete(e.attempt_id)
+          this.client.reportingCallTask(task!)
         }
         break
 
@@ -253,6 +254,10 @@ export class Agent {
       q,
       per_page: perPage,
     })
+  }
+
+  hasTask(task: Task) {
+    return this.task.has(task.id)
   }
 
   private setChannelState(name: string, e: ChannelEvent) {
