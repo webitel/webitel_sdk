@@ -549,6 +549,7 @@ export class Client {
   }
 
   private destroyCall(call: Call) {
+    // FIXME sync channel & call event
     this.callStore.delete(call.id)
     this.eventHandler.emit(WEBSOCKET_EVENT_CALL, CallActions.Destroy, call)
   }

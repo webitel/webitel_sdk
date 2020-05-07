@@ -1989,12 +1989,6 @@ export interface EngineCreateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  dial_string?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCreateOutboundResourceRequest
-   */
   domain_id?: string
   /**
    *
@@ -3658,6 +3652,25 @@ export interface EngineListQueueRouting {
 /**
  *
  * @export
+ * @interface EngineListReportGeneral
+ */
+export interface EngineListReportGeneral {
+  /**
+   *
+   * @type {Array<EngineQueueReportGeneral>}
+   * @memberof EngineListReportGeneral
+   */
+  items?: Array<EngineQueueReportGeneral>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListReportGeneral
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
  * @interface EngineListResourceTeamAgent
  */
 export interface EngineListResourceTeamAgent {
@@ -4228,12 +4241,6 @@ export interface EngineOutboundResource {
    * @type {string}
    * @memberof EngineOutboundResource
    */
-  dial_string?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineOutboundResource
-   */
   domain_id?: string
   /**
    *
@@ -4492,12 +4499,6 @@ export interface EngineOutboundResourceViewGroup {
  * @interface EnginePatchOutboundResourceRequest
  */
 export interface EnginePatchOutboundResourceRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EnginePatchOutboundResourceRequest
-   */
-  dial_string?: string
   /**
    *
    * @type {string}
@@ -5081,6 +5082,85 @@ export interface EngineQueueBucket {
    * @memberof EngineQueueBucket
    */
   ratio?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineQueueReportGeneral
+ */
+export interface EngineQueueReportGeneral {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  abandoned?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  avg_aht_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  avg_asa_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  avg_awt_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  avg_wrap_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueueReportGeneral
+   */
+  count?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  max_awt_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueueReportGeneral
+   */
+  processed?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueueReportGeneral
+   */
+  queue?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  sum_bill_sec?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueueReportGeneral
+   */
+  team?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQueueReportGeneral
+   */
+  waiting?: string
 }
 /**
  *
@@ -6218,12 +6298,6 @@ export interface EngineUpdateOutboundResourceInGroupRequest {
  * @interface EngineUpdateOutboundResourceRequest
  */
 export interface EngineUpdateOutboundResourceRequest {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceRequest
-   */
-  dial_string?: string
   /**
    *
    * @type {string}
@@ -26855,6 +26929,108 @@ export const QueueServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<number>} [queue_id]
+     * @param {Array<number>} [team_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueReportGeneral(
+      page?: number,
+      size?: number,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      queue_id?: Array<number>,
+      team_id?: Array<number>,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/queues/reports/general`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (joined_at_from !== undefined) {
+        localVarQueryParameter['joined_at.from'] = joined_at_from
+      }
+
+      if (joined_at_to !== undefined) {
+        localVarQueryParameter['joined_at.to'] = joined_at_to
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (queue_id) {
+        localVarQueryParameter['queue_id'] = queue_id
+      }
+
+      if (team_id) {
+        localVarQueryParameter['team_id'] = team_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Update Queue
      * @param {string} id
      * @param {EngineUpdateQueueRequest} body
@@ -27088,6 +27264,60 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<number>} [queue_id]
+     * @param {Array<number>} [team_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueReportGeneral(
+      page?: number,
+      size?: number,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      queue_id?: Array<number>,
+      team_id?: Array<number>,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListReportGeneral> {
+      const localVarAxiosArgs = QueueServiceApiAxiosParamCreator(
+        configuration
+      ).searchQueueReportGeneral(
+        page,
+        size,
+        joined_at_from,
+        joined_at_to,
+        domain_id,
+        fields,
+        sort,
+        queue_id,
+        team_id,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Update Queue
      * @param {string} id
      * @param {EngineUpdateQueueRequest} body
@@ -27218,6 +27448,45 @@ export const QueueServiceApiFactory = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {string} [domain_id]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {Array<number>} [queue_id]
+     * @param {Array<number>} [team_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQueueReportGeneral(
+      page?: number,
+      size?: number,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      domain_id?: string,
+      fields?: Array<string>,
+      sort?: string,
+      queue_id?: Array<number>,
+      team_id?: Array<number>,
+      options?: any
+    ) {
+      return QueueServiceApiFp(configuration).searchQueueReportGeneral(
+        page,
+        size,
+        joined_at_from,
+        joined_at_to,
+        domain_id,
+        fields,
+        sort,
+        queue_id,
+        team_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary Update Queue
      * @param {string} id
      * @param {EngineUpdateQueueRequest} body
@@ -27337,6 +27606,47 @@ export class QueueServiceApi extends BaseAPI {
       fields,
       sort,
       id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [joined_at_from]
+   * @param {string} [joined_at_to]
+   * @param {string} [domain_id]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
+   * @param {Array<number>} [queue_id]
+   * @param {Array<number>} [team_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueServiceApi
+   */
+  public searchQueueReportGeneral(
+    page?: number,
+    size?: number,
+    joined_at_from?: string,
+    joined_at_to?: string,
+    domain_id?: string,
+    fields?: Array<string>,
+    sort?: string,
+    queue_id?: Array<number>,
+    team_id?: Array<number>,
+    options?: any
+  ) {
+    return QueueServiceApiFp(this.configuration).searchQueueReportGeneral(
+      page,
+      size,
+      joined_at_from,
+      joined_at_to,
+      domain_id,
+      fields,
+      sort,
+      queue_id,
+      team_id,
       options
     )(this.axios, this.basePath)
   }

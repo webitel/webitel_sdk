@@ -38,7 +38,6 @@ export interface CallReporting {
   display?: boolean
   expire?: number
   variables?: CallVariables
-  agent_id?: number
   name?: string
   timezone?: object
 }

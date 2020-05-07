@@ -59,9 +59,9 @@ export class SipPhone extends EventEmitter<SipPhoneEvent> {
   constructor(private instanceId: string, debug?: boolean) {
     super()
     if (debug) {
-      // SipClient.debug.enable('*')
+      SipClient.debug.enable('*')
     } else {
-      // SipClient.debug.disable('*')
+      SipClient.debug.disable('*')
     }
     this.log = new Log()
 

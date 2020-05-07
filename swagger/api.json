@@ -2507,6 +2507,99 @@
         }
       }
     },
+    "/call_center/queues/reports/general": {
+      "get": {
+        "tags": [
+          "QueueService"
+        ],
+        "operationId": "SearchQueueReportGeneral",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "joined_at.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "joined_at.to",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "fields",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "multi",
+            "name": "queue_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "multi",
+            "name": "team_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListReportGeneral"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
     "/call_center/queues/{id}": {
       "get": {
         "tags": [
@@ -9306,9 +9399,6 @@
     "engineCreateOutboundResourceRequest": {
       "type": "object",
       "properties": {
-        "dial_string": {
-          "type": "string"
-        },
         "domain_id": {
           "type": "string",
           "format": "int64"
@@ -10441,6 +10531,21 @@
         }
       }
     },
+    "engineListReportGeneral": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineQueueReportGeneral"
+          }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
     "engineListResourceTeamAgent": {
       "type": "object",
       "properties": {
@@ -10818,9 +10923,6 @@
         "created_by": {
           "$ref": "#/definitions/engineLookup"
         },
-        "dial_string": {
-          "type": "string"
-        },
         "domain_id": {
           "type": "string",
           "format": "int64"
@@ -10988,9 +11090,6 @@
     "enginePatchOutboundResourceRequest": {
       "type": "object",
       "properties": {
-        "dial_string": {
-          "type": "string"
-        },
         "domain_id": {
           "type": "string",
           "format": "int64"
@@ -11373,6 +11472,57 @@
         "ratio": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "engineQueueReportGeneral": {
+      "type": "object",
+      "properties": {
+        "abandoned": {
+          "type": "number",
+          "format": "float"
+        },
+        "avg_aht_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "avg_asa_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "avg_awt_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "avg_wrap_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "max_awt_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "processed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "queue": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "sum_bill_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "team": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "waiting": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -12090,9 +12240,6 @@
     "engineUpdateOutboundResourceRequest": {
       "type": "object",
       "properties": {
-        "dial_string": {
-          "type": "string"
-        },
         "domain_id": {
           "type": "string",
           "format": "int64"
