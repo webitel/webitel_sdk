@@ -21,6 +21,7 @@ export interface ChannelEvent {
   status: string
   attempt_id?: number
   timestamp: number
+  channel: string
 }
 
 export interface Distribute extends ChannelEvent {

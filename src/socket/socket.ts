@@ -33,9 +33,7 @@ export class Socket extends EventEmitter<SocketEvents> {
 
   connect(token: string) {
     this.socket = new WebSocket(
-      `${formatWebSocketUri(
-        this.host
-      )}/${SOCKET_URL_SUFFIX}?access_token=${token}`
+      `${formatWebSocketUri(this.host)}/${SOCKET_URL_SUFFIX}`
     )
 
     this.socket.onclose = (e) => this.onClose(e.code)

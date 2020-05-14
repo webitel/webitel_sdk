@@ -74,6 +74,7 @@ export enum ChannelState {
 export enum ChannelType {
   Call = 'call',
   Email = 'email',
+  Chat = 'chat',
 }
 
 export class Agent {
@@ -134,7 +135,11 @@ export class Agent {
               throw new Error('bad event')
             }
 
-            this.setChannelStateTimeout(`call`, e, missedEvent.missed.timeout)
+            this.setChannelStateTimeout(
+              e.channel,
+              e,
+              missedEvent.missed.timeout
+            )
             this.task.delete(e.attempt_id)
             this.client.reportingCallTask(task)
 
@@ -154,7 +159,7 @@ export class Agent {
 
           if (task) {
             this.setChannelStateTimeout(
-              `call`,
+              e.channel,
               e,
               wrapTimeEvent.wrap_time.timeout
             )
@@ -176,7 +181,7 @@ export class Agent {
           task = this.task.get(e.attempt_id) as Task
           if (task) {
             this.setChannelStateTimeout(
-              `call`,
+              e.channel,
               e,
               reportingEvent.reporting!.timeout
             )
@@ -199,7 +204,7 @@ export class Agent {
       // throw new Error("not found task")
     }
 
-    this.setChannelState('call', e)
+    this.setChannelState(e.channel, e)
 
     return task || undefined
   }
