@@ -76,7 +76,7 @@ export class Task {
   lastStatusChange: number
   _channel: string
   reporting: boolean
-  constructor(e: ChannelEvent, distribute: Distribute) {
+  constructor(e: ChannelEvent, protected distribute: Distribute) {
     this.id = e.attempt_id!
     this.status = e.status
     this.lastStatusChange = e.timestamp

@@ -2876,6 +2876,12 @@ export interface EngineHistoryCall {
   direction?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  display?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineHistoryCall
    */
@@ -3062,6 +3068,12 @@ export interface EngineHoldCallResponse {
  * @interface EngineList
  */
 export interface EngineList {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineList
+   */
+  count?: string
   /**
    *
    * @type {string}

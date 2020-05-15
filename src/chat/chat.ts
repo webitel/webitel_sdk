@@ -1,5 +1,8 @@
 import { ChatClient } from './chat-client'
 
+import { EventEmitter } from 'ee-ts'
+import Timer = NodeJS.Timer
+
 const conversationPath = '/chat/conversation'
 
 export interface Participants {
@@ -52,26 +55,72 @@ export async function conversationByChannelId(
   client: ChatClient,
   channelId: string
 ) {
-  const info: ConversationInfo = await client.getData(
-    `${conversationPath}/${channelId}`
-  )
-  const conv = new Conversation(client, info)
-  conv.posts = await conv.history(20, 0)
+  try {
+    const info: ConversationInfo = await client.getData(
+      `${conversationPath}/${channelId}`
+    )
+    const conv = new Conversation(client, info)
+    conv.posts = await conv.history(20, 0)
 
-  return conv
+    return conv
+  } catch (e) {
+    throw e
+  }
 }
 
-export class Conversation {
+interface ConversationEvent {
+  newPosts(posts: Post[]): void
+  end(): void
+}
+
+export class Conversation extends EventEmitter<ConversationEvent> {
   posts: Post[]
+  timer: Timer | null
+  closedAt: number | null = null
   constructor(
     private client: ChatClient,
     protected info: ConversationInfo,
     post?: Post
   ) {
+    super()
     this.posts = []
+
     if (post) {
       this.posts.push(post)
     }
+
+    this.timer = null
+    this.startTimer()
+  }
+
+  startTimer() {
+    this.timer = setInterval(() => {
+      this.unreadMessages()
+        .then((res) => {
+          if (res.code) {
+            // FIXME
+            this.destroy()
+          }
+        })
+        .catch(() => {
+          if (!this.closedAt) {
+            this.destroy()
+          }
+        })
+    }, 2000)
+  }
+
+  destroy() {
+    if (!this.closedAt) {
+      this.stopTimer()
+      this.closedAt = Date.now()
+      this.emit('end')
+      this.off('*')
+    }
+  }
+
+  stopTimer() {
+    clearInterval(this.timer!)
   }
 
   get channelId() {
@@ -83,11 +132,12 @@ export class Conversation {
   }
 
   async unreadMessages() {
-    const posts: Post[] = await this.client.getData(
+    const posts = await this.client.getData(
       `${conversationPath}/${this.channelId}/unread`
     )
     if (posts.length > 0) {
       this.posts = posts.concat(this.posts)
+      this.emit('newPosts', posts)
     }
 
     return posts
@@ -102,13 +152,28 @@ export class Conversation {
     return posts
   }
 
-  async createPost(body: PostBody) {
-    const posts: Post[] = await this.client.postData(
-      `${conversationPath}/${this.channelId}`,
-      body
-    )
-    this.posts = posts.concat(this.posts)
+  async close() {
+    return this.client.delete(`${conversationPath}/${this.channelId}`)
+  }
 
-    return posts
+  async createPost(body: PostBody) {
+    if (this.closedAt) {
+      throw new Error(`This chat is closed`)
+    }
+
+    try {
+      this.stopTimer()
+      const posts: Post[] = await this.client.postData(
+        `${conversationPath}/${this.channelId}`,
+        body
+      )
+      this.posts = posts.concat(this.posts)
+
+      return posts
+    } catch (e) {
+      throw e
+    } finally {
+      this.startTimer()
+    }
   }
 }

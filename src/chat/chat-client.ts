@@ -18,6 +18,12 @@ export class ChatClient {
     return response.json()
   }
 
+  async delete(path: string) {
+    return fetch(`${this.baseUrl}${path}`, {
+      method: 'DELETE',
+    })
+  }
+
   async getData(path: string) {
     const response = await fetch(`${this.baseUrl}/${path}`)
 

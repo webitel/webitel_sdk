@@ -9963,6 +9963,9 @@
         "direction": {
           "type": "string"
         },
+        "display": {
+          "type": "string"
+        },
         "duration": {
           "type": "integer",
           "format": "int32"
@@ -10081,6 +10084,10 @@
     "engineList": {
       "type": "object",
       "properties": {
+        "count": {
+          "type": "string",
+          "format": "int64"
+        },
         "created_at": {
           "type": "string",
           "format": "int64"
