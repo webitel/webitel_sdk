@@ -180,8 +180,8 @@ export class Call {
 
   postProcessData!: object
 
-  peerStreams!: MediaStream[] | null
-  localStreams!: MediaStream[] | null
+  peerStreams!: MediaStream[]
+  localStreams!: MediaStream[]
   sip!: SipSession | null
   screen!: string | null
 
@@ -218,8 +218,8 @@ export class Call {
     this.bridgedAt = 0
     this.reportingAt = 0
 
-    this.peerStreams = null
-    this.localStreams = null
+    this.peerStreams = []
+    this.localStreams = []
 
     if (callInfo.sip_id) {
       this.setSip(client.phone.sipSessionBySipId(callInfo.sip_id))
@@ -255,13 +255,13 @@ export class Call {
         if (local.length) {
           this.localStreams = local
         } else {
-          this.localStreams = null
+          this.localStreams = []
         }
 
         if (peer.length) {
           this.peerStreams = peer
         } else {
-          this.peerStreams = null
+          this.peerStreams = []
         }
       }
     }
@@ -352,11 +352,19 @@ export class Call {
   }
 
   setPeerStreams(streams: MediaStream[] | null) {
-    this.peerStreams = streams
+    if (!streams) {
+      this.peerStreams = []
+    } else {
+      this.peerStreams = streams
+    }
   }
 
   setLocalStreams(streams: MediaStream[] | null) {
-    this.localStreams = streams
+    if (!streams) {
+      this.localStreams = []
+    } else {
+      this.localStreams = streams
+    }
   }
 
   setVoice() {
@@ -381,7 +389,7 @@ export class Call {
     this.hangupCause = hangup.cause
     this.hangupSipCode = hangup.sip
     this.voice = false
-    this.peerStreams = null
+    this.peerStreams = []
     if (+hangup.reporting_at) {
       this.reportingAt = +hangup.reporting_at // FIXME type number
     }

@@ -363,7 +363,7 @@ export class Client {
       'peerStreams',
       (session: CallSession, streams: MediaStream[] | null) => {
         const call = this.callBySession(session)
-        if (call && call.peerStreams === null) {
+        if (call && !call.peerStreams.length) {
           call.setPeerStreams(streams)
           this.eventHandler.emit(
             WEBSOCKET_EVENT_CALL,
@@ -378,7 +378,7 @@ export class Client {
       'localStreams',
       (session: CallSession, streams: MediaStream[] | null) => {
         const call = this.callBySession(session)
-        if (call && call.localStreams === null) {
+        if (call && !call.localStreams.length) {
           call.setLocalStreams(streams)
           this.eventHandler.emit(
             WEBSOCKET_EVENT_CALL,
