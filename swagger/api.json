@@ -2559,6 +2559,11 @@
             "in": "query"
           },
           {
+            "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
             "type": "array",
             "items": {
               "type": "integer",
@@ -2576,6 +2581,16 @@
             },
             "collectionFormat": "multi",
             "name": "team_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "multi",
+            "name": "type",
             "in": "query"
           }
         ],
@@ -6777,7 +6792,7 @@
           },
           {
             "type": "string",
-            "name": "number",
+            "name": "q",
             "in": "query"
           },
           {
@@ -6832,6 +6847,28 @@
             "type": "string",
             "format": "int64",
             "name": "domain_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "number",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "direction",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "answered_at.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "answered_at.to",
             "in": "query"
           }
         ],
@@ -9496,6 +9533,9 @@
           "type": "integer",
           "format": "int32"
         },
+        "ringtone": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "schema": {
           "$ref": "#/definitions/engineLookup"
         },
@@ -11194,6 +11234,9 @@
           "type": "integer",
           "format": "int32"
         },
+        "ringtone": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "schema": {
           "$ref": "#/definitions/engineLookup"
         },
@@ -11426,6 +11469,9 @@
           "type": "integer",
           "format": "int32"
         },
+        "ringtone": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "schema": {
           "$ref": "#/definitions/engineLookup"
         },
@@ -11505,6 +11551,10 @@
           "type": "number",
           "format": "float"
         },
+        "bridged": {
+          "type": "number",
+          "format": "float"
+        },
         "count": {
           "type": "string",
           "format": "int64"
@@ -11512,6 +11562,14 @@
         "max_awt_sec": {
           "type": "number",
           "format": "float"
+        },
+        "online": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pause": {
+          "type": "integer",
+          "format": "int32"
         },
         "processed": {
           "type": "string",
@@ -12355,6 +12413,9 @@
         "priority": {
           "type": "integer",
           "format": "int32"
+        },
+        "ringtone": {
+          "$ref": "#/definitions/engineLookup"
         },
         "schema": {
           "$ref": "#/definitions/engineLookup"

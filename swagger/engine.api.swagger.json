@@ -2693,6 +2693,12 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "queue_id",
             "in": "query",
             "required": false,
@@ -2705,6 +2711,17 @@
           },
           {
             "name": "team_id",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "type",
             "in": "query",
             "required": false,
             "type": "array",
@@ -7009,7 +7026,7 @@
             "collectionFormat": "multi"
           },
           {
-            "name": "number",
+            "name": "q",
             "in": "query",
             "required": false,
             "type": "string"
@@ -7072,6 +7089,32 @@
           },
           {
             "name": "domain_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "number",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "answered_at.from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "answered_at.to",
             "in": "query",
             "required": false,
             "type": "string",
@@ -9474,6 +9517,9 @@
         "schema": {
           "$ref": "#/definitions/engineLookup"
         },
+        "ringtone": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "domain_id": {
           "type": "string",
           "format": "int64"
@@ -11166,6 +11212,9 @@
         "schema": {
           "$ref": "#/definitions/engineLookup"
         },
+        "ringtone": {
+          "$ref": "#/definitions/engineLookup"
+        },
         "fields": {
           "type": "array",
           "items": {
@@ -11418,6 +11467,9 @@
         "active": {
           "type": "integer",
           "format": "int32"
+        },
+        "ringtone": {
+          "$ref": "#/definitions/engineLookup"
         }
       }
     },
@@ -11445,6 +11497,18 @@
         },
         "team": {
           "$ref": "#/definitions/engineLookup"
+        },
+        "online": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pause": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "bridged": {
+          "type": "number",
+          "format": "float"
         },
         "waiting": {
           "type": "string",
@@ -12332,6 +12396,9 @@
           "type": "string"
         },
         "schema": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "ringtone": {
           "$ref": "#/definitions/engineLookup"
         },
         "domain_id": {

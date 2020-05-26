@@ -2141,6 +2141,12 @@ export interface EngineCreateQueueRequest {
    * @type {EngineLookup}
    * @memberof EngineCreateQueueRequest
    */
+  ringtone?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueRequest
+   */
   schema?: EngineLookup
   /**
    *
@@ -4661,6 +4667,12 @@ export interface EnginePatchQueueRequest {
    * @type {EngineLookup}
    * @memberof EnginePatchQueueRequest
    */
+  ringtone?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchQueueRequest
+   */
   schema?: EngineLookup
   /**
    *
@@ -5014,6 +5026,12 @@ export interface EngineQueue {
    * @type {EngineLookup}
    * @memberof EngineQueue
    */
+  ringtone?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
   schema?: EngineLookup
   /**
    *
@@ -5133,6 +5151,12 @@ export interface EngineQueueReportGeneral {
   avg_wrap_sec?: number
   /**
    *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  bridged?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineQueueReportGeneral
    */
@@ -5143,6 +5167,18 @@ export interface EngineQueueReportGeneral {
    * @memberof EngineQueueReportGeneral
    */
   max_awt_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  online?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  pause?: number
   /**
    *
    * @type {string}
@@ -6480,6 +6516,12 @@ export interface EngineUpdateQueueRequest {
    * @memberof EngineUpdateQueueRequest
    */
   priority?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueRequest
+   */
+  ringtone?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -13931,7 +13973,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [team_id]
      * @param {Array<string>} [member_id]
      * @param {Array<string>} [gateway_id]
-     * @param {string} [number]
+     * @param {string} [q]
      * @param {string} [duration_from]
      * @param {string} [duration_to]
      * @param {boolean} [skip_parent]
@@ -13941,6 +13983,10 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
+     * @param {string} [number]
+     * @param {string} [direction]
+     * @param {string} [answered_at_from]
+     * @param {string} [answered_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -13955,7 +14001,7 @@ export const CallServiceApiAxiosParamCreator = function(
       team_id?: Array<string>,
       member_id?: Array<string>,
       gateway_id?: Array<string>,
-      number?: string,
+      q?: string,
       duration_from?: string,
       duration_to?: string,
       skip_parent?: boolean,
@@ -13965,6 +14011,10 @@ export const CallServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       sort?: string,
       domain_id?: string,
+      number?: string,
+      direction?: string,
+      answered_at_from?: string,
+      answered_at_to?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/calls/history`
@@ -14030,8 +14080,8 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['gateway_id'] = gateway_id
       }
 
-      if (number !== undefined) {
-        localVarQueryParameter['number'] = number
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
       }
 
       if (duration_from !== undefined) {
@@ -14068,6 +14118,22 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (domain_id !== undefined) {
         localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (number !== undefined) {
+        localVarQueryParameter['number'] = number
+      }
+
+      if (direction !== undefined) {
+        localVarQueryParameter['direction'] = direction
+      }
+
+      if (answered_at_from !== undefined) {
+        localVarQueryParameter['answered_at.from'] = answered_at_from
+      }
+
+      if (answered_at_to !== undefined) {
+        localVarQueryParameter['answered_at.to'] = answered_at_to
       }
 
       localVarUrlObj.query = {
@@ -14410,7 +14476,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [team_id]
      * @param {Array<string>} [member_id]
      * @param {Array<string>} [gateway_id]
-     * @param {string} [number]
+     * @param {string} [q]
      * @param {string} [duration_from]
      * @param {string} [duration_to]
      * @param {boolean} [skip_parent]
@@ -14420,6 +14486,10 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
+     * @param {string} [number]
+     * @param {string} [direction]
+     * @param {string} [answered_at_from]
+     * @param {string} [answered_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14434,7 +14504,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       team_id?: Array<string>,
       member_id?: Array<string>,
       gateway_id?: Array<string>,
-      number?: string,
+      q?: string,
       duration_from?: string,
       duration_to?: string,
       skip_parent?: boolean,
@@ -14444,6 +14514,10 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       sort?: string,
       domain_id?: string,
+      number?: string,
+      direction?: string,
+      answered_at_from?: string,
+      answered_at_to?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -14462,7 +14536,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         team_id,
         member_id,
         gateway_id,
-        number,
+        q,
         duration_from,
         duration_to,
         skip_parent,
@@ -14472,6 +14546,10 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         fields,
         sort,
         domain_id,
+        number,
+        direction,
+        answered_at_from,
+        answered_at_to,
         options
       )
       return (
@@ -14661,7 +14739,7 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [team_id]
      * @param {Array<string>} [member_id]
      * @param {Array<string>} [gateway_id]
-     * @param {string} [number]
+     * @param {string} [q]
      * @param {string} [duration_from]
      * @param {string} [duration_to]
      * @param {boolean} [skip_parent]
@@ -14671,6 +14749,10 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
+     * @param {string} [number]
+     * @param {string} [direction]
+     * @param {string} [answered_at_from]
+     * @param {string} [answered_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14685,7 +14767,7 @@ export const CallServiceApiFactory = function(
       team_id?: Array<string>,
       member_id?: Array<string>,
       gateway_id?: Array<string>,
-      number?: string,
+      q?: string,
       duration_from?: string,
       duration_to?: string,
       skip_parent?: boolean,
@@ -14695,6 +14777,10 @@ export const CallServiceApiFactory = function(
       fields?: Array<string>,
       sort?: string,
       domain_id?: string,
+      number?: string,
+      direction?: string,
+      answered_at_from?: string,
+      answered_at_to?: string,
       options?: any
     ) {
       return CallServiceApiFp(configuration).searchHistoryCall(
@@ -14708,7 +14794,7 @@ export const CallServiceApiFactory = function(
         team_id,
         member_id,
         gateway_id,
-        number,
+        q,
         duration_from,
         duration_to,
         skip_parent,
@@ -14718,6 +14804,10 @@ export const CallServiceApiFactory = function(
         fields,
         sort,
         domain_id,
+        number,
+        direction,
+        answered_at_from,
+        answered_at_to,
         options
       )(axios, basePath)
     },
@@ -14900,7 +14990,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [team_id]
    * @param {Array<string>} [member_id]
    * @param {Array<string>} [gateway_id]
-   * @param {string} [number]
+   * @param {string} [q]
    * @param {string} [duration_from]
    * @param {string} [duration_to]
    * @param {boolean} [skip_parent]
@@ -14910,6 +15000,10 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {string} [sort]
    * @param {string} [domain_id]
+   * @param {string} [number]
+   * @param {string} [direction]
+   * @param {string} [answered_at_from]
+   * @param {string} [answered_at_to]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -14925,7 +15019,7 @@ export class CallServiceApi extends BaseAPI {
     team_id?: Array<string>,
     member_id?: Array<string>,
     gateway_id?: Array<string>,
-    number?: string,
+    q?: string,
     duration_from?: string,
     duration_to?: string,
     skip_parent?: boolean,
@@ -14935,6 +15029,10 @@ export class CallServiceApi extends BaseAPI {
     fields?: Array<string>,
     sort?: string,
     domain_id?: string,
+    number?: string,
+    direction?: string,
+    answered_at_from?: string,
+    answered_at_to?: string,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration).searchHistoryCall(
@@ -14948,7 +15046,7 @@ export class CallServiceApi extends BaseAPI {
       team_id,
       member_id,
       gateway_id,
-      number,
+      q,
       duration_from,
       duration_to,
       skip_parent,
@@ -14958,6 +15056,10 @@ export class CallServiceApi extends BaseAPI {
       fields,
       sort,
       domain_id,
+      number,
+      direction,
+      answered_at_from,
+      answered_at_to,
       options
     )(this.axios, this.basePath)
   }
@@ -26948,8 +27050,10 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {string} [domain_id]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [queue_id]
      * @param {Array<number>} [team_id]
+     * @param {Array<number>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -26961,8 +27065,10 @@ export const QueueServiceApiAxiosParamCreator = function(
       domain_id?: string,
       fields?: Array<string>,
       sort?: string,
+      q?: string,
       queue_id?: Array<number>,
       team_id?: Array<number>,
+      type?: Array<number>,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/call_center/queues/reports/general`
@@ -27016,12 +27122,20 @@ export const QueueServiceApiAxiosParamCreator = function(
         localVarQueryParameter['sort'] = sort
       }
 
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
       if (queue_id) {
         localVarQueryParameter['queue_id'] = queue_id
       }
 
       if (team_id) {
         localVarQueryParameter['team_id'] = team_id
+      }
+
+      if (type) {
+        localVarQueryParameter['type'] = type
       }
 
       localVarUrlObj.query = {
@@ -27283,8 +27397,10 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [domain_id]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [queue_id]
      * @param {Array<number>} [team_id]
+     * @param {Array<number>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -27296,8 +27412,10 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
       domain_id?: string,
       fields?: Array<string>,
       sort?: string,
+      q?: string,
       queue_id?: Array<number>,
       team_id?: Array<number>,
+      type?: Array<number>,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -27313,8 +27431,10 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
         domain_id,
         fields,
         sort,
+        q,
         queue_id,
         team_id,
+        type,
         options
       )
       return (
@@ -27467,8 +27587,10 @@ export const QueueServiceApiFactory = function(
      * @param {string} [domain_id]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [queue_id]
      * @param {Array<number>} [team_id]
+     * @param {Array<number>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -27480,8 +27602,10 @@ export const QueueServiceApiFactory = function(
       domain_id?: string,
       fields?: Array<string>,
       sort?: string,
+      q?: string,
       queue_id?: Array<number>,
       team_id?: Array<number>,
+      type?: Array<number>,
       options?: any
     ) {
       return QueueServiceApiFp(configuration).searchQueueReportGeneral(
@@ -27492,8 +27616,10 @@ export const QueueServiceApiFactory = function(
         domain_id,
         fields,
         sort,
+        q,
         queue_id,
         team_id,
+        type,
         options
       )(axios, basePath)
     },
@@ -27631,8 +27757,10 @@ export class QueueServiceApi extends BaseAPI {
    * @param {string} [domain_id]
    * @param {Array<string>} [fields]
    * @param {string} [sort]
+   * @param {string} [q]
    * @param {Array<number>} [queue_id]
    * @param {Array<number>} [team_id]
+   * @param {Array<number>} [type]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
@@ -27645,8 +27773,10 @@ export class QueueServiceApi extends BaseAPI {
     domain_id?: string,
     fields?: Array<string>,
     sort?: string,
+    q?: string,
     queue_id?: Array<number>,
     team_id?: Array<number>,
+    type?: Array<number>,
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration).searchQueueReportGeneral(
@@ -27657,8 +27787,10 @@ export class QueueServiceApi extends BaseAPI {
       domain_id,
       fields,
       sort,
+      q,
       queue_id,
       team_id,
+      type,
       options
     )(this.axios, this.basePath)
   }
