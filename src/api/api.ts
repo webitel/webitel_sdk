@@ -4514,6 +4514,97 @@ export interface EngineOutboundResourceViewGroup {
 /**
  *
  * @export
+ * @interface EnginePatchMemberRequest
+ */
+export interface EnginePatchMemberRequest {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchMemberRequest
+   */
+  bucket?: EngineLookup
+  /**
+   *
+   * @type {Array<EngineMemberCommunicationCreateRequest>}
+   * @memberof EnginePatchMemberRequest
+   */
+  communications?: Array<EngineMemberCommunicationCreateRequest>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchMemberRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchMemberRequest
+   */
+  expire_at?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EnginePatchMemberRequest
+   */
+  fields?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchMemberRequest
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchMemberRequest
+   */
+  min_offering_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchMemberRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchMemberRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchMemberRequest
+   */
+  queue_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchMemberRequest
+   */
+  skill?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchMemberRequest
+   */
+  stop_cause?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EnginePatchMemberRequest
+   */
+  timezone?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EnginePatchMemberRequest
+   */
+  variables?: { [key: string]: string }
+}
+/**
+ *
+ * @export
  * @interface EnginePatchOutboundResourceRequest
  */
 export interface EnginePatchOutboundResourceRequest {
@@ -6216,6 +6307,12 @@ export interface EngineUpdateMemberRequest {
    * @memberof EngineUpdateMemberRequest
    */
   skill?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateMemberRequest
+   */
+  stop_cause?: string
   /**
    *
    * @type {EngineLookup}
@@ -19015,6 +19112,92 @@ export const MemberServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Patch Member
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EnginePatchMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchMember(
+      queue_id: string,
+      id: string,
+      body: EnginePatchMemberRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'queue_id' is not null or undefined
+      if (queue_id === null || queue_id === undefined) {
+        throw new RequiredError(
+          'queue_id',
+          'Required parameter queue_id was null or undefined when calling patchMember.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchMember.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchMember.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queue_id)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EnginePatchMemberRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queue_id
      * @param {string} id
@@ -19871,6 +20054,38 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary Patch Member
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EnginePatchMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchMember(
+      queue_id: string,
+      id: string,
+      body: EnginePatchMemberRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineMemberInQueue> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).patchMember(queue_id, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queue_id
      * @param {string} id
@@ -20322,6 +20537,28 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @summary Patch Member
+     * @param {string} queue_id
+     * @param {string} id
+     * @param {EnginePatchMemberRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchMember(
+      queue_id: string,
+      id: string,
+      body: EnginePatchMemberRequest,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).patchMember(
+        queue_id,
+        id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queue_id
      * @param {string} id
@@ -20691,6 +20928,30 @@ export class MemberServiceApi extends BaseAPI {
   ) {
     return MemberServiceApiFp(this.configuration).deleteMembers(
       queue_id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @summary Patch Member
+   * @param {string} queue_id
+   * @param {string} id
+   * @param {EnginePatchMemberRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public patchMember(
+    queue_id: string,
+    id: string,
+    body: EnginePatchMemberRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).patchMember(
+      queue_id,
+      id,
       body,
       options
     )(this.axios, this.basePath)

@@ -3368,6 +3368,56 @@
             }
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "MemberService"
+        ],
+        "summary": "Patch Member",
+        "operationId": "PatchMember",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "queue_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/enginePatchMemberRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineMemberInQueue"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
       }
     },
     "/call_center/queues/{queue_id}/members/{member_id}/attempts": {
@@ -11134,6 +11184,68 @@
         }
       }
     },
+    "enginePatchMemberRequest": {
+      "type": "object",
+      "properties": {
+        "bucket": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "communications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineMemberCommunicationCreateRequest"
+          }
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "expire_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "min_offering_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "queue_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "skill": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "stop_cause": {
+          "type": "string"
+        },
+        "timezone": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "enginePatchOutboundResourceRequest": {
       "type": "object",
       "properties": {
@@ -12219,6 +12331,9 @@
         },
         "skill": {
           "$ref": "#/definitions/engineLookup"
+        },
+        "stop_cause": {
+          "type": "string"
         },
         "timezone": {
           "$ref": "#/definitions/engineLookup"
