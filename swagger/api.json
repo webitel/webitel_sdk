@@ -6920,6 +6920,12 @@
             "format": "int64",
             "name": "answered_at.to",
             "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "missed",
+            "in": "query"
           }
         ],
         "responses": {

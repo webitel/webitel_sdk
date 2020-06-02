@@ -14084,6 +14084,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {string} [direction]
      * @param {string} [answered_at_from]
      * @param {string} [answered_at_to]
+     * @param {boolean} [missed]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14112,6 +14113,7 @@ export const CallServiceApiAxiosParamCreator = function(
       direction?: string,
       answered_at_from?: string,
       answered_at_to?: string,
+      missed?: boolean,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/calls/history`
@@ -14231,6 +14233,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (answered_at_to !== undefined) {
         localVarQueryParameter['answered_at.to'] = answered_at_to
+      }
+
+      if (missed !== undefined) {
+        localVarQueryParameter['missed'] = missed
       }
 
       localVarUrlObj.query = {
@@ -14587,6 +14593,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [direction]
      * @param {string} [answered_at_from]
      * @param {string} [answered_at_to]
+     * @param {boolean} [missed]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14615,6 +14622,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       direction?: string,
       answered_at_from?: string,
       answered_at_to?: string,
+      missed?: boolean,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -14647,6 +14655,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         direction,
         answered_at_from,
         answered_at_to,
+        missed,
         options
       )
       return (
@@ -14850,6 +14859,7 @@ export const CallServiceApiFactory = function(
      * @param {string} [direction]
      * @param {string} [answered_at_from]
      * @param {string} [answered_at_to]
+     * @param {boolean} [missed]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14878,6 +14888,7 @@ export const CallServiceApiFactory = function(
       direction?: string,
       answered_at_from?: string,
       answered_at_to?: string,
+      missed?: boolean,
       options?: any
     ) {
       return CallServiceApiFp(configuration).searchHistoryCall(
@@ -14905,6 +14916,7 @@ export const CallServiceApiFactory = function(
         direction,
         answered_at_from,
         answered_at_to,
+        missed,
         options
       )(axios, basePath)
     },
@@ -15101,6 +15113,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {string} [direction]
    * @param {string} [answered_at_from]
    * @param {string} [answered_at_to]
+   * @param {boolean} [missed]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -15130,6 +15143,7 @@ export class CallServiceApi extends BaseAPI {
     direction?: string,
     answered_at_from?: string,
     answered_at_to?: string,
+    missed?: boolean,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration).searchHistoryCall(
@@ -15157,6 +15171,7 @@ export class CallServiceApi extends BaseAPI {
       direction,
       answered_at_from,
       answered_at_to,
+      missed,
       options
     )(this.axios, this.basePath)
   }

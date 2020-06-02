@@ -9,6 +9,7 @@ export interface SipConfiguration {
   realm: string
   uri: string
   authorization_user: string
+  display_name: string
   ha1?: string
 }
 
@@ -215,6 +216,7 @@ export class SipPhone extends EventEmitter<SipPhoneEvent> {
       sockets: [socket],
       session_timers: true,
       // use_preloaded_route: true,
+      display_name: sipConf.display_name,
       register_expires: 300,
       connection_recovery_min_interval: 5,
       connection_recovery_max_interval: 60,
