@@ -209,10 +209,11 @@ export class Agent {
     return task || undefined
   }
 
-  async online(channels: string[]) {
+  async online(channels: string[], onDemand: boolean) {
     return this.client.request('cc_agent_online', {
       agent_id: this.agentId,
       channels,
+      on_demand: onDemand
     })
   }
 
