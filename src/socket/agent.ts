@@ -213,7 +213,7 @@ export class Agent {
     return this.client.request('cc_agent_online', {
       agent_id: this.agentId,
       channels,
-      on_demand: onDemand
+      on_demand: onDemand,
     })
   }
 

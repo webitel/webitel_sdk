@@ -6419,13 +6419,173 @@
           },
           {
             "type": "string",
+            "format": "int64",
+            "name": "created_at.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "created_at.to",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi",
+            "name": "user_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi",
+            "name": "agent_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi",
+            "name": "queue_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi",
+            "name": "team_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi",
+            "name": "member_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi",
+            "name": "gateway_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "name": "q",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
+            "name": "duration.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "duration.to",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "skip_parent",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "parent_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "cause",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "exists_file",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "fields",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
             "name": "domain_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "number",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "direction",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "answered_at.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "answered_at.to",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "missed",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "stored_at.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "stored_at.to",
             "in": "query"
           }
         ],
@@ -6475,7 +6635,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/engineCall"
+              "$ref": "#/definitions/engineActiveCall"
             }
           },
           "403": {
@@ -6925,6 +7085,18 @@
             "type": "boolean",
             "format": "boolean",
             "name": "missed",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "stored_at.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "stored_at.to",
             "in": "query"
           }
         ],
@@ -8341,6 +8513,128 @@
         }
       }
     },
+    "engineActiveCall": {
+      "type": "object",
+      "properties": {
+        "agent": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "answered_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "bill_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "bridged_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "destination": {
+          "type": "string"
+        },
+        "direction": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "extension": {
+          "type": "string"
+        },
+        "from": {
+          "$ref": "#/definitions/engineEndpoint"
+        },
+        "gateway": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "hold_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        },
+        "joined_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "leaving_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "member": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "queue": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "queue_bridged_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "queue_duration_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "queue_wait_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "reporting_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "reporting_sec": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "state": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "to": {
+          "$ref": "#/definitions/engineEndpoint"
+        },
+        "type": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/engineLookup"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "wait_sec": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "engineAgent": {
       "type": "object",
       "properties": {
@@ -8939,43 +9233,6 @@
         },
         "updated_by": {
           "$ref": "#/definitions/engineLookup"
-        }
-      }
-    },
-    "engineCall": {
-      "type": "object",
-      "properties": {
-        "app_id": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "int64"
-        },
-        "created_by": {
-          "$ref": "#/definitions/engineLookup"
-        },
-        "direction": {
-          "type": "string"
-        },
-        "from": {
-          "$ref": "#/definitions/engineEndpoint"
-        },
-        "id": {
-          "type": "string"
-        },
-        "parent_id": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "int64"
-        },
-        "to": {
-          "$ref": "#/definitions/engineEndpoint"
         }
       }
     },
@@ -10139,6 +10396,10 @@
           "type": "integer",
           "format": "int32"
         },
+        "stored_at": {
+          "type": "string",
+          "format": "int64"
+        },
         "tags": {
           "type": "array",
           "items": {
@@ -10370,7 +10631,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/engineCall"
+            "$ref": "#/definitions/engineActiveCall"
           }
         },
         "next": {

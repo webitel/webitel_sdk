@@ -152,6 +152,211 @@ export interface EngineAcceptOfDay {
 /**
  *
  * @export
+ * @interface EngineActiveCall
+ */
+export interface EngineActiveCall {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineActiveCall
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  answered_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  app_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActiveCall
+   */
+  bill_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  bridged_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  created_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  destination?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  direction?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  display?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActiveCall
+   */
+  duration?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  extension?: string
+  /**
+   *
+   * @type {EngineEndpoint}
+   * @memberof EngineActiveCall
+   */
+  from?: EngineEndpoint
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineActiveCall
+   */
+  gateway?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActiveCall
+   */
+  hold_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  joined_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  leaving_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineActiveCall
+   */
+  member?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  parent_id?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineActiveCall
+   */
+  queue?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  queue_bridged_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActiveCall
+   */
+  queue_duration_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActiveCall
+   */
+  queue_wait_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  reporting_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActiveCall
+   */
+  reporting_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  state?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineActiveCall
+   */
+  team?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  timestamp?: string
+  /**
+   *
+   * @type {EngineEndpoint}
+   * @memberof EngineActiveCall
+   */
+  to?: EngineEndpoint
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
+  type?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineActiveCall
+   */
+  user?: EngineLookup
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineActiveCall
+   */
+  variables?: { [key: string]: string }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActiveCall
+   */
+  wait_sec?: number
+}
+/**
+ *
+ * @export
  * @interface EngineAgent
  */
 export interface EngineAgent {
@@ -1103,73 +1308,6 @@ export interface EngineCalendar {
    * @memberof EngineCalendar
    */
   updated_by?: EngineLookup
-}
-/**
- *
- * @export
- * @interface EngineCall
- */
-export interface EngineCall {
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCall
-   */
-  app_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCall
-   */
-  created_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineCall
-   */
-  created_by?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCall
-   */
-  direction?: string
-  /**
-   *
-   * @type {EngineEndpoint}
-   * @memberof EngineCall
-   */
-  from?: EngineEndpoint
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCall
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCall
-   */
-  parent_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCall
-   */
-  state?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCall
-   */
-  timestamp?: string
-  /**
-   *
-   * @type {EngineEndpoint}
-   * @memberof EngineCall
-   */
-  to?: EngineEndpoint
 }
 /**
  *
@@ -3014,6 +3152,12 @@ export interface EngineHistoryCall {
   sip_code?: number
   /**
    *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  stored_at?: string
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineHistoryCall
    */
@@ -3327,10 +3471,10 @@ export interface EngineListCalendar {
 export interface EngineListCall {
   /**
    *
-   * @type {Array<EngineCall>}
+   * @type {Array<EngineActiveCall>}
    * @memberof EngineListCall
    */
-  items?: Array<EngineCall>
+  items?: Array<EngineActiveCall>
   /**
    *
    * @type {boolean}
@@ -13989,16 +14133,62 @@ export const CallServiceApiAxiosParamCreator = function(
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {Array<string>} [user_id]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [team_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [gateway_id]
      * @param {string} [q]
+     * @param {string} [duration_from]
+     * @param {string} [duration_to]
+     * @param {boolean} [skip_parent]
+     * @param {string} [parent_id]
+     * @param {string} [cause]
+     * @param {boolean} [exists_file]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
      * @param {string} [domain_id]
+     * @param {string} [number]
+     * @param {string} [direction]
+     * @param {string} [answered_at_from]
+     * @param {string} [answered_at_to]
+     * @param {boolean} [missed]
+     * @param {string} [stored_at_from]
+     * @param {string} [stored_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchActiveCall(
       page?: number,
       size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      user_id?: Array<string>,
+      agent_id?: Array<string>,
+      queue_id?: Array<string>,
+      team_id?: Array<string>,
+      member_id?: Array<string>,
+      gateway_id?: Array<string>,
       q?: string,
+      duration_from?: string,
+      duration_to?: string,
+      skip_parent?: boolean,
+      parent_id?: string,
+      cause?: string,
+      exists_file?: boolean,
+      fields?: Array<string>,
+      sort?: string,
       domain_id?: string,
+      number?: string,
+      direction?: string,
+      answered_at_from?: string,
+      answered_at_to?: string,
+      missed?: boolean,
+      stored_at_from?: string,
+      stored_at_to?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/calls/active`
@@ -14032,12 +14222,104 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
+      if (created_at_from !== undefined) {
+        localVarQueryParameter['created_at.from'] = created_at_from
+      }
+
+      if (created_at_to !== undefined) {
+        localVarQueryParameter['created_at.to'] = created_at_to
+      }
+
+      if (user_id) {
+        localVarQueryParameter['user_id'] = user_id
+      }
+
+      if (agent_id) {
+        localVarQueryParameter['agent_id'] = agent_id
+      }
+
+      if (queue_id) {
+        localVarQueryParameter['queue_id'] = queue_id
+      }
+
+      if (team_id) {
+        localVarQueryParameter['team_id'] = team_id
+      }
+
+      if (member_id) {
+        localVarQueryParameter['member_id'] = member_id
+      }
+
+      if (gateway_id) {
+        localVarQueryParameter['gateway_id'] = gateway_id
+      }
+
       if (q !== undefined) {
         localVarQueryParameter['q'] = q
       }
 
+      if (duration_from !== undefined) {
+        localVarQueryParameter['duration.from'] = duration_from
+      }
+
+      if (duration_to !== undefined) {
+        localVarQueryParameter['duration.to'] = duration_to
+      }
+
+      if (skip_parent !== undefined) {
+        localVarQueryParameter['skip_parent'] = skip_parent
+      }
+
+      if (parent_id !== undefined) {
+        localVarQueryParameter['parent_id'] = parent_id
+      }
+
+      if (cause !== undefined) {
+        localVarQueryParameter['cause'] = cause
+      }
+
+      if (exists_file !== undefined) {
+        localVarQueryParameter['exists_file'] = exists_file
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
       if (domain_id !== undefined) {
         localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (number !== undefined) {
+        localVarQueryParameter['number'] = number
+      }
+
+      if (direction !== undefined) {
+        localVarQueryParameter['direction'] = direction
+      }
+
+      if (answered_at_from !== undefined) {
+        localVarQueryParameter['answered_at.from'] = answered_at_from
+      }
+
+      if (answered_at_to !== undefined) {
+        localVarQueryParameter['answered_at.to'] = answered_at_to
+      }
+
+      if (missed !== undefined) {
+        localVarQueryParameter['missed'] = missed
+      }
+
+      if (stored_at_from !== undefined) {
+        localVarQueryParameter['stored_at.from'] = stored_at_from
+      }
+
+      if (stored_at_to !== undefined) {
+        localVarQueryParameter['stored_at.to'] = stored_at_to
       }
 
       localVarUrlObj.query = {
@@ -14085,6 +14367,8 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {string} [answered_at_from]
      * @param {string} [answered_at_to]
      * @param {boolean} [missed]
+     * @param {string} [stored_at_from]
+     * @param {string} [stored_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14114,6 +14398,8 @@ export const CallServiceApiAxiosParamCreator = function(
       answered_at_from?: string,
       answered_at_to?: string,
       missed?: boolean,
+      stored_at_from?: string,
+      stored_at_to?: string,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/calls/history`
@@ -14237,6 +14523,14 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (missed !== undefined) {
         localVarQueryParameter['missed'] = missed
+      }
+
+      if (stored_at_from !== undefined) {
+        localVarQueryParameter['stored_at.from'] = stored_at_from
+      }
+
+      if (stored_at_to !== undefined) {
+        localVarQueryParameter['stored_at.to'] = stored_at_to
       }
 
       localVarUrlObj.query = {
@@ -14518,7 +14812,10 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       id: string,
       domain_id?: string,
       options?: any
-    ): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCall> {
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineActiveCall> {
       const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
         configuration
       ).readCall(id, domain_id, options)
@@ -14537,16 +14834,62 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {Array<string>} [user_id]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [team_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [gateway_id]
      * @param {string} [q]
+     * @param {string} [duration_from]
+     * @param {string} [duration_to]
+     * @param {boolean} [skip_parent]
+     * @param {string} [parent_id]
+     * @param {string} [cause]
+     * @param {boolean} [exists_file]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
      * @param {string} [domain_id]
+     * @param {string} [number]
+     * @param {string} [direction]
+     * @param {string} [answered_at_from]
+     * @param {string} [answered_at_to]
+     * @param {boolean} [missed]
+     * @param {string} [stored_at_from]
+     * @param {string} [stored_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchActiveCall(
       page?: number,
       size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      user_id?: Array<string>,
+      agent_id?: Array<string>,
+      queue_id?: Array<string>,
+      team_id?: Array<string>,
+      member_id?: Array<string>,
+      gateway_id?: Array<string>,
       q?: string,
+      duration_from?: string,
+      duration_to?: string,
+      skip_parent?: boolean,
+      parent_id?: string,
+      cause?: string,
+      exists_file?: boolean,
+      fields?: Array<string>,
+      sort?: string,
       domain_id?: string,
+      number?: string,
+      direction?: string,
+      answered_at_from?: string,
+      answered_at_to?: string,
+      missed?: boolean,
+      stored_at_from?: string,
+      stored_at_to?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -14554,7 +14897,36 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     ) => AxiosPromise<EngineListCall> {
       const localVarAxiosArgs = CallServiceApiAxiosParamCreator(
         configuration
-      ).searchActiveCall(page, size, q, domain_id, options)
+      ).searchActiveCall(
+        page,
+        size,
+        created_at_from,
+        created_at_to,
+        user_id,
+        agent_id,
+        queue_id,
+        team_id,
+        member_id,
+        gateway_id,
+        q,
+        duration_from,
+        duration_to,
+        skip_parent,
+        parent_id,
+        cause,
+        exists_file,
+        fields,
+        sort,
+        domain_id,
+        number,
+        direction,
+        answered_at_from,
+        answered_at_to,
+        missed,
+        stored_at_from,
+        stored_at_to,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -14594,6 +14966,8 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [answered_at_from]
      * @param {string} [answered_at_to]
      * @param {boolean} [missed]
+     * @param {string} [stored_at_from]
+     * @param {string} [stored_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14623,6 +14997,8 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       answered_at_from?: string,
       answered_at_to?: string,
       missed?: boolean,
+      stored_at_from?: string,
+      stored_at_to?: string,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -14656,6 +15032,8 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         answered_at_from,
         answered_at_to,
         missed,
+        stored_at_from,
+        stored_at_to,
         options
       )
       return (
@@ -14812,23 +15190,92 @@ export const CallServiceApiFactory = function(
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [created_at_from]
+     * @param {string} [created_at_to]
+     * @param {Array<string>} [user_id]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [queue_id]
+     * @param {Array<string>} [team_id]
+     * @param {Array<string>} [member_id]
+     * @param {Array<string>} [gateway_id]
      * @param {string} [q]
+     * @param {string} [duration_from]
+     * @param {string} [duration_to]
+     * @param {boolean} [skip_parent]
+     * @param {string} [parent_id]
+     * @param {string} [cause]
+     * @param {boolean} [exists_file]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
      * @param {string} [domain_id]
+     * @param {string} [number]
+     * @param {string} [direction]
+     * @param {string} [answered_at_from]
+     * @param {string} [answered_at_to]
+     * @param {boolean} [missed]
+     * @param {string} [stored_at_from]
+     * @param {string} [stored_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchActiveCall(
       page?: number,
       size?: number,
+      created_at_from?: string,
+      created_at_to?: string,
+      user_id?: Array<string>,
+      agent_id?: Array<string>,
+      queue_id?: Array<string>,
+      team_id?: Array<string>,
+      member_id?: Array<string>,
+      gateway_id?: Array<string>,
       q?: string,
+      duration_from?: string,
+      duration_to?: string,
+      skip_parent?: boolean,
+      parent_id?: string,
+      cause?: string,
+      exists_file?: boolean,
+      fields?: Array<string>,
+      sort?: string,
       domain_id?: string,
+      number?: string,
+      direction?: string,
+      answered_at_from?: string,
+      answered_at_to?: string,
+      missed?: boolean,
+      stored_at_from?: string,
+      stored_at_to?: string,
       options?: any
     ) {
       return CallServiceApiFp(configuration).searchActiveCall(
         page,
         size,
+        created_at_from,
+        created_at_to,
+        user_id,
+        agent_id,
+        queue_id,
+        team_id,
+        member_id,
+        gateway_id,
         q,
+        duration_from,
+        duration_to,
+        skip_parent,
+        parent_id,
+        cause,
+        exists_file,
+        fields,
+        sort,
         domain_id,
+        number,
+        direction,
+        answered_at_from,
+        answered_at_to,
+        missed,
+        stored_at_from,
+        stored_at_to,
         options
       )(axios, basePath)
     },
@@ -14860,6 +15307,8 @@ export const CallServiceApiFactory = function(
      * @param {string} [answered_at_from]
      * @param {string} [answered_at_to]
      * @param {boolean} [missed]
+     * @param {string} [stored_at_from]
+     * @param {string} [stored_at_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14889,6 +15338,8 @@ export const CallServiceApiFactory = function(
       answered_at_from?: string,
       answered_at_to?: string,
       missed?: boolean,
+      stored_at_from?: string,
+      stored_at_to?: string,
       options?: any
     ) {
       return CallServiceApiFp(configuration).searchHistoryCall(
@@ -14917,6 +15368,8 @@ export const CallServiceApiFactory = function(
         answered_at_from,
         answered_at_to,
         missed,
+        stored_at_from,
+        stored_at_to,
         options
       )(axios, basePath)
     },
@@ -15064,8 +15517,31 @@ export class CallServiceApi extends BaseAPI {
    *
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [created_at_from]
+   * @param {string} [created_at_to]
+   * @param {Array<string>} [user_id]
+   * @param {Array<string>} [agent_id]
+   * @param {Array<string>} [queue_id]
+   * @param {Array<string>} [team_id]
+   * @param {Array<string>} [member_id]
+   * @param {Array<string>} [gateway_id]
    * @param {string} [q]
+   * @param {string} [duration_from]
+   * @param {string} [duration_to]
+   * @param {boolean} [skip_parent]
+   * @param {string} [parent_id]
+   * @param {string} [cause]
+   * @param {boolean} [exists_file]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
    * @param {string} [domain_id]
+   * @param {string} [number]
+   * @param {string} [direction]
+   * @param {string} [answered_at_from]
+   * @param {string} [answered_at_to]
+   * @param {boolean} [missed]
+   * @param {string} [stored_at_from]
+   * @param {string} [stored_at_to]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -15073,15 +15549,61 @@ export class CallServiceApi extends BaseAPI {
   public searchActiveCall(
     page?: number,
     size?: number,
+    created_at_from?: string,
+    created_at_to?: string,
+    user_id?: Array<string>,
+    agent_id?: Array<string>,
+    queue_id?: Array<string>,
+    team_id?: Array<string>,
+    member_id?: Array<string>,
+    gateway_id?: Array<string>,
     q?: string,
+    duration_from?: string,
+    duration_to?: string,
+    skip_parent?: boolean,
+    parent_id?: string,
+    cause?: string,
+    exists_file?: boolean,
+    fields?: Array<string>,
+    sort?: string,
     domain_id?: string,
+    number?: string,
+    direction?: string,
+    answered_at_from?: string,
+    answered_at_to?: string,
+    missed?: boolean,
+    stored_at_from?: string,
+    stored_at_to?: string,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration).searchActiveCall(
       page,
       size,
+      created_at_from,
+      created_at_to,
+      user_id,
+      agent_id,
+      queue_id,
+      team_id,
+      member_id,
+      gateway_id,
       q,
+      duration_from,
+      duration_to,
+      skip_parent,
+      parent_id,
+      cause,
+      exists_file,
+      fields,
+      sort,
       domain_id,
+      number,
+      direction,
+      answered_at_from,
+      answered_at_to,
+      missed,
+      stored_at_from,
+      stored_at_to,
       options
     )(this.axios, this.basePath)
   }
@@ -15114,6 +15636,8 @@ export class CallServiceApi extends BaseAPI {
    * @param {string} [answered_at_from]
    * @param {string} [answered_at_to]
    * @param {boolean} [missed]
+   * @param {string} [stored_at_from]
+   * @param {string} [stored_at_to]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -15144,6 +15668,8 @@ export class CallServiceApi extends BaseAPI {
     answered_at_from?: string,
     answered_at_to?: string,
     missed?: boolean,
+    stored_at_from?: string,
+    stored_at_to?: string,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration).searchHistoryCall(
@@ -15172,6 +15698,8 @@ export class CallServiceApi extends BaseAPI {
       answered_at_from,
       answered_at_to,
       missed,
+      stored_at_from,
+      stored_at_to,
       options
     )(this.axios, this.basePath)
   }
