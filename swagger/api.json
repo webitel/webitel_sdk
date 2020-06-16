@@ -399,6 +399,94 @@
         }
       }
     },
+    "/call_center/agents/reports/call": {
+      "get": {
+        "tags": [
+          "AgentService"
+        ],
+        "operationId": "SearchAgentCallStatistics",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "time.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "time.to",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "multi",
+            "name": "agent_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "domain_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "fields",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineAgentCallStatisticsList"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
     "/call_center/agents/{agent_id}/skills": {
       "get": {
         "tags": [
@@ -8667,6 +8755,73 @@
         },
         "user": {
           "$ref": "#/definitions/engineLookup"
+        }
+      }
+    },
+    "engineAgentCallStatistics": {
+      "type": "object",
+      "properties": {
+        "abandoned": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "avg_hold_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "avg_talk_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "handles": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_hold_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "max_talk_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "min_hold_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "min_talk_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sum_hold_sec": {
+          "type": "number",
+          "format": "float"
+        },
+        "sum_talk_sec": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "engineAgentCallStatisticsList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineAgentCallStatistics"
+          }
+        },
+        "next": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },

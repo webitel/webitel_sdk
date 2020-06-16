@@ -412,6 +412,104 @@ export interface EngineAgent {
 /**
  *
  * @export
+ * @interface EngineAgentCallStatistics
+ */
+export interface EngineAgentCallStatistics {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  abandoned?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  avg_hold_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  avg_talk_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  count?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  handles?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  max_hold_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  max_talk_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  min_hold_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  min_talk_sec?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentCallStatistics
+   */
+  name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  sum_hold_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  sum_talk_sec?: number
+}
+/**
+ *
+ * @export
+ * @interface EngineAgentCallStatisticsList
+ */
+export interface EngineAgentCallStatisticsList {
+  /**
+   *
+   * @type {Array<EngineAgentCallStatistics>}
+   * @memberof EngineAgentCallStatisticsList
+   */
+  items?: Array<EngineAgentCallStatistics>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAgentCallStatisticsList
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
  * @interface EngineAgentChannel
  */
 export interface EngineAgentChannel {
@@ -7886,6 +7984,108 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {Array<number>} [agent_id]
+     * @param {string} [domain_id]
+     * @param {string} [q]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentCallStatistics(
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      agent_id?: Array<number>,
+      domain_id?: string,
+      q?: string,
+      fields?: Array<string>,
+      sort?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/agents/reports/call`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (time_from !== undefined) {
+        localVarQueryParameter['time.from'] = time_from
+      }
+
+      if (time_to !== undefined) {
+        localVarQueryParameter['time.to'] = time_to
+      }
+
+      if (agent_id) {
+        localVarQueryParameter['agent_id'] = agent_id
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -8574,6 +8774,60 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {Array<number>} [agent_id]
+     * @param {string} [domain_id]
+     * @param {string} [q]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentCallStatistics(
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      agent_id?: Array<number>,
+      domain_id?: string,
+      q?: string,
+      fields?: Array<string>,
+      sort?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineAgentCallStatisticsList> {
+      const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentCallStatistics(
+        page,
+        size,
+        time_from,
+        time_to,
+        agent_id,
+        domain_id,
+        q,
+        fields,
+        sort,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -8902,6 +9156,45 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {Array<number>} [agent_id]
+     * @param {string} [domain_id]
+     * @param {string} [q]
+     * @param {Array<string>} [fields]
+     * @param {string} [sort]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentCallStatistics(
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      agent_id?: Array<number>,
+      domain_id?: string,
+      q?: string,
+      fields?: Array<string>,
+      sort?: string,
+      options?: any
+    ) {
+      return AgentServiceApiFp(configuration).searchAgentCallStatistics(
+        page,
+        size,
+        time_from,
+        time_to,
+        agent_id,
+        domain_id,
+        q,
+        fields,
+        sort,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -9155,6 +9448,47 @@ export class AgentServiceApi extends BaseAPI {
       fields,
       sort,
       id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [time_from]
+   * @param {string} [time_to]
+   * @param {Array<number>} [agent_id]
+   * @param {string} [domain_id]
+   * @param {string} [q]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public searchAgentCallStatistics(
+    page?: number,
+    size?: number,
+    time_from?: string,
+    time_to?: string,
+    agent_id?: Array<number>,
+    domain_id?: string,
+    q?: string,
+    fields?: Array<string>,
+    sort?: string,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration).searchAgentCallStatistics(
+      page,
+      size,
+      time_from,
+      time_to,
+      agent_id,
+      domain_id,
+      q,
+      fields,
+      sort,
       options
     )(this.axios, this.basePath)
   }
