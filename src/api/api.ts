@@ -404,6 +404,12 @@ export interface EngineAgent {
   status?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  status_duration?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineAgent
    */
@@ -738,6 +744,24 @@ export interface EngineAgentSkillItem {
 export interface EngineAgentState {
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineAgentState
+   */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentState
+   */
+  channel?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentState
+   */
+  duration?: string
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentState
    */
@@ -750,6 +774,12 @@ export interface EngineAgentState {
   joined_at?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineAgentState
+   */
+  payload?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineAgentState
    */
@@ -760,12 +790,6 @@ export interface EngineAgentState {
    * @memberof EngineAgentState
    */
   state?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentState
-   */
-  timeout_at?: string
 }
 /**
  *
@@ -7697,6 +7721,102 @@ export const AgentServiceApiAxiosParamCreator = function(
   return {
     /**
      *
+     * @param {string} agent_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agentStateHistory(
+      agent_id: string,
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      q?: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'agent_id' is not null or undefined
+      if (agent_id === null || agent_id === undefined) {
+        throw new RequiredError(
+          'agent_id',
+          'Required parameter agent_id was null or undefined when calling agentStateHistory.'
+        )
+      }
+      const localVarPath = `/call_center/agents/{agent_id}/states/history`.replace(
+        `{${'agent_id'}}`,
+        encodeURIComponent(String(agent_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (time_from !== undefined) {
+        localVarQueryParameter['time_from'] = time_from
+      }
+
+      if (time_to !== undefined) {
+        localVarQueryParameter['time_to'] = time_to
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Create Agent
      * @param {EngineCreateAgentRequest} body
      * @param {*} [options] Override http request option.
@@ -8320,38 +8440,27 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List of Agent
-     * @param {string} agent_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [time_from]
-     * @param {string} [time_to]
-     * @param {string} [q]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [agent_id]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentStateHistory(
-      agent_id: string,
       page?: number,
       size?: number,
-      time_from?: string,
-      time_to?: string,
-      q?: string,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      agent_id?: Array<string>,
+      sort?: string,
       domain_id?: string,
       options: any = {}
     ): RequestArgs {
-      // verify required parameter 'agent_id' is not null or undefined
-      if (agent_id === null || agent_id === undefined) {
-        throw new RequiredError(
-          'agent_id',
-          'Required parameter agent_id was null or undefined when calling searchAgentStateHistory.'
-        )
-      }
-      const localVarPath = `/call_center/agents/{agent_id}/states/history`.replace(
-        `{${'agent_id'}}`,
-        encodeURIComponent(String(agent_id))
-      )
+      const localVarPath = `/call_center/agents/states/history`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -8382,16 +8491,20 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (time_from !== undefined) {
-        localVarQueryParameter['time_from'] = time_from
+      if (joined_at_from !== undefined) {
+        localVarQueryParameter['joined_at.from'] = joined_at_from
       }
 
-      if (time_to !== undefined) {
-        localVarQueryParameter['time_to'] = time_to
+      if (joined_at_to !== undefined) {
+        localVarQueryParameter['joined_at.to'] = joined_at_to
       }
 
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
+      if (agent_id) {
+        localVarQueryParameter['agent_id'] = agent_id
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (domain_id !== undefined) {
@@ -8653,6 +8766,54 @@ export const AgentServiceApiAxiosParamCreator = function(
  */
 export const AgentServiceApiFp = function(configuration?: Configuration) {
   return {
+    /**
+     *
+     * @param {string} agent_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agentStateHistory(
+      agent_id: string,
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      q?: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListAgentStateHistory> {
+      const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
+        configuration
+      ).agentStateHistory(
+        agent_id,
+        page,
+        size,
+        time_from,
+        time_to,
+        q,
+        domain_id,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
     /**
      *
      * @summary Create Agent
@@ -8927,24 +9088,23 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary List of Agent
-     * @param {string} agent_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [time_from]
-     * @param {string} [time_to]
-     * @param {string} [q]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [agent_id]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentStateHistory(
-      agent_id: string,
       page?: number,
       size?: number,
-      time_from?: string,
-      time_to?: string,
-      q?: string,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      agent_id?: Array<string>,
+      sort?: string,
       domain_id?: string,
       options?: any
     ): (
@@ -8954,12 +9114,12 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
         configuration
       ).searchAgentStateHistory(
-        agent_id,
         page,
         size,
-        time_from,
-        time_to,
-        q,
+        joined_at_from,
+        joined_at_to,
+        agent_id,
+        sort,
         domain_id,
         options
       )
@@ -9078,6 +9238,39 @@ export const AgentServiceApiFactory = function(
   axios?: AxiosInstance
 ) {
   return {
+    /**
+     *
+     * @param {string} agent_id
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {string} [q]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agentStateHistory(
+      agent_id: string,
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      q?: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return AgentServiceApiFp(configuration).agentStateHistory(
+        agent_id,
+        page,
+        size,
+        time_from,
+        time_to,
+        q,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
     /**
      *
      * @summary Create Agent
@@ -9267,34 +9460,33 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
-     * @summary List of Agent
-     * @param {string} agent_id
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [time_from]
-     * @param {string} [time_to]
-     * @param {string} [q]
+     * @param {string} [joined_at_from]
+     * @param {string} [joined_at_to]
+     * @param {Array<string>} [agent_id]
+     * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentStateHistory(
-      agent_id: string,
       page?: number,
       size?: number,
-      time_from?: string,
-      time_to?: string,
-      q?: string,
+      joined_at_from?: string,
+      joined_at_to?: string,
+      agent_id?: Array<string>,
+      sort?: string,
       domain_id?: string,
       options?: any
     ) {
       return AgentServiceApiFp(configuration).searchAgentStateHistory(
-        agent_id,
         page,
         size,
-        time_from,
-        time_to,
-        q,
+        joined_at_from,
+        joined_at_to,
+        agent_id,
+        sort,
         domain_id,
         options
       )(axios, basePath)
@@ -9367,6 +9559,41 @@ export const AgentServiceApiFactory = function(
  * @extends {BaseAPI}
  */
 export class AgentServiceApi extends BaseAPI {
+  /**
+   *
+   * @param {string} agent_id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [time_from]
+   * @param {string} [time_to]
+   * @param {string} [q]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public agentStateHistory(
+    agent_id: string,
+    page?: number,
+    size?: number,
+    time_from?: string,
+    time_to?: string,
+    q?: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration).agentStateHistory(
+      agent_id,
+      page,
+      size,
+      time_from,
+      time_to,
+      q,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
   /**
    *
    * @summary Create Agent
@@ -9573,35 +9800,34 @@ export class AgentServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary List of Agent
-   * @param {string} agent_id
    * @param {number} [page]
    * @param {number} [size]
-   * @param {string} [time_from]
-   * @param {string} [time_to]
-   * @param {string} [q]
+   * @param {string} [joined_at_from]
+   * @param {string} [joined_at_to]
+   * @param {Array<string>} [agent_id]
+   * @param {string} [sort]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
   public searchAgentStateHistory(
-    agent_id: string,
     page?: number,
     size?: number,
-    time_from?: string,
-    time_to?: string,
-    q?: string,
+    joined_at_from?: string,
+    joined_at_to?: string,
+    agent_id?: Array<string>,
+    sort?: string,
     domain_id?: string,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration).searchAgentStateHistory(
-      agent_id,
       page,
       size,
-      time_from,
-      time_to,
-      q,
+      joined_at_from,
+      joined_at_to,
+      agent_id,
+      sort,
       domain_id,
       options
     )(this.axios, this.basePath)
