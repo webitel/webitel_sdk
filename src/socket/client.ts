@@ -248,6 +248,10 @@ export class Client {
     await this.phone.call(req)
   }
 
+  async callRecordId(id: string) {
+    return this.request('call_recordings', { id })
+  }
+
   async eavesdrop(req: EavesdropRequest) {
     return this.request('call_eavesdrop', req)
   }
