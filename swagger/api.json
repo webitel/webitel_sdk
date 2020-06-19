@@ -7197,7 +7197,7 @@
           {
             "type": "boolean",
             "format": "boolean",
-            "name": "exists_file",
+            "name": "has_file",
             "in": "query"
           },
           {
@@ -10591,10 +10591,6 @@
           "type": "integer",
           "format": "int32"
         },
-        "exists_parent": {
-          "type": "boolean",
-          "format": "boolean"
-        },
         "extension": {
           "type": "string"
         },
@@ -10616,6 +10612,10 @@
         },
         "hangup_by": {
           "type": "string"
+        },
+        "has_parent": {
+          "type": "boolean",
+          "format": "boolean"
         },
         "hold_sec": {
           "type": "integer",

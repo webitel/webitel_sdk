@@ -327,7 +327,11 @@ export class Call {
 
     this.bridgedId = bridged.bridged_id
     if (bridged.to) {
-      this.to = bridged.to
+      if (this.direction === CallDirection.Inbound) {
+        this.to = bridged.to
+      } else {
+        this.from = bridged.to
+      }
     }
 
     this.bridgedId = (s.data as CallBridged).bridged_id

@@ -3154,12 +3154,6 @@ export interface EngineHistoryCall {
   duration?: number
   /**
    *
-   * @type {boolean}
-   * @memberof EngineHistoryCall
-   */
-  exists_parent?: boolean
-  /**
-   *
    * @type {string}
    * @memberof EngineHistoryCall
    */
@@ -3194,6 +3188,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   hangup_by?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineHistoryCall
+   */
+  has_parent?: boolean
   /**
    *
    * @type {number}
@@ -14936,7 +14936,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {boolean} [skip_parent]
      * @param {string} [parent_id]
      * @param {string} [cause]
-     * @param {boolean} [exists_file]
+     * @param {boolean} [has_file]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
@@ -14970,7 +14970,7 @@ export const CallServiceApiAxiosParamCreator = function(
       skip_parent?: boolean,
       parent_id?: string,
       cause?: string,
-      exists_file?: boolean,
+      has_file?: boolean,
       fields?: Array<string>,
       sort?: string,
       domain_id?: string,
@@ -15073,8 +15073,8 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['cause'] = cause
       }
 
-      if (exists_file !== undefined) {
-        localVarQueryParameter['exists_file'] = exists_file
+      if (has_file !== undefined) {
+        localVarQueryParameter['has_file'] = has_file
       }
 
       if (fields) {
@@ -15553,7 +15553,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {boolean} [skip_parent]
      * @param {string} [parent_id]
      * @param {string} [cause]
-     * @param {boolean} [exists_file]
+     * @param {boolean} [has_file]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
@@ -15587,7 +15587,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       skip_parent?: boolean,
       parent_id?: string,
       cause?: string,
-      exists_file?: boolean,
+      has_file?: boolean,
       fields?: Array<string>,
       sort?: string,
       domain_id?: string,
@@ -15625,7 +15625,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         skip_parent,
         parent_id,
         cause,
-        exists_file,
+        has_file,
         fields,
         sort,
         domain_id,
@@ -15903,7 +15903,7 @@ export const CallServiceApiFactory = function(
      * @param {boolean} [skip_parent]
      * @param {string} [parent_id]
      * @param {string} [cause]
-     * @param {boolean} [exists_file]
+     * @param {boolean} [has_file]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {string} [domain_id]
@@ -15937,7 +15937,7 @@ export const CallServiceApiFactory = function(
       skip_parent?: boolean,
       parent_id?: string,
       cause?: string,
-      exists_file?: boolean,
+      has_file?: boolean,
       fields?: Array<string>,
       sort?: string,
       domain_id?: string,
@@ -15970,7 +15970,7 @@ export const CallServiceApiFactory = function(
         skip_parent,
         parent_id,
         cause,
-        exists_file,
+        has_file,
         fields,
         sort,
         domain_id,
@@ -16241,7 +16241,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {boolean} [skip_parent]
    * @param {string} [parent_id]
    * @param {string} [cause]
-   * @param {boolean} [exists_file]
+   * @param {boolean} [has_file]
    * @param {Array<string>} [fields]
    * @param {string} [sort]
    * @param {string} [domain_id]
@@ -16276,7 +16276,7 @@ export class CallServiceApi extends BaseAPI {
     skip_parent?: boolean,
     parent_id?: string,
     cause?: string,
-    exists_file?: boolean,
+    has_file?: boolean,
     fields?: Array<string>,
     sort?: string,
     domain_id?: string,
@@ -16309,7 +16309,7 @@ export class CallServiceApi extends BaseAPI {
       skip_parent,
       parent_id,
       cause,
-      exists_file,
+      has_file,
       fields,
       sort,
       domain_id,
