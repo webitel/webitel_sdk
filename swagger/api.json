@@ -7259,6 +7259,33 @@
             "format": "int64",
             "name": "stored_at.to",
             "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "transfer_from",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "transfer_to",
+            "in": "query"
           }
         ],
         "responses": {
@@ -10564,6 +10591,10 @@
           "type": "integer",
           "format": "int32"
         },
+        "exists_parent": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "extension": {
           "type": "string"
         },
@@ -10652,6 +10683,12 @@
         },
         "to": {
           "$ref": "#/definitions/engineEndpoint"
+        },
+        "transfer_from": {
+          "type": "string"
+        },
+        "transfer_to": {
+          "type": "string"
         },
         "type": {
           "type": "string"

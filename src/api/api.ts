@@ -3154,6 +3154,12 @@ export interface EngineHistoryCall {
   duration?: number
   /**
    *
+   * @type {boolean}
+   * @memberof EngineHistoryCall
+   */
+  exists_parent?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineHistoryCall
    */
@@ -3296,6 +3302,18 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   to?: EngineEndpoint
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  transfer_from?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  transfer_to?: string
   /**
    *
    * @type {string}
@@ -14929,6 +14947,9 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {boolean} [missed]
      * @param {string} [stored_at_from]
      * @param {string} [stored_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [transfer_from]
+     * @param {Array<string>} [transfer_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -14960,6 +14981,9 @@ export const CallServiceApiAxiosParamCreator = function(
       missed?: boolean,
       stored_at_from?: string,
       stored_at_to?: string,
+      id?: Array<string>,
+      transfer_from?: Array<string>,
+      transfer_to?: Array<string>,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/calls/history`
@@ -15091,6 +15115,18 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (stored_at_to !== undefined) {
         localVarQueryParameter['stored_at.to'] = stored_at_to
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (transfer_from) {
+        localVarQueryParameter['transfer_from'] = transfer_from
+      }
+
+      if (transfer_to) {
+        localVarQueryParameter['transfer_to'] = transfer_to
       }
 
       localVarUrlObj.query = {
@@ -15528,6 +15564,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {boolean} [missed]
      * @param {string} [stored_at_from]
      * @param {string} [stored_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [transfer_from]
+     * @param {Array<string>} [transfer_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -15559,6 +15598,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       missed?: boolean,
       stored_at_from?: string,
       stored_at_to?: string,
+      id?: Array<string>,
+      transfer_from?: Array<string>,
+      transfer_to?: Array<string>,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -15594,6 +15636,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         missed,
         stored_at_from,
         stored_at_to,
+        id,
+        transfer_from,
+        transfer_to,
         options
       )
       return (
@@ -15869,6 +15914,9 @@ export const CallServiceApiFactory = function(
      * @param {boolean} [missed]
      * @param {string} [stored_at_from]
      * @param {string} [stored_at_to]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [transfer_from]
+     * @param {Array<string>} [transfer_to]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -15900,6 +15948,9 @@ export const CallServiceApiFactory = function(
       missed?: boolean,
       stored_at_from?: string,
       stored_at_to?: string,
+      id?: Array<string>,
+      transfer_from?: Array<string>,
+      transfer_to?: Array<string>,
       options?: any
     ) {
       return CallServiceApiFp(configuration).searchHistoryCall(
@@ -15930,6 +15981,9 @@ export const CallServiceApiFactory = function(
         missed,
         stored_at_from,
         stored_at_to,
+        id,
+        transfer_from,
+        transfer_to,
         options
       )(axios, basePath)
     },
@@ -16198,6 +16252,9 @@ export class CallServiceApi extends BaseAPI {
    * @param {boolean} [missed]
    * @param {string} [stored_at_from]
    * @param {string} [stored_at_to]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [transfer_from]
+   * @param {Array<string>} [transfer_to]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -16230,6 +16287,9 @@ export class CallServiceApi extends BaseAPI {
     missed?: boolean,
     stored_at_from?: string,
     stored_at_to?: string,
+    id?: Array<string>,
+    transfer_from?: Array<string>,
+    transfer_to?: Array<string>,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration).searchHistoryCall(
@@ -16260,6 +16320,9 @@ export class CallServiceApi extends BaseAPI {
       missed,
       stored_at_from,
       stored_at_to,
+      id,
+      transfer_from,
+      transfer_to,
       options
     )(this.axios, this.basePath)
   }
