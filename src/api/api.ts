@@ -794,6 +794,109 @@ export interface EngineAgentState {
 /**
  *
  * @export
+ * @interface EngineAgentStatsStatistic
+ */
+export interface EngineAgentStatsStatistic {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentStatsStatistic
+   */
+  agent_id?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  call_time?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  extension?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentStatsStatistic
+   */
+  handles?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  max_bridged_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  max_offering_at?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentStatsStatistic
+   */
+  missed?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  offline?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  online?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  pause?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  status?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  status_duration?: string
+  /**
+   *
+   * @type {Array<EngineLookup>}
+   * @memberof EngineAgentStatsStatistic
+   */
+  teams?: Array<EngineLookup>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentStatsStatistic
+   */
+  user?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentStatsStatistic
+   */
+  utilization?: number
+}
+/**
+ *
+ * @export
  * @interface EngineAgentStatusRequest
  */
 export interface EngineAgentStatusRequest {
@@ -3193,7 +3296,7 @@ export interface EngineHistoryCall {
    * @type {boolean}
    * @memberof EngineHistoryCall
    */
-  has_parent?: boolean
+  has_children?: boolean
   /**
    *
    * @type {number}
@@ -3505,6 +3608,25 @@ export interface EngineListAgentStateHistory {
    *
    * @type {boolean}
    * @memberof EngineListAgentStateHistory
+   */
+  next?: boolean
+}
+/**
+ *
+ * @export
+ * @interface EngineListAgentStatsStatistic
+ */
+export interface EngineListAgentStatsStatistic {
+  /**
+   *
+   * @type {Array<EngineAgentStatsStatistic>}
+   * @memberof EngineListAgentStatsStatistic
+   */
+  items?: Array<EngineAgentStatsStatistic>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListAgentStatsStatistic
    */
   next?: boolean
 }
@@ -8548,6 +8670,102 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [status]
+     * @param {string} [sort]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentStatusStatistic(
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      agent_id?: Array<string>,
+      status?: Array<string>,
+      sort?: string,
+      domain_id?: string,
+      options: any = {}
+    ): RequestArgs {
+      const localVarPath = `/call_center/agents/reports/status`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (time_from !== undefined) {
+        localVarQueryParameter['time.from'] = time_from
+      }
+
+      if (time_to !== undefined) {
+        localVarQueryParameter['time.to'] = time_to
+      }
+
+      if (agent_id) {
+        localVarQueryParameter['agent_id'] = agent_id
+      }
+
+      if (status) {
+        localVarQueryParameter['status'] = status
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (domain_id !== undefined) {
+        localVarQueryParameter['domain_id'] = domain_id
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary SearchLookupAgentNotExistsUser
      * @param {number} [page]
      * @param {number} [size]
@@ -9154,6 +9372,57 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [status]
+     * @param {string} [sort]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentStatusStatistic(
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      agent_id?: Array<string>,
+      status?: Array<string>,
+      sort?: string,
+      domain_id?: string,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineListAgentStatsStatistic> {
+      const localVarAxiosArgs = AgentServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentStatusStatistic(
+        page,
+        size,
+        time_from,
+        time_to,
+        agent_id,
+        status,
+        sort,
+        domain_id,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary SearchLookupAgentNotExistsUser
      * @param {number} [page]
      * @param {number} [size]
@@ -9511,6 +9780,42 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [time_from]
+     * @param {string} [time_to]
+     * @param {Array<string>} [agent_id]
+     * @param {Array<string>} [status]
+     * @param {string} [sort]
+     * @param {string} [domain_id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentStatusStatistic(
+      page?: number,
+      size?: number,
+      time_from?: string,
+      time_to?: string,
+      agent_id?: Array<string>,
+      status?: Array<string>,
+      sort?: string,
+      domain_id?: string,
+      options?: any
+    ) {
+      return AgentServiceApiFp(configuration).searchAgentStatusStatistic(
+        page,
+        size,
+        time_from,
+        time_to,
+        agent_id,
+        status,
+        sort,
+        domain_id,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @summary SearchLookupAgentNotExistsUser
      * @param {number} [page]
      * @param {number} [size]
@@ -9845,6 +10150,44 @@ export class AgentServiceApi extends BaseAPI {
       joined_at_from,
       joined_at_to,
       agent_id,
+      sort,
+      domain_id,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [time_from]
+   * @param {string} [time_to]
+   * @param {Array<string>} [agent_id]
+   * @param {Array<string>} [status]
+   * @param {string} [sort]
+   * @param {string} [domain_id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public searchAgentStatusStatistic(
+    page?: number,
+    size?: number,
+    time_from?: string,
+    time_to?: string,
+    agent_id?: Array<string>,
+    status?: Array<string>,
+    sort?: string,
+    domain_id?: string,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration).searchAgentStatusStatistic(
+      page,
+      size,
+      time_from,
+      time_to,
+      agent_id,
+      status,
       sort,
       domain_id,
       options
