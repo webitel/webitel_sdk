@@ -7,6 +7,7 @@ import {
   CallEventData,
   CallEventDTMF,
   CallEventExecute,
+  CallReporting,
   EavesdropRequest,
   OutboundCallRequest,
 } from './call'
@@ -212,6 +213,13 @@ export class Client {
         return call
       }
     }
+  }
+
+  async reportingTask(attemptId: number, reporting: CallReporting) {
+    return this.request('cc_reporting', {
+      attempt_id: attemptId,
+      ...reporting,
+    })
   }
 
   async auth() {
