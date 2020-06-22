@@ -3,7 +3,6 @@ import {
   ChannelEvent,
   DistributeEvent,
   MissedEvent,
-  ReportingEvent,
   Task,
   WrapTimeEvent,
 } from './task'
@@ -17,6 +16,7 @@ export interface Channel {
   max_open: number
   open: number
   no_answer: number
+  wrap_time_ids: number[]
 }
 
 export interface AgentSession {
@@ -52,7 +52,6 @@ export enum AgentState {
   Offering = 'offering',
   Ringing = 'ringing',
   Talking = 'talking',
-  Reporting = 'reporting',
   Break = 'break',
   Fine = 'fine',
 }
@@ -66,7 +65,6 @@ export enum ChannelState {
   Answered = 'answered',
   Active = 'active',
   Hold = 'hold', // TODO
-  Reporting = 'reporting',
   Missed = 'missed',
   WrapTime = 'wrap_time',
 }
@@ -163,28 +161,11 @@ export class Agent {
               e,
               wrapTimeEvent.wrap_time.timeout
             )
-            this.task.delete(e.attempt_id)
-            this.client.reportingCallTask(task)
 
-            return task
-          }
-        }
-        break
-
-      case ChannelState.Reporting:
-        if (e.attempt_id) {
-          const reportingEvent: ReportingEvent = e as ReportingEvent
-          if (!reportingEvent) {
-            throw new Error('bad event')
-          }
-
-          task = this.task.get(e.attempt_id) as Task
-          if (task) {
-            this.setChannelStateTimeout(
-              e.channel,
-              e,
-              reportingEvent.reporting!.timeout
-            )
+            if (!wrapTimeEvent.wrap_time.post_processing) {
+              this.task.delete(e.attempt_id)
+              this.client.reportingCallTask(task)
+            }
 
             return task
           }
