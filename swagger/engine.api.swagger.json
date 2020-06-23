@@ -585,6 +585,20 @@
             "collectionFormat": "multi"
           },
           {
+            "name": "utilization.from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "utilization.to",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
             "name": "sort",
             "in": "query",
             "required": false,
@@ -9230,6 +9244,12 @@
             "$ref": "#/definitions/engineLookup"
           }
         },
+        "queues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
+        },
         "online": {
           "type": "string",
           "format": "int64"
@@ -9281,6 +9301,15 @@
         "on_demand": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "payload": {
+          "type": "string"
         },
         "domain_id": {
           "type": "string",

@@ -539,6 +539,18 @@
           },
           {
             "type": "string",
+            "format": "int64",
+            "name": "utilization.from",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "utilization.to",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "name": "sort",
             "in": "query"
           },
@@ -9232,6 +9244,12 @@
           "type": "string",
           "format": "int64"
         },
+        "queues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineLookup"
+          }
+        },
         "status": {
           "type": "string"
         },
@@ -9257,6 +9275,12 @@
     "engineAgentStatusRequest": {
       "type": "object",
       "properties": {
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "domain_id": {
           "type": "string",
           "format": "int64"
@@ -9268,6 +9292,9 @@
         "on_demand": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "payload": {
+          "type": "string"
         },
         "status": {
           "type": "string"

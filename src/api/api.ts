@@ -865,6 +865,12 @@ export interface EngineAgentStatsStatistic {
   pause?: string
   /**
    *
+   * @type {Array<EngineLookup>}
+   * @memberof EngineAgentStatsStatistic
+   */
+  queues?: Array<EngineLookup>
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentStatsStatistic
    */
@@ -902,6 +908,12 @@ export interface EngineAgentStatsStatistic {
 export interface EngineAgentStatusRequest {
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineAgentStatusRequest
+   */
+  channels?: Array<string>
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentStatusRequest
    */
@@ -918,6 +930,12 @@ export interface EngineAgentStatusRequest {
    * @memberof EngineAgentStatusRequest
    */
   on_demand?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentStatusRequest
+   */
+  payload?: string
   /**
    *
    * @type {string}
@@ -8676,6 +8694,8 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {string} [time_to]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
+     * @param {string} [utilization_from]
+     * @param {string} [utilization_to]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -8688,6 +8708,8 @@ export const AgentServiceApiAxiosParamCreator = function(
       time_to?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
+      utilization_from?: string,
+      utilization_to?: string,
       sort?: string,
       domain_id?: string,
       options: any = {}
@@ -8737,6 +8759,14 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (status) {
         localVarQueryParameter['status'] = status
+      }
+
+      if (utilization_from !== undefined) {
+        localVarQueryParameter['utilization.from'] = utilization_from
+      }
+
+      if (utilization_to !== undefined) {
+        localVarQueryParameter['utilization.to'] = utilization_to
       }
 
       if (sort !== undefined) {
@@ -9378,6 +9408,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [time_to]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
+     * @param {string} [utilization_from]
+     * @param {string} [utilization_to]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -9390,6 +9422,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       time_to?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
+      utilization_from?: string,
+      utilization_to?: string,
       sort?: string,
       domain_id?: string,
       options?: any
@@ -9406,6 +9440,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         time_to,
         agent_id,
         status,
+        utilization_from,
+        utilization_to,
         sort,
         domain_id,
         options
@@ -9786,6 +9822,8 @@ export const AgentServiceApiFactory = function(
      * @param {string} [time_to]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
+     * @param {string} [utilization_from]
+     * @param {string} [utilization_to]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -9798,6 +9836,8 @@ export const AgentServiceApiFactory = function(
       time_to?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
+      utilization_from?: string,
+      utilization_to?: string,
       sort?: string,
       domain_id?: string,
       options?: any
@@ -9809,6 +9849,8 @@ export const AgentServiceApiFactory = function(
         time_to,
         agent_id,
         status,
+        utilization_from,
+        utilization_to,
         sort,
         domain_id,
         options
@@ -10164,6 +10206,8 @@ export class AgentServiceApi extends BaseAPI {
    * @param {string} [time_to]
    * @param {Array<string>} [agent_id]
    * @param {Array<string>} [status]
+   * @param {string} [utilization_from]
+   * @param {string} [utilization_to]
    * @param {string} [sort]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
@@ -10177,6 +10221,8 @@ export class AgentServiceApi extends BaseAPI {
     time_to?: string,
     agent_id?: Array<string>,
     status?: Array<string>,
+    utilization_from?: string,
+    utilization_to?: string,
     sort?: string,
     domain_id?: string,
     options?: any
@@ -10188,6 +10234,8 @@ export class AgentServiceApi extends BaseAPI {
       time_to,
       agent_id,
       status,
+      utilization_from,
+      utilization_to,
       sort,
       domain_id,
       options
