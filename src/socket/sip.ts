@@ -249,6 +249,16 @@ export class SipPhone extends EventEmitter<SipPhoneEvent> {
         )
       })
 
+      if (session.connection) {
+        session.connection.addEventListener('addstream', (evt: object) => {
+          this.emit(
+            'peerStreams',
+            callSession,
+            new Array((evt as MediaStreamEvent).stream as MediaStream)
+          )
+        })
+      }
+
       session.on('peerconnection', (peer: PeerConnectionEvent) => {
         peer.peerconnection.addEventListener(
           'addstream',
