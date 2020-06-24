@@ -9304,10 +9304,6 @@
     "engineAgentTeam": {
       "type": "object",
       "properties": {
-        "busy_delay_time": {
-          "type": "integer",
-          "format": "int32"
-        },
         "call_timeout": {
           "type": "integer",
           "format": "int32"
@@ -9337,14 +9333,6 @@
         "post_processing": {
           "type": "boolean",
           "format": "boolean"
-        },
-        "post_processing_timeout": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "reject_delay_time": {
-          "type": "integer",
-          "format": "int32"
         },
         "strategy": {
           "type": "string"
@@ -9788,10 +9776,6 @@
     "engineCreateAgentTeamRequest": {
       "type": "object",
       "properties": {
-        "busy_delay_time": {
-          "type": "integer",
-          "format": "int32"
-        },
         "call_timeout": {
           "type": "integer",
           "format": "int32"
@@ -9817,14 +9801,6 @@
         "post_processing": {
           "type": "boolean",
           "format": "boolean"
-        },
-        "post_processing_timeout": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "reject_delay_time": {
-          "type": "integer",
-          "format": "int32"
         },
         "strategy": {
           "type": "string"
@@ -12802,10 +12778,6 @@
     "engineUpdateAgentTeamRequest": {
       "type": "object",
       "properties": {
-        "busy_delay_time": {
-          "type": "integer",
-          "format": "int32"
-        },
         "call_timeout": {
           "type": "integer",
           "format": "int32"
@@ -12835,14 +12807,6 @@
         "post_processing": {
           "type": "boolean",
           "format": "boolean"
-        },
-        "post_processing_timeout": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "reject_delay_time": {
-          "type": "integer",
-          "format": "int32"
         },
         "strategy": {
           "type": "string"

@@ -954,12 +954,6 @@ export interface EngineAgentTeam {
    * @type {number}
    * @memberof EngineAgentTeam
    */
-  busy_delay_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentTeam
-   */
   call_timeout?: number
   /**
    *
@@ -1003,18 +997,6 @@ export interface EngineAgentTeam {
    * @memberof EngineAgentTeam
    */
   post_processing?: boolean
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentTeam
-   */
-  post_processing_timeout?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineAgentTeam
-   */
-  reject_delay_time?: number
   /**
    *
    * @type {string}
@@ -1736,12 +1718,6 @@ export interface EngineCreateAgentTeamRequest {
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
-  busy_delay_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAgentTeamRequest
-   */
   call_timeout?: number
   /**
    *
@@ -1779,18 +1755,6 @@ export interface EngineCreateAgentTeamRequest {
    * @memberof EngineCreateAgentTeamRequest
    */
   post_processing?: boolean
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  post_processing_timeout?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineCreateAgentTeamRequest
-   */
-  reject_delay_time?: number
   /**
    *
    * @type {string}
@@ -6309,12 +6273,6 @@ export interface EngineUpdateAgentTeamRequest {
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
-  busy_delay_time?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
   call_timeout?: number
   /**
    *
@@ -6358,18 +6316,6 @@ export interface EngineUpdateAgentTeamRequest {
    * @memberof EngineUpdateAgentTeamRequest
    */
   post_processing?: boolean
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  post_processing_timeout?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  reject_delay_time?: number
   /**
    *
    * @type {string}
