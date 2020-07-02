@@ -291,6 +291,7 @@ export class Call {
   }
 
   get allowAnswer() {
+    // FIXME add direction
     return this.hangupAt === 0 && this.answeredAt === 0
   }
 

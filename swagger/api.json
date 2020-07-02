@@ -9202,6 +9202,9 @@
     "engineAgentStatsStatistic": {
       "type": "object",
       "properties": {
+        "active_call_id": {
+          "type": "string"
+        },
         "agent_id": {
           "type": "integer",
           "format": "int32"

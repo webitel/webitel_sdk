@@ -799,6 +799,12 @@ export interface EngineAgentState {
 export interface EngineAgentStatsStatistic {
   /**
    *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  active_call_id?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineAgentStatsStatistic
    */
