@@ -466,7 +466,10 @@ export class Call {
   }
 
   get autoAnswer() {
-    return this.queue && this.queue.queue_type === 'offline'
+    return (
+      (this.queue && this.queue.queue_type === 'offline') ||
+      (!this.queue && this.direction === CallDirection.Outbound)
+    )
   }
 
   /* Call control */
