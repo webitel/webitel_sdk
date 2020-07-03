@@ -158,6 +158,7 @@ export interface CallParams {
   audio?: boolean
   video?: boolean
   screen?: boolean
+  autoAnswer?: boolean
   disableStun?: boolean
 }
 
@@ -468,7 +469,7 @@ export class Call {
   get autoAnswer() {
     return (
       (this.queue && this.queue.queue_type === 'offline') ||
-      (!this.queue && this.direction === CallDirection.Outbound)
+      (this.params && this.params.autoAnswer === true)
     )
   }
 
