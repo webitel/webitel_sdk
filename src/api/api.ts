@@ -8646,6 +8646,8 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {string} [time_to]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
+     * @param {Array<number>} [queue_id]
+     * @param {Array<number>} [team_id]
      * @param {string} [utilization_from]
      * @param {string} [utilization_to]
      * @param {string} [sort]
@@ -8660,6 +8662,8 @@ export const AgentServiceApiAxiosParamCreator = function(
       time_to?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
+      queue_id?: Array<number>,
+      team_id?: Array<number>,
       utilization_from?: string,
       utilization_to?: string,
       sort?: string,
@@ -8711,6 +8715,14 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (status) {
         localVarQueryParameter['status'] = status
+      }
+
+      if (queue_id) {
+        localVarQueryParameter['queue_id'] = queue_id
+      }
+
+      if (team_id) {
+        localVarQueryParameter['team_id'] = team_id
       }
 
       if (utilization_from !== undefined) {
@@ -9360,6 +9372,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [time_to]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
+     * @param {Array<number>} [queue_id]
+     * @param {Array<number>} [team_id]
      * @param {string} [utilization_from]
      * @param {string} [utilization_to]
      * @param {string} [sort]
@@ -9374,6 +9388,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       time_to?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
+      queue_id?: Array<number>,
+      team_id?: Array<number>,
       utilization_from?: string,
       utilization_to?: string,
       sort?: string,
@@ -9392,6 +9408,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         time_to,
         agent_id,
         status,
+        queue_id,
+        team_id,
         utilization_from,
         utilization_to,
         sort,
@@ -9774,6 +9792,8 @@ export const AgentServiceApiFactory = function(
      * @param {string} [time_to]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
+     * @param {Array<number>} [queue_id]
+     * @param {Array<number>} [team_id]
      * @param {string} [utilization_from]
      * @param {string} [utilization_to]
      * @param {string} [sort]
@@ -9788,6 +9808,8 @@ export const AgentServiceApiFactory = function(
       time_to?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
+      queue_id?: Array<number>,
+      team_id?: Array<number>,
       utilization_from?: string,
       utilization_to?: string,
       sort?: string,
@@ -9801,6 +9823,8 @@ export const AgentServiceApiFactory = function(
         time_to,
         agent_id,
         status,
+        queue_id,
+        team_id,
         utilization_from,
         utilization_to,
         sort,
@@ -10158,6 +10182,8 @@ export class AgentServiceApi extends BaseAPI {
    * @param {string} [time_to]
    * @param {Array<string>} [agent_id]
    * @param {Array<string>} [status]
+   * @param {Array<number>} [queue_id]
+   * @param {Array<number>} [team_id]
    * @param {string} [utilization_from]
    * @param {string} [utilization_to]
    * @param {string} [sort]
@@ -10173,6 +10199,8 @@ export class AgentServiceApi extends BaseAPI {
     time_to?: string,
     agent_id?: Array<string>,
     status?: Array<string>,
+    queue_id?: Array<number>,
+    team_id?: Array<number>,
     utilization_from?: string,
     utilization_to?: string,
     sort?: string,
@@ -10186,6 +10214,8 @@ export class AgentServiceApi extends BaseAPI {
       time_to,
       agent_id,
       status,
+      queue_id,
+      team_id,
       utilization_from,
       utilization_to,
       sort,
