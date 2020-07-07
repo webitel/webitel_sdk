@@ -570,6 +570,12 @@
             "in": "query"
           },
           {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "has_call",
+            "in": "query"
+          },
+          {
             "type": "string",
             "name": "sort",
             "in": "query"

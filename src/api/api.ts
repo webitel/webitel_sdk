@@ -8650,6 +8650,7 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {Array<number>} [team_id]
      * @param {string} [utilization_from]
      * @param {string} [utilization_to]
+     * @param {boolean} [has_call]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -8666,6 +8667,7 @@ export const AgentServiceApiAxiosParamCreator = function(
       team_id?: Array<number>,
       utilization_from?: string,
       utilization_to?: string,
+      has_call?: boolean,
       sort?: string,
       domain_id?: string,
       options: any = {}
@@ -8731,6 +8733,10 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (utilization_to !== undefined) {
         localVarQueryParameter['utilization.to'] = utilization_to
+      }
+
+      if (has_call !== undefined) {
+        localVarQueryParameter['has_call'] = has_call
       }
 
       if (sort !== undefined) {
@@ -9376,6 +9382,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<number>} [team_id]
      * @param {string} [utilization_from]
      * @param {string} [utilization_to]
+     * @param {boolean} [has_call]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -9392,6 +9399,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       team_id?: Array<number>,
       utilization_from?: string,
       utilization_to?: string,
+      has_call?: boolean,
       sort?: string,
       domain_id?: string,
       options?: any
@@ -9412,6 +9420,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         team_id,
         utilization_from,
         utilization_to,
+        has_call,
         sort,
         domain_id,
         options
@@ -9796,6 +9805,7 @@ export const AgentServiceApiFactory = function(
      * @param {Array<number>} [team_id]
      * @param {string} [utilization_from]
      * @param {string} [utilization_to]
+     * @param {boolean} [has_call]
      * @param {string} [sort]
      * @param {string} [domain_id]
      * @param {*} [options] Override http request option.
@@ -9812,6 +9822,7 @@ export const AgentServiceApiFactory = function(
       team_id?: Array<number>,
       utilization_from?: string,
       utilization_to?: string,
+      has_call?: boolean,
       sort?: string,
       domain_id?: string,
       options?: any
@@ -9827,6 +9838,7 @@ export const AgentServiceApiFactory = function(
         team_id,
         utilization_from,
         utilization_to,
+        has_call,
         sort,
         domain_id,
         options
@@ -10186,6 +10198,7 @@ export class AgentServiceApi extends BaseAPI {
    * @param {Array<number>} [team_id]
    * @param {string} [utilization_from]
    * @param {string} [utilization_to]
+   * @param {boolean} [has_call]
    * @param {string} [sort]
    * @param {string} [domain_id]
    * @param {*} [options] Override http request option.
@@ -10203,6 +10216,7 @@ export class AgentServiceApi extends BaseAPI {
     team_id?: Array<number>,
     utilization_from?: string,
     utilization_to?: string,
+    has_call?: boolean,
     sort?: string,
     domain_id?: string,
     options?: any
@@ -10218,6 +10232,7 @@ export class AgentServiceApi extends BaseAPI {
       team_id,
       utilization_from,
       utilization_to,
+      has_call,
       sort,
       domain_id,
       options
