@@ -8644,6 +8644,7 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {number} [size]
      * @param {string} [time_from]
      * @param {string} [time_to]
+     * @param {string} [q]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
      * @param {Array<number>} [queue_id]
@@ -8661,6 +8662,7 @@ export const AgentServiceApiAxiosParamCreator = function(
       size?: number,
       time_from?: string,
       time_to?: string,
+      q?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
       queue_id?: Array<number>,
@@ -8709,6 +8711,10 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (time_to !== undefined) {
         localVarQueryParameter['time.to'] = time_to
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
       }
 
       if (agent_id) {
@@ -9376,6 +9382,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [size]
      * @param {string} [time_from]
      * @param {string} [time_to]
+     * @param {string} [q]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
      * @param {Array<number>} [queue_id]
@@ -9393,6 +9400,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       size?: number,
       time_from?: string,
       time_to?: string,
+      q?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
       queue_id?: Array<number>,
@@ -9414,6 +9422,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         size,
         time_from,
         time_to,
+        q,
         agent_id,
         status,
         queue_id,
@@ -9799,6 +9808,7 @@ export const AgentServiceApiFactory = function(
      * @param {number} [size]
      * @param {string} [time_from]
      * @param {string} [time_to]
+     * @param {string} [q]
      * @param {Array<string>} [agent_id]
      * @param {Array<string>} [status]
      * @param {Array<number>} [queue_id]
@@ -9816,6 +9826,7 @@ export const AgentServiceApiFactory = function(
       size?: number,
       time_from?: string,
       time_to?: string,
+      q?: string,
       agent_id?: Array<string>,
       status?: Array<string>,
       queue_id?: Array<number>,
@@ -9832,6 +9843,7 @@ export const AgentServiceApiFactory = function(
         size,
         time_from,
         time_to,
+        q,
         agent_id,
         status,
         queue_id,
@@ -10192,6 +10204,7 @@ export class AgentServiceApi extends BaseAPI {
    * @param {number} [size]
    * @param {string} [time_from]
    * @param {string} [time_to]
+   * @param {string} [q]
    * @param {Array<string>} [agent_id]
    * @param {Array<string>} [status]
    * @param {Array<number>} [queue_id]
@@ -10210,6 +10223,7 @@ export class AgentServiceApi extends BaseAPI {
     size?: number,
     time_from?: string,
     time_to?: string,
+    q?: string,
     agent_id?: Array<string>,
     status?: Array<string>,
     queue_id?: Array<number>,
@@ -10226,6 +10240,7 @@ export class AgentServiceApi extends BaseAPI {
       size,
       time_from,
       time_to,
+      q,
       agent_id,
       status,
       queue_id,
