@@ -7412,6 +7412,15 @@
             "collectionFormat": "multi",
             "name": "transfer_to",
             "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "name": "dependency_id",
+            "in": "query"
           }
         ],
         "responses": {

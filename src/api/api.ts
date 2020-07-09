@@ -15353,6 +15353,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [id]
      * @param {Array<string>} [transfer_from]
      * @param {Array<string>} [transfer_to]
+     * @param {Array<string>} [dependency_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -15387,6 +15388,7 @@ export const CallServiceApiAxiosParamCreator = function(
       id?: Array<string>,
       transfer_from?: Array<string>,
       transfer_to?: Array<string>,
+      dependency_id?: Array<string>,
       options: any = {}
     ): RequestArgs {
       const localVarPath = `/calls/history`
@@ -15530,6 +15532,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (transfer_to) {
         localVarQueryParameter['transfer_to'] = transfer_to
+      }
+
+      if (dependency_id) {
+        localVarQueryParameter['dependency_id'] = dependency_id
       }
 
       localVarUrlObj.query = {
@@ -15970,6 +15976,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [id]
      * @param {Array<string>} [transfer_from]
      * @param {Array<string>} [transfer_to]
+     * @param {Array<string>} [dependency_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -16004,6 +16011,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       id?: Array<string>,
       transfer_from?: Array<string>,
       transfer_to?: Array<string>,
+      dependency_id?: Array<string>,
       options?: any
     ): (
       axios?: AxiosInstance,
@@ -16042,6 +16050,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         id,
         transfer_from,
         transfer_to,
+        dependency_id,
         options
       )
       return (
@@ -16320,6 +16329,7 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [id]
      * @param {Array<string>} [transfer_from]
      * @param {Array<string>} [transfer_to]
+     * @param {Array<string>} [dependency_id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -16354,6 +16364,7 @@ export const CallServiceApiFactory = function(
       id?: Array<string>,
       transfer_from?: Array<string>,
       transfer_to?: Array<string>,
+      dependency_id?: Array<string>,
       options?: any
     ) {
       return CallServiceApiFp(configuration).searchHistoryCall(
@@ -16387,6 +16398,7 @@ export const CallServiceApiFactory = function(
         id,
         transfer_from,
         transfer_to,
+        dependency_id,
         options
       )(axios, basePath)
     },
@@ -16658,6 +16670,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [id]
    * @param {Array<string>} [transfer_from]
    * @param {Array<string>} [transfer_to]
+   * @param {Array<string>} [dependency_id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -16693,6 +16706,7 @@ export class CallServiceApi extends BaseAPI {
     id?: Array<string>,
     transfer_from?: Array<string>,
     transfer_to?: Array<string>,
+    dependency_id?: Array<string>,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration).searchHistoryCall(
@@ -16726,6 +16740,7 @@ export class CallServiceApi extends BaseAPI {
       id,
       transfer_from,
       transfer_to,
+      dependency_id,
       options
     )(this.axios, this.basePath)
   }
