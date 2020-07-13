@@ -1341,6 +1341,50 @@
         }
       }
     },
+    "/call_center/attempts/{attempt_id}": {
+      "patch": {
+        "tags": [
+          "MemberService"
+        ],
+        "operationId": "AttemptCallback",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "name": "attempt_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineAttemptCallbackRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineAttemptResultResponse"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
     "/call_center/buckets": {
       "get": {
         "tags": [
@@ -3822,15 +3866,15 @@
             "required": true
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "name": "member_id",
             "in": "path",
             "required": true
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "name": "attempt_id",
             "in": "path",
             "required": true
@@ -9488,6 +9532,39 @@
         }
       }
     },
+    "engineAttemptCallbackRequest": {
+      "type": "object",
+      "properties": {
+        "attempt_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string"
+        },
+        "display": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "expire_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "min_offering_at": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "engineAttemptHistory": {
       "type": "object",
       "properties": {
@@ -9567,8 +9644,8 @@
       "type": "object",
       "properties": {
         "attempt_id": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string",
+          "format": "int64"
         },
         "description": {
           "type": "string"
@@ -9582,8 +9659,8 @@
           "format": "int64"
         },
         "member_id": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string",
+          "format": "int64"
         },
         "min_offering_at": {
           "type": "string",

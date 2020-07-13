@@ -1189,6 +1189,55 @@ export interface EngineAttempt {
 /**
  *
  * @export
+ * @interface EngineAttemptCallbackRequest
+ */
+export interface EngineAttemptCallbackRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  attempt_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  display?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  expire_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  min_offering_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  status?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  variables?: { [key: string]: string }
+}
+/**
+ *
+ * @export
  * @interface EngineAttemptHistory
  */
 export interface EngineAttemptHistory {
@@ -1321,10 +1370,10 @@ export interface EngineAttemptHistory {
 export interface EngineAttemptResultRequest {
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineAttemptResultRequest
    */
-  attempt_id?: number
+  attempt_id?: string
   /**
    *
    * @type {string}
@@ -1345,10 +1394,10 @@ export interface EngineAttemptResultRequest {
   expire_at?: string
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineAttemptResultRequest
    */
-  member_id?: number
+  member_id?: string
   /**
    *
    * @type {string}
@@ -20206,17 +20255,94 @@ export const MemberServiceApiAxiosParamCreator = function(
   return {
     /**
      *
+     * @param {string} attempt_id
+     * @param {EngineAttemptCallbackRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    attemptCallback(
+      attempt_id: string,
+      body: EngineAttemptCallbackRequest,
+      options: any = {}
+    ): RequestArgs {
+      // verify required parameter 'attempt_id' is not null or undefined
+      if (attempt_id === null || attempt_id === undefined) {
+        throw new RequiredError(
+          'attempt_id',
+          'Required parameter attempt_id was null or undefined when calling attemptCallback.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling attemptCallback.'
+        )
+      }
+      const localVarPath = `/call_center/attempts/{attempt_id}`.replace(
+        `{${'attempt_id'}}`,
+        encodeURIComponent(String(attempt_id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? configuration.apiKey('X-Webitel-Access')
+            : configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...options.headers,
+      }
+      const needsSerialization =
+        <any>'EngineAttemptCallbackRequest' !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {number} queue_id
-     * @param {number} member_id
-     * @param {number} attempt_id
+     * @param {string} member_id
+     * @param {string} attempt_id
      * @param {EngineAttemptResultRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     attemptResult(
       queue_id: number,
-      member_id: number,
-      attempt_id: number,
+      member_id: string,
+      attempt_id: string,
       body: EngineAttemptResultRequest,
       options: any = {}
     ): RequestArgs {
@@ -21451,17 +21577,46 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
+     * @param {string} attempt_id
+     * @param {EngineAttemptCallbackRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    attemptCallback(
+      attempt_id: string,
+      body: EngineAttemptCallbackRequest,
+      options?: any
+    ): (
+      axios?: AxiosInstance,
+      basePath?: string
+    ) => AxiosPromise<EngineAttemptResultResponse> {
+      const localVarAxiosArgs = MemberServiceApiAxiosParamCreator(
+        configuration
+      ).attemptCallback(attempt_id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {number} queue_id
-     * @param {number} member_id
-     * @param {number} attempt_id
+     * @param {string} member_id
+     * @param {string} attempt_id
      * @param {EngineAttemptResultRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     attemptResult(
       queue_id: number,
-      member_id: number,
-      attempt_id: number,
+      member_id: string,
+      attempt_id: string,
       body: EngineAttemptResultRequest,
       options?: any
     ): (
@@ -21996,17 +22151,35 @@ export const MemberServiceApiFactory = function(
   return {
     /**
      *
+     * @param {string} attempt_id
+     * @param {EngineAttemptCallbackRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    attemptCallback(
+      attempt_id: string,
+      body: EngineAttemptCallbackRequest,
+      options?: any
+    ) {
+      return MemberServiceApiFp(configuration).attemptCallback(
+        attempt_id,
+        body,
+        options
+      )(axios, basePath)
+    },
+    /**
+     *
      * @param {number} queue_id
-     * @param {number} member_id
-     * @param {number} attempt_id
+     * @param {string} member_id
+     * @param {string} attempt_id
      * @param {EngineAttemptResultRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     attemptResult(
       queue_id: number,
-      member_id: number,
-      attempt_id: number,
+      member_id: string,
+      attempt_id: string,
       body: EngineAttemptResultRequest,
       options?: any
     ) {
@@ -22382,9 +22555,29 @@ export const MemberServiceApiFactory = function(
 export class MemberServiceApi extends BaseAPI {
   /**
    *
+   * @param {string} attempt_id
+   * @param {EngineAttemptCallbackRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public attemptCallback(
+    attempt_id: string,
+    body: EngineAttemptCallbackRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration).attemptCallback(
+      attempt_id,
+      body,
+      options
+    )(this.axios, this.basePath)
+  }
+
+  /**
+   *
    * @param {number} queue_id
-   * @param {number} member_id
-   * @param {number} attempt_id
+   * @param {string} member_id
+   * @param {string} attempt_id
    * @param {EngineAttemptResultRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -22392,8 +22585,8 @@ export class MemberServiceApi extends BaseAPI {
    */
   public attemptResult(
     queue_id: number,
-    member_id: number,
-    attempt_id: number,
+    member_id: string,
+    attempt_id: string,
     body: EngineAttemptResultRequest,
     options?: any
   ) {
