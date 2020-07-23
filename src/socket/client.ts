@@ -264,6 +264,32 @@ export class Client {
     return this.request('call_eavesdrop', req)
   }
 
+  async agentSetOnline(agentId: number, channels: string[], onDemand: boolean) {
+    return this.request('cc_agent_online', {
+      agent_id: agentId,
+      channels,
+      on_demand: onDemand,
+    })
+  }
+
+  async agentSetWaiting(agentId: number, channel: string) {
+    return this.request('cc_agent_waiting', {
+      agent_id: agentId,
+      channel,
+    })
+  }
+
+  async agentSetPause(agentId: number, payload?: any) {
+    return this.request('cc_agent_pause', {
+      agent_id: agentId,
+      payload,
+    })
+  }
+
+  async agentSetOffline(agentId: number) {
+    return this.request('cc_agent_offline', { agent_id: agentId })
+  }
+
   inviteToUser(req: UserCallRequest) {
     return this.request(WEBSOCKET_MAKE_USER_CALL, req)
   }

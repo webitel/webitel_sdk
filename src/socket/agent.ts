@@ -191,29 +191,19 @@ export class Agent {
   }
 
   async online(channels: string[], onDemand: boolean) {
-    return this.client.request('cc_agent_online', {
-      agent_id: this.agentId,
-      channels,
-      on_demand: onDemand,
-    })
+    return this.client.agentSetOnline(this.agentId, channels, onDemand)
   }
 
   async waiting(channel: string) {
-    return this.client.request('cc_agent_waiting', {
-      agent_id: this.agentId,
-      channel,
-    })
+    return this.client.agentSetWaiting(this.agentId, channel)
   }
 
   async pause(payload?: any) {
-    return this.client.request('cc_agent_pause', {
-      agent_id: this.agentId,
-      payload,
-    })
+    return this.client.agentSetPause(this.agentId, payload)
   }
 
   async offline() {
-    return this.client.request('cc_agent_offline', { agent_id: this.agentId })
+    return this.client.agentSetOffline(this.agentId)
   }
 
   setStatus(e: AgentStatusEvent) {
