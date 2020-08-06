@@ -8,6 +8,7 @@ export interface CallParameters {
   audio?: boolean
   screen?: boolean
   disableStun?: boolean
+  autoAnswer?: boolean
   variables?: Map<string, string>
 }
 

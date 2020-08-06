@@ -97,6 +97,10 @@ export class Agent {
     return this.info.status
   }
 
+  get statusPayload() {
+    return this.info.status_payload
+  }
+
   get channels() {
     return this.info.channels
   }
@@ -213,6 +217,7 @@ export class Agent {
     }
 
     this.info.status = e.status
+    this.info.status_payload = e.status_payload ? e.status_payload : null
     this.lastStatusChange = Date.now()
   }
 
