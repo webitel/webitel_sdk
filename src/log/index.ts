@@ -1,4 +1,4 @@
-export interface Log {
+export interface Index {
   debug(primaryMessage: string, ...supportingData: any[]): void
   warn(primaryMessage: string, ...supportingData: any[]): void
   error(primaryMessage: string, ...supportingData: any[]): void

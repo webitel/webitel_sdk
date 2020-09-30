@@ -1,5 +1,5 @@
+import { CallSession } from '../sip'
 import { Client, UserCallRequest } from './client'
-import { SipSession } from './sip'
 import { MemberCommunication, Task } from './task'
 
 export interface CallParameters {
@@ -184,7 +184,7 @@ export class Call {
 
   peerStreams!: MediaStream[]
   localStreams!: MediaStream[]
-  sip!: SipSession | null
+  sip!: CallSession | null
   screen!: string | null
 
   createdAt: number
@@ -223,10 +223,13 @@ export class Call {
     this.peerStreams = []
     this.localStreams = []
 
-    if (callInfo.sip_id) {
-      this.setSip(client.phone.sipSessionBySipId(callInfo.sip_id))
-    } else {
-      this.setSip(client.phone.sipSessionByCallId(e.id))
+    // fixme
+    if (client.phone) {
+      if (callInfo.sip_id) {
+        this.setSip(client.phone.sipSessionBySipId(callInfo.sip_id))
+      } else {
+        this.setSip(client.phone.sipSessionByCallId(e.id))
+      }
     }
 
     this.params = {}
@@ -247,25 +250,11 @@ export class Call {
     this.state = s.event
   }
 
-  setSip(sip: SipSession | null) {
+  setSip(sip: CallSession | null) {
     if (sip && !this.sip) {
       this.sip = sip
-      if (sip.connection) {
-        const local = (sip.connection as any).getLocalStreams()
-        const peer = (sip.connection as any).getRemoteStreams()
-
-        if (local.length) {
-          this.localStreams = local
-        } else {
-          this.localStreams = []
-        }
-
-        if (peer.length) {
-          this.peerStreams = peer
-        } else {
-          this.peerStreams = []
-        }
-      }
+      this.localStreams = sip.getLocalMedia()
+      this.peerStreams = sip.getPeerMedia()
     }
   }
 
@@ -476,9 +465,9 @@ export class Call {
 
   /* Call control */
   async answer(req: AnswerRequest) {
-    if (this.sip) {
+    if (this.sip && this.client.phone) {
       const params = await this.client.phone.callOption(req)
-      this.sip.answer(params)
+      await this.sip.answer(params)
 
       return true
     }

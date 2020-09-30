@@ -1,4 +1,8 @@
 import { EventEmitter } from 'ee-ts'
+
+import { Log } from '../log/index'
+import { CallSession, SipConfiguration } from '../sip/index'
+import { SipPhone } from '../sip/webrtc'
 import { Agent, AgentSession, AgentStatusEvent } from './agent'
 import {
   AnswerRequest,
@@ -11,9 +15,7 @@ import {
   EavesdropRequest,
   OutboundCallRequest,
 } from './call'
-import { Log } from './log'
 import { QueueJoinMemberEvent } from './queue'
-import { CallSession, SipConfiguration, SipPhone } from './sip'
 import { Message, Socket } from './socket'
 import { ChannelEvent, Task } from './task'
 import { UserStatus } from './user'
@@ -100,9 +102,13 @@ interface EventHandler {
   [TASK_EVENT](name: string, task: Task | undefined): void
 }
 
-export class Client {
+export interface ClientEvents {
+  disconnected(code: number): void
+}
+
+export class Client extends EventEmitter<ClientEvents> {
   agent!: Agent
-  phone!: SipPhone
+  phone?: SipPhone
   private socket!: Socket
   private connectionInfo!: ConnectionInfo
 
@@ -116,6 +122,7 @@ export class Client {
   private callStore: Map<string, Call>
 
   constructor(protected readonly _config: Config) {
+    super()
     this.log = new Log()
     this.eventHandler = new EventEmitter()
     this.callStore = new Map<string, Call>()
@@ -253,7 +260,11 @@ export class Client {
   }
 
   async call(req: OutboundCallRequest) {
-    await this.phone.call(req)
+    if (this.phone) {
+      await this.phone.call(req)
+    } else {
+      await this.invite(req)
+    }
   }
 
   async callRecordId(id: string) {
@@ -295,7 +306,9 @@ export class Client {
   }
 
   async answer(id: string, req: AnswerRequest) {
-    return this.phone.answer(id, req)
+    if (this.phone) {
+      return this.phone.answer(id, req)
+    }
   }
 
   request(action: string, data?: object): Promise<object> {
@@ -328,8 +341,52 @@ export class Client {
     }
   }
 
-  private async deviceConfig() {
-    return this.request(WEBSOCKET_DEFAULT_DEVICE_CONFIG, {})
+  async registerCallClient(phone: SipPhone) {
+    this.phone = phone
+
+    this.phone.on(
+      'peerStreams',
+      (session: CallSession, streams: MediaStream[] | null) => {
+        const call = this.callBySession(session)
+        if (call && !call.peerStreams.length) {
+          call.setPeerStreams(streams)
+          this.eventHandler.emit(
+            WEBSOCKET_EVENT_CALL,
+            CallActions.PeerStream,
+            call
+          )
+        }
+      }
+    )
+
+    this.phone.on(
+      'localStreams',
+      (session: CallSession, streams: MediaStream[] | null) => {
+        const call = this.callBySession(session)
+        if (call && !call.localStreams.length) {
+          call.setLocalStreams(streams)
+          this.eventHandler.emit(
+            WEBSOCKET_EVENT_CALL,
+            CallActions.LocalStream,
+            call
+          )
+        }
+      }
+    )
+
+    this.phone.on('newSession', this.onNewCallSession.bind(this))
+
+    try {
+      const conf = await this.deviceConfig(this.phone.type)
+      await this.phone.register(conf as SipConfiguration)
+    } catch (e) {
+      // FIXME add handle error
+      this.log.error(e)
+    }
+  }
+
+  async deviceConfig(name?: string) {
+    return this.request(WEBSOCKET_DEFAULT_DEVICE_CONFIG, { name })
   }
 
   private async onMessage(message: Message) {
@@ -395,54 +452,18 @@ export class Client {
   private async connected(info: ConnectionInfo) {
     this.connectionInfo = info
 
-    this.phone = new SipPhone(this.instanceId, this._config.debug)
-
-    this.phone.on(
-      'peerStreams',
-      (session: CallSession, streams: MediaStream[] | null) => {
-        const call = this.callBySession(session)
-        if (call && !call.peerStreams.length) {
-          call.setPeerStreams(streams)
-          this.eventHandler.emit(
-            WEBSOCKET_EVENT_CALL,
-            CallActions.PeerStream,
-            call
-          )
-        }
-      }
-    )
-
-    this.phone.on(
-      'localStreams',
-      (session: CallSession, streams: MediaStream[] | null) => {
-        const call = this.callBySession(session)
-        if (call && !call.localStreams.length) {
-          call.setLocalStreams(streams)
-          this.eventHandler.emit(
-            WEBSOCKET_EVENT_CALL,
-            CallActions.LocalStream,
-            call
-          )
-        }
-      }
-    )
-
-    this.phone.on('newSession', this.onNewCallSession.bind(this))
-
-    if (this.useWebPhone()) {
-      try {
-        const conf = await this.deviceConfig()
-        await this.phone.register(conf as SipConfiguration)
-      } catch (e) {
-        // FIXME add handle error
-        this.log.error(e)
-      }
+    if (!this.useWebPhone()) {
+      return
     }
+
+    return this.registerCallClient(
+      new SipPhone(this.instanceId, this._config.debug)
+    )
   }
 
   private callBySession(session: CallSession): Call | undefined {
     for (const call of this.allCall()) {
-      if (call.sip === session.sip) {
+      if (call.sip === session) {
         return call
       }
     }
@@ -453,11 +474,11 @@ export class Client {
     if (session.callId) {
       call = this.callById(session.callId)
     } else {
-      call = this.callBySipId(session.sip.id)
+      call = this.callBySipId(session.id)
     }
 
     if (call) {
-      call.setSip(session.sip)
+      call.setSip(session)
       await this.checkAutoAnswer(call)
     }
   }
@@ -486,6 +507,8 @@ export class Client {
       this.socket.on('message', this.onMessage.bind(this))
       this.socket.on('close', (code: number) => {
         this.log.error('socket close code: ', code)
+        this.eventHandler.off('*')
+        this.emit('disconnected', code)
         reject(new Error(`close socket code: ${code}`))
       })
       this.socket.on('open', () => {

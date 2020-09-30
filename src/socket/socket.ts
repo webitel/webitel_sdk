@@ -50,6 +50,7 @@ export class Socket extends EventEmitter<SocketEvents> {
 
   close(code?: number) {
     this.socket.close(code)
+    this.off('*')
     delete this.socket
   }
 
