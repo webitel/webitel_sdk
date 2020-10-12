@@ -15,6 +15,15 @@ import {
   EavesdropRequest,
   OutboundCallRequest,
 } from './call'
+import {
+  BaseChatEvent,
+  ChatActions,
+  ChatEvent,
+  Conversation,
+  InviteEvent,
+  JoinedEvent,
+  MessageEvent,
+} from './conversation'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
 import { ChannelEvent, Task } from './task'
@@ -54,6 +63,7 @@ const WEBSOCKET_MAKE_OUTBOUND_CALL = 'call_invite'
 const WEBSOCKET_MAKE_USER_CALL = 'call_user'
 const WEBSOCKET_EVENT_HELLO = 'hello'
 const WEBSOCKET_EVENT_CALL = 'call'
+const WEBSOCKET_EVENT_CHAT = 'chat'
 const WEBSOCKET_EVENT_USER_STATE = 'user_state'
 const WEBSOCKET_EVENT_AGENT_STATUS = 'agent_status'
 const WEBSOCKET_EVENT_CHANNEL_STATUS = 'channel'
@@ -85,6 +95,11 @@ export interface ConnectionInfo {
 }
 
 export type CallEventHandler = (action: CallActions, call: Call) => void
+export type ChatEventHandler = (
+  action: string,
+  conversation: Conversation
+) => void
+
 export type UsersStatusEventHandler = (state: UserStatus) => void
 export type AgentStatusEventHandler = (state: AgentStatusEvent) => void
 
@@ -100,6 +115,7 @@ interface EventHandler {
 
   [WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER](member: QueueJoinMemberEvent): void
   [TASK_EVENT](name: string, task: Task | undefined): void
+  [WEBSOCKET_EVENT_CHAT](action: string, conversation: Conversation): void
 }
 
 export interface ClientEvents {
@@ -120,12 +136,14 @@ export class Client extends EventEmitter<ClientEvents> {
   private log: Log
   private eventHandler: EventEmitter<EventHandler>
   private callStore: Map<string, Call>
+  private conversationStore: Map<string, Conversation>
 
   constructor(protected readonly _config: Config) {
     super()
     this.log = new Log()
     this.eventHandler = new EventEmitter()
     this.callStore = new Map<string, Call>()
+    this.conversationStore = new Map<string, Conversation>()
   }
 
   async connect() {
@@ -161,6 +179,13 @@ export class Client extends EventEmitter<ClientEvents> {
     //     this.callStore.set(call.id, call)
     //   }
     // }
+
+    return res
+  }
+
+  async subscribeChat(handler: ChatEventHandler, data?: object) {
+    const res = await this.request(`subscribe_chat`, data)
+    this.eventHandler.on(WEBSOCKET_EVENT_CHAT, handler)
 
     return res
   }
@@ -210,6 +235,12 @@ export class Client extends EventEmitter<ClientEvents> {
   callById(id: string): Call | undefined {
     if (this.callStore.has(id)) {
       return this.callStore.get(id)
+    }
+  }
+
+  conversationById(id: string) : Conversation | undefined {
+    if (this.conversationStore.has(id)) {
+      return this.conversationStore.get(id)
     }
   }
 
@@ -414,6 +445,9 @@ export class Client extends EventEmitter<ClientEvents> {
         case WEBSOCKET_EVENT_CALL:
           await this.handleCallEvents(message.data.call as CallEventData)
           break
+        case WEBSOCKET_EVENT_CHAT:
+          await this.handleChatEvents(message.data as ChatEvent)
+          break
         case WEBSOCKET_EVENT_USER_STATE:
           this.handleUserStateEvent(message.data.state as UserStatus)
           break
@@ -598,6 +632,48 @@ export class Client extends EventEmitter<ClientEvents> {
       if (this.callDestroyed(call)) {
         this.destroyCall(call)
       }
+    }
+  }
+
+  private async handleChatEvents(event: ChatEvent) {
+    let conversation: Conversation | undefined
+
+    switch (event.action) {
+      case ChatActions.UserInvite:
+        conversation = new Conversation(this, event.data as InviteEvent)
+        this.conversationStore.set(conversation.id, conversation)
+        break
+
+      case ChatActions.Joined:
+        const joined = event.data as JoinedEvent
+        conversation = this.conversationById(joined.conversation_id)
+        if (conversation) {
+          conversation.setChannelId(joined.joined_channel_id)
+        }
+
+        break
+
+      case ChatActions.Message:
+        const message = event.data as MessageEvent
+        conversation = this.conversationById(message.conversation_id)
+        if (conversation) {
+          conversation.newMessage(message)
+        }
+        break
+
+      case ChatActions.Close:
+      case ChatActions.Leave:
+      case ChatActions.Decline:
+        const e = event.data as BaseChatEvent
+        conversation = this.conversationById(e.conversation_id)
+        break
+
+
+      default:
+    }
+
+    if (conversation) {
+      this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, event.action, conversation)
     }
   }
 
