@@ -52,6 +52,25 @@ export interface AgentInQueueStatisticsAgentInQueueStatisticsItem {
 /**
  *
  * @export
+ * @interface AggregateRequestGroup
+ */
+export interface AggregateRequestGroup {
+  /**
+   *
+   * @type {string}
+   * @memberof AggregateRequestGroup
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof AggregateRequestGroup
+   */
+  interval?: string
+}
+/**
+ *
+ * @export
  * @interface CreateCallRequestCallSettings
  */
 export interface CreateCallRequestCallSettings {
@@ -1043,6 +1062,237 @@ export interface EngineAgentUser {
    *
    * @type {string}
    * @memberof EngineAgentUser
+   */
+  name?: string
+}
+/**
+ *
+ * @export
+ * @interface EngineAggregateHistoryCallRequest
+ */
+export interface EngineAggregateHistoryCallRequest {
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  agent_id?: Array<string>
+  /**
+   *
+   * @type {Array<EngineAggregateRequest>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  aggs?: Array<EngineAggregateRequest>
+  /**
+   *
+   * @type {EngineFilterBetween}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  answered_at?: EngineFilterBetween
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  cause?: string
+  /**
+   *
+   * @type {EngineFilterBetween}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  created_at?: EngineFilterBetween
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  dependency_id?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  direction?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {EngineFilterBetween}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  duration?: EngineFilterBetween
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  gateway_id?: Array<string>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  has_file?: boolean
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  id?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  member_id?: Array<string>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  missed?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  number?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  page?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  parent_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  q?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  queue_id?: Array<string>
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  size?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  skip_parent?: boolean
+  /**
+   *
+   * @type {EngineFilterBetween}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  stored_at?: EngineFilterBetween
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  team_id?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  transfer_from?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  transfer_to?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  user_id?: Array<string>
+}
+/**
+ *
+ * @export
+ * @interface EngineAggregateRequest
+ */
+export interface EngineAggregateRequest {
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateRequest
+   */
+  avg?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateRequest
+   */
+  count?: Array<string>
+  /**
+   *
+   * @type {AggregateRequestGroup}
+   * @memberof EngineAggregateRequest
+   */
+  group?: AggregateRequestGroup
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateRequest
+   */
+  max?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateRequest
+   */
+  min?: Array<string>
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAggregateRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateRequest
+   */
+  sum?: Array<string>
+}
+/**
+ *
+ * @export
+ * @interface EngineAggregateResult
+ */
+export interface EngineAggregateResult {
+  /**
+   *
+   * @type {object}
+   * @memberof EngineAggregateResult
+   */
+  data?: object
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAggregateResult
    */
   name?: string
 }
@@ -3715,6 +3965,19 @@ export interface EngineListAgentUser {
    * @memberof EngineListAgentUser
    */
   next?: boolean
+}
+/**
+ *
+ * @export
+ * @interface EngineListAggregate
+ */
+export interface EngineListAggregate {
+  /**
+   *
+   * @type {Array<EngineAggregateResult>}
+   * @memberof EngineListAggregate
+   */
+  items?: Array<EngineAggregateResult>
 }
 /**
  *
@@ -14759,6 +15022,74 @@ export const CallServiceApiAxiosParamCreator = function(
   return {
     /**
      *
+     * @param {EngineAggregateHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    aggregateHistoryCall: async (
+      body: EngineAggregateHistoryCallRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling aggregateHistoryCall.'
+        )
+      }
+      const localVarPath = `/calls/history/aggregate`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {EngineBlindTransferCallRequest} body
      * @param {*} [options] Override http request option.
@@ -15313,7 +15644,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
-     * @param {string} [cause]
+     * @param {Array<string>} [cause]
      * @param {boolean} [existsFile]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
@@ -15344,7 +15675,7 @@ export const CallServiceApiAxiosParamCreator = function(
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
-      cause?: string,
+      cause?: Array<string>,
       existsFile?: boolean,
       fields?: Array<string>,
       sort?: string,
@@ -15441,7 +15772,7 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['parent_id'] = parentId
       }
 
-      if (cause !== undefined) {
+      if (cause) {
         localVarQueryParameter['cause'] = cause
       }
 
@@ -15838,6 +16169,35 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
+     * @param {EngineAggregateHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async aggregateHistoryCall(
+      body: EngineAggregateHistoryCallRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListAggregate>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).aggregateHistoryCall(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {EngineBlindTransferCallRequest} body
      * @param {*} [options] Override http request option.
@@ -16061,7 +16421,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
-     * @param {string} [cause]
+     * @param {Array<string>} [cause]
      * @param {boolean} [existsFile]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
@@ -16092,7 +16452,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
-      cause?: string,
+      cause?: Array<string>,
       existsFile?: boolean,
       fields?: Array<string>,
       sort?: string,
@@ -16320,6 +16680,20 @@ export const CallServiceApiFactory = function(
   return {
     /**
      *
+     * @param {EngineAggregateHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    aggregateHistoryCall(
+      body: EngineAggregateHistoryCallRequest,
+      options?: any
+    ): AxiosPromise<EngineListAggregate> {
+      return CallServiceApiFp(configuration)
+        .aggregateHistoryCall(body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {string} id
      * @param {EngineBlindTransferCallRequest} body
      * @param {*} [options] Override http request option.
@@ -16447,7 +16821,7 @@ export const CallServiceApiFactory = function(
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
-     * @param {string} [cause]
+     * @param {Array<string>} [cause]
      * @param {boolean} [existsFile]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
@@ -16478,7 +16852,7 @@ export const CallServiceApiFactory = function(
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
-      cause?: string,
+      cause?: Array<string>,
       existsFile?: boolean,
       fields?: Array<string>,
       sort?: string,
@@ -16661,6 +17035,22 @@ export const CallServiceApiFactory = function(
 export class CallServiceApi extends BaseAPI {
   /**
    *
+   * @param {EngineAggregateHistoryCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public aggregateHistoryCall(
+    body: EngineAggregateHistoryCallRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration)
+      .aggregateHistoryCall(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @param {string} id
    * @param {EngineBlindTransferCallRequest} body
    * @param {*} [options] Override http request option.
@@ -16783,7 +17173,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {string} [durationTo]
    * @param {boolean} [skipParent]
    * @param {string} [parentId]
-   * @param {string} [cause]
+   * @param {Array<string>} [cause]
    * @param {boolean} [existsFile]
    * @param {Array<string>} [fields]
    * @param {string} [sort]
@@ -16815,7 +17205,7 @@ export class CallServiceApi extends BaseAPI {
     durationTo?: string,
     skipParent?: boolean,
     parentId?: string,
-    cause?: string,
+    cause?: Array<string>,
     existsFile?: boolean,
     fields?: Array<string>,
     sort?: string,

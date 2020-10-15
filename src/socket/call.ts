@@ -26,6 +26,40 @@ export interface CallVariables {
   [key: string]: string
 }
 
+export interface CallItem {
+  id: string
+  app_id: string
+  state: string
+  timestamp: number
+  type: string
+  parent_id?: string
+  extension?: string
+  direction: string
+  destination: string
+  from: CallEndpoint
+  to?: CallEndpoint
+  variables: Map<string, string>
+
+  created_at: number
+  answered_at?: number
+  bridged_at?: number
+  hangup_at?: number
+
+  duration: number
+  hold_sec: number
+  wait_sec?: number
+  bill_sec?: number
+
+  joined_at?: number
+  leaving_at?: number
+  reporting_at?: number
+  queue_bridged_at?: number
+  queue_wait_sec?: number
+  queue_duration_sec?: number
+  reporting_sec?: number
+  display?: number
+}
+
 export interface CallReporting {
   success?: boolean
   next_distribute_at?: number
@@ -135,7 +169,7 @@ export interface CallBridged extends CallEventData {
 export interface CallInfo extends CallEventData {
   sip_id: string
 
-  parent_id: string
+  parent_id?: string
   user_id?: string
   direction: string
   destination: string
@@ -196,7 +230,7 @@ export class Call {
   hangupCause!: string
   hangupSipCode!: number
 
-  parentId!: string
+  parentId?: string
   bridgedId!: string
   queue!: QueueParameters | null
 

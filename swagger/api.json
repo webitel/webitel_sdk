@@ -6855,7 +6855,11 @@
             "in": "query"
           },
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
             "name": "cause",
             "in": "query"
           },
@@ -7482,6 +7486,43 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/engineListHistoryCall"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    },
+    "/calls/history/aggregate": {
+      "post": {
+        "tags": [
+          "CallService"
+        ],
+        "operationId": "AggregateHistoryCall",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineAggregateHistoryCallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineListAggregate"
             }
           },
           "403": {
@@ -8823,6 +8864,17 @@
         }
       }
     },
+    "AggregateRequestGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "interval": {
+          "type": "string"
+        }
+      }
+    },
     "CreateCallRequestCallSettings": {
       "type": "object",
       "properties": {
@@ -9453,6 +9505,186 @@
         "id": {
           "type": "string",
           "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "engineAggregateHistoryCallRequest": {
+      "type": "object",
+      "properties": {
+        "agent_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "aggs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineAggregateRequest"
+          }
+        },
+        "answered_at": {
+          "$ref": "#/definitions/engineFilterBetween"
+        },
+        "cause": {
+          "type": "string"
+        },
+        "created_at": {
+          "$ref": "#/definitions/engineFilterBetween"
+        },
+        "dependency_id": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "direction": {
+          "type": "string"
+        },
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "duration": {
+          "$ref": "#/definitions/engineFilterBetween"
+        },
+        "gateway_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "has_file": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "id": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "member_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "missed": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "number": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "q": {
+          "type": "string"
+        },
+        "queue_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "skip_parent": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "stored_at": {
+          "$ref": "#/definitions/engineFilterBetween"
+        },
+        "team_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "transfer_from": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "transfer_to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "user_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "engineAggregateRequest": {
+      "type": "object",
+      "properties": {
+        "avg": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "count": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "group": {
+          "$ref": "#/definitions/AggregateRequestGroup"
+        },
+        "max": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "sum": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "engineAggregateResult": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object"
         },
         "name": {
           "type": "string"
@@ -11159,6 +11391,17 @@
         "next": {
           "type": "boolean",
           "format": "boolean"
+        }
+      }
+    },
+    "engineListAggregate": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/engineAggregateResult"
+          }
         }
       }
     },

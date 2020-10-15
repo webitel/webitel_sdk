@@ -11,6 +11,7 @@ import {
   CallEventData,
   CallEventDTMF,
   CallEventExecute,
+  CallItem,
   CallReporting,
   EavesdropRequest,
   OutboundCallRequest,
@@ -94,6 +95,11 @@ export interface ConnectionInfo {
   session: Session
 }
 
+export interface ListResponse {
+  items?: CallItem[]
+  next?: boolean
+}
+
 export type CallEventHandler = (action: CallActions, call: Call) => void
 export type ChatEventHandler = (
   action: string,
@@ -155,32 +161,51 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   async subscribeCall(handler: CallEventHandler, data?: object) {
-    const res = await this.request(`subscribe_call`, data)
+    const calls = (await this.request(`subscribe_call`, data)) as ListResponse
     this.eventHandler.on(WEBSOCKET_EVENT_CALL, handler)
 
-    // const calls = await this.request(WEBSOCKET_CALL_BY_USER, {})
-    // if (calls.items.length) {
-    //   for (let c of calls.items) {
-    //     const call = new Call(this, {
-    //       id: c.id,
-    //       event: 'ringing',
-    //       timestamp: c.timestamp,
-    //       user_id: 3, // FIXME
-    //       app_id: c.app_id,
-    //       data: {
-    //         destination: 'fixme', // FIXME
-    //         direction: c.direction,
-    //         from: c.from,
-    //         to: c.to,
-    //         sip_id: 'e8bu8nc4m9hka86r9pe4', // FIXME
-    //         user_id: 3, // FIXME
-    //       },
-    //     })
-    //     this.callStore.set(call.id, call)
-    //   }
-    // }
+    if (calls.items && calls.items.length) {
+      for (const c of calls.items) {
+        if (c.hangup_at && c.hangup_at > 0) {
+          continue
+        }
 
-    return res
+        const e: CallEventData = {
+          cc_app_id: '', // TODO
+          app_id: c.app_id,
+          event: c.state,
+          id: c.id,
+          timestamp: Date.now(),
+          data: {
+            app_id: c.app_id,
+            event: c.state,
+            id: c.id,
+            timestamp: Date.now(),
+            cc_app_id: '',
+            sip_id: '',
+
+            parent_id: c.parent_id,
+
+            direction: c.direction,
+            destination: c.destination,
+            queue: undefined, // TODO
+            from: c.from,
+            to: c.to,
+            payload: c.variables,
+          },
+        }
+
+        const call = new Call(this, e)
+        call.createdAt = c.created_at
+        call.answeredAt = c.answered_at || 0
+        call.bridgedAt = c.bridged_at || 0
+
+        call.reportingAt = c.reporting_at || 0
+        this.callStore.set(call.id, call)
+      }
+    }
+
+    return calls
   }
 
   async subscribeChat(handler: ChatEventHandler, data?: object) {
@@ -238,7 +263,7 @@ export class Client extends EventEmitter<ClientEvents> {
     }
   }
 
-  conversationById(id: string) : Conversation | undefined {
+  conversationById(id: string): Conversation | undefined {
     if (this.conversationStore.has(id)) {
       return this.conversationStore.get(id)
     }
@@ -667,7 +692,6 @@ export class Client extends EventEmitter<ClientEvents> {
         const e = event.data as BaseChatEvent
         conversation = this.conversationById(e.conversation_id)
         break
-
 
       default:
     }

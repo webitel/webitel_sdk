@@ -6,7 +6,6 @@ export enum ChatActions {
   Invite = 'invite_conversation', // коли запрошують в групу нового учасника
   Joined = 'join_conversation',
 
-
   Close = 'close_conversation',
   Leave = 'leave_conversation',
   Decline = 'decline_invite',
@@ -32,7 +31,7 @@ export interface BaseChatEvent {
 export interface InviteEvent extends BaseChatEvent {
   invite_id: string
   user_id: number
-  channels: ChatChannel[]
+  members: ChatChannel[]
   title: string
 }
 
@@ -55,10 +54,11 @@ export interface Message {
 }
 
 export interface ChatChannel {
-  id: string
+  channel_id: string
   user_id?: number
   internal: boolean // if true then webitel user else client id
-  name: string
+  username: string
+  type: string
 }
 
 export class Conversation {
@@ -98,7 +98,7 @@ export class Conversation {
       id: e.message_id,
       type: e.message_type,
       value: e.message_value,
-      channel_id: e.from_channel_id
+      channel_id: e.from_channel_id,
     })
   }
 
@@ -118,7 +118,7 @@ export class Conversation {
     return this.client.request(`close_chat`, {
       channel_id: this.channelId,
       conversation_id: this.id,
-      cause
+      cause,
     })
   }
 
@@ -126,19 +126,19 @@ export class Conversation {
     return this.client.request(`leave_chat`, {
       channel_id: this.channelId,
       conversation_id: this.id,
-      cause
+      cause,
     })
   }
 
   async sendText(text: string) {
     if (!this.channelId) {
-      throw new Error("conversation not active")
+      throw new Error('conversation not active')
     }
 
     return this.client.request(`send_text_chat`, {
       channel_id: this.channelId,
       conversation_id: this.id,
-      text
+      text,
     })
   }
 }
