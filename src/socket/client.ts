@@ -673,7 +673,7 @@ export class Client extends EventEmitter<ClientEvents> {
         const joined = event.data as JoinedEvent
         conversation = this.conversationById(joined.conversation_id)
         if (conversation) {
-          conversation.setChannelId(joined.joined_channel_id)
+          conversation.setChannelId(joined.self_channel_id)
         }
 
         break

@@ -25,10 +25,11 @@ export interface SocketEvents {
 }
 
 export class Socket extends EventEmitter<SocketEvents> {
-  private socket!: WebSocket
+  private socket!: WebSocket | undefined
 
   constructor(private host: string) {
     super()
+    // this.socket = null
   }
 
   connect(token: string) {
@@ -43,13 +44,13 @@ export class Socket extends EventEmitter<SocketEvents> {
   }
 
   send(request: Request): never | null {
-    this.socket.send(JSON.stringify(request))
+    this.socket!.send(JSON.stringify(request))
 
     return null
   }
 
   close(code?: number) {
-    this.socket.close(code)
+    this.socket!.close(code)
     this.off('*')
     delete this.socket
   }

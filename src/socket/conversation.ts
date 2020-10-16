@@ -36,11 +36,14 @@ export interface InviteEvent extends BaseChatEvent {
 }
 
 export interface JoinedEvent extends BaseChatEvent {
-  joined_channel_id: string
+  joined_user_id: number
+  member: ChatChannel
+  self_channel_id: string // exists only to current user
 }
 
 export interface MessageEvent extends BaseChatEvent {
-  from_channel_id: string
+  from_user_id: number
+  from_user_type: string
   message_id: number
   message_type: string
   message_value: string
@@ -48,17 +51,20 @@ export interface MessageEvent extends BaseChatEvent {
 
 export interface Message {
   id: number
-  channel_id: string
+  user_id: number
+  user_type: string
   type: string
   value: string
+  created_at: number
 }
 
 export interface ChatChannel {
-  channel_id: string
+  // channel_id: string
   user_id?: number
   internal: boolean // if true then webitel user else client id
   username: string
   type: string
+  updated_at: number
 }
 
 export class Conversation {
@@ -66,6 +72,7 @@ export class Conversation {
   channelId!: string | null
   channels!: ChatChannel[]
   messages!: Message[]
+  updatedAt!: number | null
 
   constructor(
     private readonly client: Client,
@@ -98,7 +105,9 @@ export class Conversation {
       id: e.message_id,
       type: e.message_type,
       value: e.message_value,
-      channel_id: e.from_channel_id,
+      user_id: e.from_user_id,
+      user_type: e.from_user_type,
+      created_at: e.timestamp,
     })
   }
 
@@ -126,7 +135,7 @@ export class Conversation {
     return this.client.request(`leave_chat`, {
       channel_id: this.channelId,
       conversation_id: this.id,
-      cause,
+      // cause,
     })
   }
 
