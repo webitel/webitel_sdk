@@ -43,11 +43,12 @@ export interface JoinedEvent extends BaseChatEvent {
 }
 
 export interface MessageEvent extends BaseChatEvent {
-  from_user_id: number
-  from_user_type: string
+  channel_id: string
   message_id: number
   message_type: string
   message_value: string
+  created_at: number
+  updated_at: number
 }
 
 export interface LeavedEvent extends BaseChatEvent {
@@ -66,8 +67,7 @@ export interface UpdateChannelEvent extends BaseChatEvent {
 
 export interface Message {
   id: number
-  user_id: number
-  user_type: string
+  channel_id: string
   type: string
   value: string
   created_at: number
@@ -127,8 +127,7 @@ export class Conversation {
       id: e.message_id,
       type: e.message_type,
       value: e.message_value,
-      user_id: e.from_user_id,
-      user_type: e.from_user_type,
+      channel_id: e.channel_id,
       created_at: e.timestamp,
     })
   }
