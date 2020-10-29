@@ -9,6 +9,7 @@ export enum ChatActions {
   Close = 'close_conversation',
   Leave = 'leave_conversation',
   Decline = 'decline_invite',
+  Update = 'update_channel',
 }
 
 export enum ConversationState {
@@ -30,15 +31,15 @@ export interface BaseChatEvent {
 
 export interface InviteEvent extends BaseChatEvent {
   invite_id: string
-  user_id: number
-  members: ChatChannel[]
+  // user_id: number
   title: string
+  members: ChatChannel[]
+  messages: MessageEvent[]
+  conversation: ConversationInfo
 }
 
 export interface JoinedEvent extends BaseChatEvent {
-  joined_user_id: number
   member: ChatChannel
-  self_channel_id: string // exists only to current user
 }
 
 export interface MessageEvent extends BaseChatEvent {
@@ -47,6 +48,20 @@ export interface MessageEvent extends BaseChatEvent {
   message_id: number
   message_type: string
   message_value: string
+}
+
+export interface LeavedEvent extends BaseChatEvent {
+  leaved_channel_id: string
+}
+
+export interface DeclineInviteEvent extends BaseChatEvent {
+  invite_id: string
+  user_id: number
+}
+
+export interface UpdateChannelEvent extends BaseChatEvent {
+  channel_id: string
+  updated_at: number
 }
 
 export interface Message {
@@ -59,11 +74,18 @@ export interface Message {
 }
 
 export interface ChatChannel {
-  // channel_id: string
+  channel_id: string
   user_id?: number
   internal: boolean // if true then webitel user else client id
   username: string
   type: string
+  updated_at: number
+}
+
+export interface ConversationInfo {
+  id: string
+  title: string
+  created_at: number
   updated_at: number
 }
 
@@ -83,9 +105,9 @@ export class Conversation {
     this.state = ConversationState.Invite
   }
 
-  get userId() {
-    return this.invite.user_id
-  }
+  // get userId() {
+  //   return this.invite.user_id
+  // }
 
   get id() {
     return this.invite.conversation_id
@@ -148,6 +170,27 @@ export class Conversation {
       channel_id: this.channelId,
       conversation_id: this.id,
       text,
+    })
+  }
+
+  async addToChat(userId: number, title: string) {
+    return this.client.request(`add_to_chat`, {
+      channel_id: this.channelId,
+      conversation_id: this.id,
+      user_id: userId,
+      title,
+    })
+  }
+
+  async startChat(userId: number) {
+    return this.client.request(`start_chat`, {
+      user_id: userId,
+    })
+  }
+
+  async updateChannel() {
+    return this.client.request(`update_channel_chat`, {
+      channel_id: this.channelId,
     })
   }
 }
