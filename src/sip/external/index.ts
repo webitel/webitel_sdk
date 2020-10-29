@@ -14,7 +14,7 @@ export class ExternalClient extends EventEmitter<SipClientEvents>
   implements SipClient {
   readonly type = 'external'
   readonly schema = 'wtel://'
-  constructor() {
+  constructor(private config: object | undefined) {
     super()
   }
 
@@ -48,7 +48,15 @@ export class ExternalClient extends EventEmitter<SipClientEvents>
   }
 
   open(token: string) {
-    this.exec(token, 'open')
+    this.exec(
+      encodeURIComponent(
+        JSON.stringify({
+          token,
+          ...this.config,
+        })
+      ),
+      'open'
+    )
   }
 
   private exec(args: string, action?: string) {

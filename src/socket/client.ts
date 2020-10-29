@@ -285,6 +285,12 @@ export class Client extends EventEmitter<ClientEvents> {
     })
   }
 
+  async agentActiveTasks(agentId: number) {
+    return this.request(`cc_agent_tasks`, {
+      agent_id: agentId,
+    })
+  }
+
   async auth() {
     return this.request(WEBSOCKET_AUTHENTICATION_CHALLENGE, {
       token: this._config.token,
