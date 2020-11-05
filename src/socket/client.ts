@@ -1,7 +1,7 @@
 import { EventEmitter } from 'ee-ts'
 
-import { Log } from '../log/index'
-import { CallSession, SipConfiguration } from '../sip/index'
+import { Log } from '../log'
+import { CallSession, SipConfiguration } from '../sip'
 import { SipPhone } from '../sip/webrtc'
 import { Agent, AgentSession, AgentStatusEvent } from './agent'
 import {
@@ -21,6 +21,7 @@ import {
   ChatActions,
   ChatEvent,
   Conversation,
+  ConversationItem,
   InviteEvent,
   JoinedEvent,
   MessageEvent,
@@ -95,8 +96,13 @@ export interface ConnectionInfo {
   session: Session
 }
 
-export interface ListResponse {
+export interface CallListResponse {
   items?: CallItem[]
+  next?: boolean
+}
+
+export interface ConversationListResponse {
+  items?: ConversationItem[]
   next?: boolean
 }
 
@@ -161,7 +167,10 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   async subscribeCall(handler: CallEventHandler, data?: object) {
-    const calls = (await this.request(`subscribe_call`, data)) as ListResponse
+    const calls = (await this.request(
+      `subscribe_call`,
+      data
+    )) as CallListResponse
     this.eventHandler.on(WEBSOCKET_EVENT_CALL, handler)
 
     if (calls.items && calls.items.length) {
@@ -209,8 +218,31 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   async subscribeChat(handler: ChatEventHandler, data?: object) {
-    const res = await this.request(`subscribe_chat`, data)
+    const res = (await this.request(
+      `subscribe_chat`,
+      data
+    )) as ConversationListResponse
     this.eventHandler.on(WEBSOCKET_EVENT_CHAT, handler)
+
+    // if (res && res.items) {
+    //   for (const conv of res.items) {
+    //     const c = new Conversation(this, {
+    //         timestamp: conv.updated_at,
+    //         conversation_id: conv.id,
+    //         messages: conv.messages,
+    //         members: conv.members,
+    //         title: conv.title,
+    //         invite_id: "",
+    //         conversation: {
+    //           title: conv.title,
+    //           id: conv.id,
+    //           updated_at: conv.updated_at,
+    //           created_at: conv.created_at
+    //         }
+    //       }
+    //     )
+    //   }
+    // }
 
     return res
   }
@@ -679,7 +711,7 @@ export class Client extends EventEmitter<ClientEvents> {
         const joined = event.data as JoinedEvent
         conversation = this.conversationById(joined.conversation_id)
         if (conversation) {
-          conversation.setChannelId(joined.member.channel_id)
+          conversation.setChannelId(joined.member.id)
         }
 
         break

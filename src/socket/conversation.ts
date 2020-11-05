@@ -34,7 +34,7 @@ export interface InviteEvent extends BaseChatEvent {
   // user_id: number
   title: string
   members: ChatChannel[]
-  messages: MessageEvent[]
+  messages: Message[]
   conversation: ConversationInfo
 }
 
@@ -42,22 +42,15 @@ export interface JoinedEvent extends BaseChatEvent {
   member: ChatChannel
 }
 
-export interface MessageEvent extends BaseChatEvent {
-  channel_id: string
-  message_id: number
-  message_type: string
-  message_value: string
-  created_at: number
-  updated_at: number
-}
+export interface MessageEvent extends BaseChatEvent, Message {}
 
 export interface LeavedEvent extends BaseChatEvent {
   leaved_channel_id: string
 }
 
 export interface DeclineInviteEvent extends BaseChatEvent {
-  invite_id: string
   user_id: number
+  invite_id: string
 }
 
 export interface UpdateChannelEvent extends BaseChatEvent {
@@ -71,14 +64,15 @@ export interface Message {
   type: string
   value: string
   created_at: number
+  updated_at: number
 }
 
 export interface ChatChannel {
-  channel_id: string
+  id: string
   user_id?: number
-  internal: boolean // if true then webitel user else client id
-  username: string
+  name: string
   type: string
+  internal: boolean // if true then webitel user else client id
   updated_at: number
 }
 
@@ -87,6 +81,16 @@ export interface ConversationInfo {
   title: string
   created_at: number
   updated_at: number
+}
+
+export interface ConversationItem {
+  id: string
+  created_at: number
+  closed_at: number
+  updated_at: number
+  title: string
+  members: ChatChannel[]
+  messages: Message[]
 }
 
 export class Conversation {
@@ -123,13 +127,7 @@ export class Conversation {
   }
 
   newMessage(e: MessageEvent) {
-    this.messages.push({
-      id: e.message_id,
-      type: e.message_type,
-      value: e.message_value,
-      channel_id: e.channel_id,
-      created_at: e.timestamp,
-    })
+    this.messages.push(e)
   }
 
   async decline() {

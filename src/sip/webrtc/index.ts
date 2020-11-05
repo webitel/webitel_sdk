@@ -348,7 +348,11 @@ export class SipPhone extends EventEmitter<SipClientEvents>
           }
         }
 
-        navigator.getUserMedia(mediaConstraints, resolve, reject)
+        ;(navigator.getUserMedia || navigator.mediaDevices.getUserMedia)(
+          mediaConstraints,
+          resolve,
+          reject
+        )
       }
     )
   }
