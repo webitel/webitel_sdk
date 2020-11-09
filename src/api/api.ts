@@ -60,6 +60,24 @@ export interface AggregateRequestGroup {
    * @type {string}
    * @memberof AggregateRequestGroup
    */
+  aggregate?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof AggregateRequestGroup
+   */
+  desc?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof AggregateRequestGroup
+   */
+  field?: string
+  /**
+   *
+   * @type {string}
+   * @memberof AggregateRequestGroup
+   */
   id?: string
   /**
    *
@@ -67,6 +85,12 @@ export interface AggregateRequestGroup {
    * @memberof AggregateRequestGroup
    */
   interval?: string
+  /**
+   *
+   * @type {number}
+   * @memberof AggregateRequestGroup
+   */
+  top?: number
 }
 /**
  *
@@ -1091,10 +1115,10 @@ export interface EngineAggregateHistoryCallRequest {
   answered_at?: EngineFilterBetween
   /**
    *
-   * @type {string}
+   * @type {Array<string>}
    * @memberof EngineAggregateHistoryCallRequest
    */
-  cause?: string
+  cause?: Array<string>
   /**
    *
    * @type {EngineFilterBetween}
@@ -1109,10 +1133,10 @@ export interface EngineAggregateHistoryCallRequest {
   dependency_id?: Array<string>
   /**
    *
-   * @type {string}
+   * @type {Array<string>}
    * @memberof EngineAggregateHistoryCallRequest
    */
-  direction?: string
+  direction?: Array<string>
   /**
    *
    * @type {string}
@@ -1208,6 +1232,12 @@ export interface EngineAggregateHistoryCallRequest {
    * @type {Array<string>}
    * @memberof EngineAggregateHistoryCallRequest
    */
+  tags?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
   team_id?: Array<string>
   /**
    *
@@ -1248,10 +1278,16 @@ export interface EngineAggregateRequest {
   count?: Array<string>
   /**
    *
-   * @type {AggregateRequestGroup}
+   * @type {Array<AggregateRequestGroup>}
    * @memberof EngineAggregateRequest
    */
-  group?: AggregateRequestGroup
+  group?: Array<AggregateRequestGroup>
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAggregateRequest
+   */
+  limit?: number
   /**
    *
    * @type {Array<string>}
@@ -1270,6 +1306,12 @@ export interface EngineAggregateRequest {
    * @memberof EngineAggregateRequest
    */
   name?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateRequest
+   */
+  sort?: Array<string>
   /**
    *
    * @type {Array<string>}
@@ -8148,6 +8190,66 @@ export interface StorageUpdateBackendProfileRequest {
    * @memberof StorageUpdateBackendProfileRequest
    */
   properties?: { [key: string]: string }
+}
+/**
+ *
+ * @export
+ * @interface StorageUploadFileResponse
+ */
+export interface StorageUploadFileResponse {
+  /**
+   *
+   * @type {UploadFileResponseUploadStatusCode}
+   * @memberof StorageUploadFileResponse
+   */
+  code?: UploadFileResponseUploadStatusCode
+  /**
+   *
+   * @type {string}
+   * @memberof StorageUploadFileResponse
+   */
+  file_id?: string
+}
+/**
+ *
+ * @export
+ * @interface UploadFileRequestMetadata
+ */
+export interface UploadFileRequestMetadata {
+  /**
+   *
+   * @type {string}
+   * @memberof UploadFileRequestMetadata
+   */
+  domain_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UploadFileRequestMetadata
+   */
+  mime_type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UploadFileRequestMetadata
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UploadFileRequestMetadata
+   */
+  uuid?: string
+}
+/**
+ *
+ * @export
+ * @enum {string}
+ */
+export enum UploadFileResponseUploadStatusCode {
+  Unknown = 'Unknown',
+  Ok = 'Ok',
+  Failed = 'Failed',
 }
 
 /**
@@ -15874,6 +15976,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [transferFrom]
      * @param {Array<string>} [transferTo]
      * @param {Array<string>} [dependencyId]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -15909,6 +16012,7 @@ export const CallServiceApiAxiosParamCreator = function(
       transferFrom?: Array<string>,
       transferTo?: Array<string>,
       dependencyId?: Array<string>,
+      tags?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/history`
@@ -16056,6 +16160,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (dependencyId) {
         localVarQueryParameter['dependency_id'] = dependencyId
+      }
+
+      if (tags) {
+        localVarQueryParameter['tags'] = tags
       }
 
       localVarUrlObj.query = {
@@ -16545,6 +16653,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [transferFrom]
      * @param {Array<string>} [transferTo]
      * @param {Array<string>} [dependencyId]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -16580,6 +16689,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       transferFrom?: Array<string>,
       transferTo?: Array<string>,
       dependencyId?: Array<string>,
+      tags?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -16621,6 +16731,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         transferFrom,
         transferTo,
         dependencyId,
+        tags,
         options
       )
       return (
@@ -16933,6 +17044,7 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [transferFrom]
      * @param {Array<string>} [transferTo]
      * @param {Array<string>} [dependencyId]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -16968,6 +17080,7 @@ export const CallServiceApiFactory = function(
       transferFrom?: Array<string>,
       transferTo?: Array<string>,
       dependencyId?: Array<string>,
+      tags?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListHistoryCall> {
       return CallServiceApiFp(configuration)
@@ -17003,6 +17116,7 @@ export const CallServiceApiFactory = function(
           transferFrom,
           transferTo,
           dependencyId,
+          tags,
           options
         )
         .then((request) => request(axios, basePath))
@@ -17287,6 +17401,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [transferFrom]
    * @param {Array<string>} [transferTo]
    * @param {Array<string>} [dependencyId]
+   * @param {Array<string>} [tags]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -17323,6 +17438,7 @@ export class CallServiceApi extends BaseAPI {
     transferFrom?: Array<string>,
     transferTo?: Array<string>,
     dependencyId?: Array<string>,
+    tags?: Array<string>,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
@@ -17358,6 +17474,7 @@ export class CallServiceApi extends BaseAPI {
         transferFrom,
         transferTo,
         dependencyId,
+        tags,
         options
       )
       .then((request) => request(this.axios, this.basePath))
