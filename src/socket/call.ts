@@ -1,6 +1,6 @@
 import { CallSession } from '../sip'
 import { Client, UserCallRequest } from './client'
-import { MemberCommunication, Task } from './task'
+import { Distribute, MemberCommunication, Task } from './task'
 
 export interface CallParameters {
   timeout?: number
@@ -50,6 +50,8 @@ export interface CallItem {
   wait_sec?: number
   bill_sec?: number
 
+  queue?: object
+
   joined_at?: number
   leaving_at?: number
   reporting_at?: number
@@ -58,6 +60,7 @@ export interface CallItem {
   queue_duration_sec?: number
   reporting_sec?: number
   display?: number
+  task?: Distribute
 }
 
 export interface CallReporting {

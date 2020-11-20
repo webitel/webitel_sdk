@@ -175,7 +175,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
     if (calls.items && calls.items.length) {
       for (const c of calls.items) {
-        if (c.hangup_at && c.hangup_at > 0) {
+        if (c.hangup_at && c.hangup_at > 0 && !c.task) {
           continue
         }
 
@@ -197,7 +197,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
             direction: c.direction,
             destination: c.destination,
-            queue: undefined, // TODO
+            queue: c.queue, // TODO
             from: c.from,
             to: c.to,
             payload: c.variables,
@@ -208,8 +208,21 @@ export class Client extends EventEmitter<ClientEvents> {
         call.createdAt = c.created_at
         call.answeredAt = c.answered_at || 0
         call.bridgedAt = c.bridged_at || 0
+        call.hangupAt = c.hangup_at || 0
 
         call.reportingAt = c.reporting_at || 0
+        if (c.task) {
+          call.task = new Task(
+            {
+              attempt_id: c.task.attempt_id,
+              channel: c.task.channel,
+              status: c.task.status,
+              timestamp: Date.now(),
+            },
+            c.task
+          )
+          call.queue!.reporting = 'true'
+        }
         this.callStore.set(call.id, call)
       }
     }
@@ -224,25 +237,25 @@ export class Client extends EventEmitter<ClientEvents> {
     )) as ConversationListResponse
     this.eventHandler.on(WEBSOCKET_EVENT_CHAT, handler)
 
-    // if (res && res.items) {
-    //   for (const conv of res.items) {
-    //     const c = new Conversation(this, {
-    //         timestamp: conv.updated_at,
-    //         conversation_id: conv.id,
-    //         messages: conv.messages,
-    //         members: conv.members,
-    //         title: conv.title,
-    //         invite_id: "",
-    //         conversation: {
-    //           title: conv.title,
-    //           id: conv.id,
-    //           updated_at: conv.updated_at,
-    //           created_at: conv.created_at
-    //         }
-    //       }
-    //     )
-    //   }
-    // }
+    if (res && res.items) {
+      for (const conv of res.items) {
+        const c = new Conversation(this, {
+          timestamp: conv.updated_at,
+          conversation_id: conv.id,
+          messages: conv.messages,
+          members: conv.members,
+          title: conv.title,
+          invite_id: '',
+          conversation: {
+            title: conv.title,
+            id: conv.id,
+            updated_at: conv.updated_at,
+            created_at: conv.created_at,
+          },
+        })
+        this.conversationStore.set(c.id, c)
+      }
+    }
 
     return res
   }
@@ -287,6 +300,10 @@ export class Client extends EventEmitter<ClientEvents> {
 
   allCall(): Call[] {
     return Array.from(this.callStore.values())
+  }
+
+  get allConversations(): Conversation[] {
+    return Array.from(this.conversationStore.values())
   }
 
   callById(id: string): Call | undefined {
@@ -345,6 +362,12 @@ export class Client extends EventEmitter<ClientEvents> {
     const info = await this.request(WEBSOCKET_AGENT_SESSION)
 
     this.agent = new Agent(this, info as AgentSession)
+
+    for (const call of this.allCall()) {
+      if (call.task) {
+        this.agent.task.set(call.task.id, call.task)
+      }
+    }
 
     return this.agent
   }

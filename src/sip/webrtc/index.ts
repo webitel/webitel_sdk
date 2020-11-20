@@ -335,7 +335,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     video?: boolean
   ): Promise<MediaStream> {
     return new Promise<MediaStream>(
-      (resolve: (stream: MediaStream) => void, reject: () => void) => {
+      async (resolve: (stream: MediaStream) => void, reject: () => void) => {
         const mediaConstraints = {
           audio: !(audio === false),
           video: undefined as any,
@@ -348,12 +348,36 @@ export class SipPhone extends EventEmitter<SipClientEvents>
           }
         }
 
-        ;(navigator.getUserMedia || navigator.mediaDevices.getUserMedia)(
-          mediaConstraints,
-          resolve,
-          reject
-        )
+        return getMediaStream(mediaConstraints)
+          .then(resolve)
+          .catch(reject)
       }
     )
   }
+}
+
+async function getMediaStream(
+  constraints: MediaStreamConstraints
+): Promise<MediaStream> {
+  return new Promise((resolve, reject) => {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then((stream) => resolve(stream))
+        .catch((err) => reject(err))
+    } else {
+      /// <reference types="webrtc" />
+      const getUserMedia =
+        navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia
+
+      getUserMedia(
+        constraints,
+        (stream) => resolve(stream),
+        (err) => reject(err)
+      )
+    }
+  })
 }

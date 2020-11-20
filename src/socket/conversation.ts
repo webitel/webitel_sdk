@@ -116,7 +116,7 @@ export class Conversation {
   get id() {
     return this.invite.conversation_id
   }
-
+  // created at ??
   get invitedAt() {
     return this.invite.timestamp
   }
