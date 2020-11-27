@@ -13,6 +13,7 @@ export enum ChatActions {
 }
 
 export enum ConversationState {
+  Init = 'init',
   Invite = 'invite',
   Active = 'active',
   Pending = 'pending',
@@ -72,8 +73,10 @@ export interface ChatChannel {
   user_id?: number
   name: string
   type: string
-  internal: boolean // if true then webitel user else client id
-  updated_at: number
+}
+
+export interface MessageWithChannel extends Message {
+  member: ChatChannel | null
 }
 
 export interface ConversationInfo {
@@ -85,10 +88,13 @@ export interface ConversationInfo {
 
 export interface ConversationItem {
   id: string
+  invite_id?: string
+  channel_id?: string
+  title: string
   created_at: number
   closed_at: number
   updated_at: number
-  title: string
+  joined_at: number
   members: ChatChannel[]
   messages: Message[]
 }
@@ -96,53 +102,104 @@ export interface ConversationItem {
 export class Conversation {
   state: ConversationState
   channelId!: string | null
-  channels!: ChatChannel[]
-  messages!: Message[]
-  updatedAt!: number | null
+  inviteId!: string | null
+  member!: ChatChannel
+  members!: ChatChannel[]
+  _messages: Message[]
+
+  updatedAt: number
+  answeredAt: number
+  invitedAt: number
 
   constructor(
     private readonly client: Client,
-    private readonly invite: InviteEvent
+    private readonly conversationId: string,
+    private readonly title: string,
+    members: ChatChannel[],
+    messages: Message[]
   ) {
     this.channelId = null
-    this.messages = []
+    this.answeredAt = 0
+    this.updatedAt = 0
+    this.invitedAt = 0
+    this.members = members || []
+    this._messages = messages || []
     this.state = ConversationState.Invite
   }
 
-  // get userId() {
-  //   return this.invite.user_id
-  // }
+  setInvite(inviteId: string, timestamp: number) {
+    this.inviteId = inviteId
+    this.invitedAt = timestamp
+  }
+
+  setAnswered(channelId: string, timestamp: number, member: ChatChannel) {
+    this.state = ConversationState.Active
+    this.answeredAt = timestamp
+    this.channelId = channelId
+    this.member = member
+    this.inviteId = null // deleted in DB
+  }
 
   get id() {
-    return this.invite.conversation_id
-  }
-  // created at ??
-  get invitedAt() {
-    return this.invite.timestamp
+    return this.conversationId
   }
 
-  setChannelId(id: string) {
-    this.state = ConversationState.Active
-    this.channelId = id
+  get messages(): MessageWithChannel[] {
+    return this._messages.map((i) => {
+      return {
+        member: this.messageMember(i),
+        ...i,
+      }
+    })
+  }
+
+  async next() {
+    throw new Error('TODO')
+  }
+
+  async pagination(page: number, perPage: number) {
+    throw new Error('TODO')
   }
 
   newMessage(e: MessageEvent) {
-    this.messages.push(e)
+    this._messages.push(e)
   }
 
+  get getAllowDecline() {
+    return !!this.inviteId
+  }
+
+  get getAllowJoin() {
+    return !!this.inviteId
+  }
+
+  get getAllowLeave() {
+    return !!this.channelId
+  }
+
+  /*
+  Actions
+   */
+
   async decline() {
+    if (!this.inviteId) throw new Error('This conversation is joined')
+
     return this.client.request(`decline_chat`, {
-      invite_id: this.invite.invite_id,
+      invite_id: this.inviteId,
     })
   }
 
   async join() {
+    if (!this.inviteId) throw new Error('This conversation is joined')
+
     return this.client.request(`join_chat`, {
-      invite_id: this.invite.invite_id,
+      invite_id: this.inviteId,
     })
   }
 
   async close(cause: string) {
+    if (!this.channelId) throw new Error('This conversation not active')
+
     return this.client.request(`close_chat`, {
       channel_id: this.channelId,
       conversation_id: this.id,
@@ -151,10 +208,12 @@ export class Conversation {
   }
 
   async leave(cause: string) {
+    if (!this.channelId) throw new Error('This conversation not active')
+
     return this.client.request(`leave_chat`, {
       channel_id: this.channelId,
       conversation_id: this.id,
-      // cause,
+      cause,
     })
   }
 
@@ -189,5 +248,19 @@ export class Conversation {
     return this.client.request(`update_channel_chat`, {
       channel_id: this.channelId,
     })
+  }
+
+  private messageMember(msg: Message): ChatChannel | null {
+    if (this.member && msg.channel_id === this.channelId) {
+      return this.member
+    }
+
+    for (const m of this.members) {
+      if (m.id === msg.channel_id) {
+        return m
+      }
+    }
+
+    return null // TODO
   }
 }

@@ -239,20 +239,27 @@ export class Client extends EventEmitter<ClientEvents> {
 
     if (res && res.items) {
       for (const conv of res.items) {
-        const c = new Conversation(this, {
-          timestamp: conv.updated_at,
-          conversation_id: conv.id,
-          messages: conv.messages,
-          members: conv.members,
-          title: conv.title,
-          invite_id: '',
-          conversation: {
-            title: conv.title,
-            id: conv.id,
-            updated_at: conv.updated_at,
-            created_at: conv.created_at,
-          },
-        })
+        const c = new Conversation(
+          this,
+          conv.id,
+          conv.title,
+          conv.members,
+          conv.messages
+        )
+        if (conv.invite_id) {
+          c.setInvite(conv.invite_id, conv.created_at)
+        } else if (conv.channel_id) {
+          c.setAnswered(conv.channel_id, conv.joined_at, {
+            id: conv.channel_id,
+            name: 'TODO',
+            type: 'webitel',
+            user_id: 1000,
+          })
+        } else {
+          this.log.error(`conversation ${conv.id} not valid`)
+          continue
+        }
+
         this.conversationStore.set(c.id, c)
       }
     }
@@ -302,7 +309,7 @@ export class Client extends EventEmitter<ClientEvents> {
     return Array.from(this.callStore.values())
   }
 
-  get allConversations(): Conversation[] {
+  allConversations(): Conversation[] {
     return Array.from(this.conversationStore.values())
   }
 
@@ -726,7 +733,15 @@ export class Client extends EventEmitter<ClientEvents> {
 
     switch (event.action) {
       case ChatActions.UserInvite:
-        conversation = new Conversation(this, event.data as InviteEvent)
+        const inv = event.data as InviteEvent
+        conversation = new Conversation(
+          this,
+          inv.conversation_id,
+          inv.title,
+          inv.members,
+          inv.messages
+        )
+        conversation.setInvite(inv.invite_id, inv.timestamp)
         this.conversationStore.set(conversation.id, conversation)
         break
 
@@ -734,7 +749,11 @@ export class Client extends EventEmitter<ClientEvents> {
         const joined = event.data as JoinedEvent
         conversation = this.conversationById(joined.conversation_id)
         if (conversation) {
-          conversation.setChannelId(joined.member.id)
+          conversation.setAnswered(
+            joined.member.id,
+            joined.timestamp,
+            joined.member
+          )
         }
 
         break
