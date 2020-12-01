@@ -166,15 +166,15 @@ export class Conversation {
     this._messages.push(e)
   }
 
-  get getAllowDecline() {
+  get allowDecline() {
     return !!this.inviteId
   }
 
-  get getAllowJoin() {
+  get allowJoin() {
     return !!this.inviteId
   }
 
-  get getAllowLeave() {
+  get allowLeave() {
     return !!this.channelId
   }
 
