@@ -69,10 +69,11 @@ export interface Message {
 }
 
 export interface ChatChannel {
-  id: string
+  id?: string
   user_id?: number
-  name: string
-  type: string
+  name?: string
+  type?: string
+  self?: boolean
 }
 
 export interface MessageWithChannel extends Message {
@@ -252,7 +253,9 @@ export class Conversation {
 
   private messageMember(msg: Message): ChatChannel | null {
     if (this.member && msg.channel_id === this.channelId) {
-      return this.member
+      return {
+        self: true,
+      }
     }
 
     for (const m of this.members) {

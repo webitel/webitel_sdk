@@ -750,7 +750,7 @@ export class Client extends EventEmitter<ClientEvents> {
         conversation = this.conversationById(joined.conversation_id)
         if (conversation) {
           conversation.setAnswered(
-            joined.member.id,
+            joined.member.id!,
             joined.timestamp,
             joined.member
           )
