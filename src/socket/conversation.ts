@@ -70,13 +70,18 @@ export interface Message {
 
 export interface ChatChannel {
   id?: string
-  user_id?: number
   name?: string
   type?: string
   self?: boolean
 }
 
-export interface MessageWithChannel extends Message {
+export interface MessageWithChannel {
+  id: number
+  channelId: string
+  type: string
+  value: string
+  createdAt: number
+  updatedAt: number
   member: ChatChannel | null
 }
 
@@ -146,10 +151,19 @@ export class Conversation {
   }
 
   get messages(): MessageWithChannel[] {
+    return this.getMessages()
+  }
+
+  getMessages(): MessageWithChannel[] {
     return this._messages.map((i) => {
       return {
+        id: i.id,
+        type: i.type,
+        value: i.value,
         member: this.messageMember(i),
-        ...i,
+        channelId: i.channel_id,
+        createdAt: i.created_at,
+        updatedAt: i.updated_at,
       }
     })
   }

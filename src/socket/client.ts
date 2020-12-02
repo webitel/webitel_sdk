@@ -253,7 +253,6 @@ export class Client extends EventEmitter<ClientEvents> {
             id: conv.channel_id,
             name: 'TODO',
             type: 'webitel',
-            user_id: 1000,
           })
         } else {
           this.log.error(`conversation ${conv.id} not valid`)
@@ -771,6 +770,9 @@ export class Client extends EventEmitter<ClientEvents> {
       case ChatActions.Decline:
         const e = event.data as BaseChatEvent
         conversation = this.conversationById(e.conversation_id)
+        if (conversation) {
+          this.conversationStore.delete(conversation.id)
+        }
         break
 
       default:
