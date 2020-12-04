@@ -113,6 +113,7 @@ export class Conversation {
   members!: ChatChannel[]
   _messages: Message[]
 
+  createdAt: number
   updatedAt: number
   answeredAt: number
   invitedAt: number
@@ -125,6 +126,7 @@ export class Conversation {
     messages: Message[]
   ) {
     this.channelId = null
+    this.createdAt = Date.now()
     this.answeredAt = 0
     this.updatedAt = 0
     this.invitedAt = 0

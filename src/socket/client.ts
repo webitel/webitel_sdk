@@ -113,7 +113,10 @@ export type ChatEventHandler = (
 ) => void
 
 export type UsersStatusEventHandler = (state: UserStatus) => void
-export type AgentStatusEventHandler = (state: AgentStatusEvent) => void
+export type AgentStatusEventHandler = (
+  state: AgentStatusEvent,
+  agent: Agent
+) => void
 
 export type TaskEventHandler = (action: string, task: Task | undefined) => void
 
@@ -123,7 +126,7 @@ interface EventHandler {
   [WEBSOCKET_EVENT_CALL](action: CallActions, call: Call): void
   [WEBSOCKET_EVENT_USER_STATE](state: UserStatus): void
   [WEBSOCKET_EVENT_SIP](data: object): void
-  [WEBSOCKET_EVENT_AGENT_STATUS](status: AgentStatusEvent): void
+  [WEBSOCKET_EVENT_AGENT_STATUS](status: AgentStatusEvent, agent: Agent): void
 
   [WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER](member: QueueJoinMemberEvent): void
   [TASK_EVENT](name: string, task: Task | undefined): void
@@ -239,13 +242,17 @@ export class Client extends EventEmitter<ClientEvents> {
 
     if (res && res.items) {
       for (const conv of res.items) {
+        // tslint:disable-next-line: no-assign-mutated-array
+        const messages = conv.messages.reverse()
+
         const c = new Conversation(
           this,
           conv.id,
           conv.title,
           conv.members,
-          conv.messages
+          messages
         )
+        c.createdAt = conv.created_at
         if (conv.invite_id) {
           c.setInvite(conv.invite_id, conv.created_at)
         } else if (conv.channel_id) {
@@ -565,7 +572,7 @@ export class Client extends EventEmitter<ClientEvents> {
       this.agent.setStatus(e)
     }
 
-    this.eventHandler.emit(WEBSOCKET_EVENT_AGENT_STATUS, e)
+    this.eventHandler.emit(WEBSOCKET_EVENT_AGENT_STATUS, e, this.agent)
   }
 
   private handleChannelEvents(e: ChannelEvent) {
