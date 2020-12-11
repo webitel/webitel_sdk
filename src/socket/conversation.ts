@@ -63,7 +63,8 @@ export interface Message {
   id: number
   channel_id: string
   type: string
-  value: string
+  text: string
+  file: MessageFile
   created_at: number
   updated_at: number
 }
@@ -75,11 +76,22 @@ export interface ChatChannel {
   self?: boolean
 }
 
+export interface MessageFile {
+  id: number // todo to string
+  name: string
+  mime: string
+  size: number
+  url: string
+}
+
 export interface MessageWithChannel {
   id: number
   channelId: string
   type: string
-  value: string
+
+  file?: MessageFile
+  text?: string
+
   createdAt: number
   updatedAt: number
   member: ChatChannel | null
@@ -158,15 +170,27 @@ export class Conversation {
 
   getMessages(): MessageWithChannel[] {
     return this._messages.map((i) => {
-      return {
+      const msg = {
         id: i.id,
         type: i.type,
-        value: i.value,
+        text: i.text,
+        file: i.file,
         member: this.messageMember(i),
         channelId: i.channel_id,
         createdAt: i.created_at,
         updatedAt: i.updated_at,
       }
+
+      if (i.hasOwnProperty('file')) {
+        i.file.url = this.client.fileUrlDownload(i.file.id)
+        msg.file = i.file
+      }
+
+      if (i.hasOwnProperty('text')) {
+        msg.text = i.text
+      }
+
+      return msg
     })
   }
 
@@ -244,6 +268,29 @@ export class Conversation {
       conversation_id: this.id,
       text,
     })
+  }
+
+  async sendFile(file: File) {
+    const storedFiles = await this.client.storeFile(this.id, [file])
+    const f = storedFiles[0]
+
+    // todo bug if chat response error
+    return this.client.request(`send_file_chat`, {
+      channel_id: this.channelId,
+      conversation_id: this.id,
+      mime: f.mime,
+      url: f.shared,
+    })
+  }
+
+  async send(data: string | File) {
+    if (typeof data === 'string') {
+      return this.sendText(data)
+    } else if (data instanceof File) {
+      return this.sendFile(data)
+    } else {
+      throw new Error('unknown send data')
+    }
   }
 
   async addToChat(userId: number, title: string) {

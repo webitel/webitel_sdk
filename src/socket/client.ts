@@ -30,9 +30,11 @@ import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
 import { ChannelEvent, Task } from './task'
 import { UserStatus } from './user'
+import { formatBaseUri } from './utils'
 
 export interface Config {
   endpoint: string
+  storageEndpoint?: string
   token?: string
   logLvl?: 'debug' | 'info' | 'warn' | 'error'
   registerWebDevice?: boolean
@@ -56,6 +58,7 @@ export interface UserCallRequest {
   variables?: Map<string, string>
 }
 
+const API_HEADER_TOKEN = 'X-Webitel-Access'
 const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
 const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
 const WEBSOCKET_AGENT_SESSION = 'cc_agent_session'
@@ -106,6 +109,14 @@ export interface ConversationListResponse {
   next?: boolean
 }
 
+export interface StorageFile {
+  id: number
+  size: number
+  mime: string
+  name: string
+  shared: string
+}
+
 export type CallEventHandler = (action: CallActions, call: Call) => void
 export type ChatEventHandler = (
   action: string,
@@ -142,6 +153,7 @@ export class Client extends EventEmitter<ClientEvents> {
   phone?: SipPhone
   private socket!: Socket
   private connectionInfo!: ConnectionInfo
+  private basePath: string
 
   private reqSeq = 0
   private queueRequest: Map<number, PromiseCallback> = new Map<
@@ -159,6 +171,9 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler = new EventEmitter()
     this.callStore = new Map<string, Call>()
     this.conversationStore = new Map<string, Conversation>()
+    this.basePath = `${formatBaseUri(
+      _config.storageEndpoint || _config.endpoint
+    )}`
   }
 
   async connect() {
@@ -517,6 +532,48 @@ export class Client extends EventEmitter<ClientEvents> {
 
   async deviceConfig(name?: string) {
     return this.request(WEBSOCKET_DEFAULT_DEVICE_CONFIG, { name })
+  }
+
+  async storeFile(id: string, files: File[]) {
+    if (!files || files.length < 1) {
+      throw new Error('no files')
+    }
+
+    const formData = new FormData()
+
+    for (const file of files) {
+      formData.append(file.name, file) // todo name
+    }
+
+    const result = await fetch(
+      `${this.basePath}/api/storage/file/${id}/upload`,
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          [API_HEADER_TOKEN]: `${this._config.token}`,
+        },
+      }
+    )
+
+    const data = (await result.json()) as StorageFile[]
+    for (const f of data) {
+      f.shared = this.basePath + f.shared
+    }
+
+    return data
+  }
+
+  fileUrlDownload(fileId: number) {
+    return `${this.basePath}/api/storage/file/${fileId}/download?access_token=${
+      this._config.token
+    }`
+  }
+
+  fileUrlStream(fileId: number) {
+    return `${this.basePath}/api/storage/file/${fileId}/stream?access_token=${
+      this._config.token
+    }`
   }
 
   private async onMessage(message: Message) {
