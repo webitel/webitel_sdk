@@ -278,8 +278,11 @@ export class Conversation {
     return this.client.request(`send_file_chat`, {
       channel_id: this.channelId,
       conversation_id: this.id,
+      id: f.id,
+      name: file.name,
       mime: f.mime,
       url: f.shared,
+      size: f.size,
     })
   }
 

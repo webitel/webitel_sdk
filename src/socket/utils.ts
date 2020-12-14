@@ -3,9 +3,14 @@ export function formatWebSocketUri(host: string): string {
 }
 
 export function formatBaseUri(host: string): string {
-  const res = host.replace(/^ws/, 'http')
+  let res = host.replace(/^ws/, 'http')
+
   if (res.endsWith('/')) {
-    return res.slice(0, -1)
+    res = res.slice(0, -1)
+  }
+
+  if (res.endsWith('/ws')) {
+    res = res.slice(0, -3)
   }
 
   return res
