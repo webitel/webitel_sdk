@@ -1,4 +1,7 @@
 import { Client } from './client'
+import { chunkString } from './utils'
+
+const maxSizeMessage = 4000
 
 export enum ChatActions {
   Message = 'message',
@@ -173,13 +176,11 @@ export class Conversation {
       const msg = {
         id: i.id,
         type: i.type,
-        text: i.text,
-        file: i.file,
         member: this.messageMember(i),
         channelId: i.channel_id,
         createdAt: i.created_at,
         updatedAt: i.updated_at,
-      }
+      } as MessageWithChannel
 
       if (i.hasOwnProperty('file')) {
         i.file.url = this.client.fileUrlDownload(i.file.id)
@@ -263,11 +264,19 @@ export class Conversation {
       throw new Error('conversation not active')
     }
 
-    return this.client.request(`send_text_chat`, {
-      channel_id: this.channelId,
-      conversation_id: this.id,
-      text,
-    })
+    if (!text.length) {
+      throw new Error('empty message')
+    }
+
+    const chunk = chunkString(text, maxSizeMessage)
+
+    for (let i = 0; i < chunk.length; i++) {
+      if (i + 1 >= chunk.length) {
+        return this.sendMessageTextChunk(chunk[i])
+      }
+
+      await this.sendMessageTextChunk(chunk[i])
+    }
   }
 
   async sendFile(file: File) {
@@ -314,6 +323,14 @@ export class Conversation {
   async updateChannel() {
     return this.client.request(`update_channel_chat`, {
       channel_id: this.channelId,
+    })
+  }
+
+  private sendMessageTextChunk(text: string) {
+    return this.client.request(`send_text_chat`, {
+      channel_id: this.channelId,
+      conversation_id: this.id,
+      text,
     })
   }
 
