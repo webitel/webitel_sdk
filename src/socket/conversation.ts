@@ -1,7 +1,7 @@
 import { Client } from './client'
 import { chunkString } from './utils'
 
-const maxSizeMessage = 4000
+const maxSizeMessage = 4096
 
 export enum ChatActions {
   Message = 'message',
@@ -40,6 +40,7 @@ export interface InviteEvent extends BaseChatEvent {
   members: ChatChannel[]
   messages: Message[]
   conversation: ConversationInfo
+  variables?: Map<string, string>
 }
 
 export interface JoinedEvent extends BaseChatEvent {
@@ -133,12 +134,15 @@ export class Conversation {
   answeredAt: number
   invitedAt: number
 
+  variables?: Map<string, string>
+
   constructor(
     private readonly client: Client,
     private readonly conversationId: string,
     private readonly title: string,
     members: ChatChannel[],
-    messages: Message[]
+    messages: Message[],
+    variables?: Map<string, string>
   ) {
     this.channelId = null
     this.createdAt = Date.now()
@@ -148,6 +152,7 @@ export class Conversation {
     this.members = members || []
     this._messages = messages || []
     this.state = ConversationState.Invite
+    this.variables = variables
   }
 
   setInvite(inviteId: string, timestamp: number) {

@@ -802,7 +802,8 @@ export class Client extends EventEmitter<ClientEvents> {
           inv.conversation_id,
           inv.title,
           inv.members,
-          inv.messages
+          inv.messages,
+          inv.variables
         )
         conversation.setInvite(inv.invite_id, inv.timestamp)
         this.conversationStore.set(conversation.id, conversation)
