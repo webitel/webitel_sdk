@@ -1,4 +1,4 @@
-import { Client } from './client'
+import { Client, FileUploadProgress } from './client'
 import { chunkString } from './utils'
 
 const maxSizeMessage = 4096
@@ -284,8 +284,8 @@ export class Conversation {
     }
   }
 
-  async sendFile(file: File) {
-    const storedFiles = await this.client.storeFile(this.id, [file])
+  async sendFile(file: File, cb?: FileUploadProgress) {
+    const storedFiles = await this.client.storeFile(this.id, [file], cb)
     const f = storedFiles[0]
 
     // todo bug if chat response error
@@ -300,11 +300,11 @@ export class Conversation {
     })
   }
 
-  async send(data: string | File) {
+  async send(data: string | File, cb?: FileUploadProgress) {
     if (typeof data === 'string') {
       return this.sendText(data)
     } else if (data instanceof File) {
-      return this.sendFile(data)
+      return this.sendFile(data, cb)
     } else {
       throw new Error('unknown send data')
     }

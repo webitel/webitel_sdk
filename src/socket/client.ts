@@ -1,3 +1,4 @@
+import Axios from 'axios'
 import { EventEmitter } from 'ee-ts'
 
 import { Log } from '../log'
@@ -116,6 +117,8 @@ export interface StorageFile {
   name: string
   shared: string
 }
+
+export type FileUploadProgress = (progress: any) => void
 
 export type CallEventHandler = (action: CallActions, call: Call) => void
 export type ChatEventHandler = (
@@ -534,7 +537,7 @@ export class Client extends EventEmitter<ClientEvents> {
     return this.request(WEBSOCKET_DEFAULT_DEVICE_CONFIG, { name })
   }
 
-  async storeFile(id: string, files: File[]) {
+  async storeFile(id: string, files: File[], cb?: FileUploadProgress) {
     if (!files || files.length < 1) {
       throw new Error('no files')
     }
@@ -545,18 +548,18 @@ export class Client extends EventEmitter<ClientEvents> {
       formData.append(file.name, file) // todo name
     }
 
-    const result = await fetch(
+    const result = await Axios.post<StorageFile[]>(
       `${this.basePath}/api/storage/file/${id}/upload`,
+      formData,
       {
-        method: 'POST',
-        body: formData,
         headers: {
-          [API_HEADER_TOKEN]: `${this._config.token}`,
+          [API_HEADER_TOKEN]: this._config.token,
         },
+        onUploadProgress: cb,
       }
     )
 
-    const data = (await result.json()) as StorageFile[]
+    const data = result.data
     for (const f of data) {
       f.shared = this.basePath + f.shared
     }
