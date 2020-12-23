@@ -89,8 +89,8 @@ export interface OutboundCallRequest {
 
 export interface QueueParameters {
   attempt_id: number
-  member_id: number
-  queue_id: number
+  member_id: string // fixme
+  queue_id: string // fixme
   queue_name: string
   queue_type: string
   reporting: string // TODO
@@ -198,6 +198,10 @@ export interface CallParams {
   screen?: boolean
   autoAnswer?: boolean
   disableStun?: boolean
+}
+
+export interface MemberInfoRequest {
+  fields?: string[]
 }
 
 export class Call {
@@ -337,6 +341,22 @@ export class Call {
     } else {
       return this.task.communication
     }
+  }
+
+  // todo
+  async getMember(req: MemberInfoRequest) {
+    if (!this.queue || !this.queue.member_id) {
+      throw new Error(`call is not from outbound queue`)
+    }
+
+    return this.client.request(`cc_member_page`, {
+      queue_id: +this.queue.queue_id,
+      member_id: +this.queue.member_id,
+    })
+  }
+
+  get isMember(): boolean {
+    return !!(this.queue && this.queue.member_id)
   }
 
   setActive(e: CallEventData) {
