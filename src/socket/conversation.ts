@@ -1,4 +1,6 @@
+import { CallVariables } from './call'
 import { Client, FileUploadProgress } from './client'
+import { Reporting, Task } from './task'
 import { chunkString } from './utils'
 
 const maxSizeMessage = 4096
@@ -13,6 +15,7 @@ export enum ChatActions {
   Leave = 'leave_conversation',
   Decline = 'decline_invite',
   Update = 'update_channel',
+  Destroy = 'destroy',
 }
 
 export enum ConversationState {
@@ -40,7 +43,7 @@ export interface InviteEvent extends BaseChatEvent {
   members: ChatChannel[]
   messages: Message[]
   conversation: ConversationInfo
-  variables?: Map<string, string>
+  variables?: CallVariables
 }
 
 export interface JoinedEvent extends BaseChatEvent {
@@ -76,7 +79,8 @@ export interface Message {
 export interface ChatChannel {
   id?: string
   name?: string
-  type?: string
+  type?: string // todo rename
+  messenger?: string
   self?: boolean
 }
 
@@ -121,6 +125,7 @@ export interface ConversationItem {
   messages: Message[]
 }
 
+
 export class Conversation {
   state: ConversationState
   channelId!: string | null
@@ -133,8 +138,10 @@ export class Conversation {
   updatedAt: number
   answeredAt: number
   invitedAt: number
+  closedAt: number
 
-  variables?: Map<string, string>
+  variables?: CallVariables
+  task: Task | null
 
   constructor(
     private readonly client: Client,
@@ -142,17 +149,23 @@ export class Conversation {
     private readonly title: string,
     members: ChatChannel[],
     messages: Message[],
-    variables?: Map<string, string>
+    variables?: CallVariables
   ) {
     this.channelId = null
     this.createdAt = Date.now()
     this.answeredAt = 0
     this.updatedAt = 0
     this.invitedAt = 0
-    this.members = members || []
+    this.closedAt = 0
+    this.task = null
+    this.members = (members || []).map(i => wrapChannelMember(i))
     this._messages = messages || []
     this.state = ConversationState.Invite
     this.variables = variables
+
+    if (variables && variables.hasOwnProperty("cc_attempt_id") && this.client.agent) {
+      this.task = this.client.agent.task.get(+variables.cc_attempt_id) || null
+    }
   }
 
   setInvite(inviteId: string, timestamp: number) {
@@ -164,8 +177,13 @@ export class Conversation {
     this.state = ConversationState.Active
     this.answeredAt = timestamp
     this.channelId = channelId
-    this.member = member
+    this.member = wrapChannelMember(member)
     this.inviteId = null // deleted in DB
+  }
+
+  setClosed(timestamp: number) {
+    this.state = ConversationState.Closed
+    this.closedAt = timestamp
   }
 
   get id() {
@@ -224,6 +242,9 @@ export class Conversation {
     return !!this.channelId
   }
 
+  get allowReporting() {
+    return this.answeredAt > 0 && this.variables && this.variables.cc_reporting === 'true'
+  }
   /*
   Actions
    */
@@ -331,6 +352,10 @@ export class Conversation {
     })
   }
 
+  async reporting(reporting: Reporting) {
+    return this.task?.reporting(reporting)
+  }
+
   private sendMessageTextChunk(text: string) {
     return this.client.request(`send_text_chat`, {
       channel_id: this.channelId,
@@ -354,4 +379,11 @@ export class Conversation {
 
     return null // TODO
   }
+}
+
+function wrapChannelMember(m: ChatChannel) : ChatChannel {
+  // todo
+  m.messenger = m.type
+
+  return m
 }

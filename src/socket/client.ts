@@ -12,8 +12,7 @@ import {
   CallEventData,
   CallEventDTMF,
   CallEventExecute,
-  CallItem,
-  CallReporting,
+  CallItem, CallVariables,
   EavesdropRequest,
   OutboundCallRequest,
 } from './call'
@@ -29,7 +28,7 @@ import {
 } from './conversation'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
-import { ChannelEvent, Task } from './task'
+import {ChannelEvent, ChannelName, Reporting, Task} from './task'
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
 
@@ -56,7 +55,7 @@ export interface UserCallRequest {
   useVideo?: boolean
   useScreen?: boolean
   useAudio?: boolean
-  variables?: Map<string, string>
+  variables?: CallVariables
 }
 
 const API_HEADER_TOKEN = 'X-Webitel-Access'
@@ -234,13 +233,14 @@ export class Client extends EventEmitter<ClientEvents> {
         call.reportingAt = c.reporting_at || 0
         if (c.task) {
           call.task = new Task(
+            this,
             {
               attempt_id: c.task.attempt_id,
               channel: c.task.channel,
               status: c.task.status,
               timestamp: Date.now(),
             },
-            c.task
+            c.task // todo add app_id
           )
           call.queue!.reporting = 'true'
         }
@@ -337,6 +337,14 @@ export class Client extends EventEmitter<ClientEvents> {
     return Array.from(this.conversationStore.values())
   }
 
+  allTask(): Task[] {
+    if (!this.agent) {
+      return []
+    }
+
+    return Array.from(this.agent.task.values())
+  }
+
   callById(id: string): Call | undefined {
     if (this.callStore.has(id)) {
       return this.callStore.get(id)
@@ -358,7 +366,7 @@ export class Client extends EventEmitter<ClientEvents> {
     }
   }
 
-  async reportingTask(attemptId: number, reporting: CallReporting) {
+  async reportingTask(attemptId: number, reporting: Reporting) {
     return this.request('cc_reporting', {
       attempt_id: attemptId,
       ...reporting,
@@ -475,17 +483,38 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   callDestroyed(call: Call) {
-    return call.hangupAt > 0 && !this.hasAgentTask(call)
+    return call.hangupAt > 0 && !this.hasAgentTask(call.task)
   }
 
-  reportingCallTask(task: Task) {
-    // TODO
+  conversationDestroyed(conv: Conversation) {
+    return conv.closedAt > 0 && !this.hasAgentTask(conv.task)
+  }
 
-    for (const call of this.allCall()) {
-      if (this.callDestroyed(call)) {
-        this.destroyCall(call)
+  reportingChannelTask(task: Task) {
+    switch (task.channel) {
+      case ChannelName.Call:
+        for (const call of this.allCall()) {
+          if (this.callDestroyed(call)) {
+            this.destroyCall(call)
+
+            return
+          }
+        }
         break
-      }
+
+      case ChannelName.Chat:
+        if (task.agentChannelId) {
+          const conv = this.conversationById(task.agentChannelId)
+          if (conv && this.conversationDestroyed(conv)) {
+            this.destroyConversation(conv)
+
+            return
+          }
+        }
+        break
+
+      default:
+
     }
   }
 
@@ -839,7 +868,7 @@ export class Client extends EventEmitter<ClientEvents> {
         const e = event.data as BaseChatEvent
         conversation = this.conversationById(e.conversation_id)
         if (conversation) {
-          this.conversationStore.delete(conversation.id)
+          conversation.setClosed(e.timestamp)
         }
         break
 
@@ -848,20 +877,30 @@ export class Client extends EventEmitter<ClientEvents> {
 
     if (conversation) {
       this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, event.action, conversation)
+
+      if (this.conversationDestroyed(conversation)) {
+        this.destroyConversation(conversation)
+      }
     }
   }
 
-  private hasAgentTask(call: Call): boolean {
-    if (!this.agent || !call.task) {
+  private hasAgentTask(task: Task | null | undefined): boolean {
+    if (!this.agent || !task) {
       return false
     }
 
-    return this.agent.hasTask(call.task)
+    return this.agent.hasTask(task)
   }
 
   private destroyCall(call: Call) {
     // FIXME sync channel & call event
     this.callStore.delete(call.id)
     this.eventHandler.emit(WEBSOCKET_EVENT_CALL, CallActions.Destroy, call)
+  }
+
+  private destroyConversation(conv: Conversation) {
+    // FIXME sync channel & call event
+    this.conversationStore.delete(conv.id)
+    this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, ChatActions.Destroy, conv)
   }
 }

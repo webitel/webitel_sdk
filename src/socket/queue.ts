@@ -1,3 +1,14 @@
+export interface QueueParameters {
+  attempt_id: number | string
+  member_id: string // fixme
+  queue_id: string // fixme
+  queue_name: string
+  queue_type: string
+  reporting: string // TODO
+
+  resource_id?: number
+}
+
 export interface QueueJoinMemberEvent {
   id: number // ід абонента
   name: string // імя абонента
@@ -18,3 +29,4 @@ export interface QueueJoinMemberEvent {
 
   variables?: Map<string, string> // варібли абонента
 }
+

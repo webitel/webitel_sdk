@@ -1,6 +1,7 @@
 import { CallSession } from '../sip'
 import { Client, UserCallRequest } from './client'
-import { Distribute, MemberCommunication, Task } from './task'
+import { QueueParameters } from './queue'
+import {Distribute, MemberCommunication, Reporting, Task} from './task'
 
 export interface CallParameters {
   timeout?: number
@@ -38,7 +39,7 @@ export interface CallItem {
   destination: string
   from: CallEndpoint
   to?: CallEndpoint
-  variables: Map<string, string>
+  variables: CallVariables
 
   created_at: number
   answered_at?: number
@@ -63,41 +64,11 @@ export interface CallItem {
   task?: Distribute
 }
 
-export interface CallReporting {
-  success?: boolean
-  next_distribute_at?: number
-  categories?: Categories
-
-  communication?: MemberCommunication
-  new_communication?: MemberCommunication[]
-  description?: string
-
-  // integration fields
-  display?: boolean
-  expire?: number
-  variables?: CallVariables
-  name?: string
-  timezone?: object
-}
-
 export interface OutboundCallRequest {
   sdp?: string
   destination?: string
   stream?: MediaStream
   params?: CallParameters
-}
-
-export interface QueueParameters {
-  attempt_id: number
-  member_id: string // fixme
-  queue_id: string // fixme
-  queue_name: string
-  queue_type: string
-  reporting: string // TODO
-
-  side: string
-
-  resource_id?: number
 }
 
 export interface EavesdropRequest {
@@ -624,11 +595,8 @@ export class Call {
     })
   }
 
-  async reporting(reporting: CallReporting) {
-    return this.client.request('cc_reporting', {
-      attempt_id: this.task!.id,
-      ...reporting,
-    })
+  async reporting(reporting: Reporting) {
+    return this.task?.reporting(reporting)
   }
 
   async callToUser(req: UserCallRequest) {

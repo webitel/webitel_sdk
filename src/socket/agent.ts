@@ -8,14 +8,12 @@ import {
 } from './task'
 
 export interface Channel {
-  channel: ChannelType
+  channel: ChannelType | null
   state: string
   joined_at: number
   timeout?: number
   active: boolean
-  max_open: number
   open: number
-  no_answer: number
   wrap_time_ids: number[]
 }
 
@@ -26,7 +24,7 @@ export interface AgentSession {
   last_status_change: number
   status_duration: number
   status_payload: any
-  channels: Channel[]
+  channel: Channel
 }
 
 export interface AgentStatusEvent {
@@ -36,7 +34,7 @@ export interface AgentStatusEvent {
   status: string
   status_payload?: any
   timeout?: number
-  channels?: Channel[]
+  channel: Channel
   on_demand?: boolean
 }
 
@@ -101,8 +99,8 @@ export class Agent {
     return this.info.status_payload
   }
 
-  get channels() {
-    return this.info.channels
+  get channel() {
+    return this.info.channel
   }
 
   get stateDuration() {
@@ -119,8 +117,29 @@ export class Agent {
           throw new Error('bad event')
         }
 
-        task = new Task(e, distributeEvent.distribute)
+        task = new Task(this.client, e, distributeEvent.distribute)
         this.task.set(task.id, task)
+
+
+        if (task.agentChannelId) {
+          switch (task.channel) {
+            case ChannelType.Call:
+              const call = this.client.callById(task.agentChannelId)
+              if (call && !call.task) {
+                call.task = task
+              }
+              break
+            case ChannelType.Chat:
+              const chat = this.client.conversationById(task.agentChannelId)
+              if (chat && !chat.task) {
+                chat.task = task
+              }
+              break
+
+            default:
+
+          }
+        }
         break
 
       case ChannelState.Offering:
@@ -143,7 +162,7 @@ export class Agent {
               missedEvent.missed.timeout
             )
             this.task.delete(e.attempt_id)
-            this.client.reportingCallTask(task)
+            this.client.reportingChannelTask(task)
 
             return task
           }
@@ -168,7 +187,7 @@ export class Agent {
 
             if (!wrapTimeEvent.wrap_time.post_processing) {
               this.task.delete(e.attempt_id)
-              this.client.reportingCallTask(task)
+              this.client.reportingChannelTask(task)
             }
 
             return task
@@ -181,7 +200,7 @@ export class Agent {
         if (e.attempt_id) {
           task = this.task.get(e.attempt_id)
           this.task.delete(e.attempt_id)
-          this.client.reportingCallTask(task!)
+          this.client.reportingChannelTask(task!)
         }
         break
 
@@ -213,7 +232,7 @@ export class Agent {
   setStatus(e: AgentStatusEvent) {
     if (e.status === AgentStatus.Online) {
       this.info.on_demand = e.on_demand || false
-      this.info.channels = e.channels || []
+      this.info.channel = e.channel
     }
 
     this.info.status = e.status
@@ -243,13 +262,10 @@ export class Agent {
   }
 
   private setChannelState(name: string, e: ChannelEvent) {
-    for (const chan of this.channels) {
-      if (chan.channel === name) {
-        chan.state = e.status
-        chan.joined_at = e.timestamp
-        chan.timeout = undefined
-      }
-    }
+    this.info.channel.channel = name ? name as ChannelType : null
+    this.info.channel.state = e.status
+    this.info.channel.joined_at = e.timestamp
+    this.info.channel.timeout = undefined
   }
 
   private setChannelStateTimeout(
@@ -257,12 +273,9 @@ export class Agent {
     e: ChannelEvent,
     timeout: number
   ) {
-    for (const chan of this.channels) {
-      if (chan.channel === name) {
-        chan.state = e.status // FIXME
-        chan.timeout = timeout
-        chan.joined_at = e.timestamp
-      }
-    }
+    this.info.channel.channel = name ? name as ChannelType : null
+    this.info.channel.state = e.status // FIXME
+    this.info.channel.timeout = timeout
+    this.info.channel.joined_at = e.timestamp
   }
 }

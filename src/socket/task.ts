@@ -1,3 +1,29 @@
+import {CallVariables, Categories} from "./call";
+import {Client} from "./client";
+
+export interface Reporting {
+  success?: boolean
+  next_distribute_at?: number
+  categories?: Categories
+
+  communication?: MemberCommunication
+  new_communication?: MemberCommunication[]
+  description?: string
+
+  // integration fields
+  display?: boolean
+  expire?: number
+  variables?: CallVariables
+  name?: string
+  timezone?: object
+}
+
+export enum ChannelName {
+  Call = "call",
+  Chat = "chat",
+  Task = "task"
+}
+
 export interface Node {
   id: number
   name: string
@@ -25,6 +51,7 @@ export interface ChannelEvent {
 }
 
 export interface Distribute extends ChannelEvent {
+  app_id: string
   channel: string
   queue_id: number
   member_id: number
@@ -65,37 +92,65 @@ export class Task {
   history!: Distribute[]
   communication: MemberCommunication
   id: number
-  status: string
+  state: string
+  postProcessData!: object
   lastStatusChange: number
+  _agentChannelId: string | undefined
   _channel: string
-  reporting: boolean
-  constructor(e: ChannelEvent, protected distribute: Distribute) {
+  constructor(private readonly client: Client, e: ChannelEvent, protected distribute: Distribute) {
     this.id = e.attempt_id!
-    this.status = e.status
+    this.state = e.status
     this.lastStatusChange = e.timestamp
     this.communication = distribute.communication
     this.history = [distribute]
     this._channel = distribute.channel
-    this.reporting = false
+    this._agentChannelId = distribute.agent_channel_id
   }
-
-  // get status() {
-  //   return this.status
-  // }
 
   get channel() {
     return this._channel
   }
 
-  // ban() {
-  //
-  // }
-  //
-  // cancel() {
-  //
-  // }
-  //
-  // reporting() {
-  //
-  // }
+  get allowAccept() {
+    return this.channel === ChannelName.Task
+  }
+
+  get allowClose() {
+    return this.channel === ChannelName.Task
+  }
+
+  get allowReporting() {
+    return this.channel === ChannelName.Task
+  }
+
+  get agentChannelId() {
+    return this._agentChannelId
+  }
+
+  /*
+    control
+   */
+
+  async accept() {
+    return this.client.request(`cc_agent_task_accept`, {
+      agent_id: this.distribute.agent_id,
+      attempt_id: this.id,
+      app_id: this.distribute.app_id
+    })
+  }
+
+  async close() {
+    return this.client.request(`cc_agent_task_close`, {
+      agent_id: this.distribute.agent_id,
+      attempt_id: this.id,
+      app_id: this.distribute.app_id
+    })
+  }
+
+  async reporting(reporting: Reporting) {
+    return this.client.request('cc_reporting', {
+      attempt_id: this.id,
+      ...reporting,
+    })
+  }
 }
