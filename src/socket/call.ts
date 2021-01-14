@@ -1,7 +1,7 @@
 import { CallSession } from '../sip'
 import { Client, UserCallRequest } from './client'
 import { QueueParameters } from './queue'
-import {Distribute, MemberCommunication, Reporting, Task} from './task'
+import { Distribute, MemberCommunication, Reporting, Task } from './task'
 
 export interface CallParameters {
   timeout?: number
@@ -596,7 +596,11 @@ export class Call {
   }
 
   async reporting(reporting: Reporting) {
-    return this.task?.reporting(reporting)
+    if (!this.task) {
+      throw new Error(`this call not in queue`)
+    }
+
+    return this.task.reporting(reporting)
   }
 
   async callToUser(req: UserCallRequest) {

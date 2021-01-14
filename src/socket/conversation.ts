@@ -125,7 +125,6 @@ export interface ConversationItem {
   messages: Message[]
 }
 
-
 export class Conversation {
   state: ConversationState
   channelId!: string | null
@@ -158,12 +157,16 @@ export class Conversation {
     this.invitedAt = 0
     this.closedAt = 0
     this.task = null
-    this.members = (members || []).map(i => wrapChannelMember(i))
+    this.members = (members || []).map((i) => wrapChannelMember(i))
     this._messages = messages || []
     this.state = ConversationState.Invite
     this.variables = variables
 
-    if (variables && variables.hasOwnProperty("cc_attempt_id") && this.client.agent) {
+    if (
+      variables &&
+      variables.hasOwnProperty('cc_attempt_id') &&
+      this.client.agent
+    ) {
       this.task = this.client.agent.task.get(+variables.cc_attempt_id) || null
     }
   }
@@ -243,7 +246,11 @@ export class Conversation {
   }
 
   get allowReporting() {
-    return this.answeredAt > 0 && this.variables && this.variables.cc_reporting === 'true'
+    return (
+      this.answeredAt > 0 &&
+      this.variables &&
+      this.variables.cc_reporting === 'true'
+    )
   }
   /*
   Actions
@@ -353,7 +360,11 @@ export class Conversation {
   }
 
   async reporting(reporting: Reporting) {
-    return this.task?.reporting(reporting)
+    if (!this.task) {
+      throw new Error(`this conversation not in queue`)
+    }
+
+    return this.task.reporting(reporting)
   }
 
   private sendMessageTextChunk(text: string) {
@@ -381,7 +392,7 @@ export class Conversation {
   }
 }
 
-function wrapChannelMember(m: ChatChannel) : ChatChannel {
+function wrapChannelMember(m: ChatChannel): ChatChannel {
   // todo
   m.messenger = m.type
 

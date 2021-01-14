@@ -182,7 +182,7 @@ export class Task {
       app_id: this.distribute.app_id,
     })
   }
-  //todo
+  // todo
   async decline() {
     return this.client.request(`cc_agent_task_close`, {
       agent_id: this.distribute.agent_id,
