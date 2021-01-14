@@ -62,6 +62,7 @@ export enum ChannelState {
 
   Answered = 'answered',
   Active = 'active',
+  Bridged = 'bridged',
   Hold = 'hold', // TODO
   Missed = 'missed',
   WrapTime = 'wrap_time',
@@ -107,6 +108,8 @@ export class Agent {
     return Math.round((Date.now() - this.lastStatusChange) / 1000)
   }
 
+  // todo need refactor
+
   onChannelEvent(e: ChannelEvent) {
     let task: Task | undefined
 
@@ -119,7 +122,6 @@ export class Agent {
 
         task = new Task(this.client, e, distributeEvent.distribute)
         this.task.set(task.id, task)
-
 
         if (task.agentChannelId) {
           switch (task.channel) {
@@ -137,20 +139,36 @@ export class Agent {
               break
 
             default:
-
           }
         }
         break
 
       case ChannelState.Offering:
         task = this.task.get(e.attempt_id!)
+        if (task) {
+          task.offeringAt = e.timestamp
+        }
+        break
 
+      case ChannelState.Bridged:
+        task = this.task.get(e.attempt_id!)
+        if (task) {
+          task.bridgedAt = e.timestamp
+        }
+        break
+
+      case ChannelState.Answered:
+        task = this.task.get(e.attempt_id!)
+        if (task) {
+          task.answeredAt = e.timestamp
+        }
         break
 
       case ChannelState.Missed:
         if (e.attempt_id) {
           task = this.task.get(e.attempt_id) as Task
           if (task) {
+            task.stopAt = e.timestamp
             const missedEvent: MissedEvent = e as MissedEvent
             if (!missedEvent) {
               throw new Error('bad event')
@@ -179,6 +197,8 @@ export class Agent {
           task = this.task.get(e.attempt_id) as Task
 
           if (task) {
+            task.state = e.status
+            task.closedAt = e.timestamp
             this.setChannelStateTimeout(
               e.channel,
               e,
@@ -199,8 +219,11 @@ export class Agent {
       case ChannelState.Waiting:
         if (e.attempt_id) {
           task = this.task.get(e.attempt_id)
-          this.task.delete(e.attempt_id)
-          this.client.reportingChannelTask(task!)
+          if (task) {
+            task.stopAt = e.timestamp
+            this.task.delete(e.attempt_id)
+            this.client.reportingChannelTask(task)
+          }
         }
         break
 
@@ -210,7 +233,13 @@ export class Agent {
 
     this.setChannelState(e.channel, e)
 
-    return task || undefined
+    if (task) {
+      task.state = e.status
+
+      return task
+    } else {
+      return undefined
+    }
   }
 
   async online(channels: string[], onDemand: boolean) {
@@ -262,7 +291,7 @@ export class Agent {
   }
 
   private setChannelState(name: string, e: ChannelEvent) {
-    this.info.channel.channel = name ? name as ChannelType : null
+    this.info.channel.channel = name ? (name as ChannelType) : null
     this.info.channel.state = e.status
     this.info.channel.joined_at = e.timestamp
     this.info.channel.timeout = undefined
@@ -273,7 +302,7 @@ export class Agent {
     e: ChannelEvent,
     timeout: number
   ) {
-    this.info.channel.channel = name ? name as ChannelType : null
+    this.info.channel.channel = name ? (name as ChannelType) : null
     this.info.channel.state = e.status // FIXME
     this.info.channel.timeout = timeout
     this.info.channel.joined_at = e.timestamp

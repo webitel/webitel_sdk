@@ -1,5 +1,5 @@
-import {CallVariables, Categories} from "./call";
-import {Client} from "./client";
+import { CallVariables, Categories } from './call'
+import { Client } from './client'
 
 export interface Reporting {
   success?: boolean
@@ -19,9 +19,9 @@ export interface Reporting {
 }
 
 export enum ChannelName {
-  Call = "call",
-  Chat = "chat",
-  Task = "task"
+  Call = 'call',
+  Chat = 'chat',
+  Task = 'task',
 }
 
 export interface Node {
@@ -59,6 +59,7 @@ export interface Distribute extends ChannelEvent {
   member_channel_id?: string
   agent_channel_id?: string
   communication: MemberCommunication
+  has_reporting: boolean
 }
 
 export interface Offering {
@@ -97,11 +98,31 @@ export class Task {
   lastStatusChange: number
   _agentChannelId: string | undefined
   _channel: string
-  constructor(private readonly client: Client, e: ChannelEvent, protected distribute: Distribute) {
+  createdAt: number
+  offeringAt: number
+  answeredAt: number
+  bridgedAt: number
+  stopAt: number
+  closedAt: number
+  hasReporting: boolean
+
+  constructor(
+    private readonly client: Client,
+    e: ChannelEvent,
+    protected distribute: Distribute
+  ) {
     this.id = e.attempt_id!
     this.state = e.status
     this.lastStatusChange = e.timestamp
     this.communication = distribute.communication
+    this.createdAt = e.timestamp
+    this.offeringAt = 0
+    this.answeredAt = 0
+    this.bridgedAt = 0
+    this.stopAt = 0
+    this.closedAt = 0
+    this.hasReporting = distribute.has_reporting
+
     this.history = [distribute]
     this._channel = distribute.channel
     this._agentChannelId = distribute.agent_channel_id
@@ -112,19 +133,34 @@ export class Task {
   }
 
   get allowAccept() {
-    return this.channel === ChannelName.Task
+    return (
+      this.channel === ChannelName.Task &&
+      (this.answeredAt === 0 && this.closedAt === 0)
+    )
+  }
+
+  get allowDecline() {
+    return this.allowAccept
   }
 
   get allowClose() {
-    return this.channel === ChannelName.Task
+    return (
+      this.channel === ChannelName.Task &&
+      this.closedAt === 0 &&
+      this.answeredAt > 0
+    )
   }
 
   get allowReporting() {
-    return this.channel === ChannelName.Task
+    return this.hasReporting && this.answeredAt > 0
   }
 
   get agentChannelId() {
     return this._agentChannelId
+  }
+
+  setAnswered(t: number) {
+    this.answeredAt = t
   }
 
   /*
@@ -135,7 +171,7 @@ export class Task {
     return this.client.request(`cc_agent_task_accept`, {
       agent_id: this.distribute.agent_id,
       attempt_id: this.id,
-      app_id: this.distribute.app_id
+      app_id: this.distribute.app_id,
     })
   }
 
@@ -143,7 +179,15 @@ export class Task {
     return this.client.request(`cc_agent_task_close`, {
       agent_id: this.distribute.agent_id,
       attempt_id: this.id,
-      app_id: this.distribute.app_id
+      app_id: this.distribute.app_id,
+    })
+  }
+  //todo
+  async decline() {
+    return this.client.request(`cc_agent_task_close`, {
+      agent_id: this.distribute.agent_id,
+      attempt_id: this.id,
+      app_id: this.distribute.app_id,
     })
   }
 

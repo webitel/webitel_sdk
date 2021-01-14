@@ -12,7 +12,8 @@ import {
   CallEventData,
   CallEventDTMF,
   CallEventExecute,
-  CallItem, CallVariables,
+  CallItem,
+  CallVariables,
   EavesdropRequest,
   OutboundCallRequest,
 } from './call'
@@ -28,7 +29,7 @@ import {
 } from './conversation'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
-import {ChannelEvent, ChannelName, Reporting, Task} from './task'
+import { ChannelEvent, ChannelName, Reporting, Task } from './task'
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
 
@@ -514,7 +515,6 @@ export class Client extends EventEmitter<ClientEvents> {
         break
 
       default:
-
     }
   }
 

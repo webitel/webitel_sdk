@@ -29,4 +29,3 @@ export interface QueueJoinMemberEvent {
 
   variables?: Map<string, string> // варібли абонента
 }
-
