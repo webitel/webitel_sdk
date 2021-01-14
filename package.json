@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -79,7 +79,7 @@
   },
   "dependencies": {
     "@types/webrtc": "0.0.26",
-    "axios": "0.19.0",
+    "axios": "0.21.1",
     "ee-ts": "1.0.1",
     "json-refs": "3.0.13",
     "jssip": "^3.7.0"
