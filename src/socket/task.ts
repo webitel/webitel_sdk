@@ -135,7 +135,7 @@ export class Task {
   get allowAccept() {
     return (
       this.channel === ChannelName.Task &&
-      (this.answeredAt === 0 && this.closedAt === 0)
+      (this.bridgedAt === 0 && this.closedAt === 0)
     )
   }
 
@@ -147,12 +147,12 @@ export class Task {
     return (
       this.channel === ChannelName.Task &&
       this.closedAt === 0 &&
-      this.answeredAt > 0
+      this.bridgedAt > 0
     )
   }
 
   get allowReporting() {
-    return this.hasReporting && this.answeredAt > 0
+    return this.hasReporting && this.bridgedAt > 0
   }
 
   get agentChannelId() {
@@ -161,6 +161,10 @@ export class Task {
 
   setAnswered(t: number) {
     this.answeredAt = t
+  }
+
+  setBridged(t: number) {
+    this.bridgedAt = t
   }
 
   /*
