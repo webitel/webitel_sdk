@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -82,7 +82,7 @@
     "axios": "0.21.1",
     "ee-ts": "1.0.1",
     "json-refs": "3.0.13",
-    "jssip": "^3.7.0"
+    "jssip": "3.7.0"
   },
   "devDependencies": {
     "@commitlint/cli": "7.2.1",

@@ -1,3 +1,4 @@
+// tslint:disable-next-line: match-default-export-name
 import Axios from 'axios'
 import { EventEmitter } from 'ee-ts'
 
@@ -269,7 +270,8 @@ export class Client extends EventEmitter<ClientEvents> {
           conv.id,
           conv.title,
           conv.members,
-          messages
+          messages,
+          conv.variables
         )
         c.createdAt = conv.created_at
         if (conv.invite_id) {
@@ -865,6 +867,7 @@ export class Client extends EventEmitter<ClientEvents> {
       case ChatActions.Close:
       case ChatActions.Leave:
       case ChatActions.Decline:
+        // TODO leave & CLOSE:
         const e = event.data as BaseChatEvent
         conversation = this.conversationById(e.conversation_id)
         if (conversation) {

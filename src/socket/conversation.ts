@@ -121,6 +121,7 @@ export interface ConversationItem {
   closed_at: number
   updated_at: number
   joined_at: number
+  variables?: CallVariables
   members: ChatChannel[]
   messages: Message[]
 }
