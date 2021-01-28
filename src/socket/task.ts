@@ -3,6 +3,7 @@ import { Client } from './client'
 
 export interface Reporting {
   success?: boolean
+  agent_id?: number
   next_distribute_at?: number
   categories?: Categories
 

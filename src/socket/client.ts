@@ -294,16 +294,6 @@ export class Client extends EventEmitter<ClientEvents> {
     return res
   }
 
-  async subscribeQueueJoinMember(
-    handler: QueueJoinMemberHandler,
-    data?: object
-  ) {
-    const res = await this.request(`subscribe_queue_join_member`, data)
-    this.eventHandler.on(WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER, handler)
-
-    return res
-  }
-
   async subscribeUsersStatus(handler: UsersStatusEventHandler, data?: object) {
     const res = await this.request(`subscribe_users_status`, data)
     this.eventHandler.on(WEBSOCKET_EVENT_USER_STATE, handler)

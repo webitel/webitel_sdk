@@ -1,6 +1,7 @@
 import { Client } from './client'
 import {
   ChannelEvent,
+  Distribute,
   DistributeEvent,
   MissedEvent,
   Task,
@@ -24,7 +25,11 @@ export interface AgentSession {
   last_status_change: number
   status_duration: number
   status_payload: any
-  channel: Channel
+  channels: Channel[]
+}
+
+export interface AgentSessionResponse extends AgentSession {
+  task?: Distribute[]
 }
 
 export interface AgentStatusEvent {
@@ -34,7 +39,7 @@ export interface AgentStatusEvent {
   status: string
   status_payload?: any
   timeout?: number
-  channel: Channel
+  channels: Channel[]
   on_demand?: boolean
 }
 
@@ -76,10 +81,11 @@ export enum ChannelType {
 
 export class Agent {
   task: Map<number, Task>
-
+  _channel: Channel
   lastStatusChange: number
   constructor(protected readonly client: Client, protected info: AgentSession) {
     this.task = new Map<number, Task>()
+    this._channel = info.channels[0] // todo
 
     this.lastStatusChange = Date.now() - this.info.status_duration * 1000
   }
@@ -100,8 +106,12 @@ export class Agent {
     return this.info.status_payload
   }
 
+  get channels() {
+    return [this._channel]
+  }
+
   get channel() {
-    return this.info.channel
+    return this._channel
   }
 
   get stateDuration() {
@@ -261,7 +271,8 @@ export class Agent {
   setStatus(e: AgentStatusEvent) {
     if (e.status === AgentStatus.Online) {
       this.info.on_demand = e.on_demand || false
-      this.info.channel = e.channel
+
+      this._channel = e.channels[0]
     }
 
     this.info.status = e.status
@@ -291,10 +302,10 @@ export class Agent {
   }
 
   private setChannelState(name: string, e: ChannelEvent) {
-    this.info.channel.channel = name ? (name as ChannelType) : null
-    this.info.channel.state = e.status
-    this.info.channel.joined_at = e.timestamp
-    this.info.channel.timeout = undefined
+    this._channel.channel = name ? (name as ChannelType) : null
+    this._channel.state = e.status
+    this._channel.joined_at = e.timestamp
+    this._channel.timeout = undefined
   }
 
   private setChannelStateTimeout(
@@ -302,9 +313,9 @@ export class Agent {
     e: ChannelEvent,
     timeout: number
   ) {
-    this.info.channel.channel = name ? (name as ChannelType) : null
-    this.info.channel.state = e.status // FIXME
-    this.info.channel.timeout = timeout
-    this.info.channel.joined_at = e.timestamp
+    this._channel.channel = name ? (name as ChannelType) : null
+    this._channel.state = e.status // FIXME
+    this._channel.timeout = timeout
+    this._channel.joined_at = e.timestamp
   }
 }
