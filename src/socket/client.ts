@@ -30,7 +30,7 @@ import {
 } from './conversation'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
-import { ChannelEvent, ChannelName, Reporting, Task } from './task'
+import { ChannelEvent, ChannelName, Reporting, Task, TaskData } from './task'
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
 
@@ -104,6 +104,10 @@ export interface ConnectionInfo {
 export interface CallListResponse {
   items?: CallItem[]
   next?: boolean
+}
+
+export interface TaskListResponse {
+  items: TaskData[]
 }
 
 export interface ConversationListResponse {
@@ -394,6 +398,35 @@ export class Client extends EventEmitter<ClientEvents> {
     const info = await this.request(WEBSOCKET_AGENT_SESSION)
 
     this.agent = new Agent(this, info as AgentSession)
+
+    const taskList = (await this.agentActiveTasks(
+      this.agent.agentId
+    )) as TaskListResponse
+
+    // todo
+    for (const t of taskList.items) {
+      const task = new Task(
+        this,
+        {
+          status: t.status,
+          timestamp: Date.now() - t.duration * 1000,
+          channel: t.channel,
+          attempt_id: t.attempt_id,
+        },
+        t
+      )
+      task.postProcessData = {}
+      task.state = t.state
+      if (t.bridged_at) {
+        task.bridgedAt = t.bridged_at
+        task.answeredAt = t.bridged_at
+      }
+      if (t.leaving_at) {
+        task.closedAt = t.leaving_at
+      }
+
+      this.agent.task.set(task.id, task)
+    }
 
     for (const call of this.allCall()) {
       if (call.task) {

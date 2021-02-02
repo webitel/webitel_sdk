@@ -53,7 +53,6 @@ export interface ChannelEvent {
 
 export interface Distribute extends ChannelEvent {
   app_id: string
-  channel: string
   queue_id: number
   member_id: number
   agent_id?: number
@@ -61,6 +60,13 @@ export interface Distribute extends ChannelEvent {
   agent_channel_id?: string
   communication: MemberCommunication
   has_reporting: boolean
+}
+
+export interface TaskData extends Distribute {
+  bridged_at?: number
+  leaving_at?: number
+  duration: number
+  state: string
 }
 
 export interface Offering {
@@ -129,6 +135,10 @@ export class Task {
     this._agentChannelId = distribute.agent_channel_id
   }
 
+  get duration() {
+    return Math.round((Date.now() - this.lastStatusChange) / 1000)
+  }
+
   get channel() {
     return this._channel
   }
@@ -162,10 +172,12 @@ export class Task {
 
   setAnswered(t: number) {
     this.answeredAt = t
+    this.lastStatusChange = Date.now()
   }
 
   setBridged(t: number) {
     this.bridgedAt = t
+    this.lastStatusChange = Date.now()
   }
 
   /*
