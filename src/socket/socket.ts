@@ -2,6 +2,7 @@ import { EventEmitter } from 'ee-ts'
 import { formatWebSocketUri } from './utils'
 
 const SOCKET_URL_SUFFIX = 'websocket'
+const spamData = `\u0000\u0000\u0000\u0000`
 
 export interface Message {
   event?: string
@@ -64,7 +65,9 @@ export class Socket extends EventEmitter<SocketEvents> {
   }
 
   private onMessage(data: string) {
-    const message = JSON.parse(data) as Message
-    this.emit('message', message)
+    if (data !== spamData) {
+      const message = JSON.parse(data) as Message
+      this.emit('message', message)
+    }
   }
 }
