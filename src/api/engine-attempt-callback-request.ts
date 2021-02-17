@@ -19,6 +19,12 @@
 export interface EngineAttemptCallbackRequest {
   /**
    *
+   * @type {number}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  agent_id?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineAttemptCallbackRequest
    */

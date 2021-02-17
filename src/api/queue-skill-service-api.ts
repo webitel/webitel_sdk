@@ -24,40 +24,53 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineAgentTeam } from '../api'
+import { EngineCreateQueueSkillRequest } from '../api'
 // @ts-ignore
-import { EngineCreateAgentTeamRequest } from '../api'
+import { EngineListQueueSkill } from '../api'
 // @ts-ignore
-import { EngineListAgentTeam } from '../api'
+import { EnginePatchQueueSkillRequest } from '../api'
 // @ts-ignore
-import { EngineUpdateAgentTeamRequest } from '../api'
+import { EngineQueueSkill } from '../api'
+// @ts-ignore
+import { EngineUpdateQueueSkillRequest } from '../api'
 /**
- * AgentTeamServiceApi - axios parameter creator
+ * QueueSkillServiceApi - axios parameter creator
  * @export
  */
-export const AgentTeamServiceApiAxiosParamCreator = function(
+export const QueueSkillServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {number} queueId
+     * @param {EngineCreateQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentTeam: async (
-      body: EngineCreateAgentTeamRequest,
+    createQueueSkill: async (
+      queueId: number,
+      body: EngineCreateQueueSkillRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling createQueueSkill.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createAgentTeam.'
+          'Required parameter body was null or undefined when calling createQueueSkill.'
         )
       }
-      const localVarPath = `/call_center/teams`
+      const localVarPath = `/call_center/queues/{queue_id}/skills`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queueId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -110,28 +123,33 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} queueId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentTeam: async (
-      id: string,
-      domainId?: string,
+    deleteQueueSkill: async (
+      queueId: number,
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling deleteQueueSkill.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteAgentTeam.'
+          'Required parameter id was null or undefined when calling deleteQueueSkill.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/queues/{queue_id}/skills/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -154,10 +172,6 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -180,28 +194,121 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} queueId
+     * @param {number} id
+     * @param {EnginePatchQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentTeam: async (
-      id: string,
-      domainId?: string,
+    patchQueueSkill: async (
+      queueId: number,
+      id: number,
+      body: EnginePatchQueueSkillRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling patchQueueSkill.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readAgentTeam.'
+          'Required parameter id was null or undefined when calling patchQueueSkill.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchQueueSkill.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/skills/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {number} queueId
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueSkill: async (
+      queueId: number,
+      id: number,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling readQueueSkill.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readQueueSkill.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/skills/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -224,10 +331,6 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -250,32 +353,47 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List of AgentTeam
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {Array<number>} [skillId]
+     * @param {Array<number>} [bucketId]
+     * @param {Array<number>} [lvl]
+     * @param {Array<number>} [minCapacity]
+     * @param {Array<number>} [maxCapacity]
+     * @param {boolean} [disabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentTeam: async (
+    searchQueueSkill: async (
+      queueId: number,
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
+      skillId?: Array<number>,
+      bucketId?: Array<number>,
+      lvl?: Array<number>,
+      minCapacity?: Array<number>,
+      maxCapacity?: Array<number>,
+      disabled?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/call_center/teams`
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling searchQueueSkill.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/skills`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queueId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -310,28 +428,36 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       if (fields) {
         localVarQueryParameter['fields'] = fields
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
       }
 
       if (id) {
         localVarQueryParameter['id'] = id
       }
 
-      if (strategy) {
-        localVarQueryParameter['strategy'] = strategy
+      if (skillId) {
+        localVarQueryParameter['skill_id'] = skillId
       }
 
-      if (administratorId) {
-        localVarQueryParameter['administrator_id'] = administratorId
+      if (bucketId) {
+        localVarQueryParameter['bucket_id'] = bucketId
+      }
+
+      if (lvl) {
+        localVarQueryParameter['lvl'] = lvl
+      }
+
+      if (minCapacity) {
+        localVarQueryParameter['min_capacity'] = minCapacity
+      }
+
+      if (maxCapacity) {
+        localVarQueryParameter['max_capacity'] = maxCapacity
+      }
+
+      if (disabled !== undefined) {
+        localVarQueryParameter['disabled'] = disabled
       }
 
       localVarUrlObj.query = {
@@ -356,35 +482,42 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} queueId
+     * @param {number} id
+     * @param {EngineUpdateQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentTeam: async (
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    updateQueueSkill: async (
+      queueId: number,
+      id: number,
+      body: EngineUpdateQueueSkillRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling updateQueueSkill.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateAgentTeam.'
+          'Required parameter id was null or undefined when calling updateQueueSkill.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateAgentTeam.'
+          'Required parameter body was null or undefined when calling updateQueueSkill.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/queues/{queue_id}/skills/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -439,30 +572,31 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
 }
 
 /**
- * AgentTeamServiceApi - functional programming interface
+ * QueueSkillServiceApi - functional programming interface
  * @export
  */
-export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
+export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {number} queueId
+     * @param {EngineCreateQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createAgentTeam(
-      body: EngineCreateAgentTeamRequest,
+    async createQueueSkill(
+      queueId: number,
+      body: EngineCreateQueueSkillRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      ) => AxiosPromise<EngineQueueSkill>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).createAgentTeam(body, options)
+      ).createQueueSkill(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -476,25 +610,24 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} queueId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteAgentTeam(
-      id: string,
-      domainId?: string,
+    async deleteQueueSkill(
+      queueId: number,
+      id: number,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      ) => AxiosPromise<EngineQueueSkill>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).deleteAgentTeam(id, domainId, options)
+      ).deleteQueueSkill(queueId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -508,25 +641,26 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} queueId
+     * @param {number} id
+     * @param {EnginePatchQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readAgentTeam(
-      id: string,
-      domainId?: string,
+    async patchQueueSkill(
+      queueId: number,
+      id: number,
+      body: EnginePatchQueueSkillRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      ) => AxiosPromise<EngineQueueSkill>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).readAgentTeam(id, domainId, options)
+      ).patchQueueSkill(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -540,48 +674,87 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary List of AgentTeam
+     * @param {number} queueId
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async readQueueSkill(
+      queueId: number,
+      id: number,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQueueSkill>
+    > {
+      const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
+        configuration
+      ).readQueueSkill(queueId, id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {Array<number>} [skillId]
+     * @param {Array<number>} [bucketId]
+     * @param {Array<number>} [lvl]
+     * @param {Array<number>} [minCapacity]
+     * @param {Array<number>} [maxCapacity]
+     * @param {boolean} [disabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchAgentTeam(
+    async searchQueueSkill(
+      queueId: number,
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
+      skillId?: Array<number>,
+      bucketId?: Array<number>,
+      lvl?: Array<number>,
+      minCapacity?: Array<number>,
+      maxCapacity?: Array<number>,
+      disabled?: boolean,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListAgentTeam>
+      ) => AxiosPromise<EngineListQueueSkill>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentTeam(
+      ).searchQueueSkill(
+        queueId,
         page,
         size,
         q,
-        domainId,
         fields,
-        sort,
         id,
-        strategy,
-        administratorId,
+        skillId,
+        bucketId,
+        lvl,
+        minCapacity,
+        maxCapacity,
+        disabled,
         options
       )
       return (
@@ -597,25 +770,26 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} queueId
+     * @param {number} id
+     * @param {EngineUpdateQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateAgentTeam(
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    async updateQueueSkill(
+      queueId: number,
+      id: number,
+      body: EngineUpdateQueueSkillRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      ) => AxiosPromise<EngineQueueSkill>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentTeam(id, body, options)
+      ).updateQueueSkill(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -631,10 +805,10 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
 }
 
 /**
- * AgentTeamServiceApi - factory interface
+ * QueueSkillServiceApi - factory interface
  * @export
  */
-export const AgentTeamServiceApiFactory = function(
+export const QueueSkillServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -642,205 +816,261 @@ export const AgentTeamServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {number} queueId
+     * @param {EngineCreateQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentTeam(
-      body: EngineCreateAgentTeamRequest,
+    createQueueSkill(
+      queueId: number,
+      body: EngineCreateQueueSkillRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .createAgentTeam(body, options)
+    ): AxiosPromise<EngineQueueSkill> {
+      return QueueSkillServiceApiFp(configuration)
+        .createQueueSkill(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} queueId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentTeam(
-      id: string,
-      domainId?: string,
+    deleteQueueSkill(
+      queueId: number,
+      id: number,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .deleteAgentTeam(id, domainId, options)
+    ): AxiosPromise<EngineQueueSkill> {
+      return QueueSkillServiceApiFp(configuration)
+        .deleteQueueSkill(queueId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} queueId
+     * @param {number} id
+     * @param {EnginePatchQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentTeam(
-      id: string,
-      domainId?: string,
+    patchQueueSkill(
+      queueId: number,
+      id: number,
+      body: EnginePatchQueueSkillRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .readAgentTeam(id, domainId, options)
+    ): AxiosPromise<EngineQueueSkill> {
+      return QueueSkillServiceApiFp(configuration)
+        .patchQueueSkill(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary List of AgentTeam
+     * @param {number} queueId
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQueueSkill(
+      queueId: number,
+      id: number,
+      options?: any
+    ): AxiosPromise<EngineQueueSkill> {
+      return QueueSkillServiceApiFp(configuration)
+        .readQueueSkill(queueId, id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {Array<number>} [skillId]
+     * @param {Array<number>} [bucketId]
+     * @param {Array<number>} [lvl]
+     * @param {Array<number>} [minCapacity]
+     * @param {Array<number>} [maxCapacity]
+     * @param {boolean} [disabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentTeam(
+    searchQueueSkill(
+      queueId: number,
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
+      skillId?: Array<number>,
+      bucketId?: Array<number>,
+      lvl?: Array<number>,
+      minCapacity?: Array<number>,
+      maxCapacity?: Array<number>,
+      disabled?: boolean,
       options?: any
-    ): AxiosPromise<EngineListAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .searchAgentTeam(
+    ): AxiosPromise<EngineListQueueSkill> {
+      return QueueSkillServiceApiFp(configuration)
+        .searchQueueSkill(
+          queueId,
           page,
           size,
           q,
-          domainId,
           fields,
-          sort,
           id,
-          strategy,
-          administratorId,
+          skillId,
+          bucketId,
+          lvl,
+          minCapacity,
+          maxCapacity,
+          disabled,
           options
         )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} queueId
+     * @param {number} id
+     * @param {EngineUpdateQueueSkillRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentTeam(
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    updateQueueSkill(
+      queueId: number,
+      id: number,
+      body: EngineUpdateQueueSkillRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .updateAgentTeam(id, body, options)
+    ): AxiosPromise<EngineQueueSkill> {
+      return QueueSkillServiceApiFp(configuration)
+        .updateQueueSkill(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * AgentTeamServiceApi - object-oriented interface
+ * QueueSkillServiceApi - object-oriented interface
  * @export
- * @class AgentTeamServiceApi
+ * @class QueueSkillServiceApi
  * @extends {BaseAPI}
  */
-export class AgentTeamServiceApi extends BaseAPI {
+export class QueueSkillServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create AgentTeam
-   * @param {EngineCreateAgentTeamRequest} body
+   * @param {number} queueId
+   * @param {EngineCreateQueueSkillRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof QueueSkillServiceApi
    */
-  public createAgentTeam(body: EngineCreateAgentTeamRequest, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .createAgentTeam(body, options)
+  public createQueueSkill(
+    queueId: number,
+    body: EngineCreateQueueSkillRequest,
+    options?: any
+  ) {
+    return QueueSkillServiceApiFp(this.configuration)
+      .createQueueSkill(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Remove AgentTeam
-   * @param {string} id
-   * @param {string} [domainId]
+   * @param {number} queueId
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof QueueSkillServiceApi
    */
-  public deleteAgentTeam(id: string, domainId?: string, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .deleteAgentTeam(id, domainId, options)
+  public deleteQueueSkill(queueId: number, id: number, options?: any) {
+    return QueueSkillServiceApiFp(this.configuration)
+      .deleteQueueSkill(queueId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary AgentTeam item
-   * @param {string} id
-   * @param {string} [domainId]
+   * @param {number} queueId
+   * @param {number} id
+   * @param {EnginePatchQueueSkillRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof QueueSkillServiceApi
    */
-  public readAgentTeam(id: string, domainId?: string, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .readAgentTeam(id, domainId, options)
+  public patchQueueSkill(
+    queueId: number,
+    id: number,
+    body: EnginePatchQueueSkillRequest,
+    options?: any
+  ) {
+    return QueueSkillServiceApiFp(this.configuration)
+      .patchQueueSkill(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary List of AgentTeam
+   * @param {number} queueId
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueSkillServiceApi
+   */
+  public readQueueSkill(queueId: number, id: number, options?: any) {
+    return QueueSkillServiceApiFp(this.configuration)
+      .readQueueSkill(queueId, id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} queueId
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
    * @param {Array<string>} [fields]
-   * @param {string} [sort]
    * @param {Array<number>} [id]
-   * @param {Array<string>} [strategy]
-   * @param {Array<number>} [administratorId]
+   * @param {Array<number>} [skillId]
+   * @param {Array<number>} [bucketId]
+   * @param {Array<number>} [lvl]
+   * @param {Array<number>} [minCapacity]
+   * @param {Array<number>} [maxCapacity]
+   * @param {boolean} [disabled]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof QueueSkillServiceApi
    */
-  public searchAgentTeam(
+  public searchQueueSkill(
+    queueId: number,
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
     fields?: Array<string>,
-    sort?: string,
     id?: Array<number>,
-    strategy?: Array<string>,
-    administratorId?: Array<number>,
+    skillId?: Array<number>,
+    bucketId?: Array<number>,
+    lvl?: Array<number>,
+    minCapacity?: Array<number>,
+    maxCapacity?: Array<number>,
+    disabled?: boolean,
     options?: any
   ) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .searchAgentTeam(
+    return QueueSkillServiceApiFp(this.configuration)
+      .searchQueueSkill(
+        queueId,
         page,
         size,
         q,
-        domainId,
         fields,
-        sort,
         id,
-        strategy,
-        administratorId,
+        skillId,
+        bucketId,
+        lvl,
+        minCapacity,
+        maxCapacity,
+        disabled,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -848,20 +1078,21 @@ export class AgentTeamServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary Update AgentTeam
-   * @param {string} id
-   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {number} queueId
+   * @param {number} id
+   * @param {EngineUpdateQueueSkillRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof QueueSkillServiceApi
    */
-  public updateAgentTeam(
-    id: string,
-    body: EngineUpdateAgentTeamRequest,
+  public updateQueueSkill(
+    queueId: number,
+    id: number,
+    body: EngineUpdateQueueSkillRequest,
     options?: any
   ) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .updateAgentTeam(id, body, options)
+    return QueueSkillServiceApiFp(this.configuration)
+      .updateQueueSkill(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

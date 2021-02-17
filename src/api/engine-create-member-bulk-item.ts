@@ -25,6 +25,12 @@ export interface EngineCreateMemberBulkItem {
    * @type {EngineLookup}
    * @memberof EngineCreateMemberBulkItem
    */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateMemberBulkItem
+   */
   bucket?: EngineLookup
   /**
    *

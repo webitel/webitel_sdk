@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+export * from './api/agent-pause-cause-service-api'
 export * from './api/agent-service-api'
 export * from './api/agent-skill-service-api'
 export * from './api/agent-team-service-api'
@@ -29,6 +30,8 @@ export * from './api/queue-bucket-service-api'
 export * from './api/queue-resources-service-api'
 export * from './api/queue-routing-service-api'
 export * from './api/queue-service-api'
+export * from './api/queue-skill-service-api'
+export * from './api/region-service-api'
 export * from './api/resource-team-service-api'
 export * from './api/routing-outbound-call-service-api'
 export * from './api/routing-schema-service-api'

@@ -22,6 +22,12 @@ import { EngineMemberCommunication } from './engine-member-communication'
 export interface EngineMemberInQueue {
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineMemberInQueue
+   */
+  agent?: EngineLookup
+  /**
+   *
    * @type {number}
    * @memberof EngineMemberInQueue
    */

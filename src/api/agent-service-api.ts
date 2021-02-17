@@ -375,6 +375,11 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {Array<string>} [id]
+     * @param {Array<string>} [allowChannels]
+     * @param {Array<number>} [supervisorId]
+     * @param {Array<number>} [teamId]
+     * @param {Array<number>} [regionId]
+     * @param {Array<number>} [auditorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -386,6 +391,11 @@ export const AgentServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       sort?: string,
       id?: Array<string>,
+      allowChannels?: Array<string>,
+      supervisorId?: Array<number>,
+      teamId?: Array<number>,
+      regionId?: Array<number>,
+      auditorId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/agents`
@@ -437,6 +447,26 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (id) {
         localVarQueryParameter['id'] = id
+      }
+
+      if (allowChannels) {
+        localVarQueryParameter['allow_channels'] = allowChannels
+      }
+
+      if (supervisorId) {
+        localVarQueryParameter['supervisor_id'] = supervisorId
+      }
+
+      if (teamId) {
+        localVarQueryParameter['team_id'] = teamId
+      }
+
+      if (regionId) {
+        localVarQueryParameter['region_id'] = regionId
+      }
+
+      if (auditorId) {
+        localVarQueryParameter['auditor_id'] = auditorId
       }
 
       localVarUrlObj.query = {
@@ -722,6 +752,7 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary todo deprecated ?
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -1433,6 +1464,11 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {Array<string>} [id]
+     * @param {Array<string>} [allowChannels]
+     * @param {Array<number>} [supervisorId]
+     * @param {Array<number>} [teamId]
+     * @param {Array<number>} [regionId]
+     * @param {Array<number>} [auditorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1444,6 +1480,11 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       sort?: string,
       id?: Array<string>,
+      allowChannels?: Array<string>,
+      supervisorId?: Array<number>,
+      teamId?: Array<number>,
+      regionId?: Array<number>,
+      auditorId?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1453,7 +1494,21 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentServiceApiAxiosParamCreator(
         configuration
-      ).searchAgent(page, size, q, domainId, fields, sort, id, options)
+      ).searchAgent(
+        page,
+        size,
+        q,
+        domainId,
+        fields,
+        sort,
+        id,
+        allowChannels,
+        supervisorId,
+        teamId,
+        regionId,
+        auditorId,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1591,6 +1646,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary todo deprecated ?
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -1951,6 +2007,11 @@ export const AgentServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {Array<string>} [id]
+     * @param {Array<string>} [allowChannels]
+     * @param {Array<number>} [supervisorId]
+     * @param {Array<number>} [teamId]
+     * @param {Array<number>} [regionId]
+     * @param {Array<number>} [auditorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1962,10 +2023,29 @@ export const AgentServiceApiFactory = function(
       fields?: Array<string>,
       sort?: string,
       id?: Array<string>,
+      allowChannels?: Array<string>,
+      supervisorId?: Array<number>,
+      teamId?: Array<number>,
+      regionId?: Array<number>,
+      auditorId?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListAgent> {
       return AgentServiceApiFp(configuration)
-        .searchAgent(page, size, q, domainId, fields, sort, id, options)
+        .searchAgent(
+          page,
+          size,
+          q,
+          domainId,
+          fields,
+          sort,
+          id,
+          allowChannels,
+          supervisorId,
+          teamId,
+          regionId,
+          auditorId,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2049,6 +2129,7 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @summary todo deprecated ?
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -2319,6 +2400,11 @@ export class AgentServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {string} [sort]
    * @param {Array<string>} [id]
+   * @param {Array<string>} [allowChannels]
+   * @param {Array<number>} [supervisorId]
+   * @param {Array<number>} [teamId]
+   * @param {Array<number>} [regionId]
+   * @param {Array<number>} [auditorId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
@@ -2331,10 +2417,29 @@ export class AgentServiceApi extends BaseAPI {
     fields?: Array<string>,
     sort?: string,
     id?: Array<string>,
+    allowChannels?: Array<string>,
+    supervisorId?: Array<number>,
+    teamId?: Array<number>,
+    regionId?: Array<number>,
+    auditorId?: Array<number>,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration)
-      .searchAgent(page, size, q, domainId, fields, sort, id, options)
+      .searchAgent(
+        page,
+        size,
+        q,
+        domainId,
+        fields,
+        sort,
+        id,
+        allowChannels,
+        supervisorId,
+        teamId,
+        regionId,
+        auditorId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2425,6 +2530,7 @@ export class AgentServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary todo deprecated ?
    * @param {string} id
    * @param {number} [page]
    * @param {number} [size]

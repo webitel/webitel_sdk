@@ -16,73 +16,67 @@ import { EngineLookup } from './engine-lookup'
 /**
  *
  * @export
- * @interface EngineAgentTeam
+ * @interface EngineAgentPauseCause
  */
-export interface EngineAgentTeam {
+export interface EngineAgentPauseCause {
   /**
    *
-   * @type {EngineLookup}
-   * @memberof EngineAgentTeam
+   * @type {boolean}
+   * @memberof EngineAgentPauseCause
    */
-  administrator?: EngineLookup
+  allow_agent?: boolean
   /**
    *
-   * @type {number}
-   * @memberof EngineAgentTeam
+   * @type {boolean}
+   * @memberof EngineAgentPauseCause
    */
-  call_timeout?: number
+  allow_supervisor?: boolean
   /**
    *
    * @type {string}
-   * @memberof EngineAgentTeam
+   * @memberof EngineAgentPauseCause
+   */
+  created_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentPauseCause
+   */
+  created_by?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentPauseCause
    */
   description?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineAgentTeam
+   * @type {number}
+   * @memberof EngineAgentPauseCause
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentTeam
-   */
-  id?: string
+  id?: number
   /**
    *
    * @type {number}
-   * @memberof EngineAgentTeam
+   * @memberof EngineAgentPauseCause
    */
-  max_no_answer?: number
+  limit_per_day?: number
   /**
    *
    * @type {string}
-   * @memberof EngineAgentTeam
+   * @memberof EngineAgentPauseCause
    */
   name?: string
   /**
    *
-   * @type {number}
-   * @memberof EngineAgentTeam
-   */
-  no_answer_delay_time?: number
-  /**
-   *
    * @type {string}
-   * @memberof EngineAgentTeam
-   */
-  strategy?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentTeam
+   * @memberof EngineAgentPauseCause
    */
   updated_at?: string
   /**
    *
-   * @type {number}
-   * @memberof EngineAgentTeam
+   * @type {EngineLookup}
+   * @memberof EngineAgentPauseCause
    */
-  wrap_up_time?: number
+  updated_by?: EngineLookup
 }

@@ -81,6 +81,24 @@ export interface EngineCreateQueueRequest {
   priority?: number
   /**
    *
+   * @type {boolean}
+   * @memberof EngineCreateQueueRequest
+   */
+  processing?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  processing_notification?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueRequest
+   */
+  processing_sec?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineCreateQueueRequest
    */
@@ -97,6 +115,12 @@ export interface EngineCreateQueueRequest {
    * @memberof EngineCreateQueueRequest
    */
   sec_locate_agent?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateQueueRequest
+   */
+  sticky_agent?: boolean
   /**
    *
    * @type {string}

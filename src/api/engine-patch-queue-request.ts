@@ -93,6 +93,24 @@ export interface EnginePatchQueueRequest {
   priority?: number
   /**
    *
+   * @type {boolean}
+   * @memberof EnginePatchQueueRequest
+   */
+  processing?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  processing_notification?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EnginePatchQueueRequest
+   */
+  processing_sec?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EnginePatchQueueRequest
    */
@@ -109,6 +127,12 @@ export interface EnginePatchQueueRequest {
    * @memberof EnginePatchQueueRequest
    */
   sec_locate_agent?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchQueueRequest
+   */
+  sticky_agent?: boolean
   /**
    *
    * @type {string}

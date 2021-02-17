@@ -24,40 +24,41 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineAgentTeam } from '../api'
+import { EngineAgentPauseCause } from '../api'
 // @ts-ignore
-import { EngineCreateAgentTeamRequest } from '../api'
+import { EngineCreateAgentPauseCauseRequest } from '../api'
 // @ts-ignore
-import { EngineListAgentTeam } from '../api'
+import { EngineListAgentPauseCause } from '../api'
 // @ts-ignore
-import { EngineUpdateAgentTeamRequest } from '../api'
+import { EnginePatchAgentPauseCauseRequest } from '../api'
+// @ts-ignore
+import { EngineUpdateAgentPauseCauseRequest } from '../api'
 /**
- * AgentTeamServiceApi - axios parameter creator
+ * AgentPauseCauseServiceApi - axios parameter creator
  * @export
  */
-export const AgentTeamServiceApiAxiosParamCreator = function(
+export const AgentPauseCauseServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {EngineCreateAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentTeam: async (
-      body: EngineCreateAgentTeamRequest,
+    createAgentPauseCause: async (
+      body: EngineCreateAgentPauseCauseRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createAgentTeam.'
+          'Required parameter body was null or undefined when calling createAgentPauseCause.'
         )
       }
-      const localVarPath = `/call_center/teams`
+      const localVarPath = `/call_center/pause_causes`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -110,25 +111,22 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentTeam: async (
-      id: string,
-      domainId?: string,
+    deleteAgentPauseCause: async (
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteAgentTeam.'
+          'Required parameter id was null or undefined when calling deleteAgentPauseCause.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
+      const localVarPath = `/call_center/pause_causes/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -154,10 +152,6 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -180,25 +174,102 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
+     * @param {EnginePatchAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentTeam: async (
-      id: string,
-      domainId?: string,
+    patchAgentPauseCause: async (
+      id: number,
+      body: EnginePatchAgentPauseCauseRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readAgentTeam.'
+          'Required parameter id was null or undefined when calling patchAgentPauseCause.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchAgentPauseCause.'
+        )
+      }
+      const localVarPath = `/call_center/pause_causes/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readAgentPauseCause: async (
+      id: number,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readAgentPauseCause.'
+        )
+      }
+      const localVarPath = `/call_center/pause_causes/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -224,10 +295,6 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -250,32 +317,23 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List of AgentTeam
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentTeam: async (
+    searchAgentPauseCause: async (
       page?: number,
       size?: number,
-      q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
+      q?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/call_center/teams`
+      const localVarPath = `/call_center/pause_causes`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -306,32 +364,16 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       if (fields) {
         localVarQueryParameter['fields'] = fields
       }
 
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
       }
 
       if (id) {
         localVarQueryParameter['id'] = id
-      }
-
-      if (strategy) {
-        localVarQueryParameter['strategy'] = strategy
-      }
-
-      if (administratorId) {
-        localVarQueryParameter['administrator_id'] = administratorId
       }
 
       localVarUrlObj.query = {
@@ -356,32 +398,31 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} id
+     * @param {EngineUpdateAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentTeam: async (
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    updateAgentPauseCause: async (
+      id: number,
+      body: EngineUpdateAgentPauseCauseRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateAgentTeam.'
+          'Required parameter id was null or undefined when calling updateAgentPauseCause.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateAgentTeam.'
+          'Required parameter body was null or undefined when calling updateAgentPauseCause.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
+      const localVarPath = `/call_center/pause_causes/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -439,30 +480,31 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
 }
 
 /**
- * AgentTeamServiceApi - functional programming interface
+ * AgentPauseCauseServiceApi - functional programming interface
  * @export
  */
-export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
+export const AgentPauseCauseServiceApiFp = function(
+  configuration?: Configuration
+) {
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {EngineCreateAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createAgentTeam(
-      body: EngineCreateAgentTeamRequest,
+    async createAgentPauseCause(
+      body: EngineCreateAgentPauseCauseRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      ) => AxiosPromise<EngineAgentPauseCause>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).createAgentTeam(body, options)
+      ).createAgentPauseCause(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -476,25 +518,22 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteAgentTeam(
-      id: string,
-      domainId?: string,
+    async deleteAgentPauseCause(
+      id: number,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      ) => AxiosPromise<EngineAgentPauseCause>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).deleteAgentTeam(id, domainId, options)
+      ).deleteAgentPauseCause(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -508,25 +547,24 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
+     * @param {EnginePatchAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readAgentTeam(
-      id: string,
-      domainId?: string,
+    async patchAgentPauseCause(
+      id: number,
+      body: EnginePatchAgentPauseCauseRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      ) => AxiosPromise<EngineAgentPauseCause>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).readAgentTeam(id, domainId, options)
+      ).patchAgentPauseCause(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -540,50 +578,59 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary List of AgentTeam
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async readAgentPauseCause(
+      id: number,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineAgentPauseCause>
+    > {
+      const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
+        configuration
+      ).readAgentPauseCause(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchAgentTeam(
+    async searchAgentPauseCause(
       page?: number,
       size?: number,
-      q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
+      q?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListAgentTeam>
+      ) => AxiosPromise<EngineListAgentPauseCause>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentTeam(
-        page,
-        size,
-        q,
-        domainId,
-        fields,
-        sort,
-        id,
-        strategy,
-        administratorId,
-        options
-      )
+      ).searchAgentPauseCause(page, size, fields, q, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -597,25 +644,24 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} id
+     * @param {EngineUpdateAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateAgentTeam(
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    async updateAgentPauseCause(
+      id: number,
+      body: EngineUpdateAgentPauseCauseRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      ) => AxiosPromise<EngineAgentPauseCause>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentTeam(id, body, options)
+      ).updateAgentPauseCause(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -631,10 +677,10 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
 }
 
 /**
- * AgentTeamServiceApi - factory interface
+ * AgentPauseCauseServiceApi - factory interface
  * @export
  */
-export const AgentTeamServiceApiFactory = function(
+export const AgentPauseCauseServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -642,226 +688,209 @@ export const AgentTeamServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {EngineCreateAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentTeam(
-      body: EngineCreateAgentTeamRequest,
+    createAgentPauseCause(
+      body: EngineCreateAgentPauseCauseRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .createAgentTeam(body, options)
+    ): AxiosPromise<EngineAgentPauseCause> {
+      return AgentPauseCauseServiceApiFp(configuration)
+        .createAgentPauseCause(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentTeam(
-      id: string,
-      domainId?: string,
+    deleteAgentPauseCause(
+      id: number,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .deleteAgentTeam(id, domainId, options)
+    ): AxiosPromise<EngineAgentPauseCause> {
+      return AgentPauseCauseServiceApiFp(configuration)
+        .deleteAgentPauseCause(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
+     * @param {EnginePatchAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentTeam(
-      id: string,
-      domainId?: string,
+    patchAgentPauseCause(
+      id: number,
+      body: EnginePatchAgentPauseCauseRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .readAgentTeam(id, domainId, options)
+    ): AxiosPromise<EngineAgentPauseCause> {
+      return AgentPauseCauseServiceApiFp(configuration)
+        .patchAgentPauseCause(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary List of AgentTeam
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readAgentPauseCause(
+      id: number,
+      options?: any
+    ): AxiosPromise<EngineAgentPauseCause> {
+      return AgentPauseCauseServiceApiFp(configuration)
+        .readAgentPauseCause(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentTeam(
+    searchAgentPauseCause(
       page?: number,
       size?: number,
-      q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
+      q?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
       options?: any
-    ): AxiosPromise<EngineListAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .searchAgentTeam(
-          page,
-          size,
-          q,
-          domainId,
-          fields,
-          sort,
-          id,
-          strategy,
-          administratorId,
-          options
-        )
+    ): AxiosPromise<EngineListAgentPauseCause> {
+      return AgentPauseCauseServiceApiFp(configuration)
+        .searchAgentPauseCause(page, size, fields, q, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} id
+     * @param {EngineUpdateAgentPauseCauseRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentTeam(
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    updateAgentPauseCause(
+      id: number,
+      body: EngineUpdateAgentPauseCauseRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .updateAgentTeam(id, body, options)
+    ): AxiosPromise<EngineAgentPauseCause> {
+      return AgentPauseCauseServiceApiFp(configuration)
+        .updateAgentPauseCause(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * AgentTeamServiceApi - object-oriented interface
+ * AgentPauseCauseServiceApi - object-oriented interface
  * @export
- * @class AgentTeamServiceApi
+ * @class AgentPauseCauseServiceApi
  * @extends {BaseAPI}
  */
-export class AgentTeamServiceApi extends BaseAPI {
+export class AgentPauseCauseServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create AgentTeam
-   * @param {EngineCreateAgentTeamRequest} body
+   * @param {EngineCreateAgentPauseCauseRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof AgentPauseCauseServiceApi
    */
-  public createAgentTeam(body: EngineCreateAgentTeamRequest, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .createAgentTeam(body, options)
+  public createAgentPauseCause(
+    body: EngineCreateAgentPauseCauseRequest,
+    options?: any
+  ) {
+    return AgentPauseCauseServiceApiFp(this.configuration)
+      .createAgentPauseCause(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Remove AgentTeam
-   * @param {string} id
-   * @param {string} [domainId]
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof AgentPauseCauseServiceApi
    */
-  public deleteAgentTeam(id: string, domainId?: string, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .deleteAgentTeam(id, domainId, options)
+  public deleteAgentPauseCause(id: number, options?: any) {
+    return AgentPauseCauseServiceApiFp(this.configuration)
+      .deleteAgentPauseCause(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary AgentTeam item
-   * @param {string} id
-   * @param {string} [domainId]
+   * @param {number} id
+   * @param {EnginePatchAgentPauseCauseRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof AgentPauseCauseServiceApi
    */
-  public readAgentTeam(id: string, domainId?: string, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .readAgentTeam(id, domainId, options)
+  public patchAgentPauseCause(
+    id: number,
+    body: EnginePatchAgentPauseCauseRequest,
+    options?: any
+  ) {
+    return AgentPauseCauseServiceApiFp(this.configuration)
+      .patchAgentPauseCause(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary List of AgentTeam
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentPauseCauseServiceApi
+   */
+  public readAgentPauseCause(id: number, options?: any) {
+    return AgentPauseCauseServiceApiFp(this.configuration)
+      .readAgentPauseCause(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @param {number} [page]
    * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [domainId]
    * @param {Array<string>} [fields]
-   * @param {string} [sort]
+   * @param {string} [q]
    * @param {Array<number>} [id]
-   * @param {Array<string>} [strategy]
-   * @param {Array<number>} [administratorId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof AgentPauseCauseServiceApi
    */
-  public searchAgentTeam(
+  public searchAgentPauseCause(
     page?: number,
     size?: number,
-    q?: string,
-    domainId?: string,
     fields?: Array<string>,
-    sort?: string,
+    q?: string,
     id?: Array<number>,
-    strategy?: Array<string>,
-    administratorId?: Array<number>,
     options?: any
   ) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .searchAgentTeam(
-        page,
-        size,
-        q,
-        domainId,
-        fields,
-        sort,
-        id,
-        strategy,
-        administratorId,
-        options
-      )
+    return AgentPauseCauseServiceApiFp(this.configuration)
+      .searchAgentPauseCause(page, size, fields, q, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Update AgentTeam
-   * @param {string} id
-   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {number} id
+   * @param {EngineUpdateAgentPauseCauseRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof AgentPauseCauseServiceApi
    */
-  public updateAgentTeam(
-    id: string,
-    body: EngineUpdateAgentTeamRequest,
+  public updateAgentPauseCause(
+    id: number,
+    body: EngineUpdateAgentPauseCauseRequest,
     options?: any
   ) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .updateAgentTeam(id, body, options)
+    return AgentPauseCauseServiceApiFp(this.configuration)
+      .updateAgentPauseCause(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

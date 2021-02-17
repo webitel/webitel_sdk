@@ -19,6 +19,12 @@
 export interface EngineAttemptResultRequest {
   /**
    *
+   * @type {number}
+   * @memberof EngineAttemptResultRequest
+   */
+  agent_id?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineAttemptResultRequest
    */

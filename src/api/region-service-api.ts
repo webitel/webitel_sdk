@@ -24,40 +24,41 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineAgentTeam } from '../api'
+import { EngineCreateRegionRequest } from '../api'
 // @ts-ignore
-import { EngineCreateAgentTeamRequest } from '../api'
+import { EngineListRegion } from '../api'
 // @ts-ignore
-import { EngineListAgentTeam } from '../api'
+import { EnginePatchRegionRequest } from '../api'
 // @ts-ignore
-import { EngineUpdateAgentTeamRequest } from '../api'
+import { EngineRegion } from '../api'
+// @ts-ignore
+import { EngineUpdateRegionRequest } from '../api'
 /**
- * AgentTeamServiceApi - axios parameter creator
+ * RegionServiceApi - axios parameter creator
  * @export
  */
-export const AgentTeamServiceApiAxiosParamCreator = function(
+export const RegionServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {EngineCreateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentTeam: async (
-      body: EngineCreateAgentTeamRequest,
+    createRegion: async (
+      body: EngineCreateRegionRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createAgentTeam.'
+          'Required parameter body was null or undefined when calling createRegion.'
         )
       }
-      const localVarPath = `/call_center/teams`
+      const localVarPath = `/regions`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -110,25 +111,22 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentTeam: async (
-      id: string,
-      domainId?: string,
+    deleteRegion: async (
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteAgentTeam.'
+          'Required parameter id was null or undefined when calling deleteRegion.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
+      const localVarPath = `/regions/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -154,10 +152,6 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -180,25 +174,99 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
+     * @param {EnginePatchRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentTeam: async (
-      id: string,
-      domainId?: string,
+    patchRegion: async (
+      id: number,
+      body: EnginePatchRegionRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readAgentTeam.'
+          'Required parameter id was null or undefined when calling patchRegion.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchRegion.'
+        )
+      }
+      const localVarPath = `/regions/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readRegion: async (id: number, options: any = {}): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readRegion.'
+        )
+      }
+      const localVarPath = `/regions/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -224,10 +292,6 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -250,32 +314,29 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List of AgentTeam
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {string} [name]
+     * @param {string} [description]
+     * @param {Array<number>} [timezoneId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentTeam: async (
+    searchRegion: async (
       page?: number,
       size?: number,
-      q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
+      q?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
+      name?: string,
+      description?: string,
+      timezoneId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/call_center/teams`
+      const localVarPath = `/regions`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -306,32 +367,28 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       if (fields) {
         localVarQueryParameter['fields'] = fields
       }
 
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
       }
 
       if (id) {
         localVarQueryParameter['id'] = id
       }
 
-      if (strategy) {
-        localVarQueryParameter['strategy'] = strategy
+      if (name !== undefined) {
+        localVarQueryParameter['name'] = name
       }
 
-      if (administratorId) {
-        localVarQueryParameter['administrator_id'] = administratorId
+      if (description !== undefined) {
+        localVarQueryParameter['description'] = description
+      }
+
+      if (timezoneId) {
+        localVarQueryParameter['timezone_id'] = timezoneId
       }
 
       localVarUrlObj.query = {
@@ -356,32 +413,31 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} id
+     * @param {EngineUpdateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentTeam: async (
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    updateRegion: async (
+      id: number,
+      body: EngineUpdateRegionRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateAgentTeam.'
+          'Required parameter id was null or undefined when calling updateRegion.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateAgentTeam.'
+          'Required parameter body was null or undefined when calling updateRegion.'
         )
       }
-      const localVarPath = `/call_center/teams/{id}`.replace(
+      const localVarPath = `/regions/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -439,30 +495,26 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
 }
 
 /**
- * AgentTeamServiceApi - functional programming interface
+ * RegionServiceApi - functional programming interface
  * @export
  */
-export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
+export const RegionServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {EngineCreateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createAgentTeam(
-      body: EngineCreateAgentTeamRequest,
+    async createRegion(
+      body: EngineCreateRegionRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
         configuration
-      ).createAgentTeam(body, options)
+      ).createRegion(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -476,25 +528,19 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteAgentTeam(
-      id: string,
-      domainId?: string,
+    async deleteRegion(
+      id: number,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
         configuration
-      ).deleteAgentTeam(id, domainId, options)
+      ).deleteRegion(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -508,25 +554,21 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
+     * @param {EnginePatchRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readAgentTeam(
-      id: string,
-      domainId?: string,
+    async patchRegion(
+      id: number,
+      body: EnginePatchRegionRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
         configuration
-      ).readAgentTeam(id, domainId, options)
+      ).patchRegion(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -540,48 +582,70 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary List of AgentTeam
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async readRegion(
+      id: number,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
+    > {
+      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
+        configuration
+      ).readRegion(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {string} [name]
+     * @param {string} [description]
+     * @param {Array<number>} [timezoneId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchAgentTeam(
+    async searchRegion(
       page?: number,
       size?: number,
-      q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
+      q?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
+      name?: string,
+      description?: string,
+      timezoneId?: Array<number>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListAgentTeam>
+      ) => AxiosPromise<EngineListRegion>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentTeam(
+      ).searchRegion(
         page,
         size,
-        q,
-        domainId,
         fields,
-        sort,
+        q,
         id,
-        strategy,
-        administratorId,
+        name,
+        description,
+        timezoneId,
         options
       )
       return (
@@ -597,25 +661,21 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} id
+     * @param {EngineUpdateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateAgentTeam(
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    async updateRegion(
+      id: number,
+      body: EngineUpdateRegionRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineAgentTeam>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
     > {
-      const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentTeam(id, body, options)
+      ).updateRegion(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -631,10 +691,10 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
 }
 
 /**
- * AgentTeamServiceApi - factory interface
+ * RegionServiceApi - factory interface
  * @export
  */
-export const AgentTeamServiceApiFactory = function(
+export const RegionServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -642,205 +702,212 @@ export const AgentTeamServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create AgentTeam
-     * @param {EngineCreateAgentTeamRequest} body
+     * @param {EngineCreateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentTeam(
-      body: EngineCreateAgentTeamRequest,
+    createRegion(
+      body: EngineCreateRegionRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .createAgentTeam(body, options)
+    ): AxiosPromise<EngineRegion> {
+      return RegionServiceApiFp(configuration)
+        .createRegion(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Remove AgentTeam
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentTeam(
-      id: string,
-      domainId?: string,
-      options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .deleteAgentTeam(id, domainId, options)
+    deleteRegion(id: number, options?: any): AxiosPromise<EngineRegion> {
+      return RegionServiceApiFp(configuration)
+        .deleteRegion(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary AgentTeam item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
+     * @param {EnginePatchRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentTeam(
-      id: string,
-      domainId?: string,
+    patchRegion(
+      id: number,
+      body: EnginePatchRegionRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .readAgentTeam(id, domainId, options)
+    ): AxiosPromise<EngineRegion> {
+      return RegionServiceApiFp(configuration)
+        .patchRegion(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary List of AgentTeam
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readRegion(id: number, options?: any): AxiosPromise<EngineRegion> {
+      return RegionServiceApiFp(configuration)
+        .readRegion(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [domainId]
      * @param {Array<string>} [fields]
-     * @param {string} [sort]
+     * @param {string} [q]
      * @param {Array<number>} [id]
-     * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {string} [name]
+     * @param {string} [description]
+     * @param {Array<number>} [timezoneId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentTeam(
+    searchRegion(
       page?: number,
       size?: number,
-      q?: string,
-      domainId?: string,
       fields?: Array<string>,
-      sort?: string,
+      q?: string,
       id?: Array<number>,
-      strategy?: Array<string>,
-      administratorId?: Array<number>,
+      name?: string,
+      description?: string,
+      timezoneId?: Array<number>,
       options?: any
-    ): AxiosPromise<EngineListAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .searchAgentTeam(
+    ): AxiosPromise<EngineListRegion> {
+      return RegionServiceApiFp(configuration)
+        .searchRegion(
           page,
           size,
-          q,
-          domainId,
           fields,
-          sort,
+          q,
           id,
-          strategy,
-          administratorId,
+          name,
+          description,
+          timezoneId,
           options
         )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Update AgentTeam
-     * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {number} id
+     * @param {EngineUpdateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentTeam(
-      id: string,
-      body: EngineUpdateAgentTeamRequest,
+    updateRegion(
+      id: number,
+      body: EngineUpdateRegionRequest,
       options?: any
-    ): AxiosPromise<EngineAgentTeam> {
-      return AgentTeamServiceApiFp(configuration)
-        .updateAgentTeam(id, body, options)
+    ): AxiosPromise<EngineRegion> {
+      return RegionServiceApiFp(configuration)
+        .updateRegion(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * AgentTeamServiceApi - object-oriented interface
+ * RegionServiceApi - object-oriented interface
  * @export
- * @class AgentTeamServiceApi
+ * @class RegionServiceApi
  * @extends {BaseAPI}
  */
-export class AgentTeamServiceApi extends BaseAPI {
+export class RegionServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create AgentTeam
-   * @param {EngineCreateAgentTeamRequest} body
+   * @param {EngineCreateRegionRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof RegionServiceApi
    */
-  public createAgentTeam(body: EngineCreateAgentTeamRequest, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .createAgentTeam(body, options)
+  public createRegion(body: EngineCreateRegionRequest, options?: any) {
+    return RegionServiceApiFp(this.configuration)
+      .createRegion(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Remove AgentTeam
-   * @param {string} id
-   * @param {string} [domainId]
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof RegionServiceApi
    */
-  public deleteAgentTeam(id: string, domainId?: string, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .deleteAgentTeam(id, domainId, options)
+  public deleteRegion(id: number, options?: any) {
+    return RegionServiceApiFp(this.configuration)
+      .deleteRegion(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary AgentTeam item
-   * @param {string} id
-   * @param {string} [domainId]
+   * @param {number} id
+   * @param {EnginePatchRegionRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof RegionServiceApi
    */
-  public readAgentTeam(id: string, domainId?: string, options?: any) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .readAgentTeam(id, domainId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary List of AgentTeam
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [domainId]
-   * @param {Array<string>} [fields]
-   * @param {string} [sort]
-   * @param {Array<number>} [id]
-   * @param {Array<string>} [strategy]
-   * @param {Array<number>} [administratorId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
-   */
-  public searchAgentTeam(
-    page?: number,
-    size?: number,
-    q?: string,
-    domainId?: string,
-    fields?: Array<string>,
-    sort?: string,
-    id?: Array<number>,
-    strategy?: Array<string>,
-    administratorId?: Array<number>,
+  public patchRegion(
+    id: number,
+    body: EnginePatchRegionRequest,
     options?: any
   ) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .searchAgentTeam(
+    return RegionServiceApiFp(this.configuration)
+      .patchRegion(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RegionServiceApi
+   */
+  public readRegion(id: number, options?: any) {
+    return RegionServiceApiFp(this.configuration)
+      .readRegion(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {Array<string>} [fields]
+   * @param {string} [q]
+   * @param {Array<number>} [id]
+   * @param {string} [name]
+   * @param {string} [description]
+   * @param {Array<number>} [timezoneId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RegionServiceApi
+   */
+  public searchRegion(
+    page?: number,
+    size?: number,
+    fields?: Array<string>,
+    q?: string,
+    id?: Array<number>,
+    name?: string,
+    description?: string,
+    timezoneId?: Array<number>,
+    options?: any
+  ) {
+    return RegionServiceApiFp(this.configuration)
+      .searchRegion(
         page,
         size,
-        q,
-        domainId,
         fields,
-        sort,
+        q,
         id,
-        strategy,
-        administratorId,
+        name,
+        description,
+        timezoneId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -848,20 +915,19 @@ export class AgentTeamServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary Update AgentTeam
-   * @param {string} id
-   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {number} id
+   * @param {EngineUpdateRegionRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof AgentTeamServiceApi
+   * @memberof RegionServiceApi
    */
-  public updateAgentTeam(
-    id: string,
-    body: EngineUpdateAgentTeamRequest,
+  public updateRegion(
+    id: number,
+    body: EngineUpdateRegionRequest,
     options?: any
   ) {
-    return AgentTeamServiceApiFp(this.configuration)
-      .updateAgentTeam(id, body, options)
+    return RegionServiceApiFp(this.configuration)
+      .updateRegion(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -11,12 +11,20 @@
  * Do not edit the class manually.
  */
 
+import { EngineLookup } from './engine-lookup'
+
 /**
  *
  * @export
  * @interface EngineUpdateAgentTeamRequest
  */
 export interface EngineUpdateAgentTeamRequest {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
+  administrator?: EngineLookup
   /**
    *
    * @type {number}
@@ -59,12 +67,6 @@ export interface EngineUpdateAgentTeamRequest {
    * @memberof EngineUpdateAgentTeamRequest
    */
   no_answer_delay_time?: number
-  /**
-   *
-   * @type {boolean}
-   * @memberof EngineUpdateAgentTeamRequest
-   */
-  post_processing?: boolean
   /**
    *
    * @type {string}

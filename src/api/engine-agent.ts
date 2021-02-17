@@ -22,10 +22,28 @@ import { EngineLookup } from './engine-lookup'
 export interface EngineAgent {
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineAgent
+   */
+  allow_channels?: Array<string>
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgent
+   */
+  auditor?: EngineLookup
+  /**
+   *
    * @type {EngineAgentChannel}
    * @memberof EngineAgent
    */
   channel?: EngineAgentChannel
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgent
+   */
+  chat_count?: number
   /**
    *
    * @type {string}
@@ -46,6 +64,12 @@ export interface EngineAgent {
   id?: string
   /**
    *
+   * @type {boolean}
+   * @memberof EngineAgent
+   */
+  is_supervisor?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineAgent
    */
@@ -64,6 +88,12 @@ export interface EngineAgent {
   progressive_count?: number
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineAgent
+   */
+  region?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineAgent
    */
@@ -74,6 +104,18 @@ export interface EngineAgent {
    * @memberof EngineAgent
    */
   status_duration?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgent
+   */
+  supervisor?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgent
+   */
+  team?: EngineLookup
   /**
    *
    * @type {EngineLookup}

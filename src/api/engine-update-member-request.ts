@@ -25,6 +25,12 @@ export interface EngineUpdateMemberRequest {
    * @type {EngineLookup}
    * @memberof EngineUpdateMemberRequest
    */
+  agent?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateMemberRequest
+   */
   bucket?: EngineLookup
   /**
    *

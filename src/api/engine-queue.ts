@@ -111,6 +111,24 @@ export interface EngineQueue {
   priority?: number
   /**
    *
+   * @type {boolean}
+   * @memberof EngineQueue
+   */
+  processing?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  processing_notification?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueue
+   */
+  processing_sec?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineQueue
    */
@@ -127,6 +145,12 @@ export interface EngineQueue {
    * @memberof EngineQueue
    */
   sec_locate_agent?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineQueue
+   */
+  sticky_agent?: boolean
   /**
    *
    * @type {string}
