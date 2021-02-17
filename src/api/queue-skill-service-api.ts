@@ -364,7 +364,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      * @param {Array<number>} [lvl]
      * @param {Array<number>} [minCapacity]
      * @param {Array<number>} [maxCapacity]
-     * @param {boolean} [disabled]
+     * @param {boolean} [enabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -380,7 +380,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
       lvl?: Array<number>,
       minCapacity?: Array<number>,
       maxCapacity?: Array<number>,
-      disabled?: boolean,
+      enabled?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -456,8 +456,8 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
         localVarQueryParameter['max_capacity'] = maxCapacity
       }
 
-      if (disabled !== undefined) {
-        localVarQueryParameter['disabled'] = disabled
+      if (enabled !== undefined) {
+        localVarQueryParameter['enabled'] = enabled
       }
 
       localVarUrlObj.query = {
@@ -716,7 +716,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<number>} [lvl]
      * @param {Array<number>} [minCapacity]
      * @param {Array<number>} [maxCapacity]
-     * @param {boolean} [disabled]
+     * @param {boolean} [enabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -732,7 +732,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
       lvl?: Array<number>,
       minCapacity?: Array<number>,
       maxCapacity?: Array<number>,
-      disabled?: boolean,
+      enabled?: boolean,
       options?: any
     ): Promise<
       (
@@ -754,7 +754,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
         lvl,
         minCapacity,
         maxCapacity,
-        disabled,
+        enabled,
         options
       )
       return (
@@ -893,7 +893,7 @@ export const QueueSkillServiceApiFactory = function(
      * @param {Array<number>} [lvl]
      * @param {Array<number>} [minCapacity]
      * @param {Array<number>} [maxCapacity]
-     * @param {boolean} [disabled]
+     * @param {boolean} [enabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -909,7 +909,7 @@ export const QueueSkillServiceApiFactory = function(
       lvl?: Array<number>,
       minCapacity?: Array<number>,
       maxCapacity?: Array<number>,
-      disabled?: boolean,
+      enabled?: boolean,
       options?: any
     ): AxiosPromise<EngineListQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
@@ -925,7 +925,7 @@ export const QueueSkillServiceApiFactory = function(
           lvl,
           minCapacity,
           maxCapacity,
-          disabled,
+          enabled,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1037,7 +1037,7 @@ export class QueueSkillServiceApi extends BaseAPI {
    * @param {Array<number>} [lvl]
    * @param {Array<number>} [minCapacity]
    * @param {Array<number>} [maxCapacity]
-   * @param {boolean} [disabled]
+   * @param {boolean} [enabled]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
@@ -1054,7 +1054,7 @@ export class QueueSkillServiceApi extends BaseAPI {
     lvl?: Array<number>,
     minCapacity?: Array<number>,
     maxCapacity?: Array<number>,
-    disabled?: boolean,
+    enabled?: boolean,
     options?: any
   ) {
     return QueueSkillServiceApiFp(this.configuration)
@@ -1070,7 +1070,7 @@ export class QueueSkillServiceApi extends BaseAPI {
         lvl,
         minCapacity,
         maxCapacity,
-        disabled,
+        enabled,
         options
       )
       .then((request) => request(this.axios, this.basePath))

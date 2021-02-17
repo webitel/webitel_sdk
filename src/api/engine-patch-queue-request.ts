@@ -102,7 +102,7 @@ export interface EnginePatchQueueRequest {
    * @type {number}
    * @memberof EnginePatchQueueRequest
    */
-  processing_notification?: number
+  processing_renewal_sec?: number
   /**
    *
    * @type {number}

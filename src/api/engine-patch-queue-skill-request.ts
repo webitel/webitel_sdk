@@ -30,7 +30,7 @@ export interface EnginePatchQueueSkillRequest {
    * @type {boolean}
    * @memberof EnginePatchQueueSkillRequest
    */
-  disabled?: boolean
+  enabled?: boolean
   /**
    *
    * @type {Array<string>}

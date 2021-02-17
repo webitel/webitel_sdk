@@ -120,7 +120,7 @@ export interface EngineQueue {
    * @type {number}
    * @memberof EngineQueue
    */
-  processing_notification?: number
+  processing_renewal_sec?: number
   /**
    *
    * @type {number}

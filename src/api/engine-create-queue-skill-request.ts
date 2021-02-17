@@ -30,7 +30,7 @@ export interface EngineCreateQueueSkillRequest {
    * @type {boolean}
    * @memberof EngineCreateQueueSkillRequest
    */
-  disabled?: boolean
+  enabled?: boolean
   /**
    *
    * @type {number}
