@@ -316,8 +316,8 @@ export const RegionServiceApiAxiosParamCreator = function(
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {Array<string>} [fields]
      * @param {string} [q]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
      * @param {string} [description]
@@ -328,8 +328,8 @@ export const RegionServiceApiAxiosParamCreator = function(
     searchRegion: async (
       page?: number,
       size?: number,
-      fields?: Array<string>,
       q?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       name?: string,
       description?: string,
@@ -367,12 +367,12 @@ export const RegionServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
       if (q !== undefined) {
         localVarQueryParameter['q'] = q
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       if (id) {
@@ -610,8 +610,8 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {Array<string>} [fields]
      * @param {string} [q]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
      * @param {string} [description]
@@ -622,8 +622,8 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     async searchRegion(
       page?: number,
       size?: number,
-      fields?: Array<string>,
       q?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       name?: string,
       description?: string,
@@ -640,8 +640,8 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
       ).searchRegion(
         page,
         size,
-        fields,
         q,
+        fields,
         id,
         name,
         description,
@@ -756,8 +756,8 @@ export const RegionServiceApiFactory = function(
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {Array<string>} [fields]
      * @param {string} [q]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
      * @param {string} [description]
@@ -768,8 +768,8 @@ export const RegionServiceApiFactory = function(
     searchRegion(
       page?: number,
       size?: number,
-      fields?: Array<string>,
       q?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       name?: string,
       description?: string,
@@ -780,8 +780,8 @@ export const RegionServiceApiFactory = function(
         .searchRegion(
           page,
           size,
-          fields,
           q,
+          fields,
           id,
           name,
           description,
@@ -877,8 +877,8 @@ export class RegionServiceApi extends BaseAPI {
    *
    * @param {number} [page]
    * @param {number} [size]
-   * @param {Array<string>} [fields]
    * @param {string} [q]
+   * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {string} [name]
    * @param {string} [description]
@@ -890,8 +890,8 @@ export class RegionServiceApi extends BaseAPI {
   public searchRegion(
     page?: number,
     size?: number,
-    fields?: Array<string>,
     q?: string,
+    fields?: Array<string>,
     id?: Array<number>,
     name?: string,
     description?: string,
@@ -902,8 +902,8 @@ export class RegionServiceApi extends BaseAPI {
       .searchRegion(
         page,
         size,
-        fields,
         q,
+        fields,
         id,
         name,
         description,
