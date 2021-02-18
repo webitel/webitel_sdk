@@ -16,67 +16,49 @@ import { EngineLookup } from './engine-lookup'
 /**
  *
  * @export
- * @interface EngineAgentSkill
+ * @interface EnginePatchAgentSkillRequest
  */
-export interface EngineAgentSkill {
+export interface EnginePatchAgentSkillRequest {
   /**
    *
-   * @type {EngineLookup}
-   * @memberof EngineAgentSkill
+   * @type {string}
+   * @memberof EnginePatchAgentSkillRequest
    */
-  agent?: EngineLookup
+  agent_id?: string
   /**
    *
    * @type {number}
-   * @memberof EngineAgentSkill
+   * @memberof EnginePatchAgentSkillRequest
    */
   capacity?: number
   /**
    *
    * @type {string}
-   * @memberof EngineAgentSkill
-   */
-  created_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineAgentSkill
-   */
-  created_by?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentSkill
+   * @memberof EnginePatchAgentSkillRequest
    */
   domain_id?: string
   /**
    *
    * @type {boolean}
-   * @memberof EngineAgentSkill
+   * @memberof EnginePatchAgentSkillRequest
    */
   enabled?: boolean
   /**
    *
+   * @type {Array<string>}
+   * @memberof EnginePatchAgentSkillRequest
+   */
+  fields?: Array<string>
+  /**
+   *
    * @type {string}
-   * @memberof EngineAgentSkill
+   * @memberof EnginePatchAgentSkillRequest
    */
   id?: string
   /**
    *
    * @type {EngineLookup}
-   * @memberof EngineAgentSkill
+   * @memberof EnginePatchAgentSkillRequest
    */
   skill?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineAgentSkill
-   */
-  updated_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineAgentSkill
-   */
-  updated_by?: EngineLookup
 }

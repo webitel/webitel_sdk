@@ -32,6 +32,8 @@ import { EngineListAgentSkill } from '../api'
 // @ts-ignore
 import { EngineListSkill } from '../api'
 // @ts-ignore
+import { EnginePatchAgentSkillRequest } from '../api'
+// @ts-ignore
 import { EngineUpdateAgentSkillRequest } from '../api'
 /**
  * AgentSkillServiceApi - axios parameter creator
@@ -194,6 +196,94 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} agentId
+     * @param {string} id
+     * @param {EnginePatchAgentSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchAgentSkill: async (
+      agentId: string,
+      id: string,
+      body: EnginePatchAgentSkillRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
+        throw new RequiredError(
+          'agentId',
+          'Required parameter agentId was null or undefined when calling patchAgentSkill.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchAgentSkill.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchAgentSkill.'
+        )
+      }
+      const localVarPath = `/call_center/agents/{agent_id}/skills/{id}`
+        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agentId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -620,6 +710,39 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} agentId
+     * @param {string} id
+     * @param {EnginePatchAgentSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchAgentSkill(
+      agentId: string,
+      id: string,
+      body: EnginePatchAgentSkillRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineAgentSkill>
+    > {
+      const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
+        configuration
+      ).patchAgentSkill(agentId, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary AgentSkill item
      * @param {string} agentId
      * @param {string} id
@@ -820,6 +943,24 @@ export const AgentSkillServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} agentId
+     * @param {string} id
+     * @param {EnginePatchAgentSkillRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchAgentSkill(
+      agentId: string,
+      id: string,
+      body: EnginePatchAgentSkillRequest,
+      options?: any
+    ): AxiosPromise<EngineAgentSkill> {
+      return AgentSkillServiceApiFp(configuration)
+        .patchAgentSkill(agentId, id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary AgentSkill item
      * @param {string} agentId
      * @param {string} id
@@ -956,6 +1097,26 @@ export class AgentSkillServiceApi extends BaseAPI {
   ) {
     return AgentSkillServiceApiFp(this.configuration)
       .deleteAgentSkill(agentId, id, domainId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} agentId
+   * @param {string} id
+   * @param {EnginePatchAgentSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApi
+   */
+  public patchAgentSkill(
+    agentId: string,
+    id: string,
+    body: EnginePatchAgentSkillRequest,
+    options?: any
+  ) {
+    return AgentSkillServiceApiFp(this.configuration)
+      .patchAgentSkill(agentId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

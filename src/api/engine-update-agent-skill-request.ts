@@ -39,6 +39,12 @@ export interface EngineUpdateAgentSkillRequest {
   domain_id?: string
   /**
    *
+   * @type {boolean}
+   * @memberof EngineUpdateAgentSkillRequest
+   */
+  enabled?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineUpdateAgentSkillRequest
    */

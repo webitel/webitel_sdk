@@ -319,8 +319,8 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {Array<string>} [fields]
      * @param {string} [q]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -328,8 +328,8 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
     searchAgentPauseCause: async (
       page?: number,
       size?: number,
-      fields?: Array<string>,
       q?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -364,12 +364,12 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
       if (q !== undefined) {
         localVarQueryParameter['q'] = q
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       if (id) {
@@ -609,8 +609,8 @@ export const AgentPauseCauseServiceApiFp = function(
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {Array<string>} [fields]
      * @param {string} [q]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -618,8 +618,8 @@ export const AgentPauseCauseServiceApiFp = function(
     async searchAgentPauseCause(
       page?: number,
       size?: number,
-      fields?: Array<string>,
       q?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       options?: any
     ): Promise<
@@ -630,7 +630,7 @@ export const AgentPauseCauseServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentPauseCause(page, size, fields, q, id, options)
+      ).searchAgentPauseCause(page, size, q, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -748,8 +748,8 @@ export const AgentPauseCauseServiceApiFactory = function(
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {Array<string>} [fields]
      * @param {string} [q]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -757,13 +757,13 @@ export const AgentPauseCauseServiceApiFactory = function(
     searchAgentPauseCause(
       page?: number,
       size?: number,
-      fields?: Array<string>,
       q?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
-        .searchAgentPauseCause(page, size, fields, q, id, options)
+        .searchAgentPauseCause(page, size, q, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -856,8 +856,8 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
    *
    * @param {number} [page]
    * @param {number} [size]
-   * @param {Array<string>} [fields]
    * @param {string} [q]
+   * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -866,13 +866,13 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
   public searchAgentPauseCause(
     page?: number,
     size?: number,
-    fields?: Array<string>,
     q?: string,
+    fields?: Array<string>,
     id?: Array<number>,
     options?: any
   ) {
     return AgentPauseCauseServiceApiFp(this.configuration)
-      .searchAgentPauseCause(page, size, fields, q, id, options)
+      .searchAgentPauseCause(page, size, q, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

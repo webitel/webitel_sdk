@@ -27,6 +27,12 @@ export interface EngineAgentSkillItem {
   capacity?: number
   /**
    *
+   * @type {boolean}
+   * @memberof EngineAgentSkillItem
+   */
+  enabled?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentSkillItem
    */

@@ -22,6 +22,12 @@ export interface EnginePatchAgentPauseCauseRequest {
    * @type {boolean}
    * @memberof EnginePatchAgentPauseCauseRequest
    */
+  allow_admin?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof EnginePatchAgentPauseCauseRequest
+   */
   allow_agent?: boolean
   /**
    *
@@ -52,7 +58,7 @@ export interface EnginePatchAgentPauseCauseRequest {
    * @type {number}
    * @memberof EnginePatchAgentPauseCauseRequest
    */
-  limit_per_day?: number
+  limit_min?: number
   /**
    *
    * @type {string}

@@ -39,6 +39,12 @@ export interface EngineCreateAgentSkillRequest {
   domain_id?: string
   /**
    *
+   * @type {boolean}
+   * @memberof EngineCreateAgentSkillRequest
+   */
+  enabled?: boolean
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineCreateAgentSkillRequest
    */
