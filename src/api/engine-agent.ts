@@ -94,6 +94,12 @@ export interface EngineAgent {
   region?: EngineLookup
   /**
    *
+   * @type {Array<EngineLookup>}
+   * @memberof EngineAgent
+   */
+  skills?: Array<EngineLookup>
+  /**
+   *
    * @type {string}
    * @memberof EngineAgent
    */
