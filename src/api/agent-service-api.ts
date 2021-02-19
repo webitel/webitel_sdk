@@ -46,6 +46,8 @@ import { EngineListAgentStatsStatistic } from '../api'
 // @ts-ignore
 import { EngineListAgentUser } from '../api'
 // @ts-ignore
+import { EnginePatchAgentRequest } from '../api'
+// @ts-ignore
 import { EngineResponse } from '../api'
 // @ts-ignore
 import { EngineUpdateAgentRequest } from '../api'
@@ -297,6 +299,87 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Update Agent
+     * @param {string} id
+     * @param {EnginePatchAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchAgent: async (
+      id: string,
+      body: EnginePatchAgentRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchAgent.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchAgent.'
+        )
+      }
+      const localVarPath = `/call_center/agents/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Agent item
      * @param {string} id
      * @param {string} [domainId]
@@ -380,6 +463,8 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {Array<number>} [teamId]
      * @param {Array<number>} [regionId]
      * @param {Array<number>} [auditorId]
+     * @param {boolean} [isSupervisor]
+     * @param {Array<number>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -396,6 +481,8 @@ export const AgentServiceApiAxiosParamCreator = function(
       teamId?: Array<number>,
       regionId?: Array<number>,
       auditorId?: Array<number>,
+      isSupervisor?: boolean,
+      skillId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/agents`
@@ -467,6 +554,14 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (auditorId) {
         localVarQueryParameter['auditor_id'] = auditorId
+      }
+
+      if (isSupervisor !== undefined) {
+        localVarQueryParameter['is_supervisor'] = isSupervisor
+      }
+
+      if (skillId) {
+        localVarQueryParameter['skill_id'] = skillId
       }
 
       localVarUrlObj.query = {
@@ -1427,6 +1522,35 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary Update Agent
+     * @param {string} id
+     * @param {EnginePatchAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchAgent(
+      id: string,
+      body: EnginePatchAgentRequest,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>
+    > {
+      const localVarAxiosArgs = await AgentServiceApiAxiosParamCreator(
+        configuration
+      ).patchAgent(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Agent item
      * @param {string} id
      * @param {string} [domainId]
@@ -1469,6 +1593,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<number>} [teamId]
      * @param {Array<number>} [regionId]
      * @param {Array<number>} [auditorId]
+     * @param {boolean} [isSupervisor]
+     * @param {Array<number>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1485,6 +1611,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       teamId?: Array<number>,
       regionId?: Array<number>,
       auditorId?: Array<number>,
+      isSupervisor?: boolean,
+      skillId?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1507,6 +1635,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         teamId,
         regionId,
         auditorId,
+        isSupervisor,
+        skillId,
         options
       )
       return (
@@ -1982,6 +2112,23 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @summary Update Agent
+     * @param {string} id
+     * @param {EnginePatchAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchAgent(
+      id: string,
+      body: EnginePatchAgentRequest,
+      options?: any
+    ): AxiosPromise<EngineAgent> {
+      return AgentServiceApiFp(configuration)
+        .patchAgent(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Agent item
      * @param {string} id
      * @param {string} [domainId]
@@ -2012,6 +2159,8 @@ export const AgentServiceApiFactory = function(
      * @param {Array<number>} [teamId]
      * @param {Array<number>} [regionId]
      * @param {Array<number>} [auditorId]
+     * @param {boolean} [isSupervisor]
+     * @param {Array<number>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2028,6 +2177,8 @@ export const AgentServiceApiFactory = function(
       teamId?: Array<number>,
       regionId?: Array<number>,
       auditorId?: Array<number>,
+      isSupervisor?: boolean,
+      skillId?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListAgent> {
       return AgentServiceApiFp(configuration)
@@ -2044,6 +2195,8 @@ export const AgentServiceApiFactory = function(
           teamId,
           regionId,
           auditorId,
+          isSupervisor,
+          skillId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2377,6 +2530,21 @@ export class AgentServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary Update Agent
+   * @param {string} id
+   * @param {EnginePatchAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public patchAgent(id: string, body: EnginePatchAgentRequest, options?: any) {
+    return AgentServiceApiFp(this.configuration)
+      .patchAgent(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary Agent item
    * @param {string} id
    * @param {string} [domainId]
@@ -2405,6 +2573,8 @@ export class AgentServiceApi extends BaseAPI {
    * @param {Array<number>} [teamId]
    * @param {Array<number>} [regionId]
    * @param {Array<number>} [auditorId]
+   * @param {boolean} [isSupervisor]
+   * @param {Array<number>} [skillId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
@@ -2422,6 +2592,8 @@ export class AgentServiceApi extends BaseAPI {
     teamId?: Array<number>,
     regionId?: Array<number>,
     auditorId?: Array<number>,
+    isSupervisor?: boolean,
+    skillId?: Array<number>,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration)
@@ -2438,6 +2610,8 @@ export class AgentServiceApi extends BaseAPI {
         teamId,
         regionId,
         auditorId,
+        isSupervisor,
+        skillId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
