@@ -81,7 +81,10 @@ export interface Missed {
 
 export interface WrapTime {
   timeout: number
-  post_processing: boolean
+}
+
+export interface Processing {
+  timeout: number
 }
 
 export interface DistributeEvent extends ChannelEvent {
@@ -94,6 +97,10 @@ export interface MissedEvent extends ChannelEvent {
 
 export interface WrapTimeEvent extends ChannelEvent {
   wrap_time: WrapTime
+}
+
+export interface ProcessingEvent extends ChannelEvent {
+  processing: Processing
 }
 
 export class Task {
