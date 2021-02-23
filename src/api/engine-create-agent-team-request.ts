@@ -24,7 +24,7 @@ export interface EngineCreateAgentTeamRequest {
    * @type {EngineLookup}
    * @memberof EngineCreateAgentTeamRequest
    */
-  administrator?: EngineLookup
+  admin?: EngineLookup
   /**
    *
    * @type {number}
