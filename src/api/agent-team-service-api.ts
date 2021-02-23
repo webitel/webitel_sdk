@@ -259,7 +259,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      * @param {string} [sort]
      * @param {Array<number>} [id]
      * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {Array<number>} [adminId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -272,7 +272,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
       sort?: string,
       id?: Array<number>,
       strategy?: Array<string>,
-      administratorId?: Array<number>,
+      adminId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/teams`
@@ -330,8 +330,8 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarQueryParameter['strategy'] = strategy
       }
 
-      if (administratorId) {
-        localVarQueryParameter['administrator_id'] = administratorId
+      if (adminId) {
+        localVarQueryParameter['admin_id'] = adminId
       }
 
       localVarUrlObj.query = {
@@ -549,7 +549,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [sort]
      * @param {Array<number>} [id]
      * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {Array<number>} [adminId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -562,7 +562,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
       sort?: string,
       id?: Array<number>,
       strategy?: Array<string>,
-      administratorId?: Array<number>,
+      adminId?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -581,7 +581,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
         sort,
         id,
         strategy,
-        administratorId,
+        adminId,
         options
       )
       return (
@@ -700,7 +700,7 @@ export const AgentTeamServiceApiFactory = function(
      * @param {string} [sort]
      * @param {Array<number>} [id]
      * @param {Array<string>} [strategy]
-     * @param {Array<number>} [administratorId]
+     * @param {Array<number>} [adminId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -713,7 +713,7 @@ export const AgentTeamServiceApiFactory = function(
       sort?: string,
       id?: Array<number>,
       strategy?: Array<string>,
-      administratorId?: Array<number>,
+      adminId?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListAgentTeam> {
       return AgentTeamServiceApiFp(configuration)
@@ -726,7 +726,7 @@ export const AgentTeamServiceApiFactory = function(
           sort,
           id,
           strategy,
-          administratorId,
+          adminId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -813,7 +813,7 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @param {string} [sort]
    * @param {Array<number>} [id]
    * @param {Array<string>} [strategy]
-   * @param {Array<number>} [administratorId]
+   * @param {Array<number>} [adminId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
@@ -827,7 +827,7 @@ export class AgentTeamServiceApi extends BaseAPI {
     sort?: string,
     id?: Array<number>,
     strategy?: Array<string>,
-    administratorId?: Array<number>,
+    adminId?: Array<number>,
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration)
@@ -840,7 +840,7 @@ export class AgentTeamServiceApi extends BaseAPI {
         sort,
         id,
         strategy,
-        administratorId,
+        adminId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
