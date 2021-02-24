@@ -330,7 +330,10 @@ export class Client extends EventEmitter<ClientEvents> {
     await this.disconnect()
     if (this.phone) {
       await this.phone.unregister()
+      this.phone.off("*")
+      delete this.phone;
     }
+    this.eventHandler.off("*")
   }
 
   allCall(): Call[] {

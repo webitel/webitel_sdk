@@ -195,7 +195,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
   async unregister() {
     if (this.ua) {
-      this.ua.unregister()
+      await this.ua.stop()
     }
   }
 
