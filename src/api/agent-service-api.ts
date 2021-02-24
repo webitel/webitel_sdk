@@ -465,6 +465,7 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {Array<number>} [auditorId]
      * @param {boolean} [isSupervisor]
      * @param {Array<number>} [skillId]
+     * @param {Array<number>} [queueId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -483,6 +484,7 @@ export const AgentServiceApiAxiosParamCreator = function(
       auditorId?: Array<number>,
       isSupervisor?: boolean,
       skillId?: Array<number>,
+      queueId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/agents`
@@ -562,6 +564,10 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (skillId) {
         localVarQueryParameter['skill_id'] = skillId
+      }
+
+      if (queueId) {
+        localVarQueryParameter['queue_id'] = queueId
       }
 
       localVarUrlObj.query = {
@@ -1595,6 +1601,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<number>} [auditorId]
      * @param {boolean} [isSupervisor]
      * @param {Array<number>} [skillId]
+     * @param {Array<number>} [queueId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1613,6 +1620,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       auditorId?: Array<number>,
       isSupervisor?: boolean,
       skillId?: Array<number>,
+      queueId?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1637,6 +1645,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         auditorId,
         isSupervisor,
         skillId,
+        queueId,
         options
       )
       return (
@@ -2161,6 +2170,7 @@ export const AgentServiceApiFactory = function(
      * @param {Array<number>} [auditorId]
      * @param {boolean} [isSupervisor]
      * @param {Array<number>} [skillId]
+     * @param {Array<number>} [queueId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2179,6 +2189,7 @@ export const AgentServiceApiFactory = function(
       auditorId?: Array<number>,
       isSupervisor?: boolean,
       skillId?: Array<number>,
+      queueId?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListAgent> {
       return AgentServiceApiFp(configuration)
@@ -2197,6 +2208,7 @@ export const AgentServiceApiFactory = function(
           auditorId,
           isSupervisor,
           skillId,
+          queueId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2575,6 +2587,7 @@ export class AgentServiceApi extends BaseAPI {
    * @param {Array<number>} [auditorId]
    * @param {boolean} [isSupervisor]
    * @param {Array<number>} [skillId]
+   * @param {Array<number>} [queueId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
@@ -2594,6 +2607,7 @@ export class AgentServiceApi extends BaseAPI {
     auditorId?: Array<number>,
     isSupervisor?: boolean,
     skillId?: Array<number>,
+    queueId?: Array<number>,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration)
@@ -2612,6 +2626,7 @@ export class AgentServiceApi extends BaseAPI {
         auditorId,
         isSupervisor,
         skillId,
+        queueId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
