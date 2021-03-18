@@ -48,6 +48,7 @@ export enum AgentStatus {
   Online = 'online',
   Offline = 'offline',
   Pause = 'pause',
+  BreakOut = 'break_out',
 }
 
 export enum ChannelState {

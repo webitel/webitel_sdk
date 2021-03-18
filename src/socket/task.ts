@@ -221,4 +221,11 @@ export class Task {
       ...reporting,
     })
   }
+
+  async renewal(sec: number) {
+    return this.client.request('cc_renewal', {
+      attempt_id: this.id,
+      renewal_sec: sec,
+    })
+  }
 }
