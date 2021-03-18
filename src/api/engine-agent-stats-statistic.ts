@@ -111,10 +111,10 @@ export interface EngineAgentStatsStatistic {
   status_duration?: string
   /**
    *
-   * @type {Array<EngineLookup>}
+   * @type {EngineLookup}
    * @memberof EngineAgentStatsStatistic
    */
-  teams?: Array<EngineLookup>
+  team?: EngineLookup
   /**
    *
    * @type {EngineLookup}

@@ -24,41 +24,53 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineCreateRegionRequest } from '../api'
+import { EngineCreateQueueHookRequest } from '../api'
 // @ts-ignore
-import { EngineListRegion } from '../api'
+import { EngineListQueueHook } from '../api'
 // @ts-ignore
-import { EnginePatchRegionRequest } from '../api'
+import { EnginePatchQueueHookRequest } from '../api'
 // @ts-ignore
-import { EngineRegion } from '../api'
+import { EngineQueueHook } from '../api'
 // @ts-ignore
-import { EngineUpdateRegionRequest } from '../api'
+import { EngineUpdateQueueHookRequest } from '../api'
 /**
- * RegionServiceApi - axios parameter creator
+ * QueueHookServiceApi - axios parameter creator
  * @export
  */
-export const RegionServiceApiAxiosParamCreator = function(
+export const QueueHookServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {EngineCreateRegionRequest} body
+     * @param {number} queueId
+     * @param {EngineCreateQueueHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRegion: async (
-      body: EngineCreateRegionRequest,
+    createQueueHook: async (
+      queueId: number,
+      body: EngineCreateQueueHookRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling createQueueHook.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createRegion.'
+          'Required parameter body was null or undefined when calling createQueueHook.'
         )
       }
-      const localVarPath = `/regions`
+      const localVarPath = `/call_center/queues/{queue_id}/hook`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queueId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -111,25 +123,33 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRegion: async (
+    deleteQueueHook: async (
+      queueId: number,
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling deleteQueueHook.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteRegion.'
+          'Required parameter id was null or undefined when calling deleteQueueHook.'
         )
       }
-      const localVarPath = `/regions/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/queues/{queue_id}/hook/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -174,34 +194,42 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
-     * @param {EnginePatchRegionRequest} body
+     * @param {EnginePatchQueueHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchRegion: async (
+    patchQueueHook: async (
+      queueId: number,
       id: number,
-      body: EnginePatchRegionRequest,
+      body: EnginePatchQueueHookRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling patchQueueHook.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling patchRegion.'
+          'Required parameter id was null or undefined when calling patchQueueHook.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchRegion.'
+          'Required parameter body was null or undefined when calling patchQueueHook.'
         )
       }
-      const localVarPath = `/regions/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/queues/{queue_id}/hook/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -254,22 +282,33 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRegion: async (id: number, options: any = {}): Promise<RequestArgs> => {
+    readQueueHook: async (
+      queueId: number,
+      id: number,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling readQueueHook.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readRegion.'
+          'Required parameter id was null or undefined when calling readQueueHook.'
         )
       }
-      const localVarPath = `/regions/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/queues/{queue_id}/hook/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -314,31 +353,41 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {Array<number>} [id]
-     * @param {string} [name]
-     * @param {string} [description]
-     * @param {Array<number>} [timezoneId]
+     * @param {Array<number>} [schemaId]
+     * @param {Array<string>} [event]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRegion: async (
+    searchQueueHook: async (
+      queueId: number,
       page?: number,
       size?: number,
       q?: string,
       fields?: Array<string>,
       sort?: string,
       id?: Array<number>,
-      name?: string,
-      description?: string,
-      timezoneId?: Array<number>,
+      schemaId?: Array<number>,
+      event?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/regions`
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling searchQueueHook.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/hook`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queueId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -385,16 +434,12 @@ export const RegionServiceApiAxiosParamCreator = function(
         localVarQueryParameter['id'] = id
       }
 
-      if (name !== undefined) {
-        localVarQueryParameter['name'] = name
+      if (schemaId) {
+        localVarQueryParameter['schema_id'] = schemaId
       }
 
-      if (description !== undefined) {
-        localVarQueryParameter['description'] = description
-      }
-
-      if (timezoneId) {
-        localVarQueryParameter['timezone_id'] = timezoneId
+      if (event) {
+        localVarQueryParameter['event'] = event
       }
 
       localVarUrlObj.query = {
@@ -419,34 +464,42 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateRegionRequest} body
+     * @param {EngineUpdateQueueHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRegion: async (
+    updateQueueHook: async (
+      queueId: number,
       id: number,
-      body: EngineUpdateRegionRequest,
+      body: EngineUpdateQueueHookRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling updateQueueHook.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateRegion.'
+          'Required parameter id was null or undefined when calling updateQueueHook.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateRegion.'
+          'Required parameter body was null or undefined when calling updateQueueHook.'
         )
       }
-      const localVarPath = `/regions/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/queues/{queue_id}/hook/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -501,26 +554,31 @@ export const RegionServiceApiAxiosParamCreator = function(
 }
 
 /**
- * RegionServiceApi - functional programming interface
+ * QueueHookServiceApi - functional programming interface
  * @export
  */
-export const RegionServiceApiFp = function(configuration?: Configuration) {
+export const QueueHookServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {EngineCreateRegionRequest} body
+     * @param {number} queueId
+     * @param {EngineCreateQueueHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createRegion(
-      body: EngineCreateRegionRequest,
+    async createQueueHook(
+      queueId: number,
+      body: EngineCreateQueueHookRequest,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQueueHook>
     > {
-      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueHookServiceApiAxiosParamCreator(
         configuration
-      ).createRegion(body, options)
+      ).createQueueHook(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -534,19 +592,24 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteRegion(
+    async deleteQueueHook(
+      queueId: number,
       id: number,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQueueHook>
     > {
-      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueHookServiceApiAxiosParamCreator(
         configuration
-      ).deleteRegion(id, options)
+      ).deleteQueueHook(queueId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -560,21 +623,26 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
-     * @param {EnginePatchRegionRequest} body
+     * @param {EnginePatchQueueHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchRegion(
+    async patchQueueHook(
+      queueId: number,
       id: number,
-      body: EnginePatchRegionRequest,
+      body: EnginePatchQueueHookRequest,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQueueHook>
     > {
-      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueHookServiceApiAxiosParamCreator(
         configuration
-      ).patchRegion(id, body, options)
+      ).patchQueueHook(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -588,19 +656,24 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readRegion(
+    async readQueueHook(
+      queueId: number,
       id: number,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQueueHook>
     > {
-      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueHookServiceApiAxiosParamCreator(
         configuration
-      ).readRegion(id, options)
+      ).readQueueHook(queueId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -614,47 +687,47 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {Array<number>} [id]
-     * @param {string} [name]
-     * @param {string} [description]
-     * @param {Array<number>} [timezoneId]
+     * @param {Array<number>} [schemaId]
+     * @param {Array<string>} [event]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchRegion(
+    async searchQueueHook(
+      queueId: number,
       page?: number,
       size?: number,
       q?: string,
       fields?: Array<string>,
       sort?: string,
       id?: Array<number>,
-      name?: string,
-      description?: string,
-      timezoneId?: Array<number>,
+      schemaId?: Array<number>,
+      event?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListRegion>
+      ) => AxiosPromise<EngineListQueueHook>
     > {
-      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueHookServiceApiAxiosParamCreator(
         configuration
-      ).searchRegion(
+      ).searchQueueHook(
+        queueId,
         page,
         size,
         q,
         fields,
         sort,
         id,
-        name,
-        description,
-        timezoneId,
+        schemaId,
+        event,
         options
       )
       return (
@@ -670,21 +743,26 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateRegionRequest} body
+     * @param {EngineUpdateQueueHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateRegion(
+    async updateQueueHook(
+      queueId: number,
       id: number,
-      body: EngineUpdateRegionRequest,
+      body: EngineUpdateQueueHookRequest,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQueueHook>
     > {
-      const localVarAxiosArgs = await RegionServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await QueueHookServiceApiAxiosParamCreator(
         configuration
-      ).updateRegion(id, body, options)
+      ).updateQueueHook(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -700,10 +778,10 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
 }
 
 /**
- * RegionServiceApi - factory interface
+ * QueueHookServiceApi - factory interface
  * @export
  */
-export const RegionServiceApiFactory = function(
+export const QueueHookServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -711,218 +789,243 @@ export const RegionServiceApiFactory = function(
   return {
     /**
      *
-     * @param {EngineCreateRegionRequest} body
+     * @param {number} queueId
+     * @param {EngineCreateQueueHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRegion(
-      body: EngineCreateRegionRequest,
+    createQueueHook(
+      queueId: number,
+      body: EngineCreateQueueHookRequest,
       options?: any
-    ): AxiosPromise<EngineRegion> {
-      return RegionServiceApiFp(configuration)
-        .createRegion(body, options)
+    ): AxiosPromise<EngineQueueHook> {
+      return QueueHookServiceApiFp(configuration)
+        .createQueueHook(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRegion(id: number, options?: any): AxiosPromise<EngineRegion> {
-      return RegionServiceApiFp(configuration)
-        .deleteRegion(id, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {number} id
-     * @param {EnginePatchRegionRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    patchRegion(
+    deleteQueueHook(
+      queueId: number,
       id: number,
-      body: EnginePatchRegionRequest,
       options?: any
-    ): AxiosPromise<EngineRegion> {
-      return RegionServiceApiFp(configuration)
-        .patchRegion(id, body, options)
+    ): AxiosPromise<EngineQueueHook> {
+      return QueueHookServiceApiFp(configuration)
+        .deleteQueueHook(queueId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {number} queueId
+     * @param {number} id
+     * @param {EnginePatchQueueHookRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchQueueHook(
+      queueId: number,
+      id: number,
+      body: EnginePatchQueueHookRequest,
+      options?: any
+    ): AxiosPromise<EngineQueueHook> {
+      return QueueHookServiceApiFp(configuration)
+        .patchQueueHook(queueId, id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {number} queueId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRegion(id: number, options?: any): AxiosPromise<EngineRegion> {
-      return RegionServiceApiFp(configuration)
-        .readRegion(id, options)
+    readQueueHook(
+      queueId: number,
+      id: number,
+      options?: any
+    ): AxiosPromise<EngineQueueHook> {
+      return QueueHookServiceApiFp(configuration)
+        .readQueueHook(queueId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {Array<number>} [id]
-     * @param {string} [name]
-     * @param {string} [description]
-     * @param {Array<number>} [timezoneId]
+     * @param {Array<number>} [schemaId]
+     * @param {Array<string>} [event]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRegion(
+    searchQueueHook(
+      queueId: number,
       page?: number,
       size?: number,
       q?: string,
       fields?: Array<string>,
       sort?: string,
       id?: Array<number>,
-      name?: string,
-      description?: string,
-      timezoneId?: Array<number>,
+      schemaId?: Array<number>,
+      event?: Array<string>,
       options?: any
-    ): AxiosPromise<EngineListRegion> {
-      return RegionServiceApiFp(configuration)
-        .searchRegion(
+    ): AxiosPromise<EngineListQueueHook> {
+      return QueueHookServiceApiFp(configuration)
+        .searchQueueHook(
+          queueId,
           page,
           size,
           q,
           fields,
           sort,
           id,
-          name,
-          description,
-          timezoneId,
+          schemaId,
+          event,
           options
         )
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateRegionRequest} body
+     * @param {EngineUpdateQueueHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRegion(
+    updateQueueHook(
+      queueId: number,
       id: number,
-      body: EngineUpdateRegionRequest,
+      body: EngineUpdateQueueHookRequest,
       options?: any
-    ): AxiosPromise<EngineRegion> {
-      return RegionServiceApiFp(configuration)
-        .updateRegion(id, body, options)
+    ): AxiosPromise<EngineQueueHook> {
+      return QueueHookServiceApiFp(configuration)
+        .updateQueueHook(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * RegionServiceApi - object-oriented interface
+ * QueueHookServiceApi - object-oriented interface
  * @export
- * @class RegionServiceApi
+ * @class QueueHookServiceApi
  * @extends {BaseAPI}
  */
-export class RegionServiceApi extends BaseAPI {
+export class QueueHookServiceApi extends BaseAPI {
   /**
    *
-   * @param {EngineCreateRegionRequest} body
+   * @param {number} queueId
+   * @param {EngineCreateQueueHookRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RegionServiceApi
+   * @memberof QueueHookServiceApi
    */
-  public createRegion(body: EngineCreateRegionRequest, options?: any) {
-    return RegionServiceApiFp(this.configuration)
-      .createRegion(body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {number} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RegionServiceApi
-   */
-  public deleteRegion(id: number, options?: any) {
-    return RegionServiceApiFp(this.configuration)
-      .deleteRegion(id, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {number} id
-   * @param {EnginePatchRegionRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RegionServiceApi
-   */
-  public patchRegion(
-    id: number,
-    body: EnginePatchRegionRequest,
+  public createQueueHook(
+    queueId: number,
+    body: EngineCreateQueueHookRequest,
     options?: any
   ) {
-    return RegionServiceApiFp(this.configuration)
-      .patchRegion(id, body, options)
+    return QueueHookServiceApiFp(this.configuration)
+      .createQueueHook(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
+   * @param {number} queueId
    * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RegionServiceApi
+   * @memberof QueueHookServiceApi
    */
-  public readRegion(id: number, options?: any) {
-    return RegionServiceApiFp(this.configuration)
-      .readRegion(id, options)
+  public deleteQueueHook(queueId: number, id: number, options?: any) {
+    return QueueHookServiceApiFp(this.configuration)
+      .deleteQueueHook(queueId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {EnginePatchQueueHookRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueHookServiceApi
+   */
+  public patchQueueHook(
+    queueId: number,
+    id: number,
+    body: EnginePatchQueueHookRequest,
+    options?: any
+  ) {
+    return QueueHookServiceApiFp(this.configuration)
+      .patchQueueHook(queueId, id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueHookServiceApi
+   */
+  public readQueueHook(queueId: number, id: number, options?: any) {
+    return QueueHookServiceApiFp(this.configuration)
+      .readQueueHook(queueId, id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} queueId
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
    * @param {Array<string>} [fields]
    * @param {string} [sort]
    * @param {Array<number>} [id]
-   * @param {string} [name]
-   * @param {string} [description]
-   * @param {Array<number>} [timezoneId]
+   * @param {Array<number>} [schemaId]
+   * @param {Array<string>} [event]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RegionServiceApi
+   * @memberof QueueHookServiceApi
    */
-  public searchRegion(
+  public searchQueueHook(
+    queueId: number,
     page?: number,
     size?: number,
     q?: string,
     fields?: Array<string>,
     sort?: string,
     id?: Array<number>,
-    name?: string,
-    description?: string,
-    timezoneId?: Array<number>,
+    schemaId?: Array<number>,
+    event?: Array<string>,
     options?: any
   ) {
-    return RegionServiceApiFp(this.configuration)
-      .searchRegion(
+    return QueueHookServiceApiFp(this.configuration)
+      .searchQueueHook(
+        queueId,
         page,
         size,
         q,
         fields,
         sort,
         id,
-        name,
-        description,
-        timezoneId,
+        schemaId,
+        event,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -930,19 +1033,21 @@ export class RegionServiceApi extends BaseAPI {
 
   /**
    *
+   * @param {number} queueId
    * @param {number} id
-   * @param {EngineUpdateRegionRequest} body
+   * @param {EngineUpdateQueueHookRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RegionServiceApi
+   * @memberof QueueHookServiceApi
    */
-  public updateRegion(
+  public updateQueueHook(
+    queueId: number,
     id: number,
-    body: EngineUpdateRegionRequest,
+    body: EngineUpdateQueueHookRequest,
     options?: any
   ) {
-    return RegionServiceApiFp(this.configuration)
-      .updateRegion(id, body, options)
+    return QueueHookServiceApiFp(this.configuration)
+      .updateQueueHook(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
