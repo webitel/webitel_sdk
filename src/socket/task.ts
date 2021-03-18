@@ -81,7 +81,10 @@ export interface Missed {
 
 export interface WrapTime {
   timeout: number
-  post_processing: boolean
+}
+
+export interface Processing {
+  timeout: number
 }
 
 export interface DistributeEvent extends ChannelEvent {
@@ -94,6 +97,10 @@ export interface MissedEvent extends ChannelEvent {
 
 export interface WrapTimeEvent extends ChannelEvent {
   wrap_time: WrapTime
+}
+
+export interface ProcessingEvent extends ChannelEvent {
+  processing: Processing
 }
 
 export class Task {
@@ -212,6 +219,13 @@ export class Task {
     return this.client.request('cc_reporting', {
       attempt_id: this.id,
       ...reporting,
+    })
+  }
+
+  async renewal(sec: number) {
+    return this.client.request('cc_renewal', {
+      attempt_id: this.id,
+      renewal_sec: sec,
     })
   }
 }

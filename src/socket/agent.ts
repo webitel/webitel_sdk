@@ -4,6 +4,7 @@ import {
   Distribute,
   DistributeEvent,
   MissedEvent,
+  ProcessingEvent,
   Task,
   WrapTimeEvent,
 } from './task'
@@ -47,16 +48,7 @@ export enum AgentStatus {
   Online = 'online',
   Offline = 'offline',
   Pause = 'pause',
-}
-
-export enum AgentState {
-  Offline = 'offline',
-  Waiting = 'waiting',
-  Offering = 'offering',
-  Ringing = 'ringing',
-  Talking = 'talking',
-  Break = 'break',
-  Fine = 'fine',
+  BreakOut = 'break_out',
 }
 
 export enum ChannelState {
@@ -71,6 +63,7 @@ export enum ChannelState {
   Hold = 'hold', // TODO
   Missed = 'missed',
   WrapTime = 'wrap_time',
+  Processing = 'processing',
 }
 
 export enum ChannelType {
@@ -206,19 +199,28 @@ export class Agent {
 
           task = this.task.get(e.attempt_id) as Task
 
+          this.task.delete(e.attempt_id)
+          this.client.reportingChannelTask(task)
+        }
+        break
+
+      case ChannelState.Processing:
+        if (e.attempt_id) {
+          const processingEvent: ProcessingEvent = e as ProcessingEvent
+          if (!processingEvent) {
+            throw new Error('bad event')
+          }
+
+          task = this.task.get(e.attempt_id) as Task
+
           if (task) {
             task.state = e.status
             task.closedAt = e.timestamp
             this.setChannelStateTimeout(
               e.channel,
               e,
-              wrapTimeEvent.wrap_time.timeout
+              processingEvent.processing.timeout
             )
-
-            if (!wrapTimeEvent.wrap_time.post_processing) {
-              this.task.delete(e.attempt_id)
-              this.client.reportingChannelTask(task)
-            }
 
             return task
           }

@@ -326,6 +326,16 @@ export class Client extends EventEmitter<ClientEvents> {
     return res
   }
 
+  async destroy() {
+    await this.disconnect()
+    if (this.phone) {
+      await this.phone.unregister()
+      this.phone.off('*')
+      delete this.phone
+    }
+    this.eventHandler.off('*')
+  }
+
   allCall(): Call[] {
     return Array.from(this.callStore.values())
   }

@@ -31,8 +31,6 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     this.log = new Log()
 
     this.on('unregistered', () => {
-      this.ua.removeAllListeners()
-      delete this.ua
       this.sessionCache.clear()
     })
   }
@@ -195,7 +193,9 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
   async unregister() {
     if (this.ua) {
-      this.ua.unregister()
+      this.ua.removeAllListeners()
+      await this.ua.stop()
+      delete this.ua
     }
   }
 
