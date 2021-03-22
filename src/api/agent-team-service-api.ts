@@ -254,9 +254,8 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<string>} [strategy]
      * @param {Array<number>} [adminId]
@@ -267,9 +266,8 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       strategy?: Array<string>,
       adminId?: Array<number>,
@@ -310,16 +308,12 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (fields) {
         localVarQueryParameter['fields'] = fields
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
       }
 
       if (id) {
@@ -544,9 +538,8 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<string>} [strategy]
      * @param {Array<number>} [adminId]
@@ -557,9 +550,8 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       strategy?: Array<string>,
       adminId?: Array<number>,
@@ -576,9 +568,8 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
         page,
         size,
         q,
-        domainId,
-        fields,
         sort,
+        fields,
         id,
         strategy,
         adminId,
@@ -695,9 +686,8 @@ export const AgentTeamServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<string>} [strategy]
      * @param {Array<number>} [adminId]
@@ -708,9 +698,8 @@ export const AgentTeamServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       strategy?: Array<string>,
       adminId?: Array<number>,
@@ -721,9 +710,8 @@ export const AgentTeamServiceApiFactory = function(
           page,
           size,
           q,
-          domainId,
-          fields,
           sort,
+          fields,
           id,
           strategy,
           adminId,
@@ -752,12 +740,105 @@ export const AgentTeamServiceApiFactory = function(
 }
 
 /**
+ * AgentTeamServiceApi - interface
+ * @export
+ * @interface AgentTeamServiceApi
+ */
+export interface AgentTeamServiceApiInterface {
+  /**
+   *
+   * @summary Create AgentTeam
+   * @param {EngineCreateAgentTeamRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApiInterface
+   */
+  createAgentTeam(
+    body: EngineCreateAgentTeamRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+
+  /**
+   *
+   * @summary Remove AgentTeam
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApiInterface
+   */
+  deleteAgentTeam(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+
+  /**
+   *
+   * @summary AgentTeam item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApiInterface
+   */
+  readAgentTeam(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+
+  /**
+   *
+   * @summary List of AgentTeam
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {Array<string>} [strategy]
+   * @param {Array<number>} [adminId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApiInterface
+   */
+  searchAgentTeam(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    strategy?: Array<string>,
+    adminId?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListAgentTeam>
+
+  /**
+   *
+   * @summary Update AgentTeam
+   * @param {string} id
+   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentTeamServiceApiInterface
+   */
+  updateAgentTeam(
+    id: string,
+    body: EngineUpdateAgentTeamRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentTeam>
+}
+
+/**
  * AgentTeamServiceApi - object-oriented interface
  * @export
  * @class AgentTeamServiceApi
  * @extends {BaseAPI}
  */
-export class AgentTeamServiceApi extends BaseAPI {
+export class AgentTeamServiceApi extends BaseAPI
+  implements AgentTeamServiceApiInterface {
   /**
    *
    * @summary Create AgentTeam
@@ -808,9 +889,8 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
-   * @param {Array<string>} [fields]
    * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {Array<string>} [strategy]
    * @param {Array<number>} [adminId]
@@ -822,9 +902,8 @@ export class AgentTeamServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
-    fields?: Array<string>,
     sort?: string,
+    fields?: Array<string>,
     id?: Array<number>,
     strategy?: Array<string>,
     adminId?: Array<number>,
@@ -835,9 +914,8 @@ export class AgentTeamServiceApi extends BaseAPI {
         page,
         size,
         q,
-        domainId,
-        fields,
         sort,
+        fields,
         id,
         strategy,
         adminId,

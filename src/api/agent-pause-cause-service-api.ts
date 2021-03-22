@@ -320,6 +320,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
@@ -329,6 +330,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
       options: any = {}
@@ -366,6 +368,10 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
 
       if (q !== undefined) {
         localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (fields) {
@@ -610,6 +616,7 @@ export const AgentPauseCauseServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
@@ -619,6 +626,7 @@ export const AgentPauseCauseServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
       options?: any
@@ -630,7 +638,7 @@ export const AgentPauseCauseServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentPauseCause(page, size, q, fields, id, options)
+      ).searchAgentPauseCause(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -749,6 +757,7 @@ export const AgentPauseCauseServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
@@ -758,12 +767,13 @@ export const AgentPauseCauseServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
-        .searchAgentPauseCause(page, size, q, fields, id, options)
+        .searchAgentPauseCause(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -786,12 +796,106 @@ export const AgentPauseCauseServiceApiFactory = function(
 }
 
 /**
+ * AgentPauseCauseServiceApi - interface
+ * @export
+ * @interface AgentPauseCauseServiceApi
+ */
+export interface AgentPauseCauseServiceApiInterface {
+  /**
+   *
+   * @param {EngineCreateAgentPauseCauseRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentPauseCauseServiceApiInterface
+   */
+  createAgentPauseCause(
+    body: EngineCreateAgentPauseCauseRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentPauseCause>
+
+  /**
+   *
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentPauseCauseServiceApiInterface
+   */
+  deleteAgentPauseCause(
+    id: number,
+    options?: any
+  ): AxiosPromise<EngineAgentPauseCause>
+
+  /**
+   *
+   * @param {number} id
+   * @param {EnginePatchAgentPauseCauseRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentPauseCauseServiceApiInterface
+   */
+  patchAgentPauseCause(
+    id: number,
+    body: EnginePatchAgentPauseCauseRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentPauseCause>
+
+  /**
+   *
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentPauseCauseServiceApiInterface
+   */
+  readAgentPauseCause(
+    id: number,
+    options?: any
+  ): AxiosPromise<EngineAgentPauseCause>
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentPauseCauseServiceApiInterface
+   */
+  searchAgentPauseCause(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListAgentPauseCause>
+
+  /**
+   *
+   * @param {number} id
+   * @param {EngineUpdateAgentPauseCauseRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentPauseCauseServiceApiInterface
+   */
+  updateAgentPauseCause(
+    id: number,
+    body: EngineUpdateAgentPauseCauseRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentPauseCause>
+}
+
+/**
  * AgentPauseCauseServiceApi - object-oriented interface
  * @export
  * @class AgentPauseCauseServiceApi
  * @extends {BaseAPI}
  */
-export class AgentPauseCauseServiceApi extends BaseAPI {
+export class AgentPauseCauseServiceApi extends BaseAPI
+  implements AgentPauseCauseServiceApiInterface {
   /**
    *
    * @param {EngineCreateAgentPauseCauseRequest} body
@@ -857,6 +961,7 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
+   * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
@@ -867,12 +972,13 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
+    sort?: string,
     fields?: Array<string>,
     id?: Array<number>,
     options?: any
   ) {
     return AgentPauseCauseServiceApiFp(this.configuration)
-      .searchAgentPauseCause(page, size, q, fields, id, options)
+      .searchAgentPauseCause(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

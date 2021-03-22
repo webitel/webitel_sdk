@@ -499,7 +499,9 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -507,7 +509,9 @@ export const ListServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/list`
@@ -545,8 +549,16 @@ export const ListServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -576,7 +588,9 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -585,7 +599,9 @@ export const ListServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'listId' is not null or undefined
@@ -633,8 +649,16 @@ export const ListServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -1027,7 +1051,9 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1035,7 +1061,9 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1045,7 +1073,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).searchList(page, size, q, domainId, options)
+      ).searchList(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1064,7 +1092,9 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1073,7 +1103,9 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1083,7 +1115,16 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).searchListCommunication(listId, page, size, q, domainId, options)
+      ).searchListCommunication(
+        listId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1281,7 +1322,9 @@ export const ListServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1289,11 +1332,13 @@ export const ListServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListOfList> {
       return ListServiceApiFp(configuration)
-        .searchList(page, size, q, domainId, options)
+        .searchList(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1303,7 +1348,9 @@ export const ListServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1312,11 +1359,22 @@ export const ListServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListOfListCommunication> {
       return ListServiceApiFp(configuration)
-        .searchListCommunication(listId, page, size, q, domainId, options)
+        .searchListCommunication(
+          listId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1359,12 +1417,191 @@ export const ListServiceApiFactory = function(
 }
 
 /**
+ * ListServiceApi - interface
+ * @export
+ * @interface ListServiceApi
+ */
+export interface ListServiceApiInterface {
+  /**
+   *
+   * @summary Create List
+   * @param {EngineCreateListRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  createList(
+    body: EngineCreateListRequest,
+    options?: any
+  ): AxiosPromise<EngineList>
+
+  /**
+   *
+   * @summary Create ListCommunication
+   * @param {string} listId
+   * @param {EngineCreateListCommunicationRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  createListCommunication(
+    listId: string,
+    body: EngineCreateListCommunicationRequest,
+    options?: any
+  ): AxiosPromise<EngineListCommunication>
+
+  /**
+   *
+   * @summary Remove list
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  deleteList(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineList>
+
+  /**
+   *
+   * @summary Remove ListCommunication
+   * @param {string} listId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  deleteListCommunication(
+    listId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListCommunication>
+
+  /**
+   *
+   * @summary List item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  readList(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineList>
+
+  /**
+   *
+   * @summary List item
+   * @param {string} listId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  readListCommunication(
+    listId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListCommunication>
+
+  /**
+   *
+   * @summary List of List
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  searchList(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListOfList>
+
+  /**
+   *
+   * @summary List of List
+   * @param {string} listId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  searchListCommunication(
+    listId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListOfListCommunication>
+
+  /**
+   *
+   * @summary Update list
+   * @param {string} id
+   * @param {EngineUpdateListRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  updateList(
+    id: string,
+    body: EngineUpdateListRequest,
+    options?: any
+  ): AxiosPromise<EngineList>
+
+  /**
+   *
+   * @summary Update ListCommunication
+   * @param {string} listId
+   * @param {string} id
+   * @param {EngineUpdateListCommunicationRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ListServiceApiInterface
+   */
+  updateListCommunication(
+    listId: string,
+    id: string,
+    body: EngineUpdateListCommunicationRequest,
+    options?: any
+  ): AxiosPromise<EngineListCommunication>
+}
+
+/**
  * ListServiceApi - object-oriented interface
  * @export
  * @class ListServiceApi
  * @extends {BaseAPI}
  */
-export class ListServiceApi extends BaseAPI {
+export class ListServiceApi extends BaseAPI implements ListServiceApiInterface {
   /**
    *
    * @summary Create List
@@ -1476,7 +1713,9 @@ export class ListServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ListServiceApi
@@ -1485,11 +1724,13 @@ export class ListServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .searchList(page, size, q, domainId, options)
+      .searchList(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1500,7 +1741,9 @@ export class ListServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ListServiceApi
@@ -1510,11 +1753,13 @@ export class ListServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .searchListCommunication(listId, page, size, q, domainId, options)
+      .searchListCommunication(listId, page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

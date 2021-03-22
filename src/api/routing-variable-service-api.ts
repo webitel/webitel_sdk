@@ -672,12 +672,95 @@ export const RoutingVariableServiceApiFactory = function(
 }
 
 /**
+ * RoutingVariableServiceApi - interface
+ * @export
+ * @interface RoutingVariableServiceApi
+ */
+export interface RoutingVariableServiceApiInterface {
+  /**
+   *
+   * @summary Create RoutingVariable
+   * @param {EngineCreateRoutingVariableRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApiInterface
+   */
+  createRoutingVariable(
+    body: EngineCreateRoutingVariableRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+
+  /**
+   *
+   * @summary Remove RoutingVariable
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApiInterface
+   */
+  deleteRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+
+  /**
+   *
+   * @summary RoutingVariable item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApiInterface
+   */
+  readRoutingVariable(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+
+  /**
+   *
+   * @summary List of RoutingVariable
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApiInterface
+   */
+  searchRoutingVariable(
+    page?: number,
+    size?: number,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListRoutingVariable>
+
+  /**
+   *
+   * @summary Update RoutingVariable
+   * @param {string} id
+   * @param {EngineUpdateRoutingVariableRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingVariableServiceApiInterface
+   */
+  updateRoutingVariable(
+    id: string,
+    body: EngineUpdateRoutingVariableRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingVariable>
+}
+
+/**
  * RoutingVariableServiceApi - object-oriented interface
  * @export
  * @class RoutingVariableServiceApi
  * @extends {BaseAPI}
  */
-export class RoutingVariableServiceApi extends BaseAPI {
+export class RoutingVariableServiceApi extends BaseAPI
+  implements RoutingVariableServiceApiInterface {
   /**
    *
    * @summary Create RoutingVariable

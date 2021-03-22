@@ -283,7 +283,9 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -292,7 +294,9 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -340,8 +344,16 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -569,7 +581,9 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -578,7 +592,9 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -588,7 +604,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).searchQueueBucket(queueId, page, size, q, domainId, options)
+      ).searchQueueBucket(queueId, page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -709,7 +725,9 @@ export const QueueBucketServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -718,11 +736,13 @@ export const QueueBucketServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .searchQueueBucket(queueId, page, size, q, domainId, options)
+        .searchQueueBucket(queueId, page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -748,12 +768,111 @@ export const QueueBucketServiceApiFactory = function(
 }
 
 /**
+ * QueueBucketServiceApi - interface
+ * @export
+ * @interface QueueBucketServiceApi
+ */
+export interface QueueBucketServiceApiInterface {
+  /**
+   *
+   * @summary Create QueueBucket
+   * @param {string} queueId
+   * @param {EngineCreateQueueBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApiInterface
+   */
+  createQueueBucket(
+    queueId: string,
+    body: EngineCreateQueueBucketRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueBucket>
+
+  /**
+   *
+   * @summary DeleteQueueRouting
+   * @param {string} queueId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApiInterface
+   */
+  deleteQueueBucket(
+    queueId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineQueueBucket>
+
+  /**
+   *
+   * @summary ReadQueueRouting
+   * @param {string} queueId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApiInterface
+   */
+  readQueueBucket(
+    queueId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineQueueBucket>
+
+  /**
+   *
+   * @summary SearchQueueRouting
+   * @param {string} queueId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApiInterface
+   */
+  searchQueueBucket(
+    queueId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListQueueBucket>
+
+  /**
+   *
+   * @summary UpdateQueueBucket
+   * @param {string} queueId
+   * @param {string} id
+   * @param {EngineUpdateQueueBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApiInterface
+   */
+  updateQueueBucket(
+    queueId: string,
+    id: string,
+    body: EngineUpdateQueueBucketRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueBucket>
+}
+
+/**
  * QueueBucketServiceApi - object-oriented interface
  * @export
  * @class QueueBucketServiceApi
  * @extends {BaseAPI}
  */
-export class QueueBucketServiceApi extends BaseAPI {
+export class QueueBucketServiceApi extends BaseAPI
+  implements QueueBucketServiceApiInterface {
   /**
    *
    * @summary Create QueueBucket
@@ -822,7 +941,9 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
@@ -832,11 +953,13 @@ export class QueueBucketServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)
-      .searchQueueBucket(queueId, page, size, q, domainId, options)
+      .searchQueueBucket(queueId, page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -254,9 +254,9 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -264,9 +264,9 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
+      domainId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/email/profile`
@@ -304,16 +304,16 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (fields) {
         localVarQueryParameter['fields'] = fields
       }
 
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
+      if (domainId !== undefined) {
+        localVarQueryParameter['domain_id'] = domainId
       }
 
       localVarUrlObj.query = {
@@ -528,9 +528,9 @@ export const EmailProfileServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -538,9 +538,9 @@ export const EmailProfileServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
+      domainId?: string,
       options?: any
     ): Promise<
       (
@@ -550,7 +550,7 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).searchEmailProfile(page, size, q, domainId, fields, sort, options)
+      ).searchEmailProfile(page, size, q, sort, fields, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -662,9 +662,9 @@ export const EmailProfileServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -672,13 +672,13 @@ export const EmailProfileServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
+      domainId?: string,
       options?: any
     ): AxiosPromise<EngineListEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .searchEmailProfile(page, size, q, domainId, fields, sort, options)
+        .searchEmailProfile(page, size, q, sort, fields, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -702,12 +702,101 @@ export const EmailProfileServiceApiFactory = function(
 }
 
 /**
+ * EmailProfileServiceApi - interface
+ * @export
+ * @interface EmailProfileServiceApi
+ */
+export interface EmailProfileServiceApiInterface {
+  /**
+   *
+   * @summary Create EmailProfile
+   * @param {EngineCreateEmailProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApiInterface
+   */
+  createEmailProfile(
+    body: EngineCreateEmailProfileRequest,
+    options?: any
+  ): AxiosPromise<EngineEmailProfile>
+
+  /**
+   *
+   * @summary Remove EmailProfile
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApiInterface
+   */
+  deleteEmailProfile(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineEmailProfile>
+
+  /**
+   *
+   * @summary EmailProfile item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApiInterface
+   */
+  readEmailProfile(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineEmailProfile>
+
+  /**
+   *
+   * @summary Search EmailProfile
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApiInterface
+   */
+  searchEmailProfile(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListEmailProfile>
+
+  /**
+   *
+   * @summary Update EmailProfile
+   * @param {string} id
+   * @param {EngineUpdateEmailProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApiInterface
+   */
+  updateEmailProfile(
+    id: string,
+    body: EngineUpdateEmailProfileRequest,
+    options?: any
+  ): AxiosPromise<EngineEmailProfile>
+}
+
+/**
  * EmailProfileServiceApi - object-oriented interface
  * @export
  * @class EmailProfileServiceApi
  * @extends {BaseAPI}
  */
-export class EmailProfileServiceApi extends BaseAPI {
+export class EmailProfileServiceApi extends BaseAPI
+  implements EmailProfileServiceApiInterface {
   /**
    *
    * @summary Create EmailProfile
@@ -761,9 +850,9 @@ export class EmailProfileServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
-   * @param {Array<string>} [fields]
    * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {string} [domainId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
@@ -772,13 +861,13 @@ export class EmailProfileServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
-    fields?: Array<string>,
     sort?: string,
+    fields?: Array<string>,
+    domainId?: string,
     options?: any
   ) {
     return EmailProfileServiceApiFp(this.configuration)
-      .searchEmailProfile(page, size, q, domainId, fields, sort, options)
+      .searchEmailProfile(page, size, q, sort, fields, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

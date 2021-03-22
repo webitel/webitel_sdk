@@ -668,6 +668,9 @@ export const CallServiceApiAxiosParamCreator = function(
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
      * @param {Array<string>} [userId]
@@ -676,15 +679,12 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [teamId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [gatewayId]
-     * @param {string} [q]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
      * @param {boolean} [existsFile]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {Array<string>} [direction]
@@ -699,6 +699,9 @@ export const CallServiceApiAxiosParamCreator = function(
     searchActiveCall: async (
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
       userId?: Array<string>,
@@ -707,15 +710,12 @@ export const CallServiceApiAxiosParamCreator = function(
       teamId?: Array<string>,
       memberId?: Array<string>,
       gatewayId?: Array<string>,
-      q?: string,
       durationFrom?: string,
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
       existsFile?: boolean,
-      fields?: Array<string>,
-      sort?: string,
       domainId?: string,
       number?: string,
       direction?: Array<string>,
@@ -757,6 +757,18 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       if (createdAtFrom !== undefined) {
         localVarQueryParameter['created_at.from'] = createdAtFrom
       }
@@ -789,10 +801,6 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['gateway_id'] = gatewayId
       }
 
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
       if (durationFrom !== undefined) {
         localVarQueryParameter['duration.from'] = durationFrom
       }
@@ -815,14 +823,6 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (existsFile !== undefined) {
         localVarQueryParameter['exists_file'] = existsFile
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
       }
 
       if (domainId !== undefined) {
@@ -882,6 +882,9 @@ export const CallServiceApiAxiosParamCreator = function(
      * @summary List of call
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
      * @param {Array<string>} [userId]
@@ -890,15 +893,12 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [teamId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [gatewayId]
-     * @param {string} [q]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
      * @param {boolean} [hasFile]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -918,6 +918,9 @@ export const CallServiceApiAxiosParamCreator = function(
     searchHistoryCall: async (
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
       userId?: Array<string>,
@@ -926,15 +929,12 @@ export const CallServiceApiAxiosParamCreator = function(
       teamId?: Array<string>,
       memberId?: Array<string>,
       gatewayId?: Array<string>,
-      q?: string,
       durationFrom?: string,
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
       hasFile?: boolean,
-      fields?: Array<string>,
-      sort?: string,
       domainId?: string,
       number?: string,
       direction?: string,
@@ -981,6 +981,18 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       if (createdAtFrom !== undefined) {
         localVarQueryParameter['created_at.from'] = createdAtFrom
       }
@@ -1013,10 +1025,6 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['gateway_id'] = gatewayId
       }
 
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
       if (durationFrom !== undefined) {
         localVarQueryParameter['duration.from'] = durationFrom
       }
@@ -1039,14 +1047,6 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (hasFile !== undefined) {
         localVarQueryParameter['has_file'] = hasFile
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
       }
 
       if (domainId !== undefined) {
@@ -1451,6 +1451,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
      * @param {Array<string>} [userId]
@@ -1459,15 +1462,12 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [teamId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [gatewayId]
-     * @param {string} [q]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
      * @param {boolean} [existsFile]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {Array<string>} [direction]
@@ -1482,6 +1482,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     async searchActiveCall(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
       userId?: Array<string>,
@@ -1490,15 +1493,12 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       teamId?: Array<string>,
       memberId?: Array<string>,
       gatewayId?: Array<string>,
-      q?: string,
       durationFrom?: string,
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
       existsFile?: boolean,
-      fields?: Array<string>,
-      sort?: string,
       domainId?: string,
       number?: string,
       direction?: Array<string>,
@@ -1516,6 +1516,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       ).searchActiveCall(
         page,
         size,
+        q,
+        sort,
+        fields,
         createdAtFrom,
         createdAtTo,
         userId,
@@ -1524,15 +1527,12 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         teamId,
         memberId,
         gatewayId,
-        q,
         durationFrom,
         durationTo,
         skipParent,
         parentId,
         cause,
         existsFile,
-        fields,
-        sort,
         domainId,
         number,
         direction,
@@ -1559,6 +1559,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @summary List of call
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
      * @param {Array<string>} [userId]
@@ -1567,15 +1570,12 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [teamId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [gatewayId]
-     * @param {string} [q]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
      * @param {boolean} [hasFile]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -1595,6 +1595,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     async searchHistoryCall(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
       userId?: Array<string>,
@@ -1603,15 +1606,12 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       teamId?: Array<string>,
       memberId?: Array<string>,
       gatewayId?: Array<string>,
-      q?: string,
       durationFrom?: string,
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
       hasFile?: boolean,
-      fields?: Array<string>,
-      sort?: string,
       domainId?: string,
       number?: string,
       direction?: string,
@@ -1637,6 +1637,9 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       ).searchHistoryCall(
         page,
         size,
+        q,
+        sort,
+        fields,
         createdAtFrom,
         createdAtTo,
         userId,
@@ -1645,15 +1648,12 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         teamId,
         memberId,
         gatewayId,
-        q,
         durationFrom,
         durationTo,
         skipParent,
         parentId,
         cause,
         hasFile,
-        fields,
-        sort,
         domainId,
         number,
         direction,
@@ -1854,6 +1854,9 @@ export const CallServiceApiFactory = function(
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
      * @param {Array<string>} [userId]
@@ -1862,15 +1865,12 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [teamId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [gatewayId]
-     * @param {string} [q]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
      * @param {boolean} [existsFile]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {Array<string>} [direction]
@@ -1885,6 +1885,9 @@ export const CallServiceApiFactory = function(
     searchActiveCall(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
       userId?: Array<string>,
@@ -1893,15 +1896,12 @@ export const CallServiceApiFactory = function(
       teamId?: Array<string>,
       memberId?: Array<string>,
       gatewayId?: Array<string>,
-      q?: string,
       durationFrom?: string,
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
       existsFile?: boolean,
-      fields?: Array<string>,
-      sort?: string,
       domainId?: string,
       number?: string,
       direction?: Array<string>,
@@ -1916,6 +1916,9 @@ export const CallServiceApiFactory = function(
         .searchActiveCall(
           page,
           size,
+          q,
+          sort,
+          fields,
           createdAtFrom,
           createdAtTo,
           userId,
@@ -1924,15 +1927,12 @@ export const CallServiceApiFactory = function(
           teamId,
           memberId,
           gatewayId,
-          q,
           durationFrom,
           durationTo,
           skipParent,
           parentId,
           cause,
           existsFile,
-          fields,
-          sort,
           domainId,
           number,
           direction,
@@ -1950,6 +1950,9 @@ export const CallServiceApiFactory = function(
      * @summary List of call
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
      * @param {Array<string>} [userId]
@@ -1958,15 +1961,12 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [teamId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [gatewayId]
-     * @param {string} [q]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
      * @param {boolean} [hasFile]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -1986,6 +1986,9 @@ export const CallServiceApiFactory = function(
     searchHistoryCall(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
       userId?: Array<string>,
@@ -1994,15 +1997,12 @@ export const CallServiceApiFactory = function(
       teamId?: Array<string>,
       memberId?: Array<string>,
       gatewayId?: Array<string>,
-      q?: string,
       durationFrom?: string,
       durationTo?: string,
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
       hasFile?: boolean,
-      fields?: Array<string>,
-      sort?: string,
       domainId?: string,
       number?: string,
       direction?: string,
@@ -2022,6 +2022,9 @@ export const CallServiceApiFactory = function(
         .searchHistoryCall(
           page,
           size,
+          q,
+          sort,
+          fields,
           createdAtFrom,
           createdAtTo,
           userId,
@@ -2030,15 +2033,12 @@ export const CallServiceApiFactory = function(
           teamId,
           memberId,
           gatewayId,
-          q,
           durationFrom,
           durationTo,
           skipParent,
           parentId,
           cause,
           hasFile,
-          fields,
-          sort,
           domainId,
           number,
           direction,
@@ -2076,12 +2076,282 @@ export const CallServiceApiFactory = function(
 }
 
 /**
+ * CallServiceApi - interface
+ * @export
+ * @interface CallServiceApi
+ */
+export interface CallServiceApiInterface {
+  /**
+   *
+   * @param {EngineAggregateHistoryCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  aggregateHistoryCall(
+    body: EngineAggregateHistoryCallRequest,
+    options?: any
+  ): AxiosPromise<EngineListAggregate>
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineBlindTransferCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  blindTransferCall(
+    id: string,
+    body: EngineBlindTransferCallRequest,
+    options?: any
+  ): AxiosPromise<object>
+
+  /**
+   *
+   * @summary Create e call
+   * @param {EngineCreateCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  createCall(
+    body: EngineCreateCallRequest,
+    options?: any
+  ): AxiosPromise<EngineCreateCallResponse>
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineDtmfCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  dtmfCall(
+    id: string,
+    body: EngineDtmfCallRequest,
+    options?: any
+  ): AxiosPromise<object>
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineEavesdropCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  eavesdropCall(
+    id: string,
+    body: EngineEavesdropCallRequest,
+    options?: any
+  ): AxiosPromise<EngineCreateCallResponse>
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineHangupCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  hangupCall(
+    id: string,
+    body: EngineHangupCallRequest,
+    options?: any
+  ): AxiosPromise<object>
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineUserCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  holdCall(
+    id: string,
+    body: EngineUserCallRequest,
+    options?: any
+  ): AxiosPromise<EngineHoldCallResponse>
+
+  /**
+   *
+   * @summary Call item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  readCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineActiveCall>
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {string} [createdAtFrom]
+   * @param {string} [createdAtTo]
+   * @param {Array<string>} [userId]
+   * @param {Array<string>} [agentId]
+   * @param {Array<string>} [queueId]
+   * @param {Array<string>} [teamId]
+   * @param {Array<string>} [memberId]
+   * @param {Array<string>} [gatewayId]
+   * @param {string} [durationFrom]
+   * @param {string} [durationTo]
+   * @param {boolean} [skipParent]
+   * @param {string} [parentId]
+   * @param {Array<string>} [cause]
+   * @param {boolean} [existsFile]
+   * @param {string} [domainId]
+   * @param {string} [number]
+   * @param {Array<string>} [direction]
+   * @param {string} [answeredAtFrom]
+   * @param {string} [answeredAtTo]
+   * @param {boolean} [missed]
+   * @param {string} [storedAtFrom]
+   * @param {string} [storedAtTo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  searchActiveCall(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    createdAtFrom?: string,
+    createdAtTo?: string,
+    userId?: Array<string>,
+    agentId?: Array<string>,
+    queueId?: Array<string>,
+    teamId?: Array<string>,
+    memberId?: Array<string>,
+    gatewayId?: Array<string>,
+    durationFrom?: string,
+    durationTo?: string,
+    skipParent?: boolean,
+    parentId?: string,
+    cause?: Array<string>,
+    existsFile?: boolean,
+    domainId?: string,
+    number?: string,
+    direction?: Array<string>,
+    answeredAtFrom?: string,
+    answeredAtTo?: string,
+    missed?: boolean,
+    storedAtFrom?: string,
+    storedAtTo?: string,
+    options?: any
+  ): AxiosPromise<EngineListCall>
+
+  /**
+   *
+   * @summary List of call
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {string} [createdAtFrom]
+   * @param {string} [createdAtTo]
+   * @param {Array<string>} [userId]
+   * @param {Array<string>} [agentId]
+   * @param {Array<string>} [queueId]
+   * @param {Array<string>} [teamId]
+   * @param {Array<string>} [memberId]
+   * @param {Array<string>} [gatewayId]
+   * @param {string} [durationFrom]
+   * @param {string} [durationTo]
+   * @param {boolean} [skipParent]
+   * @param {string} [parentId]
+   * @param {Array<string>} [cause]
+   * @param {boolean} [hasFile]
+   * @param {string} [domainId]
+   * @param {string} [number]
+   * @param {string} [direction]
+   * @param {string} [answeredAtFrom]
+   * @param {string} [answeredAtTo]
+   * @param {boolean} [missed]
+   * @param {string} [storedAtFrom]
+   * @param {string} [storedAtTo]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [transferFrom]
+   * @param {Array<string>} [transferTo]
+   * @param {Array<string>} [dependencyId]
+   * @param {Array<string>} [tags]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  searchHistoryCall(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    createdAtFrom?: string,
+    createdAtTo?: string,
+    userId?: Array<string>,
+    agentId?: Array<string>,
+    queueId?: Array<string>,
+    teamId?: Array<string>,
+    memberId?: Array<string>,
+    gatewayId?: Array<string>,
+    durationFrom?: string,
+    durationTo?: string,
+    skipParent?: boolean,
+    parentId?: string,
+    cause?: Array<string>,
+    hasFile?: boolean,
+    domainId?: string,
+    number?: string,
+    direction?: string,
+    answeredAtFrom?: string,
+    answeredAtTo?: string,
+    missed?: boolean,
+    storedAtFrom?: string,
+    storedAtTo?: string,
+    id?: Array<string>,
+    transferFrom?: Array<string>,
+    transferTo?: Array<string>,
+    dependencyId?: Array<string>,
+    tags?: Array<string>,
+    options?: any
+  ): AxiosPromise<EngineListHistoryCall>
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineUserCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApiInterface
+   */
+  unHoldCall(
+    id: string,
+    body: EngineUserCallRequest,
+    options?: any
+  ): AxiosPromise<EngineHoldCallResponse>
+}
+
+/**
  * CallServiceApi - object-oriented interface
  * @export
  * @class CallServiceApi
  * @extends {BaseAPI}
  */
-export class CallServiceApi extends BaseAPI {
+export class CallServiceApi extends BaseAPI implements CallServiceApiInterface {
   /**
    *
    * @param {EngineAggregateHistoryCallRequest} body
@@ -2209,6 +2479,9 @@ export class CallServiceApi extends BaseAPI {
    *
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {string} [createdAtFrom]
    * @param {string} [createdAtTo]
    * @param {Array<string>} [userId]
@@ -2217,15 +2490,12 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [teamId]
    * @param {Array<string>} [memberId]
    * @param {Array<string>} [gatewayId]
-   * @param {string} [q]
    * @param {string} [durationFrom]
    * @param {string} [durationTo]
    * @param {boolean} [skipParent]
    * @param {string} [parentId]
    * @param {Array<string>} [cause]
    * @param {boolean} [existsFile]
-   * @param {Array<string>} [fields]
-   * @param {string} [sort]
    * @param {string} [domainId]
    * @param {string} [number]
    * @param {Array<string>} [direction]
@@ -2241,6 +2511,9 @@ export class CallServiceApi extends BaseAPI {
   public searchActiveCall(
     page?: number,
     size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
     createdAtFrom?: string,
     createdAtTo?: string,
     userId?: Array<string>,
@@ -2249,15 +2522,12 @@ export class CallServiceApi extends BaseAPI {
     teamId?: Array<string>,
     memberId?: Array<string>,
     gatewayId?: Array<string>,
-    q?: string,
     durationFrom?: string,
     durationTo?: string,
     skipParent?: boolean,
     parentId?: string,
     cause?: Array<string>,
     existsFile?: boolean,
-    fields?: Array<string>,
-    sort?: string,
     domainId?: string,
     number?: string,
     direction?: Array<string>,
@@ -2272,6 +2542,9 @@ export class CallServiceApi extends BaseAPI {
       .searchActiveCall(
         page,
         size,
+        q,
+        sort,
+        fields,
         createdAtFrom,
         createdAtTo,
         userId,
@@ -2280,15 +2553,12 @@ export class CallServiceApi extends BaseAPI {
         teamId,
         memberId,
         gatewayId,
-        q,
         durationFrom,
         durationTo,
         skipParent,
         parentId,
         cause,
         existsFile,
-        fields,
-        sort,
         domainId,
         number,
         direction,
@@ -2307,6 +2577,9 @@ export class CallServiceApi extends BaseAPI {
    * @summary List of call
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {string} [createdAtFrom]
    * @param {string} [createdAtTo]
    * @param {Array<string>} [userId]
@@ -2315,15 +2588,12 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [teamId]
    * @param {Array<string>} [memberId]
    * @param {Array<string>} [gatewayId]
-   * @param {string} [q]
    * @param {string} [durationFrom]
    * @param {string} [durationTo]
    * @param {boolean} [skipParent]
    * @param {string} [parentId]
    * @param {Array<string>} [cause]
    * @param {boolean} [hasFile]
-   * @param {Array<string>} [fields]
-   * @param {string} [sort]
    * @param {string} [domainId]
    * @param {string} [number]
    * @param {string} [direction]
@@ -2344,6 +2614,9 @@ export class CallServiceApi extends BaseAPI {
   public searchHistoryCall(
     page?: number,
     size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
     createdAtFrom?: string,
     createdAtTo?: string,
     userId?: Array<string>,
@@ -2352,15 +2625,12 @@ export class CallServiceApi extends BaseAPI {
     teamId?: Array<string>,
     memberId?: Array<string>,
     gatewayId?: Array<string>,
-    q?: string,
     durationFrom?: string,
     durationTo?: string,
     skipParent?: boolean,
     parentId?: string,
     cause?: Array<string>,
     hasFile?: boolean,
-    fields?: Array<string>,
-    sort?: string,
     domainId?: string,
     number?: string,
     direction?: string,
@@ -2380,6 +2650,9 @@ export class CallServiceApi extends BaseAPI {
       .searchHistoryCall(
         page,
         size,
+        q,
+        sort,
+        fields,
         createdAtFrom,
         createdAtTo,
         userId,
@@ -2388,15 +2661,12 @@ export class CallServiceApi extends BaseAPI {
         teamId,
         memberId,
         gatewayId,
-        q,
         durationFrom,
         durationTo,
         skipParent,
         parentId,
         cause,
         hasFile,
-        fields,
-        sort,
         domainId,
         number,
         direction,

@@ -317,8 +317,8 @@ export const RegionServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
      * @param {string} [description]
@@ -330,8 +330,8 @@ export const RegionServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       name?: string,
       description?: string,
@@ -373,12 +373,12 @@ export const RegionServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
       if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       if (id) {
@@ -617,8 +617,8 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
      * @param {string} [description]
@@ -630,8 +630,8 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       name?: string,
       description?: string,
@@ -649,8 +649,8 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
         page,
         size,
         q,
-        fields,
         sort,
+        fields,
         id,
         name,
         description,
@@ -766,8 +766,8 @@ export const RegionServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
      * @param {string} [description]
@@ -779,8 +779,8 @@ export const RegionServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       name?: string,
       description?: string,
@@ -792,8 +792,8 @@ export const RegionServiceApiFactory = function(
           page,
           size,
           q,
-          fields,
           sort,
+          fields,
           id,
           name,
           description,
@@ -822,12 +822,106 @@ export const RegionServiceApiFactory = function(
 }
 
 /**
+ * RegionServiceApi - interface
+ * @export
+ * @interface RegionServiceApi
+ */
+export interface RegionServiceApiInterface {
+  /**
+   *
+   * @param {EngineCreateRegionRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RegionServiceApiInterface
+   */
+  createRegion(
+    body: EngineCreateRegionRequest,
+    options?: any
+  ): AxiosPromise<EngineRegion>
+
+  /**
+   *
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RegionServiceApiInterface
+   */
+  deleteRegion(id: number, options?: any): AxiosPromise<EngineRegion>
+
+  /**
+   *
+   * @param {number} id
+   * @param {EnginePatchRegionRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RegionServiceApiInterface
+   */
+  patchRegion(
+    id: number,
+    body: EnginePatchRegionRequest,
+    options?: any
+  ): AxiosPromise<EngineRegion>
+
+  /**
+   *
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RegionServiceApiInterface
+   */
+  readRegion(id: number, options?: any): AxiosPromise<EngineRegion>
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {string} [name]
+   * @param {string} [description]
+   * @param {Array<number>} [timezoneId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RegionServiceApiInterface
+   */
+  searchRegion(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    name?: string,
+    description?: string,
+    timezoneId?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListRegion>
+
+  /**
+   *
+   * @param {number} id
+   * @param {EngineUpdateRegionRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RegionServiceApiInterface
+   */
+  updateRegion(
+    id: number,
+    body: EngineUpdateRegionRequest,
+    options?: any
+  ): AxiosPromise<EngineRegion>
+}
+
+/**
  * RegionServiceApi - object-oriented interface
  * @export
  * @class RegionServiceApi
  * @extends {BaseAPI}
  */
-export class RegionServiceApi extends BaseAPI {
+export class RegionServiceApi extends BaseAPI
+  implements RegionServiceApiInterface {
   /**
    *
    * @param {EngineCreateRegionRequest} body
@@ -890,8 +984,8 @@ export class RegionServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {Array<string>} [fields]
    * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {string} [name]
    * @param {string} [description]
@@ -904,8 +998,8 @@ export class RegionServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    fields?: Array<string>,
     sort?: string,
+    fields?: Array<string>,
     id?: Array<number>,
     name?: string,
     description?: string,
@@ -917,8 +1011,8 @@ export class RegionServiceApi extends BaseAPI {
         page,
         size,
         q,
-        fields,
         sort,
+        fields,
         id,
         name,
         description,

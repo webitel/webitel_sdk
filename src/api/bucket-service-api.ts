@@ -254,7 +254,9 @@ export const BucketServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -262,7 +264,9 @@ export const BucketServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/buckets`
@@ -300,8 +304,16 @@ export const BucketServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -505,7 +517,9 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -513,7 +527,9 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -523,7 +539,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
         configuration
-      ).searchBucket(page, size, q, domainId, options)
+      ).searchBucket(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -632,7 +648,9 @@ export const BucketServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -640,11 +658,13 @@ export const BucketServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListBucket> {
       return BucketServiceApiFp(configuration)
-        .searchBucket(page, size, q, domainId, options)
+        .searchBucket(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -668,12 +688,101 @@ export const BucketServiceApiFactory = function(
 }
 
 /**
+ * BucketServiceApi - interface
+ * @export
+ * @interface BucketServiceApi
+ */
+export interface BucketServiceApiInterface {
+  /**
+   *
+   * @summary Create Bucket
+   * @param {EngineCreateBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApiInterface
+   */
+  createBucket(
+    body: EngineCreateBucketRequest,
+    options?: any
+  ): AxiosPromise<EngineBucket>
+
+  /**
+   *
+   * @summary Remove Bucket
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApiInterface
+   */
+  deleteBucket(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineBucket>
+
+  /**
+   *
+   * @summary Bucket item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApiInterface
+   */
+  readBucket(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineBucket>
+
+  /**
+   *
+   * @summary List of Bucket
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApiInterface
+   */
+  searchBucket(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListBucket>
+
+  /**
+   *
+   * @summary Update Bucket
+   * @param {string} id
+   * @param {EngineUpdateBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BucketServiceApiInterface
+   */
+  updateBucket(
+    id: string,
+    body: EngineUpdateBucketRequest,
+    options?: any
+  ): AxiosPromise<EngineBucket>
+}
+
+/**
  * BucketServiceApi - object-oriented interface
  * @export
  * @class BucketServiceApi
  * @extends {BaseAPI}
  */
-export class BucketServiceApi extends BaseAPI {
+export class BucketServiceApi extends BaseAPI
+  implements BucketServiceApiInterface {
   /**
    *
    * @summary Create Bucket
@@ -724,7 +833,9 @@ export class BucketServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BucketServiceApi
@@ -733,11 +844,13 @@ export class BucketServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return BucketServiceApiFp(this.configuration)
-      .searchBucket(page, size, q, domainId, options)
+      .searchBucket(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

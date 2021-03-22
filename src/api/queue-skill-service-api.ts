@@ -357,6 +357,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<number>} [skillId]
@@ -373,6 +374,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
       skillId?: Array<number>,
@@ -426,6 +428,10 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
 
       if (q !== undefined) {
         localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (fields) {
@@ -709,6 +715,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<number>} [skillId]
@@ -725,6 +732,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
       skillId?: Array<number>,
@@ -747,6 +755,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
         page,
         size,
         q,
+        sort,
         fields,
         id,
         skillId,
@@ -886,6 +895,7 @@ export const QueueSkillServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<number>} [skillId]
@@ -902,6 +912,7 @@ export const QueueSkillServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
       skillId?: Array<number>,
@@ -918,6 +929,7 @@ export const QueueSkillServiceApiFactory = function(
           page,
           size,
           q,
+          sort,
           fields,
           id,
           skillId,
@@ -952,12 +964,130 @@ export const QueueSkillServiceApiFactory = function(
 }
 
 /**
+ * QueueSkillServiceApi - interface
+ * @export
+ * @interface QueueSkillServiceApi
+ */
+export interface QueueSkillServiceApiInterface {
+  /**
+   *
+   * @param {number} queueId
+   * @param {EngineCreateQueueSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueSkillServiceApiInterface
+   */
+  createQueueSkill(
+    queueId: number,
+    body: EngineCreateQueueSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueSkill>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueSkillServiceApiInterface
+   */
+  deleteQueueSkill(
+    queueId: number,
+    id: number,
+    options?: any
+  ): AxiosPromise<EngineQueueSkill>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {EnginePatchQueueSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueSkillServiceApiInterface
+   */
+  patchQueueSkill(
+    queueId: number,
+    id: number,
+    body: EnginePatchQueueSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueSkill>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueSkillServiceApiInterface
+   */
+  readQueueSkill(
+    queueId: number,
+    id: number,
+    options?: any
+  ): AxiosPromise<EngineQueueSkill>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {Array<number>} [skillId]
+   * @param {Array<number>} [bucketId]
+   * @param {Array<number>} [lvl]
+   * @param {Array<number>} [minCapacity]
+   * @param {Array<number>} [maxCapacity]
+   * @param {boolean} [enabled]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueSkillServiceApiInterface
+   */
+  searchQueueSkill(
+    queueId: number,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    skillId?: Array<number>,
+    bucketId?: Array<number>,
+    lvl?: Array<number>,
+    minCapacity?: Array<number>,
+    maxCapacity?: Array<number>,
+    enabled?: boolean,
+    options?: any
+  ): AxiosPromise<EngineListQueueSkill>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {EngineUpdateQueueSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueSkillServiceApiInterface
+   */
+  updateQueueSkill(
+    queueId: number,
+    id: number,
+    body: EngineUpdateQueueSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueSkill>
+}
+
+/**
  * QueueSkillServiceApi - object-oriented interface
  * @export
  * @class QueueSkillServiceApi
  * @extends {BaseAPI}
  */
-export class QueueSkillServiceApi extends BaseAPI {
+export class QueueSkillServiceApi extends BaseAPI
+  implements QueueSkillServiceApiInterface {
   /**
    *
    * @param {number} queueId
@@ -1030,6 +1160,7 @@ export class QueueSkillServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
+   * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {Array<number>} [skillId]
@@ -1047,6 +1178,7 @@ export class QueueSkillServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
+    sort?: string,
     fields?: Array<string>,
     id?: Array<number>,
     skillId?: Array<number>,
@@ -1063,6 +1195,7 @@ export class QueueSkillServiceApi extends BaseAPI {
         page,
         size,
         q,
+        sort,
         fields,
         id,
         skillId,

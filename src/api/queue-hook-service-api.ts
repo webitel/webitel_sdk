@@ -67,7 +67,7 @@ export const QueueHookServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createQueueHook.'
         )
       }
-      const localVarPath = `/call_center/queues/{queue_id}/hook`.replace(
+      const localVarPath = `/call_center/queues/{queue_id}/hooks`.replace(
         `{${'queue_id'}}`,
         encodeURIComponent(String(queueId))
       )
@@ -147,7 +147,7 @@ export const QueueHookServiceApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling deleteQueueHook.'
         )
       }
-      const localVarPath = `/call_center/queues/{queue_id}/hook/{id}`
+      const localVarPath = `/call_center/queues/{queue_id}/hooks/{id}`
         .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -227,7 +227,7 @@ export const QueueHookServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling patchQueueHook.'
         )
       }
-      const localVarPath = `/call_center/queues/{queue_id}/hook/{id}`
+      const localVarPath = `/call_center/queues/{queue_id}/hooks/{id}`
         .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -306,7 +306,7 @@ export const QueueHookServiceApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling readQueueHook.'
         )
       }
-      const localVarPath = `/call_center/queues/{queue_id}/hook/{id}`
+      const localVarPath = `/call_center/queues/{queue_id}/hooks/{id}`
         .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -357,8 +357,8 @@ export const QueueHookServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<number>} [schemaId]
      * @param {Array<string>} [event]
@@ -370,8 +370,8 @@ export const QueueHookServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       schemaId?: Array<number>,
       event?: Array<string>,
@@ -384,7 +384,7 @@ export const QueueHookServiceApiAxiosParamCreator = function(
           'Required parameter queueId was null or undefined when calling searchQueueHook.'
         )
       }
-      const localVarPath = `/call_center/queues/{queue_id}/hook`.replace(
+      const localVarPath = `/call_center/queues/{queue_id}/hooks`.replace(
         `{${'queue_id'}}`,
         encodeURIComponent(String(queueId))
       )
@@ -422,12 +422,12 @@ export const QueueHookServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
       if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       if (id) {
@@ -497,7 +497,7 @@ export const QueueHookServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling updateQueueHook.'
         )
       }
-      const localVarPath = `/call_center/queues/{queue_id}/hook/{id}`
+      const localVarPath = `/call_center/queues/{queue_id}/hooks/{id}`
         .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -691,8 +691,8 @@ export const QueueHookServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<number>} [schemaId]
      * @param {Array<string>} [event]
@@ -704,8 +704,8 @@ export const QueueHookServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       schemaId?: Array<number>,
       event?: Array<string>,
@@ -723,8 +723,8 @@ export const QueueHookServiceApiFp = function(configuration?: Configuration) {
         page,
         size,
         q,
-        fields,
         sort,
+        fields,
         id,
         schemaId,
         event,
@@ -859,8 +859,8 @@ export const QueueHookServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<number>} [schemaId]
      * @param {Array<string>} [event]
@@ -872,8 +872,8 @@ export const QueueHookServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<number>,
       schemaId?: Array<number>,
       event?: Array<string>,
@@ -885,8 +885,8 @@ export const QueueHookServiceApiFactory = function(
           page,
           size,
           q,
-          fields,
           sort,
+          fields,
           id,
           schemaId,
           event,
@@ -916,12 +916,122 @@ export const QueueHookServiceApiFactory = function(
 }
 
 /**
+ * QueueHookServiceApi - interface
+ * @export
+ * @interface QueueHookServiceApi
+ */
+export interface QueueHookServiceApiInterface {
+  /**
+   *
+   * @param {number} queueId
+   * @param {EngineCreateQueueHookRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueHookServiceApiInterface
+   */
+  createQueueHook(
+    queueId: number,
+    body: EngineCreateQueueHookRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueHook>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueHookServiceApiInterface
+   */
+  deleteQueueHook(
+    queueId: number,
+    id: number,
+    options?: any
+  ): AxiosPromise<EngineQueueHook>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {EnginePatchQueueHookRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueHookServiceApiInterface
+   */
+  patchQueueHook(
+    queueId: number,
+    id: number,
+    body: EnginePatchQueueHookRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueHook>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueHookServiceApiInterface
+   */
+  readQueueHook(
+    queueId: number,
+    id: number,
+    options?: any
+  ): AxiosPromise<EngineQueueHook>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {Array<number>} [schemaId]
+   * @param {Array<string>} [event]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueHookServiceApiInterface
+   */
+  searchQueueHook(
+    queueId: number,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    schemaId?: Array<number>,
+    event?: Array<string>,
+    options?: any
+  ): AxiosPromise<EngineListQueueHook>
+
+  /**
+   *
+   * @param {number} queueId
+   * @param {number} id
+   * @param {EngineUpdateQueueHookRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueHookServiceApiInterface
+   */
+  updateQueueHook(
+    queueId: number,
+    id: number,
+    body: EngineUpdateQueueHookRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueHook>
+}
+
+/**
  * QueueHookServiceApi - object-oriented interface
  * @export
  * @class QueueHookServiceApi
  * @extends {BaseAPI}
  */
-export class QueueHookServiceApi extends BaseAPI {
+export class QueueHookServiceApi extends BaseAPI
+  implements QueueHookServiceApiInterface {
   /**
    *
    * @param {number} queueId
@@ -994,8 +1104,8 @@ export class QueueHookServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {Array<string>} [fields]
    * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {Array<number>} [schemaId]
    * @param {Array<string>} [event]
@@ -1008,8 +1118,8 @@ export class QueueHookServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    fields?: Array<string>,
     sort?: string,
+    fields?: Array<string>,
     id?: Array<number>,
     schemaId?: Array<number>,
     event?: Array<string>,
@@ -1021,8 +1131,8 @@ export class QueueHookServiceApi extends BaseAPI {
         page,
         size,
         q,
-        fields,
         sort,
+        fields,
         id,
         schemaId,
         event,

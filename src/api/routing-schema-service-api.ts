@@ -337,7 +337,10 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {string} [name]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -345,7 +348,10 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
+      name?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/routing/schema`
@@ -383,8 +389,20 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (name !== undefined) {
+        localVarQueryParameter['name'] = name
       }
 
       localVarUrlObj.query = {
@@ -631,7 +649,10 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {string} [name]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -639,7 +660,10 @@ export const RoutingSchemaServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
+      name?: string,
       options?: any
     ): Promise<
       (
@@ -649,7 +673,7 @@ export const RoutingSchemaServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingSchema(page, size, q, domainId, options)
+      ).searchRoutingSchema(page, size, q, sort, fields, id, name, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -778,7 +802,10 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {string} [name]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -786,11 +813,14 @@ export const RoutingSchemaServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
+      name?: string,
       options?: any
     ): AxiosPromise<EngineListRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
-        .searchRoutingSchema(page, size, q, domainId, options)
+        .searchRoutingSchema(page, size, q, sort, fields, id, name, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -814,12 +844,118 @@ export const RoutingSchemaServiceApiFactory = function(
 }
 
 /**
+ * RoutingSchemaServiceApi - interface
+ * @export
+ * @interface RoutingSchemaServiceApi
+ */
+export interface RoutingSchemaServiceApiInterface {
+  /**
+   *
+   * @summary Create RoutingSchema
+   * @param {EngineCreateRoutingSchemaRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemaServiceApiInterface
+   */
+  createRoutingSchema(
+    body: EngineCreateRoutingSchemaRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingSchema>
+
+  /**
+   *
+   * @summary Remove RoutingSchema
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemaServiceApiInterface
+   */
+  deleteRoutingSchema(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingSchema>
+
+  /**
+   *
+   * @summary Patch RoutingSchema
+   * @param {string} id
+   * @param {EnginePatchRoutingSchemaRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemaServiceApiInterface
+   */
+  patchRoutingSchema(
+    id: string,
+    body: EnginePatchRoutingSchemaRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingSchema>
+
+  /**
+   *
+   * @summary RoutingSchema item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemaServiceApiInterface
+   */
+  readRoutingSchema(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingSchema>
+
+  /**
+   *
+   * @summary List RoutingSchema
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {string} [name]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemaServiceApiInterface
+   */
+  searchRoutingSchema(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    name?: string,
+    options?: any
+  ): AxiosPromise<EngineListRoutingSchema>
+
+  /**
+   *
+   * @summary Update RoutingSchema
+   * @param {string} id
+   * @param {EngineUpdateRoutingSchemaRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemaServiceApiInterface
+   */
+  updateRoutingSchema(
+    id: string,
+    body: EngineUpdateRoutingSchemaRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingSchema>
+}
+
+/**
  * RoutingSchemaServiceApi - object-oriented interface
  * @export
  * @class RoutingSchemaServiceApi
  * @extends {BaseAPI}
  */
-export class RoutingSchemaServiceApi extends BaseAPI {
+export class RoutingSchemaServiceApi extends BaseAPI
+  implements RoutingSchemaServiceApiInterface {
   /**
    *
    * @summary Create RoutingSchema
@@ -892,7 +1028,10 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {string} [name]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
@@ -901,11 +1040,14 @@ export class RoutingSchemaServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    name?: string,
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration)
-      .searchRoutingSchema(page, size, q, domainId, options)
+      .searchRoutingSchema(page, size, q, sort, fields, id, name, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

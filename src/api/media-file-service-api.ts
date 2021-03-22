@@ -181,7 +181,9 @@ export const MediaFileServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -189,7 +191,9 @@ export const MediaFileServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/storage/media`
@@ -227,8 +231,16 @@ export const MediaFileServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -330,7 +342,9 @@ export const MediaFileServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -338,7 +352,9 @@ export const MediaFileServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -348,7 +364,7 @@ export const MediaFileServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MediaFileServiceApiAxiosParamCreator(
         configuration
-      ).searchMediaFile(page, size, q, domainId, options)
+      ).searchMediaFile(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -413,7 +429,9 @@ export const MediaFileServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -421,14 +439,76 @@ export const MediaFileServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<StorageListMedia> {
       return MediaFileServiceApiFp(configuration)
-        .searchMediaFile(page, size, q, domainId, options)
+        .searchMediaFile(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
   }
+}
+
+/**
+ * MediaFileServiceApi - interface
+ * @export
+ * @interface MediaFileServiceApi
+ */
+export interface MediaFileServiceApiInterface {
+  /**
+   *
+   * @summary Remove MediaFile
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MediaFileServiceApiInterface
+   */
+  deleteMediaFile(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<StorageMediaFile>
+
+  /**
+   *
+   * @summary MediaFile item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MediaFileServiceApiInterface
+   */
+  readMediaFile(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<StorageMediaFile>
+
+  /**
+   *
+   * @summary Search MediaFile
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MediaFileServiceApiInterface
+   */
+  searchMediaFile(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<StorageListMedia>
 }
 
 /**
@@ -437,7 +517,8 @@ export const MediaFileServiceApiFactory = function(
  * @class MediaFileServiceApi
  * @extends {BaseAPI}
  */
-export class MediaFileServiceApi extends BaseAPI {
+export class MediaFileServiceApi extends BaseAPI
+  implements MediaFileServiceApiInterface {
   /**
    *
    * @summary Remove MediaFile
@@ -474,7 +555,9 @@ export class MediaFileServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MediaFileServiceApi
@@ -483,11 +566,13 @@ export class MediaFileServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return MediaFileServiceApiFp(this.configuration)
-      .searchMediaFile(page, size, q, domainId, options)
+      .searchMediaFile(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

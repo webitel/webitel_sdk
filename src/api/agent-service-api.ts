@@ -454,9 +454,8 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
      * @param {Array<string>} [allowChannels]
      * @param {Array<number>} [supervisorId]
@@ -474,9 +473,8 @@ export const AgentServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<string>,
       allowChannels?: Array<string>,
       supervisorId?: Array<number>,
@@ -524,16 +522,12 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (fields) {
         localVarQueryParameter['fields'] = fields
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
       }
 
       if (id) {
@@ -707,7 +701,8 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -716,7 +711,8 @@ export const AgentServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -764,8 +760,12 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       localVarUrlObj.query = {
@@ -1596,9 +1596,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
      * @param {Array<string>} [allowChannels]
      * @param {Array<number>} [supervisorId]
@@ -1616,9 +1615,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<string>,
       allowChannels?: Array<string>,
       supervisorId?: Array<number>,
@@ -1642,9 +1640,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         page,
         size,
         q,
-        domainId,
-        fields,
         sort,
+        fields,
         id,
         allowChannels,
         supervisorId,
@@ -1730,7 +1727,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1739,7 +1737,8 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -1749,7 +1748,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentInQueue(id, page, size, q, domainId, options)
+      ).searchAgentInQueue(id, page, size, q, sort, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2168,9 +2167,8 @@ export const AgentServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
-     * @param {Array<string>} [fields]
      * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
      * @param {Array<string>} [allowChannels]
      * @param {Array<number>} [supervisorId]
@@ -2188,9 +2186,8 @@ export const AgentServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
-      fields?: Array<string>,
       sort?: string,
+      fields?: Array<string>,
       id?: Array<string>,
       allowChannels?: Array<string>,
       supervisorId?: Array<number>,
@@ -2208,9 +2205,8 @@ export const AgentServiceApiFactory = function(
           page,
           size,
           q,
-          domainId,
-          fields,
           sort,
+          fields,
           id,
           allowChannels,
           supervisorId,
@@ -2272,7 +2268,8 @@ export const AgentServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2281,11 +2278,12 @@ export const AgentServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListAgentInQueue> {
       return AgentServiceApiFp(configuration)
-        .searchAgentInQueue(id, page, size, q, domainId, options)
+        .searchAgentInQueue(id, page, size, q, sort, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2480,12 +2478,341 @@ export const AgentServiceApiFactory = function(
 }
 
 /**
+ * AgentServiceApi - interface
+ * @export
+ * @interface AgentServiceApi
+ */
+export interface AgentServiceApiInterface {
+  /**
+   *
+   * @param {string} agentId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [timeFrom]
+   * @param {string} [timeTo]
+   * @param {string} [q]
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  agentStateHistory(
+    agentId: string,
+    page?: number,
+    size?: number,
+    timeFrom?: string,
+    timeTo?: string,
+    q?: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListAgentStateHistory>
+
+  /**
+   *
+   * @summary Create Agent
+   * @param {EngineCreateAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  createAgent(
+    body: EngineCreateAgentRequest,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+
+  /**
+   *
+   * @summary Remove Agent
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  deleteAgent(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+
+  /**
+   *
+   * @summary Update Agent
+   * @param {string} id
+   * @param {EnginePatchAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  patchAgent(
+    id: string,
+    body: EnginePatchAgentRequest,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+
+  /**
+   *
+   * @summary Agent item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  readAgent(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+
+  /**
+   *
+   * @summary List of Agent
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [allowChannels]
+   * @param {Array<number>} [supervisorId]
+   * @param {Array<number>} [teamId]
+   * @param {Array<number>} [regionId]
+   * @param {Array<number>} [auditorId]
+   * @param {boolean} [isSupervisor]
+   * @param {Array<number>} [skillId]
+   * @param {Array<number>} [queueId]
+   * @param {boolean} [notSupervisor]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchAgent(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<string>,
+    allowChannels?: Array<string>,
+    supervisorId?: Array<number>,
+    teamId?: Array<number>,
+    regionId?: Array<number>,
+    auditorId?: Array<number>,
+    isSupervisor?: boolean,
+    skillId?: Array<number>,
+    queueId?: Array<number>,
+    notSupervisor?: boolean,
+    options?: any
+  ): AxiosPromise<EngineListAgent>
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [timeFrom]
+   * @param {string} [timeTo]
+   * @param {Array<number>} [agentId]
+   * @param {string} [domainId]
+   * @param {string} [q]
+   * @param {Array<string>} [fields]
+   * @param {string} [sort]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchAgentCallStatistics(
+    page?: number,
+    size?: number,
+    timeFrom?: string,
+    timeTo?: string,
+    agentId?: Array<number>,
+    domainId?: string,
+    q?: string,
+    fields?: Array<string>,
+    sort?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentCallStatisticsList>
+
+  /**
+   *
+   * @param {string} id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchAgentInQueue(
+    id: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    options?: any
+  ): AxiosPromise<EngineListAgentInQueue>
+
+  /**
+   *
+   * @param {string} agentId
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchAgentInQueueStatistics(
+    agentId: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentInQueueStatisticsList>
+
+  /**
+   *
+   * @summary todo deprecated ?
+   * @param {string} id
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchAgentInTeam(
+    id: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListAgentInTeam>
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [joinedAtFrom]
+   * @param {string} [joinedAtTo]
+   * @param {Array<string>} [agentId]
+   * @param {string} [sort]
+   * @param {string} [domainId]
+   * @param {string} [fromId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchAgentStateHistory(
+    page?: number,
+    size?: number,
+    joinedAtFrom?: string,
+    joinedAtTo?: string,
+    agentId?: Array<string>,
+    sort?: string,
+    domainId?: string,
+    fromId?: string,
+    options?: any
+  ): AxiosPromise<EngineListAgentStateHistory>
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [timeFrom]
+   * @param {string} [timeTo]
+   * @param {string} [q]
+   * @param {Array<string>} [agentId]
+   * @param {Array<string>} [status]
+   * @param {Array<number>} [queueId]
+   * @param {Array<number>} [teamId]
+   * @param {string} [utilizationFrom]
+   * @param {string} [utilizationTo]
+   * @param {boolean} [hasCall]
+   * @param {string} [sort]
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchAgentStatusStatistic(
+    page?: number,
+    size?: number,
+    timeFrom?: string,
+    timeTo?: string,
+    q?: string,
+    agentId?: Array<string>,
+    status?: Array<string>,
+    queueId?: Array<number>,
+    teamId?: Array<number>,
+    utilizationFrom?: string,
+    utilizationTo?: string,
+    hasCall?: boolean,
+    sort?: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListAgentStatsStatistic>
+
+  /**
+   *
+   * @summary SearchLookupAgentNotExistsUser
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchLookupUsersAgentNotExists(
+    page?: number,
+    size?: number,
+    q?: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListAgentUser>
+
+  /**
+   *
+   * @summary Update Agent
+   * @param {string} id
+   * @param {EngineUpdateAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  updateAgent(
+    id: string,
+    body: EngineUpdateAgentRequest,
+    options?: any
+  ): AxiosPromise<EngineAgent>
+
+  /**
+   *
+   * @summary Change agent status
+   * @param {string} id
+   * @param {EngineAgentStatusRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  updateAgentStatus(
+    id: string,
+    body: EngineAgentStatusRequest,
+    options?: any
+  ): AxiosPromise<EngineResponse>
+}
+
+/**
  * AgentServiceApi - object-oriented interface
  * @export
  * @class AgentServiceApi
  * @extends {BaseAPI}
  */
-export class AgentServiceApi extends BaseAPI {
+export class AgentServiceApi extends BaseAPI
+  implements AgentServiceApiInterface {
   /**
    *
    * @param {string} agentId
@@ -2588,9 +2915,8 @@ export class AgentServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
-   * @param {Array<string>} [fields]
    * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {Array<string>} [id]
    * @param {Array<string>} [allowChannels]
    * @param {Array<number>} [supervisorId]
@@ -2609,9 +2935,8 @@ export class AgentServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
-    fields?: Array<string>,
     sort?: string,
+    fields?: Array<string>,
     id?: Array<string>,
     allowChannels?: Array<string>,
     supervisorId?: Array<number>,
@@ -2629,9 +2954,8 @@ export class AgentServiceApi extends BaseAPI {
         page,
         size,
         q,
-        domainId,
-        fields,
         sort,
+        fields,
         id,
         allowChannels,
         supervisorId,
@@ -2696,7 +3020,8 @@ export class AgentServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
@@ -2706,11 +3031,12 @@ export class AgentServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration)
-      .searchAgentInQueue(id, page, size, q, domainId, options)
+      .searchAgentInQueue(id, page, size, q, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

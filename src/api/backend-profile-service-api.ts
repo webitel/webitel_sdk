@@ -337,7 +337,9 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -345,7 +347,9 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/storage/backend_profiles`
@@ -383,8 +387,16 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -631,7 +643,9 @@ export const BackendProfileServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -639,7 +653,9 @@ export const BackendProfileServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -649,7 +665,7 @@ export const BackendProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await BackendProfileServiceApiAxiosParamCreator(
         configuration
-      ).searchBackendProfile(page, size, q, domainId, options)
+      ).searchBackendProfile(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -778,7 +794,9 @@ export const BackendProfileServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -786,11 +804,13 @@ export const BackendProfileServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<StorageListBackendProfile> {
       return BackendProfileServiceApiFp(configuration)
-        .searchBackendProfile(page, size, q, domainId, options)
+        .searchBackendProfile(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -814,12 +834,116 @@ export const BackendProfileServiceApiFactory = function(
 }
 
 /**
+ * BackendProfileServiceApi - interface
+ * @export
+ * @interface BackendProfileServiceApi
+ */
+export interface BackendProfileServiceApiInterface {
+  /**
+   *
+   * @summary Create BackendProfile
+   * @param {StorageCreateBackendProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApiInterface
+   */
+  createBackendProfile(
+    body: StorageCreateBackendProfileRequest,
+    options?: any
+  ): AxiosPromise<StorageBackendProfile>
+
+  /**
+   *
+   * @summary Remove BackendProfile
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApiInterface
+   */
+  deleteBackendProfile(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<StorageBackendProfile>
+
+  /**
+   *
+   * @summary Patch BackendProfile
+   * @param {string} id
+   * @param {StoragePatchBackendProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApiInterface
+   */
+  patchBackendProfile(
+    id: string,
+    body: StoragePatchBackendProfileRequest,
+    options?: any
+  ): AxiosPromise<StorageBackendProfile>
+
+  /**
+   *
+   * @summary BackendProfile item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApiInterface
+   */
+  readBackendProfile(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<StorageBackendProfile>
+
+  /**
+   *
+   * @summary List of BackendProfile
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApiInterface
+   */
+  searchBackendProfile(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<StorageListBackendProfile>
+
+  /**
+   *
+   * @summary Update BackendProfile
+   * @param {string} id
+   * @param {StorageUpdateBackendProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof BackendProfileServiceApiInterface
+   */
+  updateBackendProfile(
+    id: string,
+    body: StorageUpdateBackendProfileRequest,
+    options?: any
+  ): AxiosPromise<StorageBackendProfile>
+}
+
+/**
  * BackendProfileServiceApi - object-oriented interface
  * @export
  * @class BackendProfileServiceApi
  * @extends {BaseAPI}
  */
-export class BackendProfileServiceApi extends BaseAPI {
+export class BackendProfileServiceApi extends BaseAPI
+  implements BackendProfileServiceApiInterface {
   /**
    *
    * @summary Create BackendProfile
@@ -892,7 +1016,9 @@ export class BackendProfileServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BackendProfileServiceApi
@@ -901,11 +1027,13 @@ export class BackendProfileServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return BackendProfileServiceApiFp(this.configuration)
-      .searchBackendProfile(page, size, q, domainId, options)
+      .searchBackendProfile(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -254,7 +254,9 @@ export const SkillServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -262,7 +264,9 @@ export const SkillServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/skills`
@@ -300,8 +304,16 @@ export const SkillServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -505,7 +517,9 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -513,7 +527,9 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -523,7 +539,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
         configuration
-      ).searchSkill(page, size, q, domainId, options)
+      ).searchSkill(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -632,7 +648,9 @@ export const SkillServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -640,11 +658,13 @@ export const SkillServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListSkill> {
       return SkillServiceApiFp(configuration)
-        .searchSkill(page, size, q, domainId, options)
+        .searchSkill(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -668,12 +688,101 @@ export const SkillServiceApiFactory = function(
 }
 
 /**
+ * SkillServiceApi - interface
+ * @export
+ * @interface SkillServiceApi
+ */
+export interface SkillServiceApiInterface {
+  /**
+   *
+   * @summary Create Skill
+   * @param {EngineCreateSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApiInterface
+   */
+  createSkill(
+    body: EngineCreateSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+
+  /**
+   *
+   * @summary Remove Skill
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApiInterface
+   */
+  deleteSkill(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+
+  /**
+   *
+   * @summary Skill item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApiInterface
+   */
+  readSkill(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+
+  /**
+   *
+   * @summary List of Skill
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApiInterface
+   */
+  searchSkill(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListSkill>
+
+  /**
+   *
+   * @summary Update Skill
+   * @param {string} id
+   * @param {EngineUpdateSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApiInterface
+   */
+  updateSkill(
+    id: string,
+    body: EngineUpdateSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineSkill>
+}
+
+/**
  * SkillServiceApi - object-oriented interface
  * @export
  * @class SkillServiceApi
  * @extends {BaseAPI}
  */
-export class SkillServiceApi extends BaseAPI {
+export class SkillServiceApi extends BaseAPI
+  implements SkillServiceApiInterface {
   /**
    *
    * @summary Create Skill
@@ -724,7 +833,9 @@ export class SkillServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SkillServiceApi
@@ -733,11 +844,13 @@ export class SkillServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return SkillServiceApiFp(this.configuration)
-      .searchSkill(page, size, q, domainId, options)
+      .searchSkill(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

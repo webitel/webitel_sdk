@@ -256,7 +256,9 @@ export const CalendarServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -264,7 +266,9 @@ export const CalendarServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calendars`
@@ -302,8 +306,16 @@ export const CalendarServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -577,7 +589,9 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -585,7 +599,9 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -595,7 +611,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CalendarServiceApiAxiosParamCreator(
         configuration
-      ).searchCalendar(page, size, q, domainId, options)
+      ).searchCalendar(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -738,7 +754,9 @@ export const CalendarServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -746,11 +764,13 @@ export const CalendarServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListCalendar> {
       return CalendarServiceApiFp(configuration)
-        .searchCalendar(page, size, q, domainId, options)
+        .searchCalendar(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -793,12 +813,118 @@ export const CalendarServiceApiFactory = function(
 }
 
 /**
+ * CalendarServiceApi - interface
+ * @export
+ * @interface CalendarServiceApi
+ */
+export interface CalendarServiceApiInterface {
+  /**
+   *
+   * @summary Create calendar
+   * @param {EngineCreateCalendarRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApiInterface
+   */
+  createCalendar(
+    body: EngineCreateCalendarRequest,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+
+  /**
+   *
+   * @summary Remove calendar
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApiInterface
+   */
+  deleteCalendar(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+
+  /**
+   *
+   * @summary Calendar item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApiInterface
+   */
+  readCalendar(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+
+  /**
+   *
+   * @summary List of calendar
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApiInterface
+   */
+  searchCalendar(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListCalendar>
+
+  /**
+   *
+   * @summary List timezones
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApiInterface
+   */
+  searchTimezones(
+    page?: number,
+    size?: number,
+    q?: string,
+    options?: any
+  ): AxiosPromise<EngineListTimezoneResponse>
+
+  /**
+   *
+   * @summary Update calendar
+   * @param {string} id
+   * @param {EngineUpdateCalendarRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CalendarServiceApiInterface
+   */
+  updateCalendar(
+    id: string,
+    body: EngineUpdateCalendarRequest,
+    options?: any
+  ): AxiosPromise<EngineCalendar>
+}
+
+/**
  * CalendarServiceApi - object-oriented interface
  * @export
  * @class CalendarServiceApi
  * @extends {BaseAPI}
  */
-export class CalendarServiceApi extends BaseAPI {
+export class CalendarServiceApi extends BaseAPI
+  implements CalendarServiceApiInterface {
   /**
    *
    * @summary Create calendar
@@ -849,7 +975,9 @@ export class CalendarServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
@@ -858,11 +986,13 @@ export class CalendarServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration)
-      .searchCalendar(page, size, q, domainId, options)
+      .searchCalendar(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

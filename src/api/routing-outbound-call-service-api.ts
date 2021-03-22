@@ -430,7 +430,13 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {string} [name]
+     * @param {Array<number>} [schemaId]
+     * @param {string} [pattern]
+     * @param {string} [description]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -438,7 +444,13 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
+      name?: string,
+      schemaId?: Array<number>,
+      pattern?: string,
+      description?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/routing/outbound/calls`
@@ -476,8 +488,32 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (name !== undefined) {
+        localVarQueryParameter['name'] = name
+      }
+
+      if (schemaId) {
+        localVarQueryParameter['schema_id'] = schemaId
+      }
+
+      if (pattern !== undefined) {
+        localVarQueryParameter['pattern'] = pattern
+      }
+
+      if (description !== undefined) {
+        localVarQueryParameter['description'] = description
       }
 
       localVarUrlObj.query = {
@@ -758,7 +794,13 @@ export const RoutingOutboundCallServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {string} [name]
+     * @param {Array<number>} [schemaId]
+     * @param {string} [pattern]
+     * @param {string} [description]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -766,7 +808,13 @@ export const RoutingOutboundCallServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
+      name?: string,
+      schemaId?: Array<number>,
+      pattern?: string,
+      description?: string,
       options?: any
     ): Promise<
       (
@@ -776,7 +824,19 @@ export const RoutingOutboundCallServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingOutboundCallServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingOutboundCall(page, size, q, domainId, options)
+      ).searchRoutingOutboundCall(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        name,
+        schemaId,
+        pattern,
+        description,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -924,7 +984,13 @@ export const RoutingOutboundCallServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {string} [name]
+     * @param {Array<number>} [schemaId]
+     * @param {string} [pattern]
+     * @param {string} [description]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -932,11 +998,29 @@ export const RoutingOutboundCallServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
+      name?: string,
+      schemaId?: Array<number>,
+      pattern?: string,
+      description?: string,
       options?: any
     ): AxiosPromise<EngineListRoutingOutboundCall> {
       return RoutingOutboundCallServiceApiFp(configuration)
-        .searchRoutingOutboundCall(page, size, q, domainId, options)
+        .searchRoutingOutboundCall(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          name,
+          schemaId,
+          pattern,
+          description,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -960,12 +1044,141 @@ export const RoutingOutboundCallServiceApiFactory = function(
 }
 
 /**
+ * RoutingOutboundCallServiceApi - interface
+ * @export
+ * @interface RoutingOutboundCallServiceApi
+ */
+export interface RoutingOutboundCallServiceApiInterface {
+  /**
+   *
+   * @summary Create RoutingOutboundCall
+   * @param {EngineCreateRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApiInterface
+   */
+  createRoutingOutboundCall(
+    body: EngineCreateRoutingOutboundCallRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+
+  /**
+   *
+   * @summary Remove RoutingOutboundCall
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApiInterface
+   */
+  deleteRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+
+  /**
+   *
+   * @summary Move RoutingOutboundCall
+   * @param {string} fromId
+   * @param {string} toId
+   * @param {EngineMovePositionRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApiInterface
+   */
+  movePositionRoutingOutboundCall(
+    fromId: string,
+    toId: string,
+    body: EngineMovePositionRoutingOutboundCallRequest,
+    options?: any
+  ): AxiosPromise<EngineMovePositionRoutingOutboundCallResponse>
+
+  /**
+   *
+   * @summary Patch RoutingOutboundCall
+   * @param {string} id
+   * @param {EnginePatchRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApiInterface
+   */
+  patchRoutingOutboundCall(
+    id: string,
+    body: EnginePatchRoutingOutboundCallRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+
+  /**
+   *
+   * @summary RoutingOutboundCall item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApiInterface
+   */
+  readRoutingOutboundCall(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+
+  /**
+   *
+   * @summary List of RoutingOutboundCall
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {string} [name]
+   * @param {Array<number>} [schemaId]
+   * @param {string} [pattern]
+   * @param {string} [description]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApiInterface
+   */
+  searchRoutingOutboundCall(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    name?: string,
+    schemaId?: Array<number>,
+    pattern?: string,
+    description?: string,
+    options?: any
+  ): AxiosPromise<EngineListRoutingOutboundCall>
+
+  /**
+   *
+   * @summary Update RoutingOutboundCall
+   * @param {string} id
+   * @param {EngineUpdateRoutingOutboundCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingOutboundCallServiceApiInterface
+   */
+  updateRoutingOutboundCall(
+    id: string,
+    body: EngineUpdateRoutingOutboundCallRequest,
+    options?: any
+  ): AxiosPromise<EngineRoutingOutboundCall>
+}
+
+/**
  * RoutingOutboundCallServiceApi - object-oriented interface
  * @export
  * @class RoutingOutboundCallServiceApi
  * @extends {BaseAPI}
  */
-export class RoutingOutboundCallServiceApi extends BaseAPI {
+export class RoutingOutboundCallServiceApi extends BaseAPI
+  implements RoutingOutboundCallServiceApiInterface {
   /**
    *
    * @summary Create RoutingOutboundCall
@@ -1063,7 +1276,13 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {string} [name]
+   * @param {Array<number>} [schemaId]
+   * @param {string} [pattern]
+   * @param {string} [description]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingOutboundCallServiceApi
@@ -1072,11 +1291,29 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    name?: string,
+    schemaId?: Array<number>,
+    pattern?: string,
+    description?: string,
     options?: any
   ) {
     return RoutingOutboundCallServiceApiFp(this.configuration)
-      .searchRoutingOutboundCall(page, size, q, domainId, options)
+      .searchRoutingOutboundCall(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        name,
+        schemaId,
+        pattern,
+        description,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

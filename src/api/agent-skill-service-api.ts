@@ -375,7 +375,9 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -384,7 +386,9 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -432,8 +436,16 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -782,7 +794,9 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -791,7 +805,9 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -801,7 +817,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentSkill(agentId, page, size, q, domainId, options)
+      ).searchAgentSkill(agentId, page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -985,7 +1001,9 @@ export const AgentSkillServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -994,11 +1012,13 @@ export const AgentSkillServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
-        .searchAgentSkill(agentId, page, size, q, domainId, options)
+        .searchAgentSkill(agentId, page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1054,12 +1074,148 @@ export const AgentSkillServiceApiFactory = function(
 }
 
 /**
+ * AgentSkillServiceApi - interface
+ * @export
+ * @interface AgentSkillServiceApi
+ */
+export interface AgentSkillServiceApiInterface {
+  /**
+   *
+   * @summary Create AgentSkill
+   * @param {string} agentId
+   * @param {EngineCreateAgentSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApiInterface
+   */
+  createAgentSkill(
+    agentId: string,
+    body: EngineCreateAgentSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+
+  /**
+   *
+   * @summary Remove AgentSkill
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApiInterface
+   */
+  deleteAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+
+  /**
+   *
+   * @param {string} agentId
+   * @param {string} id
+   * @param {EnginePatchAgentSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApiInterface
+   */
+  patchAgentSkill(
+    agentId: string,
+    id: string,
+    body: EnginePatchAgentSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+
+  /**
+   *
+   * @summary AgentSkill item
+   * @param {string} agentId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApiInterface
+   */
+  readAgentSkill(
+    agentId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+
+  /**
+   *
+   * @summary List of AgentSkill
+   * @param {string} agentId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApiInterface
+   */
+  searchAgentSkill(
+    agentId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListAgentSkill>
+
+  /**
+   *
+   * @summary SearchLookupAgentNotExistsSkill
+   * @param {string} agentId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApiInterface
+   */
+  searchLookupAgentNotExistsSkill(
+    agentId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineListSkill>
+
+  /**
+   *
+   * @summary Update AgentSkill
+   * @param {string} agentId
+   * @param {string} id
+   * @param {EngineUpdateAgentSkillRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentSkillServiceApiInterface
+   */
+  updateAgentSkill(
+    agentId: string,
+    id: string,
+    body: EngineUpdateAgentSkillRequest,
+    options?: any
+  ): AxiosPromise<EngineAgentSkill>
+}
+
+/**
  * AgentSkillServiceApi - object-oriented interface
  * @export
  * @class AgentSkillServiceApi
  * @extends {BaseAPI}
  */
-export class AgentSkillServiceApi extends BaseAPI {
+export class AgentSkillServiceApi extends BaseAPI
+  implements AgentSkillServiceApiInterface {
   /**
    *
    * @summary Create AgentSkill
@@ -1148,7 +1304,9 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
@@ -1158,11 +1316,13 @@ export class AgentSkillServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
-      .searchAgentSkill(agentId, page, size, q, domainId, options)
+      .searchAgentSkill(agentId, page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

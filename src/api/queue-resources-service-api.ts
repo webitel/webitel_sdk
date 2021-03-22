@@ -283,7 +283,9 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -292,7 +294,9 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -340,8 +344,16 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -571,7 +583,9 @@ export const QueueResourcesServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -580,7 +594,9 @@ export const QueueResourcesServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -590,7 +606,16 @@ export const QueueResourcesServiceApiFp = function(
     > {
       const localVarAxiosArgs = await QueueResourcesServiceApiAxiosParamCreator(
         configuration
-      ).searchQueueResourceGroup(queueId, page, size, q, domainId, options)
+      ).searchQueueResourceGroup(
+        queueId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -711,7 +736,9 @@ export const QueueResourcesServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -720,11 +747,22 @@ export const QueueResourcesServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListQueueResourceGroup> {
       return QueueResourcesServiceApiFp(configuration)
-        .searchQueueResourceGroup(queueId, page, size, q, domainId, options)
+        .searchQueueResourceGroup(
+          queueId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -750,12 +788,111 @@ export const QueueResourcesServiceApiFactory = function(
 }
 
 /**
+ * QueueResourcesServiceApi - interface
+ * @export
+ * @interface QueueResourcesServiceApi
+ */
+export interface QueueResourcesServiceApiInterface {
+  /**
+   *
+   * @summary CreateQueueResourceGroup
+   * @param {string} queueId
+   * @param {EngineCreateQueueResourceGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApiInterface
+   */
+  createQueueResourceGroup(
+    queueId: string,
+    body: EngineCreateQueueResourceGroupRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueResourceGroup>
+
+  /**
+   *
+   * @summary DeleteQueueResourceGroup
+   * @param {string} queueId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApiInterface
+   */
+  deleteQueueResourceGroup(
+    queueId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineQueueResourceGroup>
+
+  /**
+   *
+   * @summary ReadQueueResourceGroup
+   * @param {string} queueId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApiInterface
+   */
+  readQueueResourceGroup(
+    queueId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineQueueResourceGroup>
+
+  /**
+   *
+   * @summary SearchQueueResourceGroup
+   * @param {string} queueId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApiInterface
+   */
+  searchQueueResourceGroup(
+    queueId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListQueueResourceGroup>
+
+  /**
+   *
+   * @summary UpdateQueueResourceGroup
+   * @param {string} queueId
+   * @param {string} id
+   * @param {EngineUpdateQueueResourceGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueResourcesServiceApiInterface
+   */
+  updateQueueResourceGroup(
+    queueId: string,
+    id: string,
+    body: EngineUpdateQueueResourceGroupRequest,
+    options?: any
+  ): AxiosPromise<EngineQueueResourceGroup>
+}
+
+/**
  * QueueResourcesServiceApi - object-oriented interface
  * @export
  * @class QueueResourcesServiceApi
  * @extends {BaseAPI}
  */
-export class QueueResourcesServiceApi extends BaseAPI {
+export class QueueResourcesServiceApi extends BaseAPI
+  implements QueueResourcesServiceApiInterface {
   /**
    *
    * @summary CreateQueueResourceGroup
@@ -824,7 +961,9 @@ export class QueueResourcesServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueResourcesServiceApi
@@ -834,11 +973,22 @@ export class QueueResourcesServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return QueueResourcesServiceApiFp(this.configuration)
-      .searchQueueResourceGroup(queueId, page, size, q, domainId, options)
+      .searchQueueResourceGroup(
+        queueId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -582,7 +582,9 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -590,7 +592,9 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/resources`
@@ -628,8 +632,16 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -659,7 +671,9 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -668,7 +682,9 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'resourceId' is not null or undefined
@@ -716,8 +732,16 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -1153,7 +1177,9 @@ export const OutboundResourceServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1161,7 +1187,9 @@ export const OutboundResourceServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1171,7 +1199,7 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).searchOutboundResource(page, size, q, domainId, options)
+      ).searchOutboundResource(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1190,7 +1218,9 @@ export const OutboundResourceServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1199,7 +1229,9 @@ export const OutboundResourceServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1214,7 +1246,9 @@ export const OutboundResourceServiceApiFp = function(
         page,
         size,
         q,
-        domainId,
+        sort,
+        fields,
+        id,
         options
       )
       return (
@@ -1434,7 +1468,9 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1442,11 +1478,13 @@ export const OutboundResourceServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
-        .searchOutboundResource(page, size, q, domainId, options)
+        .searchOutboundResource(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1456,7 +1494,9 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1465,7 +1505,9 @@ export const OutboundResourceServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListOutboundResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
@@ -1474,7 +1516,9 @@ export const OutboundResourceServiceApiFactory = function(
           page,
           size,
           q,
-          domainId,
+          sort,
+          fields,
+          id,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1519,12 +1563,207 @@ export const OutboundResourceServiceApiFactory = function(
 }
 
 /**
+ * OutboundResourceServiceApi - interface
+ * @export
+ * @interface OutboundResourceServiceApi
+ */
+export interface OutboundResourceServiceApiInterface {
+  /**
+   *
+   * @summary Create OutboundResource
+   * @param {EngineCreateOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  createOutboundResource(
+    body: EngineCreateOutboundResourceRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+
+  /**
+   *
+   * @summary Create CreateOutboundResourceDisplay
+   * @param {string} resourceId
+   * @param {EngineCreateOutboundResourceDisplayRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  createOutboundResourceDisplay(
+    resourceId: string,
+    body: EngineCreateOutboundResourceDisplayRequest,
+    options?: any
+  ): AxiosPromise<EngineResourceDisplay>
+
+  /**
+   *
+   * @summary Remove OutboundResource
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  deleteOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+
+  /**
+   *
+   * @summary Remove ResourceDisplay
+   * @param {string} resourceId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  deleteOutboundResourceDisplay(
+    resourceId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineResourceDisplay>
+
+  /**
+   *
+   * @summary Patch OutboundResource
+   * @param {string} id
+   * @param {EnginePatchOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  patchOutboundResource(
+    id: string,
+    body: EnginePatchOutboundResourceRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+
+  /**
+   *
+   * @summary OutboundResource item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  readOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+
+  /**
+   *
+   * @summary ResourceDisplay item
+   * @param {string} resourceId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  readOutboundResourceDisplay(
+    resourceId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineResourceDisplay>
+
+  /**
+   *
+   * @summary List of OutboundResource
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  searchOutboundResource(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListOutboundResource>
+
+  /**
+   *
+   * @summary List of ResourceDisplay
+   * @param {string} resourceId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  searchOutboundResourceDisplay(
+    resourceId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListOutboundResourceDisplay>
+
+  /**
+   *
+   * @summary Update OutboundResource
+   * @param {string} id
+   * @param {EngineUpdateOutboundResourceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  updateOutboundResource(
+    id: string,
+    body: EngineUpdateOutboundResourceRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResource>
+
+  /**
+   *
+   * @summary Update ResourceDisplay
+   * @param {string} resourceId
+   * @param {string} id
+   * @param {EngineUpdateOutboundResourceDisplayRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApiInterface
+   */
+  updateOutboundResourceDisplay(
+    resourceId: string,
+    id: string,
+    body: EngineUpdateOutboundResourceDisplayRequest,
+    options?: any
+  ): AxiosPromise<EngineResourceDisplay>
+}
+
+/**
  * OutboundResourceServiceApi - object-oriented interface
  * @export
  * @class OutboundResourceServiceApi
  * @extends {BaseAPI}
  */
-export class OutboundResourceServiceApi extends BaseAPI {
+export class OutboundResourceServiceApi extends BaseAPI
+  implements OutboundResourceServiceApiInterface {
   /**
    *
    * @summary Create OutboundResource
@@ -1658,7 +1897,9 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
@@ -1667,11 +1908,13 @@ export class OutboundResourceServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .searchOutboundResource(page, size, q, domainId, options)
+      .searchOutboundResource(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1682,7 +1925,9 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
@@ -1692,7 +1937,9 @@ export class OutboundResourceServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
@@ -1701,7 +1948,9 @@ export class OutboundResourceServiceApi extends BaseAPI {
         page,
         size,
         q,
-        domainId,
+        sort,
+        fields,
+        id,
         options
       )
       .then((request) => request(this.axios, this.basePath))

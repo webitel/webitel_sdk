@@ -499,7 +499,9 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -507,7 +509,9 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/resource_group`
@@ -545,8 +549,16 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -576,7 +588,9 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -585,7 +599,9 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'groupId' is not null or undefined
@@ -633,8 +649,16 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -1038,7 +1062,9 @@ export const OutboundResourceGroupServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1046,7 +1072,9 @@ export const OutboundResourceGroupServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1056,7 +1084,7 @@ export const OutboundResourceGroupServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceGroupServiceApiAxiosParamCreator(
         configuration
-      ).searchOutboundResourceGroup(page, size, q, domainId, options)
+      ).searchOutboundResourceGroup(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1075,7 +1103,9 @@ export const OutboundResourceGroupServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1084,7 +1114,9 @@ export const OutboundResourceGroupServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1094,7 +1126,16 @@ export const OutboundResourceGroupServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceGroupServiceApiAxiosParamCreator(
         configuration
-      ).searchOutboundResourceInGroup(groupId, page, size, q, domainId, options)
+      ).searchOutboundResourceInGroup(
+        groupId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1295,7 +1336,9 @@ export const OutboundResourceGroupServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1303,11 +1346,13 @@ export const OutboundResourceGroupServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListOutboundResourceGroup> {
       return OutboundResourceGroupServiceApiFp(configuration)
-        .searchOutboundResourceGroup(page, size, q, domainId, options)
+        .searchOutboundResourceGroup(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1317,7 +1362,9 @@ export const OutboundResourceGroupServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1326,7 +1373,9 @@ export const OutboundResourceGroupServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListOutboundResourceInGroup> {
       return OutboundResourceGroupServiceApiFp(configuration)
@@ -1335,7 +1384,9 @@ export const OutboundResourceGroupServiceApiFactory = function(
           page,
           size,
           q,
-          domainId,
+          sort,
+          fields,
+          id,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1380,12 +1431,192 @@ export const OutboundResourceGroupServiceApiFactory = function(
 }
 
 /**
+ * OutboundResourceGroupServiceApi - interface
+ * @export
+ * @interface OutboundResourceGroupServiceApi
+ */
+export interface OutboundResourceGroupServiceApiInterface {
+  /**
+   *
+   * @summary Create OutboundResourceGroup
+   * @param {EngineCreateOutboundResourceGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  createOutboundResourceGroup(
+    body: EngineCreateOutboundResourceGroupRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResourceGroup>
+
+  /**
+   *
+   * @summary Create OutboundResourceGroup
+   * @param {string} groupId
+   * @param {EngineCreateOutboundResourceInGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  createOutboundResourceInGroup(
+    groupId: string,
+    body: EngineCreateOutboundResourceInGroupRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResourceInGroup>
+
+  /**
+   *
+   * @summary Remove OutboundResourceGroup
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  deleteOutboundResourceGroup(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResourceGroup>
+
+  /**
+   *
+   * @summary Remove OutboundResourceInGroup
+   * @param {string} groupId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  deleteOutboundResourceInGroup(
+    groupId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResourceInGroup>
+
+  /**
+   *
+   * @summary OutboundResourceGroup item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  readOutboundResourceGroup(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResourceGroup>
+
+  /**
+   *
+   * @summary OutboundResourceInGroup item
+   * @param {string} groupId
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  readOutboundResourceInGroup(
+    groupId: string,
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineOutboundResourceInGroup>
+
+  /**
+   *
+   * @summary List of OutboundResourceGroup
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  searchOutboundResourceGroup(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListOutboundResourceGroup>
+
+  /**
+   *
+   * @summary List of OutboundResourceInGroup
+   * @param {string} groupId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  searchOutboundResourceInGroup(
+    groupId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListOutboundResourceInGroup>
+
+  /**
+   *
+   * @summary Update OutboundResourceGroup
+   * @param {string} id
+   * @param {EngineUpdateOutboundResourceGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  updateOutboundResourceGroup(
+    id: string,
+    body: EngineUpdateOutboundResourceGroupRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResourceGroup>
+
+  /**
+   *
+   * @summary Update OutboundResourceInGroup
+   * @param {string} groupId
+   * @param {string} id
+   * @param {EngineUpdateOutboundResourceInGroupRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceGroupServiceApiInterface
+   */
+  updateOutboundResourceInGroup(
+    groupId: string,
+    id: string,
+    body: EngineUpdateOutboundResourceInGroupRequest,
+    options?: any
+  ): AxiosPromise<EngineOutboundResourceInGroup>
+}
+
+/**
  * OutboundResourceGroupServiceApi - object-oriented interface
  * @export
  * @class OutboundResourceGroupServiceApi
  * @extends {BaseAPI}
  */
-export class OutboundResourceGroupServiceApi extends BaseAPI {
+export class OutboundResourceGroupServiceApi extends BaseAPI
+  implements OutboundResourceGroupServiceApiInterface {
   /**
    *
    * @summary Create OutboundResourceGroup
@@ -1508,7 +1739,9 @@ export class OutboundResourceGroupServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceGroupServiceApi
@@ -1517,11 +1750,13 @@ export class OutboundResourceGroupServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return OutboundResourceGroupServiceApiFp(this.configuration)
-      .searchOutboundResourceGroup(page, size, q, domainId, options)
+      .searchOutboundResourceGroup(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1532,7 +1767,9 @@ export class OutboundResourceGroupServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceGroupServiceApi
@@ -1542,11 +1779,22 @@ export class OutboundResourceGroupServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return OutboundResourceGroupServiceApiFp(this.configuration)
-      .searchOutboundResourceInGroup(groupId, page, size, q, domainId, options)
+      .searchOutboundResourceInGroup(
+        groupId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

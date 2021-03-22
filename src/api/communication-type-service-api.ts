@@ -254,7 +254,9 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -262,7 +264,9 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/communication_type`
@@ -300,8 +304,16 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -516,7 +528,9 @@ export const CommunicationTypeServiceApiFp = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -524,7 +538,9 @@ export const CommunicationTypeServiceApiFp = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -534,7 +550,7 @@ export const CommunicationTypeServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CommunicationTypeServiceApiAxiosParamCreator(
         configuration
-      ).searchCommunicationType(page, size, q, domainId, options)
+      ).searchCommunicationType(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -646,7 +662,9 @@ export const CommunicationTypeServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {string} [domainId]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -654,11 +672,13 @@ export const CommunicationTypeServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      domainId?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
-        .searchCommunicationType(page, size, q, domainId, options)
+        .searchCommunicationType(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -682,12 +702,101 @@ export const CommunicationTypeServiceApiFactory = function(
 }
 
 /**
+ * CommunicationTypeServiceApi - interface
+ * @export
+ * @interface CommunicationTypeServiceApi
+ */
+export interface CommunicationTypeServiceApiInterface {
+  /**
+   *
+   * @summary Create CommunicationType
+   * @param {EngineCommunicationTypeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApiInterface
+   */
+  createCommunicationType(
+    body: EngineCommunicationTypeRequest,
+    options?: any
+  ): AxiosPromise<EngineCommunicationType>
+
+  /**
+   *
+   * @summary Remove CommunicationType
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApiInterface
+   */
+  deleteCommunicationType(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineCommunicationType>
+
+  /**
+   *
+   * @summary CommunicationType item
+   * @param {string} id
+   * @param {string} [domainId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApiInterface
+   */
+  readCommunicationType(
+    id: string,
+    domainId?: string,
+    options?: any
+  ): AxiosPromise<EngineCommunicationType>
+
+  /**
+   *
+   * @summary List of CommunicationType
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApiInterface
+   */
+  searchCommunicationType(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
+    options?: any
+  ): AxiosPromise<EngineListCommunicationType>
+
+  /**
+   *
+   * @summary Update CommunicationType
+   * @param {string} id
+   * @param {EngineUpdateCommunicationTypeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApiInterface
+   */
+  updateCommunicationType(
+    id: string,
+    body: EngineUpdateCommunicationTypeRequest,
+    options?: any
+  ): AxiosPromise<EngineCommunicationType>
+}
+
+/**
  * CommunicationTypeServiceApi - object-oriented interface
  * @export
  * @class CommunicationTypeServiceApi
  * @extends {BaseAPI}
  */
-export class CommunicationTypeServiceApi extends BaseAPI {
+export class CommunicationTypeServiceApi extends BaseAPI
+  implements CommunicationTypeServiceApiInterface {
   /**
    *
    * @summary Create CommunicationType
@@ -741,7 +850,9 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {string} [domainId]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
@@ -750,11 +861,13 @@ export class CommunicationTypeServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    domainId?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return CommunicationTypeServiceApiFp(this.configuration)
-      .searchCommunicationType(page, size, q, domainId, options)
+      .searchCommunicationType(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
