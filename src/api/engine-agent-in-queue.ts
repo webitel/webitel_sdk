@@ -24,13 +24,13 @@ export interface EngineAgentInQueue {
    * @type {number}
    * @memberof EngineAgentInQueue
    */
-  active_member?: number
+  active_members?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentInQueue
    */
-  count_member?: number
+  count_members?: number
   /**
    *
    * @type {boolean}
@@ -66,5 +66,5 @@ export interface EngineAgentInQueue {
    * @type {number}
    * @memberof EngineAgentInQueue
    */
-  waiting_member?: number
+  waiting_members?: number
 }
