@@ -19,6 +19,16 @@ export default abstract class BaseListGetterApiConsumer {
 
   abstract getList(params: BaseGetListParams): Promise<ListGetterResponse>
 
+  setGetListMethod(
+    method: (
+      getList: () => Promise<ListGetterResponse>
+    ) => (params: BaseGetListParams) => Promise<ListGetterResponse>
+  ): BaseListGetterApiConsumer {
+    this.getList = method(this._getList.bind(this))
+
+    return this
+  }
+
   protected responseHandler = (
     response: ListGetterResponse
   ): ListGetterResponse => {
