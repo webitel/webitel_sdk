@@ -1,0 +1,12 @@
+enum QueueType {
+  OFFLINE_QUEUE = 0,
+  INBOUND_QUEUE = 1,
+  OUTBOUND_IVR_QUEUE = 2,
+  PREVIEW_DIALER = 3,
+  PROGRESSIVE_DIALER = 4,
+  PREDICTIVE_DIALER = 5,
+  CHAT_INBOUND_QUEUE = 6,
+  TASK_QUEUE = 7,
+}
+
+export default QueueType;
