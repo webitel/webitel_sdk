@@ -9,4 +9,4 @@ enum QueueType {
   TASK_QUEUE = 7,
 }
 
-export default QueueType;
+export default QueueType
