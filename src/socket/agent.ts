@@ -27,6 +27,9 @@ export interface AgentSession {
   status_duration: number
   status_payload: any
   channels: Channel[]
+  is_supervisor: boolean
+  is_admin: boolean
+  team: object
 }
 
 export interface AgentSessionResponse extends AgentSession {
@@ -97,6 +100,18 @@ export class Agent {
 
   get statusPayload() {
     return this.info.status_payload
+  }
+
+  get isAdmin() {
+    return this.info.is_admin
+  }
+
+  get isSupervisor() {
+    return this.info.is_supervisor
+  }
+
+  get team() {
+    return this.info.team
   }
 
   get channels() {
