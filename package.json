@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.43",
+  "version": "0.1.44",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -46,7 +46,8 @@
     "release:preflight": "npm pack ./dist --dry-run",
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js",
     "api": "node ./node_modules/.bin/openapi-generator-cli generate -g typescript-axios --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
-    "build-and-publish": "npm run build && npm run release:npm"
+    "format-build": "npm run format:fix && npm run build",
+    "format-build-and-release": "npm run format:fix && npm run build && npm run release:npm"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

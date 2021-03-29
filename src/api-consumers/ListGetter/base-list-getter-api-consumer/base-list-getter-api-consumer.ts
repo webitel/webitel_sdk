@@ -32,17 +32,16 @@ export default abstract class BaseListGetterApiConsumer {
   protected responseHandler = (
     response: ListGetterResponse
   ): ListGetterResponse => {
+    let items: object[] = []
+    const next = response.next || false
     if (response.items) {
-      return {
-        items: response.items.map((item) => ({
-          ...this.defaultListObject,
-          ...item,
-        })),
-        next: response.next || false,
-      }
+      items = response.items.map((item) => ({
+        ...this.defaultListObject,
+        ...item,
+      }))
     }
 
-    return { items: [], next: false }
+    return { ...response, items, next }
   }
 
   protected abstract _getList(...args: any): Promise<ListGetterResponse>
