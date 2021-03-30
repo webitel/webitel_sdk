@@ -1,3 +1,4 @@
+import EndpointApiConsumersBasicParams from '../../_shared/endpoint-api-consumers/endpoint-api-consumers-basic-params'
 import GetterResponse from '../_shared/interfaces/response/getter-response'
 import BaseGetterApiConsumer from '../base-getter-api-consumer/base-getter-api-consumer'
 import BaseGetParams from '../base-getter-api-consumer/interfaces/base-get-params'
@@ -9,7 +10,7 @@ export default class ApiGetterApiConsumer extends BaseGetterApiConsumer {
   private readonly nestedUrl: string | undefined
 
   constructor(
-    { baseUrl, instance }: { baseUrl: string; instance: any },
+    { baseUrl, instance }: EndpointApiConsumersBasicParams,
     params: ApiGetterConstructorParams
   ) {
     super(params)

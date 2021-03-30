@@ -1,3 +1,4 @@
+import EndpointApiConsumersBasicParams from '../../_shared/endpoint-api-consumers/endpoint-api-consumers-basic-params'
 import ListGetterResponse from '../_shared/interfaces/response/list-getter-response'
 import BaseListGetterApiConsumer from '../base-list-getter-api-consumer/base-list-getter-api-consumer'
 import ApiGetListParams from './interfaces/api-get-list-params'
@@ -10,7 +11,7 @@ export default class ApiListGetterApiConsumer extends BaseListGetterApiConsumer 
 
   // instance -- axios instance.js
   constructor(
-    { baseUrl, instance }: { baseUrl: string; instance: any },
+    { baseUrl, instance }: EndpointApiConsumersBasicParams,
     params: ApiListGetterConstructorParams
   ) {
     super(params)
