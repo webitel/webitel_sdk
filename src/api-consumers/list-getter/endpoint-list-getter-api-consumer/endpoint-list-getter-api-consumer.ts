@@ -1,10 +1,10 @@
 import EndpointApiConsumersBasicParams from '../../_shared/endpoint-api-consumers/endpoint-api-consumers-basic-params'
 import ListGetterResponse from '../_shared/interfaces/response/list-getter-response'
 import BaseListGetterApiConsumer from '../base-list-getter-api-consumer/base-list-getter-api-consumer'
-import ApiGetListParams from './interfaces/api-get-list-params'
-import ApiListGetterConstructorParams from './interfaces/api-list-getter-constructor-params'
+import EndpointGetListParams from './interfaces/endpoint-get-list-params'
+import EndpointListGetterConstructorParams from './interfaces/endpoint-list-getter-constructor-params'
 
-export default class ApiListGetterApiConsumer extends BaseListGetterApiConsumer {
+export default class EndpointListGetterApiConsumer extends BaseListGetterApiConsumer {
   private readonly instance: any
   private readonly baseUrl: string
   private readonly nestedUrl: string | undefined
@@ -12,18 +12,18 @@ export default class ApiListGetterApiConsumer extends BaseListGetterApiConsumer 
   // instance -- axios instance.js
   constructor(
     { baseUrl, instance }: EndpointApiConsumersBasicParams,
-    params: ApiListGetterConstructorParams
+    params: EndpointListGetterConstructorParams
   ) {
     super(params)
     this.baseUrl = baseUrl
     if (params.nestedUrl) this.nestedUrl = params.nestedUrl
   }
 
-  getList(params: ApiGetListParams): Promise<ListGetterResponse> {
+  getList(params: EndpointGetListParams): Promise<ListGetterResponse> {
     return this._getList(params)
   }
 
-  getNestedList(params: ApiGetListParams): Promise<ListGetterResponse> {
+  getNestedList(params: EndpointGetListParams): Promise<ListGetterResponse> {
     const baseUrl = `${this.baseUrl}/${params.parentId}/${this.nestedUrl}`
 
     return this._getList(params, baseUrl)
@@ -36,7 +36,7 @@ export default class ApiListGetterApiConsumer extends BaseListGetterApiConsumer 
       search,
       searchQuery = 'name',
       sort,
-    }: ApiGetListParams,
+    }: EndpointGetListParams,
     baseUrl = this.baseUrl
   ): Promise<ListGetterResponse> {
     // tslint:disable-next-line: no-parameter-reassignment
