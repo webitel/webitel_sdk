@@ -8,7 +8,7 @@ export default class SdkGetterApiConsumer extends BaseGetterApiConsumer {
 
   constructor(
     SDKMethod: (...args: any) => Promise<GetterResponse>,
-    params: BaseGetterConstructorParams
+    params?: BaseGetterConstructorParams
   ) {
     super(params)
     this.SDKMethod = SDKMethod

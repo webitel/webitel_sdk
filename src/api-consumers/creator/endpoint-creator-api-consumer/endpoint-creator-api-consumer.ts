@@ -24,7 +24,7 @@ export default class EndpointCreatorApiConsumer extends BaseCreatorApiConsumer {
   createItem({ itemInstance }: BaseCreateParams): Promise<CreatorResponse> {
     let itemCopy = dcopy(itemInstance)
     if (this.preRequestHandler) {
-      this.preRequestHandler(itemCopy)
+      itemCopy = this.preRequestHandler(itemCopy)
     }
     if (this.fieldsToSend) {
       itemCopy = sanitizer(itemCopy, this.fieldsToSend)
@@ -39,7 +39,7 @@ export default class EndpointCreatorApiConsumer extends BaseCreatorApiConsumer {
   }: BaseCreateParams): Promise<CreatorResponse> {
     let itemCopy = dcopy(itemInstance)
     if (this.preRequestHandler) {
-      this.preRequestHandler(itemCopy)
+      itemCopy = this.preRequestHandler(itemCopy)
     }
     if (this.fieldsToSend) {
       itemCopy = sanitizer(itemCopy, this.fieldsToSend)

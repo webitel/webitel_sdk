@@ -10,7 +10,7 @@ export default class EndpointDeleterApiConsumer extends BaseDeleterApiConsumer {
 
   constructor(
     { baseUrl, instance }: EndpointApiConsumersBasicParams,
-    params: EndpointDeleterConstructorParams
+    params: EndpointDeleterConstructorParams = {}
   ) {
     super()
     this.instance = instance

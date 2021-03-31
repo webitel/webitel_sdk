@@ -10,7 +10,7 @@ export default class SdkCreatorApiConsumer extends BaseCreatorApiConsumer {
 
   constructor(
     SDKMethod: (...args: any) => Promise<CreatorResponse>,
-    params: BaseCreatorConstructorParams
+    params?: BaseCreatorConstructorParams
   ) {
     super(params)
     this.SDKMethod = SDKMethod
@@ -18,7 +18,9 @@ export default class SdkCreatorApiConsumer extends BaseCreatorApiConsumer {
 
   createItem({ itemInstance }: BaseCreateParams): Promise<CreatorResponse> {
     let itemCopy = dcopy(itemInstance)
-    if (this.preRequestHandler) this.preRequestHandler(itemCopy)
+    if (this.preRequestHandler) {
+      itemCopy = this.preRequestHandler(itemCopy)
+    }
     if (this.fieldsToSend) {
       itemCopy = sanitizer(itemCopy, this.fieldsToSend)
     }

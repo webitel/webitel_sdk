@@ -11,7 +11,7 @@ export default class EndpointGetterApiConsumer extends BaseGetterApiConsumer {
 
   constructor(
     { baseUrl, instance }: EndpointApiConsumersBasicParams,
-    params: EndpointGetterConstructorParams
+    params: EndpointGetterConstructorParams = {}
   ) {
     super(params)
     this.instance = instance

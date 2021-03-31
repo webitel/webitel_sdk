@@ -12,7 +12,7 @@ export default class EndpointListGetterApiConsumer extends BaseListGetterApiCons
   // instance -- axios instance.js
   constructor(
     { baseUrl, instance }: EndpointApiConsumersBasicParams,
-    params: EndpointListGetterConstructorParams
+    params: EndpointListGetterConstructorParams = {}
   ) {
     super(params)
     this.instance = instance

@@ -12,7 +12,7 @@ export default class EndpointPatcherApiConsumer extends BasePatcherApiConsumer {
 
   constructor(
     { baseUrl, instance }: EndpointApiConsumersBasicParams,
-    params: EndpointPatcherConstructorParams
+    params: EndpointPatcherConstructorParams = {}
   ) {
     super()
     this.instance = instance
@@ -22,7 +22,7 @@ export default class EndpointPatcherApiConsumer extends BasePatcherApiConsumer {
 
   patchItem(
     { id, changes }: BasePatchParams,
-    afterUrl: string
+    afterUrl?: string
   ): Promise<PatcherResponse> {
     let updUrl = `${this.baseUrl}/${id}`
     if (afterUrl) updUrl += `/${afterUrl}`

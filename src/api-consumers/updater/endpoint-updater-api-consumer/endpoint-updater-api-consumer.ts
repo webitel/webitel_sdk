@@ -27,7 +27,7 @@ export default class EndpointUpdaterApiConsumer extends BaseUpdaterApiConsumer {
   }: BaseUpdateParams): Promise<UpdaterResponse> {
     let itemCopy = dcopy(itemInstance)
     if (this.preRequestHandler) {
-      this.preRequestHandler(itemCopy)
+      itemCopy = this.preRequestHandler(itemCopy)
     }
     if (this.fieldsToSend) {
       itemCopy = sanitizer(itemCopy, this.fieldsToSend)
@@ -43,7 +43,7 @@ export default class EndpointUpdaterApiConsumer extends BaseUpdaterApiConsumer {
   }: BaseUpdateParams): Promise<UpdaterResponse> {
     let itemCopy = dcopy(itemInstance)
     if (this.preRequestHandler) {
-      this.preRequestHandler(itemCopy)
+      itemCopy = this.preRequestHandler(itemCopy)
     }
     if (this.fieldsToSend) {
       itemCopy = sanitizer(itemCopy, this.fieldsToSend)
