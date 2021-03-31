@@ -1,19 +1,19 @@
 import dcopy from 'deep-copy'
 import EndpointApiConsumersBasicParams from '../../_shared/endpoint-api-consumers/endpoint-api-consumers-basic-params'
 import sanitizer from '../../_shared/utils/sanitizer'
-import CreatorResponse from '../_shared/interfaces/response/creator-response'
-import BaseCreatorApiConsumer from '../base-creator-api-consumer/base-creator-api-consumer'
-import BaseCreateParams from '../base-creator-api-consumer/interfaces/base-create-params'
-import EndpointCreatorConstructorParams from './interfaces/endpoint-creator-constructor-params'
+import UpdaterResponse from '../_shared/interfaces/response/updater-response'
+import BaseUpdaterApiConsumer from '../base-updater-api-consumer/base-updater-api-consumer'
+import BaseUpdateParams from '../base-updater-api-consumer/interfaces/base-update-params'
+import EndpointUpdaterConstructorParams from './interfaces/endpoint-updater-constructor-params'
 
-export default class EndpointCreatorApiConsumer extends BaseCreatorApiConsumer {
+export default class EndpointUpdaterApiConsumer extends BaseUpdaterApiConsumer {
   private readonly instance: any
   private readonly baseUrl: string
   private readonly nestedUrl: string | undefined
 
   constructor(
     { baseUrl, instance }: EndpointApiConsumersBasicParams,
-    params: EndpointCreatorConstructorParams
+    params: EndpointUpdaterConstructorParams
   ) {
     super(params)
     this.instance = instance
@@ -21,7 +21,10 @@ export default class EndpointCreatorApiConsumer extends BaseCreatorApiConsumer {
     if (params.nestedUrl) this.nestedUrl = params.nestedUrl
   }
 
-  createItem({ itemInstance }: BaseCreateParams): Promise<CreatorResponse> {
+  updateItem({
+    itemId,
+    itemInstance,
+  }: BaseUpdateParams): Promise<UpdaterResponse> {
     let itemCopy = dcopy(itemInstance)
     if (this.preRequestHandler) {
       this.preRequestHandler(itemCopy)
@@ -30,13 +33,14 @@ export default class EndpointCreatorApiConsumer extends BaseCreatorApiConsumer {
       itemCopy = sanitizer(itemCopy, this.fieldsToSend)
     }
 
-    return this._createItem(itemCopy)
+    return this._updateItem({ id: itemId, item: itemCopy })
   }
 
-  createNestedItem({
+  updateNestedItem({
     parentId,
+    itemId,
     itemInstance,
-  }: BaseCreateParams): Promise<CreatorResponse> {
+  }: BaseUpdateParams): Promise<UpdaterResponse> {
     let itemCopy = dcopy(itemInstance)
     if (this.preRequestHandler) {
       this.preRequestHandler(itemCopy)
@@ -46,12 +50,22 @@ export default class EndpointCreatorApiConsumer extends BaseCreatorApiConsumer {
     }
     const baseUrl = `${this.baseUrl}/${parentId}/${this.nestedUrl}`
 
-    return this._createItem(itemCopy, baseUrl)
+    return this._updateItem({ id: itemId, item: itemCopy }, baseUrl)
   }
 
-  protected async _createItem(item: object, baseUrl = this.baseUrl) {
+  protected async _updateItem(
+    {
+      id,
+      item,
+    }: {
+      id: number | string
+      item: object
+    },
+    baseUrl = this.baseUrl
+  ) {
+    const updUrl = `${baseUrl}/${id}`
     try {
-      const response = await this.instance.post(baseUrl, item)
+      const response = await this.instance.put(updUrl, item)
 
       return this.responseHandler(response)
     } catch (err) {

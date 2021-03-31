@@ -22,7 +22,7 @@ export default class SdkGetterApiConsumer extends BaseGetterApiConsumer {
     return this._getItem([parentId, itemId])
   }
 
-  async _getItem(args: any[]): Promise<GetterResponse> {
+  protected async _getItem(args: any[]): Promise<GetterResponse> {
     try {
       let response = await this.SDKMethod(...args)
       response = this.responseHandler(response)

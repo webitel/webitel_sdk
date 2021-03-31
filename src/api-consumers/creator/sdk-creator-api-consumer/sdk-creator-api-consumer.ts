@@ -17,9 +17,11 @@ export default class SdkCreatorApiConsumer extends BaseCreatorApiConsumer {
   }
 
   createItem({ itemInstance }: BaseCreateParams): Promise<CreatorResponse> {
-    const itemCopy = dcopy(itemInstance)
+    let itemCopy = dcopy(itemInstance)
     if (this.preRequestHandler) this.preRequestHandler(itemCopy)
-    if (this.fieldsToSend) sanitizer(itemCopy, this.fieldsToSend)
+    if (this.fieldsToSend) {
+      itemCopy = sanitizer(itemCopy, this.fieldsToSend)
+    }
 
     return this._createItem([itemCopy])
   }
@@ -32,12 +34,14 @@ export default class SdkCreatorApiConsumer extends BaseCreatorApiConsumer {
     if (this.preRequestHandler) {
       itemCopy = this.preRequestHandler(itemCopy, parentId)
     }
-    if (this.fieldsToSend) sanitizer(itemCopy, this.fieldsToSend)
+    if (this.fieldsToSend) {
+      itemCopy = sanitizer(itemCopy, this.fieldsToSend)
+    }
 
     return this._createItem([parentId, itemCopy])
   }
 
-  async _createItem(args: any[]): Promise<CreatorResponse> {
+  protected async _createItem(args: any[]): Promise<CreatorResponse> {
     try {
       const response = await this.SDKMethod(...args)
 
