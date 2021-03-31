@@ -83,6 +83,7 @@
   "dependencies": {
     "@types/webrtc": "0.0.26",
     "axios": "0.21.1",
+    "deep-copy": "1.4.2",
     "ee-ts": "1.0.1",
     "json-refs": "3.0.13",
     "jssip": "3.7.0"

@@ -14,6 +14,7 @@ export default class EndpointGetterApiConsumer extends BaseGetterApiConsumer {
     params: EndpointGetterConstructorParams
   ) {
     super(params)
+    this.instance = instance
     this.baseUrl = baseUrl
     if (params.nestedUrl) this.nestedUrl = params.nestedUrl
   }
