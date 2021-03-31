@@ -6,7 +6,7 @@ import BaseUpdaterApiConsumer from '../base-updater-api-consumer/base-updater-ap
 import BaseUpdateParams from '../base-updater-api-consumer/interfaces/base-update-params'
 import BaseUpdaterConstructorParams from '../base-updater-api-consumer/interfaces/base-updater-constructor-params'
 
-export default class SdkUpdaterApiConsumer extends BaseUpdaterApiConsumer {
+export default class SDKUpdater extends BaseUpdaterApiConsumer {
   private readonly SDKMethod: (...args: any[]) => Promise<CreatorResponse>
 
   constructor(
