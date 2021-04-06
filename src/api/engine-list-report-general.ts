@@ -12,6 +12,7 @@
  */
 
 import { EngineQueueReportGeneral } from './engine-queue-report-general'
+import { EngineQueueReportGeneralAgentStatus } from './engine-queue-report-general-agent-status'
 
 /**
  *
@@ -19,6 +20,12 @@ import { EngineQueueReportGeneral } from './engine-queue-report-general'
  * @interface EngineListReportGeneral
  */
 export interface EngineListReportGeneral {
+  /**
+   *
+   * @type {EngineQueueReportGeneralAgentStatus}
+   * @memberof EngineListReportGeneral
+   */
+  aggs?: EngineQueueReportGeneralAgentStatus
   /**
    *
    * @type {Array<EngineQueueReportGeneral>}
