@@ -1132,36 +1132,44 @@ export const AgentServiceApiAxiosParamCreator = function(
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [agentId]
      * @param {string} [timeFrom]
      * @param {string} [timeTo]
-     * @param {string} [q]
-     * @param {Array<string>} [agentId]
      * @param {Array<string>} [status]
      * @param {Array<number>} [queueId]
      * @param {Array<number>} [teamId]
      * @param {string} [utilizationFrom]
      * @param {string} [utilizationTo]
      * @param {boolean} [hasCall]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<number>} [skillId]
+     * @param {Array<number>} [regionId]
+     * @param {Array<number>} [supervisorId]
+     * @param {Array<string>} [auditorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentStatusStatistic: async (
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      agentId?: Array<string>,
       timeFrom?: string,
       timeTo?: string,
-      q?: string,
-      agentId?: Array<string>,
       status?: Array<string>,
       queueId?: Array<number>,
       teamId?: Array<number>,
       utilizationFrom?: string,
       utilizationTo?: string,
       hasCall?: boolean,
-      sort?: string,
-      domainId?: string,
+      skillId?: Array<number>,
+      regionId?: Array<number>,
+      supervisorId?: Array<number>,
+      auditorId?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/agents/reports/status`
@@ -1195,20 +1203,28 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (agentId) {
+        localVarQueryParameter['agent_id'] = agentId
+      }
+
       if (timeFrom !== undefined) {
         localVarQueryParameter['time.from'] = timeFrom
       }
 
       if (timeTo !== undefined) {
         localVarQueryParameter['time.to'] = timeTo
-      }
-
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
-      if (agentId) {
-        localVarQueryParameter['agent_id'] = agentId
       }
 
       if (status) {
@@ -1235,12 +1251,20 @@ export const AgentServiceApiAxiosParamCreator = function(
         localVarQueryParameter['has_call'] = hasCall
       }
 
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
+      if (skillId) {
+        localVarQueryParameter['skill_id'] = skillId
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (regionId) {
+        localVarQueryParameter['region_id'] = regionId
+      }
+
+      if (supervisorId) {
+        localVarQueryParameter['supervisor_id'] = supervisorId
+      }
+
+      if (auditorId) {
+        localVarQueryParameter['auditor_id'] = auditorId
       }
 
       localVarUrlObj.query = {
@@ -2061,36 +2085,44 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [agentId]
      * @param {string} [timeFrom]
      * @param {string} [timeTo]
-     * @param {string} [q]
-     * @param {Array<string>} [agentId]
      * @param {Array<string>} [status]
      * @param {Array<number>} [queueId]
      * @param {Array<number>} [teamId]
      * @param {string} [utilizationFrom]
      * @param {string} [utilizationTo]
      * @param {boolean} [hasCall]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<number>} [skillId]
+     * @param {Array<number>} [regionId]
+     * @param {Array<number>} [supervisorId]
+     * @param {Array<string>} [auditorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchAgentStatusStatistic(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      agentId?: Array<string>,
       timeFrom?: string,
       timeTo?: string,
-      q?: string,
-      agentId?: Array<string>,
       status?: Array<string>,
       queueId?: Array<number>,
       teamId?: Array<number>,
       utilizationFrom?: string,
       utilizationTo?: string,
       hasCall?: boolean,
-      sort?: string,
-      domainId?: string,
+      skillId?: Array<number>,
+      regionId?: Array<number>,
+      supervisorId?: Array<number>,
+      auditorId?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -2103,18 +2135,22 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       ).searchAgentStatusStatistic(
         page,
         size,
+        q,
+        sort,
+        fields,
+        agentId,
         timeFrom,
         timeTo,
-        q,
-        agentId,
         status,
         queueId,
         teamId,
         utilizationFrom,
         utilizationTo,
         hasCall,
-        sort,
-        domainId,
+        skillId,
+        regionId,
+        supervisorId,
+        auditorId,
         options
       )
       return (
@@ -2587,54 +2623,66 @@ export const AgentServiceApiFactory = function(
      *
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [agentId]
      * @param {string} [timeFrom]
      * @param {string} [timeTo]
-     * @param {string} [q]
-     * @param {Array<string>} [agentId]
      * @param {Array<string>} [status]
      * @param {Array<number>} [queueId]
      * @param {Array<number>} [teamId]
      * @param {string} [utilizationFrom]
      * @param {string} [utilizationTo]
      * @param {boolean} [hasCall]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<number>} [skillId]
+     * @param {Array<number>} [regionId]
+     * @param {Array<number>} [supervisorId]
+     * @param {Array<string>} [auditorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAgentStatusStatistic(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      agentId?: Array<string>,
       timeFrom?: string,
       timeTo?: string,
-      q?: string,
-      agentId?: Array<string>,
       status?: Array<string>,
       queueId?: Array<number>,
       teamId?: Array<number>,
       utilizationFrom?: string,
       utilizationTo?: string,
       hasCall?: boolean,
-      sort?: string,
-      domainId?: string,
+      skillId?: Array<number>,
+      regionId?: Array<number>,
+      supervisorId?: Array<number>,
+      auditorId?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListAgentStatsStatistic> {
       return AgentServiceApiFp(configuration)
         .searchAgentStatusStatistic(
           page,
           size,
+          q,
+          sort,
+          fields,
+          agentId,
           timeFrom,
           timeTo,
-          q,
-          agentId,
           status,
           queueId,
           teamId,
           utilizationFrom,
           utilizationTo,
           hasCall,
-          sort,
-          domainId,
+          skillId,
+          regionId,
+          supervisorId,
+          auditorId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2969,18 +3017,22 @@ export interface AgentServiceApiInterface {
    *
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [agentId]
    * @param {string} [timeFrom]
    * @param {string} [timeTo]
-   * @param {string} [q]
-   * @param {Array<string>} [agentId]
    * @param {Array<string>} [status]
    * @param {Array<number>} [queueId]
    * @param {Array<number>} [teamId]
    * @param {string} [utilizationFrom]
    * @param {string} [utilizationTo]
    * @param {boolean} [hasCall]
-   * @param {string} [sort]
-   * @param {string} [domainId]
+   * @param {Array<number>} [skillId]
+   * @param {Array<number>} [regionId]
+   * @param {Array<number>} [supervisorId]
+   * @param {Array<string>} [auditorId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApiInterface
@@ -2988,18 +3040,22 @@ export interface AgentServiceApiInterface {
   searchAgentStatusStatistic(
     page?: number,
     size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    agentId?: Array<string>,
     timeFrom?: string,
     timeTo?: string,
-    q?: string,
-    agentId?: Array<string>,
     status?: Array<string>,
     queueId?: Array<number>,
     teamId?: Array<number>,
     utilizationFrom?: string,
     utilizationTo?: string,
     hasCall?: boolean,
-    sort?: string,
-    domainId?: string,
+    skillId?: Array<number>,
+    regionId?: Array<number>,
+    supervisorId?: Array<number>,
+    auditorId?: Array<string>,
     options?: any
   ): AxiosPromise<EngineListAgentStatsStatistic>
 
@@ -3405,18 +3461,22 @@ export class AgentServiceApi extends BaseAPI
    *
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [agentId]
    * @param {string} [timeFrom]
    * @param {string} [timeTo]
-   * @param {string} [q]
-   * @param {Array<string>} [agentId]
    * @param {Array<string>} [status]
    * @param {Array<number>} [queueId]
    * @param {Array<number>} [teamId]
    * @param {string} [utilizationFrom]
    * @param {string} [utilizationTo]
    * @param {boolean} [hasCall]
-   * @param {string} [sort]
-   * @param {string} [domainId]
+   * @param {Array<number>} [skillId]
+   * @param {Array<number>} [regionId]
+   * @param {Array<number>} [supervisorId]
+   * @param {Array<string>} [auditorId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
@@ -3424,36 +3484,44 @@ export class AgentServiceApi extends BaseAPI
   public searchAgentStatusStatistic(
     page?: number,
     size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    agentId?: Array<string>,
     timeFrom?: string,
     timeTo?: string,
-    q?: string,
-    agentId?: Array<string>,
     status?: Array<string>,
     queueId?: Array<number>,
     teamId?: Array<number>,
     utilizationFrom?: string,
     utilizationTo?: string,
     hasCall?: boolean,
-    sort?: string,
-    domainId?: string,
+    skillId?: Array<number>,
+    regionId?: Array<number>,
+    supervisorId?: Array<number>,
+    auditorId?: Array<string>,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration)
       .searchAgentStatusStatistic(
         page,
         size,
+        q,
+        sort,
+        fields,
+        agentId,
         timeFrom,
         timeTo,
-        q,
-        agentId,
         status,
         queueId,
         teamId,
         utilizationFrom,
         utilizationTo,
         hasCall,
-        sort,
-        domainId,
+        skillId,
+        regionId,
+        supervisorId,
+        auditorId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
