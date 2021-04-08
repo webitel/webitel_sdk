@@ -1366,11 +1366,13 @@ export const AgentServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} agentId
+     * @param {boolean} [allowChange]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchPauseCauseForAgent: async (
       agentId: string,
+      allowChange?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -1404,6 +1406,10 @@ export const AgentServiceApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (allowChange !== undefined) {
+        localVarQueryParameter['allow_change'] = allowChange
       }
 
       localVarUrlObj.query = {
@@ -2203,11 +2209,13 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} agentId
+     * @param {boolean} [allowChange]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchPauseCauseForAgent(
       agentId: string,
+      allowChange?: boolean,
       options?: any
     ): Promise<
       (
@@ -2217,7 +2225,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentServiceApiAxiosParamCreator(
         configuration
-      ).searchPauseCauseForAgent(agentId, options)
+      ).searchPauseCauseForAgent(agentId, allowChange, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2711,15 +2719,17 @@ export const AgentServiceApiFactory = function(
     /**
      *
      * @param {string} agentId
+     * @param {boolean} [allowChange]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchPauseCauseForAgent(
       agentId: string,
+      allowChange?: boolean,
       options?: any
     ): AxiosPromise<EngineForAgentPauseCauseList> {
       return AgentServiceApiFp(configuration)
-        .searchPauseCauseForAgent(agentId, options)
+        .searchPauseCauseForAgent(agentId, allowChange, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -3081,12 +3091,14 @@ export interface AgentServiceApiInterface {
   /**
    *
    * @param {string} agentId
+   * @param {boolean} [allowChange]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApiInterface
    */
   searchPauseCauseForAgent(
     agentId: string,
+    allowChange?: boolean,
     options?: any
   ): AxiosPromise<EngineForAgentPauseCauseList>
 
@@ -3553,13 +3565,18 @@ export class AgentServiceApi extends BaseAPI
   /**
    *
    * @param {string} agentId
+   * @param {boolean} [allowChange]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
-  public searchPauseCauseForAgent(agentId: string, options?: any) {
+  public searchPauseCauseForAgent(
+    agentId: string,
+    allowChange?: boolean,
+    options?: any
+  ) {
     return AgentServiceApiFp(this.configuration)
-      .searchPauseCauseForAgent(agentId, options)
+      .searchPauseCauseForAgent(agentId, allowChange, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
