@@ -105,6 +105,12 @@ export interface EngineAgentStatsStatistic {
   pause?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  pause_cause?: string
+  /**
+   *
    * @type {Array<EngineLookup>}
    * @memberof EngineAgentStatsStatistic
    */
