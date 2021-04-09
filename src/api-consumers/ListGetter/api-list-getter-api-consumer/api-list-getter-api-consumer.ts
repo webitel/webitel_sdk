@@ -15,6 +15,7 @@ export default class ApiListGetterApiConsumer extends BaseListGetterApiConsumer 
   ) {
     super(params)
     this.baseUrl = baseUrl
+    this.instance = instance
     if (params.nestedUrl) this.nestedUrl = params.nestedUrl
   }
 
