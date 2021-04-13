@@ -13,14 +13,16 @@ const config = {
     '<rootDir>/src/**/?(*.)+(spec|test).ts?(x)',
   ],
   testPathIgnorePatterns: ['dist'],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80,
-    },
-  },
+  collectCoverage: true,
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 80,
+  //     functions: 80,
+  //     lines: 80,
+  //     statements: 80,
+  //   },
+  // },
+  collectCoverageFrom: ['src/api-consumers/**/*.ts', '!src/**/index.ts'],
   setupFiles: ['<rootDir>/config/setup-tests.js'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
