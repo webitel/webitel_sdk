@@ -33,10 +33,22 @@ export interface EngineAgentStatsStatistic {
   agent_id?: number
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineAgentStatsStatistic
+   */
+  auditor?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentStatsStatistic
    */
   call_time?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentStatsStatistic
+   */
+  chat_count?: number
   /**
    *
    * @type {string}
@@ -93,10 +105,22 @@ export interface EngineAgentStatsStatistic {
   pause?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineAgentStatsStatistic
+   */
+  pause_cause?: string
+  /**
+   *
    * @type {Array<EngineLookup>}
    * @memberof EngineAgentStatsStatistic
    */
   queues?: Array<EngineLookup>
+  /**
+   *
+   * @type {Array<EngineLookup>}
+   * @memberof EngineAgentStatsStatistic
+   */
+  skills?: Array<EngineLookup>
   /**
    *
    * @type {string}
@@ -114,7 +138,19 @@ export interface EngineAgentStatsStatistic {
    * @type {EngineLookup}
    * @memberof EngineAgentStatsStatistic
    */
+  supervisor?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineAgentStatsStatistic
+   */
   team?: EngineLookup
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentStatsStatistic
+   */
+  transferred?: number
   /**
    *
    * @type {EngineLookup}

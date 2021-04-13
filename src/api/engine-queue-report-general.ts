@@ -12,6 +12,7 @@
  */
 
 import { EngineLookup } from './engine-lookup'
+import { EngineQueueReportGeneralAgentStatus } from './engine-queue-report-general-agent-status'
 
 /**
  *
@@ -25,6 +26,18 @@ export interface EngineQueueReportGeneral {
    * @memberof EngineQueueReportGeneral
    */
   abandoned?: number
+  /**
+   *
+   * @type {EngineQueueReportGeneralAgentStatus}
+   * @memberof EngineQueueReportGeneral
+   */
+  agent_status?: EngineQueueReportGeneralAgentStatus
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  attempts?: number
   /**
    *
    * @type {number}
@@ -51,12 +64,6 @@ export interface EngineQueueReportGeneral {
   avg_wrap_sec?: number
   /**
    *
-   * @type {number}
-   * @memberof EngineQueueReportGeneral
-   */
-  bridged?: number
-  /**
-   *
    * @type {string}
    * @memberof EngineQueueReportGeneral
    */
@@ -66,25 +73,13 @@ export interface EngineQueueReportGeneral {
    * @type {number}
    * @memberof EngineQueueReportGeneral
    */
-  max_awt_sec?: number
+  missed?: number
   /**
    *
    * @type {number}
    * @memberof EngineQueueReportGeneral
    */
-  online?: number
-  /**
-   *
-   * @type {number}
-   * @memberof EngineQueueReportGeneral
-   */
-  pause?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineQueueReportGeneral
-   */
-  processed?: string
+  processed?: number
   /**
    *
    * @type {EngineLookup}
@@ -96,7 +91,7 @@ export interface EngineQueueReportGeneral {
    * @type {number}
    * @memberof EngineQueueReportGeneral
    */
-  sum_bill_sec?: number
+  sum_talk_sec?: number
   /**
    *
    * @type {EngineLookup}
@@ -105,8 +100,14 @@ export interface EngineQueueReportGeneral {
   team?: EngineLookup
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof EngineQueueReportGeneral
    */
-  waiting?: string
+  transferred?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  waiting?: number
 }
