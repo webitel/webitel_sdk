@@ -181,6 +181,12 @@ export interface EngineActiveCall {
    * @type {EngineLookup}
    * @memberof EngineActiveCall
    */
+  supervisor?: EngineLookup
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineActiveCall
+   */
   team?: EngineLookup
   /**
    *

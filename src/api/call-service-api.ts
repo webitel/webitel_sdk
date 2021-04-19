@@ -693,6 +693,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {boolean} [missed]
      * @param {string} [storedAtFrom]
      * @param {string} [storedAtTo]
+     * @param {Array<string>} [supervisorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -724,6 +725,7 @@ export const CallServiceApiAxiosParamCreator = function(
       missed?: boolean,
       storedAtFrom?: string,
       storedAtTo?: string,
+      supervisorId?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/active`
@@ -855,6 +857,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (storedAtTo !== undefined) {
         localVarQueryParameter['stored_at.to'] = storedAtTo
+      }
+
+      if (supervisorId) {
+        localVarQueryParameter['supervisor_id'] = supervisorId
       }
 
       localVarUrlObj.query = {
@@ -1476,6 +1482,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {boolean} [missed]
      * @param {string} [storedAtFrom]
      * @param {string} [storedAtTo]
+     * @param {Array<string>} [supervisorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1507,6 +1514,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       missed?: boolean,
       storedAtFrom?: string,
       storedAtTo?: string,
+      supervisorId?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListCall>
@@ -1541,6 +1549,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         missed,
         storedAtFrom,
         storedAtTo,
+        supervisorId,
         options
       )
       return (
@@ -1879,6 +1888,7 @@ export const CallServiceApiFactory = function(
      * @param {boolean} [missed]
      * @param {string} [storedAtFrom]
      * @param {string} [storedAtTo]
+     * @param {Array<string>} [supervisorId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1910,6 +1920,7 @@ export const CallServiceApiFactory = function(
       missed?: boolean,
       storedAtFrom?: string,
       storedAtTo?: string,
+      supervisorId?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListCall> {
       return CallServiceApiFp(configuration)
@@ -1941,6 +1952,7 @@ export const CallServiceApiFactory = function(
           missed,
           storedAtFrom,
           storedAtTo,
+          supervisorId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2220,6 +2232,7 @@ export interface CallServiceApiInterface {
    * @param {boolean} [missed]
    * @param {string} [storedAtFrom]
    * @param {string} [storedAtTo]
+   * @param {Array<string>} [supervisorId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApiInterface
@@ -2252,6 +2265,7 @@ export interface CallServiceApiInterface {
     missed?: boolean,
     storedAtFrom?: string,
     storedAtTo?: string,
+    supervisorId?: Array<string>,
     options?: any
   ): AxiosPromise<EngineListCall>
 
@@ -2504,6 +2518,7 @@ export class CallServiceApi extends BaseAPI implements CallServiceApiInterface {
    * @param {boolean} [missed]
    * @param {string} [storedAtFrom]
    * @param {string} [storedAtTo]
+   * @param {Array<string>} [supervisorId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -2536,6 +2551,7 @@ export class CallServiceApi extends BaseAPI implements CallServiceApiInterface {
     missed?: boolean,
     storedAtFrom?: string,
     storedAtTo?: string,
+    supervisorId?: Array<string>,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
@@ -2567,6 +2583,7 @@ export class CallServiceApi extends BaseAPI implements CallServiceApiInterface {
         missed,
         storedAtFrom,
         storedAtTo,
+        supervisorId,
         options
       )
       .then((request) => request(this.axios, this.basePath))

@@ -54,6 +54,12 @@ export interface EngineAgentState {
    * @type {string}
    * @memberof EngineAgentState
    */
+  pause_cause?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAgentState
+   */
   payload?: string
   /**
    *
