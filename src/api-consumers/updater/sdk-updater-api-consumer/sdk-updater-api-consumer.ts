@@ -11,7 +11,7 @@ export default class SdkUpdaterApiConsumer extends BaseUpdaterApiConsumer {
 
   constructor(
     SDKMethod: (...args: any) => Promise<UpdaterResponse>,
-    params: BaseUpdaterConstructorParams
+    params: BaseUpdaterConstructorParams = {}
   ) {
     super(params)
     this.SDKMethod = SDKMethod

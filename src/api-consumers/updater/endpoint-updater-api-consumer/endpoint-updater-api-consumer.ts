@@ -13,7 +13,7 @@ export default class EndpointUpdaterApiConsumer extends BaseUpdaterApiConsumer {
 
   constructor(
     { baseUrl, instance }: EndpointApiConsumersBasicParams,
-    params: EndpointUpdaterConstructorParams
+    params: EndpointUpdaterConstructorParams = {}
   ) {
     super(params)
     this.instance = instance
