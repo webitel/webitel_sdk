@@ -34,6 +34,8 @@ import { EngineAgentSetStateRequest } from '../api'
 // @ts-ignore
 import { EngineAgentStatusRequest } from '../api'
 // @ts-ignore
+import { EngineAgentStatusStatisticItem } from '../api'
+// @ts-ignore
 import { EngineCreateAgentRequest } from '../api'
 // @ts-ignore
 import { EngineForAgentPauseCauseList } from '../api'
@@ -1289,6 +1291,81 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} agentId
+     * @param {string} [timeFrom]
+     * @param {string} [timeTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentStatusStatisticItem: async (
+      agentId: string,
+      timeFrom?: string,
+      timeTo?: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
+        throw new RequiredError(
+          'agentId',
+          'Required parameter agentId was null or undefined when calling searchAgentStatusStatisticItem.'
+        )
+      }
+      const localVarPath = `/call_center/agents/reports/status/{agent_id}`.replace(
+        `{${'agent_id'}}`,
+        encodeURIComponent(String(agentId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (timeFrom !== undefined) {
+        localVarQueryParameter['time.from'] = timeFrom
+      }
+
+      if (timeTo !== undefined) {
+        localVarQueryParameter['time.to'] = timeTo
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary SearchLookupAgentNotExistsUser
      * @param {number} [page]
      * @param {number} [size]
@@ -2172,6 +2249,39 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} agentId
+     * @param {string} [timeFrom]
+     * @param {string} [timeTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchAgentStatusStatisticItem(
+      agentId: string,
+      timeFrom?: string,
+      timeTo?: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineAgentStatusStatisticItem>
+    > {
+      const localVarAxiosArgs = await AgentServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentStatusStatisticItem(agentId, timeFrom, timeTo, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary SearchLookupAgentNotExistsUser
      * @param {number} [page]
      * @param {number} [size]
@@ -2697,6 +2807,24 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} agentId
+     * @param {string} [timeFrom]
+     * @param {string} [timeTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentStatusStatisticItem(
+      agentId: string,
+      timeFrom?: string,
+      timeTo?: string,
+      options?: any
+    ): AxiosPromise<EngineAgentStatusStatisticItem> {
+      return AgentServiceApiFp(configuration)
+        .searchAgentStatusStatisticItem(agentId, timeFrom, timeTo, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary SearchLookupAgentNotExistsUser
      * @param {number} [page]
      * @param {number} [size]
@@ -3068,6 +3196,22 @@ export interface AgentServiceApiInterface {
     auditorId?: Array<string>,
     options?: any
   ): AxiosPromise<EngineListAgentStatsStatistic>
+
+  /**
+   *
+   * @param {string} agentId
+   * @param {string} [timeFrom]
+   * @param {string} [timeTo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApiInterface
+   */
+  searchAgentStatusStatisticItem(
+    agentId: string,
+    timeFrom?: string,
+    timeTo?: string,
+    options?: any
+  ): AxiosPromise<EngineAgentStatusStatisticItem>
 
   /**
    *
@@ -3536,6 +3680,26 @@ export class AgentServiceApi extends BaseAPI
         auditorId,
         options
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} agentId
+   * @param {string} [timeFrom]
+   * @param {string} [timeTo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public searchAgentStatusStatisticItem(
+    agentId: string,
+    timeFrom?: string,
+    timeTo?: string,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration)
+      .searchAgentStatusStatisticItem(agentId, timeFrom, timeTo, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
