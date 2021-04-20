@@ -22,6 +22,14 @@ describe('Sdk List Getter Api Consumer', () => {
     const response = await listGetter.getNestedList({})
     expect(response).toEqual(expectedResponse)
   })
+  it('getLookup() calls getList() with passed params', async () => {
+    const getLookupParams = { search: 'jest' }
+    const expectedParams = { size: 20, search: 'jest', fields: ['id', 'name'] }
+    const getListMock = jest.fn(() => ({ items: [] }))
+    jest.spyOn(listGetter, 'getList').mockImplementationOnce(getListMock)
+    await listGetter.getLookup(getLookupParams)
+    expect(getListMock).toHaveBeenCalledWith(expectedParams)
+  })
   it('correctly passes received arguments to passed SDK method', async () => {
     await listGetter.getList(params)
     expect(sdkMethod).toHaveBeenCalledWith(...Object.values(params))

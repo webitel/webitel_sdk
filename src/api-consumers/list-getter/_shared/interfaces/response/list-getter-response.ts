@@ -1,4 +1,4 @@
 export default interface ListGetterResponse {
-  items?: object[]
+  items: object[]
   next: boolean
 }
