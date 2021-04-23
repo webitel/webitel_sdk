@@ -603,6 +603,14 @@ export class Call {
     return this.task.reporting(reporting)
   }
 
+  async renewal(sec?: number) {
+    if (!this.task) {
+      throw new Error(`this conversation not in queue`)
+    }
+
+    return this.task.renewal(sec)
+  }
+
   async callToUser(req: UserCallRequest) {
     req.nodeId = this.appId
     req.parentCallId = this.id || null

@@ -368,6 +368,14 @@ export class Conversation {
     return this.task.reporting(reporting)
   }
 
+  async renewal(sec?: number) {
+    if (!this.task) {
+      throw new Error(`this conversation not in queue`)
+    }
+
+    return this.task.renewal(sec)
+  }
+
   private sendMessageTextChunk(text: string) {
     return this.client.request(`send_text_chat`, {
       channel_id: this.channelId,
