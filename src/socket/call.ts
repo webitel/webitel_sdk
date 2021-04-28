@@ -298,7 +298,9 @@ export class Call {
       this.client.phone &&
       this.hangupAt === 0 &&
       this.answeredAt === 0 &&
-      (this.queue || this.direction === CallDirection.Inbound)
+      (this.queue ||
+        this.direction === CallDirection.Inbound ||
+        (this.params && !this.params.autoAnswer))
     )
   }
 

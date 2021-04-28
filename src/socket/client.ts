@@ -736,11 +736,11 @@ export class Client extends EventEmitter<ClientEvents> {
 
     if (call) {
       call.setSip(session)
-      await this.checkAutoAnswer(call)
+      this.checkAutoAnswer(call)
     }
   }
 
-  private async checkAutoAnswer(call: Call) {
+  private checkAutoAnswer(call: Call) {
     if (!document.hidden && call.autoAnswer) {
       return call.answer({
         video: call.params.video,
@@ -786,7 +786,7 @@ export class Client extends EventEmitter<ClientEvents> {
         call = new Call(this, event)
 
         this.callStore.set(call.id, call)
-        await this.checkAutoAnswer(call)
+        this.checkAutoAnswer(call)
         break
 
       case CallActions.Active:
