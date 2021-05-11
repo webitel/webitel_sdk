@@ -29,7 +29,9 @@ export interface AgentSession {
   channels: Channel[]
   is_supervisor: boolean
   is_admin: boolean
-  team: object
+  team: object | null
+  supervisor: object | null
+  auditor: object | null
 }
 
 export interface AgentSessionResponse extends AgentSession {
@@ -112,6 +114,14 @@ export class Agent {
 
   get team() {
     return this.info.team
+  }
+
+  get supervisor() {
+    return this.info.supervisor
+  }
+
+  get auditor() {
+    return this.info.auditor
   }
 
   get channels() {
@@ -230,7 +240,8 @@ export class Agent {
 
           if (task) {
             task.state = e.status
-            task.closedAt = e.timestamp
+            task.closedAt = e.timestamp // todo
+            task.setProcessing(processingEvent.processing)
             this.setChannelStateTimeout(
               e.channel,
               e,

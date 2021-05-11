@@ -85,6 +85,8 @@ export interface WrapTime {
 
 export interface Processing {
   timeout: number
+  sec: number
+  renewal_sec?: number
 }
 
 export interface DistributeEvent extends ChannelEvent {
@@ -116,8 +118,10 @@ export class Task {
   offeringAt: number
   answeredAt: number
   bridgedAt: number
+  startProcessingAt: number
   stopAt: number
   closedAt: number
+  _processing: Processing | null
   hasReporting: boolean
 
   constructor(
@@ -130,9 +134,11 @@ export class Task {
     this.lastStatusChange = e.timestamp
     this.communication = distribute.communication
     this.createdAt = e.timestamp
+    this._processing = null
     this.offeringAt = 0
     this.answeredAt = 0
     this.bridgedAt = 0
+    this.startProcessingAt = 0
     this.stopAt = 0
     this.closedAt = 0
     this.hasReporting = distribute.has_reporting
@@ -187,6 +193,35 @@ export class Task {
     this.lastStatusChange = Date.now()
   }
 
+  setProcessing(p: Processing) {
+    this.startProcessingAt = Date.now()
+    this._processing = p
+  }
+
+  get processingTimeout() {
+    if (!this._processing || !this._processing.timeout) {
+      return null
+    }
+
+    return this._processing.timeout
+  }
+
+  get processingSec() {
+    if (!this._processing || !this._processing.sec) {
+      return null
+    }
+
+    return this._processing.sec
+  }
+
+  get renewalSec() {
+    if (!this._processing || !this._processing.renewal_sec) {
+      return null
+    }
+
+    return this._processing.renewal_sec
+  }
+
   /*
     control
    */
@@ -222,10 +257,10 @@ export class Task {
     })
   }
 
-  async renewal(sec: number) {
+  async renewal(sec?: number) {
     return this.client.request('cc_renewal', {
       attempt_id: this.id,
-      renewal_sec: sec,
+      renewal_sec: sec ? sec : this.processingSec,
     })
   }
 }
