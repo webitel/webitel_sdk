@@ -368,12 +368,12 @@ export class Conversation {
     return this.task.reporting(reporting)
   }
 
-  async renewal(sec?: number) {
+  async renew(sec?: number) {
     if (!this.task) {
       throw new Error(`this conversation not in queue`)
     }
 
-    return this.task.renewal(sec)
+    return this.task.renew(sec)
   }
 
   private sendMessageTextChunk(text: string) {

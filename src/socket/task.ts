@@ -198,7 +198,7 @@ export class Task {
     this._processing = p
   }
 
-  get processingTimeout() {
+  get processingTimeoutAt() {
     if (!this._processing || !this._processing.timeout) {
       return null
     }
@@ -257,7 +257,7 @@ export class Task {
     })
   }
 
-  async renewal(sec?: number) {
+  async renew(sec?: number) {
     return this.client.request('cc_renewal', {
       attempt_id: this.id,
       renewal_sec: sec ? sec : this.processingSec,
