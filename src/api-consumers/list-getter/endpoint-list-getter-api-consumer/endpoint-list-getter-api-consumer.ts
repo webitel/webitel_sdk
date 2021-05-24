@@ -50,7 +50,6 @@ export default class EndpointListGetterApiConsumer extends BaseListGetterApiCons
       url += `&${qs.stringify(rest, {
         skipEmptyString: true,
         skipNull: true,
-        arrayFormat: 'comma',
       })}`
     }
     try {
