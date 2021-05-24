@@ -1,3 +1,4 @@
+import qs from 'query-string'
 import EndpointApiConsumersBasicParams from '../../_shared/endpoint-api-consumers/endpoint-api-consumers-basic-params'
 import ListGetterResponse from '../_shared/interfaces/response/list-getter-response'
 import BaseListGetterApiConsumer from '../base-list-getter-api-consumer/base-list-getter-api-consumer'
@@ -37,7 +38,7 @@ export default class EndpointListGetterApiConsumer extends BaseListGetterApiCons
       size = 10,
       search,
       searchQuery = 'name',
-      sort,
+      ...rest
     }: EndpointGetListParams,
     baseUrl = this.baseUrl
   ): Promise<ListGetterResponse> {
@@ -45,8 +46,12 @@ export default class EndpointListGetterApiConsumer extends BaseListGetterApiCons
     if (search && search.slice(-1) !== '*') search += '*'
     let url = `${baseUrl}?size=${size}&page=${page}`
     if (search) url += `&${searchQuery}=${search}`
-    if (sort) url += `&sort=${encodeURIComponent(sort)}`
-
+    if (Object.keys(rest).length) {
+      url += `&${qs.stringify(rest, {
+        skipEmptyString: true,
+        skipNull: true,
+      })}`
+    }
     try {
       let response = await this.instance.get(url)
       response = this.responseHandler(response)
