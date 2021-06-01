@@ -194,7 +194,10 @@ export class Task {
   }
 
   setProcessing(p: Processing) {
-    this.startProcessingAt = Date.now()
+    if (!this.startProcessingAt) {
+      this.startProcessingAt = Date.now()
+    }
+
     this._processing = p
   }
 

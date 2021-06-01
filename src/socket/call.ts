@@ -138,6 +138,8 @@ export interface CallEndpoint {
 export interface CallBridged extends CallEventData {
   bridged_id: string
   to?: CallEndpoint
+  queue?: QueueParameters
+  payload?: Map<string, string>
 }
 
 export interface CallInfo extends CallEventData {
@@ -298,7 +300,9 @@ export class Call {
       this.client.phone &&
       this.hangupAt === 0 &&
       this.answeredAt === 0 &&
-      (this.queue || this.direction === CallDirection.Inbound)
+      (this.queue ||
+        this.direction === CallDirection.Inbound ||
+        (this.params && !this.params.autoAnswer))
     )
   }
 
@@ -358,7 +362,14 @@ export class Call {
       }
     }
 
-    this.bridgedId = (s.data as CallBridged).bridged_id
+    this.bridgedId = bridged.bridged_id
+    if (bridged.payload) {
+      this.variables = bridged.payload
+    }
+
+    if (bridged.queue) {
+      this.queue = bridged.queue
+    }
   }
 
   setHold(e: CallEventData) {
