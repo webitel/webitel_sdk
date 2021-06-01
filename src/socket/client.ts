@@ -701,6 +701,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
   private handleChannelEvents(e: ChannelEvent) {
     if (this.agent) {
+      e.timestamp = Date.now() // bug
       const task = this.agent.onChannelEvent(e) || undefined
       this.eventHandler.emit(TASK_EVENT, e.status, task)
     }
@@ -882,11 +883,7 @@ export class Client extends EventEmitter<ClientEvents> {
         const joined = event.data as JoinedEvent
         conversation = this.conversationById(joined.conversation_id)
         if (conversation) {
-          conversation.setAnswered(
-            joined.member.id!,
-            timestamp,
-            joined.member
-          )
+          conversation.setAnswered(joined.member.id!, timestamp, joined.member)
         }
 
         break
