@@ -780,6 +780,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
   private async handleCallEvents(event: CallEventData) {
     let call: Call | undefined
+    event.timestamp = Date.now() // todo bug
 
     switch (event.event) {
       case CallActions.Ringing:
@@ -860,6 +861,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
   private async handleChatEvents(event: ChatEvent) {
     let conversation: Conversation | undefined
+    const timestamp = Date.now() // todo bug
 
     switch (event.action) {
       case ChatActions.UserInvite:
@@ -872,7 +874,7 @@ export class Client extends EventEmitter<ClientEvents> {
           inv.messages,
           inv.variables
         )
-        conversation.setInvite(inv.invite_id, inv.timestamp)
+        conversation.setInvite(inv.invite_id, timestamp)
         this.conversationStore.set(conversation.id, conversation)
         break
 
@@ -882,7 +884,7 @@ export class Client extends EventEmitter<ClientEvents> {
         if (conversation) {
           conversation.setAnswered(
             joined.member.id!,
-            joined.timestamp,
+            timestamp,
             joined.member
           )
         }
@@ -891,6 +893,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
       case ChatActions.Message:
         const message = event.data as MessageEvent
+        message.timestamp = timestamp
         conversation = this.conversationById(message.conversation_id)
         if (conversation) {
           conversation.newMessage(message)
@@ -904,7 +907,7 @@ export class Client extends EventEmitter<ClientEvents> {
         const e = event.data as BaseChatEvent
         conversation = this.conversationById(e.conversation_id)
         if (conversation) {
-          conversation.setClosed(e.timestamp)
+          conversation.setClosed(timestamp)
         }
         break
 
