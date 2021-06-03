@@ -52,7 +52,6 @@ export class Socket extends EventEmitter<SocketEvents> {
 
   close(code?: number) {
     this.socket!.close(code)
-    this.off('*')
     delete this.socket
   }
 
@@ -62,6 +61,7 @@ export class Socket extends EventEmitter<SocketEvents> {
 
   private onClose(code: number) {
     this.emit('close', code)
+    this.off('*')
   }
 
   private onMessage(data: string) {
