@@ -127,6 +127,7 @@ export interface ConversationItem {
 }
 
 export class Conversation {
+  data: any
   state: ConversationState
   channelId!: string | null
   inviteId!: string | null
@@ -158,6 +159,7 @@ export class Conversation {
     this.invitedAt = 0
     this.closedAt = 0
     this.task = null
+    this.data = null
     this.members = (members || []).map((i) => wrapChannelMember(i))
     this._messages = messages || []
     this.state = ConversationState.Invite

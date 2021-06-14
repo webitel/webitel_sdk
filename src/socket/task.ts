@@ -54,6 +54,7 @@ export interface ChannelEvent {
 export interface Distribute extends ChannelEvent {
   app_id: string
   queue_id: number
+  queue_name: string
   member_id: number
   agent_id?: number
   member_channel_id?: string
@@ -105,10 +106,16 @@ export interface ProcessingEvent extends ChannelEvent {
   processing: Processing
 }
 
+export interface Queue {
+  id: number
+  name: string
+}
+
 export class Task {
   history!: Distribute[]
   communication: MemberCommunication
   id: number
+  queue: Queue
   state: string
   postProcessData!: object
   lastStatusChange: number
@@ -142,6 +149,10 @@ export class Task {
     this.stopAt = 0
     this.closedAt = 0
     this.hasReporting = distribute.has_reporting
+    this.queue = {
+      id: +distribute.queue_id,
+      name: distribute.queue_name,
+    }
 
     this.history = [distribute]
     this._channel = distribute.channel
