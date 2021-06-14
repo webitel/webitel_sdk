@@ -178,6 +178,7 @@ export interface MemberInfoRequest {
 }
 
 export class Call {
+  data: any
   id: string
   appId: string
   sipId!: string | null
@@ -228,6 +229,7 @@ export class Call {
     this.voice = true
     this.createdAt = +e.timestamp
     this.task = null
+    this.data = null
 
     this.answeredAt = 0
     this.hangupAt = 0
