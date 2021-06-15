@@ -702,101 +702,12 @@ export const EmailProfileServiceApiFactory = function(
 }
 
 /**
- * EmailProfileServiceApi - interface
- * @export
- * @interface EmailProfileServiceApi
- */
-export interface EmailProfileServiceApiInterface {
-  /**
-   *
-   * @summary Create EmailProfile
-   * @param {EngineCreateEmailProfileRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApiInterface
-   */
-  createEmailProfile(
-    body: EngineCreateEmailProfileRequest,
-    options?: any
-  ): AxiosPromise<EngineEmailProfile>
-
-  /**
-   *
-   * @summary Remove EmailProfile
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApiInterface
-   */
-  deleteEmailProfile(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineEmailProfile>
-
-  /**
-   *
-   * @summary EmailProfile item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApiInterface
-   */
-  readEmailProfile(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineEmailProfile>
-
-  /**
-   *
-   * @summary Search EmailProfile
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApiInterface
-   */
-  searchEmailProfile(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineListEmailProfile>
-
-  /**
-   *
-   * @summary Update EmailProfile
-   * @param {string} id
-   * @param {EngineUpdateEmailProfileRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApiInterface
-   */
-  updateEmailProfile(
-    id: string,
-    body: EngineUpdateEmailProfileRequest,
-    options?: any
-  ): AxiosPromise<EngineEmailProfile>
-}
-
-/**
  * EmailProfileServiceApi - object-oriented interface
  * @export
  * @class EmailProfileServiceApi
  * @extends {BaseAPI}
  */
-export class EmailProfileServiceApi extends BaseAPI
-  implements EmailProfileServiceApiInterface {
+export class EmailProfileServiceApi extends BaseAPI {
   /**
    *
    * @summary Create EmailProfile

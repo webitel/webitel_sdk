@@ -740,105 +740,12 @@ export const AgentTeamServiceApiFactory = function(
 }
 
 /**
- * AgentTeamServiceApi - interface
- * @export
- * @interface AgentTeamServiceApi
- */
-export interface AgentTeamServiceApiInterface {
-  /**
-   *
-   * @summary Create AgentTeam
-   * @param {EngineCreateAgentTeamRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentTeamServiceApiInterface
-   */
-  createAgentTeam(
-    body: EngineCreateAgentTeamRequest,
-    options?: any
-  ): AxiosPromise<EngineAgentTeam>
-
-  /**
-   *
-   * @summary Remove AgentTeam
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentTeamServiceApiInterface
-   */
-  deleteAgentTeam(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineAgentTeam>
-
-  /**
-   *
-   * @summary AgentTeam item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentTeamServiceApiInterface
-   */
-  readAgentTeam(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineAgentTeam>
-
-  /**
-   *
-   * @summary List of AgentTeam
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {Array<string>} [strategy]
-   * @param {Array<number>} [adminId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentTeamServiceApiInterface
-   */
-  searchAgentTeam(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    strategy?: Array<string>,
-    adminId?: Array<number>,
-    options?: any
-  ): AxiosPromise<EngineListAgentTeam>
-
-  /**
-   *
-   * @summary Update AgentTeam
-   * @param {string} id
-   * @param {EngineUpdateAgentTeamRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentTeamServiceApiInterface
-   */
-  updateAgentTeam(
-    id: string,
-    body: EngineUpdateAgentTeamRequest,
-    options?: any
-  ): AxiosPromise<EngineAgentTeam>
-}
-
-/**
  * AgentTeamServiceApi - object-oriented interface
  * @export
  * @class AgentTeamServiceApi
  * @extends {BaseAPI}
  */
-export class AgentTeamServiceApi extends BaseAPI
-  implements AgentTeamServiceApiInterface {
+export class AgentTeamServiceApi extends BaseAPI {
   /**
    *
    * @summary Create AgentTeam

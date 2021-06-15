@@ -844,118 +844,12 @@ export const RoutingSchemaServiceApiFactory = function(
 }
 
 /**
- * RoutingSchemaServiceApi - interface
- * @export
- * @interface RoutingSchemaServiceApi
- */
-export interface RoutingSchemaServiceApiInterface {
-  /**
-   *
-   * @summary Create RoutingSchema
-   * @param {EngineCreateRoutingSchemaRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApiInterface
-   */
-  createRoutingSchema(
-    body: EngineCreateRoutingSchemaRequest,
-    options?: any
-  ): AxiosPromise<EngineRoutingSchema>
-
-  /**
-   *
-   * @summary Remove RoutingSchema
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApiInterface
-   */
-  deleteRoutingSchema(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineRoutingSchema>
-
-  /**
-   *
-   * @summary Patch RoutingSchema
-   * @param {string} id
-   * @param {EnginePatchRoutingSchemaRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApiInterface
-   */
-  patchRoutingSchema(
-    id: string,
-    body: EnginePatchRoutingSchemaRequest,
-    options?: any
-  ): AxiosPromise<EngineRoutingSchema>
-
-  /**
-   *
-   * @summary RoutingSchema item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApiInterface
-   */
-  readRoutingSchema(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineRoutingSchema>
-
-  /**
-   *
-   * @summary List RoutingSchema
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {string} [name]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApiInterface
-   */
-  searchRoutingSchema(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    name?: string,
-    options?: any
-  ): AxiosPromise<EngineListRoutingSchema>
-
-  /**
-   *
-   * @summary Update RoutingSchema
-   * @param {string} id
-   * @param {EngineUpdateRoutingSchemaRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApiInterface
-   */
-  updateRoutingSchema(
-    id: string,
-    body: EngineUpdateRoutingSchemaRequest,
-    options?: any
-  ): AxiosPromise<EngineRoutingSchema>
-}
-
-/**
  * RoutingSchemaServiceApi - object-oriented interface
  * @export
  * @class RoutingSchemaServiceApi
  * @extends {BaseAPI}
  */
-export class RoutingSchemaServiceApi extends BaseAPI
-  implements RoutingSchemaServiceApiInterface {
+export class RoutingSchemaServiceApi extends BaseAPI {
   /**
    *
    * @summary Create RoutingSchema

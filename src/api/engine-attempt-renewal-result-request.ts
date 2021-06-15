@@ -14,31 +14,19 @@
 /**
  *
  * @export
- * @interface CreateCallRequestEndpointRequest
+ * @interface EngineAttemptRenewalResultRequest
  */
-export interface CreateCallRequestEndpointRequest {
+export interface EngineAttemptRenewalResultRequest {
   /**
    *
    * @type {string}
-   * @memberof CreateCallRequestEndpointRequest
+   * @memberof EngineAttemptRenewalResultRequest
    */
-  app_id?: string
+  attempt_id?: string
   /**
    *
-   * @type {string}
-   * @memberof CreateCallRequestEndpointRequest
+   * @type {number}
+   * @memberof EngineAttemptRenewalResultRequest
    */
-  extension?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CreateCallRequestEndpointRequest
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CreateCallRequestEndpointRequest
-   */
-  type?: string
+  renewal?: number
 }

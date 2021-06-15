@@ -26,6 +26,8 @@ import {
 // @ts-ignore
 import { EngineAttemptCallbackRequest } from '../api'
 // @ts-ignore
+import { EngineAttemptRenewalResultRequest } from '../api'
+// @ts-ignore
 import { EngineAttemptResultRequest } from '../api'
 // @ts-ignore
 import { EngineAttemptResultResponse } from '../api'
@@ -191,6 +193,86 @@ export const MemberServiceApiAxiosParamCreator = function(
         .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
         .replace(`{${'member_id'}}`, encodeURIComponent(String(memberId)))
         .replace(`{${'attempt_id'}}`, encodeURIComponent(String(attemptId)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} attemptId
+     * @param {EngineAttemptRenewalResultRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    attemptsRenewalResult: async (
+      attemptId: string,
+      body: EngineAttemptRenewalResultRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'attemptId' is not null or undefined
+      if (attemptId === null || attemptId === undefined) {
+        throw new RequiredError(
+          'attemptId',
+          'Required parameter attemptId was null or undefined when calling attemptsRenewalResult.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling attemptsRenewalResult.'
+        )
+      }
+      const localVarPath = `/call_center/queues/attempts/{attempt_id}/renewal`.replace(
+        `{${'attempt_id'}}`,
+        encodeURIComponent(String(attemptId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -1498,6 +1580,34 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} attemptId
+     * @param {EngineAttemptRenewalResultRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async attemptsRenewalResult(
+      attemptId: string,
+      body: EngineAttemptRenewalResultRequest,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+    > {
+      const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
+        configuration
+      ).attemptsRenewalResult(attemptId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Offline queue
      * @param {string} queueId
      * @param {string} memberId
@@ -2072,6 +2182,22 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} attemptId
+     * @param {EngineAttemptRenewalResultRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    attemptsRenewalResult(
+      attemptId: string,
+      body: EngineAttemptRenewalResultRequest,
+      options?: any
+    ): AxiosPromise<object> {
+      return MemberServiceApiFp(configuration)
+        .attemptsRenewalResult(attemptId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Offline queue
      * @param {string} queueId
      * @param {string} memberId
@@ -2404,317 +2530,12 @@ export const MemberServiceApiFactory = function(
 }
 
 /**
- * MemberServiceApi - interface
- * @export
- * @interface MemberServiceApi
- */
-export interface MemberServiceApiInterface {
-  /**
-   *
-   * @param {string} attemptId
-   * @param {EngineAttemptCallbackRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  attemptCallback(
-    attemptId: string,
-    body: EngineAttemptCallbackRequest,
-    options?: any
-  ): AxiosPromise<EngineAttemptResultResponse>
-
-  /**
-   *
-   * @param {number} queueId
-   * @param {string} memberId
-   * @param {string} attemptId
-   * @param {EngineAttemptResultRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  attemptResult(
-    queueId: number,
-    memberId: string,
-    attemptId: string,
-    body: EngineAttemptResultRequest,
-    options?: any
-  ): AxiosPromise<EngineAttemptResultResponse>
-
-  /**
-   *
-   * @summary Offline queue
-   * @param {string} queueId
-   * @param {string} memberId
-   * @param {EngineCreateAttemptRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  createAttempt(
-    queueId: string,
-    memberId: string,
-    body: EngineCreateAttemptRequest,
-    options?: any
-  ): AxiosPromise<EngineCreateAttemptResponse>
-
-  /**
-   *
-   * @summary Create Member
-   * @param {string} queueId
-   * @param {EngineCreateMemberRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  createMember(
-    queueId: string,
-    body: EngineCreateMemberRequest,
-    options?: any
-  ): AxiosPromise<EngineMemberInQueue>
-
-  /**
-   *
-   * @summary Create Member
-   * @param {string} queueId
-   * @param {EngineCreateMemberBulkRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  createMemberBulk(
-    queueId: string,
-    body: EngineCreateMemberBulkRequest,
-    options?: any
-  ): AxiosPromise<EngineMemberBulkResponse>
-
-  /**
-   *
-   * @summary DeleteMember
-   * @param {string} queueId
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  deleteMember(
-    queueId: string,
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineMemberInQueue>
-
-  /**
-   *
-   * @summary DeleteMembers
-   * @param {string} queueId
-   * @param {EngineDeleteMembersRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  deleteMembers(
-    queueId: string,
-    body: EngineDeleteMembersRequest,
-    options?: any
-  ): AxiosPromise<EngineListMember>
-
-  /**
-   *
-   * @summary Patch Member
-   * @param {string} queueId
-   * @param {string} id
-   * @param {EnginePatchMemberRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  patchMember(
-    queueId: string,
-    id: string,
-    body: EnginePatchMemberRequest,
-    options?: any
-  ): AxiosPromise<EngineMemberInQueue>
-
-  /**
-   *
-   * @summary ReadQueueRouting
-   * @param {string} queueId
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  readMember(
-    queueId: string,
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineMemberInQueue>
-
-  /**
-   *
-   * @summary SearchAttempts
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [joinedAtFrom]
-   * @param {string} [joinedAtTo]
-   * @param {Array<string>} [id]
-   * @param {Array<string>} [queueId]
-   * @param {Array<string>} [bucketId]
-   * @param {Array<string>} [memberId]
-   * @param {Array<string>} [agentId]
-   * @param {string} [result]
-   * @param {Array<string>} [fields]
-   * @param {string} [sort]
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  searchAttempts(
-    page?: number,
-    size?: number,
-    joinedAtFrom?: string,
-    joinedAtTo?: string,
-    id?: Array<string>,
-    queueId?: Array<string>,
-    bucketId?: Array<string>,
-    memberId?: Array<string>,
-    agentId?: Array<string>,
-    result?: string,
-    fields?: Array<string>,
-    sort?: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineListAttempt>
-
-  /**
-   *
-   * @summary SearchMemberAttempts
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [joinedAtFrom]
-   * @param {string} [joinedAtTo]
-   * @param {Array<string>} [id]
-   * @param {Array<string>} [queueId]
-   * @param {Array<string>} [bucketId]
-   * @param {Array<string>} [memberId]
-   * @param {Array<string>} [agentId]
-   * @param {string} [result]
-   * @param {Array<string>} [fields]
-   * @param {string} [sort]
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  searchAttemptsHistory(
-    page?: number,
-    size?: number,
-    joinedAtFrom?: string,
-    joinedAtTo?: string,
-    id?: Array<string>,
-    queueId?: Array<string>,
-    bucketId?: Array<string>,
-    memberId?: Array<string>,
-    agentId?: Array<string>,
-    result?: string,
-    fields?: Array<string>,
-    sort?: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineListHistoryAttempt>
-
-  /**
-   *
-   * @summary SearchMemberAttempts
-   * @param {string} queueId
-   * @param {string} memberId
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  searchMemberAttempts(
-    queueId: string,
-    memberId: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineListMemberAttempt>
-
-  /**
-   *
-   * @summary List of Member
-   * @param {string} queueId
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  searchMemberInQueue(
-    queueId: string,
-    page?: number,
-    size?: number,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineListMember>
-
-  /**
-   *
-   * @summary Search of Member
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [id]
-   * @param {string} [queueId]
-   * @param {number} [bucketId]
-   * @param {string} [destination]
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  searchMembers(
-    page?: number,
-    size?: number,
-    id?: string,
-    queueId?: string,
-    bucketId?: number,
-    destination?: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineListMember>
-
-  /**
-   *
-   * @summary UpdateMember
-   * @param {string} queueId
-   * @param {string} id
-   * @param {EngineUpdateMemberRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MemberServiceApiInterface
-   */
-  updateMember(
-    queueId: string,
-    id: string,
-    body: EngineUpdateMemberRequest,
-    options?: any
-  ): AxiosPromise<EngineMemberInQueue>
-}
-
-/**
  * MemberServiceApi - object-oriented interface
  * @export
  * @class MemberServiceApi
  * @extends {BaseAPI}
  */
-export class MemberServiceApi extends BaseAPI
-  implements MemberServiceApiInterface {
+export class MemberServiceApi extends BaseAPI {
   /**
    *
    * @param {string} attemptId
@@ -2752,6 +2573,24 @@ export class MemberServiceApi extends BaseAPI
   ) {
     return MemberServiceApiFp(this.configuration)
       .attemptResult(queueId, memberId, attemptId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} attemptId
+   * @param {EngineAttemptRenewalResultRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public attemptsRenewalResult(
+    attemptId: string,
+    body: EngineAttemptRenewalResultRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration)
+      .attemptsRenewalResult(attemptId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

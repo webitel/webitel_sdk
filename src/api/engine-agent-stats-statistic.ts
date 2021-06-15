@@ -87,6 +87,12 @@ export interface EngineAgentStatsStatistic {
   name?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineAgentStatsStatistic
+   */
+  occupancy?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentStatsStatistic
    */

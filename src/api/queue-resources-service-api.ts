@@ -788,111 +788,12 @@ export const QueueResourcesServiceApiFactory = function(
 }
 
 /**
- * QueueResourcesServiceApi - interface
- * @export
- * @interface QueueResourcesServiceApi
- */
-export interface QueueResourcesServiceApiInterface {
-  /**
-   *
-   * @summary CreateQueueResourceGroup
-   * @param {string} queueId
-   * @param {EngineCreateQueueResourceGroupRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueResourcesServiceApiInterface
-   */
-  createQueueResourceGroup(
-    queueId: string,
-    body: EngineCreateQueueResourceGroupRequest,
-    options?: any
-  ): AxiosPromise<EngineQueueResourceGroup>
-
-  /**
-   *
-   * @summary DeleteQueueResourceGroup
-   * @param {string} queueId
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueResourcesServiceApiInterface
-   */
-  deleteQueueResourceGroup(
-    queueId: string,
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineQueueResourceGroup>
-
-  /**
-   *
-   * @summary ReadQueueResourceGroup
-   * @param {string} queueId
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueResourcesServiceApiInterface
-   */
-  readQueueResourceGroup(
-    queueId: string,
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineQueueResourceGroup>
-
-  /**
-   *
-   * @summary SearchQueueResourceGroup
-   * @param {string} queueId
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueResourcesServiceApiInterface
-   */
-  searchQueueResourceGroup(
-    queueId: string,
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    options?: any
-  ): AxiosPromise<EngineListQueueResourceGroup>
-
-  /**
-   *
-   * @summary UpdateQueueResourceGroup
-   * @param {string} queueId
-   * @param {string} id
-   * @param {EngineUpdateQueueResourceGroupRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueResourcesServiceApiInterface
-   */
-  updateQueueResourceGroup(
-    queueId: string,
-    id: string,
-    body: EngineUpdateQueueResourceGroupRequest,
-    options?: any
-  ): AxiosPromise<EngineQueueResourceGroup>
-}
-
-/**
  * QueueResourcesServiceApi - object-oriented interface
  * @export
  * @class QueueResourcesServiceApi
  * @extends {BaseAPI}
  */
-export class QueueResourcesServiceApi extends BaseAPI
-  implements QueueResourcesServiceApiInterface {
+export class QueueResourcesServiceApi extends BaseAPI {
   /**
    *
    * @summary CreateQueueResourceGroup

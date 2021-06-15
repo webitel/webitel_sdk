@@ -688,101 +688,12 @@ export const SkillServiceApiFactory = function(
 }
 
 /**
- * SkillServiceApi - interface
- * @export
- * @interface SkillServiceApi
- */
-export interface SkillServiceApiInterface {
-  /**
-   *
-   * @summary Create Skill
-   * @param {EngineCreateSkillRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SkillServiceApiInterface
-   */
-  createSkill(
-    body: EngineCreateSkillRequest,
-    options?: any
-  ): AxiosPromise<EngineSkill>
-
-  /**
-   *
-   * @summary Remove Skill
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SkillServiceApiInterface
-   */
-  deleteSkill(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineSkill>
-
-  /**
-   *
-   * @summary Skill item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SkillServiceApiInterface
-   */
-  readSkill(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineSkill>
-
-  /**
-   *
-   * @summary List of Skill
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SkillServiceApiInterface
-   */
-  searchSkill(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    options?: any
-  ): AxiosPromise<EngineListSkill>
-
-  /**
-   *
-   * @summary Update Skill
-   * @param {string} id
-   * @param {EngineUpdateSkillRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SkillServiceApiInterface
-   */
-  updateSkill(
-    id: string,
-    body: EngineUpdateSkillRequest,
-    options?: any
-  ): AxiosPromise<EngineSkill>
-}
-
-/**
  * SkillServiceApi - object-oriented interface
  * @export
  * @class SkillServiceApi
  * @extends {BaseAPI}
  */
-export class SkillServiceApi extends BaseAPI
-  implements SkillServiceApiInterface {
+export class SkillServiceApi extends BaseAPI {
   /**
    *
    * @summary Create Skill

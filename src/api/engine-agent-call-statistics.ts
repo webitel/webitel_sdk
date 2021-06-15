@@ -82,6 +82,12 @@ export interface EngineAgentCallStatistics {
    * @type {number}
    * @memberof EngineAgentCallStatistics
    */
+  occupancy?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
   sum_hold_sec?: number
   /**
    *
@@ -89,4 +95,10 @@ export interface EngineAgentCallStatistics {
    * @memberof EngineAgentCallStatistics
    */
   sum_talk_sec?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  utilization?: number
 }

@@ -452,73 +452,12 @@ export const MediaFileServiceApiFactory = function(
 }
 
 /**
- * MediaFileServiceApi - interface
- * @export
- * @interface MediaFileServiceApi
- */
-export interface MediaFileServiceApiInterface {
-  /**
-   *
-   * @summary Remove MediaFile
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MediaFileServiceApiInterface
-   */
-  deleteMediaFile(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<StorageMediaFile>
-
-  /**
-   *
-   * @summary MediaFile item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MediaFileServiceApiInterface
-   */
-  readMediaFile(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<StorageMediaFile>
-
-  /**
-   *
-   * @summary Search MediaFile
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MediaFileServiceApiInterface
-   */
-  searchMediaFile(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    options?: any
-  ): AxiosPromise<StorageListMedia>
-}
-
-/**
  * MediaFileServiceApi - object-oriented interface
  * @export
  * @class MediaFileServiceApi
  * @extends {BaseAPI}
  */
-export class MediaFileServiceApi extends BaseAPI
-  implements MediaFileServiceApiInterface {
+export class MediaFileServiceApi extends BaseAPI {
   /**
    *
    * @summary Remove MediaFile

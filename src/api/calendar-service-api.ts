@@ -813,118 +813,12 @@ export const CalendarServiceApiFactory = function(
 }
 
 /**
- * CalendarServiceApi - interface
- * @export
- * @interface CalendarServiceApi
- */
-export interface CalendarServiceApiInterface {
-  /**
-   *
-   * @summary Create calendar
-   * @param {EngineCreateCalendarRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApiInterface
-   */
-  createCalendar(
-    body: EngineCreateCalendarRequest,
-    options?: any
-  ): AxiosPromise<EngineCalendar>
-
-  /**
-   *
-   * @summary Remove calendar
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApiInterface
-   */
-  deleteCalendar(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineCalendar>
-
-  /**
-   *
-   * @summary Calendar item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApiInterface
-   */
-  readCalendar(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineCalendar>
-
-  /**
-   *
-   * @summary List of calendar
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApiInterface
-   */
-  searchCalendar(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    options?: any
-  ): AxiosPromise<EngineListCalendar>
-
-  /**
-   *
-   * @summary List timezones
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApiInterface
-   */
-  searchTimezones(
-    page?: number,
-    size?: number,
-    q?: string,
-    options?: any
-  ): AxiosPromise<EngineListTimezoneResponse>
-
-  /**
-   *
-   * @summary Update calendar
-   * @param {string} id
-   * @param {EngineUpdateCalendarRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CalendarServiceApiInterface
-   */
-  updateCalendar(
-    id: string,
-    body: EngineUpdateCalendarRequest,
-    options?: any
-  ): AxiosPromise<EngineCalendar>
-}
-
-/**
  * CalendarServiceApi - object-oriented interface
  * @export
  * @class CalendarServiceApi
  * @extends {BaseAPI}
  */
-export class CalendarServiceApi extends BaseAPI
-  implements CalendarServiceApiInterface {
+export class CalendarServiceApi extends BaseAPI {
   /**
    *
    * @summary Create calendar

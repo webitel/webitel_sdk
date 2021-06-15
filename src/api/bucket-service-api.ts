@@ -688,101 +688,12 @@ export const BucketServiceApiFactory = function(
 }
 
 /**
- * BucketServiceApi - interface
- * @export
- * @interface BucketServiceApi
- */
-export interface BucketServiceApiInterface {
-  /**
-   *
-   * @summary Create Bucket
-   * @param {EngineCreateBucketRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BucketServiceApiInterface
-   */
-  createBucket(
-    body: EngineCreateBucketRequest,
-    options?: any
-  ): AxiosPromise<EngineBucket>
-
-  /**
-   *
-   * @summary Remove Bucket
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BucketServiceApiInterface
-   */
-  deleteBucket(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineBucket>
-
-  /**
-   *
-   * @summary Bucket item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BucketServiceApiInterface
-   */
-  readBucket(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineBucket>
-
-  /**
-   *
-   * @summary List of Bucket
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BucketServiceApiInterface
-   */
-  searchBucket(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    options?: any
-  ): AxiosPromise<EngineListBucket>
-
-  /**
-   *
-   * @summary Update Bucket
-   * @param {string} id
-   * @param {EngineUpdateBucketRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BucketServiceApiInterface
-   */
-  updateBucket(
-    id: string,
-    body: EngineUpdateBucketRequest,
-    options?: any
-  ): AxiosPromise<EngineBucket>
-}
-
-/**
  * BucketServiceApi - object-oriented interface
  * @export
  * @class BucketServiceApi
  * @extends {BaseAPI}
  */
-export class BucketServiceApi extends BaseAPI
-  implements BucketServiceApiInterface {
+export class BucketServiceApi extends BaseAPI {
   /**
    *
    * @summary Create Bucket

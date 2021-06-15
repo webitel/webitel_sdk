@@ -702,101 +702,12 @@ export const CommunicationTypeServiceApiFactory = function(
 }
 
 /**
- * CommunicationTypeServiceApi - interface
- * @export
- * @interface CommunicationTypeServiceApi
- */
-export interface CommunicationTypeServiceApiInterface {
-  /**
-   *
-   * @summary Create CommunicationType
-   * @param {EngineCommunicationTypeRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CommunicationTypeServiceApiInterface
-   */
-  createCommunicationType(
-    body: EngineCommunicationTypeRequest,
-    options?: any
-  ): AxiosPromise<EngineCommunicationType>
-
-  /**
-   *
-   * @summary Remove CommunicationType
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CommunicationTypeServiceApiInterface
-   */
-  deleteCommunicationType(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineCommunicationType>
-
-  /**
-   *
-   * @summary CommunicationType item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CommunicationTypeServiceApiInterface
-   */
-  readCommunicationType(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<EngineCommunicationType>
-
-  /**
-   *
-   * @summary List of CommunicationType
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CommunicationTypeServiceApiInterface
-   */
-  searchCommunicationType(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    options?: any
-  ): AxiosPromise<EngineListCommunicationType>
-
-  /**
-   *
-   * @summary Update CommunicationType
-   * @param {string} id
-   * @param {EngineUpdateCommunicationTypeRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CommunicationTypeServiceApiInterface
-   */
-  updateCommunicationType(
-    id: string,
-    body: EngineUpdateCommunicationTypeRequest,
-    options?: any
-  ): AxiosPromise<EngineCommunicationType>
-}
-
-/**
  * CommunicationTypeServiceApi - object-oriented interface
  * @export
  * @class CommunicationTypeServiceApi
  * @extends {BaseAPI}
  */
-export class CommunicationTypeServiceApi extends BaseAPI
-  implements CommunicationTypeServiceApiInterface {
+export class CommunicationTypeServiceApi extends BaseAPI {
   /**
    *
    * @summary Create CommunicationType

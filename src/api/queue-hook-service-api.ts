@@ -916,122 +916,12 @@ export const QueueHookServiceApiFactory = function(
 }
 
 /**
- * QueueHookServiceApi - interface
- * @export
- * @interface QueueHookServiceApi
- */
-export interface QueueHookServiceApiInterface {
-  /**
-   *
-   * @param {number} queueId
-   * @param {EngineCreateQueueHookRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueHookServiceApiInterface
-   */
-  createQueueHook(
-    queueId: number,
-    body: EngineCreateQueueHookRequest,
-    options?: any
-  ): AxiosPromise<EngineQueueHook>
-
-  /**
-   *
-   * @param {number} queueId
-   * @param {number} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueHookServiceApiInterface
-   */
-  deleteQueueHook(
-    queueId: number,
-    id: number,
-    options?: any
-  ): AxiosPromise<EngineQueueHook>
-
-  /**
-   *
-   * @param {number} queueId
-   * @param {number} id
-   * @param {EnginePatchQueueHookRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueHookServiceApiInterface
-   */
-  patchQueueHook(
-    queueId: number,
-    id: number,
-    body: EnginePatchQueueHookRequest,
-    options?: any
-  ): AxiosPromise<EngineQueueHook>
-
-  /**
-   *
-   * @param {number} queueId
-   * @param {number} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueHookServiceApiInterface
-   */
-  readQueueHook(
-    queueId: number,
-    id: number,
-    options?: any
-  ): AxiosPromise<EngineQueueHook>
-
-  /**
-   *
-   * @param {number} queueId
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {Array<number>} [schemaId]
-   * @param {Array<string>} [event]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueHookServiceApiInterface
-   */
-  searchQueueHook(
-    queueId: number,
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    schemaId?: Array<number>,
-    event?: Array<string>,
-    options?: any
-  ): AxiosPromise<EngineListQueueHook>
-
-  /**
-   *
-   * @param {number} queueId
-   * @param {number} id
-   * @param {EngineUpdateQueueHookRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof QueueHookServiceApiInterface
-   */
-  updateQueueHook(
-    queueId: number,
-    id: number,
-    body: EngineUpdateQueueHookRequest,
-    options?: any
-  ): AxiosPromise<EngineQueueHook>
-}
-
-/**
  * QueueHookServiceApi - object-oriented interface
  * @export
  * @class QueueHookServiceApi
  * @extends {BaseAPI}
  */
-export class QueueHookServiceApi extends BaseAPI
-  implements QueueHookServiceApiInterface {
+export class QueueHookServiceApi extends BaseAPI {
   /**
    *
    * @param {number} queueId

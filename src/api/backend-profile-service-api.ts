@@ -834,116 +834,12 @@ export const BackendProfileServiceApiFactory = function(
 }
 
 /**
- * BackendProfileServiceApi - interface
- * @export
- * @interface BackendProfileServiceApi
- */
-export interface BackendProfileServiceApiInterface {
-  /**
-   *
-   * @summary Create BackendProfile
-   * @param {StorageCreateBackendProfileRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BackendProfileServiceApiInterface
-   */
-  createBackendProfile(
-    body: StorageCreateBackendProfileRequest,
-    options?: any
-  ): AxiosPromise<StorageBackendProfile>
-
-  /**
-   *
-   * @summary Remove BackendProfile
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BackendProfileServiceApiInterface
-   */
-  deleteBackendProfile(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<StorageBackendProfile>
-
-  /**
-   *
-   * @summary Patch BackendProfile
-   * @param {string} id
-   * @param {StoragePatchBackendProfileRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BackendProfileServiceApiInterface
-   */
-  patchBackendProfile(
-    id: string,
-    body: StoragePatchBackendProfileRequest,
-    options?: any
-  ): AxiosPromise<StorageBackendProfile>
-
-  /**
-   *
-   * @summary BackendProfile item
-   * @param {string} id
-   * @param {string} [domainId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BackendProfileServiceApiInterface
-   */
-  readBackendProfile(
-    id: string,
-    domainId?: string,
-    options?: any
-  ): AxiosPromise<StorageBackendProfile>
-
-  /**
-   *
-   * @summary List of BackendProfile
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BackendProfileServiceApiInterface
-   */
-  searchBackendProfile(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    options?: any
-  ): AxiosPromise<StorageListBackendProfile>
-
-  /**
-   *
-   * @summary Update BackendProfile
-   * @param {string} id
-   * @param {StorageUpdateBackendProfileRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof BackendProfileServiceApiInterface
-   */
-  updateBackendProfile(
-    id: string,
-    body: StorageUpdateBackendProfileRequest,
-    options?: any
-  ): AxiosPromise<StorageBackendProfile>
-}
-
-/**
  * BackendProfileServiceApi - object-oriented interface
  * @export
  * @class BackendProfileServiceApi
  * @extends {BaseAPI}
  */
-export class BackendProfileServiceApi extends BaseAPI
-  implements BackendProfileServiceApiInterface {
+export class BackendProfileServiceApi extends BaseAPI {
   /**
    *
    * @summary Create BackendProfile

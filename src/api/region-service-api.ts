@@ -822,106 +822,12 @@ export const RegionServiceApiFactory = function(
 }
 
 /**
- * RegionServiceApi - interface
- * @export
- * @interface RegionServiceApi
- */
-export interface RegionServiceApiInterface {
-  /**
-   *
-   * @param {EngineCreateRegionRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RegionServiceApiInterface
-   */
-  createRegion(
-    body: EngineCreateRegionRequest,
-    options?: any
-  ): AxiosPromise<EngineRegion>
-
-  /**
-   *
-   * @param {number} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RegionServiceApiInterface
-   */
-  deleteRegion(id: number, options?: any): AxiosPromise<EngineRegion>
-
-  /**
-   *
-   * @param {number} id
-   * @param {EnginePatchRegionRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RegionServiceApiInterface
-   */
-  patchRegion(
-    id: number,
-    body: EnginePatchRegionRequest,
-    options?: any
-  ): AxiosPromise<EngineRegion>
-
-  /**
-   *
-   * @param {number} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RegionServiceApiInterface
-   */
-  readRegion(id: number, options?: any): AxiosPromise<EngineRegion>
-
-  /**
-   *
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {string} [name]
-   * @param {string} [description]
-   * @param {Array<number>} [timezoneId]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RegionServiceApiInterface
-   */
-  searchRegion(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    name?: string,
-    description?: string,
-    timezoneId?: Array<number>,
-    options?: any
-  ): AxiosPromise<EngineListRegion>
-
-  /**
-   *
-   * @param {number} id
-   * @param {EngineUpdateRegionRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RegionServiceApiInterface
-   */
-  updateRegion(
-    id: number,
-    body: EngineUpdateRegionRequest,
-    options?: any
-  ): AxiosPromise<EngineRegion>
-}
-
-/**
  * RegionServiceApi - object-oriented interface
  * @export
  * @class RegionServiceApi
  * @extends {BaseAPI}
  */
-export class RegionServiceApi extends BaseAPI
-  implements RegionServiceApiInterface {
+export class RegionServiceApi extends BaseAPI {
   /**
    *
    * @param {EngineCreateRegionRequest} body

@@ -796,106 +796,12 @@ export const AgentPauseCauseServiceApiFactory = function(
 }
 
 /**
- * AgentPauseCauseServiceApi - interface
- * @export
- * @interface AgentPauseCauseServiceApi
- */
-export interface AgentPauseCauseServiceApiInterface {
-  /**
-   *
-   * @param {EngineCreateAgentPauseCauseRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentPauseCauseServiceApiInterface
-   */
-  createAgentPauseCause(
-    body: EngineCreateAgentPauseCauseRequest,
-    options?: any
-  ): AxiosPromise<EngineAgentPauseCause>
-
-  /**
-   *
-   * @param {number} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentPauseCauseServiceApiInterface
-   */
-  deleteAgentPauseCause(
-    id: number,
-    options?: any
-  ): AxiosPromise<EngineAgentPauseCause>
-
-  /**
-   *
-   * @param {number} id
-   * @param {EnginePatchAgentPauseCauseRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentPauseCauseServiceApiInterface
-   */
-  patchAgentPauseCause(
-    id: number,
-    body: EnginePatchAgentPauseCauseRequest,
-    options?: any
-  ): AxiosPromise<EngineAgentPauseCause>
-
-  /**
-   *
-   * @param {number} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentPauseCauseServiceApiInterface
-   */
-  readAgentPauseCause(
-    id: number,
-    options?: any
-  ): AxiosPromise<EngineAgentPauseCause>
-
-  /**
-   *
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentPauseCauseServiceApiInterface
-   */
-  searchAgentPauseCause(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    id?: Array<number>,
-    options?: any
-  ): AxiosPromise<EngineListAgentPauseCause>
-
-  /**
-   *
-   * @param {number} id
-   * @param {EngineUpdateAgentPauseCauseRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AgentPauseCauseServiceApiInterface
-   */
-  updateAgentPauseCause(
-    id: number,
-    body: EngineUpdateAgentPauseCauseRequest,
-    options?: any
-  ): AxiosPromise<EngineAgentPauseCause>
-}
-
-/**
  * AgentPauseCauseServiceApi - object-oriented interface
  * @export
  * @class AgentPauseCauseServiceApi
  * @extends {BaseAPI}
  */
-export class AgentPauseCauseServiceApi extends BaseAPI
-  implements AgentPauseCauseServiceApiInterface {
+export class AgentPauseCauseServiceApi extends BaseAPI {
   /**
    *
    * @param {EngineCreateAgentPauseCauseRequest} body

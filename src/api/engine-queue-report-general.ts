@@ -64,6 +64,12 @@ export interface EngineQueueReportGeneral {
   avg_wrap_sec?: number
   /**
    *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  bridged?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineQueueReportGeneral
    */
@@ -91,7 +97,19 @@ export interface EngineQueueReportGeneral {
    * @type {number}
    * @memberof EngineQueueReportGeneral
    */
-  sum_talk_sec?: number
+  sl20?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  sl30?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueReportGeneral
+   */
+  sum_bill_sec?: number
   /**
    *
    * @type {EngineLookup}
