@@ -249,12 +249,13 @@ export class Conversation {
   }
 
   get allowReporting() {
-    return (
-      this.answeredAt > 0 &&
-      this.variables &&
-      this.variables.cc_reporting === 'true'
-    )
+    return this.answeredAt > 0 && this.hasReporting
   }
+
+  get hasReporting() {
+    return this.variables && this.variables.cc_reporting === 'true'
+  }
+
   /*
   Actions
    */

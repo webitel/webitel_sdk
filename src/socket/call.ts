@@ -438,7 +438,11 @@ export class Call {
   }
 
   get allowReporting() {
-    if (this.answeredAt > 0 && this.queue) {
+    return this.answeredAt > 0 && this.hasReporting
+  }
+
+  get hasReporting() {
+    if (this.queue) {
       return this.queue.reporting === 'true'
     }
 

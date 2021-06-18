@@ -154,6 +154,7 @@ interface EventHandler {
 
 export interface ClientEvents {
   disconnected(code: number): void
+  connected(): void
 }
 
 export class Client extends EventEmitter<ClientEvents> {
@@ -771,6 +772,7 @@ export class Client extends EventEmitter<ClientEvents> {
       })
       this.socket.on('open', () => {
         resolve(null)
+        this.emit('connected')
       })
     })
   }
