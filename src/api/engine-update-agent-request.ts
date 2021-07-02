@@ -27,10 +27,10 @@ export interface EngineUpdateAgentRequest {
   allow_channels?: Array<string>
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineUpdateAgentRequest
    */
-  auditor?: EngineLookup
+  auditor?: Array<EngineLookup>
   /**
    *
    * @type {number}
@@ -81,10 +81,10 @@ export interface EngineUpdateAgentRequest {
   region?: EngineLookup
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineUpdateAgentRequest
    */
-  supervisor?: EngineLookup
+  supervisor?: Array<EngineLookup>
   /**
    *
    * @type {EngineLookup}

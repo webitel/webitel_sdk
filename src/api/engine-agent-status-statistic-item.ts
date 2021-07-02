@@ -27,10 +27,10 @@ export interface EngineAgentStatusStatisticItem {
   agent_id?: number
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineAgentStatusStatisticItem
    */
-  auditor?: EngineLookup
+  auditor?: Array<EngineLookup>
   /**
    *
    * @type {number}
@@ -99,10 +99,10 @@ export interface EngineAgentStatusStatisticItem {
   status_duration?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineAgentStatusStatisticItem
    */
-  supervisor?: EngineLookup
+  supervisor?: Array<EngineLookup>
   /**
    *
    * @type {EngineLookup}
