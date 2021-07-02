@@ -6,6 +6,7 @@ import {
   MissedEvent,
   ProcessingEvent,
   Task,
+  TransferEvent,
   WrapTimeEvent,
 } from './task'
 
@@ -69,6 +70,7 @@ export enum ChannelState {
   Missed = 'missed',
   WrapTime = 'wrap_time',
   Processing = 'processing',
+  Transfer = 'transfer',
 }
 
 export enum ChannelType {
@@ -182,6 +184,18 @@ export class Agent {
         task = this.task.get(e.attempt_id!)
         if (task) {
           task.bridgedAt = e.timestamp
+        }
+        break
+
+      case ChannelState.Transfer:
+        const transfer = e as TransferEvent
+        task = this.task.get(transfer.to_attempt_id)
+        if (task) {
+          this.task.delete(task.id)
+          task.id = transfer.attempt_id!
+          task.setTransferred(transfer.distribute)
+
+          this.task.set(task.id, task)
         }
         break
 

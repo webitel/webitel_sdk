@@ -322,18 +322,18 @@ export class Call {
 
   // todo
   async getMember(req: MemberInfoRequest) {
-    if (!this.queue || !this.queue.member_id) {
+    if (!this.isMember) {
       throw new Error(`call is not from outbound queue`)
     }
 
     return this.client.request(`cc_member_page`, {
-      queue_id: +this.queue.queue_id,
-      member_id: +this.queue.member_id,
+      queue_id: this.task!.queueId,
+      member_id: this.task!.memberId,
     })
   }
 
   get isMember(): boolean {
-    return !!(this.queue && this.queue.member_id)
+    return !!(this.task && this.task.memberId)
   }
 
   setActive(e: CallEventData) {
@@ -442,8 +442,8 @@ export class Call {
   }
 
   get hasReporting() {
-    if (this.queue) {
-      return this.queue.reporting === 'true'
+    if (this.task) {
+      return this.task.hasReporting
     }
 
     return false

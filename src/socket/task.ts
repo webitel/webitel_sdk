@@ -94,6 +94,11 @@ export interface DistributeEvent extends ChannelEvent {
   distribute: Distribute
 }
 
+export interface TransferEvent extends ChannelEvent {
+  to_attempt_id: number
+  distribute: Distribute
+}
+
 export interface MissedEvent extends ChannelEvent {
   missed: Missed
 }
@@ -115,12 +120,9 @@ export class Task {
   history!: Distribute[]
   communication: MemberCommunication
   id: number
-  queue: Queue
   state: string
   postProcessData!: object
   lastStatusChange: number
-  _agentChannelId: string | undefined
-  _channel: string
   createdAt: number
   offeringAt: number
   answeredAt: number
@@ -129,7 +131,6 @@ export class Task {
   stopAt: number
   closedAt: number
   _processing: Processing | null
-  hasReporting: boolean
 
   constructor(
     private readonly client: Client,
@@ -139,7 +140,6 @@ export class Task {
     this.id = e.attempt_id!
     this.state = e.status
     this.lastStatusChange = e.timestamp
-    this.communication = distribute.communication
     this.createdAt = e.timestamp
     this._processing = null
     this.offeringAt = 0
@@ -148,15 +148,16 @@ export class Task {
     this.startProcessingAt = 0
     this.stopAt = 0
     this.closedAt = 0
-    this.hasReporting = distribute.has_reporting
-    this.queue = {
-      id: +distribute.queue_id,
-      name: distribute.queue_name,
-    }
 
+    this.communication = distribute.communication
     this.history = [distribute]
-    this._channel = distribute.channel
-    this._agentChannelId = distribute.agent_channel_id
+  }
+
+  get queue(): Queue {
+    return {
+      id: this.distribute.queue_id,
+      name: this.distribute.queue_name,
+    }
   }
 
   get duration() {
@@ -164,7 +165,7 @@ export class Task {
   }
 
   get channel() {
-    return this._channel
+    return this.distribute.channel
   }
 
   get allowAccept() {
@@ -186,12 +187,24 @@ export class Task {
     )
   }
 
+  get memberId() {
+    return this.distribute.member_id
+  }
+
+  get queueId() {
+    return this.distribute.queue_id
+  }
+
+  get hasReporting() {
+    return this.distribute.has_reporting
+  }
+
   get allowReporting() {
     return this.hasReporting && this.bridgedAt > 0
   }
 
   get agentChannelId() {
-    return this._agentChannelId
+    return this.distribute.agent_channel_id
   }
 
   setAnswered(t: number) {
@@ -214,6 +227,11 @@ export class Task {
     }
 
     this._processing = p
+  }
+
+  setTransferred(d: Distribute) {
+    this.distribute = d
+    this.history.push(d)
   }
 
   get processingTimeoutAt() {
