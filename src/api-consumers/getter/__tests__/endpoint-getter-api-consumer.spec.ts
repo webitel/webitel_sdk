@@ -9,7 +9,10 @@ const getter = new EndpointGetterApiConsumer({ instance, baseUrl })
 
 const parentId = 321
 const itemId = 123
-const getUrl = '/jest/123'
+const query = {
+  fields: 'metadata.access',
+}
+const getUrl = '/jest/123?fields=metadata.access'
 
 describe('Endpoint Getter Api Consumer', () => {
   it('correctly returns received response from getItem()', async () => {
@@ -21,7 +24,7 @@ describe('Endpoint Getter Api Consumer', () => {
     expect(response).toEqual(expectedResponse)
   })
   it('correctly passes received arguments to passed endpoint method', async () => {
-    await getter.getItem({ itemId })
+    await getter.getItem({ itemId, query })
     expect(instance.get).toHaveBeenCalledWith(getUrl)
   })
 })
