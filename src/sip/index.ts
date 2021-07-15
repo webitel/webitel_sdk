@@ -8,6 +8,7 @@ export interface SipConfiguration {
   authorization_user: string
   display_name: string
   ha1?: string
+  register_expires?: number
 }
 
 export interface Answer {

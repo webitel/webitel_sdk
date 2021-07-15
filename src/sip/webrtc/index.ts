@@ -89,7 +89,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       session_timers: true,
       // use_preloaded_route: true,
       display_name: sipConf.display_name,
-      register_expires: 300,
+      register_expires: sipConf.register_expires || 90,
       connection_recovery_min_interval: 5,
       connection_recovery_max_interval: 60,
       // instance_id: '8f1fa16a-1165-4a96-8341-785b1ef24f13',
