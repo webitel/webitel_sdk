@@ -24,7 +24,7 @@ export interface EngineCreateOutboundResourceRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceRequest
    */
-  domain_id?: string
+  description?: string
   /**
    *
    * @type {boolean}

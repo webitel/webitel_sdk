@@ -178,10 +178,10 @@ export interface EngineActiveCall {
   state?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineActiveCall
    */
-  supervisor?: EngineLookup
+  supervisor?: Array<EngineLookup>
   /**
    *
    * @type {EngineLookup}

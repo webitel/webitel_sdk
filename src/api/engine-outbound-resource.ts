@@ -36,6 +36,12 @@ export interface EngineOutboundResource {
    * @type {string}
    * @memberof EngineOutboundResource
    */
+  description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineOutboundResource
+   */
   domain_id?: string
   /**
    *
