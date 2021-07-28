@@ -25,6 +25,7 @@ export interface OutboundConfiguration {
   screen?: boolean
   disableStun?: boolean
   autoAnswer?: boolean
+  display?: string
   variables?: Map<string, string>
 }
 

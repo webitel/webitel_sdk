@@ -62,6 +62,8 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
   async call(req: Outbound) {
     const params = {} as Answer
+    let display = null
+
     if (req.params) {
       params.audio = req.params.audio
       params.video = req.params.video || false
@@ -73,7 +75,18 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       throw new Error('bad destination type')
     }
 
-    await this.ua.call(req.destination, await this.callOption(params))
+    const invite = await this.callOption(params)
+
+    if (req.params && req.params.display) {
+      display = {
+        extraHeaders: [`X-Webitel-Display: ${req.params.display}`],
+      }
+    }
+
+    await this.ua.call(req.destination, {
+      ...invite,
+      ...display,
+    })
   }
 
   async register(sipConf: SipConfiguration) {
