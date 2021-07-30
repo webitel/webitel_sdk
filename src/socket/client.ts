@@ -743,7 +743,7 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   private checkAutoAnswer(call: Call) {
-    if (!document.hidden && call.autoAnswer) {
+    if (/*!document.hidden && */ call.autoAnswer) {
       return call.answer({
         video: call.params.video,
         screen: call.params.screen,
