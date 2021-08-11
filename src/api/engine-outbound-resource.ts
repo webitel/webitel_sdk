@@ -105,6 +105,12 @@ export interface EngineOutboundResource {
   number?: string
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineOutboundResource
+   */
+  patterns?: Array<string>
+  /**
+   *
    * @type {boolean}
    * @memberof EngineOutboundResource
    */

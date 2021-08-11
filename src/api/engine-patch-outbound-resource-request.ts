@@ -81,6 +81,12 @@ export interface EnginePatchOutboundResourceRequest {
   number?: string
   /**
    *
+   * @type {Array<string>}
+   * @memberof EnginePatchOutboundResourceRequest
+   */
+  patterns?: Array<string>
+  /**
+   *
    * @type {boolean}
    * @memberof EnginePatchOutboundResourceRequest
    */

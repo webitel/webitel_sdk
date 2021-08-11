@@ -34,6 +34,18 @@ export interface CreateCallRequestCallSettings {
    * @type {boolean}
    * @memberof CreateCallRequestCallSettings
    */
+  disable_stun?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof CreateCallRequestCallSettings
+   */
+  display?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof CreateCallRequestCallSettings
+   */
   record?: boolean
   /**
    *
