@@ -342,6 +342,7 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
+     * @param {Array<number>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -352,6 +353,7 @@ export const QueueServiceApiAxiosParamCreator = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<string>,
+      type?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/queues`
@@ -399,6 +401,10 @@ export const QueueServiceApiAxiosParamCreator = function(
 
       if (id) {
         localVarQueryParameter['id'] = id
+      }
+
+      if (type) {
+        localVarQueryParameter['type'] = type
       }
 
       localVarUrlObj.query = {
@@ -751,6 +757,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
+     * @param {Array<number>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -761,6 +768,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
       sort?: string,
       fields?: Array<string>,
       id?: Array<string>,
+      type?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -770,7 +778,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueServiceApiAxiosParamCreator(
         configuration
-      ).searchQueue(page, size, q, sort, fields, id, options)
+      ).searchQueue(page, size, q, sort, fields, id, type, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -961,6 +969,7 @@ export const QueueServiceApiFactory = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
+     * @param {Array<number>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -971,10 +980,11 @@ export const QueueServiceApiFactory = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<string>,
+      type?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListQueue> {
       return QueueServiceApiFp(configuration)
-        .searchQueue(page, size, q, sort, fields, id, options)
+        .searchQueue(page, size, q, sort, fields, id, type, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1119,6 +1129,7 @@ export class QueueServiceApi extends BaseAPI {
    * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<string>} [id]
+   * @param {Array<number>} [type]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
@@ -1130,10 +1141,11 @@ export class QueueServiceApi extends BaseAPI {
     sort?: string,
     fields?: Array<string>,
     id?: Array<string>,
+    type?: Array<number>,
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration)
-      .searchQueue(page, size, q, sort, fields, id, options)
+      .searchQueue(page, size, q, sort, fields, id, type, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

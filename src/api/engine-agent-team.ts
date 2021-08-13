@@ -21,10 +21,10 @@ import { EngineLookup } from './engine-lookup'
 export interface EngineAgentTeam {
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EngineAgentTeam
    */
-  admin?: EngineLookup
+  admin?: Array<EngineLookup>
   /**
    *
    * @type {number}
