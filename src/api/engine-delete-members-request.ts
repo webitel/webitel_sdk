@@ -19,6 +19,12 @@
 export interface EngineDeleteMembersRequest {
   /**
    *
+   * @type {Array<number>}
+   * @memberof EngineDeleteMembersRequest
+   */
+  agent_id?: Array<number>
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineDeleteMembersRequest
    */

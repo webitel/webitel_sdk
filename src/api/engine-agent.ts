@@ -52,6 +52,12 @@ export interface EngineAgent {
   description?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineAgent
+   */
+  extension?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineAgent
    */
