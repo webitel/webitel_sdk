@@ -24,13 +24,19 @@ export interface EngineCreateOutboundResourceInGroupRequest {
    * @type {string}
    * @memberof EngineCreateOutboundResourceInGroupRequest
    */
-  domain_id?: string
+  group_id?: string
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof EngineCreateOutboundResourceInGroupRequest
    */
-  group_id?: string
+  priority?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineCreateOutboundResourceInGroupRequest
+   */
+  reserve_resource?: EngineLookup
   /**
    *
    * @type {EngineLookup}

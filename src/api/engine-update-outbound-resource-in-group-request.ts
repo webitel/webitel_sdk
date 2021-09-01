@@ -24,12 +24,6 @@ export interface EngineUpdateOutboundResourceInGroupRequest {
    * @type {string}
    * @memberof EngineUpdateOutboundResourceInGroupRequest
    */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineUpdateOutboundResourceInGroupRequest
-   */
   group_id?: string
   /**
    *
@@ -37,6 +31,18 @@ export interface EngineUpdateOutboundResourceInGroupRequest {
    * @memberof EngineUpdateOutboundResourceInGroupRequest
    */
   id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateOutboundResourceInGroupRequest
+   */
+  priority?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateOutboundResourceInGroupRequest
+   */
+  reserve_resource?: EngineLookup
   /**
    *
    * @type {EngineLookup}

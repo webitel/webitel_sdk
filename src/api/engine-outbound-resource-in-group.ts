@@ -33,6 +33,18 @@ export interface EngineOutboundResourceInGroup {
   id?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineOutboundResourceInGroup
+   */
+  priority?: number
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineOutboundResourceInGroup
+   */
+  reserve_resource?: EngineLookup
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineOutboundResourceInGroup
    */
