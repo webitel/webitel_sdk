@@ -45,10 +45,10 @@ export interface EngineRoutingSchema {
   description?: string
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EngineRoutingSchema
    */
-  domain_id?: string
+  editor?: boolean
   /**
    *
    * @type {string}
@@ -75,10 +75,10 @@ export interface EngineRoutingSchema {
   schema?: object
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineRoutingSchema
    */
-  type?: number
+  type?: string
   /**
    *
    * @type {string}

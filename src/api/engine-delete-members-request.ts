@@ -43,6 +43,12 @@ export interface EngineDeleteMembersRequest {
   ids?: Array<string>
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineDeleteMembersRequest
+   */
+  numbers?: Array<string>
+  /**
+   *
    * @type {string}
    * @memberof EngineDeleteMembersRequest
    */
@@ -53,4 +59,10 @@ export interface EngineDeleteMembersRequest {
    * @memberof EngineDeleteMembersRequest
    */
   stop_cause?: Array<string>
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineDeleteMembersRequest
+   */
+  variables?: { [key: string]: string }
 }

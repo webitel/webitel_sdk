@@ -12,6 +12,7 @@
  */
 
 import { EngineLookup } from './engine-lookup'
+import { EngineOutboundResourceParameters } from './engine-outbound-resource-parameters'
 
 /**
  *
@@ -37,6 +38,12 @@ export interface EngineCreateOutboundResourceRequest {
    * @memberof EngineCreateOutboundResourceRequest
    */
   error_ids?: Array<string>
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  failure_dial_delay?: number
   /**
    *
    * @type {EngineLookup}
@@ -67,6 +74,12 @@ export interface EngineCreateOutboundResourceRequest {
    * @memberof EngineCreateOutboundResourceRequest
    */
   number?: string
+  /**
+   *
+   * @type {EngineOutboundResourceParameters}
+   * @memberof EngineCreateOutboundResourceRequest
+   */
+  parameters?: EngineOutboundResourceParameters
   /**
    *
    * @type {Array<string>}

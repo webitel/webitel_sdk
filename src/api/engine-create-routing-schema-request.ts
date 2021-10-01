@@ -31,10 +31,10 @@ export interface EngineCreateRoutingSchemaRequest {
   description?: string
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EngineCreateRoutingSchemaRequest
    */
-  domain_id?: string
+  editor?: boolean
   /**
    *
    * @type {string}
@@ -55,8 +55,8 @@ export interface EngineCreateRoutingSchemaRequest {
   schema?: object
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineCreateRoutingSchemaRequest
    */
-  type?: number
+  type?: string
 }

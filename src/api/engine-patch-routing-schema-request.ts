@@ -31,10 +31,10 @@ export interface EnginePatchRoutingSchemaRequest {
   description?: string
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EnginePatchRoutingSchemaRequest
    */
-  domain_id?: string
+  editor?: boolean
   /**
    *
    * @type {Array<string>}
@@ -67,8 +67,8 @@ export interface EnginePatchRoutingSchemaRequest {
   schema?: object
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EnginePatchRoutingSchemaRequest
    */
-  type?: number
+  type?: string
 }
