@@ -341,6 +341,8 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
+     * @param {Array<string>} [type]
+     * @param {boolean} [editor]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -352,6 +354,8 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       id?: Array<number>,
       name?: string,
+      type?: Array<string>,
+      editor?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/routing/schema`
@@ -403,6 +407,14 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
 
       if (name !== undefined) {
         localVarQueryParameter['name'] = name
+      }
+
+      if (type) {
+        localVarQueryParameter['type'] = type
+      }
+
+      if (editor !== undefined) {
+        localVarQueryParameter['editor'] = editor
       }
 
       localVarUrlObj.query = {
@@ -653,6 +665,8 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
+     * @param {Array<string>} [type]
+     * @param {boolean} [editor]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -664,6 +678,8 @@ export const RoutingSchemaServiceApiFp = function(
       fields?: Array<string>,
       id?: Array<number>,
       name?: string,
+      type?: Array<string>,
+      editor?: boolean,
       options?: any
     ): Promise<
       (
@@ -673,7 +689,18 @@ export const RoutingSchemaServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingSchema(page, size, q, sort, fields, id, name, options)
+      ).searchRoutingSchema(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        name,
+        type,
+        editor,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -806,6 +833,8 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
+     * @param {Array<string>} [type]
+     * @param {boolean} [editor]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -817,10 +846,23 @@ export const RoutingSchemaServiceApiFactory = function(
       fields?: Array<string>,
       id?: Array<number>,
       name?: string,
+      type?: Array<string>,
+      editor?: boolean,
       options?: any
     ): AxiosPromise<EngineListRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
-        .searchRoutingSchema(page, size, q, sort, fields, id, name, options)
+        .searchRoutingSchema(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          name,
+          type,
+          editor,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -926,6 +968,8 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {string} [name]
+   * @param {Array<string>} [type]
+   * @param {boolean} [editor]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
@@ -938,10 +982,23 @@ export class RoutingSchemaServiceApi extends BaseAPI {
     fields?: Array<string>,
     id?: Array<number>,
     name?: string,
+    type?: Array<string>,
+    editor?: boolean,
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration)
-      .searchRoutingSchema(page, size, q, sort, fields, id, name, options)
+      .searchRoutingSchema(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        name,
+        type,
+        editor,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
