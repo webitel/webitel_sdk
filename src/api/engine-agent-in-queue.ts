@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+import { AgentInQueueAgentsInQueue } from './agent-in-queue-agents-in-queue'
 import { EngineLookup } from './engine-lookup'
 
 /**
@@ -25,6 +26,12 @@ export interface EngineAgentInQueue {
    * @memberof EngineAgentInQueue
    */
   active_members?: number
+  /**
+   *
+   * @type {AgentInQueueAgentsInQueue}
+   * @memberof EngineAgentInQueue
+   */
+  agents?: AgentInQueueAgentsInQueue
   /**
    *
    * @type {number}

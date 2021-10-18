@@ -51,7 +51,7 @@ export class Socket extends EventEmitter<SocketEvents> {
   }
 
   close(code?: number) {
-    this.socket!.close(code)
+    this.socket!.close(code || 1000)
     delete this.socket
   }
 

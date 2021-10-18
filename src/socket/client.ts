@@ -767,8 +767,10 @@ export class Client extends EventEmitter<ClientEvents> {
       this.socket.on('close', (code: number) => {
         this.log.error('socket close code: ', code)
         this.eventHandler.off('*')
-        this.emit('disconnected', code)
-        reject(new Error(`close socket code: ${code}`))
+        if (code !== 1000) {
+          this.emit('disconnected', code)
+          reject(new Error(`close socket code: ${code}`))
+        }
       })
       this.socket.on('open', () => {
         resolve(null)

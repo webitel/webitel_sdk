@@ -1,3 +1,4 @@
+export * from './agent-in-queue-agents-in-queue'
 export * from './agent-in-queue-statistics-agent-in-queue-statistics-item'
 export * from './aggregate-request-group'
 export * from './create-call-request-call-settings'
