@@ -14,43 +14,25 @@
 /**
  *
  * @export
- * @interface EngineCallFile
+ * @interface EngineCallHold
  */
-export interface EngineCallFile {
+export interface EngineCallHold {
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCallHold
+   */
+  sec?: number
   /**
    *
    * @type {string}
-   * @memberof EngineCallFile
+   * @memberof EngineCallHold
    */
-  id?: string
+  start?: string
   /**
    *
    * @type {string}
-   * @memberof EngineCallFile
+   * @memberof EngineCallHold
    */
-  mime_type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  start_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  stop_at?: string
+  stop?: string
 }

@@ -30,9 +30,15 @@ import { EngineAggregateHistoryCallRequest } from '../api'
 // @ts-ignore
 import { EngineBlindTransferCallRequest } from '../api'
 // @ts-ignore
+import { EngineCallAnnotation } from '../api'
+// @ts-ignore
+import { EngineCreateCallAnnotationRequest } from '../api'
+// @ts-ignore
 import { EngineCreateCallRequest } from '../api'
 // @ts-ignore
 import { EngineCreateCallResponse } from '../api'
+// @ts-ignore
+import { EngineDeleteCallAnnotationRequest } from '../api'
 // @ts-ignore
 import { EngineDtmfCallRequest } from '../api'
 // @ts-ignore
@@ -47,6 +53,8 @@ import { EngineListAggregate } from '../api'
 import { EngineListCall } from '../api'
 // @ts-ignore
 import { EngineListHistoryCall } from '../api'
+// @ts-ignore
+import { EngineUpdateCallAnnotationRequest } from '../api'
 // @ts-ignore
 import { EngineUserCallRequest } from '../api'
 /**
@@ -231,6 +239,174 @@ export const CallServiceApiAxiosParamCreator = function(
       }
       const localVarRequestOptions = {
         method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} callId
+     * @param {EngineCreateCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createCallAnnotation: async (
+      callId: string,
+      body: EngineCreateCallAnnotationRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'callId' is not null or undefined
+      if (callId === null || callId === undefined) {
+        throw new RequiredError(
+          'callId',
+          'Required parameter callId was null or undefined when calling createCallAnnotation.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createCallAnnotation.'
+        )
+      }
+      const localVarPath = `/calls/history/{call_id}/annotation`.replace(
+        `{${'call_id'}}`,
+        encodeURIComponent(String(callId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} callId
+     * @param {string} id
+     * @param {EngineDeleteCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCallAnnotation: async (
+      callId: string,
+      id: string,
+      body: EngineDeleteCallAnnotationRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'callId' is not null or undefined
+      if (callId === null || callId === undefined) {
+        throw new RequiredError(
+          'callId',
+          'Required parameter callId was null or undefined when calling deleteCallAnnotation.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteCallAnnotation.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling deleteCallAnnotation.'
+        )
+      }
+      const localVarPath = `/calls/history/{call_id}/annotation/{id}`
+        .replace(`{${'call_id'}}`, encodeURIComponent(String(callId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
         ...baseOptions,
         ...options,
       }
@@ -694,6 +870,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {string} [storedAtFrom]
      * @param {string} [storedAtTo]
      * @param {Array<string>} [supervisorId]
+     * @param {Array<string>} [state]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -726,6 +903,7 @@ export const CallServiceApiAxiosParamCreator = function(
       storedAtFrom?: string,
       storedAtTo?: string,
       supervisorId?: Array<string>,
+      state?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/active`
@@ -861,6 +1039,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (supervisorId) {
         localVarQueryParameter['supervisor_id'] = supervisorId
+      }
+
+      if (state) {
+        localVarQueryParameter['state'] = state
       }
 
       localVarUrlObj.query = {
@@ -1207,6 +1389,94 @@ export const CallServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @param {string} callId
+     * @param {string} id
+     * @param {EngineUpdateCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCallAnnotation: async (
+      callId: string,
+      id: string,
+      body: EngineUpdateCallAnnotationRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'callId' is not null or undefined
+      if (callId === null || callId === undefined) {
+        throw new RequiredError(
+          'callId',
+          'Required parameter callId was null or undefined when calling updateCallAnnotation.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateCallAnnotation.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateCallAnnotation.'
+        )
+      }
+      const localVarPath = `/calls/history/{call_id}/annotation/{id}`
+        .replace(`{${'call_id'}}`, encodeURIComponent(String(callId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -1292,6 +1562,70 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
       ).createCall(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} callId
+     * @param {EngineCreateCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async createCallAnnotation(
+      callId: string,
+      body: EngineCreateCallAnnotationRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineCallAnnotation>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).createCallAnnotation(callId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} callId
+     * @param {string} id
+     * @param {EngineDeleteCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteCallAnnotation(
+      callId: string,
+      id: string,
+      body: EngineDeleteCallAnnotationRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineCallAnnotation>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).deleteCallAnnotation(callId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1483,6 +1817,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [storedAtFrom]
      * @param {string} [storedAtTo]
      * @param {Array<string>} [supervisorId]
+     * @param {Array<string>} [state]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1515,6 +1850,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       storedAtFrom?: string,
       storedAtTo?: string,
       supervisorId?: Array<string>,
+      state?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineListCall>
@@ -1550,6 +1886,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         storedAtFrom,
         storedAtTo,
         supervisorId,
+        state,
         options
       )
       return (
@@ -1720,6 +2057,39 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         return axios.request(axiosRequestArgs)
       }
     },
+    /**
+     *
+     * @param {string} callId
+     * @param {string} id
+     * @param {EngineUpdateCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateCallAnnotation(
+      callId: string,
+      id: string,
+      body: EngineUpdateCallAnnotationRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineCallAnnotation>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).updateCallAnnotation(callId, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
   }
 }
 
@@ -1776,6 +2146,40 @@ export const CallServiceApiFactory = function(
     ): AxiosPromise<EngineCreateCallResponse> {
       return CallServiceApiFp(configuration)
         .createCall(body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} callId
+     * @param {EngineCreateCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createCallAnnotation(
+      callId: string,
+      body: EngineCreateCallAnnotationRequest,
+      options?: any
+    ): AxiosPromise<EngineCallAnnotation> {
+      return CallServiceApiFp(configuration)
+        .createCallAnnotation(callId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} callId
+     * @param {string} id
+     * @param {EngineDeleteCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCallAnnotation(
+      callId: string,
+      id: string,
+      body: EngineDeleteCallAnnotationRequest,
+      options?: any
+    ): AxiosPromise<EngineCallAnnotation> {
+      return CallServiceApiFp(configuration)
+        .deleteCallAnnotation(callId, id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1889,6 +2293,7 @@ export const CallServiceApiFactory = function(
      * @param {string} [storedAtFrom]
      * @param {string} [storedAtTo]
      * @param {Array<string>} [supervisorId]
+     * @param {Array<string>} [state]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1921,6 +2326,7 @@ export const CallServiceApiFactory = function(
       storedAtFrom?: string,
       storedAtTo?: string,
       supervisorId?: Array<string>,
+      state?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListCall> {
       return CallServiceApiFp(configuration)
@@ -1953,6 +2359,7 @@ export const CallServiceApiFactory = function(
           storedAtFrom,
           storedAtTo,
           supervisorId,
+          state,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2084,6 +2491,24 @@ export const CallServiceApiFactory = function(
         .unHoldCall(id, body, options)
         .then((request) => request(axios, basePath))
     },
+    /**
+     *
+     * @param {string} callId
+     * @param {string} id
+     * @param {EngineUpdateCallAnnotationRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCallAnnotation(
+      callId: string,
+      id: string,
+      body: EngineUpdateCallAnnotationRequest,
+      options?: any
+    ): AxiosPromise<EngineCallAnnotation> {
+      return CallServiceApiFp(configuration)
+        .updateCallAnnotation(callId, id, body, options)
+        .then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -2139,6 +2564,44 @@ export class CallServiceApi extends BaseAPI {
   public createCall(body: EngineCreateCallRequest, options?: any) {
     return CallServiceApiFp(this.configuration)
       .createCall(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} callId
+   * @param {EngineCreateCallAnnotationRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public createCallAnnotation(
+    callId: string,
+    body: EngineCreateCallAnnotationRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration)
+      .createCallAnnotation(callId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} callId
+   * @param {string} id
+   * @param {EngineDeleteCallAnnotationRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public deleteCallAnnotation(
+    callId: string,
+    id: string,
+    body: EngineDeleteCallAnnotationRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration)
+      .deleteCallAnnotation(callId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2247,6 +2710,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {string} [storedAtFrom]
    * @param {string} [storedAtTo]
    * @param {Array<string>} [supervisorId]
+   * @param {Array<string>} [state]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -2280,6 +2744,7 @@ export class CallServiceApi extends BaseAPI {
     storedAtFrom?: string,
     storedAtTo?: string,
     supervisorId?: Array<string>,
+    state?: Array<string>,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
@@ -2312,6 +2777,7 @@ export class CallServiceApi extends BaseAPI {
         storedAtFrom,
         storedAtTo,
         supervisorId,
+        state,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -2441,6 +2907,26 @@ export class CallServiceApi extends BaseAPI {
   public unHoldCall(id: string, body: EngineUserCallRequest, options?: any) {
     return CallServiceApiFp(this.configuration)
       .unHoldCall(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} callId
+   * @param {string} id
+   * @param {EngineUpdateCallAnnotationRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public updateCallAnnotation(
+    callId: string,
+    id: string,
+    body: EngineUpdateCallAnnotationRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration)
+      .updateCallAnnotation(callId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

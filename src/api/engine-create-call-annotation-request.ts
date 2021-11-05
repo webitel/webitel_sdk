@@ -14,43 +14,31 @@
 /**
  *
  * @export
- * @interface EngineCallFile
+ * @interface EngineCreateCallAnnotationRequest
  */
-export interface EngineCallFile {
+export interface EngineCreateCallAnnotationRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineCallFile
+   * @memberof EngineCreateCallAnnotationRequest
    */
-  id?: string
+  call_id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateCallAnnotationRequest
+   */
+  end_sec?: number
   /**
    *
    * @type {string}
-   * @memberof EngineCallFile
+   * @memberof EngineCreateCallAnnotationRequest
    */
-  mime_type?: string
+  note?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineCallFile
+   * @type {number}
+   * @memberof EngineCreateCallAnnotationRequest
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  start_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  stop_at?: string
+  start_sec?: number
 }

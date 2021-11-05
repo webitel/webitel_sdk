@@ -11,7 +11,9 @@
  * Do not edit the class manually.
  */
 
+import { EngineCallAnnotation } from './engine-call-annotation'
 import { EngineCallFile } from './engine-call-file'
+import { EngineCallHold } from './engine-call-hold'
 import { EngineEndpoint } from './engine-endpoint'
 import { EngineLookup } from './engine-lookup'
 
@@ -33,6 +35,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   agent_description?: string
+  /**
+   *
+   * @type {Array<EngineCallAnnotation>}
+   * @memberof EngineHistoryCall
+   */
+  annotations?: Array<EngineCallAnnotation>
   /**
    *
    * @type {string}
@@ -135,6 +143,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   has_children?: boolean
+  /**
+   *
+   * @type {Array<EngineCallHold>}
+   * @memberof EngineHistoryCall
+   */
+  hold?: Array<EngineCallHold>
   /**
    *
    * @type {number}

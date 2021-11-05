@@ -14,43 +14,19 @@
 /**
  *
  * @export
- * @interface EngineCallFile
+ * @interface EngineDeleteCallAnnotationRequest
  */
-export interface EngineCallFile {
+export interface EngineDeleteCallAnnotationRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineCallFile
+   * @memberof EngineDeleteCallAnnotationRequest
+   */
+  call_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineDeleteCallAnnotationRequest
    */
   id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  mime_type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  start_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  stop_at?: string
 }
