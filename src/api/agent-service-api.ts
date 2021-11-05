@@ -554,6 +554,7 @@ export const AgentServiceApiAxiosParamCreator = function(
      * @param {boolean} [notSupervisor]
      * @param {Array<string>} [userId]
      * @param {Array<string>} [extension]
+     * @param {Array<number>} [notTeamId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -575,6 +576,7 @@ export const AgentServiceApiAxiosParamCreator = function(
       notSupervisor?: boolean,
       userId?: Array<string>,
       extension?: Array<string>,
+      notTeamId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/agents`
@@ -666,6 +668,10 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (extension) {
         localVarQueryParameter['extension'] = extension
+      }
+
+      if (notTeamId) {
+        localVarQueryParameter['not_team_id'] = notTeamId
       }
 
       localVarUrlObj.query = {
@@ -1904,6 +1910,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      * @param {boolean} [notSupervisor]
      * @param {Array<string>} [userId]
      * @param {Array<string>} [extension]
+     * @param {Array<number>} [notTeamId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1925,6 +1932,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
       notSupervisor?: boolean,
       userId?: Array<string>,
       extension?: Array<string>,
+      notTeamId?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -1952,6 +1960,7 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
         notSupervisor,
         userId,
         extension,
+        notTeamId,
         options
       )
       return (
@@ -2573,6 +2582,7 @@ export const AgentServiceApiFactory = function(
      * @param {boolean} [notSupervisor]
      * @param {Array<string>} [userId]
      * @param {Array<string>} [extension]
+     * @param {Array<number>} [notTeamId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2594,6 +2604,7 @@ export const AgentServiceApiFactory = function(
       notSupervisor?: boolean,
       userId?: Array<string>,
       extension?: Array<string>,
+      notTeamId?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListAgent> {
       return AgentServiceApiFp(configuration)
@@ -2615,6 +2626,7 @@ export const AgentServiceApiFactory = function(
           notSupervisor,
           userId,
           extension,
+          notTeamId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3062,6 +3074,7 @@ export class AgentServiceApi extends BaseAPI {
    * @param {boolean} [notSupervisor]
    * @param {Array<string>} [userId]
    * @param {Array<string>} [extension]
+   * @param {Array<number>} [notTeamId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
@@ -3084,6 +3097,7 @@ export class AgentServiceApi extends BaseAPI {
     notSupervisor?: boolean,
     userId?: Array<string>,
     extension?: Array<string>,
+    notTeamId?: Array<number>,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration)
@@ -3105,6 +3119,7 @@ export class AgentServiceApi extends BaseAPI {
         notSupervisor,
         userId,
         extension,
+        notTeamId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
