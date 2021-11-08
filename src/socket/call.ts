@@ -222,6 +222,7 @@ export class Call {
   applications!: string[]
   voice: boolean
   task: Task | null
+  autoAnswered: boolean
 
   constructor(protected client: Client, e: CallEventData) {
     // FIXME check _muted from channel
@@ -236,6 +237,7 @@ export class Call {
     this.hangupAt = 0
     this.bridgedAt = 0
     this.reportingAt = 0
+    this.autoAnswered = false
 
     this.peerStreams = []
     this.localStreams = []
@@ -523,6 +525,17 @@ export class Call {
     }
 
     return false
+  }
+
+  answerDelay(req: AnswerRequest, delay: number) {
+    if (this.autoAnswered) {
+      return
+    }
+
+    this.autoAnswered = true
+    setTimeout(async () => {
+      await this.answer(req)
+    }, delay)
   }
 
   async hangup(cause?: string) {

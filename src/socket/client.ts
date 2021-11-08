@@ -744,13 +744,14 @@ export class Client extends EventEmitter<ClientEvents> {
 
   private checkAutoAnswer(call: Call) {
     if (/*!document.hidden && */ call.autoAnswer) {
-      setTimeout(async () => {
-        await call.answer({
+      call.answerDelay(
+        {
           video: call.params.video,
           screen: call.params.screen,
           disableStun: call.params.disableStun,
-        })
-      }, 300)
+        },
+        300
+      )
     }
   }
 
