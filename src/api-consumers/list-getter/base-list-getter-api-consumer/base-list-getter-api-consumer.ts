@@ -1,5 +1,4 @@
 import ListGetterResponse from '../_shared/interfaces/response/list-getter-response'
-import LookupListGetterResponse from '../_shared/interfaces/response/lookup-list-getter-response'
 import BaseGetListParams from './interfaces/base-get-list-params'
 import BaseListGetterConstructorParams from './interfaces/base-list-getter-constructor-params'
 
@@ -20,9 +19,7 @@ export default abstract class BaseListGetterApiConsumer {
 
   abstract getList(params: BaseGetListParams): Promise<ListGetterResponse>
 
-  async getLookup(
-    params: BaseGetListParams = {}
-  ): Promise<LookupListGetterResponse> {
+  async getLookup(params: BaseGetListParams = {}): Promise<ListGetterResponse> {
     const defaultLookupParams = {
       size: 20,
       fields: ['id', 'name'],
@@ -30,7 +27,7 @@ export default abstract class BaseListGetterApiConsumer {
     try {
       const response = await this.getList({ ...defaultLookupParams, ...params })
 
-      return response.items
+      return response
     } catch (err) {
       throw err
     }
