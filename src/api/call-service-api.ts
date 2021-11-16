@@ -38,8 +38,6 @@ import { EngineCreateCallRequest } from '../api'
 // @ts-ignore
 import { EngineCreateCallResponse } from '../api'
 // @ts-ignore
-import { EngineDeleteCallAnnotationRequest } from '../api'
-// @ts-ignore
 import { EngineDtmfCallRequest } from '../api'
 // @ts-ignore
 import { EngineEavesdropCallRequest } from '../api'
@@ -366,14 +364,12 @@ export const CallServiceApiAxiosParamCreator = function(
      *
      * @param {string} callId
      * @param {string} id
-     * @param {EngineDeleteCallAnnotationRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteCallAnnotation: async (
       callId: string,
       id: string,
-      body: EngineDeleteCallAnnotationRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'callId' is not null or undefined
@@ -388,13 +384,6 @@ export const CallServiceApiAxiosParamCreator = function(
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling deleteCallAnnotation.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling deleteCallAnnotation.'
         )
       }
       const localVarPath = `/calls/history/{call_id}/annotation/{id}`
@@ -422,8 +411,6 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -438,12 +425,6 @@ export const CallServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      const needsSerialization =
-        typeof body !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -1608,14 +1589,12 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {string} callId
      * @param {string} id
-     * @param {EngineDeleteCallAnnotationRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteCallAnnotation(
       callId: string,
       id: string,
-      body: EngineDeleteCallAnnotationRequest,
       options?: any
     ): Promise<
       (
@@ -1625,7 +1604,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).deleteCallAnnotation(callId, id, body, options)
+      ).deleteCallAnnotation(callId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2168,18 +2147,16 @@ export const CallServiceApiFactory = function(
      *
      * @param {string} callId
      * @param {string} id
-     * @param {EngineDeleteCallAnnotationRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteCallAnnotation(
       callId: string,
       id: string,
-      body: EngineDeleteCallAnnotationRequest,
       options?: any
     ): AxiosPromise<EngineCallAnnotation> {
       return CallServiceApiFp(configuration)
-        .deleteCallAnnotation(callId, id, body, options)
+        .deleteCallAnnotation(callId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2589,19 +2566,13 @@ export class CallServiceApi extends BaseAPI {
    *
    * @param {string} callId
    * @param {string} id
-   * @param {EngineDeleteCallAnnotationRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public deleteCallAnnotation(
-    callId: string,
-    id: string,
-    body: EngineDeleteCallAnnotationRequest,
-    options?: any
-  ) {
+  public deleteCallAnnotation(callId: string, id: string, options?: any) {
     return CallServiceApiFp(this.configuration)
-      .deleteCallAnnotation(callId, id, body, options)
+      .deleteCallAnnotation(callId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

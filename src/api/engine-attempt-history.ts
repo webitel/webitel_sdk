@@ -37,6 +37,12 @@ export interface EngineAttemptHistory {
    * @type {string}
    * @memberof EngineAttemptHistory
    */
+  amd_result?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAttemptHistory
+   */
   bridged_at?: string
   /**
    *

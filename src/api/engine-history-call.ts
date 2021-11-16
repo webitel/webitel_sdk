@@ -37,6 +37,12 @@ export interface EngineHistoryCall {
   agent_description?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  amd_result?: string
+  /**
+   *
    * @type {Array<EngineCallAnnotation>}
    * @memberof EngineHistoryCall
    */

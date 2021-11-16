@@ -56,6 +56,10 @@ import { EngineMemberInQueue } from '../api'
 // @ts-ignore
 import { EnginePatchMemberRequest } from '../api'
 // @ts-ignore
+import { EngineResetMembersRequest } from '../api'
+// @ts-ignore
+import { EngineResetMembersResponse } from '../api'
+// @ts-ignore
 import { EngineUpdateMemberRequest } from '../api'
 /**
  * MemberServiceApi - axios parameter creator
@@ -894,6 +898,87 @@ export const MemberServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary ResetMembers
+     * @param {string} queueId
+     * @param {EngineResetMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetMembers: async (
+      queueId: string,
+      body: EngineResetMembersRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling resetMembers.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling resetMembers.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/members/reset`.replace(
+        `{${'queue_id'}}`,
+        encodeURIComponent(String(queueId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -1840,6 +1925,38 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary ResetMembers
+     * @param {string} queueId
+     * @param {EngineResetMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async resetMembers(
+      queueId: string,
+      body: EngineResetMembersRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineResetMembersResponse>
+    > {
+      const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
+        configuration
+      ).resetMembers(queueId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary SearchAttempts
      * @param {number} [page]
      * @param {number} [size]
@@ -2325,6 +2442,23 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @summary ResetMembers
+     * @param {string} queueId
+     * @param {EngineResetMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetMembers(
+      queueId: string,
+      body: EngineResetMembersRequest,
+      options?: any
+    ): AxiosPromise<EngineResetMembersResponse> {
+      return MemberServiceApiFp(configuration)
+        .resetMembers(queueId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary SearchAttempts
      * @param {number} [page]
      * @param {number} [size]
@@ -2732,6 +2866,25 @@ export class MemberServiceApi extends BaseAPI {
   ) {
     return MemberServiceApiFp(this.configuration)
       .readMember(queueId, id, domainId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary ResetMembers
+   * @param {string} queueId
+   * @param {EngineResetMembersRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public resetMembers(
+    queueId: string,
+    body: EngineResetMembersRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration)
+      .resetMembers(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
