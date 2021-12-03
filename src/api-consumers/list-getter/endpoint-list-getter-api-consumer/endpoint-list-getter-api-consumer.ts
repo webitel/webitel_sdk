@@ -37,7 +37,7 @@ export default class EndpointListGetterApiConsumer extends BaseListGetterApiCons
       page = 1,
       size = 10,
       search,
-      searchQuery = 'name',
+      searchQuery = 'q',
       ...rest
     }: EndpointGetListParams,
     baseUrl = this.baseUrl
