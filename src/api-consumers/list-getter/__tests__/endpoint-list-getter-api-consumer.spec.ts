@@ -14,10 +14,10 @@ const params = {
   sort: '+jest',
   fields: [],
   ids: [],
-  myCringeParam: '123',
+  rest: { myCringeParam: '123' },
 }
 
-const getUrl = '/jest?size=11&page=2&q=12*&myCringeParam=123&sort=%2Bjest'
+const getUrl = '/jest?size=11&page=2&q=12*&sort=%2Bjest&myCringeParam=123'
 
 describe('Endpoint List Getter Api Consumer', () => {
   it('correctly returns received response from getList()', async () => {

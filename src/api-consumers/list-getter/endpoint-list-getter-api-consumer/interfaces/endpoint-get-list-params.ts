@@ -2,4 +2,5 @@ import BaseGetListParams from '../../base-list-getter-api-consumer/interfaces/ba
 
 export default interface EndpointGetListParams extends BaseGetListParams {
   searchQuery?: string
+  rest?: object
 }
