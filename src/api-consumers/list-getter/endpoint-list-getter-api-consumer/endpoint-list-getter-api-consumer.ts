@@ -37,20 +37,28 @@ export default class EndpointListGetterApiConsumer extends BaseListGetterApiCons
       page = 1,
       size = 10,
       search,
+      sort,
+      fields,
+      ids,
       searchQuery = 'q',
-      ...rest
+      rest = {},
     }: EndpointGetListParams,
     baseUrl = this.baseUrl
   ): Promise<ListGetterResponse> {
+    const stringifyOptions = {
+      skipEmptyString: true,
+      skipNull: true,
+    }
+
     // tslint:disable-next-line: no-parameter-reassignment
     if (search && search.slice(-1) !== '*') search += '*'
     let url = `${baseUrl}?size=${size}&page=${page}`
     if (search) url += `&${searchQuery}=${search}`
+
+    url += `&${qs.stringify({ sort, fields, ids }, stringifyOptions)}`
+
     if (Object.keys(rest).length) {
-      url += `&${qs.stringify(rest, {
-        skipEmptyString: true,
-        skipNull: true,
-      })}`
+      url += `&${qs.stringify(rest, stringifyOptions)}`
     }
     try {
       let response = await this.instance.get(url)
