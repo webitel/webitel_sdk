@@ -64,6 +64,7 @@ const API_HEADER_TOKEN = 'X-Webitel-Access'
 const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
 const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
 const WEBSOCKET_AGENT_SESSION = 'cc_agent_session'
+const WEBSOCKET_PING = 'ping'
 // const WEBSOCKET_CALL_BY_USER = 'call_by_user'
 
 const WEBSOCKET_MAKE_OUTBOUND_CALL = 'call_invite'
@@ -98,6 +99,7 @@ export interface ConnectionInfo {
   server_node_id: string
   server_version: string
   server_time: number
+  ping_interval?: number
   session: Session
 }
 
@@ -173,6 +175,7 @@ export class Client extends EventEmitter<ClientEvents> {
   private eventHandler: EventEmitter<EventHandler>
   private callStore: Map<string, Call>
   private conversationStore: Map<string, Conversation>
+  private pingTimer: number | null
 
   constructor(protected readonly _config: Config) {
     super()
@@ -180,6 +183,7 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler = new EventEmitter()
     this.callStore = new Map<string, Call>()
     this.conversationStore = new Map<string, Conversation>()
+    this.pingTimer = null
     this.basePath = `${formatBaseUri(
       _config.storageEndpoint || _config.endpoint
     )}`
@@ -390,6 +394,12 @@ export class Client extends EventEmitter<ClientEvents> {
   async auth() {
     return this.request(WEBSOCKET_AUTHENTICATION_CHALLENGE, {
       token: this._config.token,
+    })
+  }
+
+  async ping() {
+    return this.request(WEBSOCKET_PING, {
+      ping: 1,
     })
   }
 
@@ -708,8 +718,29 @@ export class Client extends EventEmitter<ClientEvents> {
     }
   }
 
+  private async pingServer() {
+    if (this.pingTimer && this.connectionInfo.ping_interval) {
+      const t = setTimeout(async () => {
+        this.socket.close(3005)
+      }, +this.connectionInfo.ping_interval / 2)
+      await this.ping()
+      clearTimeout(t)
+    }
+    if (this.connectionInfo.ping_interval) {
+      // @ts-ignore
+      this.pingTimer = setTimeout(
+        this.pingServer.bind(this),
+        +this.connectionInfo.ping_interval
+      )
+    }
+  }
+
   private async connected(info: ConnectionInfo) {
     this.connectionInfo = info
+
+    if (info.ping_interval) {
+      await this.pingServer()
+    }
 
     if (!this.useWebPhone()) {
       return
@@ -768,6 +799,9 @@ export class Client extends EventEmitter<ClientEvents> {
 
       this.socket.on('message', this.onMessage.bind(this))
       this.socket.on('close', (code: number) => {
+        if (this.pingTimer) {
+          clearTimeout(this.pingTimer)
+        }
         this.log.error('socket close code: ', code)
         this.eventHandler.off('*')
         if (code !== 1000) {

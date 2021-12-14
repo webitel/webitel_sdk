@@ -206,6 +206,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
   async unregister() {
     if (this.ua) {
+      this.ua.ua.terminateSessions()
       this.ua.removeAllListeners()
       await this.ua.stop()
       delete this.ua

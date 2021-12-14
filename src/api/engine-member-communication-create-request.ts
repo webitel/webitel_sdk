@@ -51,6 +51,12 @@ export interface EngineMemberCommunicationCreateRequest {
   resource?: EngineLookup
   /**
    *
+   * @type {string}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  stop_at?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineMemberCommunicationCreateRequest
    */

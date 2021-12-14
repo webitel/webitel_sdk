@@ -81,6 +81,12 @@ export interface EngineMemberCommunication {
   state?: number
   /**
    *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
+  stop_at?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineMemberCommunication
    */

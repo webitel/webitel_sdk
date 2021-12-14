@@ -43,6 +43,12 @@ export interface EngineAttemptResultRequest {
   display?: boolean
   /**
    *
+   * @type {boolean}
+   * @memberof EngineAttemptResultRequest
+   */
+  exclude_current_communication?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineAttemptResultRequest
    */
