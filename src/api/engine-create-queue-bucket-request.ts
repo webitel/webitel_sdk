@@ -27,10 +27,16 @@ export interface EngineCreateQueueBucketRequest {
   bucket?: EngineLookup
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EngineCreateQueueBucketRequest
    */
-  domain_id?: string
+  disabled?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateQueueBucketRequest
+   */
+  priority?: number
   /**
    *
    * @type {string}

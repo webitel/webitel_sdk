@@ -28,6 +28,8 @@ import { EngineCreateQueueBucketRequest } from '../api'
 // @ts-ignore
 import { EngineListQueueBucket } from '../api'
 // @ts-ignore
+import { EnginePatchQueueBucketRequest } from '../api'
+// @ts-ignore
 import { EngineQueueBucket } from '../api'
 // @ts-ignore
 import { EngineUpdateQueueBucketRequest } from '../api'
@@ -125,14 +127,12 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @summary DeleteQueueRouting
      * @param {string} queueId
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteQueueBucket: async (
       queueId: string,
       id: string,
-      domainId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -174,10 +174,6 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -200,17 +196,103 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} queueId
+     * @param {string} id
+     * @param {EnginePatchQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchQueueBucket: async (
+      queueId: string,
+      id: string,
+      body: EnginePatchQueueBucketRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'queueId' is not null or undefined
+      if (queueId === null || queueId === undefined) {
+        throw new RequiredError(
+          'queueId',
+          'Required parameter queueId was null or undefined when calling patchQueueBucket.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchQueueBucket.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchQueueBucket.'
+        )
+      }
+      const localVarPath = `/call_center/queues/{queue_id}/buckets/{id}`
+        .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queueId
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readQueueBucket: async (
       queueId: string,
       id: string,
-      domainId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -250,10 +332,6 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
       }
 
       localVarUrlObj.query = {
@@ -511,14 +589,12 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @summary DeleteQueueRouting
      * @param {string} queueId
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteQueueBucket(
       queueId: string,
       id: string,
-      domainId?: string,
       options?: any
     ): Promise<
       (
@@ -528,7 +604,40 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).deleteQueueBucket(queueId, id, domainId, options)
+      ).deleteQueueBucket(queueId, id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} queueId
+     * @param {string} id
+     * @param {EnginePatchQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchQueueBucket(
+      queueId: string,
+      id: string,
+      body: EnginePatchQueueBucketRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQueueBucket>
+    > {
+      const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
+        configuration
+      ).patchQueueBucket(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -545,14 +654,12 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @summary ReadQueueRouting
      * @param {string} queueId
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async readQueueBucket(
       queueId: string,
       id: string,
-      domainId?: string,
       options?: any
     ): Promise<
       (
@@ -562,7 +669,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).readQueueBucket(queueId, id, domainId, options)
+      ).readQueueBucket(queueId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -685,18 +792,34 @@ export const QueueBucketServiceApiFactory = function(
      * @summary DeleteQueueRouting
      * @param {string} queueId
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteQueueBucket(
       queueId: string,
       id: string,
-      domainId?: string,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .deleteQueueBucket(queueId, id, domainId, options)
+        .deleteQueueBucket(queueId, id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} queueId
+     * @param {string} id
+     * @param {EnginePatchQueueBucketRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchQueueBucket(
+      queueId: string,
+      id: string,
+      body: EnginePatchQueueBucketRequest,
+      options?: any
+    ): AxiosPromise<EngineQueueBucket> {
+      return QueueBucketServiceApiFp(configuration)
+        .patchQueueBucket(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -704,18 +827,16 @@ export const QueueBucketServiceApiFactory = function(
      * @summary ReadQueueRouting
      * @param {string} queueId
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readQueueBucket(
       queueId: string,
       id: string,
-      domainId?: string,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .readQueueBucket(queueId, id, domainId, options)
+        .readQueueBucket(queueId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -798,19 +919,33 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @summary DeleteQueueRouting
    * @param {string} queueId
    * @param {string} id
-   * @param {string} [domainId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
-  public deleteQueueBucket(
+  public deleteQueueBucket(queueId: string, id: string, options?: any) {
+    return QueueBucketServiceApiFp(this.configuration)
+      .deleteQueueBucket(queueId, id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} queueId
+   * @param {string} id
+   * @param {EnginePatchQueueBucketRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QueueBucketServiceApi
+   */
+  public patchQueueBucket(
     queueId: string,
     id: string,
-    domainId?: string,
+    body: EnginePatchQueueBucketRequest,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)
-      .deleteQueueBucket(queueId, id, domainId, options)
+      .patchQueueBucket(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -819,19 +954,13 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @summary ReadQueueRouting
    * @param {string} queueId
    * @param {string} id
-   * @param {string} [domainId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
-  public readQueueBucket(
-    queueId: string,
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public readQueueBucket(queueId: string, id: string, options?: any) {
     return QueueBucketServiceApiFp(this.configuration)
-      .readQueueBucket(queueId, id, domainId, options)
+      .readQueueBucket(queueId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

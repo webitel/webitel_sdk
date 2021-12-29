@@ -16,43 +16,49 @@ import { EngineLookup } from './engine-lookup'
 /**
  *
  * @export
- * @interface EngineUpdateQueueBucketRequest
+ * @interface EnginePatchQueueBucketRequest
  */
-export interface EngineUpdateQueueBucketRequest {
+export interface EnginePatchQueueBucketRequest {
   /**
    *
    * @type {EngineLookup}
-   * @memberof EngineUpdateQueueBucketRequest
+   * @memberof EnginePatchQueueBucketRequest
    */
   bucket?: EngineLookup
   /**
    *
    * @type {boolean}
-   * @memberof EngineUpdateQueueBucketRequest
+   * @memberof EnginePatchQueueBucketRequest
    */
   disabled?: boolean
   /**
    *
+   * @type {Array<string>}
+   * @memberof EnginePatchQueueBucketRequest
+   */
+  fields?: Array<string>
+  /**
+   *
    * @type {string}
-   * @memberof EngineUpdateQueueBucketRequest
+   * @memberof EnginePatchQueueBucketRequest
    */
   id?: string
   /**
    *
    * @type {number}
-   * @memberof EngineUpdateQueueBucketRequest
+   * @memberof EnginePatchQueueBucketRequest
    */
   priority?: number
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateQueueBucketRequest
+   * @memberof EnginePatchQueueBucketRequest
    */
   queue_id?: string
   /**
    *
    * @type {number}
-   * @memberof EngineUpdateQueueBucketRequest
+   * @memberof EnginePatchQueueBucketRequest
    */
   ratio?: number
 }

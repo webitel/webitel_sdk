@@ -27,10 +27,22 @@ export interface EngineQueueBucket {
   bucket?: EngineLookup
   /**
    *
+   * @type {boolean}
+   * @memberof EngineQueueBucket
+   */
+  disabled?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineQueueBucket
    */
   id?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineQueueBucket
+   */
+  priority?: number
   /**
    *
    * @type {number}
