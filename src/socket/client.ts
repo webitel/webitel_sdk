@@ -241,7 +241,7 @@ export class Client extends EventEmitter<ClientEvents> {
         call.bridgedAt = c.bridged_at || 0
         call.hangupAt = c.hangup_at || 0
 
-        call.reportingAt = c.reporting_at || 0
+        // call.reportingAt = c.reporting_at || 0
         if (c.task) {
           call.task = new Task(
             this,
@@ -254,6 +254,16 @@ export class Client extends EventEmitter<ClientEvents> {
             c.task // todo add app_id
           )
           call.queue!.reporting = 'true'
+          if (c.leaving_at && c.task.processing_sec) {
+            call.task.startProcessingAt = c.leaving_at
+
+            call.task.setProcessing({
+              sec: c.task.processing_sec || 0,
+              timeout:
+                Date.now() - c.leaving_at + (c.task.processing_sec || 0) * 1000,
+              renewal_sec: c.task.processing_renewal_sec || 0,
+            })
+          }
         }
         this.callStore.set(call.id, call)
       }
@@ -283,6 +293,33 @@ export class Client extends EventEmitter<ClientEvents> {
           conv.variables
         )
         c.createdAt = conv.created_at
+        c.closedAt = conv.closed_at
+
+        if (conv.task) {
+          c.task = new Task(
+            this,
+            {
+              attempt_id: conv.task.attempt_id,
+              channel: conv.task.channel,
+              status: conv.task.status,
+              timestamp: Date.now(),
+            },
+            conv.task // todo add app_id
+          )
+
+          if (conv.leaving_at && conv.task.processing_sec) {
+            c.task.startProcessingAt = conv.leaving_at
+            c.task.setProcessing({
+              sec: conv.task.processing_sec || 0,
+              timeout:
+                Date.now() -
+                conv.leaving_at +
+                (conv.task.processing_sec || 0) * 1000,
+              renewal_sec: conv.task.processing_renewal_sec || 0,
+            })
+          }
+        }
+
         if (conv.invite_id) {
           c.setInvite(conv.invite_id, conv.created_at)
         } else if (conv.channel_id) {

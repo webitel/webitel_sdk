@@ -1,6 +1,6 @@
 import { CallVariables } from './call'
 import { Client, FileUploadProgress } from './client'
-import { Reporting, Task } from './task'
+import { Reporting, Task, TaskData } from './task'
 import { chunkString } from './utils'
 
 const maxSizeMessage = 4096
@@ -121,9 +121,11 @@ export interface ConversationItem {
   closed_at: number
   updated_at: number
   joined_at: number
+  leaving_at?: number
   variables?: CallVariables
   members: ChatChannel[]
   messages: Message[]
+  task?: TaskData
 }
 
 export class Conversation {

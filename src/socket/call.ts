@@ -1,7 +1,7 @@
 import { CallSession } from '../sip'
 import { Client, UserCallRequest } from './client'
 import { QueueParameters } from './queue'
-import { Distribute, MemberCommunication, Reporting, Task } from './task'
+import { MemberCommunication, Reporting, Task, TaskData } from './task'
 
 export interface CallParameters {
   timeout?: number
@@ -62,7 +62,7 @@ export interface CallItem {
   queue_duration_sec?: number
   reporting_sec?: number
   display?: number
-  task?: Distribute
+  task?: TaskData
 }
 
 export interface OutboundCallRequest {

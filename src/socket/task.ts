@@ -66,6 +66,8 @@ export interface Distribute extends ChannelEvent {
 export interface TaskData extends Distribute {
   bridged_at?: number
   leaving_at?: number
+  processing_sec?: number
+  processing_renewal_sec?: number
   duration: number
   state: string
 }
@@ -130,6 +132,7 @@ export class Task {
   startProcessingAt: number
   stopAt: number
   closedAt: number
+  reportedAt: number
   _processing: Processing | null
 
   constructor(
@@ -145,6 +148,7 @@ export class Task {
     this.offeringAt = 0
     this.answeredAt = 0
     this.bridgedAt = 0
+    this.reportedAt = 0
     this.startProcessingAt = 0
     this.stopAt = 0
     this.closedAt = 0
@@ -223,7 +227,7 @@ export class Task {
     }
 
     if (p.sec) {
-      p.timeout = Date.now() + p.sec * 1000 // bug
+      p.timeout = this.startProcessingAt + p.sec * 1000 // bug
     }
 
     this._processing = p
@@ -287,10 +291,13 @@ export class Task {
   }
 
   async reporting(reporting: Reporting) {
-    return this.client.request('cc_reporting', {
+    const res = await this.client.request('cc_reporting', {
       attempt_id: this.id,
       ...reporting,
     })
+    this.reportedAt = Date.now()
+
+    return res
   }
 
   async renew(sec?: number) {
