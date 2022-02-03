@@ -56,6 +56,11 @@ export interface LeavedEvent extends BaseChatEvent {
   leaved_channel_id: string
 }
 
+export interface CloseEvent extends BaseChatEvent {
+  from_channel_id: string
+  cause: string
+}
+
 export interface DeclineInviteEvent extends BaseChatEvent {
   user_id: number
   invite_id: string
@@ -72,8 +77,9 @@ export interface Message {
   type: string
   text: string
   file: MessageFile
+  contact?: object
   created_at: number
-  updated_at: number
+  updated_at?: number | null
 }
 
 export interface ChatChannel {
@@ -99,6 +105,7 @@ export interface MessageWithChannel {
 
   file?: MessageFile
   text?: string
+  contact?: object | null
 
   createdAt: number
   updatedAt: number
@@ -109,7 +116,7 @@ export interface ConversationInfo {
   id: string
   title: string
   created_at: number
-  updated_at: number
+  updated_at: number | null
 }
 
 export interface ConversationItem {
@@ -142,6 +149,7 @@ export class Conversation {
   answeredAt: number
   invitedAt: number
   closedAt: number
+  _hasReporting: boolean
 
   variables?: CallVariables
   task: Task | null
@@ -165,7 +173,14 @@ export class Conversation {
     this.members = (members || []).map((i) => wrapChannelMember(i))
     this._messages = messages || []
     this.state = ConversationState.Invite
-    this.variables = variables
+    this.variables = {}
+    this._hasReporting = !!(variables && variables.cc_reporting === 'true')
+
+    for (const k in variables) {
+      if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
+        this.variables[k] = variables[k]
+      }
+    }
 
     if (
       variables &&
@@ -195,7 +210,7 @@ export class Conversation {
   }
 
   get id() {
-    return this.conversationId
+    return this.channelId || this.inviteId || this.conversationId
   }
 
   get messages(): MessageWithChannel[] {
@@ -211,6 +226,7 @@ export class Conversation {
         channelId: i.channel_id,
         createdAt: i.created_at,
         updatedAt: i.updated_at,
+        contact: null,
       } as MessageWithChannel
 
       if (i.hasOwnProperty('file')) {
@@ -220,6 +236,10 @@ export class Conversation {
 
       if (i.hasOwnProperty('text')) {
         msg.text = i.text
+      }
+
+      if (i.hasOwnProperty('contact')) {
+        msg.contact = i.contact
       }
 
       return msg
@@ -255,7 +275,16 @@ export class Conversation {
   }
 
   get hasReporting() {
-    return this.variables && this.variables.cc_reporting === 'true'
+    return this._hasReporting
+  }
+
+  get membersId() {
+    const res = [this.id]
+    for (const m of this.members) {
+      res.push(m.id!)
+    }
+
+    return res
   }
 
   /*
@@ -283,7 +312,7 @@ export class Conversation {
 
     return this.client.request(`close_chat`, {
       channel_id: this.channelId,
-      conversation_id: this.id,
+      conversation_id: this.conversationId,
       cause,
     })
   }
@@ -293,7 +322,7 @@ export class Conversation {
 
     return this.client.request(`leave_chat`, {
       channel_id: this.channelId,
-      conversation_id: this.id,
+      conversation_id: this.conversationId,
       cause,
     })
   }
@@ -319,13 +348,17 @@ export class Conversation {
   }
 
   async sendFile(file: File, cb?: FileUploadProgress) {
-    const storedFiles = await this.client.storeFile(this.id, [file], cb)
+    const storedFiles = await this.client.storeFile(
+      this.conversationId,
+      [file],
+      cb
+    )
     const f = storedFiles[0]
 
     // todo bug if chat response error
     return this.client.request(`send_file_chat`, {
       channel_id: this.channelId,
-      conversation_id: this.id,
+      conversation_id: this.conversationId,
       id: f.id,
       name: file.name,
       mime: f.mime,
@@ -347,7 +380,7 @@ export class Conversation {
   async addToChat(userId: number, title: string) {
     return this.client.request(`add_to_chat`, {
       channel_id: this.channelId,
-      conversation_id: this.id,
+      conversation_id: this.conversationId,
       user_id: userId,
       title,
     })
@@ -384,7 +417,7 @@ export class Conversation {
   private sendMessageTextChunk(text: string) {
     return this.client.request(`send_text_chat`, {
       channel_id: this.channelId,
-      conversation_id: this.id,
+      conversation_id: this.conversationId,
       text,
     })
   }

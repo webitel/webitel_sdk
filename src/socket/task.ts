@@ -222,6 +222,7 @@ export class Task {
   }
 
   setProcessing(p: Processing) {
+    this.state = 'processing' // todo
     if (!this.startProcessingAt) {
       this.startProcessingAt = Date.now()
     }

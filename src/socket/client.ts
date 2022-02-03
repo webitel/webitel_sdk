@@ -19,13 +19,15 @@ import {
   OutboundCallRequest,
 } from './call'
 import {
-  BaseChatEvent,
   ChatActions,
   ChatEvent,
+  CloseEvent,
   Conversation,
   ConversationItem,
+  DeclineInviteEvent,
   InviteEvent,
   JoinedEvent,
+  LeavedEvent,
   MessageEvent,
 } from './conversation'
 import { QueueJoinMemberEvent } from './queue'
@@ -959,7 +961,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
       case ChatActions.Joined:
         const joined = event.data as JoinedEvent
-        conversation = this.conversationById(joined.conversation_id)
+        conversation = this.conversationById(joined.member.id!)
         if (conversation) {
           conversation.setAnswered(joined.member.id!, timestamp, joined.member)
         }
@@ -969,18 +971,39 @@ export class Client extends EventEmitter<ClientEvents> {
       case ChatActions.Message:
         const message = event.data as MessageEvent
         message.timestamp = timestamp
-        conversation = this.conversationById(message.conversation_id)
+        // fixme
+        for (const v of this.allConversations()) {
+          if (!v.closedAt && v.membersId.indexOf(message.channel_id) > -1) {
+            conversation = v
+          }
+        }
         if (conversation) {
           conversation.newMessage(message)
         }
         break
 
       case ChatActions.Close:
+        const c = event.data as CloseEvent
+        // fixme
+        for (const v of this.allConversations()) {
+          if (!v.closedAt && v.membersId.indexOf(c.from_channel_id) > -1) {
+            conversation = v
+          }
+        }
+        if (conversation) {
+          conversation.setClosed(timestamp)
+        }
+        break
       case ChatActions.Leave:
+        const l = event.data as LeavedEvent
+        conversation = this.conversationById(l.leaved_channel_id)
+        if (conversation) {
+          conversation.setClosed(timestamp)
+        }
+        break
       case ChatActions.Decline:
-        // TODO leave & CLOSE:
-        const e = event.data as BaseChatEvent
-        conversation = this.conversationById(e.conversation_id)
+        const e = event.data as DeclineInviteEvent
+        conversation = this.conversationById(e.invite_id)
         if (conversation) {
           conversation.setClosed(timestamp)
         }
