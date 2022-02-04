@@ -52,6 +52,12 @@ export interface CreateCallRequestCallSettings {
    * @type {boolean}
    * @memberof CreateCallRequestCallSettings
    */
+  is_online?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof CreateCallRequestCallSettings
+   */
   record?: boolean
   /**
    *

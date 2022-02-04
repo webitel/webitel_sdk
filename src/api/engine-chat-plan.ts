@@ -16,25 +16,37 @@ import { EngineLookup } from './engine-lookup'
 /**
  *
  * @export
- * @interface EngineQueueResourceGroup
+ * @interface EngineChatPlan
  */
-export interface EngineQueueResourceGroup {
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineQueueResourceGroup
-   */
-  communication?: EngineLookup
+export interface EngineChatPlan {
   /**
    *
    * @type {string}
-   * @memberof EngineQueueResourceGroup
+   * @memberof EngineChatPlan
    */
-  id?: string
+  description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineChatPlan
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineChatPlan
+   */
+  id?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineChatPlan
+   */
+  name?: string
   /**
    *
    * @type {EngineLookup}
-   * @memberof EngineQueueResourceGroup
+   * @memberof EngineChatPlan
    */
-  resource_group?: EngineLookup
+  schema?: EngineLookup
 }

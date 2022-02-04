@@ -145,6 +145,12 @@ export interface EngineHistoryCall {
   hangup_by?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  hangup_disposition?: string
+  /**
+   *
    * @type {boolean}
    * @memberof EngineHistoryCall
    */

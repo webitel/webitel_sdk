@@ -11,30 +11,24 @@
  * Do not edit the class manually.
  */
 
-import { EngineLookup } from './engine-lookup'
+import { EngineChatPlan } from './engine-chat-plan'
 
 /**
  *
  * @export
- * @interface EngineQueueResourceGroup
+ * @interface EngineListChatPlan
  */
-export interface EngineQueueResourceGroup {
+export interface EngineListChatPlan {
   /**
    *
-   * @type {EngineLookup}
-   * @memberof EngineQueueResourceGroup
+   * @type {Array<EngineChatPlan>}
+   * @memberof EngineListChatPlan
    */
-  communication?: EngineLookup
+  items?: Array<EngineChatPlan>
   /**
    *
-   * @type {string}
-   * @memberof EngineQueueResourceGroup
+   * @type {boolean}
+   * @memberof EngineListChatPlan
    */
-  id?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineQueueResourceGroup
-   */
-  resource_group?: EngineLookup
+  next?: boolean
 }
