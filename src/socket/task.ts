@@ -228,7 +228,7 @@ export class Task {
     }
 
     if (p.sec) {
-      p.timeout = this.startProcessingAt + p.sec * 1000 // bug
+      p.timeout = Date.now() + p.sec * 1000 // bug
     }
 
     this._processing = p
