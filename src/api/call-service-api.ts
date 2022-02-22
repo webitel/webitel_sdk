@@ -213,6 +213,70 @@ export const CallServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Call item
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    confirmPush: async (
+      id: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling confirmPush.'
+        )
+      }
+      const localVarPath = `/calls/active/{id}/confirm_push`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Create e call
      * @param {EngineCreateCallRequest} body
      * @param {*} [options] Override http request option.
@@ -1532,6 +1596,33 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary Call item
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async confirmPush(
+      id: string,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).confirmPush(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Create e call
      * @param {EngineCreateCallRequest} body
      * @param {*} [options] Override http request option.
@@ -2123,6 +2214,18 @@ export const CallServiceApiFactory = function(
     },
     /**
      *
+     * @summary Call item
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    confirmPush(id: string, options?: any): AxiosPromise<object> {
+      return CallServiceApiFp(configuration)
+        .confirmPush(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Create e call
      * @param {EngineCreateCallRequest} body
      * @param {*} [options] Override http request option.
@@ -2539,6 +2642,20 @@ export class CallServiceApi extends BaseAPI {
   ) {
     return CallServiceApiFp(this.configuration)
       .blindTransferCall(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Call item
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public confirmPush(id: string, options?: any) {
+    return CallServiceApiFp(this.configuration)
+      .confirmPush(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

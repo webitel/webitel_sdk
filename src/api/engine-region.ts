@@ -27,10 +27,10 @@ export interface EngineRegion {
   description?: string
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineRegion
    */
-  id?: number
+  id?: string
   /**
    *
    * @type {string}

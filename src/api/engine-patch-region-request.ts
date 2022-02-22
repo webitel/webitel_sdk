@@ -33,10 +33,10 @@ export interface EnginePatchRegionRequest {
   fields?: Array<string>
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EnginePatchRegionRequest
    */
-  id?: number
+  id?: string
   /**
    *
    * @type {string}

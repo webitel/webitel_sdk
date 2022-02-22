@@ -111,12 +111,12 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRegion: async (
-      id: number,
+      id: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -174,13 +174,13 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {EnginePatchRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchRegion: async (
-      id: number,
+      id: string,
       body: EnginePatchRegionRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -254,11 +254,11 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRegion: async (id: number, options: any = {}): Promise<RequestArgs> => {
+    readRegion: async (id: string, options: any = {}): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
@@ -319,7 +319,7 @@ export const RegionServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
+     * @param {Array<string>} [id]
      * @param {string} [name]
      * @param {string} [description]
      * @param {Array<number>} [timezoneId]
@@ -332,7 +332,7 @@ export const RegionServiceApiAxiosParamCreator = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      id?: Array<number>,
+      id?: Array<string>,
       name?: string,
       description?: string,
       timezoneId?: Array<number>,
@@ -419,13 +419,13 @@ export const RegionServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {EngineUpdateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRegion: async (
-      id: number,
+      id: string,
       body: EngineUpdateRegionRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -534,12 +534,12 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteRegion(
-      id: number,
+      id: string,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
@@ -560,13 +560,13 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {EnginePatchRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchRegion(
-      id: number,
+      id: string,
       body: EnginePatchRegionRequest,
       options?: any
     ): Promise<
@@ -588,12 +588,12 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async readRegion(
-      id: number,
+      id: string,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
@@ -619,7 +619,7 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
+     * @param {Array<string>} [id]
      * @param {string} [name]
      * @param {string} [description]
      * @param {Array<number>} [timezoneId]
@@ -632,7 +632,7 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      id?: Array<number>,
+      id?: Array<string>,
       name?: string,
       description?: string,
       timezoneId?: Array<number>,
@@ -670,13 +670,13 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {EngineUpdateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateRegion(
-      id: number,
+      id: string,
       body: EngineUpdateRegionRequest,
       options?: any
     ): Promise<
@@ -725,24 +725,24 @@ export const RegionServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRegion(id: number, options?: any): AxiosPromise<EngineRegion> {
+    deleteRegion(id: string, options?: any): AxiosPromise<EngineRegion> {
       return RegionServiceApiFp(configuration)
         .deleteRegion(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {EnginePatchRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchRegion(
-      id: number,
+      id: string,
       body: EnginePatchRegionRequest,
       options?: any
     ): AxiosPromise<EngineRegion> {
@@ -752,11 +752,11 @@ export const RegionServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRegion(id: number, options?: any): AxiosPromise<EngineRegion> {
+    readRegion(id: string, options?: any): AxiosPromise<EngineRegion> {
       return RegionServiceApiFp(configuration)
         .readRegion(id, options)
         .then((request) => request(axios, basePath))
@@ -768,7 +768,7 @@ export const RegionServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
+     * @param {Array<string>} [id]
      * @param {string} [name]
      * @param {string} [description]
      * @param {Array<number>} [timezoneId]
@@ -781,7 +781,7 @@ export const RegionServiceApiFactory = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      id?: Array<number>,
+      id?: Array<string>,
       name?: string,
       description?: string,
       timezoneId?: Array<number>,
@@ -804,13 +804,13 @@ export const RegionServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} id
      * @param {EngineUpdateRegionRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRegion(
-      id: number,
+      id: string,
       body: EngineUpdateRegionRequest,
       options?: any
     ): AxiosPromise<EngineRegion> {
@@ -843,12 +843,12 @@ export class RegionServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} id
+   * @param {string} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RegionServiceApi
    */
-  public deleteRegion(id: number, options?: any) {
+  public deleteRegion(id: string, options?: any) {
     return RegionServiceApiFp(this.configuration)
       .deleteRegion(id, options)
       .then((request) => request(this.axios, this.basePath))
@@ -856,14 +856,14 @@ export class RegionServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} id
+   * @param {string} id
    * @param {EnginePatchRegionRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RegionServiceApi
    */
   public patchRegion(
-    id: number,
+    id: string,
     body: EnginePatchRegionRequest,
     options?: any
   ) {
@@ -874,12 +874,12 @@ export class RegionServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} id
+   * @param {string} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RegionServiceApi
    */
-  public readRegion(id: number, options?: any) {
+  public readRegion(id: string, options?: any) {
     return RegionServiceApiFp(this.configuration)
       .readRegion(id, options)
       .then((request) => request(this.axios, this.basePath))
@@ -892,7 +892,7 @@ export class RegionServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
+   * @param {Array<string>} [id]
    * @param {string} [name]
    * @param {string} [description]
    * @param {Array<number>} [timezoneId]
@@ -906,7 +906,7 @@ export class RegionServiceApi extends BaseAPI {
     q?: string,
     sort?: string,
     fields?: Array<string>,
-    id?: Array<number>,
+    id?: Array<string>,
     name?: string,
     description?: string,
     timezoneId?: Array<number>,
@@ -930,14 +930,14 @@ export class RegionServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} id
+   * @param {string} id
    * @param {EngineUpdateRegionRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RegionServiceApi
    */
   public updateRegion(
-    id: number,
+    id: string,
     body: EngineUpdateRegionRequest,
     options?: any
   ) {

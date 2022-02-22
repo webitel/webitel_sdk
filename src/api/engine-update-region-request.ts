@@ -27,10 +27,10 @@ export interface EngineUpdateRegionRequest {
   description?: string
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineUpdateRegionRequest
    */
-  id?: number
+  id?: string
   /**
    *
    * @type {string}

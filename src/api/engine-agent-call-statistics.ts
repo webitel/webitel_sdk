@@ -40,6 +40,18 @@ export interface EngineAgentCallStatistics {
    * @type {number}
    * @memberof EngineAgentCallStatistics
    */
+  chat_accepts?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
+  chat_aht?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentCallStatistics
+   */
   count?: number
   /**
    *
