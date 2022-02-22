@@ -414,6 +414,22 @@ export class Conversation {
     return this.task.renew(sec)
   }
 
+  async transferToPlan(planId: number) {
+    return this.client.request(`blind_transfer_chat`, {
+      conversation_id: this.conversationId,
+      channel_id: this.channelId,
+      plan_id: planId,
+    })
+  }
+
+  async transferToUser(userId: number) {
+    return this.client.request(`transfer_user_chat`, {
+      conversation_id: this.conversationId,
+      channel_id: this.channelId,
+      user_id: userId,
+    })
+  }
+
   private sendMessageTextChunk(text: string) {
     return this.client.request(`send_text_chat`, {
       channel_id: this.channelId,

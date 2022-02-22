@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.94",
+  "version": "0.1.97",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -45,7 +45,7 @@
     "release:npm": "npm publish dist",
     "release:preflight": "npm pack ./dist --dry-run",
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js",
-    "api": "node ./node_modules/.bin/openapi-generator generate -g typescript-axios --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
+    "api": "openapi-generator generate -g typescript-axios --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
     "format-build": "npm run format:fix && npm run build",
     "format-build-and-release": "npm run format:fix && npm run build && npm run release:npm"
   },
