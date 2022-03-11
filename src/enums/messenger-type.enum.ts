@@ -1,6 +1,6 @@
 enum MessengerType {
   TELEGRAM = 'telegram',
-  FACEBOOK = 'facebook',
+  FACEBOOK = 'messenger',
   INFOBIP = 'infobip_whatsapp',
   WEB_CHAT = 'webchat',
   VIBER = 'viber',
