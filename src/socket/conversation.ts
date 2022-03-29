@@ -96,6 +96,7 @@ export interface MessageFile {
   mime: string
   size: number
   url: string
+  streamUrl: string
 }
 
 export interface MessageWithChannel {
@@ -231,6 +232,7 @@ export class Conversation {
 
       if (i.hasOwnProperty('file')) {
         i.file.url = this.client.fileUrlDownload(i.file.id)
+        i.file.streamUrl = this.client.fileUrlStream(i.file.id)
         msg.file = i.file
       }
 
