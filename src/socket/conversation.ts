@@ -144,6 +144,7 @@ export class Conversation {
   member!: ChatChannel
   members!: ChatChannel[]
   _messages: Message[]
+  _autoAnswer: boolean
 
   createdAt: number
   updatedAt: number
@@ -176,10 +177,15 @@ export class Conversation {
     this.state = ConversationState.Invite
     this.variables = {}
     this._hasReporting = !!(variables && variables.cc_reporting === 'true')
+    this._autoAnswer = false
 
     for (const k in variables) {
       if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
-        this.variables[k] = variables[k]
+        if (k === 'wbt_auto_answer') {
+          this._autoAnswer = variables.wbt_auto_answer === 'true'
+        } else {
+          this.variables[k] = variables[k]
+        }
       }
     }
 
@@ -195,6 +201,11 @@ export class Conversation {
   setInvite(inviteId: string, timestamp: number) {
     this.inviteId = inviteId
     this.invitedAt = timestamp
+    if (this._autoAnswer) {
+      this.join().catch((e) => {
+        this.client.emit('error', e)
+      })
+    }
   }
 
   setAnswered(channelId: string, timestamp: number, member: ChatChannel) {
