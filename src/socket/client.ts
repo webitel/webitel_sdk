@@ -30,6 +30,7 @@ import {
   LeavedEvent,
   MessageEvent,
 } from './conversation'
+import { DeviceNotFoundError } from './errors'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
 import { ChannelEvent, ChannelName, Reporting, Task, TaskData } from './task'
@@ -159,6 +160,7 @@ interface EventHandler {
 export interface ClientEvents {
   disconnected(code: number): void
   connected(): void
+  error(e: Error): void
 }
 
 export class Client extends EventEmitter<ClientEvents> {
@@ -503,7 +505,17 @@ export class Client extends EventEmitter<ClientEvents> {
 
   async call(req: OutboundCallRequest) {
     if (this.phone) {
-      await this.phone.call(req)
+      try {
+        await this.phone.call(req)
+      } catch (e) {
+        switch (e.name) {
+          case 'NotFoundError':
+            this.emit('error', new DeviceNotFoundError(e))
+            break
+          default:
+            this.emit('error', e)
+        }
+      }
     } else {
       await this.invite(req)
     }
