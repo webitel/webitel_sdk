@@ -84,6 +84,10 @@ const TASK_EVENT = 'task'
 
 const WEBSOCKET_EVENT_SIP = 'sip'
 
+enum HandleError {
+  NotFoundError = 'NotFoundError',
+}
+
 export enum Response {
   STATUS_FAIL = 'FAIL',
   STATUS_OK = 'OK',
@@ -508,13 +512,7 @@ export class Client extends EventEmitter<ClientEvents> {
       try {
         await this.phone.call(req)
       } catch (e) {
-        switch (e.name) {
-          case 'NotFoundError':
-            this.emit('error', new DeviceNotFoundError(e))
-            break
-          default:
-            this.emit('error', e)
-        }
+        this.handleError(e)
       }
     } else {
       await this.invite(req)
@@ -560,8 +558,9 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   async answer(id: string, req: AnswerRequest) {
-    if (this.phone) {
-      return this.phone.answer(id, req)
+    const call = this.callById(id)
+    if (call) {
+      return call.answer(req)
     }
   }
 
@@ -703,6 +702,18 @@ export class Client extends EventEmitter<ClientEvents> {
     return `${this.basePath}/api/storage/file/${fileId}/stream?access_token=${
       this._config.token
     }`
+  }
+
+  handleError(e?: Error) {
+    if (e) {
+      switch (e.name) {
+        case HandleError.NotFoundError:
+          this.emit('error', new DeviceNotFoundError(e.message))
+          break
+        default:
+          this.emit('error', e)
+      }
+    }
   }
 
   private async onMessage(message: Message) {

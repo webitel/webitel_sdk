@@ -518,8 +518,12 @@ export class Call {
   /* Call control */
   async answer(req: AnswerRequest) {
     if (this.sip && this.client.phone) {
-      const params = await this.client.phone.callOption(req)
-      await this.sip.answer(params)
+      try {
+        const params = await this.client.phone.callOption(req)
+        await this.sip.answer(params)
+      } catch (e) {
+        this.client.handleError(e)
+      }
 
       return true
     }

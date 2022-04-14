@@ -5,8 +5,4 @@ export class DeviceNotFoundError extends Error {
     super(msg)
     this.id = DeviceNotFoundError.id
   }
-
-  // get id() {
-  //   return DeviceNotFoundError.id
-  // }
 }
