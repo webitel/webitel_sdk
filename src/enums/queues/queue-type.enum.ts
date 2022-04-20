@@ -6,7 +6,8 @@ enum QueueType {
   PROGRESSIVE_DIALER = 4,
   PREDICTIVE_DIALER = 5,
   CHAT_INBOUND_QUEUE = 6,
-  TASK_QUEUE = 7,
+  INBOUND_TASK_QUEUE = 7,
+  OUTBOUND_TASK_QUEUE = 8,
 }
 
 export default QueueType
