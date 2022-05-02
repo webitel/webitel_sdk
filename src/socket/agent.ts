@@ -1,8 +1,10 @@
 import { Client } from './client'
 import {
+  BridgedEvent,
   ChannelEvent,
   Distribute,
   DistributeEvent,
+  FormEvent,
   MissedEvent,
   ProcessingEvent,
   Task,
@@ -71,6 +73,7 @@ export enum ChannelState {
   WrapTime = 'wrap_time',
   Processing = 'processing',
   Transfer = 'transfer',
+  Form = 'form',
 }
 
 export enum ChannelType {
@@ -181,9 +184,10 @@ export class Agent {
         break
 
       case ChannelState.Bridged:
-        task = this.task.get(e.attempt_id!)
+        const bridged = e as BridgedEvent
+        task = this.task.get(bridged.attempt_id!)
         if (task) {
-          task.bridgedAt = e.timestamp
+          task.setBridged(bridged)
         }
         break
 
@@ -205,6 +209,15 @@ export class Agent {
           task.answeredAt = e.timestamp
         }
         break
+
+      case ChannelState.Form:
+        const formEvent = e as FormEvent
+        task = this.task.get(e.attempt_id!)
+        if (task) {
+          task.form = formEvent.form || null
+        }
+
+        return // todo
 
       case ChannelState.Missed:
         if (e.attempt_id) {
@@ -259,7 +272,7 @@ export class Agent {
             this.setChannelStateTimeout(
               e.channel,
               e,
-              processingEvent.processing.timeout
+              processingEvent.processing.timeout || 0
             )
 
             return task

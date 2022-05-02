@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.106",
+  "version": "0.1.107",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -47,7 +47,8 @@
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js",
     "api": "openapi-generator generate -g typescript-axios --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
     "format-build": "npm run format:fix && npm run build",
-    "format-build-and-release": "npm run format:fix && npm run build && npm run release:npm"
+    "format-build-and-release": "npm run format:fix && npm run build && npm run release:npm",
+    "clean:js": "find src -name \"*.js.map\" -type f -delete && find src -name \"*.js\" -type f -delete"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -59,7 +60,6 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint --config config/commitlint.config.js -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
       "pre-push": "npm run style && npm test -- --bail --onlyChanged"
     }

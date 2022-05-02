@@ -1,5 +1,6 @@
 import { CallVariables, Categories } from './call'
 import { Client } from './client'
+import { Form } from './form'
 
 export interface Reporting {
   success?: boolean
@@ -68,6 +69,7 @@ export interface TaskData extends Distribute {
   leaving_at?: number
   processing_sec?: number
   processing_renewal_sec?: number
+  processing_timeout_at?: number
   duration: number
   state: string
 }
@@ -87,13 +89,21 @@ export interface WrapTime {
 }
 
 export interface Processing {
-  timeout: number
+  timeout: number | null
   sec: number
   renewal_sec?: number
 }
 
 export interface DistributeEvent extends ChannelEvent {
   distribute: Distribute
+}
+
+export interface BridgedEvent extends ChannelEvent {
+  form?: Form | null
+}
+
+export interface FormEvent extends ChannelEvent {
+  form?: Form | null
 }
 
 export interface TransferEvent extends ChannelEvent {
@@ -133,6 +143,7 @@ export class Task {
   stopAt: number
   closedAt: number
   reportedAt: number
+  form: Form | null
   _processing: Processing | null
 
   constructor(
@@ -152,6 +163,7 @@ export class Task {
     this.startProcessingAt = 0
     this.stopAt = 0
     this.closedAt = 0
+    this.form = null
 
     this.communication = distribute.communication
     this.history = [distribute]
@@ -216,9 +228,12 @@ export class Task {
     this.lastStatusChange = Date.now()
   }
 
-  setBridged(t: number) {
-    this.bridgedAt = t
+  setBridged(e: BridgedEvent) {
+    this.bridgedAt = e.timestamp
     this.lastStatusChange = Date.now()
+    if (e.form) {
+      this.form = e.form
+    }
   }
 
   setProcessing(p: Processing) {
@@ -227,7 +242,7 @@ export class Task {
       this.startProcessingAt = Date.now()
     }
 
-    if (p.sec) {
+    if (p.sec && !p.timeout) {
       p.timeout = Date.now() + p.sec * 1000 // bug
     }
 
@@ -305,6 +320,19 @@ export class Task {
     return this.client.request('cc_renewal', {
       attempt_id: this.id,
       renewal_sec: sec ? sec : this.processingSec,
+    })
+  }
+
+  async formAction(action: string, fields: Map<string, string>) {
+    if (!this.form) {
+      throw new Error('not found active form')
+    }
+
+    return this.client.request('cc_form_action', {
+      attempt_id: this.id,
+      app_id: this.distribute.app_id,
+      action,
+      fields,
     })
   }
 }

@@ -30,7 +30,7 @@ import {
   LeavedEvent,
   MessageEvent,
 } from './conversation'
-import { DeviceNotFoundError } from './errors'
+import { DeviceNotAllowPermissionError, DeviceNotFoundError } from './errors'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
 import { ChannelEvent, ChannelName, Reporting, Task, TaskData } from './task'
@@ -86,6 +86,7 @@ const WEBSOCKET_EVENT_SIP = 'sip'
 
 enum HandleError {
   NotFoundError = 'NotFoundError',
+  NotAllowedError = 'NotAllowedError',
 }
 
 export enum Response {
@@ -264,11 +265,9 @@ export class Client extends EventEmitter<ClientEvents> {
           call.queue!.reporting = 'true'
           if (c.leaving_at && c.task.processing_sec) {
             call.task.startProcessingAt = c.leaving_at
-
             call.task.setProcessing({
               sec: c.task.processing_sec || 0,
-              timeout:
-                Date.now() - c.leaving_at + (c.task.processing_sec || 0) * 1000,
+              timeout: c.task.processing_timeout_at || null,
               renewal_sec: c.task.processing_renewal_sec || 0,
             })
           }
@@ -319,10 +318,7 @@ export class Client extends EventEmitter<ClientEvents> {
             c.task.startProcessingAt = conv.leaving_at
             c.task.setProcessing({
               sec: conv.task.processing_sec || 0,
-              timeout:
-                Date.now() -
-                conv.leaving_at +
-                (conv.task.processing_sec || 0) * 1000,
+              timeout: conv.task.processing_timeout_at || null,
               renewal_sec: conv.task.processing_renewal_sec || 0,
             })
           }
@@ -709,6 +705,9 @@ export class Client extends EventEmitter<ClientEvents> {
       switch (e.name) {
         case HandleError.NotFoundError:
           this.emit('error', new DeviceNotFoundError(e.message))
+          break
+        case HandleError.NotAllowedError:
+          this.emit('error', new DeviceNotAllowPermissionError(e.message))
           break
         default:
           this.emit('error', e)
