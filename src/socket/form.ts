@@ -1,6 +1,6 @@
 export interface Form {
   id: string
-  actions: string[]
+  actions: object[]
   view: object
 }
 

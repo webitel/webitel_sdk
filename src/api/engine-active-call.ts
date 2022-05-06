@@ -49,6 +49,12 @@ export interface EngineActiveCall {
    * @type {string}
    * @memberof EngineActiveCall
    */
+  blind_transfer?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineActiveCall
+   */
   bridged_at?: string
   /**
    *

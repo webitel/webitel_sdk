@@ -70,6 +70,12 @@ export interface EngineHistoryCall {
    * @type {string}
    * @memberof EngineHistoryCall
    */
+  blind_transfer?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
   bridged_at?: string
   /**
    *
