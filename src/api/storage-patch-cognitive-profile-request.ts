@@ -11,6 +11,9 @@
  * Do not edit the class manually.
  */
 
+import { StorageProviderType } from './storage-provider-type'
+import { StorageServiceType } from './storage-service-type'
+
 /**
  *
  * @export
@@ -61,14 +64,14 @@ export interface StoragePatchCognitiveProfileRequest {
   properties?: { [key: string]: string }
   /**
    *
-   * @type {string}
+   * @type {StorageProviderType}
    * @memberof StoragePatchCognitiveProfileRequest
    */
-  provider?: string
+  provider?: StorageProviderType
   /**
    *
-   * @type {string}
+   * @type {StorageServiceType}
    * @memberof StoragePatchCognitiveProfileRequest
    */
-  service?: string
+  service?: StorageServiceType
 }

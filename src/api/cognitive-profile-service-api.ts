@@ -324,7 +324,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
-     * @param {Array<string>} [service]
+     * @param {Array<'STT' | 'TTS'>} [service]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -335,7 +335,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<string>,
-      service?: Array<string>,
+      service?: Array<'STT' | 'TTS'>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/storage/cognitive_profiles`
@@ -627,7 +627,7 @@ export const CognitiveProfileServiceApiFp = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
-     * @param {Array<string>} [service]
+     * @param {Array<'STT' | 'TTS'>} [service]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -638,7 +638,7 @@ export const CognitiveProfileServiceApiFp = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<string>,
-      service?: Array<string>,
+      service?: Array<'STT' | 'TTS'>,
       options?: any
     ): Promise<
       (
@@ -780,7 +780,7 @@ export const CognitiveProfileServiceApiFactory = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
-     * @param {Array<string>} [service]
+     * @param {Array<'STT' | 'TTS'>} [service]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -791,7 +791,7 @@ export const CognitiveProfileServiceApiFactory = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<string>,
-      service?: Array<string>,
+      service?: Array<'STT' | 'TTS'>,
       options?: any
     ): AxiosPromise<StorageListCognitiveProfile> {
       return CognitiveProfileServiceApiFp(configuration)
@@ -902,7 +902,7 @@ export class CognitiveProfileServiceApi extends BaseAPI {
    * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<string>} [id]
-   * @param {Array<string>} [service]
+   * @param {Array<'STT' | 'TTS'>} [service]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CognitiveProfileServiceApi
@@ -914,7 +914,7 @@ export class CognitiveProfileServiceApi extends BaseAPI {
     sort?: string,
     fields?: Array<string>,
     id?: Array<string>,
-    service?: Array<string>,
+    service?: Array<'STT' | 'TTS'>,
     options?: any
   ) {
     return CognitiveProfileServiceApiFp(this.configuration)

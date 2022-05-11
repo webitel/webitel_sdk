@@ -12,6 +12,8 @@
  */
 
 import { EngineLookup } from './engine-lookup'
+import { StorageProviderType } from './storage-provider-type'
+import { StorageServiceType } from './storage-service-type'
 
 /**
  *
@@ -69,16 +71,16 @@ export interface StorageCognitiveProfile {
   properties?: { [key: string]: string }
   /**
    *
-   * @type {string}
+   * @type {StorageProviderType}
    * @memberof StorageCognitiveProfile
    */
-  provider?: string
+  provider?: StorageProviderType
   /**
    *
-   * @type {string}
+   * @type {StorageServiceType}
    * @memberof StorageCognitiveProfile
    */
-  service?: string
+  service?: StorageServiceType
   /**
    *
    * @type {string}
