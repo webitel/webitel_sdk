@@ -63,6 +63,12 @@ export interface EngineCreateQueueRequest {
   enabled?: boolean
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueRequest
+   */
+  form_schema?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineCreateQueueRequest
    */

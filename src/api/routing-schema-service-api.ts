@@ -33,6 +33,8 @@ import { EnginePatchRoutingSchemaRequest } from '../api'
 import { EngineRoutingSchema } from '../api'
 // @ts-ignore
 import { EngineUpdateRoutingSchemaRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * RoutingSchemaServiceApi - axios parameter creator
  * @export
@@ -48,7 +50,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRoutingSchema: async (
+    routingSchemaServiceCreateRoutingSchema: async (
       body: EngineCreateRoutingSchemaRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -56,7 +58,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createRoutingSchema.'
+          'Required parameter body was null or undefined when calling routingSchemaServiceCreateRoutingSchema.'
         )
       }
       const localVarPath = `/routing/schema`
@@ -118,7 +120,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingSchema: async (
+    routingSchemaServiceDeleteRoutingSchema: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -127,7 +129,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteRoutingSchema.'
+          'Required parameter id was null or undefined when calling routingSchemaServiceDeleteRoutingSchema.'
         )
       }
       const localVarPath = `/routing/schema/{id}`.replace(
@@ -188,7 +190,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchRoutingSchema: async (
+    routingSchemaServicePatchRoutingSchema: async (
       id: string,
       body: EnginePatchRoutingSchemaRequest,
       options: any = {}
@@ -197,14 +199,14 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling patchRoutingSchema.'
+          'Required parameter id was null or undefined when calling routingSchemaServicePatchRoutingSchema.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchRoutingSchema.'
+          'Required parameter body was null or undefined when calling routingSchemaServicePatchRoutingSchema.'
         )
       }
       const localVarPath = `/routing/schema/{id}`.replace(
@@ -269,7 +271,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingSchema: async (
+    routingSchemaServiceReadRoutingSchema: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -278,7 +280,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readRoutingSchema.'
+          'Required parameter id was null or undefined when calling routingSchemaServiceReadRoutingSchema.'
         )
       }
       const localVarPath = `/routing/schema/{id}`.replace(
@@ -346,7 +348,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingSchema: async (
+    routingSchemaServiceSearchRoutingSchema: async (
       page?: number,
       size?: number,
       q?: string,
@@ -445,7 +447,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRoutingSchema: async (
+    routingSchemaServiceUpdateRoutingSchema: async (
       id: string,
       body: EngineUpdateRoutingSchemaRequest,
       options: any = {}
@@ -454,14 +456,14 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateRoutingSchema.'
+          'Required parameter id was null or undefined when calling routingSchemaServiceUpdateRoutingSchema.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateRoutingSchema.'
+          'Required parameter body was null or undefined when calling routingSchemaServiceUpdateRoutingSchema.'
         )
       }
       const localVarPath = `/routing/schema/{id}`.replace(
@@ -536,7 +538,7 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createRoutingSchema(
+    async routingSchemaServiceCreateRoutingSchema(
       body: EngineCreateRoutingSchemaRequest,
       options?: any
     ): Promise<
@@ -547,7 +549,7 @@ export const RoutingSchemaServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).createRoutingSchema(body, options)
+      ).routingSchemaServiceCreateRoutingSchema(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -567,7 +569,7 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteRoutingSchema(
+    async routingSchemaServiceDeleteRoutingSchema(
       id: string,
       domainId?: string,
       options?: any
@@ -579,7 +581,7 @@ export const RoutingSchemaServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).deleteRoutingSchema(id, domainId, options)
+      ).routingSchemaServiceDeleteRoutingSchema(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -599,7 +601,7 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchRoutingSchema(
+    async routingSchemaServicePatchRoutingSchema(
       id: string,
       body: EnginePatchRoutingSchemaRequest,
       options?: any
@@ -611,7 +613,7 @@ export const RoutingSchemaServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).patchRoutingSchema(id, body, options)
+      ).routingSchemaServicePatchRoutingSchema(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -631,7 +633,7 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readRoutingSchema(
+    async routingSchemaServiceReadRoutingSchema(
       id: string,
       domainId?: string,
       options?: any
@@ -643,7 +645,7 @@ export const RoutingSchemaServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).readRoutingSchema(id, domainId, options)
+      ).routingSchemaServiceReadRoutingSchema(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -670,7 +672,7 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchRoutingSchema(
+    async routingSchemaServiceSearchRoutingSchema(
       page?: number,
       size?: number,
       q?: string,
@@ -689,7 +691,7 @@ export const RoutingSchemaServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingSchema(
+      ).routingSchemaServiceSearchRoutingSchema(
         page,
         size,
         q,
@@ -720,7 +722,7 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateRoutingSchema(
+    async routingSchemaServiceUpdateRoutingSchema(
       id: string,
       body: EngineUpdateRoutingSchemaRequest,
       options?: any
@@ -732,7 +734,7 @@ export const RoutingSchemaServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
         configuration
-      ).updateRoutingSchema(id, body, options)
+      ).routingSchemaServiceUpdateRoutingSchema(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -764,12 +766,12 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRoutingSchema(
+    routingSchemaServiceCreateRoutingSchema(
       body: EngineCreateRoutingSchemaRequest,
       options?: any
     ): AxiosPromise<EngineRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
-        .createRoutingSchema(body, options)
+        .routingSchemaServiceCreateRoutingSchema(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -780,13 +782,13 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingSchema(
+    routingSchemaServiceDeleteRoutingSchema(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
-        .deleteRoutingSchema(id, domainId, options)
+        .routingSchemaServiceDeleteRoutingSchema(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -797,13 +799,13 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchRoutingSchema(
+    routingSchemaServicePatchRoutingSchema(
       id: string,
       body: EnginePatchRoutingSchemaRequest,
       options?: any
     ): AxiosPromise<EngineRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
-        .patchRoutingSchema(id, body, options)
+        .routingSchemaServicePatchRoutingSchema(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -814,13 +816,13 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingSchema(
+    routingSchemaServiceReadRoutingSchema(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
-        .readRoutingSchema(id, domainId, options)
+        .routingSchemaServiceReadRoutingSchema(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -838,7 +840,7 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingSchema(
+    routingSchemaServiceSearchRoutingSchema(
       page?: number,
       size?: number,
       q?: string,
@@ -851,7 +853,7 @@ export const RoutingSchemaServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
-        .searchRoutingSchema(
+        .routingSchemaServiceSearchRoutingSchema(
           page,
           size,
           q,
@@ -873,13 +875,13 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRoutingSchema(
+    routingSchemaServiceUpdateRoutingSchema(
       id: string,
       body: EngineUpdateRoutingSchemaRequest,
       options?: any
     ): AxiosPromise<EngineRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
-        .updateRoutingSchema(id, body, options)
+        .routingSchemaServiceUpdateRoutingSchema(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -900,12 +902,12 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
    */
-  public createRoutingSchema(
+  public routingSchemaServiceCreateRoutingSchema(
     body: EngineCreateRoutingSchemaRequest,
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration)
-      .createRoutingSchema(body, options)
+      .routingSchemaServiceCreateRoutingSchema(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -918,9 +920,13 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
    */
-  public deleteRoutingSchema(id: string, domainId?: string, options?: any) {
+  public routingSchemaServiceDeleteRoutingSchema(
+    id: string,
+    domainId?: string,
+    options?: any
+  ) {
     return RoutingSchemaServiceApiFp(this.configuration)
-      .deleteRoutingSchema(id, domainId, options)
+      .routingSchemaServiceDeleteRoutingSchema(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -933,13 +939,13 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
    */
-  public patchRoutingSchema(
+  public routingSchemaServicePatchRoutingSchema(
     id: string,
     body: EnginePatchRoutingSchemaRequest,
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration)
-      .patchRoutingSchema(id, body, options)
+      .routingSchemaServicePatchRoutingSchema(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -952,9 +958,13 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
    */
-  public readRoutingSchema(id: string, domainId?: string, options?: any) {
+  public routingSchemaServiceReadRoutingSchema(
+    id: string,
+    domainId?: string,
+    options?: any
+  ) {
     return RoutingSchemaServiceApiFp(this.configuration)
-      .readRoutingSchema(id, domainId, options)
+      .routingSchemaServiceReadRoutingSchema(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -974,7 +984,7 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
    */
-  public searchRoutingSchema(
+  public routingSchemaServiceSearchRoutingSchema(
     page?: number,
     size?: number,
     q?: string,
@@ -987,7 +997,7 @@ export class RoutingSchemaServiceApi extends BaseAPI {
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration)
-      .searchRoutingSchema(
+      .routingSchemaServiceSearchRoutingSchema(
         page,
         size,
         q,
@@ -1011,13 +1021,13 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
    */
-  public updateRoutingSchema(
+  public routingSchemaServiceUpdateRoutingSchema(
     id: string,
     body: EngineUpdateRoutingSchemaRequest,
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration)
-      .updateRoutingSchema(id, body, options)
+      .routingSchemaServiceUpdateRoutingSchema(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

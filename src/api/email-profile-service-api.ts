@@ -31,6 +31,8 @@ import { EngineEmailProfile } from '../api'
 import { EngineListEmailProfile } from '../api'
 // @ts-ignore
 import { EngineUpdateEmailProfileRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * EmailProfileServiceApi - axios parameter creator
  * @export
@@ -46,7 +48,7 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createEmailProfile: async (
+    emailProfileServiceCreateEmailProfile: async (
       body: EngineCreateEmailProfileRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -54,7 +56,7 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createEmailProfile.'
+          'Required parameter body was null or undefined when calling emailProfileServiceCreateEmailProfile.'
         )
       }
       const localVarPath = `/email/profile`
@@ -116,7 +118,7 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteEmailProfile: async (
+    emailProfileServiceDeleteEmailProfile: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -125,7 +127,7 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteEmailProfile.'
+          'Required parameter id was null or undefined when calling emailProfileServiceDeleteEmailProfile.'
         )
       }
       const localVarPath = `/email/profile/{id}`.replace(
@@ -186,7 +188,7 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readEmailProfile: async (
+    emailProfileServiceReadEmailProfile: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -195,7 +197,7 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readEmailProfile.'
+          'Required parameter id was null or undefined when calling emailProfileServiceReadEmailProfile.'
         )
       }
       const localVarPath = `/email/profile/{id}`.replace(
@@ -260,7 +262,7 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchEmailProfile: async (
+    emailProfileServiceSearchEmailProfile: async (
       page?: number,
       size?: number,
       q?: string,
@@ -344,7 +346,7 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateEmailProfile: async (
+    emailProfileServiceUpdateEmailProfile: async (
       id: string,
       body: EngineUpdateEmailProfileRequest,
       options: any = {}
@@ -353,14 +355,14 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateEmailProfile.'
+          'Required parameter id was null or undefined when calling emailProfileServiceUpdateEmailProfile.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateEmailProfile.'
+          'Required parameter body was null or undefined when calling emailProfileServiceUpdateEmailProfile.'
         )
       }
       const localVarPath = `/email/profile/{id}`.replace(
@@ -435,7 +437,7 @@ export const EmailProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createEmailProfile(
+    async emailProfileServiceCreateEmailProfile(
       body: EngineCreateEmailProfileRequest,
       options?: any
     ): Promise<
@@ -446,7 +448,7 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).createEmailProfile(body, options)
+      ).emailProfileServiceCreateEmailProfile(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -466,7 +468,7 @@ export const EmailProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteEmailProfile(
+    async emailProfileServiceDeleteEmailProfile(
       id: string,
       domainId?: string,
       options?: any
@@ -478,7 +480,7 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).deleteEmailProfile(id, domainId, options)
+      ).emailProfileServiceDeleteEmailProfile(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -498,7 +500,7 @@ export const EmailProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readEmailProfile(
+    async emailProfileServiceReadEmailProfile(
       id: string,
       domainId?: string,
       options?: any
@@ -510,7 +512,7 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).readEmailProfile(id, domainId, options)
+      ).emailProfileServiceReadEmailProfile(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -534,7 +536,7 @@ export const EmailProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchEmailProfile(
+    async emailProfileServiceSearchEmailProfile(
       page?: number,
       size?: number,
       q?: string,
@@ -550,7 +552,15 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).searchEmailProfile(page, size, q, sort, fields, domainId, options)
+      ).emailProfileServiceSearchEmailProfile(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        domainId,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -570,7 +580,7 @@ export const EmailProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateEmailProfile(
+    async emailProfileServiceUpdateEmailProfile(
       id: string,
       body: EngineUpdateEmailProfileRequest,
       options?: any
@@ -582,7 +592,7 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).updateEmailProfile(id, body, options)
+      ).emailProfileServiceUpdateEmailProfile(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -614,12 +624,12 @@ export const EmailProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createEmailProfile(
+    emailProfileServiceCreateEmailProfile(
       body: EngineCreateEmailProfileRequest,
       options?: any
     ): AxiosPromise<EngineEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .createEmailProfile(body, options)
+        .emailProfileServiceCreateEmailProfile(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -630,13 +640,13 @@ export const EmailProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteEmailProfile(
+    emailProfileServiceDeleteEmailProfile(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .deleteEmailProfile(id, domainId, options)
+        .emailProfileServiceDeleteEmailProfile(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -647,13 +657,13 @@ export const EmailProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readEmailProfile(
+    emailProfileServiceReadEmailProfile(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .readEmailProfile(id, domainId, options)
+        .emailProfileServiceReadEmailProfile(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -668,7 +678,7 @@ export const EmailProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchEmailProfile(
+    emailProfileServiceSearchEmailProfile(
       page?: number,
       size?: number,
       q?: string,
@@ -678,7 +688,15 @@ export const EmailProfileServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .searchEmailProfile(page, size, q, sort, fields, domainId, options)
+        .emailProfileServiceSearchEmailProfile(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          domainId,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -689,13 +707,13 @@ export const EmailProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateEmailProfile(
+    emailProfileServiceUpdateEmailProfile(
       id: string,
       body: EngineUpdateEmailProfileRequest,
       options?: any
     ): AxiosPromise<EngineEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .updateEmailProfile(id, body, options)
+        .emailProfileServiceUpdateEmailProfile(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -716,12 +734,12 @@ export class EmailProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
-  public createEmailProfile(
+  public emailProfileServiceCreateEmailProfile(
     body: EngineCreateEmailProfileRequest,
     options?: any
   ) {
     return EmailProfileServiceApiFp(this.configuration)
-      .createEmailProfile(body, options)
+      .emailProfileServiceCreateEmailProfile(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -734,9 +752,13 @@ export class EmailProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
-  public deleteEmailProfile(id: string, domainId?: string, options?: any) {
+  public emailProfileServiceDeleteEmailProfile(
+    id: string,
+    domainId?: string,
+    options?: any
+  ) {
     return EmailProfileServiceApiFp(this.configuration)
-      .deleteEmailProfile(id, domainId, options)
+      .emailProfileServiceDeleteEmailProfile(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -749,9 +771,13 @@ export class EmailProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
-  public readEmailProfile(id: string, domainId?: string, options?: any) {
+  public emailProfileServiceReadEmailProfile(
+    id: string,
+    domainId?: string,
+    options?: any
+  ) {
     return EmailProfileServiceApiFp(this.configuration)
-      .readEmailProfile(id, domainId, options)
+      .emailProfileServiceReadEmailProfile(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -768,7 +794,7 @@ export class EmailProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
-  public searchEmailProfile(
+  public emailProfileServiceSearchEmailProfile(
     page?: number,
     size?: number,
     q?: string,
@@ -778,7 +804,15 @@ export class EmailProfileServiceApi extends BaseAPI {
     options?: any
   ) {
     return EmailProfileServiceApiFp(this.configuration)
-      .searchEmailProfile(page, size, q, sort, fields, domainId, options)
+      .emailProfileServiceSearchEmailProfile(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        domainId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -791,13 +825,13 @@ export class EmailProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
-  public updateEmailProfile(
+  public emailProfileServiceUpdateEmailProfile(
     id: string,
     body: EngineUpdateEmailProfileRequest,
     options?: any
   ) {
     return EmailProfileServiceApiFp(this.configuration)
-      .updateEmailProfile(id, body, options)
+      .emailProfileServiceUpdateEmailProfile(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

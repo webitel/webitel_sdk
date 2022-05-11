@@ -69,6 +69,12 @@ export interface EnginePatchQueueRequest {
   fields?: Array<string>
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EnginePatchQueueRequest
+   */
+  form_schema?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EnginePatchQueueRequest
    */

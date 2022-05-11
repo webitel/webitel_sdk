@@ -33,6 +33,8 @@ import { EnginePatchQueueBucketRequest } from '../api'
 import { EngineQueueBucket } from '../api'
 // @ts-ignore
 import { EngineUpdateQueueBucketRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * QueueBucketServiceApi - axios parameter creator
  * @export
@@ -49,7 +51,7 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createQueueBucket: async (
+    queueBucketServiceCreateQueueBucket: async (
       queueId: string,
       body: EngineCreateQueueBucketRequest,
       options: any = {}
@@ -58,14 +60,14 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling createQueueBucket.'
+          'Required parameter queueId was null or undefined when calling queueBucketServiceCreateQueueBucket.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createQueueBucket.'
+          'Required parameter body was null or undefined when calling queueBucketServiceCreateQueueBucket.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/buckets`.replace(
@@ -130,7 +132,7 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteQueueBucket: async (
+    queueBucketServiceDeleteQueueBucket: async (
       queueId: string,
       id: string,
       options: any = {}
@@ -139,14 +141,14 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling deleteQueueBucket.'
+          'Required parameter queueId was null or undefined when calling queueBucketServiceDeleteQueueBucket.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteQueueBucket.'
+          'Required parameter id was null or undefined when calling queueBucketServiceDeleteQueueBucket.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/buckets/{id}`
@@ -202,7 +204,7 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchQueueBucket: async (
+    queueBucketServicePatchQueueBucket: async (
       queueId: string,
       id: string,
       body: EnginePatchQueueBucketRequest,
@@ -212,21 +214,21 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling patchQueueBucket.'
+          'Required parameter queueId was null or undefined when calling queueBucketServicePatchQueueBucket.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling patchQueueBucket.'
+          'Required parameter id was null or undefined when calling queueBucketServicePatchQueueBucket.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchQueueBucket.'
+          'Required parameter body was null or undefined when calling queueBucketServicePatchQueueBucket.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/buckets/{id}`
@@ -290,7 +292,7 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readQueueBucket: async (
+    queueBucketServiceReadQueueBucket: async (
       queueId: string,
       id: string,
       options: any = {}
@@ -299,14 +301,14 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling readQueueBucket.'
+          'Required parameter queueId was null or undefined when calling queueBucketServiceReadQueueBucket.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readQueueBucket.'
+          'Required parameter id was null or undefined when calling queueBucketServiceReadQueueBucket.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/buckets/{id}`
@@ -367,7 +369,7 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchQueueBucket: async (
+    queueBucketServiceSearchQueueBucket: async (
       queueId: string,
       page?: number,
       size?: number,
@@ -381,7 +383,7 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling searchQueueBucket.'
+          'Required parameter queueId was null or undefined when calling queueBucketServiceSearchQueueBucket.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/buckets`.replace(
@@ -463,7 +465,7 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateQueueBucket: async (
+    queueBucketServiceUpdateQueueBucket: async (
       queueId: string,
       id: string,
       body: EngineUpdateQueueBucketRequest,
@@ -473,21 +475,21 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling updateQueueBucket.'
+          'Required parameter queueId was null or undefined when calling queueBucketServiceUpdateQueueBucket.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateQueueBucket.'
+          'Required parameter id was null or undefined when calling queueBucketServiceUpdateQueueBucket.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateQueueBucket.'
+          'Required parameter body was null or undefined when calling queueBucketServiceUpdateQueueBucket.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/buckets/{id}`
@@ -560,7 +562,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createQueueBucket(
+    async queueBucketServiceCreateQueueBucket(
       queueId: string,
       body: EngineCreateQueueBucketRequest,
       options?: any
@@ -572,7 +574,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).createQueueBucket(queueId, body, options)
+      ).queueBucketServiceCreateQueueBucket(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -592,7 +594,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteQueueBucket(
+    async queueBucketServiceDeleteQueueBucket(
       queueId: string,
       id: string,
       options?: any
@@ -604,7 +606,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).deleteQueueBucket(queueId, id, options)
+      ).queueBucketServiceDeleteQueueBucket(queueId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -624,7 +626,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchQueueBucket(
+    async queueBucketServicePatchQueueBucket(
       queueId: string,
       id: string,
       body: EnginePatchQueueBucketRequest,
@@ -637,7 +639,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).patchQueueBucket(queueId, id, body, options)
+      ).queueBucketServicePatchQueueBucket(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -657,7 +659,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readQueueBucket(
+    async queueBucketServiceReadQueueBucket(
       queueId: string,
       id: string,
       options?: any
@@ -669,7 +671,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).readQueueBucket(queueId, id, options)
+      ).queueBucketServiceReadQueueBucket(queueId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -694,7 +696,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchQueueBucket(
+    async queueBucketServiceSearchQueueBucket(
       queueId: string,
       page?: number,
       size?: number,
@@ -711,7 +713,16 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).searchQueueBucket(queueId, page, size, q, sort, fields, id, options)
+      ).queueBucketServiceSearchQueueBucket(
+        queueId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -732,7 +743,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateQueueBucket(
+    async queueBucketServiceUpdateQueueBucket(
       queueId: string,
       id: string,
       body: EngineUpdateQueueBucketRequest,
@@ -745,7 +756,7 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueBucketServiceApiAxiosParamCreator(
         configuration
-      ).updateQueueBucket(queueId, id, body, options)
+      ).queueBucketServiceUpdateQueueBucket(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -778,13 +789,13 @@ export const QueueBucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createQueueBucket(
+    queueBucketServiceCreateQueueBucket(
       queueId: string,
       body: EngineCreateQueueBucketRequest,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .createQueueBucket(queueId, body, options)
+        .queueBucketServiceCreateQueueBucket(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -795,13 +806,13 @@ export const QueueBucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteQueueBucket(
+    queueBucketServiceDeleteQueueBucket(
       queueId: string,
       id: string,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .deleteQueueBucket(queueId, id, options)
+        .queueBucketServiceDeleteQueueBucket(queueId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -812,14 +823,14 @@ export const QueueBucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchQueueBucket(
+    queueBucketServicePatchQueueBucket(
       queueId: string,
       id: string,
       body: EnginePatchQueueBucketRequest,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .patchQueueBucket(queueId, id, body, options)
+        .queueBucketServicePatchQueueBucket(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -830,13 +841,13 @@ export const QueueBucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readQueueBucket(
+    queueBucketServiceReadQueueBucket(
       queueId: string,
       id: string,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .readQueueBucket(queueId, id, options)
+        .queueBucketServiceReadQueueBucket(queueId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -852,7 +863,7 @@ export const QueueBucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchQueueBucket(
+    queueBucketServiceSearchQueueBucket(
       queueId: string,
       page?: number,
       size?: number,
@@ -863,7 +874,16 @@ export const QueueBucketServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .searchQueueBucket(queueId, page, size, q, sort, fields, id, options)
+        .queueBucketServiceSearchQueueBucket(
+          queueId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -875,14 +895,14 @@ export const QueueBucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateQueueBucket(
+    queueBucketServiceUpdateQueueBucket(
       queueId: string,
       id: string,
       body: EngineUpdateQueueBucketRequest,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
-        .updateQueueBucket(queueId, id, body, options)
+        .queueBucketServiceUpdateQueueBucket(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -904,13 +924,13 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
-  public createQueueBucket(
+  public queueBucketServiceCreateQueueBucket(
     queueId: string,
     body: EngineCreateQueueBucketRequest,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)
-      .createQueueBucket(queueId, body, options)
+      .queueBucketServiceCreateQueueBucket(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -923,9 +943,13 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
-  public deleteQueueBucket(queueId: string, id: string, options?: any) {
+  public queueBucketServiceDeleteQueueBucket(
+    queueId: string,
+    id: string,
+    options?: any
+  ) {
     return QueueBucketServiceApiFp(this.configuration)
-      .deleteQueueBucket(queueId, id, options)
+      .queueBucketServiceDeleteQueueBucket(queueId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -938,14 +962,14 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
-  public patchQueueBucket(
+  public queueBucketServicePatchQueueBucket(
     queueId: string,
     id: string,
     body: EnginePatchQueueBucketRequest,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)
-      .patchQueueBucket(queueId, id, body, options)
+      .queueBucketServicePatchQueueBucket(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -958,9 +982,13 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
-  public readQueueBucket(queueId: string, id: string, options?: any) {
+  public queueBucketServiceReadQueueBucket(
+    queueId: string,
+    id: string,
+    options?: any
+  ) {
     return QueueBucketServiceApiFp(this.configuration)
-      .readQueueBucket(queueId, id, options)
+      .queueBucketServiceReadQueueBucket(queueId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -978,7 +1006,7 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
-  public searchQueueBucket(
+  public queueBucketServiceSearchQueueBucket(
     queueId: string,
     page?: number,
     size?: number,
@@ -989,7 +1017,16 @@ export class QueueBucketServiceApi extends BaseAPI {
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)
-      .searchQueueBucket(queueId, page, size, q, sort, fields, id, options)
+      .queueBucketServiceSearchQueueBucket(
+        queueId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1003,14 +1040,14 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
-  public updateQueueBucket(
+  public queueBucketServiceUpdateQueueBucket(
     queueId: string,
     id: string,
     body: EngineUpdateQueueBucketRequest,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)
-      .updateQueueBucket(queueId, id, body, options)
+      .queueBucketServiceUpdateQueueBucket(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -87,6 +87,12 @@ export interface EngineQueue {
   enabled?: boolean
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
+  form_schema?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineQueue
    */

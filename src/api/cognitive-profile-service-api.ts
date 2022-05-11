@@ -24,42 +24,43 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineBucket } from '../api'
-// @ts-ignore
-import { EngineCreateBucketRequest } from '../api'
-// @ts-ignore
-import { EngineListBucket } from '../api'
-// @ts-ignore
-import { EngineUpdateBucketRequest } from '../api'
-// @ts-ignore
 import { RuntimeError } from '../api'
+// @ts-ignore
+import { StorageCognitiveProfile } from '../api'
+// @ts-ignore
+import { StorageCreateCognitiveProfileRequest } from '../api'
+// @ts-ignore
+import { StorageListCognitiveProfile } from '../api'
+// @ts-ignore
+import { StoragePatchCognitiveProfileRequest } from '../api'
+// @ts-ignore
+import { StorageUpdateCognitiveProfileRequest } from '../api'
 /**
- * BucketServiceApi - axios parameter creator
+ * CognitiveProfileServiceApi - axios parameter creator
  * @export
  */
-export const BucketServiceApiAxiosParamCreator = function(
+export const CognitiveProfileServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @summary Create Bucket
-     * @param {EngineCreateBucketRequest} body
+     * @param {StorageCreateCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceCreateBucket: async (
-      body: EngineCreateBucketRequest,
+    cognitiveProfileServiceCreateCognitiveProfile: async (
+      body: StorageCreateCognitiveProfileRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling bucketServiceCreateBucket.'
+          'Required parameter body was null or undefined when calling cognitiveProfileServiceCreateCognitiveProfile.'
         )
       }
-      const localVarPath = `/call_center/buckets`
+      const localVarPath = `/storage/cognitive_profiles`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -112,25 +113,23 @@ export const BucketServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Remove Bucket
+     * @summary Remove BackendProfile
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceDeleteBucket: async (
+    cognitiveProfileServiceDeleteCognitiveProfile: async (
       id: string,
-      domainId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling bucketServiceDeleteBucket.'
+          'Required parameter id was null or undefined when calling cognitiveProfileServiceDeleteCognitiveProfile.'
         )
       }
-      const localVarPath = `/call_center/buckets/{id}`.replace(
+      const localVarPath = `/storage/cognitive_profiles/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -156,10 +155,6 @@ export const BucketServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -182,25 +177,102 @@ export const BucketServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Bucket item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {StoragePatchCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceReadBucket: async (
+    cognitiveProfileServicePatchCognitiveProfile: async (
       id: string,
-      domainId?: string,
+      body: StoragePatchCognitiveProfileRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling bucketServiceReadBucket.'
+          'Required parameter id was null or undefined when calling cognitiveProfileServicePatchCognitiveProfile.'
         )
       }
-      const localVarPath = `/call_center/buckets/{id}`.replace(
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling cognitiveProfileServicePatchCognitiveProfile.'
+        )
+      }
+      const localVarPath = `/storage/cognitive_profiles/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cognitiveProfileServiceReadCognitiveProfile: async (
+      id: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling cognitiveProfileServiceReadCognitiveProfile.'
+        )
+      }
+      const localVarPath = `/storage/cognitive_profiles/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -226,10 +298,6 @@ export const BucketServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -252,26 +320,27 @@ export const BucketServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List of Bucket
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [service]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceSearchBucket: async (
+    cognitiveProfileServiceSearchCognitiveProfile: async (
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      id?: Array<number>,
+      id?: Array<string>,
+      service?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/call_center/buckets`
+      const localVarPath = `/storage/cognitive_profiles`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -318,6 +387,10 @@ export const BucketServiceApiAxiosParamCreator = function(
         localVarQueryParameter['id'] = id
       }
 
+      if (service) {
+        localVarQueryParameter['service'] = service
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -340,32 +413,31 @@ export const BucketServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update Bucket
      * @param {string} id
-     * @param {EngineUpdateBucketRequest} body
+     * @param {StorageUpdateCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceUpdateBucket: async (
+    cognitiveProfileServiceUpdateCognitiveProfile: async (
       id: string,
-      body: EngineUpdateBucketRequest,
+      body: StorageUpdateCognitiveProfileRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling bucketServiceUpdateBucket.'
+          'Required parameter id was null or undefined when calling cognitiveProfileServiceUpdateCognitiveProfile.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling bucketServiceUpdateBucket.'
+          'Required parameter body was null or undefined when calling cognitiveProfileServiceUpdateCognitiveProfile.'
         )
       }
-      const localVarPath = `/call_center/buckets/{id}`.replace(
+      const localVarPath = `/storage/cognitive_profiles/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -423,125 +495,31 @@ export const BucketServiceApiAxiosParamCreator = function(
 }
 
 /**
- * BucketServiceApi - functional programming interface
+ * CognitiveProfileServiceApi - functional programming interface
  * @export
  */
-export const BucketServiceApiFp = function(configuration?: Configuration) {
+export const CognitiveProfileServiceApiFp = function(
+  configuration?: Configuration
+) {
   return {
     /**
      *
-     * @summary Create Bucket
-     * @param {EngineCreateBucketRequest} body
+     * @param {StorageCreateCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async bucketServiceCreateBucket(
-      body: EngineCreateBucketRequest,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineBucket>
-    > {
-      const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
-        configuration
-      ).bucketServiceCreateBucket(body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Remove Bucket
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async bucketServiceDeleteBucket(
-      id: string,
-      domainId?: string,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineBucket>
-    > {
-      const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
-        configuration
-      ).bucketServiceDeleteBucket(id, domainId, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Bucket item
-     * @param {string} id
-     * @param {string} [domainId]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async bucketServiceReadBucket(
-      id: string,
-      domainId?: string,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineBucket>
-    > {
-      const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
-        configuration
-      ).bucketServiceReadBucket(id, domainId, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary List of Bucket
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async bucketServiceSearchBucket(
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
-      fields?: Array<string>,
-      id?: Array<number>,
+    async cognitiveProfileServiceCreateCognitiveProfile(
+      body: StorageCreateCognitiveProfileRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListBucket>
+      ) => AxiosPromise<StorageCognitiveProfile>
     > {
-      const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
         configuration
-      ).bucketServiceSearchBucket(page, size, q, sort, fields, id, options)
+      ).cognitiveProfileServiceCreateCognitiveProfile(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -555,22 +533,164 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Update Bucket
+     * @summary Remove BackendProfile
      * @param {string} id
-     * @param {EngineUpdateBucketRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async bucketServiceUpdateBucket(
+    async cognitiveProfileServiceDeleteCognitiveProfile(
       id: string,
-      body: EngineUpdateBucketRequest,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineBucket>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageCognitiveProfile>
     > {
-      const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
         configuration
-      ).bucketServiceUpdateBucket(id, body, options)
+      ).cognitiveProfileServiceDeleteCognitiveProfile(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {StoragePatchCognitiveProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async cognitiveProfileServicePatchCognitiveProfile(
+      id: string,
+      body: StoragePatchCognitiveProfileRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageCognitiveProfile>
+    > {
+      const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
+        configuration
+      ).cognitiveProfileServicePatchCognitiveProfile(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async cognitiveProfileServiceReadCognitiveProfile(
+      id: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageCognitiveProfile>
+    > {
+      const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
+        configuration
+      ).cognitiveProfileServiceReadCognitiveProfile(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [service]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async cognitiveProfileServiceSearchCognitiveProfile(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      service?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageListCognitiveProfile>
+    > {
+      const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
+        configuration
+      ).cognitiveProfileServiceSearchCognitiveProfile(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        service,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {StorageUpdateCognitiveProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async cognitiveProfileServiceUpdateCognitiveProfile(
+      id: string,
+      body: StorageUpdateCognitiveProfileRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageCognitiveProfile>
+    > {
+      const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
+        configuration
+      ).cognitiveProfileServiceUpdateCognitiveProfile(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -586,10 +706,10 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
 }
 
 /**
- * BucketServiceApi - factory interface
+ * CognitiveProfileServiceApi - factory interface
  * @export
  */
-export const BucketServiceApiFactory = function(
+export const CognitiveProfileServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -597,199 +717,243 @@ export const BucketServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create Bucket
-     * @param {EngineCreateBucketRequest} body
+     * @param {StorageCreateCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceCreateBucket(
-      body: EngineCreateBucketRequest,
+    cognitiveProfileServiceCreateCognitiveProfile(
+      body: StorageCreateCognitiveProfileRequest,
       options?: any
-    ): AxiosPromise<EngineBucket> {
-      return BucketServiceApiFp(configuration)
-        .bucketServiceCreateBucket(body, options)
+    ): AxiosPromise<StorageCognitiveProfile> {
+      return CognitiveProfileServiceApiFp(configuration)
+        .cognitiveProfileServiceCreateCognitiveProfile(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Remove Bucket
+     * @summary Remove BackendProfile
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceDeleteBucket(
+    cognitiveProfileServiceDeleteCognitiveProfile(
       id: string,
-      domainId?: string,
       options?: any
-    ): AxiosPromise<EngineBucket> {
-      return BucketServiceApiFp(configuration)
-        .bucketServiceDeleteBucket(id, domainId, options)
+    ): AxiosPromise<StorageCognitiveProfile> {
+      return CognitiveProfileServiceApiFp(configuration)
+        .cognitiveProfileServiceDeleteCognitiveProfile(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Bucket item
      * @param {string} id
-     * @param {string} [domainId]
+     * @param {StoragePatchCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceReadBucket(
+    cognitiveProfileServicePatchCognitiveProfile(
       id: string,
-      domainId?: string,
+      body: StoragePatchCognitiveProfileRequest,
       options?: any
-    ): AxiosPromise<EngineBucket> {
-      return BucketServiceApiFp(configuration)
-        .bucketServiceReadBucket(id, domainId, options)
+    ): AxiosPromise<StorageCognitiveProfile> {
+      return CognitiveProfileServiceApiFp(configuration)
+        .cognitiveProfileServicePatchCognitiveProfile(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary List of Bucket
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cognitiveProfileServiceReadCognitiveProfile(
+      id: string,
+      options?: any
+    ): AxiosPromise<StorageCognitiveProfile> {
+      return CognitiveProfileServiceApiFp(configuration)
+        .cognitiveProfileServiceReadCognitiveProfile(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [service]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceSearchBucket(
+    cognitiveProfileServiceSearchCognitiveProfile(
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      id?: Array<number>,
+      id?: Array<string>,
+      service?: Array<string>,
       options?: any
-    ): AxiosPromise<EngineListBucket> {
-      return BucketServiceApiFp(configuration)
-        .bucketServiceSearchBucket(page, size, q, sort, fields, id, options)
+    ): AxiosPromise<StorageListCognitiveProfile> {
+      return CognitiveProfileServiceApiFp(configuration)
+        .cognitiveProfileServiceSearchCognitiveProfile(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          service,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Update Bucket
      * @param {string} id
-     * @param {EngineUpdateBucketRequest} body
+     * @param {StorageUpdateCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceUpdateBucket(
+    cognitiveProfileServiceUpdateCognitiveProfile(
       id: string,
-      body: EngineUpdateBucketRequest,
+      body: StorageUpdateCognitiveProfileRequest,
       options?: any
-    ): AxiosPromise<EngineBucket> {
-      return BucketServiceApiFp(configuration)
-        .bucketServiceUpdateBucket(id, body, options)
+    ): AxiosPromise<StorageCognitiveProfile> {
+      return CognitiveProfileServiceApiFp(configuration)
+        .cognitiveProfileServiceUpdateCognitiveProfile(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * BucketServiceApi - object-oriented interface
+ * CognitiveProfileServiceApi - object-oriented interface
  * @export
- * @class BucketServiceApi
+ * @class CognitiveProfileServiceApi
  * @extends {BaseAPI}
  */
-export class BucketServiceApi extends BaseAPI {
+export class CognitiveProfileServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create Bucket
-   * @param {EngineCreateBucketRequest} body
+   * @param {StorageCreateCognitiveProfileRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof BucketServiceApi
+   * @memberof CognitiveProfileServiceApi
    */
-  public bucketServiceCreateBucket(
-    body: EngineCreateBucketRequest,
+  public cognitiveProfileServiceCreateCognitiveProfile(
+    body: StorageCreateCognitiveProfileRequest,
     options?: any
   ) {
-    return BucketServiceApiFp(this.configuration)
-      .bucketServiceCreateBucket(body, options)
+    return CognitiveProfileServiceApiFp(this.configuration)
+      .cognitiveProfileServiceCreateCognitiveProfile(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Remove Bucket
+   * @summary Remove BackendProfile
    * @param {string} id
-   * @param {string} [domainId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof BucketServiceApi
+   * @memberof CognitiveProfileServiceApi
    */
-  public bucketServiceDeleteBucket(
+  public cognitiveProfileServiceDeleteCognitiveProfile(
     id: string,
-    domainId?: string,
     options?: any
   ) {
-    return BucketServiceApiFp(this.configuration)
-      .bucketServiceDeleteBucket(id, domainId, options)
+    return CognitiveProfileServiceApiFp(this.configuration)
+      .cognitiveProfileServiceDeleteCognitiveProfile(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Bucket item
    * @param {string} id
-   * @param {string} [domainId]
+   * @param {StoragePatchCognitiveProfileRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof BucketServiceApi
+   * @memberof CognitiveProfileServiceApi
    */
-  public bucketServiceReadBucket(id: string, domainId?: string, options?: any) {
-    return BucketServiceApiFp(this.configuration)
-      .bucketServiceReadBucket(id, domainId, options)
+  public cognitiveProfileServicePatchCognitiveProfile(
+    id: string,
+    body: StoragePatchCognitiveProfileRequest,
+    options?: any
+  ) {
+    return CognitiveProfileServiceApiFp(this.configuration)
+      .cognitiveProfileServicePatchCognitiveProfile(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary List of Bucket
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CognitiveProfileServiceApi
+   */
+  public cognitiveProfileServiceReadCognitiveProfile(
+    id: string,
+    options?: any
+  ) {
+    return CognitiveProfileServiceApiFp(this.configuration)
+      .cognitiveProfileServiceReadCognitiveProfile(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [service]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof BucketServiceApi
+   * @memberof CognitiveProfileServiceApi
    */
-  public bucketServiceSearchBucket(
+  public cognitiveProfileServiceSearchCognitiveProfile(
     page?: number,
     size?: number,
     q?: string,
     sort?: string,
     fields?: Array<string>,
-    id?: Array<number>,
+    id?: Array<string>,
+    service?: Array<string>,
     options?: any
   ) {
-    return BucketServiceApiFp(this.configuration)
-      .bucketServiceSearchBucket(page, size, q, sort, fields, id, options)
+    return CognitiveProfileServiceApiFp(this.configuration)
+      .cognitiveProfileServiceSearchCognitiveProfile(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        service,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Update Bucket
    * @param {string} id
-   * @param {EngineUpdateBucketRequest} body
+   * @param {StorageUpdateCognitiveProfileRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof BucketServiceApi
+   * @memberof CognitiveProfileServiceApi
    */
-  public bucketServiceUpdateBucket(
+  public cognitiveProfileServiceUpdateCognitiveProfile(
     id: string,
-    body: EngineUpdateBucketRequest,
+    body: StorageUpdateCognitiveProfileRequest,
     options?: any
   ) {
-    return BucketServiceApiFp(this.configuration)
-      .bucketServiceUpdateBucket(id, body, options)
+    return CognitiveProfileServiceApiFp(this.configuration)
+      .cognitiveProfileServiceUpdateCognitiveProfile(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

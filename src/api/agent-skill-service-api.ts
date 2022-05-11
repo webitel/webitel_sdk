@@ -35,6 +35,8 @@ import { EngineListSkill } from '../api'
 import { EnginePatchAgentSkillRequest } from '../api'
 // @ts-ignore
 import { EngineUpdateAgentSkillRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * AgentSkillServiceApi - axios parameter creator
  * @export
@@ -51,7 +53,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentSkill: async (
+    agentSkillServiceCreateAgentSkill: async (
       agentId: string,
       body: EngineCreateAgentSkillRequest,
       options: any = {}
@@ -60,14 +62,14 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       if (agentId === null || agentId === undefined) {
         throw new RequiredError(
           'agentId',
-          'Required parameter agentId was null or undefined when calling createAgentSkill.'
+          'Required parameter agentId was null or undefined when calling agentSkillServiceCreateAgentSkill.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createAgentSkill.'
+          'Required parameter body was null or undefined when calling agentSkillServiceCreateAgentSkill.'
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills`.replace(
@@ -133,7 +135,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentSkill: async (
+    agentSkillServiceDeleteAgentSkill: async (
       agentId: string,
       id: string,
       domainId?: string,
@@ -143,14 +145,14 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       if (agentId === null || agentId === undefined) {
         throw new RequiredError(
           'agentId',
-          'Required parameter agentId was null or undefined when calling deleteAgentSkill.'
+          'Required parameter agentId was null or undefined when calling agentSkillServiceDeleteAgentSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteAgentSkill.'
+          'Required parameter id was null or undefined when calling agentSkillServiceDeleteAgentSkill.'
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills/{id}`
@@ -210,7 +212,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchAgentSkill: async (
+    agentSkillServicePatchAgentSkill: async (
       agentId: string,
       id: string,
       body: EnginePatchAgentSkillRequest,
@@ -220,21 +222,21 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       if (agentId === null || agentId === undefined) {
         throw new RequiredError(
           'agentId',
-          'Required parameter agentId was null or undefined when calling patchAgentSkill.'
+          'Required parameter agentId was null or undefined when calling agentSkillServicePatchAgentSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling patchAgentSkill.'
+          'Required parameter id was null or undefined when calling agentSkillServicePatchAgentSkill.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchAgentSkill.'
+          'Required parameter body was null or undefined when calling agentSkillServicePatchAgentSkill.'
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills/{id}`
@@ -299,7 +301,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentSkill: async (
+    agentSkillServiceReadAgentSkill: async (
       agentId: string,
       id: string,
       domainId?: string,
@@ -309,14 +311,14 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       if (agentId === null || agentId === undefined) {
         throw new RequiredError(
           'agentId',
-          'Required parameter agentId was null or undefined when calling readAgentSkill.'
+          'Required parameter agentId was null or undefined when calling agentSkillServiceReadAgentSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readAgentSkill.'
+          'Required parameter id was null or undefined when calling agentSkillServiceReadAgentSkill.'
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills/{id}`
@@ -381,7 +383,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentSkill: async (
+    agentSkillServiceSearchAgentSkill: async (
       agentId: string,
       page?: number,
       size?: number,
@@ -395,7 +397,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       if (agentId === null || agentId === undefined) {
         throw new RequiredError(
           'agentId',
-          'Required parameter agentId was null or undefined when calling searchAgentSkill.'
+          'Required parameter agentId was null or undefined when calling agentSkillServiceSearchAgentSkill.'
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills`.replace(
@@ -479,7 +481,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchLookupAgentNotExistsSkill: async (
+    agentSkillServiceSearchLookupAgentNotExistsSkill: async (
       agentId: string,
       page?: number,
       size?: number,
@@ -491,7 +493,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       if (agentId === null || agentId === undefined) {
         throw new RequiredError(
           'agentId',
-          'Required parameter agentId was null or undefined when calling searchLookupAgentNotExistsSkill.'
+          'Required parameter agentId was null or undefined when calling agentSkillServiceSearchLookupAgentNotExistsSkill.'
         )
       }
       const localVarPath = `/call_center/lookups/agents/skills/{agent_id}`.replace(
@@ -565,7 +567,7 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentSkill: async (
+    agentSkillServiceUpdateAgentSkill: async (
       agentId: string,
       id: string,
       body: EngineUpdateAgentSkillRequest,
@@ -575,21 +577,21 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       if (agentId === null || agentId === undefined) {
         throw new RequiredError(
           'agentId',
-          'Required parameter agentId was null or undefined when calling updateAgentSkill.'
+          'Required parameter agentId was null or undefined when calling agentSkillServiceUpdateAgentSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateAgentSkill.'
+          'Required parameter id was null or undefined when calling agentSkillServiceUpdateAgentSkill.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateAgentSkill.'
+          'Required parameter body was null or undefined when calling agentSkillServiceUpdateAgentSkill.'
         )
       }
       const localVarPath = `/call_center/agents/{agent_id}/skills/{id}`
@@ -662,7 +664,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createAgentSkill(
+    async agentSkillServiceCreateAgentSkill(
       agentId: string,
       body: EngineCreateAgentSkillRequest,
       options?: any
@@ -674,7 +676,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).createAgentSkill(agentId, body, options)
+      ).agentSkillServiceCreateAgentSkill(agentId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -695,7 +697,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteAgentSkill(
+    async agentSkillServiceDeleteAgentSkill(
       agentId: string,
       id: string,
       domainId?: string,
@@ -708,7 +710,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).deleteAgentSkill(agentId, id, domainId, options)
+      ).agentSkillServiceDeleteAgentSkill(agentId, id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -728,7 +730,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchAgentSkill(
+    async agentSkillServicePatchAgentSkill(
       agentId: string,
       id: string,
       body: EnginePatchAgentSkillRequest,
@@ -741,7 +743,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).patchAgentSkill(agentId, id, body, options)
+      ).agentSkillServicePatchAgentSkill(agentId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -762,7 +764,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readAgentSkill(
+    async agentSkillServiceReadAgentSkill(
       agentId: string,
       id: string,
       domainId?: string,
@@ -775,7 +777,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).readAgentSkill(agentId, id, domainId, options)
+      ).agentSkillServiceReadAgentSkill(agentId, id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -800,7 +802,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchAgentSkill(
+    async agentSkillServiceSearchAgentSkill(
       agentId: string,
       page?: number,
       size?: number,
@@ -817,7 +819,16 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentSkill(agentId, page, size, q, sort, fields, id, options)
+      ).agentSkillServiceSearchAgentSkill(
+        agentId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -840,7 +851,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchLookupAgentNotExistsSkill(
+    async agentSkillServiceSearchLookupAgentNotExistsSkill(
       agentId: string,
       page?: number,
       size?: number,
@@ -855,7 +866,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).searchLookupAgentNotExistsSkill(
+      ).agentSkillServiceSearchLookupAgentNotExistsSkill(
         agentId,
         page,
         size,
@@ -883,7 +894,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateAgentSkill(
+    async agentSkillServiceUpdateAgentSkill(
       agentId: string,
       id: string,
       body: EngineUpdateAgentSkillRequest,
@@ -896,7 +907,7 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentSkillServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentSkill(agentId, id, body, options)
+      ).agentSkillServiceUpdateAgentSkill(agentId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -929,13 +940,13 @@ export const AgentSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentSkill(
+    agentSkillServiceCreateAgentSkill(
       agentId: string,
       body: EngineCreateAgentSkillRequest,
       options?: any
     ): AxiosPromise<EngineAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
-        .createAgentSkill(agentId, body, options)
+        .agentSkillServiceCreateAgentSkill(agentId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -947,14 +958,14 @@ export const AgentSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentSkill(
+    agentSkillServiceDeleteAgentSkill(
       agentId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
-        .deleteAgentSkill(agentId, id, domainId, options)
+        .agentSkillServiceDeleteAgentSkill(agentId, id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -965,14 +976,14 @@ export const AgentSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchAgentSkill(
+    agentSkillServicePatchAgentSkill(
       agentId: string,
       id: string,
       body: EnginePatchAgentSkillRequest,
       options?: any
     ): AxiosPromise<EngineAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
-        .patchAgentSkill(agentId, id, body, options)
+        .agentSkillServicePatchAgentSkill(agentId, id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -984,14 +995,14 @@ export const AgentSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentSkill(
+    agentSkillServiceReadAgentSkill(
       agentId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
-        .readAgentSkill(agentId, id, domainId, options)
+        .agentSkillServiceReadAgentSkill(agentId, id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1007,7 +1018,7 @@ export const AgentSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentSkill(
+    agentSkillServiceSearchAgentSkill(
       agentId: string,
       page?: number,
       size?: number,
@@ -1018,7 +1029,16 @@ export const AgentSkillServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
-        .searchAgentSkill(agentId, page, size, q, sort, fields, id, options)
+        .agentSkillServiceSearchAgentSkill(
+          agentId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1032,7 +1052,7 @@ export const AgentSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchLookupAgentNotExistsSkill(
+    agentSkillServiceSearchLookupAgentNotExistsSkill(
       agentId: string,
       page?: number,
       size?: number,
@@ -1041,7 +1061,7 @@ export const AgentSkillServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListSkill> {
       return AgentSkillServiceApiFp(configuration)
-        .searchLookupAgentNotExistsSkill(
+        .agentSkillServiceSearchLookupAgentNotExistsSkill(
           agentId,
           page,
           size,
@@ -1060,14 +1080,14 @@ export const AgentSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentSkill(
+    agentSkillServiceUpdateAgentSkill(
       agentId: string,
       id: string,
       body: EngineUpdateAgentSkillRequest,
       options?: any
     ): AxiosPromise<EngineAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
-        .updateAgentSkill(agentId, id, body, options)
+        .agentSkillServiceUpdateAgentSkill(agentId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1089,13 +1109,13 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
-  public createAgentSkill(
+  public agentSkillServiceCreateAgentSkill(
     agentId: string,
     body: EngineCreateAgentSkillRequest,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
-      .createAgentSkill(agentId, body, options)
+      .agentSkillServiceCreateAgentSkill(agentId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1109,14 +1129,14 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
-  public deleteAgentSkill(
+  public agentSkillServiceDeleteAgentSkill(
     agentId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
-      .deleteAgentSkill(agentId, id, domainId, options)
+      .agentSkillServiceDeleteAgentSkill(agentId, id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1129,14 +1149,14 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
-  public patchAgentSkill(
+  public agentSkillServicePatchAgentSkill(
     agentId: string,
     id: string,
     body: EnginePatchAgentSkillRequest,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
-      .patchAgentSkill(agentId, id, body, options)
+      .agentSkillServicePatchAgentSkill(agentId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1150,14 +1170,14 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
-  public readAgentSkill(
+  public agentSkillServiceReadAgentSkill(
     agentId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
-      .readAgentSkill(agentId, id, domainId, options)
+      .agentSkillServiceReadAgentSkill(agentId, id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1175,7 +1195,7 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
-  public searchAgentSkill(
+  public agentSkillServiceSearchAgentSkill(
     agentId: string,
     page?: number,
     size?: number,
@@ -1186,7 +1206,16 @@ export class AgentSkillServiceApi extends BaseAPI {
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
-      .searchAgentSkill(agentId, page, size, q, sort, fields, id, options)
+      .agentSkillServiceSearchAgentSkill(
+        agentId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1202,7 +1231,7 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
-  public searchLookupAgentNotExistsSkill(
+  public agentSkillServiceSearchLookupAgentNotExistsSkill(
     agentId: string,
     page?: number,
     size?: number,
@@ -1211,7 +1240,7 @@ export class AgentSkillServiceApi extends BaseAPI {
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
-      .searchLookupAgentNotExistsSkill(
+      .agentSkillServiceSearchLookupAgentNotExistsSkill(
         agentId,
         page,
         size,
@@ -1232,14 +1261,14 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
-  public updateAgentSkill(
+  public agentSkillServiceUpdateAgentSkill(
     agentId: string,
     id: string,
     body: EngineUpdateAgentSkillRequest,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
-      .updateAgentSkill(agentId, id, body, options)
+      .agentSkillServiceUpdateAgentSkill(agentId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

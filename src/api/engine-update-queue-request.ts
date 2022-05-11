@@ -63,6 +63,12 @@ export interface EngineUpdateQueueRequest {
   enabled?: boolean
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineUpdateQueueRequest
+   */
+  form_schema?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineUpdateQueueRequest
    */
