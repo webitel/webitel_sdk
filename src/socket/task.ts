@@ -72,6 +72,7 @@ export interface TaskData extends Distribute {
   processing_timeout_at?: number
   duration: number
   state: string
+  form?: Form | null
 }
 
 export interface Offering {

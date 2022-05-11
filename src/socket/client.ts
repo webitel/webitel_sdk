@@ -263,6 +263,7 @@ export class Client extends EventEmitter<ClientEvents> {
             c.task // todo add app_id
           )
           call.queue!.reporting = 'true'
+          call.task.form = c.task.form || null
           if (c.leaving_at && c.task.processing_sec) {
             call.task.startProcessingAt = c.leaving_at
             call.task.setProcessing({
@@ -322,6 +323,7 @@ export class Client extends EventEmitter<ClientEvents> {
               renewal_sec: conv.task.processing_renewal_sec || 0,
             })
           }
+          c.task.form = conv.task.form || null
         }
 
         if (conv.invite_id) {
