@@ -31,8 +31,6 @@ import { EngineCommunicationTypeRequest } from '../api'
 import { EngineListCommunicationType } from '../api'
 // @ts-ignore
 import { EngineUpdateCommunicationTypeRequest } from '../api'
-// @ts-ignore
-import { RuntimeError } from '../api'
 /**
  * CommunicationTypeServiceApi - axios parameter creator
  * @export
@@ -48,7 +46,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceCreateCommunicationType: async (
+    createCommunicationType: async (
       body: EngineCommunicationTypeRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -56,7 +54,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling communicationTypeServiceCreateCommunicationType.'
+          'Required parameter body was null or undefined when calling createCommunicationType.'
         )
       }
       const localVarPath = `/call_center/communication_type`
@@ -118,7 +116,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceDeleteCommunicationType: async (
+    deleteCommunicationType: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -127,7 +125,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling communicationTypeServiceDeleteCommunicationType.'
+          'Required parameter id was null or undefined when calling deleteCommunicationType.'
         )
       }
       const localVarPath = `/call_center/communication_type/{id}`.replace(
@@ -188,7 +186,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceReadCommunicationType: async (
+    readCommunicationType: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -197,7 +195,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling communicationTypeServiceReadCommunicationType.'
+          'Required parameter id was null or undefined when calling readCommunicationType.'
         )
       }
       const localVarPath = `/call_center/communication_type/{id}`.replace(
@@ -262,7 +260,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceSearchCommunicationType: async (
+    searchCommunicationType: async (
       page?: number,
       size?: number,
       q?: string,
@@ -346,7 +344,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceUpdateCommunicationType: async (
+    updateCommunicationType: async (
       id: string,
       body: EngineUpdateCommunicationTypeRequest,
       options: any = {}
@@ -355,14 +353,14 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling communicationTypeServiceUpdateCommunicationType.'
+          'Required parameter id was null or undefined when calling updateCommunicationType.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling communicationTypeServiceUpdateCommunicationType.'
+          'Required parameter body was null or undefined when calling updateCommunicationType.'
         )
       }
       const localVarPath = `/call_center/communication_type/{id}`.replace(
@@ -437,7 +435,7 @@ export const CommunicationTypeServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async communicationTypeServiceCreateCommunicationType(
+    async createCommunicationType(
       body: EngineCommunicationTypeRequest,
       options?: any
     ): Promise<
@@ -448,7 +446,7 @@ export const CommunicationTypeServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CommunicationTypeServiceApiAxiosParamCreator(
         configuration
-      ).communicationTypeServiceCreateCommunicationType(body, options)
+      ).createCommunicationType(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -468,7 +466,7 @@ export const CommunicationTypeServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async communicationTypeServiceDeleteCommunicationType(
+    async deleteCommunicationType(
       id: string,
       domainId?: string,
       options?: any
@@ -480,7 +478,7 @@ export const CommunicationTypeServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CommunicationTypeServiceApiAxiosParamCreator(
         configuration
-      ).communicationTypeServiceDeleteCommunicationType(id, domainId, options)
+      ).deleteCommunicationType(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -500,7 +498,7 @@ export const CommunicationTypeServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async communicationTypeServiceReadCommunicationType(
+    async readCommunicationType(
       id: string,
       domainId?: string,
       options?: any
@@ -512,7 +510,7 @@ export const CommunicationTypeServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CommunicationTypeServiceApiAxiosParamCreator(
         configuration
-      ).communicationTypeServiceReadCommunicationType(id, domainId, options)
+      ).readCommunicationType(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -536,7 +534,7 @@ export const CommunicationTypeServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async communicationTypeServiceSearchCommunicationType(
+    async searchCommunicationType(
       page?: number,
       size?: number,
       q?: string,
@@ -552,15 +550,7 @@ export const CommunicationTypeServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CommunicationTypeServiceApiAxiosParamCreator(
         configuration
-      ).communicationTypeServiceSearchCommunicationType(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        options
-      )
+      ).searchCommunicationType(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -580,7 +570,7 @@ export const CommunicationTypeServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async communicationTypeServiceUpdateCommunicationType(
+    async updateCommunicationType(
       id: string,
       body: EngineUpdateCommunicationTypeRequest,
       options?: any
@@ -592,7 +582,7 @@ export const CommunicationTypeServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CommunicationTypeServiceApiAxiosParamCreator(
         configuration
-      ).communicationTypeServiceUpdateCommunicationType(id, body, options)
+      ).updateCommunicationType(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -624,12 +614,12 @@ export const CommunicationTypeServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceCreateCommunicationType(
+    createCommunicationType(
       body: EngineCommunicationTypeRequest,
       options?: any
     ): AxiosPromise<EngineCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
-        .communicationTypeServiceCreateCommunicationType(body, options)
+        .createCommunicationType(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -640,13 +630,13 @@ export const CommunicationTypeServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceDeleteCommunicationType(
+    deleteCommunicationType(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
-        .communicationTypeServiceDeleteCommunicationType(id, domainId, options)
+        .deleteCommunicationType(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -657,13 +647,13 @@ export const CommunicationTypeServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceReadCommunicationType(
+    readCommunicationType(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
-        .communicationTypeServiceReadCommunicationType(id, domainId, options)
+        .readCommunicationType(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -678,7 +668,7 @@ export const CommunicationTypeServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceSearchCommunicationType(
+    searchCommunicationType(
       page?: number,
       size?: number,
       q?: string,
@@ -688,15 +678,7 @@ export const CommunicationTypeServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
-        .communicationTypeServiceSearchCommunicationType(
-          page,
-          size,
-          q,
-          sort,
-          fields,
-          id,
-          options
-        )
+        .searchCommunicationType(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -707,13 +689,13 @@ export const CommunicationTypeServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    communicationTypeServiceUpdateCommunicationType(
+    updateCommunicationType(
       id: string,
       body: EngineUpdateCommunicationTypeRequest,
       options?: any
     ): AxiosPromise<EngineCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
-        .communicationTypeServiceUpdateCommunicationType(id, body, options)
+        .updateCommunicationType(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -734,12 +716,12 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
    */
-  public communicationTypeServiceCreateCommunicationType(
+  public createCommunicationType(
     body: EngineCommunicationTypeRequest,
     options?: any
   ) {
     return CommunicationTypeServiceApiFp(this.configuration)
-      .communicationTypeServiceCreateCommunicationType(body, options)
+      .createCommunicationType(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -752,13 +734,9 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
    */
-  public communicationTypeServiceDeleteCommunicationType(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public deleteCommunicationType(id: string, domainId?: string, options?: any) {
     return CommunicationTypeServiceApiFp(this.configuration)
-      .communicationTypeServiceDeleteCommunicationType(id, domainId, options)
+      .deleteCommunicationType(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -771,13 +749,9 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
    */
-  public communicationTypeServiceReadCommunicationType(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public readCommunicationType(id: string, domainId?: string, options?: any) {
     return CommunicationTypeServiceApiFp(this.configuration)
-      .communicationTypeServiceReadCommunicationType(id, domainId, options)
+      .readCommunicationType(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -794,7 +768,7 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
    */
-  public communicationTypeServiceSearchCommunicationType(
+  public searchCommunicationType(
     page?: number,
     size?: number,
     q?: string,
@@ -804,15 +778,7 @@ export class CommunicationTypeServiceApi extends BaseAPI {
     options?: any
   ) {
     return CommunicationTypeServiceApiFp(this.configuration)
-      .communicationTypeServiceSearchCommunicationType(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        options
-      )
+      .searchCommunicationType(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -825,13 +791,13 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
    */
-  public communicationTypeServiceUpdateCommunicationType(
+  public updateCommunicationType(
     id: string,
     body: EngineUpdateCommunicationTypeRequest,
     options?: any
   ) {
     return CommunicationTypeServiceApiFp(this.configuration)
-      .communicationTypeServiceUpdateCommunicationType(id, body, options)
+      .updateCommunicationType(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

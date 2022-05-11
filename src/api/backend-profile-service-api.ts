@@ -24,8 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { RuntimeError } from '../api'
-// @ts-ignore
 import { StorageBackendProfile } from '../api'
 // @ts-ignore
 import { StorageCreateBackendProfileRequest } from '../api'
@@ -50,7 +48,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceCreateBackendProfile: async (
+    createBackendProfile: async (
       body: StorageCreateBackendProfileRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -58,7 +56,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling backendProfileServiceCreateBackendProfile.'
+          'Required parameter body was null or undefined when calling createBackendProfile.'
         )
       }
       const localVarPath = `/storage/backend_profiles`
@@ -120,7 +118,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceDeleteBackendProfile: async (
+    deleteBackendProfile: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -129,7 +127,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling backendProfileServiceDeleteBackendProfile.'
+          'Required parameter id was null or undefined when calling deleteBackendProfile.'
         )
       }
       const localVarPath = `/storage/backend_profiles/{id}`.replace(
@@ -190,7 +188,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServicePatchBackendProfile: async (
+    patchBackendProfile: async (
       id: string,
       body: StoragePatchBackendProfileRequest,
       options: any = {}
@@ -199,14 +197,14 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling backendProfileServicePatchBackendProfile.'
+          'Required parameter id was null or undefined when calling patchBackendProfile.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling backendProfileServicePatchBackendProfile.'
+          'Required parameter body was null or undefined when calling patchBackendProfile.'
         )
       }
       const localVarPath = `/storage/backend_profiles/{id}`.replace(
@@ -271,7 +269,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceReadBackendProfile: async (
+    readBackendProfile: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -280,7 +278,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling backendProfileServiceReadBackendProfile.'
+          'Required parameter id was null or undefined when calling readBackendProfile.'
         )
       }
       const localVarPath = `/storage/backend_profiles/{id}`.replace(
@@ -345,7 +343,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceSearchBackendProfile: async (
+    searchBackendProfile: async (
       page?: number,
       size?: number,
       q?: string,
@@ -429,7 +427,7 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceUpdateBackendProfile: async (
+    updateBackendProfile: async (
       id: string,
       body: StorageUpdateBackendProfileRequest,
       options: any = {}
@@ -438,14 +436,14 @@ export const BackendProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling backendProfileServiceUpdateBackendProfile.'
+          'Required parameter id was null or undefined when calling updateBackendProfile.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling backendProfileServiceUpdateBackendProfile.'
+          'Required parameter body was null or undefined when calling updateBackendProfile.'
         )
       }
       const localVarPath = `/storage/backend_profiles/{id}`.replace(
@@ -520,7 +518,7 @@ export const BackendProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async backendProfileServiceCreateBackendProfile(
+    async createBackendProfile(
       body: StorageCreateBackendProfileRequest,
       options?: any
     ): Promise<
@@ -531,7 +529,7 @@ export const BackendProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await BackendProfileServiceApiAxiosParamCreator(
         configuration
-      ).backendProfileServiceCreateBackendProfile(body, options)
+      ).createBackendProfile(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -551,7 +549,7 @@ export const BackendProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async backendProfileServiceDeleteBackendProfile(
+    async deleteBackendProfile(
       id: string,
       domainId?: string,
       options?: any
@@ -563,7 +561,7 @@ export const BackendProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await BackendProfileServiceApiAxiosParamCreator(
         configuration
-      ).backendProfileServiceDeleteBackendProfile(id, domainId, options)
+      ).deleteBackendProfile(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -583,7 +581,7 @@ export const BackendProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async backendProfileServicePatchBackendProfile(
+    async patchBackendProfile(
       id: string,
       body: StoragePatchBackendProfileRequest,
       options?: any
@@ -595,7 +593,7 @@ export const BackendProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await BackendProfileServiceApiAxiosParamCreator(
         configuration
-      ).backendProfileServicePatchBackendProfile(id, body, options)
+      ).patchBackendProfile(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -615,7 +613,7 @@ export const BackendProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async backendProfileServiceReadBackendProfile(
+    async readBackendProfile(
       id: string,
       domainId?: string,
       options?: any
@@ -627,7 +625,7 @@ export const BackendProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await BackendProfileServiceApiAxiosParamCreator(
         configuration
-      ).backendProfileServiceReadBackendProfile(id, domainId, options)
+      ).readBackendProfile(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -651,7 +649,7 @@ export const BackendProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async backendProfileServiceSearchBackendProfile(
+    async searchBackendProfile(
       page?: number,
       size?: number,
       q?: string,
@@ -667,15 +665,7 @@ export const BackendProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await BackendProfileServiceApiAxiosParamCreator(
         configuration
-      ).backendProfileServiceSearchBackendProfile(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        options
-      )
+      ).searchBackendProfile(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -695,7 +685,7 @@ export const BackendProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async backendProfileServiceUpdateBackendProfile(
+    async updateBackendProfile(
       id: string,
       body: StorageUpdateBackendProfileRequest,
       options?: any
@@ -707,7 +697,7 @@ export const BackendProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await BackendProfileServiceApiAxiosParamCreator(
         configuration
-      ).backendProfileServiceUpdateBackendProfile(id, body, options)
+      ).updateBackendProfile(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -739,12 +729,12 @@ export const BackendProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceCreateBackendProfile(
+    createBackendProfile(
       body: StorageCreateBackendProfileRequest,
       options?: any
     ): AxiosPromise<StorageBackendProfile> {
       return BackendProfileServiceApiFp(configuration)
-        .backendProfileServiceCreateBackendProfile(body, options)
+        .createBackendProfile(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -755,13 +745,13 @@ export const BackendProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceDeleteBackendProfile(
+    deleteBackendProfile(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<StorageBackendProfile> {
       return BackendProfileServiceApiFp(configuration)
-        .backendProfileServiceDeleteBackendProfile(id, domainId, options)
+        .deleteBackendProfile(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -772,13 +762,13 @@ export const BackendProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServicePatchBackendProfile(
+    patchBackendProfile(
       id: string,
       body: StoragePatchBackendProfileRequest,
       options?: any
     ): AxiosPromise<StorageBackendProfile> {
       return BackendProfileServiceApiFp(configuration)
-        .backendProfileServicePatchBackendProfile(id, body, options)
+        .patchBackendProfile(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -789,13 +779,13 @@ export const BackendProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceReadBackendProfile(
+    readBackendProfile(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<StorageBackendProfile> {
       return BackendProfileServiceApiFp(configuration)
-        .backendProfileServiceReadBackendProfile(id, domainId, options)
+        .readBackendProfile(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -810,7 +800,7 @@ export const BackendProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceSearchBackendProfile(
+    searchBackendProfile(
       page?: number,
       size?: number,
       q?: string,
@@ -820,15 +810,7 @@ export const BackendProfileServiceApiFactory = function(
       options?: any
     ): AxiosPromise<StorageListBackendProfile> {
       return BackendProfileServiceApiFp(configuration)
-        .backendProfileServiceSearchBackendProfile(
-          page,
-          size,
-          q,
-          sort,
-          fields,
-          id,
-          options
-        )
+        .searchBackendProfile(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -839,13 +821,13 @@ export const BackendProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    backendProfileServiceUpdateBackendProfile(
+    updateBackendProfile(
       id: string,
       body: StorageUpdateBackendProfileRequest,
       options?: any
     ): AxiosPromise<StorageBackendProfile> {
       return BackendProfileServiceApiFp(configuration)
-        .backendProfileServiceUpdateBackendProfile(id, body, options)
+        .updateBackendProfile(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -866,12 +848,12 @@ export class BackendProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BackendProfileServiceApi
    */
-  public backendProfileServiceCreateBackendProfile(
+  public createBackendProfile(
     body: StorageCreateBackendProfileRequest,
     options?: any
   ) {
     return BackendProfileServiceApiFp(this.configuration)
-      .backendProfileServiceCreateBackendProfile(body, options)
+      .createBackendProfile(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -884,13 +866,9 @@ export class BackendProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BackendProfileServiceApi
    */
-  public backendProfileServiceDeleteBackendProfile(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public deleteBackendProfile(id: string, domainId?: string, options?: any) {
     return BackendProfileServiceApiFp(this.configuration)
-      .backendProfileServiceDeleteBackendProfile(id, domainId, options)
+      .deleteBackendProfile(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -903,13 +881,13 @@ export class BackendProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BackendProfileServiceApi
    */
-  public backendProfileServicePatchBackendProfile(
+  public patchBackendProfile(
     id: string,
     body: StoragePatchBackendProfileRequest,
     options?: any
   ) {
     return BackendProfileServiceApiFp(this.configuration)
-      .backendProfileServicePatchBackendProfile(id, body, options)
+      .patchBackendProfile(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -922,13 +900,9 @@ export class BackendProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BackendProfileServiceApi
    */
-  public backendProfileServiceReadBackendProfile(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public readBackendProfile(id: string, domainId?: string, options?: any) {
     return BackendProfileServiceApiFp(this.configuration)
-      .backendProfileServiceReadBackendProfile(id, domainId, options)
+      .readBackendProfile(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -945,7 +919,7 @@ export class BackendProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BackendProfileServiceApi
    */
-  public backendProfileServiceSearchBackendProfile(
+  public searchBackendProfile(
     page?: number,
     size?: number,
     q?: string,
@@ -955,15 +929,7 @@ export class BackendProfileServiceApi extends BaseAPI {
     options?: any
   ) {
     return BackendProfileServiceApiFp(this.configuration)
-      .backendProfileServiceSearchBackendProfile(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        options
-      )
+      .searchBackendProfile(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -976,13 +942,13 @@ export class BackendProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BackendProfileServiceApi
    */
-  public backendProfileServiceUpdateBackendProfile(
+  public updateBackendProfile(
     id: string,
     body: StorageUpdateBackendProfileRequest,
     options?: any
   ) {
     return BackendProfileServiceApiFp(this.configuration)
-      .backendProfileServiceUpdateBackendProfile(id, body, options)
+      .updateBackendProfile(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

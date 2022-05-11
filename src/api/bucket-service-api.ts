@@ -31,8 +31,6 @@ import { EngineCreateBucketRequest } from '../api'
 import { EngineListBucket } from '../api'
 // @ts-ignore
 import { EngineUpdateBucketRequest } from '../api'
-// @ts-ignore
-import { RuntimeError } from '../api'
 /**
  * BucketServiceApi - axios parameter creator
  * @export
@@ -48,7 +46,7 @@ export const BucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceCreateBucket: async (
+    createBucket: async (
       body: EngineCreateBucketRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -56,7 +54,7 @@ export const BucketServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling bucketServiceCreateBucket.'
+          'Required parameter body was null or undefined when calling createBucket.'
         )
       }
       const localVarPath = `/call_center/buckets`
@@ -118,7 +116,7 @@ export const BucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceDeleteBucket: async (
+    deleteBucket: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -127,7 +125,7 @@ export const BucketServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling bucketServiceDeleteBucket.'
+          'Required parameter id was null or undefined when calling deleteBucket.'
         )
       }
       const localVarPath = `/call_center/buckets/{id}`.replace(
@@ -188,7 +186,7 @@ export const BucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceReadBucket: async (
+    readBucket: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -197,7 +195,7 @@ export const BucketServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling bucketServiceReadBucket.'
+          'Required parameter id was null or undefined when calling readBucket.'
         )
       }
       const localVarPath = `/call_center/buckets/{id}`.replace(
@@ -262,7 +260,7 @@ export const BucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceSearchBucket: async (
+    searchBucket: async (
       page?: number,
       size?: number,
       q?: string,
@@ -346,7 +344,7 @@ export const BucketServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceUpdateBucket: async (
+    updateBucket: async (
       id: string,
       body: EngineUpdateBucketRequest,
       options: any = {}
@@ -355,14 +353,14 @@ export const BucketServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling bucketServiceUpdateBucket.'
+          'Required parameter id was null or undefined when calling updateBucket.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling bucketServiceUpdateBucket.'
+          'Required parameter body was null or undefined when calling updateBucket.'
         )
       }
       const localVarPath = `/call_center/buckets/{id}`.replace(
@@ -435,7 +433,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async bucketServiceCreateBucket(
+    async createBucket(
       body: EngineCreateBucketRequest,
       options?: any
     ): Promise<
@@ -443,7 +441,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
         configuration
-      ).bucketServiceCreateBucket(body, options)
+      ).createBucket(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -463,7 +461,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async bucketServiceDeleteBucket(
+    async deleteBucket(
       id: string,
       domainId?: string,
       options?: any
@@ -472,7 +470,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
         configuration
-      ).bucketServiceDeleteBucket(id, domainId, options)
+      ).deleteBucket(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -492,7 +490,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async bucketServiceReadBucket(
+    async readBucket(
       id: string,
       domainId?: string,
       options?: any
@@ -501,7 +499,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
         configuration
-      ).bucketServiceReadBucket(id, domainId, options)
+      ).readBucket(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -525,7 +523,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async bucketServiceSearchBucket(
+    async searchBucket(
       page?: number,
       size?: number,
       q?: string,
@@ -541,7 +539,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
         configuration
-      ).bucketServiceSearchBucket(page, size, q, sort, fields, id, options)
+      ).searchBucket(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -561,7 +559,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async bucketServiceUpdateBucket(
+    async updateBucket(
       id: string,
       body: EngineUpdateBucketRequest,
       options?: any
@@ -570,7 +568,7 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await BucketServiceApiAxiosParamCreator(
         configuration
-      ).bucketServiceUpdateBucket(id, body, options)
+      ).updateBucket(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -602,12 +600,12 @@ export const BucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceCreateBucket(
+    createBucket(
       body: EngineCreateBucketRequest,
       options?: any
     ): AxiosPromise<EngineBucket> {
       return BucketServiceApiFp(configuration)
-        .bucketServiceCreateBucket(body, options)
+        .createBucket(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -618,13 +616,13 @@ export const BucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceDeleteBucket(
+    deleteBucket(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineBucket> {
       return BucketServiceApiFp(configuration)
-        .bucketServiceDeleteBucket(id, domainId, options)
+        .deleteBucket(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -635,13 +633,13 @@ export const BucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceReadBucket(
+    readBucket(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineBucket> {
       return BucketServiceApiFp(configuration)
-        .bucketServiceReadBucket(id, domainId, options)
+        .readBucket(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -656,7 +654,7 @@ export const BucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceSearchBucket(
+    searchBucket(
       page?: number,
       size?: number,
       q?: string,
@@ -666,7 +664,7 @@ export const BucketServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListBucket> {
       return BucketServiceApiFp(configuration)
-        .bucketServiceSearchBucket(page, size, q, sort, fields, id, options)
+        .searchBucket(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -677,13 +675,13 @@ export const BucketServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    bucketServiceUpdateBucket(
+    updateBucket(
       id: string,
       body: EngineUpdateBucketRequest,
       options?: any
     ): AxiosPromise<EngineBucket> {
       return BucketServiceApiFp(configuration)
-        .bucketServiceUpdateBucket(id, body, options)
+        .updateBucket(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -704,12 +702,9 @@ export class BucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BucketServiceApi
    */
-  public bucketServiceCreateBucket(
-    body: EngineCreateBucketRequest,
-    options?: any
-  ) {
+  public createBucket(body: EngineCreateBucketRequest, options?: any) {
     return BucketServiceApiFp(this.configuration)
-      .bucketServiceCreateBucket(body, options)
+      .createBucket(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -722,13 +717,9 @@ export class BucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BucketServiceApi
    */
-  public bucketServiceDeleteBucket(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public deleteBucket(id: string, domainId?: string, options?: any) {
     return BucketServiceApiFp(this.configuration)
-      .bucketServiceDeleteBucket(id, domainId, options)
+      .deleteBucket(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -741,9 +732,9 @@ export class BucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BucketServiceApi
    */
-  public bucketServiceReadBucket(id: string, domainId?: string, options?: any) {
+  public readBucket(id: string, domainId?: string, options?: any) {
     return BucketServiceApiFp(this.configuration)
-      .bucketServiceReadBucket(id, domainId, options)
+      .readBucket(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -760,7 +751,7 @@ export class BucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BucketServiceApi
    */
-  public bucketServiceSearchBucket(
+  public searchBucket(
     page?: number,
     size?: number,
     q?: string,
@@ -770,7 +761,7 @@ export class BucketServiceApi extends BaseAPI {
     options?: any
   ) {
     return BucketServiceApiFp(this.configuration)
-      .bucketServiceSearchBucket(page, size, q, sort, fields, id, options)
+      .searchBucket(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -783,13 +774,13 @@ export class BucketServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BucketServiceApi
    */
-  public bucketServiceUpdateBucket(
+  public updateBucket(
     id: string,
     body: EngineUpdateBucketRequest,
     options?: any
   ) {
     return BucketServiceApiFp(this.configuration)
-      .bucketServiceUpdateBucket(id, body, options)
+      .updateBucket(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

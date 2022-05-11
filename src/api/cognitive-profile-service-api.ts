@@ -24,8 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { RuntimeError } from '../api'
-// @ts-ignore
 import { StorageCognitiveProfile } from '../api'
 // @ts-ignore
 import { StorageCreateCognitiveProfileRequest } from '../api'
@@ -49,7 +47,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceCreateCognitiveProfile: async (
+    createCognitiveProfile: async (
       body: StorageCreateCognitiveProfileRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -57,7 +55,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling cognitiveProfileServiceCreateCognitiveProfile.'
+          'Required parameter body was null or undefined when calling createCognitiveProfile.'
         )
       }
       const localVarPath = `/storage/cognitive_profiles`
@@ -118,7 +116,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceDeleteCognitiveProfile: async (
+    deleteCognitiveProfile: async (
       id: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -126,7 +124,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling cognitiveProfileServiceDeleteCognitiveProfile.'
+          'Required parameter id was null or undefined when calling deleteCognitiveProfile.'
         )
       }
       const localVarPath = `/storage/cognitive_profiles/{id}`.replace(
@@ -182,7 +180,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServicePatchCognitiveProfile: async (
+    patchCognitiveProfile: async (
       id: string,
       body: StoragePatchCognitiveProfileRequest,
       options: any = {}
@@ -191,14 +189,14 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling cognitiveProfileServicePatchCognitiveProfile.'
+          'Required parameter id was null or undefined when calling patchCognitiveProfile.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling cognitiveProfileServicePatchCognitiveProfile.'
+          'Required parameter body was null or undefined when calling patchCognitiveProfile.'
         )
       }
       const localVarPath = `/storage/cognitive_profiles/{id}`.replace(
@@ -261,7 +259,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceReadCognitiveProfile: async (
+    readCognitiveProfile: async (
       id: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -269,7 +267,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling cognitiveProfileServiceReadCognitiveProfile.'
+          'Required parameter id was null or undefined when calling readCognitiveProfile.'
         )
       }
       const localVarPath = `/storage/cognitive_profiles/{id}`.replace(
@@ -330,7 +328,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceSearchCognitiveProfile: async (
+    searchCognitiveProfile: async (
       page?: number,
       size?: number,
       q?: string,
@@ -418,7 +416,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceUpdateCognitiveProfile: async (
+    updateCognitiveProfile: async (
       id: string,
       body: StorageUpdateCognitiveProfileRequest,
       options: any = {}
@@ -427,14 +425,14 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling cognitiveProfileServiceUpdateCognitiveProfile.'
+          'Required parameter id was null or undefined when calling updateCognitiveProfile.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling cognitiveProfileServiceUpdateCognitiveProfile.'
+          'Required parameter body was null or undefined when calling updateCognitiveProfile.'
         )
       }
       const localVarPath = `/storage/cognitive_profiles/{id}`.replace(
@@ -508,7 +506,7 @@ export const CognitiveProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async cognitiveProfileServiceCreateCognitiveProfile(
+    async createCognitiveProfile(
       body: StorageCreateCognitiveProfileRequest,
       options?: any
     ): Promise<
@@ -519,7 +517,7 @@ export const CognitiveProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
         configuration
-      ).cognitiveProfileServiceCreateCognitiveProfile(body, options)
+      ).createCognitiveProfile(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -538,7 +536,7 @@ export const CognitiveProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async cognitiveProfileServiceDeleteCognitiveProfile(
+    async deleteCognitiveProfile(
       id: string,
       options?: any
     ): Promise<
@@ -549,7 +547,7 @@ export const CognitiveProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
         configuration
-      ).cognitiveProfileServiceDeleteCognitiveProfile(id, options)
+      ).deleteCognitiveProfile(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -568,7 +566,7 @@ export const CognitiveProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async cognitiveProfileServicePatchCognitiveProfile(
+    async patchCognitiveProfile(
       id: string,
       body: StoragePatchCognitiveProfileRequest,
       options?: any
@@ -580,7 +578,7 @@ export const CognitiveProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
         configuration
-      ).cognitiveProfileServicePatchCognitiveProfile(id, body, options)
+      ).patchCognitiveProfile(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -598,7 +596,7 @@ export const CognitiveProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async cognitiveProfileServiceReadCognitiveProfile(
+    async readCognitiveProfile(
       id: string,
       options?: any
     ): Promise<
@@ -609,7 +607,7 @@ export const CognitiveProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
         configuration
-      ).cognitiveProfileServiceReadCognitiveProfile(id, options)
+      ).readCognitiveProfile(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -633,7 +631,7 @@ export const CognitiveProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async cognitiveProfileServiceSearchCognitiveProfile(
+    async searchCognitiveProfile(
       page?: number,
       size?: number,
       q?: string,
@@ -650,7 +648,7 @@ export const CognitiveProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
         configuration
-      ).cognitiveProfileServiceSearchCognitiveProfile(
+      ).searchCognitiveProfile(
         page,
         size,
         q,
@@ -678,7 +676,7 @@ export const CognitiveProfileServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async cognitiveProfileServiceUpdateCognitiveProfile(
+    async updateCognitiveProfile(
       id: string,
       body: StorageUpdateCognitiveProfileRequest,
       options?: any
@@ -690,7 +688,7 @@ export const CognitiveProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
         configuration
-      ).cognitiveProfileServiceUpdateCognitiveProfile(id, body, options)
+      ).updateCognitiveProfile(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -721,12 +719,12 @@ export const CognitiveProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceCreateCognitiveProfile(
+    createCognitiveProfile(
       body: StorageCreateCognitiveProfileRequest,
       options?: any
     ): AxiosPromise<StorageCognitiveProfile> {
       return CognitiveProfileServiceApiFp(configuration)
-        .cognitiveProfileServiceCreateCognitiveProfile(body, options)
+        .createCognitiveProfile(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -736,12 +734,12 @@ export const CognitiveProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceDeleteCognitiveProfile(
+    deleteCognitiveProfile(
       id: string,
       options?: any
     ): AxiosPromise<StorageCognitiveProfile> {
       return CognitiveProfileServiceApiFp(configuration)
-        .cognitiveProfileServiceDeleteCognitiveProfile(id, options)
+        .deleteCognitiveProfile(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -751,13 +749,13 @@ export const CognitiveProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServicePatchCognitiveProfile(
+    patchCognitiveProfile(
       id: string,
       body: StoragePatchCognitiveProfileRequest,
       options?: any
     ): AxiosPromise<StorageCognitiveProfile> {
       return CognitiveProfileServiceApiFp(configuration)
-        .cognitiveProfileServicePatchCognitiveProfile(id, body, options)
+        .patchCognitiveProfile(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -766,12 +764,12 @@ export const CognitiveProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceReadCognitiveProfile(
+    readCognitiveProfile(
       id: string,
       options?: any
     ): AxiosPromise<StorageCognitiveProfile> {
       return CognitiveProfileServiceApiFp(configuration)
-        .cognitiveProfileServiceReadCognitiveProfile(id, options)
+        .readCognitiveProfile(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -786,7 +784,7 @@ export const CognitiveProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceSearchCognitiveProfile(
+    searchCognitiveProfile(
       page?: number,
       size?: number,
       q?: string,
@@ -797,7 +795,7 @@ export const CognitiveProfileServiceApiFactory = function(
       options?: any
     ): AxiosPromise<StorageListCognitiveProfile> {
       return CognitiveProfileServiceApiFp(configuration)
-        .cognitiveProfileServiceSearchCognitiveProfile(
+        .searchCognitiveProfile(
           page,
           size,
           q,
@@ -816,13 +814,13 @@ export const CognitiveProfileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cognitiveProfileServiceUpdateCognitiveProfile(
+    updateCognitiveProfile(
       id: string,
       body: StorageUpdateCognitiveProfileRequest,
       options?: any
     ): AxiosPromise<StorageCognitiveProfile> {
       return CognitiveProfileServiceApiFp(configuration)
-        .cognitiveProfileServiceUpdateCognitiveProfile(id, body, options)
+        .updateCognitiveProfile(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -842,12 +840,12 @@ export class CognitiveProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CognitiveProfileServiceApi
    */
-  public cognitiveProfileServiceCreateCognitiveProfile(
+  public createCognitiveProfile(
     body: StorageCreateCognitiveProfileRequest,
     options?: any
   ) {
     return CognitiveProfileServiceApiFp(this.configuration)
-      .cognitiveProfileServiceCreateCognitiveProfile(body, options)
+      .createCognitiveProfile(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -859,12 +857,9 @@ export class CognitiveProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CognitiveProfileServiceApi
    */
-  public cognitiveProfileServiceDeleteCognitiveProfile(
-    id: string,
-    options?: any
-  ) {
+  public deleteCognitiveProfile(id: string, options?: any) {
     return CognitiveProfileServiceApiFp(this.configuration)
-      .cognitiveProfileServiceDeleteCognitiveProfile(id, options)
+      .deleteCognitiveProfile(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -876,13 +871,13 @@ export class CognitiveProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CognitiveProfileServiceApi
    */
-  public cognitiveProfileServicePatchCognitiveProfile(
+  public patchCognitiveProfile(
     id: string,
     body: StoragePatchCognitiveProfileRequest,
     options?: any
   ) {
     return CognitiveProfileServiceApiFp(this.configuration)
-      .cognitiveProfileServicePatchCognitiveProfile(id, body, options)
+      .patchCognitiveProfile(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -893,12 +888,9 @@ export class CognitiveProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CognitiveProfileServiceApi
    */
-  public cognitiveProfileServiceReadCognitiveProfile(
-    id: string,
-    options?: any
-  ) {
+  public readCognitiveProfile(id: string, options?: any) {
     return CognitiveProfileServiceApiFp(this.configuration)
-      .cognitiveProfileServiceReadCognitiveProfile(id, options)
+      .readCognitiveProfile(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -915,7 +907,7 @@ export class CognitiveProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CognitiveProfileServiceApi
    */
-  public cognitiveProfileServiceSearchCognitiveProfile(
+  public searchCognitiveProfile(
     page?: number,
     size?: number,
     q?: string,
@@ -926,16 +918,7 @@ export class CognitiveProfileServiceApi extends BaseAPI {
     options?: any
   ) {
     return CognitiveProfileServiceApiFp(this.configuration)
-      .cognitiveProfileServiceSearchCognitiveProfile(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        service,
-        options
-      )
+      .searchCognitiveProfile(page, size, q, sort, fields, id, service, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -947,13 +930,13 @@ export class CognitiveProfileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CognitiveProfileServiceApi
    */
-  public cognitiveProfileServiceUpdateCognitiveProfile(
+  public updateCognitiveProfile(
     id: string,
     body: StorageUpdateCognitiveProfileRequest,
     options?: any
   ) {
     return CognitiveProfileServiceApiFp(this.configuration)
-      .cognitiveProfileServiceUpdateCognitiveProfile(id, body, options)
+      .updateCognitiveProfile(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

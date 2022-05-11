@@ -33,8 +33,6 @@ import { EnginePatchQueueSkillRequest } from '../api'
 import { EngineQueueSkill } from '../api'
 // @ts-ignore
 import { EngineUpdateQueueSkillRequest } from '../api'
-// @ts-ignore
-import { RuntimeError } from '../api'
 /**
  * QueueSkillServiceApi - axios parameter creator
  * @export
@@ -50,7 +48,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceCreateQueueSkill: async (
+    createQueueSkill: async (
       queueId: number,
       body: EngineCreateQueueSkillRequest,
       options: any = {}
@@ -59,14 +57,14 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueSkillServiceCreateQueueSkill.'
+          'Required parameter queueId was null or undefined when calling createQueueSkill.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling queueSkillServiceCreateQueueSkill.'
+          'Required parameter body was null or undefined when calling createQueueSkill.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/skills`.replace(
@@ -130,7 +128,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceDeleteQueueSkill: async (
+    deleteQueueSkill: async (
       queueId: number,
       id: number,
       options: any = {}
@@ -139,14 +137,14 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueSkillServiceDeleteQueueSkill.'
+          'Required parameter queueId was null or undefined when calling deleteQueueSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling queueSkillServiceDeleteQueueSkill.'
+          'Required parameter id was null or undefined when calling deleteQueueSkill.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/skills/{id}`
@@ -202,7 +200,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServicePatchQueueSkill: async (
+    patchQueueSkill: async (
       queueId: number,
       id: number,
       body: EnginePatchQueueSkillRequest,
@@ -212,21 +210,21 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueSkillServicePatchQueueSkill.'
+          'Required parameter queueId was null or undefined when calling patchQueueSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling queueSkillServicePatchQueueSkill.'
+          'Required parameter id was null or undefined when calling patchQueueSkill.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling queueSkillServicePatchQueueSkill.'
+          'Required parameter body was null or undefined when calling patchQueueSkill.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/skills/{id}`
@@ -289,7 +287,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceReadQueueSkill: async (
+    readQueueSkill: async (
       queueId: number,
       id: number,
       options: any = {}
@@ -298,14 +296,14 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueSkillServiceReadQueueSkill.'
+          'Required parameter queueId was null or undefined when calling readQueueSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling queueSkillServiceReadQueueSkill.'
+          'Required parameter id was null or undefined when calling readQueueSkill.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/skills/{id}`
@@ -371,7 +369,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceSearchQueueSkill: async (
+    searchQueueSkill: async (
       queueId: number,
       page?: number,
       size?: number,
@@ -391,7 +389,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueSkillServiceSearchQueueSkill.'
+          'Required parameter queueId was null or undefined when calling searchQueueSkill.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/skills`.replace(
@@ -496,7 +494,7 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceUpdateQueueSkill: async (
+    updateQueueSkill: async (
       queueId: number,
       id: number,
       body: EngineUpdateQueueSkillRequest,
@@ -506,21 +504,21 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueSkillServiceUpdateQueueSkill.'
+          'Required parameter queueId was null or undefined when calling updateQueueSkill.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling queueSkillServiceUpdateQueueSkill.'
+          'Required parameter id was null or undefined when calling updateQueueSkill.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling queueSkillServiceUpdateQueueSkill.'
+          'Required parameter body was null or undefined when calling updateQueueSkill.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/skills/{id}`
@@ -592,7 +590,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueSkillServiceCreateQueueSkill(
+    async createQueueSkill(
       queueId: number,
       body: EngineCreateQueueSkillRequest,
       options?: any
@@ -604,7 +602,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).queueSkillServiceCreateQueueSkill(queueId, body, options)
+      ).createQueueSkill(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -623,7 +621,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueSkillServiceDeleteQueueSkill(
+    async deleteQueueSkill(
       queueId: number,
       id: number,
       options?: any
@@ -635,7 +633,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).queueSkillServiceDeleteQueueSkill(queueId, id, options)
+      ).deleteQueueSkill(queueId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -655,7 +653,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueSkillServicePatchQueueSkill(
+    async patchQueueSkill(
       queueId: number,
       id: number,
       body: EnginePatchQueueSkillRequest,
@@ -668,7 +666,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).queueSkillServicePatchQueueSkill(queueId, id, body, options)
+      ).patchQueueSkill(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -687,7 +685,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueSkillServiceReadQueueSkill(
+    async readQueueSkill(
       queueId: number,
       id: number,
       options?: any
@@ -699,7 +697,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).queueSkillServiceReadQueueSkill(queueId, id, options)
+      ).readQueueSkill(queueId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -729,7 +727,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueSkillServiceSearchQueueSkill(
+    async searchQueueSkill(
       queueId: number,
       page?: number,
       size?: number,
@@ -752,7 +750,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).queueSkillServiceSearchQueueSkill(
+      ).searchQueueSkill(
         queueId,
         page,
         size,
@@ -787,7 +785,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueSkillServiceUpdateQueueSkill(
+    async updateQueueSkill(
       queueId: number,
       id: number,
       body: EngineUpdateQueueSkillRequest,
@@ -800,7 +798,7 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueSkillServiceApiAxiosParamCreator(
         configuration
-      ).queueSkillServiceUpdateQueueSkill(queueId, id, body, options)
+      ).updateQueueSkill(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -832,13 +830,13 @@ export const QueueSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceCreateQueueSkill(
+    createQueueSkill(
       queueId: number,
       body: EngineCreateQueueSkillRequest,
       options?: any
     ): AxiosPromise<EngineQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
-        .queueSkillServiceCreateQueueSkill(queueId, body, options)
+        .createQueueSkill(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -848,13 +846,13 @@ export const QueueSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceDeleteQueueSkill(
+    deleteQueueSkill(
       queueId: number,
       id: number,
       options?: any
     ): AxiosPromise<EngineQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
-        .queueSkillServiceDeleteQueueSkill(queueId, id, options)
+        .deleteQueueSkill(queueId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -865,14 +863,14 @@ export const QueueSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServicePatchQueueSkill(
+    patchQueueSkill(
       queueId: number,
       id: number,
       body: EnginePatchQueueSkillRequest,
       options?: any
     ): AxiosPromise<EngineQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
-        .queueSkillServicePatchQueueSkill(queueId, id, body, options)
+        .patchQueueSkill(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -882,13 +880,13 @@ export const QueueSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceReadQueueSkill(
+    readQueueSkill(
       queueId: number,
       id: number,
       options?: any
     ): AxiosPromise<EngineQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
-        .queueSkillServiceReadQueueSkill(queueId, id, options)
+        .readQueueSkill(queueId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -909,7 +907,7 @@ export const QueueSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceSearchQueueSkill(
+    searchQueueSkill(
       queueId: number,
       page?: number,
       size?: number,
@@ -926,7 +924,7 @@ export const QueueSkillServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
-        .queueSkillServiceSearchQueueSkill(
+        .searchQueueSkill(
           queueId,
           page,
           size,
@@ -952,14 +950,14 @@ export const QueueSkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueSkillServiceUpdateQueueSkill(
+    updateQueueSkill(
       queueId: number,
       id: number,
       body: EngineUpdateQueueSkillRequest,
       options?: any
     ): AxiosPromise<EngineQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
-        .queueSkillServiceUpdateQueueSkill(queueId, id, body, options)
+        .updateQueueSkill(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -980,13 +978,13 @@ export class QueueSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
    */
-  public queueSkillServiceCreateQueueSkill(
+  public createQueueSkill(
     queueId: number,
     body: EngineCreateQueueSkillRequest,
     options?: any
   ) {
     return QueueSkillServiceApiFp(this.configuration)
-      .queueSkillServiceCreateQueueSkill(queueId, body, options)
+      .createQueueSkill(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -998,13 +996,9 @@ export class QueueSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
    */
-  public queueSkillServiceDeleteQueueSkill(
-    queueId: number,
-    id: number,
-    options?: any
-  ) {
+  public deleteQueueSkill(queueId: number, id: number, options?: any) {
     return QueueSkillServiceApiFp(this.configuration)
-      .queueSkillServiceDeleteQueueSkill(queueId, id, options)
+      .deleteQueueSkill(queueId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1017,14 +1011,14 @@ export class QueueSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
    */
-  public queueSkillServicePatchQueueSkill(
+  public patchQueueSkill(
     queueId: number,
     id: number,
     body: EnginePatchQueueSkillRequest,
     options?: any
   ) {
     return QueueSkillServiceApiFp(this.configuration)
-      .queueSkillServicePatchQueueSkill(queueId, id, body, options)
+      .patchQueueSkill(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1036,13 +1030,9 @@ export class QueueSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
    */
-  public queueSkillServiceReadQueueSkill(
-    queueId: number,
-    id: number,
-    options?: any
-  ) {
+  public readQueueSkill(queueId: number, id: number, options?: any) {
     return QueueSkillServiceApiFp(this.configuration)
-      .queueSkillServiceReadQueueSkill(queueId, id, options)
+      .readQueueSkill(queueId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1065,7 +1055,7 @@ export class QueueSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
    */
-  public queueSkillServiceSearchQueueSkill(
+  public searchQueueSkill(
     queueId: number,
     page?: number,
     size?: number,
@@ -1082,7 +1072,7 @@ export class QueueSkillServiceApi extends BaseAPI {
     options?: any
   ) {
     return QueueSkillServiceApiFp(this.configuration)
-      .queueSkillServiceSearchQueueSkill(
+      .searchQueueSkill(
         queueId,
         page,
         size,
@@ -1110,14 +1100,14 @@ export class QueueSkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
    */
-  public queueSkillServiceUpdateQueueSkill(
+  public updateQueueSkill(
     queueId: number,
     id: number,
     body: EngineUpdateQueueSkillRequest,
     options?: any
   ) {
     return QueueSkillServiceApiFp(this.configuration)
-      .queueSkillServiceUpdateQueueSkill(queueId, id, body, options)
+      .updateQueueSkill(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

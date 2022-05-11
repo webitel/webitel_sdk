@@ -33,8 +33,6 @@ import { EngineListChatPlan } from '../api'
 import { EnginePatchChatPlanRequest } from '../api'
 // @ts-ignore
 import { EngineUpdateChatPlanRequest } from '../api'
-// @ts-ignore
-import { RuntimeError } from '../api'
 /**
  * RoutingChatPlanServiceApi - axios parameter creator
  * @export
@@ -49,7 +47,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceCreateChatPlan: async (
+    createChatPlan: async (
       body: EngineCreateChatPlanRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -57,7 +55,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling routingChatPlanServiceCreateChatPlan.'
+          'Required parameter body was null or undefined when calling createChatPlan.'
         )
       }
       const localVarPath = `/routing/outbound/chat`
@@ -117,7 +115,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceDeleteChatPlan: async (
+    deleteChatPlan: async (
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -125,7 +123,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling routingChatPlanServiceDeleteChatPlan.'
+          'Required parameter id was null or undefined when calling deleteChatPlan.'
         )
       }
       const localVarPath = `/routing/outbound/chat/{id}`.replace(
@@ -181,7 +179,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServicePatchChatPlan: async (
+    patchChatPlan: async (
       id: number,
       body: EnginePatchChatPlanRequest,
       options: any = {}
@@ -190,14 +188,14 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling routingChatPlanServicePatchChatPlan.'
+          'Required parameter id was null or undefined when calling patchChatPlan.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling routingChatPlanServicePatchChatPlan.'
+          'Required parameter body was null or undefined when calling patchChatPlan.'
         )
       }
       const localVarPath = `/routing/outbound/chat/{id}`.replace(
@@ -260,7 +258,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceReadChatPlan: async (
+    readChatPlan: async (
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -268,7 +266,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling routingChatPlanServiceReadChatPlan.'
+          'Required parameter id was null or undefined when calling readChatPlan.'
         )
       }
       const localVarPath = `/routing/outbound/chat/{id}`.replace(
@@ -330,7 +328,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceSearchChatPlan: async (
+    searchChatPlan: async (
       page?: number,
       size?: number,
       q?: string,
@@ -423,7 +421,7 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceUpdateChatPlan: async (
+    updateChatPlan: async (
       id: number,
       body: EngineUpdateChatPlanRequest,
       options: any = {}
@@ -432,14 +430,14 @@ export const RoutingChatPlanServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling routingChatPlanServiceUpdateChatPlan.'
+          'Required parameter id was null or undefined when calling updateChatPlan.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling routingChatPlanServiceUpdateChatPlan.'
+          'Required parameter body was null or undefined when calling updateChatPlan.'
         )
       }
       const localVarPath = `/routing/outbound/chat/{id}`.replace(
@@ -513,7 +511,7 @@ export const RoutingChatPlanServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingChatPlanServiceCreateChatPlan(
+    async createChatPlan(
       body: EngineCreateChatPlanRequest,
       options?: any
     ): Promise<
@@ -521,7 +519,7 @@ export const RoutingChatPlanServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingChatPlanServiceApiAxiosParamCreator(
         configuration
-      ).routingChatPlanServiceCreateChatPlan(body, options)
+      ).createChatPlan(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -539,7 +537,7 @@ export const RoutingChatPlanServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingChatPlanServiceDeleteChatPlan(
+    async deleteChatPlan(
       id: number,
       options?: any
     ): Promise<
@@ -547,7 +545,7 @@ export const RoutingChatPlanServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingChatPlanServiceApiAxiosParamCreator(
         configuration
-      ).routingChatPlanServiceDeleteChatPlan(id, options)
+      ).deleteChatPlan(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -566,7 +564,7 @@ export const RoutingChatPlanServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingChatPlanServicePatchChatPlan(
+    async patchChatPlan(
       id: number,
       body: EnginePatchChatPlanRequest,
       options?: any
@@ -575,7 +573,7 @@ export const RoutingChatPlanServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingChatPlanServiceApiAxiosParamCreator(
         configuration
-      ).routingChatPlanServicePatchChatPlan(id, body, options)
+      ).patchChatPlan(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -593,7 +591,7 @@ export const RoutingChatPlanServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingChatPlanServiceReadChatPlan(
+    async readChatPlan(
       id: number,
       options?: any
     ): Promise<
@@ -601,7 +599,7 @@ export const RoutingChatPlanServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingChatPlanServiceApiAxiosParamCreator(
         configuration
-      ).routingChatPlanServiceReadChatPlan(id, options)
+      ).readChatPlan(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -626,7 +624,7 @@ export const RoutingChatPlanServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingChatPlanServiceSearchChatPlan(
+    async searchChatPlan(
       page?: number,
       size?: number,
       q?: string,
@@ -644,17 +642,7 @@ export const RoutingChatPlanServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingChatPlanServiceApiAxiosParamCreator(
         configuration
-      ).routingChatPlanServiceSearchChatPlan(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        name,
-        enabled,
-        options
-      )
+      ).searchChatPlan(page, size, q, sort, fields, id, name, enabled, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -673,7 +661,7 @@ export const RoutingChatPlanServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingChatPlanServiceUpdateChatPlan(
+    async updateChatPlan(
       id: number,
       body: EngineUpdateChatPlanRequest,
       options?: any
@@ -682,7 +670,7 @@ export const RoutingChatPlanServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingChatPlanServiceApiAxiosParamCreator(
         configuration
-      ).routingChatPlanServiceUpdateChatPlan(id, body, options)
+      ).updateChatPlan(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -713,12 +701,12 @@ export const RoutingChatPlanServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceCreateChatPlan(
+    createChatPlan(
       body: EngineCreateChatPlanRequest,
       options?: any
     ): AxiosPromise<EngineChatPlan> {
       return RoutingChatPlanServiceApiFp(configuration)
-        .routingChatPlanServiceCreateChatPlan(body, options)
+        .createChatPlan(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -727,12 +715,9 @@ export const RoutingChatPlanServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceDeleteChatPlan(
-      id: number,
-      options?: any
-    ): AxiosPromise<EngineChatPlan> {
+    deleteChatPlan(id: number, options?: any): AxiosPromise<EngineChatPlan> {
       return RoutingChatPlanServiceApiFp(configuration)
-        .routingChatPlanServiceDeleteChatPlan(id, options)
+        .deleteChatPlan(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -742,13 +727,13 @@ export const RoutingChatPlanServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServicePatchChatPlan(
+    patchChatPlan(
       id: number,
       body: EnginePatchChatPlanRequest,
       options?: any
     ): AxiosPromise<EngineChatPlan> {
       return RoutingChatPlanServiceApiFp(configuration)
-        .routingChatPlanServicePatchChatPlan(id, body, options)
+        .patchChatPlan(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -757,12 +742,9 @@ export const RoutingChatPlanServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceReadChatPlan(
-      id: number,
-      options?: any
-    ): AxiosPromise<EngineChatPlan> {
+    readChatPlan(id: number, options?: any): AxiosPromise<EngineChatPlan> {
       return RoutingChatPlanServiceApiFp(configuration)
-        .routingChatPlanServiceReadChatPlan(id, options)
+        .readChatPlan(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -778,7 +760,7 @@ export const RoutingChatPlanServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceSearchChatPlan(
+    searchChatPlan(
       page?: number,
       size?: number,
       q?: string,
@@ -790,17 +772,7 @@ export const RoutingChatPlanServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListChatPlan> {
       return RoutingChatPlanServiceApiFp(configuration)
-        .routingChatPlanServiceSearchChatPlan(
-          page,
-          size,
-          q,
-          sort,
-          fields,
-          id,
-          name,
-          enabled,
-          options
-        )
+        .searchChatPlan(page, size, q, sort, fields, id, name, enabled, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -810,13 +782,13 @@ export const RoutingChatPlanServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingChatPlanServiceUpdateChatPlan(
+    updateChatPlan(
       id: number,
       body: EngineUpdateChatPlanRequest,
       options?: any
     ): AxiosPromise<EngineChatPlan> {
       return RoutingChatPlanServiceApiFp(configuration)
-        .routingChatPlanServiceUpdateChatPlan(id, body, options)
+        .updateChatPlan(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -836,12 +808,9 @@ export class RoutingChatPlanServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingChatPlanServiceApi
    */
-  public routingChatPlanServiceCreateChatPlan(
-    body: EngineCreateChatPlanRequest,
-    options?: any
-  ) {
+  public createChatPlan(body: EngineCreateChatPlanRequest, options?: any) {
     return RoutingChatPlanServiceApiFp(this.configuration)
-      .routingChatPlanServiceCreateChatPlan(body, options)
+      .createChatPlan(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -852,9 +821,9 @@ export class RoutingChatPlanServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingChatPlanServiceApi
    */
-  public routingChatPlanServiceDeleteChatPlan(id: number, options?: any) {
+  public deleteChatPlan(id: number, options?: any) {
     return RoutingChatPlanServiceApiFp(this.configuration)
-      .routingChatPlanServiceDeleteChatPlan(id, options)
+      .deleteChatPlan(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -866,13 +835,13 @@ export class RoutingChatPlanServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingChatPlanServiceApi
    */
-  public routingChatPlanServicePatchChatPlan(
+  public patchChatPlan(
     id: number,
     body: EnginePatchChatPlanRequest,
     options?: any
   ) {
     return RoutingChatPlanServiceApiFp(this.configuration)
-      .routingChatPlanServicePatchChatPlan(id, body, options)
+      .patchChatPlan(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -883,9 +852,9 @@ export class RoutingChatPlanServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingChatPlanServiceApi
    */
-  public routingChatPlanServiceReadChatPlan(id: number, options?: any) {
+  public readChatPlan(id: number, options?: any) {
     return RoutingChatPlanServiceApiFp(this.configuration)
-      .routingChatPlanServiceReadChatPlan(id, options)
+      .readChatPlan(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -903,7 +872,7 @@ export class RoutingChatPlanServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingChatPlanServiceApi
    */
-  public routingChatPlanServiceSearchChatPlan(
+  public searchChatPlan(
     page?: number,
     size?: number,
     q?: string,
@@ -915,17 +884,7 @@ export class RoutingChatPlanServiceApi extends BaseAPI {
     options?: any
   ) {
     return RoutingChatPlanServiceApiFp(this.configuration)
-      .routingChatPlanServiceSearchChatPlan(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        name,
-        enabled,
-        options
-      )
+      .searchChatPlan(page, size, q, sort, fields, id, name, enabled, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -937,13 +896,13 @@ export class RoutingChatPlanServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingChatPlanServiceApi
    */
-  public routingChatPlanServiceUpdateChatPlan(
+  public updateChatPlan(
     id: number,
     body: EngineUpdateChatPlanRequest,
     options?: any
   ) {
     return RoutingChatPlanServiceApiFp(this.configuration)
-      .routingChatPlanServiceUpdateChatPlan(id, body, options)
+      .updateChatPlan(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

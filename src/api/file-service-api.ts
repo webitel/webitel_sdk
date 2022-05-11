@@ -24,8 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { RuntimeError } from '../api'
-// @ts-ignore
 import { StorageDeleteFilesRequest } from '../api'
 /**
  * FileServiceApi - axios parameter creator
@@ -41,7 +39,7 @@ export const FileServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    fileServiceDeleteFiles: async (
+    deleteFiles: async (
       body: StorageDeleteFilesRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -49,7 +47,7 @@ export const FileServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling fileServiceDeleteFiles.'
+          'Required parameter body was null or undefined when calling deleteFiles.'
         )
       }
       const localVarPath = `/storage/file`
@@ -118,7 +116,7 @@ export const FileServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async fileServiceDeleteFiles(
+    async deleteFiles(
       body: StorageDeleteFilesRequest,
       options?: any
     ): Promise<
@@ -126,7 +124,7 @@ export const FileServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await FileServiceApiAxiosParamCreator(
         configuration
-      ).fileServiceDeleteFiles(body, options)
+      ).deleteFiles(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -157,12 +155,12 @@ export const FileServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    fileServiceDeleteFiles(
+    deleteFiles(
       body: StorageDeleteFilesRequest,
       options?: any
     ): AxiosPromise<object> {
       return FileServiceApiFp(configuration)
-        .fileServiceDeleteFiles(body, options)
+        .deleteFiles(body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -182,12 +180,9 @@ export class FileServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof FileServiceApi
    */
-  public fileServiceDeleteFiles(
-    body: StorageDeleteFilesRequest,
-    options?: any
-  ) {
+  public deleteFiles(body: StorageDeleteFilesRequest, options?: any) {
     return FileServiceApiFp(this.configuration)
-      .fileServiceDeleteFiles(body, options)
+      .deleteFiles(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
