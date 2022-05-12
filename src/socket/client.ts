@@ -260,7 +260,7 @@ export class Client extends EventEmitter<ClientEvents> {
               status: c.task.status,
               timestamp: Date.now(),
             },
-            c.task // todo add app_id
+            c.task
           )
           call.queue!.reporting = 'true'
           call.task.form = c.task.form || null

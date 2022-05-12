@@ -65,6 +65,7 @@ export interface Distribute extends ChannelEvent {
 }
 
 export interface TaskData extends Distribute {
+  app_id: string
   bridged_at?: number
   leaving_at?: number
   processing_sec?: number
