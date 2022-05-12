@@ -17,6 +17,7 @@
  * @enum {string}
  */
 export enum StorageServiceType {
+  DefaultService = 'DefaultService',
   STT = 'STT',
   TTS = 'TTS',
 }

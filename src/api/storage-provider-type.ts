@@ -17,5 +17,6 @@
  * @enum {string}
  */
 export enum StorageProviderType {
+  DefaultProvider = 'DefaultProvider',
   Microsoft = 'Microsoft',
 }

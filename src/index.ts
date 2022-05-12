@@ -11,10 +11,10 @@
  * Do not edit the class manually.
  */
 
-export * from './api/index'
 export * from './api'
 export * from './configuration'
 
+export * from './api/index'
 export * from './socket'
 export * from './sip'
 export * from './sip/external'
