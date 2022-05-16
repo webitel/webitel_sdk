@@ -62,6 +62,7 @@ export interface Distribute extends ChannelEvent {
   agent_channel_id?: string
   communication: MemberCommunication
   has_reporting: boolean
+  has_form?: boolean
 }
 
 export interface TaskData extends Distribute {
@@ -74,6 +75,7 @@ export interface TaskData extends Distribute {
   duration: number
   state: string
   form?: Form | null
+  has_form?: boolean
 }
 
 export interface Offering {
@@ -180,6 +182,10 @@ export class Task {
 
   get duration() {
     return Math.round((Date.now() - this.lastStatusChange) / 1000)
+  }
+
+  get hasForm() {
+    return this.distribute.has_form || false
   }
 
   get channel() {
