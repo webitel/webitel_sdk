@@ -498,6 +498,12 @@ export class Client extends EventEmitter<ClientEvents> {
       }
     }
 
+    for (const conv of this.allConversations()) {
+      if (conv.task) {
+        this.agent.task.set(conv.task.id, conv.task)
+      }
+    }
+
     return this.agent
   }
 
