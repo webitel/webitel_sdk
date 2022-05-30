@@ -48,6 +48,12 @@ export interface EngineCreateAgentTeamRequest {
    * @type {number}
    * @memberof EngineCreateAgentTeamRequest
    */
+  invite_chat_timeout?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineCreateAgentTeamRequest
+   */
   max_no_answer?: number
   /**
    *

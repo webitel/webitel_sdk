@@ -15,6 +15,7 @@ import { EngineCallAnnotation } from './engine-call-annotation'
 import { EngineCallFile } from './engine-call-file'
 import { EngineCallHold } from './engine-call-hold'
 import { EngineEndpoint } from './engine-endpoint'
+import { EngineHistoryFileJob } from './engine-history-file-job'
 import { EngineLookup } from './engine-lookup'
 
 /**
@@ -125,6 +126,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   files?: Array<EngineCallFile>
+  /**
+   *
+   * @type {Array<EngineHistoryFileJob>}
+   * @memberof EngineHistoryCall
+   */
+  files_job?: Array<EngineHistoryFileJob>
   /**
    *
    * @type {EngineEndpoint}

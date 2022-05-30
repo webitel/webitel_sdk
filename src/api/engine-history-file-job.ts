@@ -11,54 +11,40 @@
  * Do not edit the class manually.
  */
 
-import { CallFileTranscriptLookup } from './call-file-transcript-lookup'
-
 /**
  *
  * @export
- * @interface EngineCallFile
+ * @interface EngineHistoryFileJob
  */
-export interface EngineCallFile {
+export interface EngineHistoryFileJob {
   /**
    *
    * @type {string}
-   * @memberof EngineCallFile
+   * @memberof EngineHistoryFileJob
+   */
+  action?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryFileJob
+   */
+  created_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryFileJob
+   */
+  file_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryFileJob
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineCallFile
+   * @memberof EngineHistoryFileJob
    */
-  mime_type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  start_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCallFile
-   */
-  stop_at?: string
-  /**
-   *
-   * @type {Array<CallFileTranscriptLookup>}
-   * @memberof EngineCallFile
-   */
-  transcripts?: Array<CallFileTranscriptLookup>
+  state?: string
 }

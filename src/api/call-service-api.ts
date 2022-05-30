@@ -1146,6 +1146,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [dependencyId]
      * @param {Array<string>} [tags]
      * @param {Array<string>} [amdResult]
+     * @param {string} [fts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1183,6 +1184,7 @@ export const CallServiceApiAxiosParamCreator = function(
       dependencyId?: Array<string>,
       tags?: Array<string>,
       amdResult?: Array<string>,
+      fts?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/history`
@@ -1338,6 +1340,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (amdResult) {
         localVarQueryParameter['amd_result'] = amdResult
+      }
+
+      if (fts !== undefined) {
+        localVarQueryParameter['fts'] = fts
       }
 
       localVarUrlObj.query = {
@@ -2012,6 +2018,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [dependencyId]
      * @param {Array<string>} [tags]
      * @param {Array<string>} [amdResult]
+     * @param {string} [fts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2049,6 +2056,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       dependencyId?: Array<string>,
       tags?: Array<string>,
       amdResult?: Array<string>,
+      fts?: string,
       options?: any
     ): Promise<
       (
@@ -2092,6 +2100,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         dependencyId,
         tags,
         amdResult,
+        fts,
         options
       )
       return (
@@ -2489,6 +2498,7 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [dependencyId]
      * @param {Array<string>} [tags]
      * @param {Array<string>} [amdResult]
+     * @param {string} [fts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2526,6 +2536,7 @@ export const CallServiceApiFactory = function(
       dependencyId?: Array<string>,
       tags?: Array<string>,
       amdResult?: Array<string>,
+      fts?: string,
       options?: any
     ): AxiosPromise<EngineListHistoryCall> {
       return CallServiceApiFp(configuration)
@@ -2563,6 +2574,7 @@ export const CallServiceApiFactory = function(
           dependencyId,
           tags,
           amdResult,
+          fts,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2919,6 +2931,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [dependencyId]
    * @param {Array<string>} [tags]
    * @param {Array<string>} [amdResult]
+   * @param {string} [fts]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -2957,6 +2970,7 @@ export class CallServiceApi extends BaseAPI {
     dependencyId?: Array<string>,
     tags?: Array<string>,
     amdResult?: Array<string>,
+    fts?: string,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
@@ -2994,6 +3008,7 @@ export class CallServiceApi extends BaseAPI {
         dependencyId,
         tags,
         amdResult,
+        fts,
         options
       )
       .then((request) => request(this.axios, this.basePath))

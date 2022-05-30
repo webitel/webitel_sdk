@@ -12,6 +12,7 @@
  */
 
 import { EngineLookup } from './engine-lookup'
+import { EngineTaskProcessing } from './engine-task-processing'
 
 /**
  *
@@ -163,6 +164,12 @@ export interface EngineQueue {
    * @memberof EngineQueue
    */
   strategy?: string
+  /**
+   *
+   * @type {EngineTaskProcessing}
+   * @memberof EngineQueue
+   */
+  task_processing?: EngineTaskProcessing
   /**
    *
    * @type {EngineLookup}

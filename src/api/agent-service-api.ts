@@ -36,6 +36,8 @@ import { EngineAgentStatusRequest } from '../api'
 // @ts-ignore
 import { EngineAgentStatusStatisticItem } from '../api'
 // @ts-ignore
+import { EngineAgentTodayStatisticsResponse } from '../api'
+// @ts-ignore
 import { EngineCreateAgentRequest } from '../api'
 // @ts-ignore
 import { EngineForAgentPauseCauseList } from '../api'
@@ -222,6 +224,75 @@ export const AgentServiceApiAxiosParamCreator = function(
 
       if (domainId !== undefined) {
         localVarQueryParameter['domain_id'] = domainId
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} agentId
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agentTodayStatistics: async (
+      agentId: string,
+      fields?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
+        throw new RequiredError(
+          'agentId',
+          'Required parameter agentId was null or undefined when calling agentTodayStatistics.'
+        )
+      }
+      const localVarPath = `/call_center/agents/{agent_id}/statistics/today`.replace(
+        `{${'agent_id'}}`,
+        encodeURIComponent(String(agentId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       localVarUrlObj.query = {
@@ -1778,6 +1849,37 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} agentId
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async agentTodayStatistics(
+      agentId: string,
+      fields?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineAgentTodayStatisticsResponse>
+    > {
+      const localVarAxiosArgs = await AgentServiceApiAxiosParamCreator(
+        configuration
+      ).agentTodayStatistics(agentId, fields, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Create Agent
      * @param {EngineCreateAgentRequest} body
      * @param {*} [options] Override http request option.
@@ -2498,6 +2600,22 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} agentId
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    agentTodayStatistics(
+      agentId: string,
+      fields?: Array<string>,
+      options?: any
+    ): AxiosPromise<EngineAgentTodayStatisticsResponse> {
+      return AgentServiceApiFp(configuration)
+        .agentTodayStatistics(agentId, fields, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Create Agent
      * @param {EngineCreateAgentRequest} body
      * @param {*} [options] Override http request option.
@@ -2992,6 +3110,24 @@ export class AgentServiceApi extends BaseAPI {
         domainId,
         options
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} agentId
+   * @param {Array<string>} [fields]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public agentTodayStatistics(
+    agentId: string,
+    fields?: Array<string>,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration)
+      .agentTodayStatistics(agentId, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -325,6 +325,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
      * @param {Array<'DefaultService' | 'STT' | 'TTS'>} [service]
+     * @param {boolean} [enabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -336,6 +337,7 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       id?: Array<string>,
       service?: Array<'DefaultService' | 'STT' | 'TTS'>,
+      enabled?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/storage/cognitive_profiles`
@@ -387,6 +389,10 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
 
       if (service) {
         localVarQueryParameter['service'] = service
+      }
+
+      if (enabled !== undefined) {
+        localVarQueryParameter['enabled'] = enabled
       }
 
       localVarUrlObj.query = {
@@ -628,6 +634,7 @@ export const CognitiveProfileServiceApiFp = function(
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
      * @param {Array<'DefaultService' | 'STT' | 'TTS'>} [service]
+     * @param {boolean} [enabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -639,6 +646,7 @@ export const CognitiveProfileServiceApiFp = function(
       fields?: Array<string>,
       id?: Array<string>,
       service?: Array<'DefaultService' | 'STT' | 'TTS'>,
+      enabled?: boolean,
       options?: any
     ): Promise<
       (
@@ -656,6 +664,7 @@ export const CognitiveProfileServiceApiFp = function(
         fields,
         id,
         service,
+        enabled,
         options
       )
       return (
@@ -781,6 +790,7 @@ export const CognitiveProfileServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {Array<string>} [id]
      * @param {Array<'DefaultService' | 'STT' | 'TTS'>} [service]
+     * @param {boolean} [enabled]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -792,6 +802,7 @@ export const CognitiveProfileServiceApiFactory = function(
       fields?: Array<string>,
       id?: Array<string>,
       service?: Array<'DefaultService' | 'STT' | 'TTS'>,
+      enabled?: boolean,
       options?: any
     ): AxiosPromise<StorageListCognitiveProfile> {
       return CognitiveProfileServiceApiFp(configuration)
@@ -803,6 +814,7 @@ export const CognitiveProfileServiceApiFactory = function(
           fields,
           id,
           service,
+          enabled,
           options
         )
         .then((request) => request(axios, basePath))
@@ -903,6 +915,7 @@ export class CognitiveProfileServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {Array<string>} [id]
    * @param {Array<'DefaultService' | 'STT' | 'TTS'>} [service]
+   * @param {boolean} [enabled]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CognitiveProfileServiceApi
@@ -915,10 +928,21 @@ export class CognitiveProfileServiceApi extends BaseAPI {
     fields?: Array<string>,
     id?: Array<string>,
     service?: Array<'DefaultService' | 'STT' | 'TTS'>,
+    enabled?: boolean,
     options?: any
   ) {
     return CognitiveProfileServiceApiFp(this.configuration)
-      .searchCognitiveProfile(page, size, q, sort, fields, id, service, options)
+      .searchCognitiveProfile(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        service,
+        enabled,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

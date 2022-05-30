@@ -54,6 +54,12 @@ export interface EngineAgentTeam {
    * @type {number}
    * @memberof EngineAgentTeam
    */
+  invite_chat_timeout?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
   max_no_answer?: number
   /**
    *
