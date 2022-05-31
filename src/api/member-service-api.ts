@@ -1326,18 +1326,44 @@ export const MemberServiceApiAxiosParamCreator = function(
     /**
      *
      * @summary List of Member
-     * @param {string} queueId
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [domainId]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<number>} [bucketId]
+     * @param {string} [destination]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {Array<string>} [stopCause]
+     * @param {Array<number>} [priority]
+     * @param {string} [name]
+     * @param {Array<number>} [attempts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchMemberInQueue: async (
-      queueId: string,
+      queueId: number,
       page?: number,
       size?: number,
-      domainId?: string,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      bucketId?: Array<number>,
+      destination?: string,
+      createdAtFrom?: string,
+      createdAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      stopCause?: Array<string>,
+      priority?: Array<number>,
+      name?: string,
+      attempts?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -1381,8 +1407,60 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (bucketId) {
+        localVarQueryParameter['bucket_id'] = bucketId
+      }
+
+      if (destination !== undefined) {
+        localVarQueryParameter['destination'] = destination
+      }
+
+      if (createdAtFrom !== undefined) {
+        localVarQueryParameter['created_at.from'] = createdAtFrom
+      }
+
+      if (createdAtTo !== undefined) {
+        localVarQueryParameter['created_at.to'] = createdAtTo
+      }
+
+      if (offeringAtFrom !== undefined) {
+        localVarQueryParameter['offering_at.from'] = offeringAtFrom
+      }
+
+      if (offeringAtTo !== undefined) {
+        localVarQueryParameter['offering_at.to'] = offeringAtTo
+      }
+
+      if (stopCause) {
+        localVarQueryParameter['stop_cause'] = stopCause
+      }
+
+      if (priority) {
+        localVarQueryParameter['priority'] = priority
+      }
+
+      if (name !== undefined) {
+        localVarQueryParameter['name'] = name
+      }
+
+      if (attempts) {
+        localVarQueryParameter['attempts'] = attempts
       }
 
       localVarUrlObj.query = {
@@ -1410,22 +1488,42 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @summary Search of Member
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [id]
-     * @param {string} [queueId]
-     * @param {number} [bucketId]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<number>} [queueId]
+     * @param {Array<number>} [bucketId]
      * @param {string} [destination]
-     * @param {string} [domainId]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {Array<string>} [stopCause]
+     * @param {Array<number>} [priority]
+     * @param {string} [name]
+     * @param {Array<number>} [attempts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchMembers: async (
       page?: number,
       size?: number,
-      id?: string,
-      queueId?: string,
-      bucketId?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      queueId?: Array<number>,
+      bucketId?: Array<number>,
       destination?: string,
-      domainId?: string,
+      createdAtFrom?: string,
+      createdAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      stopCause?: Array<string>,
+      priority?: Array<number>,
+      name?: string,
+      attempts?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/members`
@@ -1459,15 +1557,27 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (id !== undefined) {
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
         localVarQueryParameter['id'] = id
       }
 
-      if (queueId !== undefined) {
+      if (queueId) {
         localVarQueryParameter['queue_id'] = queueId
       }
 
-      if (bucketId !== undefined) {
+      if (bucketId) {
         localVarQueryParameter['bucket_id'] = bucketId
       }
 
@@ -1475,8 +1585,36 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['destination'] = destination
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (createdAtFrom !== undefined) {
+        localVarQueryParameter['created_at.from'] = createdAtFrom
+      }
+
+      if (createdAtTo !== undefined) {
+        localVarQueryParameter['created_at.to'] = createdAtTo
+      }
+
+      if (offeringAtFrom !== undefined) {
+        localVarQueryParameter['offering_at.from'] = offeringAtFrom
+      }
+
+      if (offeringAtTo !== undefined) {
+        localVarQueryParameter['offering_at.to'] = offeringAtTo
+      }
+
+      if (stopCause) {
+        localVarQueryParameter['stop_cause'] = stopCause
+      }
+
+      if (priority) {
+        localVarQueryParameter['priority'] = priority
+      }
+
+      if (name !== undefined) {
+        localVarQueryParameter['name'] = name
+      }
+
+      if (attempts) {
+        localVarQueryParameter['attempts'] = attempts
       }
 
       localVarUrlObj.query = {
@@ -2130,18 +2268,44 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary List of Member
-     * @param {string} queueId
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [domainId]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<number>} [bucketId]
+     * @param {string} [destination]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {Array<string>} [stopCause]
+     * @param {Array<number>} [priority]
+     * @param {string} [name]
+     * @param {Array<number>} [attempts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchMemberInQueue(
-      queueId: string,
+      queueId: number,
       page?: number,
       size?: number,
-      domainId?: string,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      bucketId?: Array<number>,
+      destination?: string,
+      createdAtFrom?: string,
+      createdAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      stopCause?: Array<string>,
+      priority?: Array<number>,
+      name?: string,
+      attempts?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -2151,7 +2315,26 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).searchMemberInQueue(queueId, page, size, domainId, options)
+      ).searchMemberInQueue(
+        queueId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        bucketId,
+        destination,
+        createdAtFrom,
+        createdAtTo,
+        offeringAtFrom,
+        offeringAtTo,
+        stopCause,
+        priority,
+        name,
+        attempts,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2168,22 +2351,42 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @summary Search of Member
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [id]
-     * @param {string} [queueId]
-     * @param {number} [bucketId]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<number>} [queueId]
+     * @param {Array<number>} [bucketId]
      * @param {string} [destination]
-     * @param {string} [domainId]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {Array<string>} [stopCause]
+     * @param {Array<number>} [priority]
+     * @param {string} [name]
+     * @param {Array<number>} [attempts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchMembers(
       page?: number,
       size?: number,
-      id?: string,
-      queueId?: string,
-      bucketId?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      queueId?: Array<number>,
+      bucketId?: Array<number>,
       destination?: string,
-      domainId?: string,
+      createdAtFrom?: string,
+      createdAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      stopCause?: Array<string>,
+      priority?: Array<number>,
+      name?: string,
+      attempts?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -2196,11 +2399,21 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       ).searchMembers(
         page,
         size,
+        q,
+        sort,
+        fields,
         id,
         queueId,
         bucketId,
         destination,
-        domainId,
+        createdAtFrom,
+        createdAtTo,
+        offeringAtFrom,
+        offeringAtTo,
+        stopCause,
+        priority,
+        name,
+        attempts,
         options
       )
       return (
@@ -2587,22 +2800,67 @@ export const MemberServiceApiFactory = function(
     /**
      *
      * @summary List of Member
-     * @param {string} queueId
+     * @param {number} queueId
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [domainId]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<number>} [bucketId]
+     * @param {string} [destination]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {Array<string>} [stopCause]
+     * @param {Array<number>} [priority]
+     * @param {string} [name]
+     * @param {Array<number>} [attempts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchMemberInQueue(
-      queueId: string,
+      queueId: number,
       page?: number,
       size?: number,
-      domainId?: string,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      bucketId?: Array<number>,
+      destination?: string,
+      createdAtFrom?: string,
+      createdAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      stopCause?: Array<string>,
+      priority?: Array<number>,
+      name?: string,
+      attempts?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
-        .searchMemberInQueue(queueId, page, size, domainId, options)
+        .searchMemberInQueue(
+          queueId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          bucketId,
+          destination,
+          createdAtFrom,
+          createdAtTo,
+          offeringAtFrom,
+          offeringAtTo,
+          stopCause,
+          priority,
+          name,
+          attempts,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2610,33 +2868,63 @@ export const MemberServiceApiFactory = function(
      * @summary Search of Member
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [id]
-     * @param {string} [queueId]
-     * @param {number} [bucketId]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<number>} [queueId]
+     * @param {Array<number>} [bucketId]
      * @param {string} [destination]
-     * @param {string} [domainId]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {Array<string>} [stopCause]
+     * @param {Array<number>} [priority]
+     * @param {string} [name]
+     * @param {Array<number>} [attempts]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchMembers(
       page?: number,
       size?: number,
-      id?: string,
-      queueId?: string,
-      bucketId?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      queueId?: Array<number>,
+      bucketId?: Array<number>,
       destination?: string,
-      domainId?: string,
+      createdAtFrom?: string,
+      createdAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      stopCause?: Array<string>,
+      priority?: Array<number>,
+      name?: string,
+      attempts?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
         .searchMembers(
           page,
           size,
+          q,
+          sort,
+          fields,
           id,
           queueId,
           bucketId,
           destination,
-          domainId,
+          createdAtFrom,
+          createdAtTo,
+          offeringAtFrom,
+          offeringAtTo,
+          stopCause,
+          priority,
+          name,
+          attempts,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3024,23 +3312,68 @@ export class MemberServiceApi extends BaseAPI {
   /**
    *
    * @summary List of Member
-   * @param {string} queueId
+   * @param {number} queueId
    * @param {number} [page]
    * @param {number} [size]
-   * @param {string} [domainId]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [id]
+   * @param {Array<number>} [bucketId]
+   * @param {string} [destination]
+   * @param {string} [createdAtFrom]
+   * @param {string} [createdAtTo]
+   * @param {string} [offeringAtFrom]
+   * @param {string} [offeringAtTo]
+   * @param {Array<string>} [stopCause]
+   * @param {Array<number>} [priority]
+   * @param {string} [name]
+   * @param {Array<number>} [attempts]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
   public searchMemberInQueue(
-    queueId: string,
+    queueId: number,
     page?: number,
     size?: number,
-    domainId?: string,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<string>,
+    bucketId?: Array<number>,
+    destination?: string,
+    createdAtFrom?: string,
+    createdAtTo?: string,
+    offeringAtFrom?: string,
+    offeringAtTo?: string,
+    stopCause?: Array<string>,
+    priority?: Array<number>,
+    name?: string,
+    attempts?: Array<number>,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .searchMemberInQueue(queueId, page, size, domainId, options)
+      .searchMemberInQueue(
+        queueId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        bucketId,
+        destination,
+        createdAtFrom,
+        createdAtTo,
+        offeringAtFrom,
+        offeringAtTo,
+        stopCause,
+        priority,
+        name,
+        attempts,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3049,11 +3382,21 @@ export class MemberServiceApi extends BaseAPI {
    * @summary Search of Member
    * @param {number} [page]
    * @param {number} [size]
-   * @param {string} [id]
-   * @param {string} [queueId]
-   * @param {number} [bucketId]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [id]
+   * @param {Array<number>} [queueId]
+   * @param {Array<number>} [bucketId]
    * @param {string} [destination]
-   * @param {string} [domainId]
+   * @param {string} [createdAtFrom]
+   * @param {string} [createdAtTo]
+   * @param {string} [offeringAtFrom]
+   * @param {string} [offeringAtTo]
+   * @param {Array<string>} [stopCause]
+   * @param {Array<number>} [priority]
+   * @param {string} [name]
+   * @param {Array<number>} [attempts]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3061,22 +3404,42 @@ export class MemberServiceApi extends BaseAPI {
   public searchMembers(
     page?: number,
     size?: number,
-    id?: string,
-    queueId?: string,
-    bucketId?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<string>,
+    queueId?: Array<number>,
+    bucketId?: Array<number>,
     destination?: string,
-    domainId?: string,
+    createdAtFrom?: string,
+    createdAtTo?: string,
+    offeringAtFrom?: string,
+    offeringAtTo?: string,
+    stopCause?: Array<string>,
+    priority?: Array<number>,
+    name?: string,
+    attempts?: Array<number>,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
       .searchMembers(
         page,
         size,
+        q,
+        sort,
+        fields,
         id,
         queueId,
         bucketId,
         destination,
-        domainId,
+        createdAtFrom,
+        createdAtTo,
+        offeringAtFrom,
+        offeringAtTo,
+        stopCause,
+        priority,
+        name,
+        attempts,
         options
       )
       .then((request) => request(this.axios, this.basePath))

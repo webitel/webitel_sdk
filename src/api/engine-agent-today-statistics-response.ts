@@ -46,6 +46,18 @@ export interface EngineAgentTodayStatisticsResponse {
    * @type {number}
    * @memberof EngineAgentTodayStatisticsResponse
    */
+  call_inbound?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTodayStatisticsResponse
+   */
+  call_missed?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTodayStatisticsResponse
+   */
   chat_accepts?: number
   /**
    *
