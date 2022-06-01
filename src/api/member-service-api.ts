@@ -1340,9 +1340,11 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {string} [offeringAtFrom]
      * @param {string} [offeringAtTo]
      * @param {Array<string>} [stopCause]
-     * @param {Array<number>} [priority]
+     * @param {string} [priorityFrom]
+     * @param {string} [priorityTo]
      * @param {string} [name]
-     * @param {Array<number>} [attempts]
+     * @param {string} [attemptsFrom]
+     * @param {string} [attemptsTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1361,9 +1363,11 @@ export const MemberServiceApiAxiosParamCreator = function(
       offeringAtFrom?: string,
       offeringAtTo?: string,
       stopCause?: Array<string>,
-      priority?: Array<number>,
+      priorityFrom?: string,
+      priorityTo?: string,
       name?: string,
-      attempts?: Array<number>,
+      attemptsFrom?: string,
+      attemptsTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -1451,16 +1455,24 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['stop_cause'] = stopCause
       }
 
-      if (priority) {
-        localVarQueryParameter['priority'] = priority
+      if (priorityFrom !== undefined) {
+        localVarQueryParameter['priority.from'] = priorityFrom
+      }
+
+      if (priorityTo !== undefined) {
+        localVarQueryParameter['priority.to'] = priorityTo
       }
 
       if (name !== undefined) {
         localVarQueryParameter['name'] = name
       }
 
-      if (attempts) {
-        localVarQueryParameter['attempts'] = attempts
+      if (attemptsFrom !== undefined) {
+        localVarQueryParameter['attempts.from'] = attemptsFrom
+      }
+
+      if (attemptsTo !== undefined) {
+        localVarQueryParameter['attempts.to'] = attemptsTo
       }
 
       localVarUrlObj.query = {
@@ -1500,9 +1512,11 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {string} [offeringAtFrom]
      * @param {string} [offeringAtTo]
      * @param {Array<string>} [stopCause]
-     * @param {Array<number>} [priority]
+     * @param {string} [priorityFrom]
+     * @param {string} [priorityTo]
      * @param {string} [name]
-     * @param {Array<number>} [attempts]
+     * @param {string} [attemptsFrom]
+     * @param {string} [attemptsTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1521,9 +1535,11 @@ export const MemberServiceApiAxiosParamCreator = function(
       offeringAtFrom?: string,
       offeringAtTo?: string,
       stopCause?: Array<string>,
-      priority?: Array<number>,
+      priorityFrom?: string,
+      priorityTo?: string,
       name?: string,
-      attempts?: Array<number>,
+      attemptsFrom?: string,
+      attemptsTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/members`
@@ -1605,16 +1621,24 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['stop_cause'] = stopCause
       }
 
-      if (priority) {
-        localVarQueryParameter['priority'] = priority
+      if (priorityFrom !== undefined) {
+        localVarQueryParameter['priority.from'] = priorityFrom
+      }
+
+      if (priorityTo !== undefined) {
+        localVarQueryParameter['priority.to'] = priorityTo
       }
 
       if (name !== undefined) {
         localVarQueryParameter['name'] = name
       }
 
-      if (attempts) {
-        localVarQueryParameter['attempts'] = attempts
+      if (attemptsFrom !== undefined) {
+        localVarQueryParameter['attempts.from'] = attemptsFrom
+      }
+
+      if (attemptsTo !== undefined) {
+        localVarQueryParameter['attempts.to'] = attemptsTo
       }
 
       localVarUrlObj.query = {
@@ -2282,9 +2306,11 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [offeringAtFrom]
      * @param {string} [offeringAtTo]
      * @param {Array<string>} [stopCause]
-     * @param {Array<number>} [priority]
+     * @param {string} [priorityFrom]
+     * @param {string} [priorityTo]
      * @param {string} [name]
-     * @param {Array<number>} [attempts]
+     * @param {string} [attemptsFrom]
+     * @param {string} [attemptsTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2303,9 +2329,11 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       offeringAtFrom?: string,
       offeringAtTo?: string,
       stopCause?: Array<string>,
-      priority?: Array<number>,
+      priorityFrom?: string,
+      priorityTo?: string,
       name?: string,
-      attempts?: Array<number>,
+      attemptsFrom?: string,
+      attemptsTo?: string,
       options?: any
     ): Promise<
       (
@@ -2330,9 +2358,11 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         offeringAtFrom,
         offeringAtTo,
         stopCause,
-        priority,
+        priorityFrom,
+        priorityTo,
         name,
-        attempts,
+        attemptsFrom,
+        attemptsTo,
         options
       )
       return (
@@ -2363,9 +2393,11 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [offeringAtFrom]
      * @param {string} [offeringAtTo]
      * @param {Array<string>} [stopCause]
-     * @param {Array<number>} [priority]
+     * @param {string} [priorityFrom]
+     * @param {string} [priorityTo]
      * @param {string} [name]
-     * @param {Array<number>} [attempts]
+     * @param {string} [attemptsFrom]
+     * @param {string} [attemptsTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2384,9 +2416,11 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       offeringAtFrom?: string,
       offeringAtTo?: string,
       stopCause?: Array<string>,
-      priority?: Array<number>,
+      priorityFrom?: string,
+      priorityTo?: string,
       name?: string,
-      attempts?: Array<number>,
+      attemptsFrom?: string,
+      attemptsTo?: string,
       options?: any
     ): Promise<
       (
@@ -2411,9 +2445,11 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         offeringAtFrom,
         offeringAtTo,
         stopCause,
-        priority,
+        priorityFrom,
+        priorityTo,
         name,
-        attempts,
+        attemptsFrom,
+        attemptsTo,
         options
       )
       return (
@@ -2814,9 +2850,11 @@ export const MemberServiceApiFactory = function(
      * @param {string} [offeringAtFrom]
      * @param {string} [offeringAtTo]
      * @param {Array<string>} [stopCause]
-     * @param {Array<number>} [priority]
+     * @param {string} [priorityFrom]
+     * @param {string} [priorityTo]
      * @param {string} [name]
-     * @param {Array<number>} [attempts]
+     * @param {string} [attemptsFrom]
+     * @param {string} [attemptsTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2835,9 +2873,11 @@ export const MemberServiceApiFactory = function(
       offeringAtFrom?: string,
       offeringAtTo?: string,
       stopCause?: Array<string>,
-      priority?: Array<number>,
+      priorityFrom?: string,
+      priorityTo?: string,
       name?: string,
-      attempts?: Array<number>,
+      attemptsFrom?: string,
+      attemptsTo?: string,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
@@ -2856,9 +2896,11 @@ export const MemberServiceApiFactory = function(
           offeringAtFrom,
           offeringAtTo,
           stopCause,
-          priority,
+          priorityFrom,
+          priorityTo,
           name,
-          attempts,
+          attemptsFrom,
+          attemptsTo,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2880,9 +2922,11 @@ export const MemberServiceApiFactory = function(
      * @param {string} [offeringAtFrom]
      * @param {string} [offeringAtTo]
      * @param {Array<string>} [stopCause]
-     * @param {Array<number>} [priority]
+     * @param {string} [priorityFrom]
+     * @param {string} [priorityTo]
      * @param {string} [name]
-     * @param {Array<number>} [attempts]
+     * @param {string} [attemptsFrom]
+     * @param {string} [attemptsTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2901,9 +2945,11 @@ export const MemberServiceApiFactory = function(
       offeringAtFrom?: string,
       offeringAtTo?: string,
       stopCause?: Array<string>,
-      priority?: Array<number>,
+      priorityFrom?: string,
+      priorityTo?: string,
       name?: string,
-      attempts?: Array<number>,
+      attemptsFrom?: string,
+      attemptsTo?: string,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
@@ -2922,9 +2968,11 @@ export const MemberServiceApiFactory = function(
           offeringAtFrom,
           offeringAtTo,
           stopCause,
-          priority,
+          priorityFrom,
+          priorityTo,
           name,
-          attempts,
+          attemptsFrom,
+          attemptsTo,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3326,9 +3374,11 @@ export class MemberServiceApi extends BaseAPI {
    * @param {string} [offeringAtFrom]
    * @param {string} [offeringAtTo]
    * @param {Array<string>} [stopCause]
-   * @param {Array<number>} [priority]
+   * @param {string} [priorityFrom]
+   * @param {string} [priorityTo]
    * @param {string} [name]
-   * @param {Array<number>} [attempts]
+   * @param {string} [attemptsFrom]
+   * @param {string} [attemptsTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3348,9 +3398,11 @@ export class MemberServiceApi extends BaseAPI {
     offeringAtFrom?: string,
     offeringAtTo?: string,
     stopCause?: Array<string>,
-    priority?: Array<number>,
+    priorityFrom?: string,
+    priorityTo?: string,
     name?: string,
-    attempts?: Array<number>,
+    attemptsFrom?: string,
+    attemptsTo?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3369,9 +3421,11 @@ export class MemberServiceApi extends BaseAPI {
         offeringAtFrom,
         offeringAtTo,
         stopCause,
-        priority,
+        priorityFrom,
+        priorityTo,
         name,
-        attempts,
+        attemptsFrom,
+        attemptsTo,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -3394,9 +3448,11 @@ export class MemberServiceApi extends BaseAPI {
    * @param {string} [offeringAtFrom]
    * @param {string} [offeringAtTo]
    * @param {Array<string>} [stopCause]
-   * @param {Array<number>} [priority]
+   * @param {string} [priorityFrom]
+   * @param {string} [priorityTo]
    * @param {string} [name]
-   * @param {Array<number>} [attempts]
+   * @param {string} [attemptsFrom]
+   * @param {string} [attemptsTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3416,9 +3472,11 @@ export class MemberServiceApi extends BaseAPI {
     offeringAtFrom?: string,
     offeringAtTo?: string,
     stopCause?: Array<string>,
-    priority?: Array<number>,
+    priorityFrom?: string,
+    priorityTo?: string,
     name?: string,
-    attempts?: Array<number>,
+    attemptsFrom?: string,
+    attemptsTo?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3437,9 +3495,11 @@ export class MemberServiceApi extends BaseAPI {
         offeringAtFrom,
         offeringAtTo,
         stopCause,
-        priority,
+        priorityFrom,
+        priorityTo,
         name,
-        attempts,
+        attemptsFrom,
+        attemptsTo,
         options
       )
       .then((request) => request(this.axios, this.basePath))
