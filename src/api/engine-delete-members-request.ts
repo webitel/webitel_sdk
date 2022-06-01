@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineFilterBetween } from './engine-filter-between'
+
 /**
  *
  * @export
@@ -25,16 +27,34 @@ export interface EngineDeleteMembersRequest {
   agent_id?: Array<number>
   /**
    *
-   * @type {Array<string>}
+   * @type {EngineFilterBetween}
    * @memberof EngineDeleteMembersRequest
    */
-  bucket_id?: Array<string>
+  attempts?: EngineFilterBetween
+  /**
+   *
+   * @type {Array<number>}
+   * @memberof EngineDeleteMembersRequest
+   */
+  bucket_id?: Array<number>
+  /**
+   *
+   * @type {EngineFilterBetween}
+   * @memberof EngineDeleteMembersRequest
+   */
+  created_at?: EngineFilterBetween
   /**
    *
    * @type {string}
    * @memberof EngineDeleteMembersRequest
    */
-  domain_id?: string
+  destination?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineDeleteMembersRequest
+   */
+  id?: Array<string>
   /**
    *
    * @type {Array<string>}
@@ -43,10 +63,34 @@ export interface EngineDeleteMembersRequest {
   ids?: Array<string>
   /**
    *
+   * @type {string}
+   * @memberof EngineDeleteMembersRequest
+   */
+  name?: string
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineDeleteMembersRequest
    */
   numbers?: Array<string>
+  /**
+   *
+   * @type {EngineFilterBetween}
+   * @memberof EngineDeleteMembersRequest
+   */
+  offering_at?: EngineFilterBetween
+  /**
+   *
+   * @type {EngineFilterBetween}
+   * @memberof EngineDeleteMembersRequest
+   */
+  priority?: EngineFilterBetween
+  /**
+   *
+   * @type {string}
+   * @memberof EngineDeleteMembersRequest
+   */
+  q?: string
   /**
    *
    * @type {string}
