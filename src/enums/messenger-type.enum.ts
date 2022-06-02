@@ -4,6 +4,7 @@ enum MessengerType {
   INFOBIP = 'infobip_whatsapp',
   WEB_CHAT = 'webchat',
   VIBER = 'viber',
+  INSTAGRAM = 'instagram',
 }
 
 export default MessengerType
