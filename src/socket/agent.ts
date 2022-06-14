@@ -80,6 +80,7 @@ export enum ChannelType {
   Call = 'call',
   Email = 'email',
   Chat = 'chat',
+  Job = 'task', // todo rename task to job
 }
 
 export class Agent {
@@ -228,6 +229,7 @@ export class Agent {
             if (!missedEvent) {
               throw new Error('bad event')
             }
+            task.setMissed()
 
             this.setChannelStateTimeout(
               e.channel,
@@ -266,9 +268,7 @@ export class Agent {
           task = this.task.get(e.attempt_id) as Task
 
           if (task) {
-            task.state = e.status
-            task.closedAt = e.timestamp // todo
-            task.setProcessing(processingEvent.processing)
+            task.setProcessing(e.timestamp, processingEvent.processing)
             this.setChannelStateTimeout(
               e.channel,
               e,
@@ -285,7 +285,7 @@ export class Agent {
         if (e.attempt_id) {
           task = this.task.get(e.attempt_id)
           if (task) {
-            task.stopAt = e.timestamp
+            task.setWaiting(e.timestamp)
             this.task.delete(e.attempt_id)
             this.client.reportingChannelTask(task)
           }
@@ -299,7 +299,7 @@ export class Agent {
     this.setChannelState(e.channel, e)
 
     if (task) {
-      task.state = e.status
+      task.setState(e.status)
 
       return task
     } else {

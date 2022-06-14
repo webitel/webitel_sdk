@@ -280,7 +280,7 @@ export class Conversation {
   }
 
   get allowLeave() {
-    return !!this.channelId && this.closedAt === 0
+    return (!!this.channelId && this.closedAt === 0) || true
   }
 
   get allowReporting() {
@@ -298,6 +298,11 @@ export class Conversation {
     }
 
     return res
+  }
+
+  // todo task is deprecated
+  get attempt() {
+    return this.task
   }
 
   /*

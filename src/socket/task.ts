@@ -20,6 +20,15 @@ export interface Reporting {
   timezone?: object
 }
 
+export enum JobState {
+  Distribute = 'distribute',
+  Offering = 'offering',
+  Bridged = 'bridged',
+  Missed = 'missed',
+  Processing = 'processing',
+  Destroy = 'destroy',
+}
+
 export enum ChannelName {
   Call = 'call',
   Chat = 'chat',
@@ -136,7 +145,7 @@ export class Task {
   history!: Distribute[]
   communication: MemberCommunication
   id: number
-  state: string
+  state: JobState
   postProcessData!: object
   lastStatusChange: number
   createdAt: number
@@ -156,7 +165,8 @@ export class Task {
     protected distribute: Distribute
   ) {
     this.id = e.attempt_id!
-    this.state = e.status
+    this.state = JobState.Offering
+    this.setState(e.status)
     this.lastStatusChange = e.timestamp
     this.createdAt = e.timestamp
     this._processing = null
@@ -231,6 +241,11 @@ export class Task {
     return this.distribute.agent_channel_id
   }
 
+  // todo
+  setState(state: string) {
+    this.state = state as JobState
+  }
+
   setAnswered(t: number) {
     this.answeredAt = t
     this.lastStatusChange = Date.now()
@@ -244,8 +259,9 @@ export class Task {
     }
   }
 
-  setProcessing(p: Processing) {
-    this.state = 'processing' // todo
+  setProcessing(now: number, p: Processing) {
+    this.state = JobState.Processing
+    this.closedAt = now
     if (!this.startProcessingAt) {
       this.startProcessingAt = Date.now()
     }
@@ -257,9 +273,17 @@ export class Task {
     this._processing = p
   }
 
+  setWaiting(now: number) {
+    this.stopAt = now
+  }
+
   setTransferred(d: Distribute) {
     this.distribute = d
     this.history.push(d)
+  }
+
+  setMissed() {
+    this.state = JobState.Missed
   }
 
   get processingTimeoutAt() {
@@ -276,6 +300,22 @@ export class Task {
     }
 
     return this._processing.sec
+  }
+
+  get attempt() {
+    return this
+  }
+
+  get displayNumber() {
+    return this.communication.destination
+  }
+
+  get displayName() {
+    return this.communication.display
+  }
+
+  get display() {
+    return `${this.displayNumber} (${this.displayName})`
   }
 
   get renewalSec() {

@@ -515,6 +515,11 @@ export class Call {
     )
   }
 
+  // todo task is deprecated
+  get attempt() {
+    return this.task
+  }
+
   /* Call control */
   async answer(req: AnswerRequest) {
     if (this.sip && this.client.phone) {

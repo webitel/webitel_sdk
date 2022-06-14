@@ -5,7 +5,7 @@ import { EventEmitter } from 'ee-ts'
 import { Log } from '../log'
 import { CallSession, SipConfiguration } from '../sip'
 import { SipPhone } from '../sip/webrtc'
-import { Agent, AgentSession, AgentStatusEvent } from './agent'
+import { Agent, AgentSession, AgentStatusEvent, ChannelState } from './agent'
 import {
   AnswerRequest,
   Call,
@@ -33,7 +33,14 @@ import {
 import { DeviceNotAllowPermissionError, DeviceNotFoundError } from './errors'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
-import { ChannelEvent, ChannelName, Reporting, Task, TaskData } from './task'
+import {
+  ChannelEvent,
+  ChannelName,
+  JobState,
+  Reporting,
+  Task,
+  TaskData,
+} from './task'
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
 
@@ -81,6 +88,7 @@ const WEBSOCKET_EVENT_CHANNEL_STATUS = 'channel'
 const WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER = 'queue_join_member'
 
 const TASK_EVENT = 'task'
+const JOB_EVENT = 'job'
 
 const WEBSOCKET_EVENT_SIP = 'sip'
 
@@ -148,6 +156,7 @@ export type AgentStatusEventHandler = (
 ) => void
 
 export type TaskEventHandler = (action: string, task: Task | undefined) => void
+export type JobEventHandler = (action: string, task: Task) => void
 
 export type QueueJoinMemberHandler = (member: QueueJoinMemberEvent) => void
 
@@ -159,6 +168,7 @@ interface EventHandler {
 
   [WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER](member: QueueJoinMemberEvent): void
   [TASK_EVENT](name: string, task: Task | undefined): void
+  [JOB_EVENT](name: string, task: Task): void
   [WEBSOCKET_EVENT_CHAT](action: string, conversation: Conversation): void
 }
 
@@ -173,7 +183,7 @@ export class Client extends EventEmitter<ClientEvents> {
   phone?: SipPhone
   private socket!: Socket
   private connectionInfo!: ConnectionInfo
-  private basePath: string
+  private readonly basePath: string
 
   private reqSeq = 0
   private queueRequest: Map<number, PromiseCallback> = new Map<
@@ -266,7 +276,7 @@ export class Client extends EventEmitter<ClientEvents> {
           call.task.form = c.task.form || null
           if (c.leaving_at && c.task.processing_sec) {
             call.task.startProcessingAt = c.leaving_at
-            call.task.setProcessing({
+            call.task.setProcessing(c.leaving_at, {
               sec: c.task.processing_sec || 0,
               timeout: c.task.processing_timeout_at || null,
               renewal_sec: c.task.processing_renewal_sec || 0,
@@ -317,7 +327,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
           if (conv.leaving_at && conv.task.processing_sec) {
             c.task.startProcessingAt = conv.leaving_at
-            c.task.setProcessing({
+            c.task.setProcessing(conv.leaving_at, {
               sec: conv.task.processing_sec || 0,
               timeout: conv.task.processing_timeout_at || null,
               renewal_sec: conv.task.processing_renewal_sec || 0,
@@ -364,14 +374,12 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler.on(TASK_EVENT, handler)
   }
 
+  subscribeJob(handler: JobEventHandler) {
+    this.eventHandler.on(JOB_EVENT, handler)
+  }
+
   async unSubscribe(action: string, handler: CallEventHandler, data?: object) {
-    const res = await this.request(`un_subscribe_${action}`, data)
-
-    // this.eventHandler.listeners(action)
-    // this.eventHandler.removeListener(action, handler)
-    // this.eventHandler.off(action, handler)
-
-    return res
+    return this.request(`un_subscribe_${action}`, data)
   }
 
   async destroy() {
@@ -392,12 +400,17 @@ export class Client extends EventEmitter<ClientEvents> {
     return Array.from(this.conversationStore.values())
   }
 
+  // todo deprecated
   allTask(): Task[] {
     if (!this.agent) {
       return []
     }
 
     return Array.from(this.agent.task.values())
+  }
+
+  allJob(): Task[] {
+    return this.allTask().filter(isJobTask)
   }
 
   callById(id: string): Call | undefined {
@@ -480,7 +493,7 @@ export class Client extends EventEmitter<ClientEvents> {
         t
       )
       task.postProcessData = {}
-      task.state = t.state
+      task.setState(t.state)
       if (t.bridged_at) {
         task.bridgedAt = t.bridged_at
         task.answeredAt = t.bridged_at
@@ -588,7 +601,7 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   conversationDestroyed(conv: Conversation) {
-    return conv.closedAt > 0 && !this.hasAgentTask(conv.task)
+    return conv.closedAt > 0 && !this.hasAgentTask(conv.task) && false
   }
 
   reportingChannelTask(task: Task) {
@@ -784,6 +797,12 @@ export class Client extends EventEmitter<ClientEvents> {
       e.timestamp = Date.now() // bug
       const task = this.agent.onChannelEvent(e) || undefined
       this.eventHandler.emit(TASK_EVENT, e.status, task)
+      if (task && isJobTask(task)) {
+        this.eventHandler.emit(JOB_EVENT, task.state, task)
+        if (isDestroyJob(task.state)) {
+          this.eventHandler.emit(JOB_EVENT, JobState.Destroy, task)
+        }
+      }
     }
   }
 
@@ -1070,4 +1089,18 @@ export class Client extends EventEmitter<ClientEvents> {
     this.conversationStore.delete(conv.id)
     this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, ChatActions.Destroy, conv)
   }
+}
+
+function isJobTask(task: Task) {
+  return task.channel === ChannelName.Task
+}
+
+function isDestroyJob(state: string) {
+  return (
+    [
+      ChannelState.Missed.toString(),
+      ChannelState.Waiting,
+      ChannelState.WrapTime,
+    ].indexOf(state) > -1
+  )
 }
