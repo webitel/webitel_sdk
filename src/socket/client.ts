@@ -601,7 +601,7 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   conversationDestroyed(conv: Conversation) {
-    return conv.closedAt > 0 && !this.hasAgentTask(conv.task) && false
+    return conv.closedAt > 0 && !this.hasAgentTask(conv.task)
   }
 
   reportingChannelTask(task: Task) {

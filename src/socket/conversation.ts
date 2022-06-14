@@ -280,7 +280,7 @@ export class Conversation {
   }
 
   get allowLeave() {
-    return (!!this.channelId && this.closedAt === 0) || true
+    return !!this.channelId && this.closedAt === 0
   }
 
   get allowReporting() {
