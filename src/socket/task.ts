@@ -72,6 +72,7 @@ export interface Distribute extends ChannelEvent {
   communication: MemberCommunication
   has_reporting: boolean
   has_form?: boolean
+  variables?: { [key: string]: any }
 }
 
 export interface TaskData extends Distribute {
@@ -304,6 +305,18 @@ export class Task {
 
   get attempt() {
     return this
+  }
+
+  get variables() {
+    const res: { [key: string]: any } = {}
+    for (const k in this.distribute.variables) {
+      if (k.startsWith('cc_')) {
+        continue
+      }
+      res[k] = this.distribute.variables[k]
+    }
+
+    return res
   }
 
   get displayNumber() {
