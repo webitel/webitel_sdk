@@ -66,6 +66,7 @@ export interface Distribute extends ChannelEvent {
   queue_id: number
   queue_name: string
   member_id: number
+  member_name?: string
   agent_id?: number
   member_channel_id?: string
   agent_channel_id?: string
@@ -91,6 +92,7 @@ export interface TaskData extends Distribute {
 export interface Offering {
   member_channel_id?: string
   agent_channel_id?: string
+  auto_answer: boolean
 }
 
 export interface Missed {
@@ -114,6 +116,10 @@ export interface DistributeEvent extends ChannelEvent {
 
 export interface BridgedEvent extends ChannelEvent {
   form?: Form | null
+}
+
+export interface OfferingEvent extends ChannelEvent {
+  offering: Offering
 }
 
 export interface FormEvent extends ChannelEvent {
@@ -252,6 +258,10 @@ export class Task {
     this.lastStatusChange = Date.now()
   }
 
+  setOffering(e: OfferingEvent) {
+    this.offeringAt = e.timestamp
+  }
+
   setBridged(e: BridgedEvent) {
     this.bridgedAt = e.timestamp
     this.lastStatusChange = Date.now()
@@ -324,11 +334,11 @@ export class Task {
   }
 
   get displayName() {
-    return this.communication.display
+    return this.distribute.member_name || null
   }
 
   get display() {
-    return `${this.displayNumber} (${this.displayName})`
+    return `${this.displayName} (${this.displayNumber})`
   }
 
   get renewalSec() {

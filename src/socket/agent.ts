@@ -6,6 +6,7 @@ import {
   DistributeEvent,
   FormEvent,
   MissedEvent,
+  OfferingEvent,
   ProcessingEvent,
   Task,
   TransferEvent,
@@ -178,9 +179,18 @@ export class Agent {
         break
 
       case ChannelState.Offering:
+        const evOffering = e as OfferingEvent
         task = this.task.get(e.attempt_id!)
         if (task) {
-          task.offeringAt = e.timestamp
+          task.setOffering(evOffering)
+          if (
+            evOffering.offering.auto_answer &&
+            task.channel === ChannelType.Job
+          ) {
+            task.accept().catch((err) => {
+              this.client.emit('error', err)
+            })
+          }
         }
         break
 
