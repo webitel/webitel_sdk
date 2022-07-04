@@ -336,7 +336,7 @@ export class Call {
   }
 
   get isMember(): boolean {
-    return !!(this.task && this.task.memberId)
+    return !!(this.task && this.task.isMember)
   }
 
   setActive(e: CallEventData) {

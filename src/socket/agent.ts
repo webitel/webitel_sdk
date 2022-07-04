@@ -295,7 +295,7 @@ export class Agent {
         if (e.attempt_id) {
           task = this.task.get(e.attempt_id)
           if (task) {
-            task.setWaiting(e.timestamp)
+            task.setClosed(e.timestamp)
             this.task.delete(e.attempt_id)
             this.client.reportingChannelTask(task)
           }

@@ -64,6 +64,13 @@ const plugins = /** @type {Plugin[]} */ ([
   // Resolve source maps to the original source
   sourceMaps(),
 
+  replace({
+    exclude: 'node_modules/**',
+    values: {
+      __VERSION__: JSON.stringify(pkg.version),
+    },
+  }),
+
   // properly set process.env.NODE_ENV within `./environment.ts`
   replace({
     exclude: 'node_modules/**',

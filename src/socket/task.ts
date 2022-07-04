@@ -26,6 +26,7 @@ export enum JobState {
   Bridged = 'bridged',
   Missed = 'missed',
   Processing = 'processing',
+  Closed = 'closed',
   Destroy = 'destroy',
 }
 
@@ -284,8 +285,9 @@ export class Task {
     this._processing = p
   }
 
-  setWaiting(now: number) {
+  setClosed(now: number) {
     this.stopAt = now
+    this.state = JobState.Closed
   }
 
   setTransferred(d: Distribute) {
@@ -327,6 +329,10 @@ export class Task {
     }
 
     return res
+  }
+
+  get isMember(): boolean {
+    return !!this.memberId
   }
 
   get displayNumber() {

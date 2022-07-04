@@ -1345,6 +1345,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {string} [name]
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
+     * @param {Array<number>} [agentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1368,6 +1369,7 @@ export const MemberServiceApiAxiosParamCreator = function(
       name?: string,
       attemptsFrom?: string,
       attemptsTo?: string,
+      agentId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -1475,6 +1477,10 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['attempts.to'] = attemptsTo
       }
 
+      if (agentId) {
+        localVarQueryParameter['agent_id'] = agentId
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -1517,6 +1523,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {string} [name]
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
+     * @param {Array<number>} [agentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1540,6 +1547,7 @@ export const MemberServiceApiAxiosParamCreator = function(
       name?: string,
       attemptsFrom?: string,
       attemptsTo?: string,
+      agentId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/members`
@@ -1639,6 +1647,10 @@ export const MemberServiceApiAxiosParamCreator = function(
 
       if (attemptsTo !== undefined) {
         localVarQueryParameter['attempts.to'] = attemptsTo
+      }
+
+      if (agentId) {
+        localVarQueryParameter['agent_id'] = agentId
       }
 
       localVarUrlObj.query = {
@@ -2311,6 +2323,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [name]
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
+     * @param {Array<number>} [agentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2334,6 +2347,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       name?: string,
       attemptsFrom?: string,
       attemptsTo?: string,
+      agentId?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -2363,6 +2377,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         name,
         attemptsFrom,
         attemptsTo,
+        agentId,
         options
       )
       return (
@@ -2398,6 +2413,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [name]
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
+     * @param {Array<number>} [agentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2421,6 +2437,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       name?: string,
       attemptsFrom?: string,
       attemptsTo?: string,
+      agentId?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -2450,6 +2467,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         name,
         attemptsFrom,
         attemptsTo,
+        agentId,
         options
       )
       return (
@@ -2855,6 +2873,7 @@ export const MemberServiceApiFactory = function(
      * @param {string} [name]
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
+     * @param {Array<number>} [agentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2878,6 +2897,7 @@ export const MemberServiceApiFactory = function(
       name?: string,
       attemptsFrom?: string,
       attemptsTo?: string,
+      agentId?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
@@ -2901,6 +2921,7 @@ export const MemberServiceApiFactory = function(
           name,
           attemptsFrom,
           attemptsTo,
+          agentId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2927,6 +2948,7 @@ export const MemberServiceApiFactory = function(
      * @param {string} [name]
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
+     * @param {Array<number>} [agentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2950,6 +2972,7 @@ export const MemberServiceApiFactory = function(
       name?: string,
       attemptsFrom?: string,
       attemptsTo?: string,
+      agentId?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
@@ -2973,6 +2996,7 @@ export const MemberServiceApiFactory = function(
           name,
           attemptsFrom,
           attemptsTo,
+          agentId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3379,6 +3403,7 @@ export class MemberServiceApi extends BaseAPI {
    * @param {string} [name]
    * @param {string} [attemptsFrom]
    * @param {string} [attemptsTo]
+   * @param {Array<number>} [agentId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3403,6 +3428,7 @@ export class MemberServiceApi extends BaseAPI {
     name?: string,
     attemptsFrom?: string,
     attemptsTo?: string,
+    agentId?: Array<number>,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3426,6 +3452,7 @@ export class MemberServiceApi extends BaseAPI {
         name,
         attemptsFrom,
         attemptsTo,
+        agentId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -3453,6 +3480,7 @@ export class MemberServiceApi extends BaseAPI {
    * @param {string} [name]
    * @param {string} [attemptsFrom]
    * @param {string} [attemptsTo]
+   * @param {Array<number>} [agentId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3477,6 +3505,7 @@ export class MemberServiceApi extends BaseAPI {
     name?: string,
     attemptsFrom?: string,
     attemptsTo?: string,
+    agentId?: Array<number>,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3500,6 +3529,7 @@ export class MemberServiceApi extends BaseAPI {
         name,
         attemptsFrom,
         attemptsTo,
+        agentId,
         options
       )
       .then((request) => request(this.axios, this.basePath))

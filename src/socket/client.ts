@@ -5,6 +5,7 @@ import { EventEmitter } from 'ee-ts'
 import { Log } from '../log'
 import { CallSession, SipConfiguration } from '../sip'
 import { SipPhone } from '../sip/webrtc'
+import version from '../version'
 import { Agent, AgentSession, AgentStatusEvent, ChannelState } from './agent'
 import {
   AnswerRequest,
@@ -467,11 +468,19 @@ export class Client extends EventEmitter<ClientEvents> {
     return this.connectionInfo.server_version
   }
 
+  get buildVersion() {
+    return version
+  }
+
   get instanceId(): string {
     return this.connectionInfo.sock_id
   }
 
   async agentSession() {
+    if (this.agent) {
+      return this.agent
+    }
+
     const info = await this.request(WEBSOCKET_AGENT_SESSION)
 
     this.agent = new Agent(this, info as AgentSession)
@@ -486,7 +495,7 @@ export class Client extends EventEmitter<ClientEvents> {
         this,
         {
           status: t.status,
-          timestamp: Date.now() - t.duration * 1000,
+          timestamp: Date.now(),
           channel: t.channel,
           attempt_id: t.attempt_id,
         },
@@ -501,6 +510,16 @@ export class Client extends EventEmitter<ClientEvents> {
       if (t.leaving_at) {
         task.closedAt = t.leaving_at
       }
+
+      if (t.leaving_at && t.processing_sec) {
+        task.startProcessingAt = t.leaving_at
+        task.setProcessing(t.leaving_at, {
+          sec: t.processing_sec || 0,
+          timeout: t.processing_timeout_at || null,
+          renewal_sec: t.processing_renewal_sec || 0,
+        })
+      }
+      task.form = t.form || null
 
       this.agent.task.set(task.id, task)
     }
@@ -1101,6 +1120,7 @@ function isDestroyJob(state: string) {
       ChannelState.Missed.toString(),
       ChannelState.Waiting,
       ChannelState.WrapTime,
+      JobState.Closed,
     ].indexOf(state) > -1
   )
 }
