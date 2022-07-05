@@ -1,6 +1,5 @@
-// tslint:disable-next-line: variable-name prefer-const
-
 const getVersion = () => {
+  // @ts-ignore
   return '__VERSION__'
 }
 

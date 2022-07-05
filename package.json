@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.131",
+  "version": "0.1.132",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -22,7 +22,8 @@
   "scripts": {
     "cleanup": "shx rm -rf dist",
     "prebuild": "npm run cleanup && npm run verify",
-    "build": "tsc && tsc --target es2018 --outDir dist/esm2015 && rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production",
+    "bb": "tsc && tsc --target es2018 --outDir dist/esm2015",
+    "build": "tsc && tsc --target es2018 --outDir dist/esm2015 && rollup -c config/rollup.config.js --environment NODE_ENV:production",
     "postbuild": "node scripts/copy && npm run size",
     "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest -c ./config/jest.config.js",
@@ -82,17 +83,18 @@
   },
   "dependencies": {
     "@types/webrtc": "0.0.26",
-    "axios": "0.21.1",
+    "axios": "0.19.0",
     "deep-copy": "1.4.2",
     "ee-ts": "1.0.1",
     "json-refs": "3.0.13",
-    "jssip": "3.8.0",
+    "jssip": "^3.3.6",
     "query-string": "7.0.0"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "1.0.18-4.3.1",
     "@commitlint/cli": "7.2.1",
     "@commitlint/config-conventional": "7.1.2",
+    "@openapitools/openapi-generator-cli": "1.0.18-4.3.1",
+    "@rollup/plugin-replace": "4.0.0",
     "@types/jest": "23.3.10",
     "@types/node": "8.10.*",
     "@types/prettier": "1.15.2",
@@ -113,7 +115,6 @@
     "rollup-plugin-commonjs": "9.2.0",
     "rollup-plugin-json": "3.1.0",
     "rollup-plugin-node-resolve": "4.0.0",
-    "rollup-plugin-replace": "2.1.0",
     "rollup-plugin-sourcemaps": "0.4.2",
     "rollup-plugin-terser": "3.0.0",
     "rollup-plugin-uglify": "6.0.0",

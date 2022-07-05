@@ -3,7 +3,7 @@ import sourceMaps from 'rollup-plugin-sourcemaps'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import json from 'rollup-plugin-json'
 import commonjs from 'rollup-plugin-commonjs'
-import replace from 'rollup-plugin-replace'
+import replace from '@rollup/plugin-replace'
 import { uglify } from 'rollup-plugin-uglify'
 import { terser } from 'rollup-plugin-terser'
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
@@ -64,17 +64,14 @@ const plugins = /** @type {Plugin[]} */ ([
   // Resolve source maps to the original source
   sourceMaps(),
 
-  replace({
-    exclude: 'node_modules/**',
-    values: {
-      __VERSION__: JSON.stringify(pkg.version),
-    },
-  }),
-
   // properly set process.env.NODE_ENV within `./environment.ts`
   replace({
     exclude: 'node_modules/**',
     'process.env.NODE_ENV': JSON.stringify(env),
+  }),
+  replace({
+    exclude: 'node_modules/**',
+    __VERSION__: JSON.stringify(pkg.version),
   }),
 ])
 
