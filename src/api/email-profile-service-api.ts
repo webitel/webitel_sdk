@@ -30,6 +30,8 @@ import { EngineEmailProfile } from '../api'
 // @ts-ignore
 import { EngineListEmailProfile } from '../api'
 // @ts-ignore
+import { EnginePatchEmailProfileRequest } from '../api'
+// @ts-ignore
 import { EngineUpdateEmailProfileRequest } from '../api'
 /**
  * EmailProfileServiceApi - axios parameter creator
@@ -112,13 +114,11 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      *
      * @summary Remove EmailProfile
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteEmailProfile: async (
       id: string,
-      domainId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -154,10 +154,6 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -180,15 +176,93 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {EnginePatchEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchEmailProfile: async (
+      id: string,
+      body: EnginePatchEmailProfileRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchEmailProfile.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchEmailProfile.'
+        )
+      }
+      const localVarPath = `/email/profile/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary EmailProfile item
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readEmailProfile: async (
       id: string,
-      domainId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -224,10 +298,6 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -256,7 +326,6 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -266,7 +335,6 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      domainId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/email/profile`
@@ -310,10 +378,6 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
 
       if (fields) {
         localVarQueryParameter['fields'] = fields
-      }
-
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
       }
 
       localVarUrlObj.query = {
@@ -462,13 +526,11 @@ export const EmailProfileServiceApiFp = function(
      *
      * @summary Remove EmailProfile
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteEmailProfile(
       id: string,
-      domainId?: string,
       options?: any
     ): Promise<
       (
@@ -478,7 +540,38 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).deleteEmailProfile(id, domainId, options)
+      ).deleteEmailProfile(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EnginePatchEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchEmailProfile(
+      id: string,
+      body: EnginePatchEmailProfileRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineEmailProfile>
+    > {
+      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
+        configuration
+      ).patchEmailProfile(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -494,13 +587,11 @@ export const EmailProfileServiceApiFp = function(
      *
      * @summary EmailProfile item
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async readEmailProfile(
       id: string,
-      domainId?: string,
       options?: any
     ): Promise<
       (
@@ -510,7 +601,7 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).readEmailProfile(id, domainId, options)
+      ).readEmailProfile(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -530,7 +621,6 @@ export const EmailProfileServiceApiFp = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -540,7 +630,6 @@ export const EmailProfileServiceApiFp = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      domainId?: string,
       options?: any
     ): Promise<
       (
@@ -550,7 +639,7 @@ export const EmailProfileServiceApiFp = function(
     > {
       const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
         configuration
-      ).searchEmailProfile(page, size, q, sort, fields, domainId, options)
+      ).searchEmailProfile(page, size, q, sort, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -626,34 +715,46 @@ export const EmailProfileServiceApiFactory = function(
      *
      * @summary Remove EmailProfile
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteEmailProfile(
       id: string,
-      domainId?: string,
       options?: any
     ): AxiosPromise<EngineEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .deleteEmailProfile(id, domainId, options)
+        .deleteEmailProfile(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EnginePatchEmailProfileRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchEmailProfile(
+      id: string,
+      body: EnginePatchEmailProfileRequest,
+      options?: any
+    ): AxiosPromise<EngineEmailProfile> {
+      return EmailProfileServiceApiFp(configuration)
+        .patchEmailProfile(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary EmailProfile item
      * @param {string} id
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readEmailProfile(
       id: string,
-      domainId?: string,
       options?: any
     ): AxiosPromise<EngineEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .readEmailProfile(id, domainId, options)
+        .readEmailProfile(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -664,7 +765,6 @@ export const EmailProfileServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {string} [domainId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -674,11 +774,10 @@ export const EmailProfileServiceApiFactory = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      domainId?: string,
       options?: any
     ): AxiosPromise<EngineListEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
-        .searchEmailProfile(page, size, q, sort, fields, domainId, options)
+        .searchEmailProfile(page, size, q, sort, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -729,14 +828,31 @@ export class EmailProfileServiceApi extends BaseAPI {
    *
    * @summary Remove EmailProfile
    * @param {string} id
-   * @param {string} [domainId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
-  public deleteEmailProfile(id: string, domainId?: string, options?: any) {
+  public deleteEmailProfile(id: string, options?: any) {
     return EmailProfileServiceApiFp(this.configuration)
-      .deleteEmailProfile(id, domainId, options)
+      .deleteEmailProfile(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EnginePatchEmailProfileRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApi
+   */
+  public patchEmailProfile(
+    id: string,
+    body: EnginePatchEmailProfileRequest,
+    options?: any
+  ) {
+    return EmailProfileServiceApiFp(this.configuration)
+      .patchEmailProfile(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -744,14 +860,13 @@ export class EmailProfileServiceApi extends BaseAPI {
    *
    * @summary EmailProfile item
    * @param {string} id
-   * @param {string} [domainId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
-  public readEmailProfile(id: string, domainId?: string, options?: any) {
+  public readEmailProfile(id: string, options?: any) {
     return EmailProfileServiceApiFp(this.configuration)
-      .readEmailProfile(id, domainId, options)
+      .readEmailProfile(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -763,7 +878,6 @@ export class EmailProfileServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {string} [domainId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
@@ -774,11 +888,10 @@ export class EmailProfileServiceApi extends BaseAPI {
     q?: string,
     sort?: string,
     fields?: Array<string>,
-    domainId?: string,
     options?: any
   ) {
     return EmailProfileServiceApiFp(this.configuration)
-      .searchEmailProfile(page, size, q, sort, fields, domainId, options)
+      .searchEmailProfile(page, size, q, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

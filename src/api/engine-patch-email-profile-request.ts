@@ -14,93 +14,81 @@
 import { EngineLookup } from './engine-lookup'
 
 /**
- *
+ * Update email profile for gateway
  * @export
- * @interface EngineEmailProfile
+ * @interface EnginePatchEmailProfileRequest
  */
-export interface EngineEmailProfile {
+export interface EnginePatchEmailProfileRequest {
   /**
    *
    * @type {string}
-   * @memberof EngineEmailProfile
-   */
-  created_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineEmailProfile
-   */
-  created_by?: EngineLookup
-  /**
-   *
-   * @type {string}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   description?: string
   /**
    *
    * @type {boolean}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   enabled?: boolean
   /**
    *
+   * @type {Array<string>}
+   * @memberof EnginePatchEmailProfileRequest
+   */
+  fields?: Array<string>
+  /**
+   *
    * @type {string}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   host?: string
   /**
    *
    * @type {string}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
-  id?: string
+  id: string
   /**
    *
    * @type {number}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   imap_port?: number
   /**
    *
    * @type {string}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   login?: string
   /**
    *
    * @type {string}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   mailbox?: string
   /**
    *
    * @type {string}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   name?: string
   /**
    *
+   * @type {string}
+   * @memberof EnginePatchEmailProfileRequest
+   */
+  password?: string
+  /**
+   *
    * @type {EngineLookup}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   schema?: EngineLookup
   /**
    *
    * @type {number}
-   * @memberof EngineEmailProfile
+   * @memberof EnginePatchEmailProfileRequest
    */
   smtp_port?: number
-  /**
-   *
-   * @type {string}
-   * @memberof EngineEmailProfile
-   */
-  updated_at?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof EngineEmailProfile
-   */
-  updated_by?: EngineLookup
 }

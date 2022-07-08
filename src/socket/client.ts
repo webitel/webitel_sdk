@@ -714,7 +714,7 @@ export class Client extends EventEmitter<ClientEvents> {
       formData,
       {
         headers: {
-          [API_HEADER_TOKEN]: this._config.token,
+          [API_HEADER_TOKEN]: this._config.token as string,
         },
         onUploadProgress: cb,
       }

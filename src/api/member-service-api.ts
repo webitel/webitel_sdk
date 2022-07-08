@@ -990,6 +990,9 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @summary SearchAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [joinedAtFrom]
      * @param {string} [joinedAtTo]
      * @param {Array<string>} [id]
@@ -997,16 +1000,22 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [bucketId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [agentId]
-     * @param {string} [result]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<string>} [result]
+     * @param {string} [leavingAtFrom]
+     * @param {string} [leavingAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAttempts: async (
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       joinedAtFrom?: string,
       joinedAtTo?: string,
       id?: Array<string>,
@@ -1014,10 +1023,13 @@ export const MemberServiceApiAxiosParamCreator = function(
       bucketId?: Array<string>,
       memberId?: Array<string>,
       agentId?: Array<string>,
-      result?: string,
-      fields?: Array<string>,
-      sort?: string,
-      domainId?: string,
+      result?: Array<string>,
+      leavingAtFrom?: string,
+      leavingAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/queues/attempts/active`
@@ -1051,6 +1063,18 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       if (joinedAtFrom !== undefined) {
         localVarQueryParameter['joined_at.from'] = joinedAtFrom
       }
@@ -1079,20 +1103,32 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['agent_id'] = agentId
       }
 
-      if (result !== undefined) {
+      if (result) {
         localVarQueryParameter['result'] = result
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
+      if (leavingAtFrom !== undefined) {
+        localVarQueryParameter['leaving_at.from'] = leavingAtFrom
       }
 
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
+      if (leavingAtTo !== undefined) {
+        localVarQueryParameter['leaving_at.to'] = leavingAtTo
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (offeringAtFrom !== undefined) {
+        localVarQueryParameter['offering_at.from'] = offeringAtFrom
+      }
+
+      if (offeringAtTo !== undefined) {
+        localVarQueryParameter['offering_at.to'] = offeringAtTo
+      }
+
+      if (durationFrom !== undefined) {
+        localVarQueryParameter['duration.from'] = durationFrom
+      }
+
+      if (durationTo !== undefined) {
+        localVarQueryParameter['duration.to'] = durationTo
       }
 
       localVarUrlObj.query = {
@@ -1120,6 +1156,9 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @summary SearchMemberAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [joinedAtFrom]
      * @param {string} [joinedAtTo]
      * @param {Array<string>} [id]
@@ -1127,16 +1166,22 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [bucketId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [agentId]
-     * @param {string} [result]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<string>} [result]
+     * @param {string} [leavingAtFrom]
+     * @param {string} [leavingAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAttemptsHistory: async (
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       joinedAtFrom?: string,
       joinedAtTo?: string,
       id?: Array<string>,
@@ -1144,10 +1189,13 @@ export const MemberServiceApiAxiosParamCreator = function(
       bucketId?: Array<string>,
       memberId?: Array<string>,
       agentId?: Array<string>,
-      result?: string,
-      fields?: Array<string>,
-      sort?: string,
-      domainId?: string,
+      result?: Array<string>,
+      leavingAtFrom?: string,
+      leavingAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/queues/attempts/history`
@@ -1181,6 +1229,18 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       if (joinedAtFrom !== undefined) {
         localVarQueryParameter['joined_at.from'] = joinedAtFrom
       }
@@ -1209,20 +1269,32 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['agent_id'] = agentId
       }
 
-      if (result !== undefined) {
+      if (result) {
         localVarQueryParameter['result'] = result
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
+      if (leavingAtFrom !== undefined) {
+        localVarQueryParameter['leaving_at.from'] = leavingAtFrom
       }
 
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
+      if (leavingAtTo !== undefined) {
+        localVarQueryParameter['leaving_at.to'] = leavingAtTo
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
+      if (offeringAtFrom !== undefined) {
+        localVarQueryParameter['offering_at.from'] = offeringAtFrom
+      }
+
+      if (offeringAtTo !== undefined) {
+        localVarQueryParameter['offering_at.to'] = offeringAtTo
+      }
+
+      if (durationFrom !== undefined) {
+        localVarQueryParameter['duration.from'] = durationFrom
+      }
+
+      if (durationTo !== undefined) {
+        localVarQueryParameter['duration.to'] = durationTo
       }
 
       localVarUrlObj.query = {
@@ -2134,6 +2206,9 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @summary SearchAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [joinedAtFrom]
      * @param {string} [joinedAtTo]
      * @param {Array<string>} [id]
@@ -2141,16 +2216,22 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [bucketId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [agentId]
-     * @param {string} [result]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<string>} [result]
+     * @param {string} [leavingAtFrom]
+     * @param {string} [leavingAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchAttempts(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       joinedAtFrom?: string,
       joinedAtTo?: string,
       id?: Array<string>,
@@ -2158,10 +2239,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       bucketId?: Array<string>,
       memberId?: Array<string>,
       agentId?: Array<string>,
-      result?: string,
-      fields?: Array<string>,
-      sort?: string,
-      domainId?: string,
+      result?: Array<string>,
+      leavingAtFrom?: string,
+      leavingAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
       options?: any
     ): Promise<
       (
@@ -2174,6 +2258,9 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       ).searchAttempts(
         page,
         size,
+        q,
+        sort,
+        fields,
         joinedAtFrom,
         joinedAtTo,
         id,
@@ -2182,9 +2269,12 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         memberId,
         agentId,
         result,
-        fields,
-        sort,
-        domainId,
+        leavingAtFrom,
+        leavingAtTo,
+        offeringAtFrom,
+        offeringAtTo,
+        durationFrom,
+        durationTo,
         options
       )
       return (
@@ -2203,6 +2293,9 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @summary SearchMemberAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [joinedAtFrom]
      * @param {string} [joinedAtTo]
      * @param {Array<string>} [id]
@@ -2210,16 +2303,22 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [bucketId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [agentId]
-     * @param {string} [result]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<string>} [result]
+     * @param {string} [leavingAtFrom]
+     * @param {string} [leavingAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchAttemptsHistory(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       joinedAtFrom?: string,
       joinedAtTo?: string,
       id?: Array<string>,
@@ -2227,10 +2326,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       bucketId?: Array<string>,
       memberId?: Array<string>,
       agentId?: Array<string>,
-      result?: string,
-      fields?: Array<string>,
-      sort?: string,
-      domainId?: string,
+      result?: Array<string>,
+      leavingAtFrom?: string,
+      leavingAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
       options?: any
     ): Promise<
       (
@@ -2243,6 +2345,9 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       ).searchAttemptsHistory(
         page,
         size,
+        q,
+        sort,
+        fields,
         joinedAtFrom,
         joinedAtTo,
         id,
@@ -2251,9 +2356,12 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         memberId,
         agentId,
         result,
-        fields,
-        sort,
-        domainId,
+        leavingAtFrom,
+        leavingAtTo,
+        offeringAtFrom,
+        offeringAtTo,
+        durationFrom,
+        durationTo,
         options
       )
       return (
@@ -2729,6 +2837,9 @@ export const MemberServiceApiFactory = function(
      * @summary SearchAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [joinedAtFrom]
      * @param {string} [joinedAtTo]
      * @param {Array<string>} [id]
@@ -2736,16 +2847,22 @@ export const MemberServiceApiFactory = function(
      * @param {Array<string>} [bucketId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [agentId]
-     * @param {string} [result]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<string>} [result]
+     * @param {string} [leavingAtFrom]
+     * @param {string} [leavingAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAttempts(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       joinedAtFrom?: string,
       joinedAtTo?: string,
       id?: Array<string>,
@@ -2753,16 +2870,22 @@ export const MemberServiceApiFactory = function(
       bucketId?: Array<string>,
       memberId?: Array<string>,
       agentId?: Array<string>,
-      result?: string,
-      fields?: Array<string>,
-      sort?: string,
-      domainId?: string,
+      result?: Array<string>,
+      leavingAtFrom?: string,
+      leavingAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
       options?: any
     ): AxiosPromise<EngineListAttempt> {
       return MemberServiceApiFp(configuration)
         .searchAttempts(
           page,
           size,
+          q,
+          sort,
+          fields,
           joinedAtFrom,
           joinedAtTo,
           id,
@@ -2771,9 +2894,12 @@ export const MemberServiceApiFactory = function(
           memberId,
           agentId,
           result,
-          fields,
-          sort,
-          domainId,
+          leavingAtFrom,
+          leavingAtTo,
+          offeringAtFrom,
+          offeringAtTo,
+          durationFrom,
+          durationTo,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2783,6 +2909,9 @@ export const MemberServiceApiFactory = function(
      * @summary SearchMemberAttempts
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {string} [joinedAtFrom]
      * @param {string} [joinedAtTo]
      * @param {Array<string>} [id]
@@ -2790,16 +2919,22 @@ export const MemberServiceApiFactory = function(
      * @param {Array<string>} [bucketId]
      * @param {Array<string>} [memberId]
      * @param {Array<string>} [agentId]
-     * @param {string} [result]
-     * @param {Array<string>} [fields]
-     * @param {string} [sort]
-     * @param {string} [domainId]
+     * @param {Array<string>} [result]
+     * @param {string} [leavingAtFrom]
+     * @param {string} [leavingAtTo]
+     * @param {string} [offeringAtFrom]
+     * @param {string} [offeringAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAttemptsHistory(
       page?: number,
       size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       joinedAtFrom?: string,
       joinedAtTo?: string,
       id?: Array<string>,
@@ -2807,16 +2942,22 @@ export const MemberServiceApiFactory = function(
       bucketId?: Array<string>,
       memberId?: Array<string>,
       agentId?: Array<string>,
-      result?: string,
-      fields?: Array<string>,
-      sort?: string,
-      domainId?: string,
+      result?: Array<string>,
+      leavingAtFrom?: string,
+      leavingAtTo?: string,
+      offeringAtFrom?: string,
+      offeringAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
       options?: any
     ): AxiosPromise<EngineListHistoryAttempt> {
       return MemberServiceApiFp(configuration)
         .searchAttemptsHistory(
           page,
           size,
+          q,
+          sort,
+          fields,
           joinedAtFrom,
           joinedAtTo,
           id,
@@ -2825,9 +2966,12 @@ export const MemberServiceApiFactory = function(
           memberId,
           agentId,
           result,
-          fields,
-          sort,
-          domainId,
+          leavingAtFrom,
+          leavingAtTo,
+          offeringAtFrom,
+          offeringAtTo,
+          durationFrom,
+          durationTo,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3253,6 +3397,9 @@ export class MemberServiceApi extends BaseAPI {
    * @summary SearchAttempts
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {string} [joinedAtFrom]
    * @param {string} [joinedAtTo]
    * @param {Array<string>} [id]
@@ -3260,10 +3407,13 @@ export class MemberServiceApi extends BaseAPI {
    * @param {Array<string>} [bucketId]
    * @param {Array<string>} [memberId]
    * @param {Array<string>} [agentId]
-   * @param {string} [result]
-   * @param {Array<string>} [fields]
-   * @param {string} [sort]
-   * @param {string} [domainId]
+   * @param {Array<string>} [result]
+   * @param {string} [leavingAtFrom]
+   * @param {string} [leavingAtTo]
+   * @param {string} [offeringAtFrom]
+   * @param {string} [offeringAtTo]
+   * @param {string} [durationFrom]
+   * @param {string} [durationTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3271,6 +3421,9 @@ export class MemberServiceApi extends BaseAPI {
   public searchAttempts(
     page?: number,
     size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
     joinedAtFrom?: string,
     joinedAtTo?: string,
     id?: Array<string>,
@@ -3278,16 +3431,22 @@ export class MemberServiceApi extends BaseAPI {
     bucketId?: Array<string>,
     memberId?: Array<string>,
     agentId?: Array<string>,
-    result?: string,
-    fields?: Array<string>,
-    sort?: string,
-    domainId?: string,
+    result?: Array<string>,
+    leavingAtFrom?: string,
+    leavingAtTo?: string,
+    offeringAtFrom?: string,
+    offeringAtTo?: string,
+    durationFrom?: string,
+    durationTo?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
       .searchAttempts(
         page,
         size,
+        q,
+        sort,
+        fields,
         joinedAtFrom,
         joinedAtTo,
         id,
@@ -3296,9 +3455,12 @@ export class MemberServiceApi extends BaseAPI {
         memberId,
         agentId,
         result,
-        fields,
-        sort,
-        domainId,
+        leavingAtFrom,
+        leavingAtTo,
+        offeringAtFrom,
+        offeringAtTo,
+        durationFrom,
+        durationTo,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -3309,6 +3471,9 @@ export class MemberServiceApi extends BaseAPI {
    * @summary SearchMemberAttempts
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {string} [joinedAtFrom]
    * @param {string} [joinedAtTo]
    * @param {Array<string>} [id]
@@ -3316,10 +3481,13 @@ export class MemberServiceApi extends BaseAPI {
    * @param {Array<string>} [bucketId]
    * @param {Array<string>} [memberId]
    * @param {Array<string>} [agentId]
-   * @param {string} [result]
-   * @param {Array<string>} [fields]
-   * @param {string} [sort]
-   * @param {string} [domainId]
+   * @param {Array<string>} [result]
+   * @param {string} [leavingAtFrom]
+   * @param {string} [leavingAtTo]
+   * @param {string} [offeringAtFrom]
+   * @param {string} [offeringAtTo]
+   * @param {string} [durationFrom]
+   * @param {string} [durationTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3327,6 +3495,9 @@ export class MemberServiceApi extends BaseAPI {
   public searchAttemptsHistory(
     page?: number,
     size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
     joinedAtFrom?: string,
     joinedAtTo?: string,
     id?: Array<string>,
@@ -3334,16 +3505,22 @@ export class MemberServiceApi extends BaseAPI {
     bucketId?: Array<string>,
     memberId?: Array<string>,
     agentId?: Array<string>,
-    result?: string,
-    fields?: Array<string>,
-    sort?: string,
-    domainId?: string,
+    result?: Array<string>,
+    leavingAtFrom?: string,
+    leavingAtTo?: string,
+    offeringAtFrom?: string,
+    offeringAtTo?: string,
+    durationFrom?: string,
+    durationTo?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
       .searchAttemptsHistory(
         page,
         size,
+        q,
+        sort,
+        fields,
         joinedAtFrom,
         joinedAtTo,
         id,
@@ -3352,9 +3529,12 @@ export class MemberServiceApi extends BaseAPI {
         memberId,
         agentId,
         result,
-        fields,
-        sort,
-        domainId,
+        leavingAtFrom,
+        leavingAtTo,
+        offeringAtFrom,
+        offeringAtTo,
+        durationFrom,
+        durationTo,
         options
       )
       .then((request) => request(this.axios, this.basePath))

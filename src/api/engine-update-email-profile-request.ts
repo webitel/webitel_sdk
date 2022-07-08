@@ -14,7 +14,7 @@
 import { EngineLookup } from './engine-lookup'
 
 /**
- *
+ * Update email profile for gateway
  * @export
  * @interface EngineUpdateEmailProfileRequest
  */
@@ -27,12 +27,6 @@ export interface EngineUpdateEmailProfileRequest {
   description?: string
   /**
    *
-   * @type {string}
-   * @memberof EngineUpdateEmailProfileRequest
-   */
-  domain_id?: string
-  /**
-   *
    * @type {boolean}
    * @memberof EngineUpdateEmailProfileRequest
    */
@@ -42,37 +36,37 @@ export interface EngineUpdateEmailProfileRequest {
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  host?: string
+  host: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  id?: string
+  id: string
   /**
    *
    * @type {number}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  imap_port?: number
+  imap_port: number
   /**
    *
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  login?: string
+  login: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  mailbox?: string
+  mailbox: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  name?: string
+  name: string
   /**
    *
    * @type {string}
@@ -84,11 +78,11 @@ export interface EngineUpdateEmailProfileRequest {
    * @type {EngineLookup}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  schema?: EngineLookup
+  schema: EngineLookup
   /**
    *
    * @type {number}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  smtp_port?: number
+  smtp_port: number
 }
