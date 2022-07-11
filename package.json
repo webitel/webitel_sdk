@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.134",
+  "version": "0.1.138",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -76,25 +76,24 @@
     ]
   },
   "peerDependencies": {
-    "axios": "^0.27.2",
-    "ee-ts": "1.0.1",
     "jssip": "^3.3.6",
-    "tslib": ">=1.10.0"
+    "axios": "^0.27.2"
   },
   "dependencies": {
+    "tslib": ">=1.10.0",
     "@types/webrtc": "0.0.26",
     "axios": "^0.27.2",
     "deep-copy": "1.4.2",
     "ee-ts": "1.0.1",
     "json-refs": "3.0.13",
-    "jssip": "^3.3.6",
+    "jssip": "3.8.0",
     "query-string": "7.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "7.2.1",
     "@commitlint/config-conventional": "7.1.2",
     "@openapitools/openapi-generator-cli": "1.0.18-4.3.1",
-    "@rollup/plugin-replace": "4.0.0",
+    "rollup-plugin-replace": "2.1.0",
     "@types/jest": "23.3.10",
     "@types/node": "8.10.*",
     "@types/prettier": "1.15.2",
