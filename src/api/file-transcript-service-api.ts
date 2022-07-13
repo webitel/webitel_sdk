@@ -24,6 +24,10 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { StorageDeleteFileTranscriptRequest } from '../api'
+// @ts-ignore
+import { StorageDeleteFileTranscriptResponse } from '../api'
+// @ts-ignore
 import { StorageListPhrases } from '../api'
 // @ts-ignore
 import { StorageStartFileTranscriptRequest } from '../api'
@@ -62,6 +66,74 @@ export const FileTranscriptServiceApiAxiosParamCreator = function(
       }
       const localVarRequestOptions = {
         method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {StorageDeleteFileTranscriptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteFileTranscript: async (
+      body: StorageDeleteFileTranscriptRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling deleteFileTranscript.'
+        )
+      }
+      const localVarPath = `/storage/transcript_file`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
         ...baseOptions,
         ...options,
       }
@@ -222,6 +294,35 @@ export const FileTranscriptServiceApiFp = function(
     },
     /**
      *
+     * @param {StorageDeleteFileTranscriptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteFileTranscript(
+      body: StorageDeleteFileTranscriptRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageDeleteFileTranscriptResponse>
+    > {
+      const localVarAxiosArgs = await FileTranscriptServiceApiAxiosParamCreator(
+        configuration
+      ).deleteFileTranscript(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -282,6 +383,20 @@ export const FileTranscriptServiceApiFactory = function(
     },
     /**
      *
+     * @param {StorageDeleteFileTranscriptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteFileTranscript(
+      body: StorageDeleteFileTranscriptRequest,
+      options?: any
+    ): AxiosPromise<StorageDeleteFileTranscriptResponse> {
+      return FileTranscriptServiceApiFp(configuration)
+        .deleteFileTranscript(body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {string} id
      * @param {number} [page]
      * @param {number} [size]
@@ -321,6 +436,22 @@ export class FileTranscriptServiceApi extends BaseAPI {
   ) {
     return FileTranscriptServiceApiFp(this.configuration)
       .createFileTranscript(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {StorageDeleteFileTranscriptRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FileTranscriptServiceApi
+   */
+  public deleteFileTranscript(
+    body: StorageDeleteFileTranscriptRequest,
+    options?: any
+  ) {
+    return FileTranscriptServiceApiFp(this.configuration)
+      .deleteFileTranscript(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

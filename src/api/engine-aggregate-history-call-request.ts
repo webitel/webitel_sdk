@@ -12,6 +12,7 @@
  */
 
 import { EngineAggregateRequest } from './engine-aggregate-request'
+import { EngineBoolFilter } from './engine-bool-filter'
 import { EngineFilterBetween } from './engine-filter-between'
 
 /**
@@ -32,6 +33,12 @@ export interface EngineAggregateHistoryCallRequest {
    * @memberof EngineAggregateHistoryCallRequest
    */
   aggs?: Array<EngineAggregateRequest>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  amd_result?: Array<string>
   /**
    *
    * @type {EngineFilterBetween}
@@ -58,10 +65,16 @@ export interface EngineAggregateHistoryCallRequest {
   dependency_id?: Array<string>
   /**
    *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  direction?: string
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineAggregateHistoryCallRequest
    */
-  direction?: Array<string>
+  directions?: Array<string>
   /**
    *
    * @type {string}
@@ -76,16 +89,28 @@ export interface EngineAggregateHistoryCallRequest {
   duration?: EngineFilterBetween
   /**
    *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  fts?: string
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineAggregateHistoryCallRequest
    */
   gateway_id?: Array<string>
   /**
    *
-   * @type {boolean}
+   * @type {EngineBoolFilter}
    * @memberof EngineAggregateHistoryCallRequest
    */
-  has_file?: boolean
+  has_file?: EngineBoolFilter
+  /**
+   *
+   * @type {EngineBoolFilter}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  has_transcript?: EngineBoolFilter
   /**
    *
    * @type {Array<string>}
@@ -182,4 +207,10 @@ export interface EngineAggregateHistoryCallRequest {
    * @memberof EngineAggregateHistoryCallRequest
    */
   user_id?: Array<string>
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  variables?: { [key: string]: string }
 }

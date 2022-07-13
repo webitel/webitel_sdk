@@ -11,36 +11,22 @@
  * Do not edit the class manually.
  */
 
-import { EngineLookup } from './engine-lookup'
-
 /**
  *
  * @export
- * @interface StorageStartFileTranscriptRequest
+ * @interface StorageDeleteFileTranscriptRequest
  */
-export interface StorageStartFileTranscriptRequest {
+export interface StorageDeleteFileTranscriptRequest {
   /**
    *
    * @type {Array<string>}
-   * @memberof StorageStartFileTranscriptRequest
+   * @memberof StorageDeleteFileTranscriptRequest
    */
   file_id?: Array<string>
   /**
    *
-   * @type {string}
-   * @memberof StorageStartFileTranscriptRequest
-   */
-  locale?: string
-  /**
-   *
-   * @type {EngineLookup}
-   * @memberof StorageStartFileTranscriptRequest
-   */
-  profile?: EngineLookup
-  /**
-   *
    * @type {Array<string>}
-   * @memberof StorageStartFileTranscriptRequest
+   * @memberof StorageDeleteFileTranscriptRequest
    */
   uuid?: Array<string>
 }

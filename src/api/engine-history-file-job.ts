@@ -11,6 +11,9 @@
  * Do not edit the class manually.
  */
 
+import { HistoryFileJobHistoryFileJobAction } from './history-file-job-history-file-job-action'
+import { HistoryFileJobHistoryFileJobState } from './history-file-job-history-file-job-state'
+
 /**
  *
  * @export
@@ -19,10 +22,10 @@
 export interface EngineHistoryFileJob {
   /**
    *
-   * @type {string}
+   * @type {HistoryFileJobHistoryFileJobAction}
    * @memberof EngineHistoryFileJob
    */
-  action?: string
+  action?: HistoryFileJobHistoryFileJobAction
   /**
    *
    * @type {string}
@@ -43,8 +46,8 @@ export interface EngineHistoryFileJob {
   id?: string
   /**
    *
-   * @type {string}
+   * @type {HistoryFileJobHistoryFileJobState}
    * @memberof EngineHistoryFileJob
    */
-  state?: string
+  state?: HistoryFileJobHistoryFileJobState
 }

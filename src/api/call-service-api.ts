@@ -1131,7 +1131,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
-     * @param {boolean} [hasFile]
+     * @param {'undefined' | 'true' | 'false'} [hasFile]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -1148,6 +1148,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
      * @param {Array<string>} [directions]
+     * @param {'undefined' | 'true' | 'false'} [hasTranscript]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1170,7 +1171,7 @@ export const CallServiceApiAxiosParamCreator = function(
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
-      hasFile?: boolean,
+      hasFile?: 'undefined' | 'true' | 'false',
       domainId?: string,
       number?: string,
       direction?: string,
@@ -1187,6 +1188,7 @@ export const CallServiceApiAxiosParamCreator = function(
       amdResult?: Array<string>,
       fts?: string,
       directions?: Array<string>,
+      hasTranscript?: 'undefined' | 'true' | 'false',
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/history`
@@ -1350,6 +1352,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (directions) {
         localVarQueryParameter['directions'] = directions
+      }
+
+      if (hasTranscript !== undefined) {
+        localVarQueryParameter['has_transcript'] = hasTranscript
       }
 
       localVarUrlObj.query = {
@@ -2009,7 +2015,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
-     * @param {boolean} [hasFile]
+     * @param {'undefined' | 'true' | 'false'} [hasFile]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -2026,6 +2032,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
      * @param {Array<string>} [directions]
+     * @param {'undefined' | 'true' | 'false'} [hasTranscript]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2048,7 +2055,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
-      hasFile?: boolean,
+      hasFile?: 'undefined' | 'true' | 'false',
       domainId?: string,
       number?: string,
       direction?: string,
@@ -2065,6 +2072,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       amdResult?: Array<string>,
       fts?: string,
       directions?: Array<string>,
+      hasTranscript?: 'undefined' | 'true' | 'false',
       options?: any
     ): Promise<
       (
@@ -2110,6 +2118,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         amdResult,
         fts,
         directions,
+        hasTranscript,
         options
       )
       return (
@@ -2492,7 +2501,7 @@ export const CallServiceApiFactory = function(
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
-     * @param {boolean} [hasFile]
+     * @param {'undefined' | 'true' | 'false'} [hasFile]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -2509,6 +2518,7 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
      * @param {Array<string>} [directions]
+     * @param {'undefined' | 'true' | 'false'} [hasTranscript]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2531,7 +2541,7 @@ export const CallServiceApiFactory = function(
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
-      hasFile?: boolean,
+      hasFile?: 'undefined' | 'true' | 'false',
       domainId?: string,
       number?: string,
       direction?: string,
@@ -2548,6 +2558,7 @@ export const CallServiceApiFactory = function(
       amdResult?: Array<string>,
       fts?: string,
       directions?: Array<string>,
+      hasTranscript?: 'undefined' | 'true' | 'false',
       options?: any
     ): AxiosPromise<EngineListHistoryCall> {
       return CallServiceApiFp(configuration)
@@ -2587,6 +2598,7 @@ export const CallServiceApiFactory = function(
           amdResult,
           fts,
           directions,
+          hasTranscript,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2928,7 +2940,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {boolean} [skipParent]
    * @param {string} [parentId]
    * @param {Array<string>} [cause]
-   * @param {boolean} [hasFile]
+   * @param {'undefined' | 'true' | 'false'} [hasFile]
    * @param {string} [domainId]
    * @param {string} [number]
    * @param {string} [direction]
@@ -2945,6 +2957,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [amdResult]
    * @param {string} [fts]
    * @param {Array<string>} [directions]
+   * @param {'undefined' | 'true' | 'false'} [hasTranscript]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -2968,7 +2981,7 @@ export class CallServiceApi extends BaseAPI {
     skipParent?: boolean,
     parentId?: string,
     cause?: Array<string>,
-    hasFile?: boolean,
+    hasFile?: 'undefined' | 'true' | 'false',
     domainId?: string,
     number?: string,
     direction?: string,
@@ -2985,6 +2998,7 @@ export class CallServiceApi extends BaseAPI {
     amdResult?: Array<string>,
     fts?: string,
     directions?: Array<string>,
+    hasTranscript?: 'undefined' | 'true' | 'false',
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
@@ -3024,6 +3038,7 @@ export class CallServiceApi extends BaseAPI {
         amdResult,
         fts,
         directions,
+        hasTranscript,
         options
       )
       .then((request) => request(this.axios, this.basePath))

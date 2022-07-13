@@ -81,6 +81,12 @@ export interface EngineEmailProfile {
   name?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  password?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineEmailProfile
    */
