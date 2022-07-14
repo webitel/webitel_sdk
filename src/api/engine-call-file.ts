@@ -11,8 +11,6 @@
  * Do not edit the class manually.
  */
 
-import { CallFileTranscriptLookup } from './call-file-transcript-lookup'
-
 /**
  *
  * @export
@@ -55,10 +53,4 @@ export interface EngineCallFile {
    * @memberof EngineCallFile
    */
   stop_at?: string
-  /**
-   *
-   * @type {Array<CallFileTranscriptLookup>}
-   * @memberof EngineCallFile
-   */
-  transcripts?: Array<CallFileTranscriptLookup>
 }

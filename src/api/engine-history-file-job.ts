@@ -37,6 +37,12 @@ export interface EngineHistoryFileJob {
    * @type {string}
    * @memberof EngineHistoryFileJob
    */
+  error_detail?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryFileJob
+   */
   file_id?: string
   /**
    *

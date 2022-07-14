@@ -22,7 +22,7 @@ export interface StorageDeleteFileTranscriptRequest {
    * @type {Array<string>}
    * @memberof StorageDeleteFileTranscriptRequest
    */
-  file_id?: Array<string>
+  id?: Array<string>
   /**
    *
    * @type {Array<string>}

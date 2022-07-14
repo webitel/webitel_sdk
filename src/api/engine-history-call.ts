@@ -17,6 +17,7 @@ import { EngineCallHold } from './engine-call-hold'
 import { EngineEndpoint } from './engine-endpoint'
 import { EngineHistoryFileJob } from './engine-history-file-job'
 import { EngineLookup } from './engine-lookup'
+import { EngineTranscriptLookup } from './engine-transcript-lookup'
 
 /**
  *
@@ -282,6 +283,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   to?: EngineEndpoint
+  /**
+   *
+   * @type {Array<EngineTranscriptLookup>}
+   * @memberof EngineHistoryCall
+   */
+  transcripts?: Array<EngineTranscriptLookup>
   /**
    *
    * @type {string}
