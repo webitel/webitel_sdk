@@ -277,7 +277,6 @@ export const CallServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Create e call
      * @param {EngineCreateCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1641,7 +1640,6 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Create e call
      * @param {EngineCreateCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2253,7 +2251,6 @@ export const CallServiceApiFactory = function(
     },
     /**
      *
-     * @summary Create e call
      * @param {EngineCreateCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2697,7 +2694,6 @@ export class CallServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary Create e call
    * @param {EngineCreateCallRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
