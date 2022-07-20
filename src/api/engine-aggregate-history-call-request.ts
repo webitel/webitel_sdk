@@ -23,6 +23,12 @@ import { EngineFilterBetween } from './engine-filter-between'
 export interface EngineAggregateHistoryCallRequest {
   /**
    *
+   * @type {string}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  agent_description?: string
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineAggregateHistoryCallRequest
    */

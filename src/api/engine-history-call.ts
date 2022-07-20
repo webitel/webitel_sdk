@@ -273,6 +273,12 @@ export interface EngineHistoryCall {
   tags?: Array<string>
   /**
    *
+   * @type {number}
+   * @memberof EngineHistoryCall
+   */
+  talk_sec?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineHistoryCall
    */

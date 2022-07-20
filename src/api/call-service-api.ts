@@ -1148,6 +1148,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {string} [fts]
      * @param {Array<string>} [directions]
      * @param {'undefined' | 'true' | 'false'} [hasTranscript]
+     * @param {string} [agentDescription]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1188,6 +1189,7 @@ export const CallServiceApiAxiosParamCreator = function(
       fts?: string,
       directions?: Array<string>,
       hasTranscript?: 'undefined' | 'true' | 'false',
+      agentDescription?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/history`
@@ -1355,6 +1357,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (hasTranscript !== undefined) {
         localVarQueryParameter['has_transcript'] = hasTranscript
+      }
+
+      if (agentDescription !== undefined) {
+        localVarQueryParameter['agent_description'] = agentDescription
       }
 
       localVarUrlObj.query = {
@@ -2031,6 +2037,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [fts]
      * @param {Array<string>} [directions]
      * @param {'undefined' | 'true' | 'false'} [hasTranscript]
+     * @param {string} [agentDescription]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2071,6 +2078,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       fts?: string,
       directions?: Array<string>,
       hasTranscript?: 'undefined' | 'true' | 'false',
+      agentDescription?: string,
       options?: any
     ): Promise<
       (
@@ -2117,6 +2125,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         fts,
         directions,
         hasTranscript,
+        agentDescription,
         options
       )
       return (
@@ -2516,6 +2525,7 @@ export const CallServiceApiFactory = function(
      * @param {string} [fts]
      * @param {Array<string>} [directions]
      * @param {'undefined' | 'true' | 'false'} [hasTranscript]
+     * @param {string} [agentDescription]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2556,6 +2566,7 @@ export const CallServiceApiFactory = function(
       fts?: string,
       directions?: Array<string>,
       hasTranscript?: 'undefined' | 'true' | 'false',
+      agentDescription?: string,
       options?: any
     ): AxiosPromise<EngineListHistoryCall> {
       return CallServiceApiFp(configuration)
@@ -2596,6 +2607,7 @@ export const CallServiceApiFactory = function(
           fts,
           directions,
           hasTranscript,
+          agentDescription,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2954,6 +2966,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {string} [fts]
    * @param {Array<string>} [directions]
    * @param {'undefined' | 'true' | 'false'} [hasTranscript]
+   * @param {string} [agentDescription]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -2995,6 +3008,7 @@ export class CallServiceApi extends BaseAPI {
     fts?: string,
     directions?: Array<string>,
     hasTranscript?: 'undefined' | 'true' | 'false',
+    agentDescription?: string,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
@@ -3035,6 +3049,7 @@ export class CallServiceApi extends BaseAPI {
         fts,
         directions,
         hasTranscript,
+        agentDescription,
         options
       )
       .then((request) => request(this.axios, this.basePath))
