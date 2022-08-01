@@ -10,7 +10,7 @@ const params = {
   search: '12',
   sort: '+jest',
   fields: [],
-  ids: [],
+  id: [],
 }
 
 describe('Sdk List Getter Api Consumer', () => {

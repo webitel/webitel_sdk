@@ -5,5 +5,5 @@ export default interface BaseGetListParams {
   search?: string
   sort?: string
   fields?: string[]
-  ids?: Array<number | string>
+  id?: Array<number | string>
 }
