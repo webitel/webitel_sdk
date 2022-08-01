@@ -20,9 +20,9 @@ export default class SdkListGetterApiConsumer extends BaseListGetterApiConsumer 
     search,
     sort,
     fields,
-    ids,
+    id,
   }: BaseGetListParams): Promise<ListGetterResponse> {
-    return this._getList([page, size, search, sort, fields, ids])
+    return this._getList([page, size, search, sort, fields, id])
   }
 
   getNestedList({
@@ -32,9 +32,9 @@ export default class SdkListGetterApiConsumer extends BaseListGetterApiConsumer 
     search,
     sort,
     fields,
-    ids,
+    id,
   }: BaseGetListParams): Promise<ListGetterResponse> {
-    return this._getList([parentId, page, size, search, sort, fields, ids])
+    return this._getList([parentId, page, size, search, sort, fields, id])
   }
 
   protected async _getList(args: any[]): Promise<ListGetterResponse> {

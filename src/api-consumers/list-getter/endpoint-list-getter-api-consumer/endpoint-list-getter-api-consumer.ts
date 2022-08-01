@@ -39,7 +39,7 @@ export default class EndpointListGetterApiConsumer extends BaseListGetterApiCons
       search,
       sort,
       fields,
-      ids,
+      id,
       searchQuery = 'q',
       rest = {},
     }: EndpointGetListParams,
@@ -55,7 +55,7 @@ export default class EndpointListGetterApiConsumer extends BaseListGetterApiCons
     let url = `${baseUrl}?size=${size}&page=${page}`
     if (search) url += `&${searchQuery}=${search}`
 
-    url += `&${qs.stringify({ sort, fields, ids }, stringifyOptions)}`
+    url += `&${qs.stringify({ sort, fields, id }, stringifyOptions)}`
 
     if (Object.keys(rest).length) {
       url += `&${qs.stringify(rest, stringifyOptions)}`

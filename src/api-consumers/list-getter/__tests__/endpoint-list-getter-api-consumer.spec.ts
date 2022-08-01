@@ -13,7 +13,7 @@ const params = {
   search: '12',
   sort: '+jest',
   fields: [],
-  ids: [],
+  id: [],
   rest: { myCringeParam: '123' },
 }
 
