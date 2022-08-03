@@ -177,6 +177,7 @@ export interface ClientEvents {
   disconnected(code: number): void
   connected(): void
   error(e: Error): void
+  phone_registered(registered: boolean): void
 }
 
 export class Client extends EventEmitter<ClientEvents> {
@@ -652,8 +653,19 @@ export class Client extends EventEmitter<ClientEvents> {
 
   async registerCallClient(phone: SipPhone) {
     this.phone = phone
+    this.subscribePhone(phone)
 
-    this.phone.on(
+    try {
+      const conf = await this.deviceConfig(this.phone.type)
+      await this.phone.register(conf as SipConfiguration)
+    } catch (e) {
+      // FIXME add handle error
+      this.log.error(e)
+    }
+  }
+
+  subscribePhone(phone: SipPhone) {
+    phone.on(
       'peerStreams',
       (session: CallSession, streams: MediaStream[] | null) => {
         const call = this.callBySession(session)
@@ -668,7 +680,7 @@ export class Client extends EventEmitter<ClientEvents> {
       }
     )
 
-    this.phone.on(
+    phone.on(
       'localStreams',
       (session: CallSession, streams: MediaStream[] | null) => {
         const call = this.callBySession(session)
@@ -683,15 +695,9 @@ export class Client extends EventEmitter<ClientEvents> {
       }
     )
 
-    this.phone.on('newSession', this.onNewCallSession.bind(this))
-
-    try {
-      const conf = await this.deviceConfig(this.phone.type)
-      await this.phone.register(conf as SipConfiguration)
-    } catch (e) {
-      // FIXME add handle error
-      this.log.error(e)
-    }
+    phone.on('newSession', this.onNewCallSession.bind(this))
+    phone.on('registered', () => this.emit('phone_registered', true))
+    phone.on('unregistered', () => this.emit('phone_registered', false))
   }
 
   async deviceConfig(name?: string) {
