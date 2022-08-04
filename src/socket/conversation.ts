@@ -2,8 +2,15 @@ import { CallVariables } from './call'
 import { Client, FileUploadProgress } from './client'
 import { Reporting, Task, TaskData } from './task'
 import { chunkString } from './utils'
+import any = jasmine.any
 
 const maxSizeMessage = 4096
+
+export enum DeclineCause {
+  Timeout = 'TIMEOUT',
+  Busy = 'BUSY',
+  Cancel = 'CANCEL',
+}
 
 export enum ChatActions {
   Message = 'message',
@@ -64,6 +71,7 @@ export interface CloseEvent extends BaseChatEvent {
 export interface DeclineInviteEvent extends BaseChatEvent {
   user_id: number
   invite_id: string
+  cause?: DeclineCause | null
 }
 
 export interface UpdateChannelEvent extends BaseChatEvent {
@@ -143,6 +151,7 @@ export class Conversation {
   inviteId!: string | null
   member!: ChatChannel
   members!: ChatChannel[]
+  _cause!: DeclineCause | null
   _messages: Message[]
   _autoAnswer: boolean
 
@@ -178,6 +187,7 @@ export class Conversation {
     this.variables = {}
     this._hasReporting = !!(variables && variables.cc_reporting === 'true')
     this._autoAnswer = false
+    this._cause = null
 
     for (const k in variables) {
       if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
@@ -221,8 +231,18 @@ export class Conversation {
     this.closedAt = timestamp
   }
 
+  setDecline(e: DeclineInviteEvent) {
+    this.state = ConversationState.Closed
+    this.closedAt = e.timestamp
+    this._cause = e.cause || null
+  }
+
   get id() {
     return this.channelId || this.inviteId || this.conversationId
+  }
+
+  get cause() {
+    return this._cause
   }
 
   get messages(): MessageWithChannel[] {
@@ -280,7 +300,7 @@ export class Conversation {
   }
 
   get allowLeave() {
-    return !!this.channelId && this.closedAt === 0
+    return !!this.channelId && (this.closedAt === 0 || !this.hasReporting)
   }
 
   get allowReporting() {
@@ -309,11 +329,17 @@ export class Conversation {
   Actions
    */
 
-  async decline() {
+  async decline(cause?: DeclineCause) {
     if (!this.inviteId) throw new Error('This conversation is joined')
+    let _cause = cause
+
+    if (!cause && this.answeredAt === 0) {
+      _cause = DeclineCause.Busy
+    }
 
     return this.client.request(`decline_chat`, {
       invite_id: this.inviteId,
+      cause: _cause,
     })
   }
 
@@ -337,6 +363,14 @@ export class Conversation {
 
   async leave(cause: string) {
     if (!this.channelId) throw new Error('This conversation not active')
+
+    if (
+      this.closedAt !== 0 &&
+      !this.hasReporting &&
+      this.cause !== DeclineCause.Busy
+    ) {
+      return this.client.destroyConversation(this)
+    }
 
     return this.client.request(`leave_chat`, {
       channel_id: this.channelId,

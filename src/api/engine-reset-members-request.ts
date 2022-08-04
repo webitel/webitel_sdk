@@ -34,6 +34,12 @@ export interface EngineResetMembersRequest {
    * @type {Array<string>}
    * @memberof EngineResetMembersRequest
    */
+  id?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof EngineResetMembersRequest
+   */
   ids?: Array<string>
   /**
    *

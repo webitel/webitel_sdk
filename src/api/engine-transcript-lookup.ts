@@ -11,12 +11,20 @@
  * Do not edit the class manually.
  */
 
+import { EngineLookup } from './engine-lookup'
+
 /**
  *
  * @export
  * @interface EngineTranscriptLookup
  */
 export interface EngineTranscriptLookup {
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineTranscriptLookup
+   */
+  file?: EngineLookup
   /**
    *
    * @type {string}

@@ -24,7 +24,7 @@ export interface EngineCreateMemberBulkRequest {
    * @type {string}
    * @memberof EngineCreateMemberBulkRequest
    */
-  domain_id?: string
+  file_name?: string
   /**
    *
    * @type {Array<EngineCreateMemberBulkItem>}

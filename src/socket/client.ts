@@ -25,6 +25,7 @@ import {
   CloseEvent,
   Conversation,
   ConversationItem,
+  DeclineCause,
   DeclineInviteEvent,
   InviteEvent,
   JoinedEvent,
@@ -621,7 +622,13 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   conversationDestroyed(conv: Conversation) {
-    return conv.closedAt > 0 && !this.hasAgentTask(conv.task)
+    const res =
+      conv.closedAt > 0 &&
+      (!this.hasAgentTask(conv.task) &&
+        (conv.hasReporting ||
+          [DeclineCause.Busy, DeclineCause.Timeout].indexOf(conv.cause!) > -1))
+
+    return res
   }
 
   reportingChannelTask(task: Task) {
@@ -759,6 +766,12 @@ export class Client extends EventEmitter<ClientEvents> {
           this.emit('error', e)
       }
     }
+  }
+
+  destroyConversation(conv: Conversation) {
+    // FIXME sync channel & call event
+    this.conversationStore.delete(conv.id)
+    this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, ChatActions.Destroy, conv)
   }
 
   private async onMessage(message: Message) {
@@ -1079,7 +1092,7 @@ export class Client extends EventEmitter<ClientEvents> {
         const e = event.data as DeclineInviteEvent
         conversation = this.conversationById(e.invite_id)
         if (conversation) {
-          conversation.setClosed(timestamp)
+          conversation.setDecline(e)
         }
         break
 
@@ -1107,12 +1120,6 @@ export class Client extends EventEmitter<ClientEvents> {
     // FIXME sync channel & call event
     this.callStore.delete(call.id)
     this.eventHandler.emit(WEBSOCKET_EVENT_CALL, CallActions.Destroy, call)
-  }
-
-  private destroyConversation(conv: Conversation) {
-    // FIXME sync channel & call event
-    this.conversationStore.delete(conv.id)
-    this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, ChatActions.Destroy, conv)
   }
 }
 
