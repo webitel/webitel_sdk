@@ -25,7 +25,6 @@ import {
   CloseEvent,
   Conversation,
   ConversationItem,
-  DeclineCause,
   DeclineInviteEvent,
   InviteEvent,
   JoinedEvent,
@@ -622,13 +621,12 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   conversationDestroyed(conv: Conversation) {
-    const res =
+    return (
       conv.closedAt > 0 &&
-      (!this.hasAgentTask(conv.task) &&
-        (conv.hasReporting ||
-          [DeclineCause.Busy, DeclineCause.Timeout].indexOf(conv.cause!) > -1))
-
-    return res
+      !this.hasAgentTask(conv.task) &&
+      (conv.hasReporting ||
+        !(conv.lastAction === ChatActions.Close && conv.answeredAt > 0))
+    )
   }
 
   reportingChannelTask(task: Task) {
@@ -1085,7 +1083,7 @@ export class Client extends EventEmitter<ClientEvents> {
         const l = event.data as LeavedEvent
         conversation = this.conversationById(l.leaved_channel_id)
         if (conversation) {
-          conversation.setClosed(timestamp)
+          conversation.setLeave(l)
         }
         break
       case ChatActions.Decline:
@@ -1100,6 +1098,7 @@ export class Client extends EventEmitter<ClientEvents> {
     }
 
     if (conversation) {
+      conversation.lastAction = event.action as ChatActions
       this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, event.action, conversation)
 
       if (this.conversationDestroyed(conversation)) {

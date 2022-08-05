@@ -18,6 +18,11 @@ export enum CallReportingStatus {
   Abandoned = 'abandoned',
   Cancel = 'cancel',
   Success = 'success',
+  Failed = 'failed',
+  Missed = 'missed',
+  Timeout = 'timeout',
+  Endless = 'endless',
+  Transferred = 'transferred',
 }
 
 export interface Categories {

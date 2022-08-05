@@ -161,6 +161,7 @@ export class Conversation {
   invitedAt: number
   closedAt: number
   _hasReporting: boolean
+  lastAction: ChatActions | null
 
   variables?: CallVariables
   task: Task | null
@@ -188,6 +189,7 @@ export class Conversation {
     this._hasReporting = !!(variables && variables.cc_reporting === 'true')
     this._autoAnswer = false
     this._cause = null
+    this.lastAction = null
 
     for (const k in variables) {
       if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
@@ -232,9 +234,12 @@ export class Conversation {
   }
 
   setDecline(e: DeclineInviteEvent) {
-    this.state = ConversationState.Closed
-    this.closedAt = e.timestamp
+    this.setClosed(e.timestamp)
     this._cause = e.cause || null
+  }
+
+  setLeave(e: LeavedEvent) {
+    this.setClosed(e.timestamp)
   }
 
   get id() {
