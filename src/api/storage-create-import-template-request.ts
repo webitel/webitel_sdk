@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+import { EngineLookup } from './engine-lookup'
 import { StorageImportSourceType } from './storage-import-source-type'
 
 /**
@@ -37,6 +38,12 @@ export interface StorageCreateImportTemplateRequest {
    * @memberof StorageCreateImportTemplateRequest
    */
   parameters: object
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof StorageCreateImportTemplateRequest
+   */
+  source?: EngineLookup
   /**
    *
    * @type {string}
