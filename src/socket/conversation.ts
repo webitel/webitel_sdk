@@ -165,6 +165,7 @@ export class Conversation {
 
   variables?: CallVariables
   task: Task | null
+  queue: object | null
 
   constructor(
     private readonly client: Client,
@@ -182,6 +183,7 @@ export class Conversation {
     this.closedAt = 0
     this.task = null
     this.data = null
+    this.queue = null
     this.members = (members || []).map((i) => wrapChannelMember(i))
     this._messages = messages || []
     this.state = ConversationState.Invite
@@ -206,6 +208,10 @@ export class Conversation {
       variables.hasOwnProperty('cc_attempt_id') &&
       this.client.agent
     ) {
+      this.queue = {
+        id: +variables.cc_queue_id || null,
+        name: variables.cc_queue_name || '',
+      }
       this.task = this.client.agent.task.get(+variables.cc_attempt_id) || null
     }
   }

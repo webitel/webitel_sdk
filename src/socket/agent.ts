@@ -84,13 +84,20 @@ export enum ChannelType {
   Job = 'task', // todo rename task to job
 }
 
+export interface OfflineMemberList {
+  items: object[]
+  next?: boolean
+}
+
 export class Agent {
   task: Map<number, Task>
   _channel: Channel
+  _listOfflineMembers: OfflineMemberList | null
   lastStatusChange: number
   constructor(protected readonly client: Client, protected info: AgentSession) {
     this.task = new Map<number, Task>()
     this._channel = info.channels[0] // todo
+    this._listOfflineMembers = null
 
     this.lastStatusChange = Date.now() - this.info.status_duration * 1000
   }
@@ -354,12 +361,17 @@ export class Agent {
   }
 
   async offlineMembers(q: string, page: number, perPage: number) {
-    return this.client.request(`cc_fetch_offline_members`, {
-      agent_id: this.agentId,
-      page,
-      q,
-      per_page: perPage,
-    })
+    this._listOfflineMembers = (await this.client.request(
+      `cc_fetch_offline_members`,
+      {
+        agent_id: this.agentId,
+        page,
+        q,
+        per_page: perPage,
+      }
+    )) as OfflineMemberList
+
+    return this._listOfflineMembers
   }
 
   hasTask(task: Task) {
