@@ -787,8 +787,8 @@ export class Client extends EventEmitter<ClientEvents> {
         if (message.status === Response.STATUS_OK) {
           promise!.resolve(message.data)
         } else {
-          const err = message.data as BaseError
-          if (err.id === TypeError.RolePermission) {
+          const err = message.error as BaseError
+          if (err && err.id === TypeError.RolePermission) {
             this.emit('error', new RolePermissionError(err.detail))
           }
           promise!.reject(message.error!)

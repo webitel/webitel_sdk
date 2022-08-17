@@ -10,7 +10,7 @@ export interface Message {
   seq?: number
   seq_reply?: number
   data: any
-  error?: Map<string, Error>
+  error?: object
 }
 
 export interface Request {
