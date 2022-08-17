@@ -31,13 +31,7 @@ import {
   LeavedEvent,
   MessageEvent,
 } from './conversation'
-import {
-  BaseError,
-  DeviceNotAllowPermissionError,
-  DeviceNotFoundError,
-  RolePermissionError,
-  TypeError,
-} from './errors'
+import { DeviceNotAllowPermissionError, DeviceNotFoundError } from './errors'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
 import {
@@ -787,10 +781,13 @@ export class Client extends EventEmitter<ClientEvents> {
         if (message.status === Response.STATUS_OK) {
           promise!.resolve(message.data)
         } else {
+          /*
           const err = message.error as BaseError
           if (err && err.id === TypeError.RolePermission) {
             this.emit('error', new RolePermissionError(err.detail))
           }
+           */
+
           promise!.reject(message.error!)
         }
       }
