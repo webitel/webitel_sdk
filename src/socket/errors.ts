@@ -1,4 +1,4 @@
-export enum TypeError {
+export enum TypeErrors {
   RolePermission = 'api.context.permissions.app_error',
 }
 
