@@ -28,6 +28,8 @@ import { EngineCreateRoutingSchemaRequest } from '../api'
 // @ts-ignore
 import { EngineListRoutingSchema } from '../api'
 // @ts-ignore
+import { EngineListRoutingSchemaTags } from '../api'
+// @ts-ignore
 import { EnginePatchRoutingSchemaRequest } from '../api'
 // @ts-ignore
 import { EngineRoutingSchema } from '../api'
@@ -341,8 +343,9 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
-     * @param {Array<string>} [type]
+     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
      * @param {boolean} [editor]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -354,8 +357,9 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       id?: Array<number>,
       name?: string,
-      type?: Array<string>,
+      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
       editor?: boolean,
+      tags?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/routing/schema`
@@ -415,6 +419,98 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
 
       if (editor !== undefined) {
         localVarQueryParameter['editor'] = editor
+      }
+
+      if (tags) {
+        localVarQueryParameter['tags'] = tags
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary List RoutingSchemaTags
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchRoutingSchemaTags: async (
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/routing/schema/tags`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (type) {
+        localVarQueryParameter['type'] = type
       }
 
       localVarUrlObj.query = {
@@ -665,8 +761,9 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
-     * @param {Array<string>} [type]
+     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
      * @param {boolean} [editor]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -678,8 +775,9 @@ export const RoutingSchemaServiceApiFp = function(
       fields?: Array<string>,
       id?: Array<number>,
       name?: string,
-      type?: Array<string>,
+      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
       editor?: boolean,
+      tags?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -699,8 +797,49 @@ export const RoutingSchemaServiceApiFp = function(
         name,
         type,
         editor,
+        tags,
         options
       )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List RoutingSchemaTags
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchRoutingSchemaTags(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListRoutingSchemaTags>
+    > {
+      const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
+        configuration
+      ).searchRoutingSchemaTags(page, size, q, sort, fields, type, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -833,8 +972,9 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {string} [name]
-     * @param {Array<string>} [type]
+     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
      * @param {boolean} [editor]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -846,8 +986,9 @@ export const RoutingSchemaServiceApiFactory = function(
       fields?: Array<string>,
       id?: Array<number>,
       name?: string,
-      type?: Array<string>,
+      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
       editor?: boolean,
+      tags?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
@@ -861,8 +1002,34 @@ export const RoutingSchemaServiceApiFactory = function(
           name,
           type,
           editor,
+          tags,
           options
         )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary List RoutingSchemaTags
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchRoutingSchemaTags(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
+      options?: any
+    ): AxiosPromise<EngineListRoutingSchemaTags> {
+      return RoutingSchemaServiceApiFp(configuration)
+        .searchRoutingSchemaTags(page, size, q, sort, fields, type, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -968,8 +1135,9 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {string} [name]
-   * @param {Array<string>} [type]
+   * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
    * @param {boolean} [editor]
+   * @param {Array<string>} [tags]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
@@ -982,8 +1150,9 @@ export class RoutingSchemaServiceApi extends BaseAPI {
     fields?: Array<string>,
     id?: Array<number>,
     name?: string,
-    type?: Array<string>,
+    type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
     editor?: boolean,
+    tags?: Array<string>,
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration)
@@ -997,8 +1166,36 @@ export class RoutingSchemaServiceApi extends BaseAPI {
         name,
         type,
         editor,
+        tags,
         options
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary List RoutingSchemaTags
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof RoutingSchemaServiceApi
+   */
+  public searchRoutingSchemaTags(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
+    options?: any
+  ) {
+    return RoutingSchemaServiceApiFp(this.configuration)
+      .searchRoutingSchemaTags(page, size, q, sort, fields, type, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

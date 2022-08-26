@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineRoutingSchemaType } from './engine-routing-schema-type'
+
 /**
  *
  * @export
@@ -67,8 +69,14 @@ export interface EnginePatchRoutingSchemaRequest {
   schema?: object
   /**
    *
-   * @type {string}
+   * @type {Array<string>}
    * @memberof EnginePatchRoutingSchemaRequest
    */
-  type?: string
+  tags?: Array<string>
+  /**
+   *
+   * @type {EngineRoutingSchemaType}
+   * @memberof EnginePatchRoutingSchemaRequest
+   */
+  type?: EngineRoutingSchemaType
 }
