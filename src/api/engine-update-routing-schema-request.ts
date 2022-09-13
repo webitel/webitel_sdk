@@ -12,6 +12,7 @@
  */
 
 import { EngineRoutingSchemaType } from './engine-routing-schema-type'
+import { EngineSchemaTag } from './engine-schema-tag'
 
 /**
  *
@@ -63,10 +64,10 @@ export interface EngineUpdateRoutingSchemaRequest {
   schema?: object
   /**
    *
-   * @type {Array<string>}
+   * @type {Array<EngineSchemaTag>}
    * @memberof EngineUpdateRoutingSchemaRequest
    */
-  tags?: Array<string>
+  tags?: Array<EngineSchemaTag>
   /**
    *
    * @type {EngineRoutingSchemaType}

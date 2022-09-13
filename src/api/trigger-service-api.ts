@@ -24,44 +24,48 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineCreateRoutingSchemaRequest } from '../api'
+import { EngineCreateTriggerJobRequest } from '../api'
 // @ts-ignore
-import { EngineListRoutingSchema } from '../api'
+import { EngineCreateTriggerRequest } from '../api'
 // @ts-ignore
-import { EngineListRoutingSchemaTags } from '../api'
+import { EngineListTrigger } from '../api'
 // @ts-ignore
-import { EnginePatchRoutingSchemaRequest } from '../api'
+import { EngineListTriggerJob } from '../api'
 // @ts-ignore
-import { EngineRoutingSchema } from '../api'
+import { EnginePatchTriggerRequest } from '../api'
 // @ts-ignore
-import { EngineUpdateRoutingSchemaRequest } from '../api'
+import { EngineTrigger } from '../api'
+// @ts-ignore
+import { EngineTriggerJob } from '../api'
+// @ts-ignore
+import { EngineUpdateTriggerRequest } from '../api'
 /**
- * RoutingSchemaServiceApi - axios parameter creator
+ * TriggerServiceApi - axios parameter creator
  * @export
  */
-export const RoutingSchemaServiceApiAxiosParamCreator = function(
+export const TriggerServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @summary Create RoutingSchema
-     * @param {EngineCreateRoutingSchemaRequest} body
+     * @summary Create Trigger
+     * @param {EngineCreateTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRoutingSchema: async (
-      body: EngineCreateRoutingSchemaRequest,
+    createTrigger: async (
+      body: EngineCreateTriggerRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createRoutingSchema.'
+          'Required parameter body was null or undefined when calling createTrigger.'
         )
       }
-      const localVarPath = `/routing/schema`
+      const localVarPath = `/trigger`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -114,25 +118,103 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Remove RoutingSchema
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} triggerId
+     * @param {EngineCreateTriggerJobRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingSchema: async (
-      id: string,
-      domainId?: string,
+    createTriggerJob: async (
+      triggerId: number,
+      body: EngineCreateTriggerJobRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'triggerId' is not null or undefined
+      if (triggerId === null || triggerId === undefined) {
+        throw new RequiredError(
+          'triggerId',
+          'Required parameter triggerId was null or undefined when calling createTriggerJob.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createTriggerJob.'
+        )
+      }
+      const localVarPath = `/trigger/{trigger_id}/job`.replace(
+        `{${'trigger_id'}}`,
+        encodeURIComponent(String(triggerId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove Trigger
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteTrigger: async (
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteRoutingSchema.'
+          'Required parameter id was null or undefined when calling deleteTrigger.'
         )
       }
-      const localVarPath = `/routing/schema/{id}`.replace(
+      const localVarPath = `/trigger/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -158,10 +240,6 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -184,32 +262,31 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Patch RoutingSchema
-     * @param {string} id
-     * @param {EnginePatchRoutingSchemaRequest} body
+     * @param {number} id
+     * @param {EnginePatchTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchRoutingSchema: async (
-      id: string,
-      body: EnginePatchRoutingSchemaRequest,
+    patchTrigger: async (
+      id: number,
+      body: EnginePatchTriggerRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling patchRoutingSchema.'
+          'Required parameter id was null or undefined when calling patchTrigger.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchRoutingSchema.'
+          'Required parameter body was null or undefined when calling patchTrigger.'
         )
       }
-      const localVarPath = `/routing/schema/{id}`.replace(
+      const localVarPath = `/trigger/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -265,25 +342,23 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary RoutingSchema item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @summary Trigger item
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingSchema: async (
-      id: string,
-      domainId?: string,
+    readTrigger: async (
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readRoutingSchema.'
+          'Required parameter id was null or undefined when calling readTrigger.'
         )
       }
-      const localVarPath = `/routing/schema/{id}`.replace(
+      const localVarPath = `/trigger/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -309,10 +384,6 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (domainId !== undefined) {
-        localVarQueryParameter['domain_id'] = domainId
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -335,32 +406,28 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List RoutingSchema
+     * @summary List of Trigger
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
-     * @param {string} [name]
-     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
-     * @param {boolean} [editor]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingSchema: async (
+    searchTrigger: async (
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
-      name?: string,
-      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
-      editor?: boolean,
+      schemaId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/routing/schema`
+      const localVarPath = `/trigger`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -407,16 +474,8 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
         localVarQueryParameter['id'] = id
       }
 
-      if (name !== undefined) {
-        localVarQueryParameter['name'] = name
-      }
-
-      if (type) {
-        localVarQueryParameter['type'] = type
-      }
-
-      if (editor !== undefined) {
-        localVarQueryParameter['editor'] = editor
+      if (schemaId) {
+        localVarQueryParameter['schema_id'] = schemaId
       }
 
       localVarUrlObj.query = {
@@ -441,26 +500,39 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary List RoutingSchemaTags
+     * @param {number} triggerId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingSchemaTags: async (
+    searchTriggerJob: async (
+      triggerId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
+      createdAtFrom?: string,
+      createdAtTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/routing/schema/tags`
+      // verify required parameter 'triggerId' is not null or undefined
+      if (triggerId === null || triggerId === undefined) {
+        throw new RequiredError(
+          'triggerId',
+          'Required parameter triggerId was null or undefined when calling searchTriggerJob.'
+        )
+      }
+      const localVarPath = `/trigger/{trigger_id}/job`.replace(
+        `{${'trigger_id'}}`,
+        encodeURIComponent(String(triggerId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -503,8 +575,12 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (type) {
-        localVarQueryParameter['type'] = type
+      if (createdAtFrom !== undefined) {
+        localVarQueryParameter['created_at.from'] = createdAtFrom
+      }
+
+      if (createdAtTo !== undefined) {
+        localVarQueryParameter['created_at.to'] = createdAtTo
       }
 
       localVarUrlObj.query = {
@@ -529,32 +605,32 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update RoutingSchema
-     * @param {string} id
-     * @param {EngineUpdateRoutingSchemaRequest} body
+     * @summary Update Trigger
+     * @param {number} id
+     * @param {EngineUpdateTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRoutingSchema: async (
-      id: string,
-      body: EngineUpdateRoutingSchemaRequest,
+    updateTrigger: async (
+      id: number,
+      body: EngineUpdateTriggerRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateRoutingSchema.'
+          'Required parameter id was null or undefined when calling updateTrigger.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateRoutingSchema.'
+          'Required parameter body was null or undefined when calling updateTrigger.'
         )
       }
-      const localVarPath = `/routing/schema/{id}`.replace(
+      const localVarPath = `/trigger/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -612,32 +688,27 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
 }
 
 /**
- * RoutingSchemaServiceApi - functional programming interface
+ * TriggerServiceApi - functional programming interface
  * @export
  */
-export const RoutingSchemaServiceApiFp = function(
-  configuration?: Configuration
-) {
+export const TriggerServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @summary Create RoutingSchema
-     * @param {EngineCreateRoutingSchemaRequest} body
+     * @summary Create Trigger
+     * @param {EngineCreateTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createRoutingSchema(
-      body: EngineCreateRoutingSchemaRequest,
+    async createTrigger(
+      body: EngineCreateTriggerRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineRoutingSchema>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTrigger>
     > {
-      const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).createRoutingSchema(body, options)
+      ).createTrigger(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -651,25 +722,24 @@ export const RoutingSchemaServiceApiFp = function(
     },
     /**
      *
-     * @summary Remove RoutingSchema
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} triggerId
+     * @param {EngineCreateTriggerJobRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteRoutingSchema(
-      id: string,
-      domainId?: string,
+    async createTriggerJob(
+      triggerId: number,
+      body: EngineCreateTriggerJobRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineRoutingSchema>
+      ) => AxiosPromise<EngineTriggerJob>
     > {
-      const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).deleteRoutingSchema(id, domainId, options)
+      ).createTriggerJob(triggerId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -683,25 +753,20 @@ export const RoutingSchemaServiceApiFp = function(
     },
     /**
      *
-     * @summary Patch RoutingSchema
-     * @param {string} id
-     * @param {EnginePatchRoutingSchemaRequest} body
+     * @summary Remove Trigger
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchRoutingSchema(
-      id: string,
-      body: EnginePatchRoutingSchemaRequest,
+    async deleteTrigger(
+      id: number,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineRoutingSchema>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTrigger>
     > {
-      const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).patchRoutingSchema(id, body, options)
+      ).deleteTrigger(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -715,25 +780,21 @@ export const RoutingSchemaServiceApiFp = function(
     },
     /**
      *
-     * @summary RoutingSchema item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
+     * @param {EnginePatchTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readRoutingSchema(
-      id: string,
-      domainId?: string,
+    async patchTrigger(
+      id: number,
+      body: EnginePatchTriggerRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineRoutingSchema>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTrigger>
     > {
-      const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).readRoutingSchema(id, domainId, options)
+      ).patchTrigger(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -747,48 +808,113 @@ export const RoutingSchemaServiceApiFp = function(
     },
     /**
      *
-     * @summary List RoutingSchema
+     * @summary Trigger item
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async readTrigger(
+      id: number,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTrigger>
+    > {
+      const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
+        configuration
+      ).readTrigger(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary List of Trigger
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
-     * @param {string} [name]
-     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
-     * @param {boolean} [editor]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchRoutingSchema(
+    async searchTrigger(
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
-      name?: string,
-      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
-      editor?: boolean,
+      schemaId?: Array<number>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListRoutingSchema>
+      ) => AxiosPromise<EngineListTrigger>
     > {
-      const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingSchema(
+      ).searchTrigger(page, size, q, sort, fields, id, schemaId, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} triggerId
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchTriggerJob(
+      triggerId: number,
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      createdAtFrom?: string,
+      createdAtTo?: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListTriggerJob>
+    > {
+      const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
+        configuration
+      ).searchTriggerJob(
+        triggerId,
         page,
         size,
         q,
         sort,
         fields,
-        id,
-        name,
-        type,
-        editor,
+        createdAtFrom,
+        createdAtTo,
         options
       )
       return (
@@ -804,65 +930,22 @@ export const RoutingSchemaServiceApiFp = function(
     },
     /**
      *
-     * @summary List RoutingSchemaTags
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
+     * @summary Update Trigger
+     * @param {number} id
+     * @param {EngineUpdateTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchRoutingSchemaTags(
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
-      fields?: Array<string>,
-      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
+    async updateTrigger(
+      id: number,
+      body: EngineUpdateTriggerRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineListRoutingSchemaTags>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTrigger>
     > {
-      const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).searchRoutingSchemaTags(page, size, q, sort, fields, type, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Update RoutingSchema
-     * @param {string} id
-     * @param {EngineUpdateRoutingSchemaRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateRoutingSchema(
-      id: string,
-      body: EngineUpdateRoutingSchemaRequest,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineRoutingSchema>
-    > {
-      const localVarAxiosArgs = await RoutingSchemaServiceApiAxiosParamCreator(
-        configuration
-      ).updateRoutingSchema(id, body, options)
+      ).updateTrigger(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -878,10 +961,10 @@ export const RoutingSchemaServiceApiFp = function(
 }
 
 /**
- * RoutingSchemaServiceApi - factory interface
+ * TriggerServiceApi - factory interface
  * @export
  */
-export const RoutingSchemaServiceApiFactory = function(
+export const TriggerServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -889,269 +972,309 @@ export const RoutingSchemaServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create RoutingSchema
-     * @param {EngineCreateRoutingSchemaRequest} body
+     * @summary Create Trigger
+     * @param {EngineCreateTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createRoutingSchema(
-      body: EngineCreateRoutingSchemaRequest,
+    createTrigger(
+      body: EngineCreateTriggerRequest,
       options?: any
-    ): AxiosPromise<EngineRoutingSchema> {
-      return RoutingSchemaServiceApiFp(configuration)
-        .createRoutingSchema(body, options)
+    ): AxiosPromise<EngineTrigger> {
+      return TriggerServiceApiFp(configuration)
+        .createTrigger(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Remove RoutingSchema
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} triggerId
+     * @param {EngineCreateTriggerJobRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteRoutingSchema(
-      id: string,
-      domainId?: string,
+    createTriggerJob(
+      triggerId: number,
+      body: EngineCreateTriggerJobRequest,
       options?: any
-    ): AxiosPromise<EngineRoutingSchema> {
-      return RoutingSchemaServiceApiFp(configuration)
-        .deleteRoutingSchema(id, domainId, options)
+    ): AxiosPromise<EngineTriggerJob> {
+      return TriggerServiceApiFp(configuration)
+        .createTriggerJob(triggerId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Patch RoutingSchema
-     * @param {string} id
-     * @param {EnginePatchRoutingSchemaRequest} body
+     * @summary Remove Trigger
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchRoutingSchema(
-      id: string,
-      body: EnginePatchRoutingSchemaRequest,
-      options?: any
-    ): AxiosPromise<EngineRoutingSchema> {
-      return RoutingSchemaServiceApiFp(configuration)
-        .patchRoutingSchema(id, body, options)
+    deleteTrigger(id: number, options?: any): AxiosPromise<EngineTrigger> {
+      return TriggerServiceApiFp(configuration)
+        .deleteTrigger(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary RoutingSchema item
-     * @param {string} id
-     * @param {string} [domainId]
+     * @param {number} id
+     * @param {EnginePatchTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readRoutingSchema(
-      id: string,
-      domainId?: string,
+    patchTrigger(
+      id: number,
+      body: EnginePatchTriggerRequest,
       options?: any
-    ): AxiosPromise<EngineRoutingSchema> {
-      return RoutingSchemaServiceApiFp(configuration)
-        .readRoutingSchema(id, domainId, options)
+    ): AxiosPromise<EngineTrigger> {
+      return TriggerServiceApiFp(configuration)
+        .patchTrigger(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary List RoutingSchema
+     * @summary Trigger item
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readTrigger(id: number, options?: any): AxiosPromise<EngineTrigger> {
+      return TriggerServiceApiFp(configuration)
+        .readTrigger(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary List of Trigger
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
-     * @param {string} [name]
-     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
-     * @param {boolean} [editor]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingSchema(
+    searchTrigger(
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
-      name?: string,
-      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
-      editor?: boolean,
+      schemaId?: Array<number>,
       options?: any
-    ): AxiosPromise<EngineListRoutingSchema> {
-      return RoutingSchemaServiceApiFp(configuration)
-        .searchRoutingSchema(
+    ): AxiosPromise<EngineListTrigger> {
+      return TriggerServiceApiFp(configuration)
+        .searchTrigger(page, size, q, sort, fields, id, schemaId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {number} triggerId
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {string} [createdAtFrom]
+     * @param {string} [createdAtTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchTriggerJob(
+      triggerId: number,
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      createdAtFrom?: string,
+      createdAtTo?: string,
+      options?: any
+    ): AxiosPromise<EngineListTriggerJob> {
+      return TriggerServiceApiFp(configuration)
+        .searchTriggerJob(
+          triggerId,
           page,
           size,
           q,
           sort,
           fields,
-          id,
-          name,
-          type,
-          editor,
+          createdAtFrom,
+          createdAtTo,
           options
         )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary List RoutingSchemaTags
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
+     * @summary Update Trigger
+     * @param {number} id
+     * @param {EngineUpdateTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchRoutingSchemaTags(
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
-      fields?: Array<string>,
-      type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
+    updateTrigger(
+      id: number,
+      body: EngineUpdateTriggerRequest,
       options?: any
-    ): AxiosPromise<EngineListRoutingSchemaTags> {
-      return RoutingSchemaServiceApiFp(configuration)
-        .searchRoutingSchemaTags(page, size, q, sort, fields, type, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary Update RoutingSchema
-     * @param {string} id
-     * @param {EngineUpdateRoutingSchemaRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateRoutingSchema(
-      id: string,
-      body: EngineUpdateRoutingSchemaRequest,
-      options?: any
-    ): AxiosPromise<EngineRoutingSchema> {
-      return RoutingSchemaServiceApiFp(configuration)
-        .updateRoutingSchema(id, body, options)
+    ): AxiosPromise<EngineTrigger> {
+      return TriggerServiceApiFp(configuration)
+        .updateTrigger(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * RoutingSchemaServiceApi - object-oriented interface
+ * TriggerServiceApi - object-oriented interface
  * @export
- * @class RoutingSchemaServiceApi
+ * @class TriggerServiceApi
  * @extends {BaseAPI}
  */
-export class RoutingSchemaServiceApi extends BaseAPI {
+export class TriggerServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create RoutingSchema
-   * @param {EngineCreateRoutingSchemaRequest} body
+   * @summary Create Trigger
+   * @param {EngineCreateTriggerRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApi
+   * @memberof TriggerServiceApi
    */
-  public createRoutingSchema(
-    body: EngineCreateRoutingSchemaRequest,
+  public createTrigger(body: EngineCreateTriggerRequest, options?: any) {
+    return TriggerServiceApiFp(this.configuration)
+      .createTrigger(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} triggerId
+   * @param {EngineCreateTriggerJobRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TriggerServiceApi
+   */
+  public createTriggerJob(
+    triggerId: number,
+    body: EngineCreateTriggerJobRequest,
     options?: any
   ) {
-    return RoutingSchemaServiceApiFp(this.configuration)
-      .createRoutingSchema(body, options)
+    return TriggerServiceApiFp(this.configuration)
+      .createTriggerJob(triggerId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Remove RoutingSchema
-   * @param {string} id
-   * @param {string} [domainId]
+   * @summary Remove Trigger
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApi
+   * @memberof TriggerServiceApi
    */
-  public deleteRoutingSchema(id: string, domainId?: string, options?: any) {
-    return RoutingSchemaServiceApiFp(this.configuration)
-      .deleteRoutingSchema(id, domainId, options)
+  public deleteTrigger(id: number, options?: any) {
+    return TriggerServiceApiFp(this.configuration)
+      .deleteTrigger(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Patch RoutingSchema
-   * @param {string} id
-   * @param {EnginePatchRoutingSchemaRequest} body
+   * @param {number} id
+   * @param {EnginePatchTriggerRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApi
+   * @memberof TriggerServiceApi
    */
-  public patchRoutingSchema(
-    id: string,
-    body: EnginePatchRoutingSchemaRequest,
+  public patchTrigger(
+    id: number,
+    body: EnginePatchTriggerRequest,
     options?: any
   ) {
-    return RoutingSchemaServiceApiFp(this.configuration)
-      .patchRoutingSchema(id, body, options)
+    return TriggerServiceApiFp(this.configuration)
+      .patchTrigger(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary RoutingSchema item
-   * @param {string} id
-   * @param {string} [domainId]
+   * @summary Trigger item
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApi
+   * @memberof TriggerServiceApi
    */
-  public readRoutingSchema(id: string, domainId?: string, options?: any) {
-    return RoutingSchemaServiceApiFp(this.configuration)
-      .readRoutingSchema(id, domainId, options)
+  public readTrigger(id: number, options?: any) {
+    return TriggerServiceApiFp(this.configuration)
+      .readTrigger(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary List RoutingSchema
+   * @summary List of Trigger
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
-   * @param {string} [name]
-   * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
-   * @param {boolean} [editor]
+   * @param {Array<number>} [schemaId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApi
+   * @memberof TriggerServiceApi
    */
-  public searchRoutingSchema(
+  public searchTrigger(
     page?: number,
     size?: number,
     q?: string,
     sort?: string,
     fields?: Array<string>,
     id?: Array<number>,
-    name?: string,
-    type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
-    editor?: boolean,
+    schemaId?: Array<number>,
     options?: any
   ) {
-    return RoutingSchemaServiceApiFp(this.configuration)
-      .searchRoutingSchema(
+    return TriggerServiceApiFp(this.configuration)
+      .searchTrigger(page, size, q, sort, fields, id, schemaId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} triggerId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {string} [createdAtFrom]
+   * @param {string} [createdAtTo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TriggerServiceApi
+   */
+  public searchTriggerJob(
+    triggerId: number,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    createdAtFrom?: string,
+    createdAtTo?: string,
+    options?: any
+  ) {
+    return TriggerServiceApiFp(this.configuration)
+      .searchTriggerJob(
+        triggerId,
         page,
         size,
         q,
         sort,
         fields,
-        id,
-        name,
-        type,
-        editor,
+        createdAtFrom,
+        createdAtTo,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1159,47 +1282,20 @@ export class RoutingSchemaServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary List RoutingSchemaTags
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
+   * @summary Update Trigger
+   * @param {number} id
+   * @param {EngineUpdateTriggerRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApi
+   * @memberof TriggerServiceApi
    */
-  public searchRoutingSchemaTags(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
+  public updateTrigger(
+    id: number,
+    body: EngineUpdateTriggerRequest,
     options?: any
   ) {
-    return RoutingSchemaServiceApiFp(this.configuration)
-      .searchRoutingSchemaTags(page, size, q, sort, fields, type, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary Update RoutingSchema
-   * @param {string} id
-   * @param {EngineUpdateRoutingSchemaRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof RoutingSchemaServiceApi
-   */
-  public updateRoutingSchema(
-    id: string,
-    body: EngineUpdateRoutingSchemaRequest,
-    options?: any
-  ) {
-    return RoutingSchemaServiceApiFp(this.configuration)
-      .updateRoutingSchema(id, body, options)
+    return TriggerServiceApiFp(this.configuration)
+      .updateTrigger(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

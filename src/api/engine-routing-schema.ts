@@ -13,6 +13,7 @@
 
 import { EngineLookup } from './engine-lookup'
 import { EngineRoutingSchemaType } from './engine-routing-schema-type'
+import { EngineSchemaTag } from './engine-schema-tag'
 
 /**
  *
@@ -76,10 +77,10 @@ export interface EngineRoutingSchema {
   schema?: object
   /**
    *
-   * @type {Array<string>}
+   * @type {Array<EngineSchemaTag>}
    * @memberof EngineRoutingSchema
    */
-  tags?: Array<string>
+  tags?: Array<EngineSchemaTag>
   /**
    *
    * @type {EngineRoutingSchemaType}
