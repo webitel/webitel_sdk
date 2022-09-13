@@ -345,6 +345,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
      * @param {string} [name]
      * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
      * @param {boolean} [editor]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -358,6 +359,7 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
       name?: string,
       type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
       editor?: boolean,
+      tags?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/routing/schema`
@@ -417,6 +419,10 @@ export const RoutingSchemaServiceApiAxiosParamCreator = function(
 
       if (editor !== undefined) {
         localVarQueryParameter['editor'] = editor
+      }
+
+      if (tags) {
+        localVarQueryParameter['tags'] = tags
       }
 
       localVarUrlObj.query = {
@@ -757,6 +763,7 @@ export const RoutingSchemaServiceApiFp = function(
      * @param {string} [name]
      * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
      * @param {boolean} [editor]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -770,6 +777,7 @@ export const RoutingSchemaServiceApiFp = function(
       name?: string,
       type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
       editor?: boolean,
+      tags?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -789,6 +797,7 @@ export const RoutingSchemaServiceApiFp = function(
         name,
         type,
         editor,
+        tags,
         options
       )
       return (
@@ -965,6 +974,7 @@ export const RoutingSchemaServiceApiFactory = function(
      * @param {string} [name]
      * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
      * @param {boolean} [editor]
+     * @param {Array<string>} [tags]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -978,6 +988,7 @@ export const RoutingSchemaServiceApiFactory = function(
       name?: string,
       type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
       editor?: boolean,
+      tags?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListRoutingSchema> {
       return RoutingSchemaServiceApiFp(configuration)
@@ -991,6 +1002,7 @@ export const RoutingSchemaServiceApiFactory = function(
           name,
           type,
           editor,
+          tags,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1125,6 +1137,7 @@ export class RoutingSchemaServiceApi extends BaseAPI {
    * @param {string} [name]
    * @param {Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>} [type]
    * @param {boolean} [editor]
+   * @param {Array<string>} [tags]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingSchemaServiceApi
@@ -1139,6 +1152,7 @@ export class RoutingSchemaServiceApi extends BaseAPI {
     name?: string,
     type?: Array<'default' | 'voice' | 'chat' | 'processing' | 'service'>,
     editor?: boolean,
+    tags?: Array<string>,
     options?: any
   ) {
     return RoutingSchemaServiceApiFp(this.configuration)
@@ -1152,6 +1166,7 @@ export class RoutingSchemaServiceApi extends BaseAPI {
         name,
         type,
         editor,
+        tags,
         options
       )
       .then((request) => request(this.axios, this.basePath))
