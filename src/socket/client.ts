@@ -93,6 +93,7 @@ const WEBSOCKET_EVENT_USER_STATE = 'user_state'
 const WEBSOCKET_EVENT_AGENT_STATUS = 'agent_status'
 const WEBSOCKET_EVENT_CHANNEL_STATUS = 'channel'
 const WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER = 'queue_join_member'
+const WEBSOCKET_EVENT_ERROR = 'error'
 
 const TASK_EVENT = 'task'
 const JOB_EVENT = 'job'
@@ -177,10 +178,11 @@ interface EventHandler {
   [TASK_EVENT](name: string, task: Task | undefined): void
   [JOB_EVENT](name: string, task: Task): void
   [WEBSOCKET_EVENT_CHAT](action: string, conversation: Conversation): void
+  [WEBSOCKET_EVENT_ERROR](err: Error): void
 }
 
 export interface ClientEvents {
-  disconnected(code: number): void
+  disconnected(code: number, err: Error | null): void
   connected(): void
   error(e: Error): void
   phone_registered(registered: boolean): void
@@ -189,6 +191,7 @@ export interface ClientEvents {
 export class Client extends EventEmitter<ClientEvents> {
   agent!: Agent
   phone?: SipPhone
+  lastError: null | Error
   private socket!: Socket
   private connectionInfo!: ConnectionInfo
   private readonly basePath: string
@@ -214,6 +217,7 @@ export class Client extends EventEmitter<ClientEvents> {
     this.basePath = `${formatBaseUri(
       _config.storageEndpoint || _config.endpoint
     )}`
+    this.lastError = null
   }
 
   async connect() {
@@ -825,6 +829,9 @@ export class Client extends EventEmitter<ClientEvents> {
         case WEBSOCKET_EVENT_CHANNEL_STATUS:
           this.handleChannelEvents(message.data as ChannelEvent)
           break
+        case WEBSOCKET_EVENT_ERROR:
+          this.lastError = message.data.error
+          break
         default:
           this.log.error(`event ${message.event} not handler`)
       }
@@ -938,11 +945,11 @@ export class Client extends EventEmitter<ClientEvents> {
           clearTimeout(this.pingTimer)
         }
         this.log.error('socket close code: ', code)
-        this.eventHandler.off('*')
         if (code !== 1000) {
-          this.emit('disconnected', code)
+          this.emit('disconnected', code, this.lastError)
           reject(new Error(`close socket code: ${code}`))
         }
+        this.eventHandler.off('*')
       })
       this.socket.on('open', () => {
         resolve(null)
