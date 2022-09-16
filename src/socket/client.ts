@@ -460,9 +460,17 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   async auth() {
-    return this.request(WEBSOCKET_AUTHENTICATION_CHALLENGE, {
-      token: this._config.token,
-    })
+    try {
+      const resp = await this.request(WEBSOCKET_AUTHENTICATION_CHALLENGE, {
+        token: this._config.token,
+      })
+
+      return resp
+    } catch (err) {
+      this.handleError(err)
+      await this.disconnect()
+      throw err
+    }
   }
 
   async ping() {
@@ -923,7 +931,7 @@ export class Client extends EventEmitter<ClientEvents> {
           screen: call.params.screen,
           disableStun: call.params.disableStun,
         },
-        300
+        400
       )
     }
   }
