@@ -59,6 +59,7 @@ export interface Config {
   registerWebDevice?: boolean
   phone?: number
   debug?: boolean
+  autoAnswerDelayTime?: number
 }
 
 interface PromiseCallback {
@@ -493,6 +494,10 @@ export class Client extends EventEmitter<ClientEvents> {
 
   get instanceId(): string {
     return this.connectionInfo.sock_id
+  }
+
+  get autoAnswerDelayTime() {
+    return this._config.autoAnswerDelayTime || 400
   }
 
   async agentSession() {
@@ -931,7 +936,7 @@ export class Client extends EventEmitter<ClientEvents> {
           screen: call.params.screen,
           disableStun: call.params.disableStun,
         },
-        400
+        this.autoAnswerDelayTime
       )
     }
   }
