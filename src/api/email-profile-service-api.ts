@@ -32,6 +32,8 @@ import { EngineListEmailProfile } from '../api'
 // @ts-ignore
 import { EnginePatchEmailProfileRequest } from '../api'
 // @ts-ignore
+import { EngineTestEmailProfileResponse } from '../api'
+// @ts-ignore
 import { EngineUpdateEmailProfileRequest } from '../api'
 /**
  * EmailProfileServiceApi - axios parameter creator
@@ -402,6 +404,70 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary EmailProfile check login
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    testEmailProfile: async (
+      id: number,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling testEmailProfile.'
+        )
+      }
+      const localVarPath = `/email/profile/{id}/test`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Update EmailProfile
      * @param {string} id
      * @param {EngineUpdateEmailProfileRequest} body
@@ -653,6 +719,36 @@ export const EmailProfileServiceApiFp = function(
     },
     /**
      *
+     * @summary EmailProfile check login
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async testEmailProfile(
+      id: number,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineTestEmailProfileResponse>
+    > {
+      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
+        configuration
+      ).testEmailProfile(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Update EmailProfile
      * @param {string} id
      * @param {EngineUpdateEmailProfileRequest} body
@@ -782,6 +878,21 @@ export const EmailProfileServiceApiFactory = function(
     },
     /**
      *
+     * @summary EmailProfile check login
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    testEmailProfile(
+      id: number,
+      options?: any
+    ): AxiosPromise<EngineTestEmailProfileResponse> {
+      return EmailProfileServiceApiFp(configuration)
+        .testEmailProfile(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Update EmailProfile
      * @param {string} id
      * @param {EngineUpdateEmailProfileRequest} body
@@ -892,6 +1003,20 @@ export class EmailProfileServiceApi extends BaseAPI {
   ) {
     return EmailProfileServiceApiFp(this.configuration)
       .searchEmailProfile(page, size, q, sort, fields, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary EmailProfile check login
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof EmailProfileServiceApi
+   */
+  public testEmailProfile(id: number, options?: any) {
+    return EmailProfileServiceApiFp(this.configuration)
+      .testEmailProfile(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

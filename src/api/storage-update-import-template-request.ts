@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineLookup } from './engine-lookup'
+
 /**
  * Update import template for CSV
  * @export
@@ -41,4 +43,10 @@ export interface StorageUpdateImportTemplateRequest {
    * @memberof StorageUpdateImportTemplateRequest
    */
   parameters?: object
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof StorageUpdateImportTemplateRequest
+   */
+  source?: EngineLookup
 }

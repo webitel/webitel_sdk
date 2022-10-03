@@ -38,6 +38,7 @@ import {
   RolePermissionError,
   TypeErrors,
 } from './errors'
+import { Notification, NotificationActions } from './notification'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
 import {
@@ -95,6 +96,7 @@ const WEBSOCKET_EVENT_AGENT_STATUS = 'agent_status'
 const WEBSOCKET_EVENT_CHANNEL_STATUS = 'channel'
 const WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER = 'queue_join_member'
 const WEBSOCKET_EVENT_ERROR = 'error'
+const WEBSOCKET_EVENT_NOTIFICATION = 'notification'
 
 const TASK_EVENT = 'task'
 const JOB_EVENT = 'job'
@@ -845,9 +847,33 @@ export class Client extends EventEmitter<ClientEvents> {
         case WEBSOCKET_EVENT_ERROR:
           this.lastError = message.data.error
           break
+
+        case WEBSOCKET_EVENT_NOTIFICATION:
+          this.handleNotification(message.data.notification as Notification)
+          break
         default:
           this.log.error(`event ${message.event} not handler`)
       }
+    }
+  }
+
+  private handleNotification(e: Notification) {
+    switch (e.action) {
+      case NotificationActions.HideMember:
+        if (this.agent && this.agent._listOfflineMembers) {
+          const list = this.agent._listOfflineMembers
+          if (list.items) {
+            for (let i = 0; i < list.items.length; i++) {
+              if (list.items[i].id === e.body!.member_id) {
+                list.items.splice(i, 1)
+                break
+              }
+            }
+          }
+        }
+        break
+      default:
+        this.log.error(`notification "${e.action}" not handled`)
     }
   }
 

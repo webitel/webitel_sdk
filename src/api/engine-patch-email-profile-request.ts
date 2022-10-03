@@ -33,6 +33,12 @@ export interface EnginePatchEmailProfileRequest {
   enabled?: boolean
   /**
    *
+   * @type {number}
+   * @memberof EnginePatchEmailProfileRequest
+   */
+  fetch_interval?: number
+  /**
+   *
    * @type {Array<string>}
    * @memberof EnginePatchEmailProfileRequest
    */
@@ -42,13 +48,13 @@ export interface EnginePatchEmailProfileRequest {
    * @type {string}
    * @memberof EnginePatchEmailProfileRequest
    */
-  host?: string
+  id: string
   /**
    *
    * @type {string}
    * @memberof EnginePatchEmailProfileRequest
    */
-  id: string
+  imap_host?: string
   /**
    *
    * @type {number}
@@ -85,6 +91,12 @@ export interface EnginePatchEmailProfileRequest {
    * @memberof EnginePatchEmailProfileRequest
    */
   schema?: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EnginePatchEmailProfileRequest
+   */
+  smtp_host?: string
   /**
    *
    * @type {number}

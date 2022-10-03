@@ -591,6 +591,8 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
+     * @param {string} [expireAtFrom]
+     * @param {string} [expireAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -602,6 +604,8 @@ export const ListServiceApiAxiosParamCreator = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
+      expireAtFrom?: string,
+      expireAtTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'listId' is not null or undefined
@@ -659,6 +663,14 @@ export const ListServiceApiAxiosParamCreator = function(
 
       if (id) {
         localVarQueryParameter['id'] = id
+      }
+
+      if (expireAtFrom !== undefined) {
+        localVarQueryParameter['expire_at.from'] = expireAtFrom
+      }
+
+      if (expireAtTo !== undefined) {
+        localVarQueryParameter['expire_at.to'] = expireAtTo
       }
 
       localVarUrlObj.query = {
@@ -1095,6 +1107,8 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
+     * @param {string} [expireAtFrom]
+     * @param {string} [expireAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1106,6 +1120,8 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
+      expireAtFrom?: string,
+      expireAtTo?: string,
       options?: any
     ): Promise<
       (
@@ -1123,6 +1139,8 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
         sort,
         fields,
         id,
+        expireAtFrom,
+        expireAtTo,
         options
       )
       return (
@@ -1351,6 +1369,8 @@ export const ListServiceApiFactory = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
+     * @param {string} [expireAtFrom]
+     * @param {string} [expireAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1362,6 +1382,8 @@ export const ListServiceApiFactory = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
+      expireAtFrom?: string,
+      expireAtTo?: string,
       options?: any
     ): AxiosPromise<EngineListOfListCommunication> {
       return ListServiceApiFp(configuration)
@@ -1373,6 +1395,8 @@ export const ListServiceApiFactory = function(
           sort,
           fields,
           id,
+          expireAtFrom,
+          expireAtTo,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1565,6 +1589,8 @@ export class ListServiceApi extends BaseAPI {
    * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
+   * @param {string} [expireAtFrom]
+   * @param {string} [expireAtTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ListServiceApi
@@ -1577,10 +1603,23 @@ export class ListServiceApi extends BaseAPI {
     sort?: string,
     fields?: Array<string>,
     id?: Array<number>,
+    expireAtFrom?: string,
+    expireAtTo?: string,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .searchListCommunication(listId, page, size, q, sort, fields, id, options)
+      .searchListCommunication(
+        listId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        expireAtFrom,
+        expireAtTo,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

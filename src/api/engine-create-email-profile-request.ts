@@ -33,10 +33,16 @@ export interface EngineCreateEmailProfileRequest {
   enabled?: boolean
   /**
    *
+   * @type {number}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  fetch_interval: number
+  /**
+   *
    * @type {string}
    * @memberof EngineCreateEmailProfileRequest
    */
-  host: string
+  imap_host: string
   /**
    *
    * @type {number}
@@ -73,6 +79,12 @@ export interface EngineCreateEmailProfileRequest {
    * @memberof EngineCreateEmailProfileRequest
    */
   schema: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateEmailProfileRequest
+   */
+  smtp_host: string
   /**
    *
    * @type {number}

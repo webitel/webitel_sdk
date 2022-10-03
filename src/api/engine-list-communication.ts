@@ -28,6 +28,12 @@ export interface EngineListCommunication {
    * @type {string}
    * @memberof EngineListCommunication
    */
+  expire_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineListCommunication
+   */
   id?: string
   /**
    *

@@ -28,13 +28,13 @@ export interface CreateCallRequestCallSettings {
    * @type {boolean}
    * @memberof CreateCallRequestCallSettings
    */
-  auto_answer?: boolean
+  cancel_distribute?: boolean
   /**
    *
    * @type {boolean}
    * @memberof CreateCallRequestCallSettings
    */
-  cancel_distribute?: boolean
+  disable_auto_answer?: boolean
   /**
    *
    * @type {boolean}

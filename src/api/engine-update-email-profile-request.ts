@@ -33,16 +33,22 @@ export interface EngineUpdateEmailProfileRequest {
   enabled?: boolean
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  host: string
+  fetch_interval: number
   /**
    *
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  id: string
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  imap_host: string
   /**
    *
    * @type {number}
@@ -79,6 +85,12 @@ export interface EngineUpdateEmailProfileRequest {
    * @memberof EngineUpdateEmailProfileRequest
    */
   schema: EngineLookup
+  /**
+   *
+   * @type {string}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  smtp_host: string
   /**
    *
    * @type {number}

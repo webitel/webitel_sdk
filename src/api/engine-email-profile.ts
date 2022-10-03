@@ -24,6 +24,12 @@ export interface EngineEmailProfile {
    * @type {string}
    * @memberof EngineEmailProfile
    */
+  activity_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
   created_at?: string
   /**
    *
@@ -48,13 +54,25 @@ export interface EngineEmailProfile {
    * @type {string}
    * @memberof EngineEmailProfile
    */
-  host?: string
+  fetch_error?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineEmailProfile
+   */
+  fetch_interval?: number
   /**
    *
    * @type {string}
    * @memberof EngineEmailProfile
    */
   id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  imap_host?: string
   /**
    *
    * @type {number}
@@ -93,10 +111,22 @@ export interface EngineEmailProfile {
   schema?: EngineLookup
   /**
    *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  smtp_host?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineEmailProfile
    */
   smtp_port?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineEmailProfile
+   */
+  state?: string
   /**
    *
    * @type {string}

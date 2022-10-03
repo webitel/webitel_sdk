@@ -28,7 +28,7 @@ export interface EngineCreateListCommunicationRequest {
    * @type {string}
    * @memberof EngineCreateListCommunicationRequest
    */
-  domain_id?: string
+  expire_at?: string
   /**
    *
    * @type {string}

@@ -84,8 +84,13 @@ export enum ChannelType {
   Job = 'task', // todo rename task to job
 }
 
+type OfflineMember = {
+  id: number
+  [key: string]: any
+}
+
 export interface OfflineMemberList {
-  items: object[]
+  items: OfflineMember[]
   next?: boolean
 }
 

@@ -28,7 +28,7 @@ export interface EngineUpdateListCommunicationRequest {
    * @type {string}
    * @memberof EngineUpdateListCommunicationRequest
    */
-  domain_id?: string
+  expire_at?: string
   /**
    *
    * @type {string}
