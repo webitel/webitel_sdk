@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineEavesdropCallRequestEndpointRequest } from './engine-eavesdrop-call-request-endpoint-request'
+
 /**
  *
  * @export
@@ -31,10 +33,10 @@ export interface EngineEavesdropCallRequest {
   control?: boolean
   /**
    *
-   * @type {string}
+   * @type {EngineEavesdropCallRequestEndpointRequest}
    * @memberof EngineEavesdropCallRequest
    */
-  domain_id?: string
+  from?: EngineEavesdropCallRequestEndpointRequest
   /**
    *
    * @type {string}

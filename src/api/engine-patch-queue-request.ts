@@ -76,6 +76,12 @@ export interface EnginePatchQueueRequest {
   form_schema?: EngineLookup
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EnginePatchQueueRequest
+   */
+  grantee?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EnginePatchQueueRequest
    */

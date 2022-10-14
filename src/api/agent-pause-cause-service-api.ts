@@ -33,6 +33,8 @@ import { EngineListAgentPauseCause } from '../api'
 import { EnginePatchAgentPauseCauseRequest } from '../api'
 // @ts-ignore
 import { EngineUpdateAgentPauseCauseRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * AgentPauseCauseServiceApi - axios parameter creator
  * @export
@@ -47,7 +49,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentPauseCause: async (
+    agentPauseCauseServiceCreateAgentPauseCause: async (
       body: EngineCreateAgentPauseCauseRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -55,7 +57,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createAgentPauseCause.'
+          'Required parameter body was null or undefined when calling agentPauseCauseServiceCreateAgentPauseCause.'
         )
       }
       const localVarPath = `/call_center/pause_causes`
@@ -115,7 +117,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentPauseCause: async (
+    agentPauseCauseServiceDeleteAgentPauseCause: async (
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -123,7 +125,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteAgentPauseCause.'
+          'Required parameter id was null or undefined when calling agentPauseCauseServiceDeleteAgentPauseCause.'
         )
       }
       const localVarPath = `/call_center/pause_causes/{id}`.replace(
@@ -179,7 +181,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchAgentPauseCause: async (
+    agentPauseCauseServicePatchAgentPauseCause: async (
       id: number,
       body: EnginePatchAgentPauseCauseRequest,
       options: any = {}
@@ -188,14 +190,14 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling patchAgentPauseCause.'
+          'Required parameter id was null or undefined when calling agentPauseCauseServicePatchAgentPauseCause.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchAgentPauseCause.'
+          'Required parameter body was null or undefined when calling agentPauseCauseServicePatchAgentPauseCause.'
         )
       }
       const localVarPath = `/call_center/pause_causes/{id}`.replace(
@@ -258,7 +260,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentPauseCause: async (
+    agentPauseCauseServiceReadAgentPauseCause: async (
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -266,7 +268,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readAgentPauseCause.'
+          'Required parameter id was null or undefined when calling agentPauseCauseServiceReadAgentPauseCause.'
         )
       }
       const localVarPath = `/call_center/pause_causes/{id}`.replace(
@@ -326,7 +328,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentPauseCause: async (
+    agentPauseCauseServiceSearchAgentPauseCause: async (
       page?: number,
       size?: number,
       q?: string,
@@ -409,7 +411,7 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentPauseCause: async (
+    agentPauseCauseServiceUpdateAgentPauseCause: async (
       id: number,
       body: EngineUpdateAgentPauseCauseRequest,
       options: any = {}
@@ -418,14 +420,14 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateAgentPauseCause.'
+          'Required parameter id was null or undefined when calling agentPauseCauseServiceUpdateAgentPauseCause.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateAgentPauseCause.'
+          'Required parameter body was null or undefined when calling agentPauseCauseServiceUpdateAgentPauseCause.'
         )
       }
       const localVarPath = `/call_center/pause_causes/{id}`.replace(
@@ -499,7 +501,7 @@ export const AgentPauseCauseServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createAgentPauseCause(
+    async agentPauseCauseServiceCreateAgentPauseCause(
       body: EngineCreateAgentPauseCauseRequest,
       options?: any
     ): Promise<
@@ -510,7 +512,7 @@ export const AgentPauseCauseServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).createAgentPauseCause(body, options)
+      ).agentPauseCauseServiceCreateAgentPauseCause(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -528,7 +530,7 @@ export const AgentPauseCauseServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteAgentPauseCause(
+    async agentPauseCauseServiceDeleteAgentPauseCause(
       id: number,
       options?: any
     ): Promise<
@@ -539,7 +541,7 @@ export const AgentPauseCauseServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).deleteAgentPauseCause(id, options)
+      ).agentPauseCauseServiceDeleteAgentPauseCause(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -558,7 +560,7 @@ export const AgentPauseCauseServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchAgentPauseCause(
+    async agentPauseCauseServicePatchAgentPauseCause(
       id: number,
       body: EnginePatchAgentPauseCauseRequest,
       options?: any
@@ -570,7 +572,7 @@ export const AgentPauseCauseServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).patchAgentPauseCause(id, body, options)
+      ).agentPauseCauseServicePatchAgentPauseCause(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -588,7 +590,7 @@ export const AgentPauseCauseServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readAgentPauseCause(
+    async agentPauseCauseServiceReadAgentPauseCause(
       id: number,
       options?: any
     ): Promise<
@@ -599,7 +601,7 @@ export const AgentPauseCauseServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).readAgentPauseCause(id, options)
+      ).agentPauseCauseServiceReadAgentPauseCause(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -622,7 +624,7 @@ export const AgentPauseCauseServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchAgentPauseCause(
+    async agentPauseCauseServiceSearchAgentPauseCause(
       page?: number,
       size?: number,
       q?: string,
@@ -638,7 +640,15 @@ export const AgentPauseCauseServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentPauseCause(page, size, q, sort, fields, id, options)
+      ).agentPauseCauseServiceSearchAgentPauseCause(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -657,7 +667,7 @@ export const AgentPauseCauseServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateAgentPauseCause(
+    async agentPauseCauseServiceUpdateAgentPauseCause(
       id: number,
       body: EngineUpdateAgentPauseCauseRequest,
       options?: any
@@ -669,7 +679,7 @@ export const AgentPauseCauseServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentPauseCauseServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentPauseCause(id, body, options)
+      ).agentPauseCauseServiceUpdateAgentPauseCause(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -700,12 +710,12 @@ export const AgentPauseCauseServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentPauseCause(
+    agentPauseCauseServiceCreateAgentPauseCause(
       body: EngineCreateAgentPauseCauseRequest,
       options?: any
     ): AxiosPromise<EngineAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
-        .createAgentPauseCause(body, options)
+        .agentPauseCauseServiceCreateAgentPauseCause(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -714,12 +724,12 @@ export const AgentPauseCauseServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteAgentPauseCause(
+    agentPauseCauseServiceDeleteAgentPauseCause(
       id: number,
       options?: any
     ): AxiosPromise<EngineAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
-        .deleteAgentPauseCause(id, options)
+        .agentPauseCauseServiceDeleteAgentPauseCause(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -729,13 +739,13 @@ export const AgentPauseCauseServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchAgentPauseCause(
+    agentPauseCauseServicePatchAgentPauseCause(
       id: number,
       body: EnginePatchAgentPauseCauseRequest,
       options?: any
     ): AxiosPromise<EngineAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
-        .patchAgentPauseCause(id, body, options)
+        .agentPauseCauseServicePatchAgentPauseCause(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -744,12 +754,12 @@ export const AgentPauseCauseServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentPauseCause(
+    agentPauseCauseServiceReadAgentPauseCause(
       id: number,
       options?: any
     ): AxiosPromise<EngineAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
-        .readAgentPauseCause(id, options)
+        .agentPauseCauseServiceReadAgentPauseCause(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -763,7 +773,7 @@ export const AgentPauseCauseServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAgentPauseCause(
+    agentPauseCauseServiceSearchAgentPauseCause(
       page?: number,
       size?: number,
       q?: string,
@@ -773,7 +783,15 @@ export const AgentPauseCauseServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
-        .searchAgentPauseCause(page, size, q, sort, fields, id, options)
+        .agentPauseCauseServiceSearchAgentPauseCause(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -783,13 +801,13 @@ export const AgentPauseCauseServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAgentPauseCause(
+    agentPauseCauseServiceUpdateAgentPauseCause(
       id: number,
       body: EngineUpdateAgentPauseCauseRequest,
       options?: any
     ): AxiosPromise<EngineAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
-        .updateAgentPauseCause(id, body, options)
+        .agentPauseCauseServiceUpdateAgentPauseCause(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -809,12 +827,12 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentPauseCauseServiceApi
    */
-  public createAgentPauseCause(
+  public agentPauseCauseServiceCreateAgentPauseCause(
     body: EngineCreateAgentPauseCauseRequest,
     options?: any
   ) {
     return AgentPauseCauseServiceApiFp(this.configuration)
-      .createAgentPauseCause(body, options)
+      .agentPauseCauseServiceCreateAgentPauseCause(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -825,9 +843,12 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentPauseCauseServiceApi
    */
-  public deleteAgentPauseCause(id: number, options?: any) {
+  public agentPauseCauseServiceDeleteAgentPauseCause(
+    id: number,
+    options?: any
+  ) {
     return AgentPauseCauseServiceApiFp(this.configuration)
-      .deleteAgentPauseCause(id, options)
+      .agentPauseCauseServiceDeleteAgentPauseCause(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -839,13 +860,13 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentPauseCauseServiceApi
    */
-  public patchAgentPauseCause(
+  public agentPauseCauseServicePatchAgentPauseCause(
     id: number,
     body: EnginePatchAgentPauseCauseRequest,
     options?: any
   ) {
     return AgentPauseCauseServiceApiFp(this.configuration)
-      .patchAgentPauseCause(id, body, options)
+      .agentPauseCauseServicePatchAgentPauseCause(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -856,9 +877,9 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentPauseCauseServiceApi
    */
-  public readAgentPauseCause(id: number, options?: any) {
+  public agentPauseCauseServiceReadAgentPauseCause(id: number, options?: any) {
     return AgentPauseCauseServiceApiFp(this.configuration)
-      .readAgentPauseCause(id, options)
+      .agentPauseCauseServiceReadAgentPauseCause(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -874,7 +895,7 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentPauseCauseServiceApi
    */
-  public searchAgentPauseCause(
+  public agentPauseCauseServiceSearchAgentPauseCause(
     page?: number,
     size?: number,
     q?: string,
@@ -884,7 +905,15 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
     options?: any
   ) {
     return AgentPauseCauseServiceApiFp(this.configuration)
-      .searchAgentPauseCause(page, size, q, sort, fields, id, options)
+      .agentPauseCauseServiceSearchAgentPauseCause(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -896,13 +925,13 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentPauseCauseServiceApi
    */
-  public updateAgentPauseCause(
+  public agentPauseCauseServiceUpdateAgentPauseCause(
     id: number,
     body: EngineUpdateAgentPauseCauseRequest,
     options?: any
   ) {
     return AgentPauseCauseServiceApiFp(this.configuration)
-      .updateAgentPauseCause(id, body, options)
+      .agentPauseCauseServiceUpdateAgentPauseCause(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

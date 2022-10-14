@@ -11,42 +11,42 @@
  * Do not edit the class manually.
  */
 
-import { StorageUploadStatusCode } from './storage-upload-status-code'
+import { ProtobufAny } from './protobuf-any'
 
 /**
  *
  * @export
- * @interface StorageUploadFileResponse
+ * @interface RuntimeStreamError
  */
-export interface StorageUploadFileResponse {
+export interface RuntimeStreamError {
   /**
    *
-   * @type {StorageUploadStatusCode}
-   * @memberof StorageUploadFileResponse
+   * @type {Array<ProtobufAny>}
+   * @memberof RuntimeStreamError
    */
-  code?: StorageUploadStatusCode
+  details?: Array<ProtobufAny>
   /**
    *
-   * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @type {number}
+   * @memberof RuntimeStreamError
    */
-  file_id?: string
+  grpc_code?: number
   /**
    *
-   * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @type {number}
+   * @memberof RuntimeStreamError
    */
-  file_url?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StorageUploadFileResponse
-   */
-  server?: string
+  http_code?: number
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof RuntimeStreamError
    */
-  size?: string
+  http_status?: string
+  /**
+   *
+   * @type {string}
+   * @memberof RuntimeStreamError
+   */
+  message?: string
 }

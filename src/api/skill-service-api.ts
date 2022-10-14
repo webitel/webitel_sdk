@@ -31,6 +31,8 @@ import { EngineListSkill } from '../api'
 import { EngineSkill } from '../api'
 // @ts-ignore
 import { EngineUpdateSkillRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * SkillServiceApi - axios parameter creator
  * @export
@@ -46,7 +48,7 @@ export const SkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSkill: async (
+    skillServiceCreateSkill: async (
       body: EngineCreateSkillRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -54,7 +56,7 @@ export const SkillServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createSkill.'
+          'Required parameter body was null or undefined when calling skillServiceCreateSkill.'
         )
       }
       const localVarPath = `/call_center/skills`
@@ -116,7 +118,7 @@ export const SkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSkill: async (
+    skillServiceDeleteSkill: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -125,7 +127,7 @@ export const SkillServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteSkill.'
+          'Required parameter id was null or undefined when calling skillServiceDeleteSkill.'
         )
       }
       const localVarPath = `/call_center/skills/{id}`.replace(
@@ -186,7 +188,7 @@ export const SkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSkill: async (
+    skillServiceReadSkill: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -195,7 +197,7 @@ export const SkillServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readSkill.'
+          'Required parameter id was null or undefined when calling skillServiceReadSkill.'
         )
       }
       const localVarPath = `/call_center/skills/{id}`.replace(
@@ -260,7 +262,7 @@ export const SkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchSkill: async (
+    skillServiceSearchSkill: async (
       page?: number,
       size?: number,
       q?: string,
@@ -344,7 +346,7 @@ export const SkillServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateSkill: async (
+    skillServiceUpdateSkill: async (
       id: string,
       body: EngineUpdateSkillRequest,
       options: any = {}
@@ -353,14 +355,14 @@ export const SkillServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateSkill.'
+          'Required parameter id was null or undefined when calling skillServiceUpdateSkill.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateSkill.'
+          'Required parameter body was null or undefined when calling skillServiceUpdateSkill.'
         )
       }
       const localVarPath = `/call_center/skills/{id}`.replace(
@@ -433,7 +435,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createSkill(
+    async skillServiceCreateSkill(
       body: EngineCreateSkillRequest,
       options?: any
     ): Promise<
@@ -441,7 +443,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
         configuration
-      ).createSkill(body, options)
+      ).skillServiceCreateSkill(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -461,7 +463,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteSkill(
+    async skillServiceDeleteSkill(
       id: string,
       domainId?: string,
       options?: any
@@ -470,7 +472,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
         configuration
-      ).deleteSkill(id, domainId, options)
+      ).skillServiceDeleteSkill(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -490,7 +492,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readSkill(
+    async skillServiceReadSkill(
       id: string,
       domainId?: string,
       options?: any
@@ -499,7 +501,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
         configuration
-      ).readSkill(id, domainId, options)
+      ).skillServiceReadSkill(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -523,7 +525,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchSkill(
+    async skillServiceSearchSkill(
       page?: number,
       size?: number,
       q?: string,
@@ -539,7 +541,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
         configuration
-      ).searchSkill(page, size, q, sort, fields, id, options)
+      ).skillServiceSearchSkill(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -559,7 +561,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateSkill(
+    async skillServiceUpdateSkill(
       id: string,
       body: EngineUpdateSkillRequest,
       options?: any
@@ -568,7 +570,7 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
         configuration
-      ).updateSkill(id, body, options)
+      ).skillServiceUpdateSkill(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -600,12 +602,12 @@ export const SkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSkill(
+    skillServiceCreateSkill(
       body: EngineCreateSkillRequest,
       options?: any
     ): AxiosPromise<EngineSkill> {
       return SkillServiceApiFp(configuration)
-        .createSkill(body, options)
+        .skillServiceCreateSkill(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -616,13 +618,13 @@ export const SkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSkill(
+    skillServiceDeleteSkill(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineSkill> {
       return SkillServiceApiFp(configuration)
-        .deleteSkill(id, domainId, options)
+        .skillServiceDeleteSkill(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -633,13 +635,13 @@ export const SkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSkill(
+    skillServiceReadSkill(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineSkill> {
       return SkillServiceApiFp(configuration)
-        .readSkill(id, domainId, options)
+        .skillServiceReadSkill(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -654,7 +656,7 @@ export const SkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchSkill(
+    skillServiceSearchSkill(
       page?: number,
       size?: number,
       q?: string,
@@ -664,7 +666,7 @@ export const SkillServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListSkill> {
       return SkillServiceApiFp(configuration)
-        .searchSkill(page, size, q, sort, fields, id, options)
+        .skillServiceSearchSkill(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -675,13 +677,13 @@ export const SkillServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateSkill(
+    skillServiceUpdateSkill(
       id: string,
       body: EngineUpdateSkillRequest,
       options?: any
     ): AxiosPromise<EngineSkill> {
       return SkillServiceApiFp(configuration)
-        .updateSkill(id, body, options)
+        .skillServiceUpdateSkill(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -702,9 +704,12 @@ export class SkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
-  public createSkill(body: EngineCreateSkillRequest, options?: any) {
+  public skillServiceCreateSkill(
+    body: EngineCreateSkillRequest,
+    options?: any
+  ) {
     return SkillServiceApiFp(this.configuration)
-      .createSkill(body, options)
+      .skillServiceCreateSkill(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -717,9 +722,9 @@ export class SkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
-  public deleteSkill(id: string, domainId?: string, options?: any) {
+  public skillServiceDeleteSkill(id: string, domainId?: string, options?: any) {
     return SkillServiceApiFp(this.configuration)
-      .deleteSkill(id, domainId, options)
+      .skillServiceDeleteSkill(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -732,9 +737,9 @@ export class SkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
-  public readSkill(id: string, domainId?: string, options?: any) {
+  public skillServiceReadSkill(id: string, domainId?: string, options?: any) {
     return SkillServiceApiFp(this.configuration)
-      .readSkill(id, domainId, options)
+      .skillServiceReadSkill(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -751,7 +756,7 @@ export class SkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
-  public searchSkill(
+  public skillServiceSearchSkill(
     page?: number,
     size?: number,
     q?: string,
@@ -761,7 +766,7 @@ export class SkillServiceApi extends BaseAPI {
     options?: any
   ) {
     return SkillServiceApiFp(this.configuration)
-      .searchSkill(page, size, q, sort, fields, id, options)
+      .skillServiceSearchSkill(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -774,13 +779,13 @@ export class SkillServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SkillServiceApi
    */
-  public updateSkill(
+  public skillServiceUpdateSkill(
     id: string,
     body: EngineUpdateSkillRequest,
     options?: any
   ) {
     return SkillServiceApiFp(this.configuration)
-      .updateSkill(id, body, options)
+      .skillServiceUpdateSkill(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -94,6 +94,12 @@ export interface EngineQueue {
   form_schema?: EngineLookup
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineQueue
+   */
+  grantee?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineQueue
    */

@@ -12,7 +12,7 @@
  */
 
 import { CreateCallRequestCallSettings } from './create-call-request-call-settings'
-import { CreateCallRequestEndpointRequest } from './create-call-request-endpoint-request'
+import { EngineCreateCallRequestEndpointRequest } from './engine-create-call-request-endpoint-request'
 
 /**
  *
@@ -34,10 +34,10 @@ export interface EngineCreateCallRequest {
   domain_id?: string
   /**
    *
-   * @type {CreateCallRequestEndpointRequest}
+   * @type {EngineCreateCallRequestEndpointRequest}
    * @memberof EngineCreateCallRequest
    */
-  from?: CreateCallRequestEndpointRequest
+  from?: EngineCreateCallRequestEndpointRequest
   /**
    *
    * @type {CreateCallRequestCallSettings}
@@ -46,8 +46,8 @@ export interface EngineCreateCallRequest {
   params?: CreateCallRequestCallSettings
   /**
    *
-   * @type {CreateCallRequestEndpointRequest}
+   * @type {EngineCreateCallRequestEndpointRequest}
    * @memberof EngineCreateCallRequest
    */
-  to?: CreateCallRequestEndpointRequest
+  to?: EngineCreateCallRequestEndpointRequest
 }

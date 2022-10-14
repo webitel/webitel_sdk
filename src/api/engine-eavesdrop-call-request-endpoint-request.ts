@@ -11,42 +11,34 @@
  * Do not edit the class manually.
  */
 
-import { StorageUploadStatusCode } from './storage-upload-status-code'
-
 /**
  *
  * @export
- * @interface StorageUploadFileResponse
+ * @interface EngineEavesdropCallRequestEndpointRequest
  */
-export interface StorageUploadFileResponse {
-  /**
-   *
-   * @type {StorageUploadStatusCode}
-   * @memberof StorageUploadFileResponse
-   */
-  code?: StorageUploadStatusCode
+export interface EngineEavesdropCallRequestEndpointRequest {
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof EngineEavesdropCallRequestEndpointRequest
    */
-  file_id?: string
+  app_id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof EngineEavesdropCallRequestEndpointRequest
    */
-  file_url?: string
+  extension?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof EngineEavesdropCallRequestEndpointRequest
    */
-  server?: string
+  id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof EngineEavesdropCallRequestEndpointRequest
    */
-  size?: string
+  type?: string
 }

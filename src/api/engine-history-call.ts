@@ -147,6 +147,12 @@ export interface EngineHistoryCall {
   gateway?: EngineLookup
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineHistoryCall
+   */
+  grantee?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineHistoryCall
    */

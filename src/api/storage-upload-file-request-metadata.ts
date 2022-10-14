@@ -11,42 +11,40 @@
  * Do not edit the class manually.
  */
 
-import { StorageUploadStatusCode } from './storage-upload-status-code'
-
 /**
  *
  * @export
- * @interface StorageUploadFileResponse
+ * @interface StorageUploadFileRequestMetadata
  */
-export interface StorageUploadFileResponse {
-  /**
-   *
-   * @type {StorageUploadStatusCode}
-   * @memberof StorageUploadFileResponse
-   */
-  code?: StorageUploadStatusCode
+export interface StorageUploadFileRequestMetadata {
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageUploadFileRequestMetadata
    */
-  file_id?: string
+  domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageUploadFileRequestMetadata
    */
-  file_url?: string
+  mime_type?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageUploadFileRequestMetadata
    */
-  server?: string
+  name?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof StorageUploadFileRequestMetadata
+   */
+  stream_response?: boolean
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageUploadFileRequestMetadata
    */
-  size?: string
+  uuid?: string
 }

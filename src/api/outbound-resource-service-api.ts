@@ -41,6 +41,8 @@ import { EngineResourceDisplay } from '../api'
 import { EngineUpdateOutboundResourceDisplayRequest } from '../api'
 // @ts-ignore
 import { EngineUpdateOutboundResourceRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * OutboundResourceServiceApi - axios parameter creator
  * @export
@@ -56,7 +58,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOutboundResource: async (
+    outboundResourceServiceCreateOutboundResource: async (
       body: EngineCreateOutboundResourceRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -64,7 +66,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createOutboundResource.'
+          'Required parameter body was null or undefined when calling outboundResourceServiceCreateOutboundResource.'
         )
       }
       const localVarPath = `/call_center/resources`
@@ -126,7 +128,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOutboundResourceDisplay: async (
+    outboundResourceServiceCreateOutboundResourceDisplay: async (
       resourceId: string,
       body: EngineCreateOutboundResourceDisplayRequest,
       options: any = {}
@@ -135,14 +137,14 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (resourceId === null || resourceId === undefined) {
         throw new RequiredError(
           'resourceId',
-          'Required parameter resourceId was null or undefined when calling createOutboundResourceDisplay.'
+          'Required parameter resourceId was null or undefined when calling outboundResourceServiceCreateOutboundResourceDisplay.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createOutboundResourceDisplay.'
+          'Required parameter body was null or undefined when calling outboundResourceServiceCreateOutboundResourceDisplay.'
         )
       }
       const localVarPath = `/call_center/resources/{resource_id}/display`.replace(
@@ -207,7 +209,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteOutboundResource: async (
+    outboundResourceServiceDeleteOutboundResource: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -216,7 +218,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteOutboundResource.'
+          'Required parameter id was null or undefined when calling outboundResourceServiceDeleteOutboundResource.'
         )
       }
       const localVarPath = `/call_center/resources/{id}`.replace(
@@ -278,7 +280,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteOutboundResourceDisplay: async (
+    outboundResourceServiceDeleteOutboundResourceDisplay: async (
       resourceId: string,
       id: string,
       domainId?: string,
@@ -288,14 +290,14 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (resourceId === null || resourceId === undefined) {
         throw new RequiredError(
           'resourceId',
-          'Required parameter resourceId was null or undefined when calling deleteOutboundResourceDisplay.'
+          'Required parameter resourceId was null or undefined when calling outboundResourceServiceDeleteOutboundResourceDisplay.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteOutboundResourceDisplay.'
+          'Required parameter id was null or undefined when calling outboundResourceServiceDeleteOutboundResourceDisplay.'
         )
       }
       const localVarPath = `/call_center/resources/{resource_id}/display/{id}`
@@ -355,7 +357,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchOutboundResource: async (
+    outboundResourceServicePatchOutboundResource: async (
       id: string,
       body: EnginePatchOutboundResourceRequest,
       options: any = {}
@@ -364,14 +366,14 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling patchOutboundResource.'
+          'Required parameter id was null or undefined when calling outboundResourceServicePatchOutboundResource.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchOutboundResource.'
+          'Required parameter body was null or undefined when calling outboundResourceServicePatchOutboundResource.'
         )
       }
       const localVarPath = `/call_center/resources/{id}`.replace(
@@ -436,7 +438,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readOutboundResource: async (
+    outboundResourceServiceReadOutboundResource: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -445,7 +447,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readOutboundResource.'
+          'Required parameter id was null or undefined when calling outboundResourceServiceReadOutboundResource.'
         )
       }
       const localVarPath = `/call_center/resources/{id}`.replace(
@@ -507,7 +509,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readOutboundResourceDisplay: async (
+    outboundResourceServiceReadOutboundResourceDisplay: async (
       resourceId: string,
       id: string,
       domainId?: string,
@@ -517,14 +519,14 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (resourceId === null || resourceId === undefined) {
         throw new RequiredError(
           'resourceId',
-          'Required parameter resourceId was null or undefined when calling readOutboundResourceDisplay.'
+          'Required parameter resourceId was null or undefined when calling outboundResourceServiceReadOutboundResourceDisplay.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readOutboundResourceDisplay.'
+          'Required parameter id was null or undefined when calling outboundResourceServiceReadOutboundResourceDisplay.'
         )
       }
       const localVarPath = `/call_center/resources/{resource_id}/display/{id}`
@@ -588,7 +590,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchOutboundResource: async (
+    outboundResourceServiceSearchOutboundResource: async (
       page?: number,
       size?: number,
       q?: string,
@@ -677,7 +679,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchOutboundResourceDisplay: async (
+    outboundResourceServiceSearchOutboundResourceDisplay: async (
       resourceId: string,
       page?: number,
       size?: number,
@@ -691,7 +693,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (resourceId === null || resourceId === undefined) {
         throw new RequiredError(
           'resourceId',
-          'Required parameter resourceId was null or undefined when calling searchOutboundResourceDisplay.'
+          'Required parameter resourceId was null or undefined when calling outboundResourceServiceSearchOutboundResourceDisplay.'
         )
       }
       const localVarPath = `/call_center/resources/{resource_id}/display`.replace(
@@ -772,7 +774,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateOutboundResource: async (
+    outboundResourceServiceUpdateOutboundResource: async (
       id: string,
       body: EngineUpdateOutboundResourceRequest,
       options: any = {}
@@ -781,14 +783,14 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateOutboundResource.'
+          'Required parameter id was null or undefined when calling outboundResourceServiceUpdateOutboundResource.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateOutboundResource.'
+          'Required parameter body was null or undefined when calling outboundResourceServiceUpdateOutboundResource.'
         )
       }
       const localVarPath = `/call_center/resources/{id}`.replace(
@@ -854,7 +856,7 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateOutboundResourceDisplay: async (
+    outboundResourceServiceUpdateOutboundResourceDisplay: async (
       resourceId: string,
       id: string,
       body: EngineUpdateOutboundResourceDisplayRequest,
@@ -864,21 +866,21 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
       if (resourceId === null || resourceId === undefined) {
         throw new RequiredError(
           'resourceId',
-          'Required parameter resourceId was null or undefined when calling updateOutboundResourceDisplay.'
+          'Required parameter resourceId was null or undefined when calling outboundResourceServiceUpdateOutboundResourceDisplay.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateOutboundResourceDisplay.'
+          'Required parameter id was null or undefined when calling outboundResourceServiceUpdateOutboundResourceDisplay.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateOutboundResourceDisplay.'
+          'Required parameter body was null or undefined when calling outboundResourceServiceUpdateOutboundResourceDisplay.'
         )
       }
       const localVarPath = `/call_center/resources/{resource_id}/display/{id}`
@@ -952,7 +954,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createOutboundResource(
+    async outboundResourceServiceCreateOutboundResource(
       body: EngineCreateOutboundResourceRequest,
       options?: any
     ): Promise<
@@ -963,7 +965,7 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).createOutboundResource(body, options)
+      ).outboundResourceServiceCreateOutboundResource(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -983,7 +985,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createOutboundResourceDisplay(
+    async outboundResourceServiceCreateOutboundResourceDisplay(
       resourceId: string,
       body: EngineCreateOutboundResourceDisplayRequest,
       options?: any
@@ -995,7 +997,11 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).createOutboundResourceDisplay(resourceId, body, options)
+      ).outboundResourceServiceCreateOutboundResourceDisplay(
+        resourceId,
+        body,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1015,7 +1021,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteOutboundResource(
+    async outboundResourceServiceDeleteOutboundResource(
       id: string,
       domainId?: string,
       options?: any
@@ -1027,7 +1033,7 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).deleteOutboundResource(id, domainId, options)
+      ).outboundResourceServiceDeleteOutboundResource(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1048,7 +1054,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteOutboundResourceDisplay(
+    async outboundResourceServiceDeleteOutboundResourceDisplay(
       resourceId: string,
       id: string,
       domainId?: string,
@@ -1061,7 +1067,12 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).deleteOutboundResourceDisplay(resourceId, id, domainId, options)
+      ).outboundResourceServiceDeleteOutboundResourceDisplay(
+        resourceId,
+        id,
+        domainId,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1081,7 +1092,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchOutboundResource(
+    async outboundResourceServicePatchOutboundResource(
       id: string,
       body: EnginePatchOutboundResourceRequest,
       options?: any
@@ -1093,7 +1104,7 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).patchOutboundResource(id, body, options)
+      ).outboundResourceServicePatchOutboundResource(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1113,7 +1124,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readOutboundResource(
+    async outboundResourceServiceReadOutboundResource(
       id: string,
       domainId?: string,
       options?: any
@@ -1125,7 +1136,7 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).readOutboundResource(id, domainId, options)
+      ).outboundResourceServiceReadOutboundResource(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1146,7 +1157,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readOutboundResourceDisplay(
+    async outboundResourceServiceReadOutboundResourceDisplay(
       resourceId: string,
       id: string,
       domainId?: string,
@@ -1159,7 +1170,12 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).readOutboundResourceDisplay(resourceId, id, domainId, options)
+      ).outboundResourceServiceReadOutboundResourceDisplay(
+        resourceId,
+        id,
+        domainId,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1183,7 +1199,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchOutboundResource(
+    async outboundResourceServiceSearchOutboundResource(
       page?: number,
       size?: number,
       q?: string,
@@ -1199,7 +1215,15 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).searchOutboundResource(page, size, q, sort, fields, id, options)
+      ).outboundResourceServiceSearchOutboundResource(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1224,7 +1248,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchOutboundResourceDisplay(
+    async outboundResourceServiceSearchOutboundResourceDisplay(
       resourceId: string,
       page?: number,
       size?: number,
@@ -1241,7 +1265,7 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).searchOutboundResourceDisplay(
+      ).outboundResourceServiceSearchOutboundResourceDisplay(
         resourceId,
         page,
         size,
@@ -1270,7 +1294,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateOutboundResource(
+    async outboundResourceServiceUpdateOutboundResource(
       id: string,
       body: EngineUpdateOutboundResourceRequest,
       options?: any
@@ -1282,7 +1306,7 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).updateOutboundResource(id, body, options)
+      ).outboundResourceServiceUpdateOutboundResource(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1303,7 +1327,7 @@ export const OutboundResourceServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateOutboundResourceDisplay(
+    async outboundResourceServiceUpdateOutboundResourceDisplay(
       resourceId: string,
       id: string,
       body: EngineUpdateOutboundResourceDisplayRequest,
@@ -1316,7 +1340,12 @@ export const OutboundResourceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
-      ).updateOutboundResourceDisplay(resourceId, id, body, options)
+      ).outboundResourceServiceUpdateOutboundResourceDisplay(
+        resourceId,
+        id,
+        body,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1348,12 +1377,12 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOutboundResource(
+    outboundResourceServiceCreateOutboundResource(
       body: EngineCreateOutboundResourceRequest,
       options?: any
     ): AxiosPromise<EngineOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
-        .createOutboundResource(body, options)
+        .outboundResourceServiceCreateOutboundResource(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1364,13 +1393,17 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createOutboundResourceDisplay(
+    outboundResourceServiceCreateOutboundResourceDisplay(
       resourceId: string,
       body: EngineCreateOutboundResourceDisplayRequest,
       options?: any
     ): AxiosPromise<EngineResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
-        .createOutboundResourceDisplay(resourceId, body, options)
+        .outboundResourceServiceCreateOutboundResourceDisplay(
+          resourceId,
+          body,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1381,13 +1414,13 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteOutboundResource(
+    outboundResourceServiceDeleteOutboundResource(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
-        .deleteOutboundResource(id, domainId, options)
+        .outboundResourceServiceDeleteOutboundResource(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1399,14 +1432,19 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteOutboundResourceDisplay(
+    outboundResourceServiceDeleteOutboundResourceDisplay(
       resourceId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
-        .deleteOutboundResourceDisplay(resourceId, id, domainId, options)
+        .outboundResourceServiceDeleteOutboundResourceDisplay(
+          resourceId,
+          id,
+          domainId,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1417,13 +1455,13 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchOutboundResource(
+    outboundResourceServicePatchOutboundResource(
       id: string,
       body: EnginePatchOutboundResourceRequest,
       options?: any
     ): AxiosPromise<EngineOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
-        .patchOutboundResource(id, body, options)
+        .outboundResourceServicePatchOutboundResource(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1434,13 +1472,13 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readOutboundResource(
+    outboundResourceServiceReadOutboundResource(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
-        .readOutboundResource(id, domainId, options)
+        .outboundResourceServiceReadOutboundResource(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1452,14 +1490,19 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readOutboundResourceDisplay(
+    outboundResourceServiceReadOutboundResourceDisplay(
       resourceId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
-        .readOutboundResourceDisplay(resourceId, id, domainId, options)
+        .outboundResourceServiceReadOutboundResourceDisplay(
+          resourceId,
+          id,
+          domainId,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1474,7 +1517,7 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchOutboundResource(
+    outboundResourceServiceSearchOutboundResource(
       page?: number,
       size?: number,
       q?: string,
@@ -1484,7 +1527,15 @@ export const OutboundResourceServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
-        .searchOutboundResource(page, size, q, sort, fields, id, options)
+        .outboundResourceServiceSearchOutboundResource(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1500,7 +1551,7 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchOutboundResourceDisplay(
+    outboundResourceServiceSearchOutboundResourceDisplay(
       resourceId: string,
       page?: number,
       size?: number,
@@ -1511,7 +1562,7 @@ export const OutboundResourceServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListOutboundResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
-        .searchOutboundResourceDisplay(
+        .outboundResourceServiceSearchOutboundResourceDisplay(
           resourceId,
           page,
           size,
@@ -1531,13 +1582,13 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateOutboundResource(
+    outboundResourceServiceUpdateOutboundResource(
       id: string,
       body: EngineUpdateOutboundResourceRequest,
       options?: any
     ): AxiosPromise<EngineOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
-        .updateOutboundResource(id, body, options)
+        .outboundResourceServiceUpdateOutboundResource(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1549,14 +1600,19 @@ export const OutboundResourceServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateOutboundResourceDisplay(
+    outboundResourceServiceUpdateOutboundResourceDisplay(
       resourceId: string,
       id: string,
       body: EngineUpdateOutboundResourceDisplayRequest,
       options?: any
     ): AxiosPromise<EngineResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
-        .updateOutboundResourceDisplay(resourceId, id, body, options)
+        .outboundResourceServiceUpdateOutboundResourceDisplay(
+          resourceId,
+          id,
+          body,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -1577,12 +1633,12 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public createOutboundResource(
+  public outboundResourceServiceCreateOutboundResource(
     body: EngineCreateOutboundResourceRequest,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .createOutboundResource(body, options)
+      .outboundResourceServiceCreateOutboundResource(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1595,13 +1651,17 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public createOutboundResourceDisplay(
+  public outboundResourceServiceCreateOutboundResourceDisplay(
     resourceId: string,
     body: EngineCreateOutboundResourceDisplayRequest,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .createOutboundResourceDisplay(resourceId, body, options)
+      .outboundResourceServiceCreateOutboundResourceDisplay(
+        resourceId,
+        body,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1614,9 +1674,13 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public deleteOutboundResource(id: string, domainId?: string, options?: any) {
+  public outboundResourceServiceDeleteOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .deleteOutboundResource(id, domainId, options)
+      .outboundResourceServiceDeleteOutboundResource(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1630,14 +1694,19 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public deleteOutboundResourceDisplay(
+  public outboundResourceServiceDeleteOutboundResourceDisplay(
     resourceId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .deleteOutboundResourceDisplay(resourceId, id, domainId, options)
+      .outboundResourceServiceDeleteOutboundResourceDisplay(
+        resourceId,
+        id,
+        domainId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1650,13 +1719,13 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public patchOutboundResource(
+  public outboundResourceServicePatchOutboundResource(
     id: string,
     body: EnginePatchOutboundResourceRequest,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .patchOutboundResource(id, body, options)
+      .outboundResourceServicePatchOutboundResource(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1669,9 +1738,13 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public readOutboundResource(id: string, domainId?: string, options?: any) {
+  public outboundResourceServiceReadOutboundResource(
+    id: string,
+    domainId?: string,
+    options?: any
+  ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .readOutboundResource(id, domainId, options)
+      .outboundResourceServiceReadOutboundResource(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1685,14 +1758,19 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public readOutboundResourceDisplay(
+  public outboundResourceServiceReadOutboundResourceDisplay(
     resourceId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .readOutboundResourceDisplay(resourceId, id, domainId, options)
+      .outboundResourceServiceReadOutboundResourceDisplay(
+        resourceId,
+        id,
+        domainId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1709,7 +1787,7 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public searchOutboundResource(
+  public outboundResourceServiceSearchOutboundResource(
     page?: number,
     size?: number,
     q?: string,
@@ -1719,7 +1797,15 @@ export class OutboundResourceServiceApi extends BaseAPI {
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .searchOutboundResource(page, size, q, sort, fields, id, options)
+      .outboundResourceServiceSearchOutboundResource(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1737,7 +1823,7 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public searchOutboundResourceDisplay(
+  public outboundResourceServiceSearchOutboundResourceDisplay(
     resourceId: string,
     page?: number,
     size?: number,
@@ -1748,7 +1834,7 @@ export class OutboundResourceServiceApi extends BaseAPI {
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .searchOutboundResourceDisplay(
+      .outboundResourceServiceSearchOutboundResourceDisplay(
         resourceId,
         page,
         size,
@@ -1770,13 +1856,13 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public updateOutboundResource(
+  public outboundResourceServiceUpdateOutboundResource(
     id: string,
     body: EngineUpdateOutboundResourceRequest,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .updateOutboundResource(id, body, options)
+      .outboundResourceServiceUpdateOutboundResource(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1790,14 +1876,19 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
-  public updateOutboundResourceDisplay(
+  public outboundResourceServiceUpdateOutboundResourceDisplay(
     resourceId: string,
     id: string,
     body: EngineUpdateOutboundResourceDisplayRequest,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
-      .updateOutboundResourceDisplay(resourceId, id, body, options)
+      .outboundResourceServiceUpdateOutboundResourceDisplay(
+        resourceId,
+        id,
+        body,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }

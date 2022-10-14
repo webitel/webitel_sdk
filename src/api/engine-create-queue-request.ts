@@ -70,6 +70,12 @@ export interface EngineCreateQueueRequest {
   form_schema?: EngineLookup
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineCreateQueueRequest
+   */
+  grantee?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineCreateQueueRequest
    */

@@ -35,6 +35,8 @@ import { EnginePatchQueueRequest } from '../api'
 import { EngineQueue } from '../api'
 // @ts-ignore
 import { EngineUpdateQueueRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * QueueServiceApi - axios parameter creator
  * @export
@@ -50,7 +52,7 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createQueue: async (
+    queueServiceCreateQueue: async (
       body: EngineCreateQueueRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -58,7 +60,7 @@ export const QueueServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createQueue.'
+          'Required parameter body was null or undefined when calling queueServiceCreateQueue.'
         )
       }
       const localVarPath = `/call_center/queues`
@@ -120,7 +122,7 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteQueue: async (
+    queueServiceDeleteQueue: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -129,7 +131,7 @@ export const QueueServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteQueue.'
+          'Required parameter id was null or undefined when calling queueServiceDeleteQueue.'
         )
       }
       const localVarPath = `/call_center/queues/{id}`.replace(
@@ -190,7 +192,7 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchQueue: async (
+    queueServicePatchQueue: async (
       id: string,
       body: EnginePatchQueueRequest,
       options: any = {}
@@ -199,14 +201,14 @@ export const QueueServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling patchQueue.'
+          'Required parameter id was null or undefined when calling queueServicePatchQueue.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchQueue.'
+          'Required parameter body was null or undefined when calling queueServicePatchQueue.'
         )
       }
       const localVarPath = `/call_center/queues/{id}`.replace(
@@ -271,7 +273,7 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readQueue: async (
+    queueServiceReadQueue: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -280,7 +282,7 @@ export const QueueServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readQueue.'
+          'Required parameter id was null or undefined when calling queueServiceReadQueue.'
         )
       }
       const localVarPath = `/call_center/queues/{id}`.replace(
@@ -346,7 +348,7 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchQueue: async (
+    queueServiceSearchQueue: async (
       page?: number,
       size?: number,
       q?: string,
@@ -443,7 +445,7 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchQueueReportGeneral: async (
+    queueServiceSearchQueueReportGeneral: async (
       page?: number,
       size?: number,
       joinedAtFrom?: string,
@@ -552,7 +554,7 @@ export const QueueServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateQueue: async (
+    queueServiceUpdateQueue: async (
       id: string,
       body: EngineUpdateQueueRequest,
       options: any = {}
@@ -561,14 +563,14 @@ export const QueueServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateQueue.'
+          'Required parameter id was null or undefined when calling queueServiceUpdateQueue.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateQueue.'
+          'Required parameter body was null or undefined when calling queueServiceUpdateQueue.'
         )
       }
       const localVarPath = `/call_center/queues/{id}`.replace(
@@ -641,7 +643,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createQueue(
+    async queueServiceCreateQueue(
       body: EngineCreateQueueRequest,
       options?: any
     ): Promise<
@@ -649,7 +651,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueServiceApiAxiosParamCreator(
         configuration
-      ).createQueue(body, options)
+      ).queueServiceCreateQueue(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -669,7 +671,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteQueue(
+    async queueServiceDeleteQueue(
       id: string,
       domainId?: string,
       options?: any
@@ -678,7 +680,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueServiceApiAxiosParamCreator(
         configuration
-      ).deleteQueue(id, domainId, options)
+      ).queueServiceDeleteQueue(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -698,7 +700,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchQueue(
+    async queueServicePatchQueue(
       id: string,
       body: EnginePatchQueueRequest,
       options?: any
@@ -707,7 +709,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueServiceApiAxiosParamCreator(
         configuration
-      ).patchQueue(id, body, options)
+      ).queueServicePatchQueue(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -727,7 +729,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readQueue(
+    async queueServiceReadQueue(
       id: string,
       domainId?: string,
       options?: any
@@ -736,7 +738,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueServiceApiAxiosParamCreator(
         configuration
-      ).readQueue(id, domainId, options)
+      ).queueServiceReadQueue(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -761,7 +763,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchQueue(
+    async queueServiceSearchQueue(
       page?: number,
       size?: number,
       q?: string,
@@ -778,7 +780,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueServiceApiAxiosParamCreator(
         configuration
-      ).searchQueue(page, size, q, sort, fields, id, type, options)
+      ).queueServiceSearchQueue(page, size, q, sort, fields, id, type, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -806,7 +808,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchQueueReportGeneral(
+    async queueServiceSearchQueueReportGeneral(
       page?: number,
       size?: number,
       joinedAtFrom?: string,
@@ -827,7 +829,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueServiceApiAxiosParamCreator(
         configuration
-      ).searchQueueReportGeneral(
+      ).queueServiceSearchQueueReportGeneral(
         page,
         size,
         joinedAtFrom,
@@ -860,7 +862,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateQueue(
+    async queueServiceUpdateQueue(
       id: string,
       body: EngineUpdateQueueRequest,
       options?: any
@@ -869,7 +871,7 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await QueueServiceApiAxiosParamCreator(
         configuration
-      ).updateQueue(id, body, options)
+      ).queueServiceUpdateQueue(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -901,12 +903,12 @@ export const QueueServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createQueue(
+    queueServiceCreateQueue(
       body: EngineCreateQueueRequest,
       options?: any
     ): AxiosPromise<EngineQueue> {
       return QueueServiceApiFp(configuration)
-        .createQueue(body, options)
+        .queueServiceCreateQueue(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -917,13 +919,13 @@ export const QueueServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteQueue(
+    queueServiceDeleteQueue(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineQueue> {
       return QueueServiceApiFp(configuration)
-        .deleteQueue(id, domainId, options)
+        .queueServiceDeleteQueue(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -934,13 +936,13 @@ export const QueueServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchQueue(
+    queueServicePatchQueue(
       id: string,
       body: EnginePatchQueueRequest,
       options?: any
     ): AxiosPromise<EngineQueue> {
       return QueueServiceApiFp(configuration)
-        .patchQueue(id, body, options)
+        .queueServicePatchQueue(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -951,13 +953,13 @@ export const QueueServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readQueue(
+    queueServiceReadQueue(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineQueue> {
       return QueueServiceApiFp(configuration)
-        .readQueue(id, domainId, options)
+        .queueServiceReadQueue(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -973,7 +975,7 @@ export const QueueServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchQueue(
+    queueServiceSearchQueue(
       page?: number,
       size?: number,
       q?: string,
@@ -984,7 +986,7 @@ export const QueueServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListQueue> {
       return QueueServiceApiFp(configuration)
-        .searchQueue(page, size, q, sort, fields, id, type, options)
+        .queueServiceSearchQueue(page, size, q, sort, fields, id, type, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1003,7 +1005,7 @@ export const QueueServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchQueueReportGeneral(
+    queueServiceSearchQueueReportGeneral(
       page?: number,
       size?: number,
       joinedAtFrom?: string,
@@ -1018,7 +1020,7 @@ export const QueueServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListReportGeneral> {
       return QueueServiceApiFp(configuration)
-        .searchQueueReportGeneral(
+        .queueServiceSearchQueueReportGeneral(
           page,
           size,
           joinedAtFrom,
@@ -1042,13 +1044,13 @@ export const QueueServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateQueue(
+    queueServiceUpdateQueue(
       id: string,
       body: EngineUpdateQueueRequest,
       options?: any
     ): AxiosPromise<EngineQueue> {
       return QueueServiceApiFp(configuration)
-        .updateQueue(id, body, options)
+        .queueServiceUpdateQueue(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1069,9 +1071,12 @@ export class QueueServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public createQueue(body: EngineCreateQueueRequest, options?: any) {
+  public queueServiceCreateQueue(
+    body: EngineCreateQueueRequest,
+    options?: any
+  ) {
     return QueueServiceApiFp(this.configuration)
-      .createQueue(body, options)
+      .queueServiceCreateQueue(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1084,9 +1089,9 @@ export class QueueServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public deleteQueue(id: string, domainId?: string, options?: any) {
+  public queueServiceDeleteQueue(id: string, domainId?: string, options?: any) {
     return QueueServiceApiFp(this.configuration)
-      .deleteQueue(id, domainId, options)
+      .queueServiceDeleteQueue(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1099,9 +1104,13 @@ export class QueueServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public patchQueue(id: string, body: EnginePatchQueueRequest, options?: any) {
+  public queueServicePatchQueue(
+    id: string,
+    body: EnginePatchQueueRequest,
+    options?: any
+  ) {
     return QueueServiceApiFp(this.configuration)
-      .patchQueue(id, body, options)
+      .queueServicePatchQueue(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1114,9 +1123,9 @@ export class QueueServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public readQueue(id: string, domainId?: string, options?: any) {
+  public queueServiceReadQueue(id: string, domainId?: string, options?: any) {
     return QueueServiceApiFp(this.configuration)
-      .readQueue(id, domainId, options)
+      .queueServiceReadQueue(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1134,7 +1143,7 @@ export class QueueServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public searchQueue(
+  public queueServiceSearchQueue(
     page?: number,
     size?: number,
     q?: string,
@@ -1145,7 +1154,7 @@ export class QueueServiceApi extends BaseAPI {
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration)
-      .searchQueue(page, size, q, sort, fields, id, type, options)
+      .queueServiceSearchQueue(page, size, q, sort, fields, id, type, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1166,7 +1175,7 @@ export class QueueServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public searchQueueReportGeneral(
+  public queueServiceSearchQueueReportGeneral(
     page?: number,
     size?: number,
     joinedAtFrom?: string,
@@ -1181,7 +1190,7 @@ export class QueueServiceApi extends BaseAPI {
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration)
-      .searchQueueReportGeneral(
+      .queueServiceSearchQueueReportGeneral(
         page,
         size,
         joinedAtFrom,
@@ -1207,13 +1216,13 @@ export class QueueServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public updateQueue(
+  public queueServiceUpdateQueue(
     id: string,
     body: EngineUpdateQueueRequest,
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration)
-      .updateQueue(id, body, options)
+      .queueServiceUpdateQueue(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

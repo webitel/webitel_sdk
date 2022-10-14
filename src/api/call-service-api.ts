@@ -55,6 +55,8 @@ import { EngineListHistoryCall } from '../api'
 import { EngineUpdateCallAnnotationRequest } from '../api'
 // @ts-ignore
 import { EngineUserCallRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * CallServiceApi - axios parameter creator
  * @export
@@ -69,7 +71,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    aggregateHistoryCall: async (
+    callServiceAggregateHistoryCall: async (
       body: EngineAggregateHistoryCallRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -77,7 +79,7 @@ export const CallServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling aggregateHistoryCall.'
+          'Required parameter body was null or undefined when calling callServiceAggregateHistoryCall.'
         )
       }
       const localVarPath = `/calls/history/aggregate`
@@ -138,7 +140,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    blindTransferCall: async (
+    callServiceBlindTransferCall: async (
       id: string,
       body: EngineBlindTransferCallRequest,
       options: any = {}
@@ -147,14 +149,14 @@ export const CallServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling blindTransferCall.'
+          'Required parameter id was null or undefined when calling callServiceBlindTransferCall.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling blindTransferCall.'
+          'Required parameter body was null or undefined when calling callServiceBlindTransferCall.'
         )
       }
       const localVarPath = `/calls/active/{id}/transfer`.replace(
@@ -218,7 +220,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    confirmPush: async (
+    callServiceConfirmPush: async (
       id: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -226,7 +228,7 @@ export const CallServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling confirmPush.'
+          'Required parameter id was null or undefined when calling callServiceConfirmPush.'
         )
       }
       const localVarPath = `/calls/active/{id}/confirm_push`.replace(
@@ -281,7 +283,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createCall: async (
+    callServiceCreateCall: async (
       body: EngineCreateCallRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -289,7 +291,7 @@ export const CallServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createCall.'
+          'Required parameter body was null or undefined when calling callServiceCreateCall.'
         )
       }
       const localVarPath = `/calls`
@@ -350,7 +352,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createCallAnnotation: async (
+    callServiceCreateCallAnnotation: async (
       callId: string,
       body: EngineCreateCallAnnotationRequest,
       options: any = {}
@@ -359,14 +361,14 @@ export const CallServiceApiAxiosParamCreator = function(
       if (callId === null || callId === undefined) {
         throw new RequiredError(
           'callId',
-          'Required parameter callId was null or undefined when calling createCallAnnotation.'
+          'Required parameter callId was null or undefined when calling callServiceCreateCallAnnotation.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createCallAnnotation.'
+          'Required parameter body was null or undefined when calling callServiceCreateCallAnnotation.'
         )
       }
       const localVarPath = `/calls/history/{call_id}/annotation`.replace(
@@ -430,7 +432,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCallAnnotation: async (
+    callServiceDeleteCallAnnotation: async (
       callId: string,
       id: string,
       options: any = {}
@@ -439,14 +441,14 @@ export const CallServiceApiAxiosParamCreator = function(
       if (callId === null || callId === undefined) {
         throw new RequiredError(
           'callId',
-          'Required parameter callId was null or undefined when calling deleteCallAnnotation.'
+          'Required parameter callId was null or undefined when calling callServiceDeleteCallAnnotation.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteCallAnnotation.'
+          'Required parameter id was null or undefined when calling callServiceDeleteCallAnnotation.'
         )
       }
       const localVarPath = `/calls/history/{call_id}/annotation/{id}`
@@ -501,7 +503,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    dtmfCall: async (
+    callServiceDtmfCall: async (
       id: string,
       body: EngineDtmfCallRequest,
       options: any = {}
@@ -510,14 +512,14 @@ export const CallServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling dtmfCall.'
+          'Required parameter id was null or undefined when calling callServiceDtmfCall.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling dtmfCall.'
+          'Required parameter body was null or undefined when calling callServiceDtmfCall.'
         )
       }
       const localVarPath = `/calls/active/{id}/dtmf`.replace(
@@ -581,7 +583,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    eavesdropCall: async (
+    callServiceEavesdropCall: async (
       id: string,
       body: EngineEavesdropCallRequest,
       options: any = {}
@@ -590,14 +592,14 @@ export const CallServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling eavesdropCall.'
+          'Required parameter id was null or undefined when calling callServiceEavesdropCall.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling eavesdropCall.'
+          'Required parameter body was null or undefined when calling callServiceEavesdropCall.'
         )
       }
       const localVarPath = `/calls/active/{id}/eavesdrop`.replace(
@@ -661,7 +663,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    hangupCall: async (
+    callServiceHangupCall: async (
       id: string,
       body: EngineHangupCallRequest,
       options: any = {}
@@ -670,14 +672,14 @@ export const CallServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling hangupCall.'
+          'Required parameter id was null or undefined when calling callServiceHangupCall.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling hangupCall.'
+          'Required parameter body was null or undefined when calling callServiceHangupCall.'
         )
       }
       const localVarPath = `/calls/active/{id}`.replace(
@@ -741,7 +743,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    holdCall: async (
+    callServiceHoldCall: async (
       id: string,
       body: EngineUserCallRequest,
       options: any = {}
@@ -750,14 +752,14 @@ export const CallServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling holdCall.'
+          'Required parameter id was null or undefined when calling callServiceHoldCall.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling holdCall.'
+          'Required parameter body was null or undefined when calling callServiceHoldCall.'
         )
       }
       const localVarPath = `/calls/active/{id}/hold`.replace(
@@ -822,7 +824,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readCall: async (
+    callServiceReadCall: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -831,7 +833,7 @@ export const CallServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readCall.'
+          'Required parameter id was null or undefined when calling callServiceReadCall.'
         )
       }
       const localVarPath = `/calls/active/{id}`.replace(
@@ -918,7 +920,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchActiveCall: async (
+    callServiceSearchActiveCall: async (
       page?: number,
       size?: number,
       q?: string,
@@ -1150,10 +1152,11 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {'undefined' | 'true' | 'false'} [hasTranscript]
      * @param {string} [agentDescription]
      * @param {Array<string>} [ownerId]
+     * @param {Array<string>} [granteeId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchHistoryCall: async (
+    callServiceSearchHistoryCall: async (
       page?: number,
       size?: number,
       q?: string,
@@ -1192,6 +1195,7 @@ export const CallServiceApiAxiosParamCreator = function(
       hasTranscript?: 'undefined' | 'true' | 'false',
       agentDescription?: string,
       ownerId?: Array<string>,
+      granteeId?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/history`
@@ -1369,6 +1373,10 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['owner_id'] = ownerId
       }
 
+      if (granteeId) {
+        localVarQueryParameter['grantee_id'] = granteeId
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -1396,7 +1404,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    unHoldCall: async (
+    callServiceUnHoldCall: async (
       id: string,
       body: EngineUserCallRequest,
       options: any = {}
@@ -1405,14 +1413,14 @@ export const CallServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling unHoldCall.'
+          'Required parameter id was null or undefined when calling callServiceUnHoldCall.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling unHoldCall.'
+          'Required parameter body was null or undefined when calling callServiceUnHoldCall.'
         )
       }
       const localVarPath = `/calls/active/{id}/unhold`.replace(
@@ -1477,7 +1485,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateCallAnnotation: async (
+    callServiceUpdateCallAnnotation: async (
       callId: string,
       id: string,
       body: EngineUpdateCallAnnotationRequest,
@@ -1487,21 +1495,21 @@ export const CallServiceApiAxiosParamCreator = function(
       if (callId === null || callId === undefined) {
         throw new RequiredError(
           'callId',
-          'Required parameter callId was null or undefined when calling updateCallAnnotation.'
+          'Required parameter callId was null or undefined when calling callServiceUpdateCallAnnotation.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateCallAnnotation.'
+          'Required parameter id was null or undefined when calling callServiceUpdateCallAnnotation.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateCallAnnotation.'
+          'Required parameter body was null or undefined when calling callServiceUpdateCallAnnotation.'
         )
       }
       const localVarPath = `/calls/history/{call_id}/annotation/{id}`
@@ -1572,7 +1580,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async aggregateHistoryCall(
+    async callServiceAggregateHistoryCall(
       body: EngineAggregateHistoryCallRequest,
       options?: any
     ): Promise<
@@ -1583,7 +1591,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).aggregateHistoryCall(body, options)
+      ).callServiceAggregateHistoryCall(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1602,7 +1610,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async blindTransferCall(
+    async callServiceBlindTransferCall(
       id: string,
       body: EngineBlindTransferCallRequest,
       options?: any
@@ -1611,7 +1619,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).blindTransferCall(id, body, options)
+      ).callServiceBlindTransferCall(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1630,7 +1638,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async confirmPush(
+    async callServiceConfirmPush(
       id: string,
       options?: any
     ): Promise<
@@ -1638,7 +1646,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).confirmPush(id, options)
+      ).callServiceConfirmPush(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1656,7 +1664,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createCall(
+    async callServiceCreateCall(
       body: EngineCreateCallRequest,
       options?: any
     ): Promise<
@@ -1667,7 +1675,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).createCall(body, options)
+      ).callServiceCreateCall(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1686,7 +1694,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createCallAnnotation(
+    async callServiceCreateCallAnnotation(
       callId: string,
       body: EngineCreateCallAnnotationRequest,
       options?: any
@@ -1698,7 +1706,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).createCallAnnotation(callId, body, options)
+      ).callServiceCreateCallAnnotation(callId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1717,7 +1725,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteCallAnnotation(
+    async callServiceDeleteCallAnnotation(
       callId: string,
       id: string,
       options?: any
@@ -1729,7 +1737,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).deleteCallAnnotation(callId, id, options)
+      ).callServiceDeleteCallAnnotation(callId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1748,7 +1756,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async dtmfCall(
+    async callServiceDtmfCall(
       id: string,
       body: EngineDtmfCallRequest,
       options?: any
@@ -1757,7 +1765,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).dtmfCall(id, body, options)
+      ).callServiceDtmfCall(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1776,7 +1784,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async eavesdropCall(
+    async callServiceEavesdropCall(
       id: string,
       body: EngineEavesdropCallRequest,
       options?: any
@@ -1788,7 +1796,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).eavesdropCall(id, body, options)
+      ).callServiceEavesdropCall(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1807,7 +1815,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async hangupCall(
+    async callServiceHangupCall(
       id: string,
       body: EngineHangupCallRequest,
       options?: any
@@ -1816,7 +1824,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).hangupCall(id, body, options)
+      ).callServiceHangupCall(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1835,7 +1843,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async holdCall(
+    async callServiceHoldCall(
       id: string,
       body: EngineUserCallRequest,
       options?: any
@@ -1847,7 +1855,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).holdCall(id, body, options)
+      ).callServiceHoldCall(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1867,7 +1875,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readCall(
+    async callServiceReadCall(
       id: string,
       domainId?: string,
       options?: any
@@ -1879,7 +1887,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).readCall(id, domainId, options)
+      ).callServiceReadCall(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1925,7 +1933,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchActiveCall(
+    async callServiceSearchActiveCall(
       page?: number,
       size?: number,
       q?: string,
@@ -1961,7 +1969,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).searchActiveCall(
+      ).callServiceSearchActiveCall(
         page,
         size,
         q,
@@ -2045,10 +2053,11 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {'undefined' | 'true' | 'false'} [hasTranscript]
      * @param {string} [agentDescription]
      * @param {Array<string>} [ownerId]
+     * @param {Array<string>} [granteeId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchHistoryCall(
+    async callServiceSearchHistoryCall(
       page?: number,
       size?: number,
       q?: string,
@@ -2087,6 +2096,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       hasTranscript?: 'undefined' | 'true' | 'false',
       agentDescription?: string,
       ownerId?: Array<string>,
+      granteeId?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -2096,7 +2106,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).searchHistoryCall(
+      ).callServiceSearchHistoryCall(
         page,
         size,
         q,
@@ -2135,6 +2145,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         hasTranscript,
         agentDescription,
         ownerId,
+        granteeId,
         options
       )
       return (
@@ -2155,7 +2166,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async unHoldCall(
+    async callServiceUnHoldCall(
       id: string,
       body: EngineUserCallRequest,
       options?: any
@@ -2167,7 +2178,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).unHoldCall(id, body, options)
+      ).callServiceUnHoldCall(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2187,7 +2198,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateCallAnnotation(
+    async callServiceUpdateCallAnnotation(
       callId: string,
       id: string,
       body: EngineUpdateCallAnnotationRequest,
@@ -2200,7 +2211,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
         configuration
-      ).updateCallAnnotation(callId, id, body, options)
+      ).callServiceUpdateCallAnnotation(callId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2231,12 +2242,12 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    aggregateHistoryCall(
+    callServiceAggregateHistoryCall(
       body: EngineAggregateHistoryCallRequest,
       options?: any
     ): AxiosPromise<EngineListAggregate> {
       return CallServiceApiFp(configuration)
-        .aggregateHistoryCall(body, options)
+        .callServiceAggregateHistoryCall(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2246,13 +2257,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    blindTransferCall(
+    callServiceBlindTransferCall(
       id: string,
       body: EngineBlindTransferCallRequest,
       options?: any
     ): AxiosPromise<object> {
       return CallServiceApiFp(configuration)
-        .blindTransferCall(id, body, options)
+        .callServiceBlindTransferCall(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2262,9 +2273,9 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    confirmPush(id: string, options?: any): AxiosPromise<object> {
+    callServiceConfirmPush(id: string, options?: any): AxiosPromise<object> {
       return CallServiceApiFp(configuration)
-        .confirmPush(id, options)
+        .callServiceConfirmPush(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2273,12 +2284,12 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createCall(
+    callServiceCreateCall(
       body: EngineCreateCallRequest,
       options?: any
     ): AxiosPromise<EngineCreateCallResponse> {
       return CallServiceApiFp(configuration)
-        .createCall(body, options)
+        .callServiceCreateCall(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2288,13 +2299,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createCallAnnotation(
+    callServiceCreateCallAnnotation(
       callId: string,
       body: EngineCreateCallAnnotationRequest,
       options?: any
     ): AxiosPromise<EngineCallAnnotation> {
       return CallServiceApiFp(configuration)
-        .createCallAnnotation(callId, body, options)
+        .callServiceCreateCallAnnotation(callId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2304,13 +2315,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCallAnnotation(
+    callServiceDeleteCallAnnotation(
       callId: string,
       id: string,
       options?: any
     ): AxiosPromise<EngineCallAnnotation> {
       return CallServiceApiFp(configuration)
-        .deleteCallAnnotation(callId, id, options)
+        .callServiceDeleteCallAnnotation(callId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2320,13 +2331,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    dtmfCall(
+    callServiceDtmfCall(
       id: string,
       body: EngineDtmfCallRequest,
       options?: any
     ): AxiosPromise<object> {
       return CallServiceApiFp(configuration)
-        .dtmfCall(id, body, options)
+        .callServiceDtmfCall(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2336,13 +2347,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    eavesdropCall(
+    callServiceEavesdropCall(
       id: string,
       body: EngineEavesdropCallRequest,
       options?: any
     ): AxiosPromise<EngineCreateCallResponse> {
       return CallServiceApiFp(configuration)
-        .eavesdropCall(id, body, options)
+        .callServiceEavesdropCall(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2352,13 +2363,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    hangupCall(
+    callServiceHangupCall(
       id: string,
       body: EngineHangupCallRequest,
       options?: any
     ): AxiosPromise<object> {
       return CallServiceApiFp(configuration)
-        .hangupCall(id, body, options)
+        .callServiceHangupCall(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2368,13 +2379,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    holdCall(
+    callServiceHoldCall(
       id: string,
       body: EngineUserCallRequest,
       options?: any
     ): AxiosPromise<EngineHoldCallResponse> {
       return CallServiceApiFp(configuration)
-        .holdCall(id, body, options)
+        .callServiceHoldCall(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2385,13 +2396,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readCall(
+    callServiceReadCall(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineActiveCall> {
       return CallServiceApiFp(configuration)
-        .readCall(id, domainId, options)
+        .callServiceReadCall(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2428,7 +2439,7 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchActiveCall(
+    callServiceSearchActiveCall(
       page?: number,
       size?: number,
       q?: string,
@@ -2461,7 +2472,7 @@ export const CallServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListCall> {
       return CallServiceApiFp(configuration)
-        .searchActiveCall(
+        .callServiceSearchActiveCall(
           page,
           size,
           q,
@@ -2536,10 +2547,11 @@ export const CallServiceApiFactory = function(
      * @param {'undefined' | 'true' | 'false'} [hasTranscript]
      * @param {string} [agentDescription]
      * @param {Array<string>} [ownerId]
+     * @param {Array<string>} [granteeId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchHistoryCall(
+    callServiceSearchHistoryCall(
       page?: number,
       size?: number,
       q?: string,
@@ -2578,10 +2590,11 @@ export const CallServiceApiFactory = function(
       hasTranscript?: 'undefined' | 'true' | 'false',
       agentDescription?: string,
       ownerId?: Array<string>,
+      granteeId?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListHistoryCall> {
       return CallServiceApiFp(configuration)
-        .searchHistoryCall(
+        .callServiceSearchHistoryCall(
           page,
           size,
           q,
@@ -2620,6 +2633,7 @@ export const CallServiceApiFactory = function(
           hasTranscript,
           agentDescription,
           ownerId,
+          granteeId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -2631,13 +2645,13 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    unHoldCall(
+    callServiceUnHoldCall(
       id: string,
       body: EngineUserCallRequest,
       options?: any
     ): AxiosPromise<EngineHoldCallResponse> {
       return CallServiceApiFp(configuration)
-        .unHoldCall(id, body, options)
+        .callServiceUnHoldCall(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2648,14 +2662,14 @@ export const CallServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateCallAnnotation(
+    callServiceUpdateCallAnnotation(
       callId: string,
       id: string,
       body: EngineUpdateCallAnnotationRequest,
       options?: any
     ): AxiosPromise<EngineCallAnnotation> {
       return CallServiceApiFp(configuration)
-        .updateCallAnnotation(callId, id, body, options)
+        .callServiceUpdateCallAnnotation(callId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -2675,12 +2689,12 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public aggregateHistoryCall(
+  public callServiceAggregateHistoryCall(
     body: EngineAggregateHistoryCallRequest,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
-      .aggregateHistoryCall(body, options)
+      .callServiceAggregateHistoryCall(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2692,13 +2706,13 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public blindTransferCall(
+  public callServiceBlindTransferCall(
     id: string,
     body: EngineBlindTransferCallRequest,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
-      .blindTransferCall(id, body, options)
+      .callServiceBlindTransferCall(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2710,9 +2724,9 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public confirmPush(id: string, options?: any) {
+  public callServiceConfirmPush(id: string, options?: any) {
     return CallServiceApiFp(this.configuration)
-      .confirmPush(id, options)
+      .callServiceConfirmPush(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2723,9 +2737,9 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public createCall(body: EngineCreateCallRequest, options?: any) {
+  public callServiceCreateCall(body: EngineCreateCallRequest, options?: any) {
     return CallServiceApiFp(this.configuration)
-      .createCall(body, options)
+      .callServiceCreateCall(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2737,13 +2751,13 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public createCallAnnotation(
+  public callServiceCreateCallAnnotation(
     callId: string,
     body: EngineCreateCallAnnotationRequest,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
-      .createCallAnnotation(callId, body, options)
+      .callServiceCreateCallAnnotation(callId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2755,9 +2769,13 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public deleteCallAnnotation(callId: string, id: string, options?: any) {
+  public callServiceDeleteCallAnnotation(
+    callId: string,
+    id: string,
+    options?: any
+  ) {
     return CallServiceApiFp(this.configuration)
-      .deleteCallAnnotation(callId, id, options)
+      .callServiceDeleteCallAnnotation(callId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2769,9 +2787,13 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public dtmfCall(id: string, body: EngineDtmfCallRequest, options?: any) {
+  public callServiceDtmfCall(
+    id: string,
+    body: EngineDtmfCallRequest,
+    options?: any
+  ) {
     return CallServiceApiFp(this.configuration)
-      .dtmfCall(id, body, options)
+      .callServiceDtmfCall(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2783,13 +2805,13 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public eavesdropCall(
+  public callServiceEavesdropCall(
     id: string,
     body: EngineEavesdropCallRequest,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
-      .eavesdropCall(id, body, options)
+      .callServiceEavesdropCall(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2801,9 +2823,13 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public hangupCall(id: string, body: EngineHangupCallRequest, options?: any) {
+  public callServiceHangupCall(
+    id: string,
+    body: EngineHangupCallRequest,
+    options?: any
+  ) {
     return CallServiceApiFp(this.configuration)
-      .hangupCall(id, body, options)
+      .callServiceHangupCall(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2815,9 +2841,13 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public holdCall(id: string, body: EngineUserCallRequest, options?: any) {
+  public callServiceHoldCall(
+    id: string,
+    body: EngineUserCallRequest,
+    options?: any
+  ) {
     return CallServiceApiFp(this.configuration)
-      .holdCall(id, body, options)
+      .callServiceHoldCall(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2830,9 +2860,9 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public readCall(id: string, domainId?: string, options?: any) {
+  public callServiceReadCall(id: string, domainId?: string, options?: any) {
     return CallServiceApiFp(this.configuration)
-      .readCall(id, domainId, options)
+      .callServiceReadCall(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2871,7 +2901,7 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public searchActiveCall(
+  public callServiceSearchActiveCall(
     page?: number,
     size?: number,
     q?: string,
@@ -2904,7 +2934,7 @@ export class CallServiceApi extends BaseAPI {
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
-      .searchActiveCall(
+      .callServiceSearchActiveCall(
         page,
         size,
         q,
@@ -2980,11 +3010,12 @@ export class CallServiceApi extends BaseAPI {
    * @param {'undefined' | 'true' | 'false'} [hasTranscript]
    * @param {string} [agentDescription]
    * @param {Array<string>} [ownerId]
+   * @param {Array<string>} [granteeId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public searchHistoryCall(
+  public callServiceSearchHistoryCall(
     page?: number,
     size?: number,
     q?: string,
@@ -3023,10 +3054,11 @@ export class CallServiceApi extends BaseAPI {
     hasTranscript?: 'undefined' | 'true' | 'false',
     agentDescription?: string,
     ownerId?: Array<string>,
+    granteeId?: Array<string>,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
-      .searchHistoryCall(
+      .callServiceSearchHistoryCall(
         page,
         size,
         q,
@@ -3065,6 +3097,7 @@ export class CallServiceApi extends BaseAPI {
         hasTranscript,
         agentDescription,
         ownerId,
+        granteeId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -3078,9 +3111,13 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public unHoldCall(id: string, body: EngineUserCallRequest, options?: any) {
+  public callServiceUnHoldCall(
+    id: string,
+    body: EngineUserCallRequest,
+    options?: any
+  ) {
     return CallServiceApiFp(this.configuration)
-      .unHoldCall(id, body, options)
+      .callServiceUnHoldCall(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3093,14 +3130,14 @@ export class CallServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CallServiceApi
    */
-  public updateCallAnnotation(
+  public callServiceUpdateCallAnnotation(
     callId: string,
     id: string,
     body: EngineUpdateCallAnnotationRequest,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
-      .updateCallAnnotation(callId, id, body, options)
+      .callServiceUpdateCallAnnotation(callId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

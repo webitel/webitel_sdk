@@ -25,6 +25,8 @@ import {
 } from '../base'
 // @ts-ignore
 import { EngineDefaultDeviceConfigResponse } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * UserHelperServiceApi - axios parameter creator
  * @export
@@ -39,7 +41,7 @@ export const UserHelperServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    defaultDeviceConfig: async (
+    userHelperServiceDefaultDeviceConfig: async (
       type: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -47,7 +49,7 @@ export const UserHelperServiceApiAxiosParamCreator = function(
       if (type === null || type === undefined) {
         throw new RequiredError(
           'type',
-          'Required parameter type was null or undefined when calling defaultDeviceConfig.'
+          'Required parameter type was null or undefined when calling userHelperServiceDefaultDeviceConfig.'
         )
       }
       const localVarPath = `/user/device/config/{type}`.replace(
@@ -111,7 +113,7 @@ export const UserHelperServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async defaultDeviceConfig(
+    async userHelperServiceDefaultDeviceConfig(
       type: string,
       options?: any
     ): Promise<
@@ -122,7 +124,7 @@ export const UserHelperServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await UserHelperServiceApiAxiosParamCreator(
         configuration
-      ).defaultDeviceConfig(type, options)
+      ).userHelperServiceDefaultDeviceConfig(type, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -153,12 +155,12 @@ export const UserHelperServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    defaultDeviceConfig(
+    userHelperServiceDefaultDeviceConfig(
       type: string,
       options?: any
     ): AxiosPromise<EngineDefaultDeviceConfigResponse> {
       return UserHelperServiceApiFp(configuration)
-        .defaultDeviceConfig(type, options)
+        .userHelperServiceDefaultDeviceConfig(type, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -178,9 +180,9 @@ export class UserHelperServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof UserHelperServiceApi
    */
-  public defaultDeviceConfig(type: string, options?: any) {
+  public userHelperServiceDefaultDeviceConfig(type: string, options?: any) {
     return UserHelperServiceApiFp(this.configuration)
-      .defaultDeviceConfig(type, options)
+      .userHelperServiceDefaultDeviceConfig(type, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
