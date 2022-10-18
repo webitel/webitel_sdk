@@ -56,7 +56,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceCreateTrigger: async (
+    createTrigger: async (
       body: EngineCreateTriggerRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -64,7 +64,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling triggerServiceCreateTrigger.'
+          'Required parameter body was null or undefined when calling createTrigger.'
         )
       }
       const localVarPath = `/trigger`
@@ -125,7 +125,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceCreateTriggerJob: async (
+    createTriggerJob: async (
       triggerId: number,
       body: EngineCreateTriggerJobRequest,
       options: any = {}
@@ -134,14 +134,14 @@ export const TriggerServiceApiAxiosParamCreator = function(
       if (triggerId === null || triggerId === undefined) {
         throw new RequiredError(
           'triggerId',
-          'Required parameter triggerId was null or undefined when calling triggerServiceCreateTriggerJob.'
+          'Required parameter triggerId was null or undefined when calling createTriggerJob.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling triggerServiceCreateTriggerJob.'
+          'Required parameter body was null or undefined when calling createTriggerJob.'
         )
       }
       const localVarPath = `/trigger/{trigger_id}/job`.replace(
@@ -205,7 +205,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceDeleteTrigger: async (
+    deleteTrigger: async (
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -213,7 +213,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling triggerServiceDeleteTrigger.'
+          'Required parameter id was null or undefined when calling deleteTrigger.'
         )
       }
       const localVarPath = `/trigger/{id}`.replace(
@@ -269,7 +269,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServicePatchTrigger: async (
+    patchTrigger: async (
       id: number,
       body: EnginePatchTriggerRequest,
       options: any = {}
@@ -278,14 +278,14 @@ export const TriggerServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling triggerServicePatchTrigger.'
+          'Required parameter id was null or undefined when calling patchTrigger.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling triggerServicePatchTrigger.'
+          'Required parameter body was null or undefined when calling patchTrigger.'
         )
       }
       const localVarPath = `/trigger/{id}`.replace(
@@ -349,7 +349,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceReadTrigger: async (
+    readTrigger: async (
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -357,7 +357,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling triggerServiceReadTrigger.'
+          'Required parameter id was null or undefined when calling readTrigger.'
         )
       }
       const localVarPath = `/trigger/{id}`.replace(
@@ -419,7 +419,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceSearchTrigger: async (
+    searchTrigger: async (
       page?: number,
       size?: number,
       q?: string,
@@ -513,7 +513,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceSearchTriggerJob: async (
+    searchTriggerJob: async (
       triggerId: number,
       page?: number,
       size?: number,
@@ -528,7 +528,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
       if (triggerId === null || triggerId === undefined) {
         throw new RequiredError(
           'triggerId',
-          'Required parameter triggerId was null or undefined when calling triggerServiceSearchTriggerJob.'
+          'Required parameter triggerId was null or undefined when calling searchTriggerJob.'
         )
       }
       const localVarPath = `/trigger/{trigger_id}/job`.replace(
@@ -613,7 +613,7 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceUpdateTrigger: async (
+    updateTrigger: async (
       id: number,
       body: EngineUpdateTriggerRequest,
       options: any = {}
@@ -622,14 +622,14 @@ export const TriggerServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling triggerServiceUpdateTrigger.'
+          'Required parameter id was null or undefined when calling updateTrigger.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling triggerServiceUpdateTrigger.'
+          'Required parameter body was null or undefined when calling updateTrigger.'
         )
       }
       const localVarPath = `/trigger/{id}`.replace(
@@ -702,7 +702,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async triggerServiceCreateTrigger(
+    async createTrigger(
       body: EngineCreateTriggerRequest,
       options?: any
     ): Promise<
@@ -710,7 +710,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).triggerServiceCreateTrigger(body, options)
+      ).createTrigger(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -729,7 +729,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async triggerServiceCreateTriggerJob(
+    async createTriggerJob(
       triggerId: number,
       body: EngineCreateTriggerJobRequest,
       options?: any
@@ -741,7 +741,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).triggerServiceCreateTriggerJob(triggerId, body, options)
+      ).createTriggerJob(triggerId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -760,7 +760,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async triggerServiceDeleteTrigger(
+    async deleteTrigger(
       id: number,
       options?: any
     ): Promise<
@@ -768,7 +768,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).triggerServiceDeleteTrigger(id, options)
+      ).deleteTrigger(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -787,7 +787,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async triggerServicePatchTrigger(
+    async patchTrigger(
       id: number,
       body: EnginePatchTriggerRequest,
       options?: any
@@ -796,7 +796,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).triggerServicePatchTrigger(id, body, options)
+      ).patchTrigger(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -815,7 +815,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async triggerServiceReadTrigger(
+    async readTrigger(
       id: number,
       options?: any
     ): Promise<
@@ -823,7 +823,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).triggerServiceReadTrigger(id, options)
+      ).readTrigger(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -848,7 +848,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async triggerServiceSearchTrigger(
+    async searchTrigger(
       page?: number,
       size?: number,
       q?: string,
@@ -865,16 +865,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).triggerServiceSearchTrigger(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        schemaId,
-        options
-      )
+      ).searchTrigger(page, size, q, sort, fields, id, schemaId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -899,7 +890,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async triggerServiceSearchTriggerJob(
+    async searchTriggerJob(
       triggerId: number,
       page?: number,
       size?: number,
@@ -917,7 +908,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).triggerServiceSearchTriggerJob(
+      ).searchTriggerJob(
         triggerId,
         page,
         size,
@@ -947,7 +938,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async triggerServiceUpdateTrigger(
+    async updateTrigger(
       id: number,
       body: EngineUpdateTriggerRequest,
       options?: any
@@ -956,7 +947,7 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TriggerServiceApiAxiosParamCreator(
         configuration
-      ).triggerServiceUpdateTrigger(id, body, options)
+      ).updateTrigger(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -988,12 +979,12 @@ export const TriggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceCreateTrigger(
+    createTrigger(
       body: EngineCreateTriggerRequest,
       options?: any
     ): AxiosPromise<EngineTrigger> {
       return TriggerServiceApiFp(configuration)
-        .triggerServiceCreateTrigger(body, options)
+        .createTrigger(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1003,13 +994,13 @@ export const TriggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceCreateTriggerJob(
+    createTriggerJob(
       triggerId: number,
       body: EngineCreateTriggerJobRequest,
       options?: any
     ): AxiosPromise<EngineTriggerJob> {
       return TriggerServiceApiFp(configuration)
-        .triggerServiceCreateTriggerJob(triggerId, body, options)
+        .createTriggerJob(triggerId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1019,12 +1010,9 @@ export const TriggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceDeleteTrigger(
-      id: number,
-      options?: any
-    ): AxiosPromise<EngineTrigger> {
+    deleteTrigger(id: number, options?: any): AxiosPromise<EngineTrigger> {
       return TriggerServiceApiFp(configuration)
-        .triggerServiceDeleteTrigger(id, options)
+        .deleteTrigger(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1034,13 +1022,13 @@ export const TriggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServicePatchTrigger(
+    patchTrigger(
       id: number,
       body: EnginePatchTriggerRequest,
       options?: any
     ): AxiosPromise<EngineTrigger> {
       return TriggerServiceApiFp(configuration)
-        .triggerServicePatchTrigger(id, body, options)
+        .patchTrigger(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1050,12 +1038,9 @@ export const TriggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceReadTrigger(
-      id: number,
-      options?: any
-    ): AxiosPromise<EngineTrigger> {
+    readTrigger(id: number, options?: any): AxiosPromise<EngineTrigger> {
       return TriggerServiceApiFp(configuration)
-        .triggerServiceReadTrigger(id, options)
+        .readTrigger(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1071,7 +1056,7 @@ export const TriggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceSearchTrigger(
+    searchTrigger(
       page?: number,
       size?: number,
       q?: string,
@@ -1082,16 +1067,7 @@ export const TriggerServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListTrigger> {
       return TriggerServiceApiFp(configuration)
-        .triggerServiceSearchTrigger(
-          page,
-          size,
-          q,
-          sort,
-          fields,
-          id,
-          schemaId,
-          options
-        )
+        .searchTrigger(page, size, q, sort, fields, id, schemaId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1107,7 +1083,7 @@ export const TriggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceSearchTriggerJob(
+    searchTriggerJob(
       triggerId: number,
       page?: number,
       size?: number,
@@ -1119,7 +1095,7 @@ export const TriggerServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListTriggerJob> {
       return TriggerServiceApiFp(configuration)
-        .triggerServiceSearchTriggerJob(
+        .searchTriggerJob(
           triggerId,
           page,
           size,
@@ -1140,13 +1116,13 @@ export const TriggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    triggerServiceUpdateTrigger(
+    updateTrigger(
       id: number,
       body: EngineUpdateTriggerRequest,
       options?: any
     ): AxiosPromise<EngineTrigger> {
       return TriggerServiceApiFp(configuration)
-        .triggerServiceUpdateTrigger(id, body, options)
+        .updateTrigger(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1167,12 +1143,9 @@ export class TriggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
-  public triggerServiceCreateTrigger(
-    body: EngineCreateTriggerRequest,
-    options?: any
-  ) {
+  public createTrigger(body: EngineCreateTriggerRequest, options?: any) {
     return TriggerServiceApiFp(this.configuration)
-      .triggerServiceCreateTrigger(body, options)
+      .createTrigger(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1184,13 +1157,13 @@ export class TriggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
-  public triggerServiceCreateTriggerJob(
+  public createTriggerJob(
     triggerId: number,
     body: EngineCreateTriggerJobRequest,
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
-      .triggerServiceCreateTriggerJob(triggerId, body, options)
+      .createTriggerJob(triggerId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1202,9 +1175,9 @@ export class TriggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
-  public triggerServiceDeleteTrigger(id: number, options?: any) {
+  public deleteTrigger(id: number, options?: any) {
     return TriggerServiceApiFp(this.configuration)
-      .triggerServiceDeleteTrigger(id, options)
+      .deleteTrigger(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1216,13 +1189,13 @@ export class TriggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
-  public triggerServicePatchTrigger(
+  public patchTrigger(
     id: number,
     body: EnginePatchTriggerRequest,
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
-      .triggerServicePatchTrigger(id, body, options)
+      .patchTrigger(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1234,9 +1207,9 @@ export class TriggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
-  public triggerServiceReadTrigger(id: number, options?: any) {
+  public readTrigger(id: number, options?: any) {
     return TriggerServiceApiFp(this.configuration)
-      .triggerServiceReadTrigger(id, options)
+      .readTrigger(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1254,7 +1227,7 @@ export class TriggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
-  public triggerServiceSearchTrigger(
+  public searchTrigger(
     page?: number,
     size?: number,
     q?: string,
@@ -1265,16 +1238,7 @@ export class TriggerServiceApi extends BaseAPI {
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
-      .triggerServiceSearchTrigger(
-        page,
-        size,
-        q,
-        sort,
-        fields,
-        id,
-        schemaId,
-        options
-      )
+      .searchTrigger(page, size, q, sort, fields, id, schemaId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1292,7 +1256,7 @@ export class TriggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
-  public triggerServiceSearchTriggerJob(
+  public searchTriggerJob(
     triggerId: number,
     page?: number,
     size?: number,
@@ -1304,7 +1268,7 @@ export class TriggerServiceApi extends BaseAPI {
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
-      .triggerServiceSearchTriggerJob(
+      .searchTriggerJob(
         triggerId,
         page,
         size,
@@ -1327,13 +1291,13 @@ export class TriggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
-  public triggerServiceUpdateTrigger(
+  public updateTrigger(
     id: number,
     body: EngineUpdateTriggerRequest,
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
-      .triggerServiceUpdateTrigger(id, body, options)
+      .updateTrigger(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

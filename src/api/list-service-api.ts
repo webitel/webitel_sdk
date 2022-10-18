@@ -56,7 +56,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceCreateList: async (
+    createList: async (
       body: EngineCreateListRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -64,7 +64,7 @@ export const ListServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling listServiceCreateList.'
+          'Required parameter body was null or undefined when calling createList.'
         )
       }
       const localVarPath = `/call_center/list`
@@ -126,7 +126,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceCreateListCommunication: async (
+    createListCommunication: async (
       listId: string,
       body: EngineCreateListCommunicationRequest,
       options: any = {}
@@ -135,14 +135,14 @@ export const ListServiceApiAxiosParamCreator = function(
       if (listId === null || listId === undefined) {
         throw new RequiredError(
           'listId',
-          'Required parameter listId was null or undefined when calling listServiceCreateListCommunication.'
+          'Required parameter listId was null or undefined when calling createListCommunication.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling listServiceCreateListCommunication.'
+          'Required parameter body was null or undefined when calling createListCommunication.'
         )
       }
       const localVarPath = `/call_center/list/{list_id}/communication`.replace(
@@ -207,7 +207,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceDeleteList: async (
+    deleteList: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -216,7 +216,7 @@ export const ListServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling listServiceDeleteList.'
+          'Required parameter id was null or undefined when calling deleteList.'
         )
       }
       const localVarPath = `/call_center/list/{id}`.replace(
@@ -278,7 +278,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceDeleteListCommunication: async (
+    deleteListCommunication: async (
       listId: string,
       id: string,
       domainId?: string,
@@ -288,14 +288,14 @@ export const ListServiceApiAxiosParamCreator = function(
       if (listId === null || listId === undefined) {
         throw new RequiredError(
           'listId',
-          'Required parameter listId was null or undefined when calling listServiceDeleteListCommunication.'
+          'Required parameter listId was null or undefined when calling deleteListCommunication.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling listServiceDeleteListCommunication.'
+          'Required parameter id was null or undefined when calling deleteListCommunication.'
         )
       }
       const localVarPath = `/call_center/list/{list_id}/communication/{id}`
@@ -355,7 +355,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceReadList: async (
+    readList: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -364,7 +364,7 @@ export const ListServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling listServiceReadList.'
+          'Required parameter id was null or undefined when calling readList.'
         )
       }
       const localVarPath = `/call_center/list/{id}`.replace(
@@ -426,7 +426,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceReadListCommunication: async (
+    readListCommunication: async (
       listId: string,
       id: string,
       domainId?: string,
@@ -436,14 +436,14 @@ export const ListServiceApiAxiosParamCreator = function(
       if (listId === null || listId === undefined) {
         throw new RequiredError(
           'listId',
-          'Required parameter listId was null or undefined when calling listServiceReadListCommunication.'
+          'Required parameter listId was null or undefined when calling readListCommunication.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling listServiceReadListCommunication.'
+          'Required parameter id was null or undefined when calling readListCommunication.'
         )
       }
       const localVarPath = `/call_center/list/{list_id}/communication/{id}`
@@ -507,7 +507,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceSearchList: async (
+    searchList: async (
       page?: number,
       size?: number,
       q?: string,
@@ -598,7 +598,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceSearchListCommunication: async (
+    searchListCommunication: async (
       listId: string,
       page?: number,
       size?: number,
@@ -614,7 +614,7 @@ export const ListServiceApiAxiosParamCreator = function(
       if (listId === null || listId === undefined) {
         throw new RequiredError(
           'listId',
-          'Required parameter listId was null or undefined when calling listServiceSearchListCommunication.'
+          'Required parameter listId was null or undefined when calling searchListCommunication.'
         )
       }
       const localVarPath = `/call_center/list/{list_id}/communication`.replace(
@@ -703,7 +703,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceUpdateList: async (
+    updateList: async (
       id: string,
       body: EngineUpdateListRequest,
       options: any = {}
@@ -712,14 +712,14 @@ export const ListServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling listServiceUpdateList.'
+          'Required parameter id was null or undefined when calling updateList.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling listServiceUpdateList.'
+          'Required parameter body was null or undefined when calling updateList.'
         )
       }
       const localVarPath = `/call_center/list/{id}`.replace(
@@ -785,7 +785,7 @@ export const ListServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceUpdateListCommunication: async (
+    updateListCommunication: async (
       listId: string,
       id: string,
       body: EngineUpdateListCommunicationRequest,
@@ -795,21 +795,21 @@ export const ListServiceApiAxiosParamCreator = function(
       if (listId === null || listId === undefined) {
         throw new RequiredError(
           'listId',
-          'Required parameter listId was null or undefined when calling listServiceUpdateListCommunication.'
+          'Required parameter listId was null or undefined when calling updateListCommunication.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling listServiceUpdateListCommunication.'
+          'Required parameter id was null or undefined when calling updateListCommunication.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling listServiceUpdateListCommunication.'
+          'Required parameter body was null or undefined when calling updateListCommunication.'
         )
       }
       const localVarPath = `/call_center/list/{list_id}/communication/{id}`
@@ -881,7 +881,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceCreateList(
+    async createList(
       body: EngineCreateListRequest,
       options?: any
     ): Promise<
@@ -889,7 +889,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceCreateList(body, options)
+      ).createList(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -909,7 +909,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceCreateListCommunication(
+    async createListCommunication(
       listId: string,
       body: EngineCreateListCommunicationRequest,
       options?: any
@@ -921,7 +921,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceCreateListCommunication(listId, body, options)
+      ).createListCommunication(listId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -941,7 +941,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceDeleteList(
+    async deleteList(
       id: string,
       domainId?: string,
       options?: any
@@ -950,7 +950,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceDeleteList(id, domainId, options)
+      ).deleteList(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -971,7 +971,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceDeleteListCommunication(
+    async deleteListCommunication(
       listId: string,
       id: string,
       domainId?: string,
@@ -984,7 +984,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceDeleteListCommunication(listId, id, domainId, options)
+      ).deleteListCommunication(listId, id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1004,7 +1004,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceReadList(
+    async readList(
       id: string,
       domainId?: string,
       options?: any
@@ -1013,7 +1013,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceReadList(id, domainId, options)
+      ).readList(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1034,7 +1034,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceReadListCommunication(
+    async readListCommunication(
       listId: string,
       id: string,
       domainId?: string,
@@ -1047,7 +1047,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceReadListCommunication(listId, id, domainId, options)
+      ).readListCommunication(listId, id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1071,7 +1071,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceSearchList(
+    async searchList(
       page?: number,
       size?: number,
       q?: string,
@@ -1087,7 +1087,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceSearchList(page, size, q, sort, fields, id, options)
+      ).searchList(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1114,7 +1114,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceSearchListCommunication(
+    async searchListCommunication(
       listId: string,
       page?: number,
       size?: number,
@@ -1133,7 +1133,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceSearchListCommunication(
+      ).searchListCommunication(
         listId,
         page,
         size,
@@ -1164,7 +1164,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceUpdateList(
+    async updateList(
       id: string,
       body: EngineUpdateListRequest,
       options?: any
@@ -1173,7 +1173,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceUpdateList(id, body, options)
+      ).updateList(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1194,7 +1194,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listServiceUpdateListCommunication(
+    async updateListCommunication(
       listId: string,
       id: string,
       body: EngineUpdateListCommunicationRequest,
@@ -1207,7 +1207,7 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ListServiceApiAxiosParamCreator(
         configuration
-      ).listServiceUpdateListCommunication(listId, id, body, options)
+      ).updateListCommunication(listId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1239,12 +1239,12 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceCreateList(
+    createList(
       body: EngineCreateListRequest,
       options?: any
     ): AxiosPromise<EngineList> {
       return ListServiceApiFp(configuration)
-        .listServiceCreateList(body, options)
+        .createList(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1255,13 +1255,13 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceCreateListCommunication(
+    createListCommunication(
       listId: string,
       body: EngineCreateListCommunicationRequest,
       options?: any
     ): AxiosPromise<EngineListCommunication> {
       return ListServiceApiFp(configuration)
-        .listServiceCreateListCommunication(listId, body, options)
+        .createListCommunication(listId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1272,13 +1272,13 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceDeleteList(
+    deleteList(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineList> {
       return ListServiceApiFp(configuration)
-        .listServiceDeleteList(id, domainId, options)
+        .deleteList(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1290,14 +1290,14 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceDeleteListCommunication(
+    deleteListCommunication(
       listId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineListCommunication> {
       return ListServiceApiFp(configuration)
-        .listServiceDeleteListCommunication(listId, id, domainId, options)
+        .deleteListCommunication(listId, id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1308,13 +1308,13 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceReadList(
+    readList(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineList> {
       return ListServiceApiFp(configuration)
-        .listServiceReadList(id, domainId, options)
+        .readList(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1326,14 +1326,14 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceReadListCommunication(
+    readListCommunication(
       listId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineListCommunication> {
       return ListServiceApiFp(configuration)
-        .listServiceReadListCommunication(listId, id, domainId, options)
+        .readListCommunication(listId, id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1348,7 +1348,7 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceSearchList(
+    searchList(
       page?: number,
       size?: number,
       q?: string,
@@ -1358,7 +1358,7 @@ export const ListServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListOfList> {
       return ListServiceApiFp(configuration)
-        .listServiceSearchList(page, size, q, sort, fields, id, options)
+        .searchList(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1376,7 +1376,7 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceSearchListCommunication(
+    searchListCommunication(
       listId: string,
       page?: number,
       size?: number,
@@ -1389,7 +1389,7 @@ export const ListServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListOfListCommunication> {
       return ListServiceApiFp(configuration)
-        .listServiceSearchListCommunication(
+        .searchListCommunication(
           listId,
           page,
           size,
@@ -1411,13 +1411,13 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceUpdateList(
+    updateList(
       id: string,
       body: EngineUpdateListRequest,
       options?: any
     ): AxiosPromise<EngineList> {
       return ListServiceApiFp(configuration)
-        .listServiceUpdateList(id, body, options)
+        .updateList(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1429,14 +1429,14 @@ export const ListServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listServiceUpdateListCommunication(
+    updateListCommunication(
       listId: string,
       id: string,
       body: EngineUpdateListCommunicationRequest,
       options?: any
     ): AxiosPromise<EngineListCommunication> {
       return ListServiceApiFp(configuration)
-        .listServiceUpdateListCommunication(listId, id, body, options)
+        .updateListCommunication(listId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1457,9 +1457,9 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceCreateList(body: EngineCreateListRequest, options?: any) {
+  public createList(body: EngineCreateListRequest, options?: any) {
     return ListServiceApiFp(this.configuration)
-      .listServiceCreateList(body, options)
+      .createList(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1472,13 +1472,13 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceCreateListCommunication(
+  public createListCommunication(
     listId: string,
     body: EngineCreateListCommunicationRequest,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .listServiceCreateListCommunication(listId, body, options)
+      .createListCommunication(listId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1491,9 +1491,9 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceDeleteList(id: string, domainId?: string, options?: any) {
+  public deleteList(id: string, domainId?: string, options?: any) {
     return ListServiceApiFp(this.configuration)
-      .listServiceDeleteList(id, domainId, options)
+      .deleteList(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1507,14 +1507,14 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceDeleteListCommunication(
+  public deleteListCommunication(
     listId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .listServiceDeleteListCommunication(listId, id, domainId, options)
+      .deleteListCommunication(listId, id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1527,9 +1527,9 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceReadList(id: string, domainId?: string, options?: any) {
+  public readList(id: string, domainId?: string, options?: any) {
     return ListServiceApiFp(this.configuration)
-      .listServiceReadList(id, domainId, options)
+      .readList(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1543,14 +1543,14 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceReadListCommunication(
+  public readListCommunication(
     listId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .listServiceReadListCommunication(listId, id, domainId, options)
+      .readListCommunication(listId, id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1567,7 +1567,7 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceSearchList(
+  public searchList(
     page?: number,
     size?: number,
     q?: string,
@@ -1577,7 +1577,7 @@ export class ListServiceApi extends BaseAPI {
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .listServiceSearchList(page, size, q, sort, fields, id, options)
+      .searchList(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1597,7 +1597,7 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceSearchListCommunication(
+  public searchListCommunication(
     listId: string,
     page?: number,
     size?: number,
@@ -1610,7 +1610,7 @@ export class ListServiceApi extends BaseAPI {
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .listServiceSearchListCommunication(
+      .searchListCommunication(
         listId,
         page,
         size,
@@ -1634,13 +1634,9 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceUpdateList(
-    id: string,
-    body: EngineUpdateListRequest,
-    options?: any
-  ) {
+  public updateList(id: string, body: EngineUpdateListRequest, options?: any) {
     return ListServiceApiFp(this.configuration)
-      .listServiceUpdateList(id, body, options)
+      .updateList(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1654,14 +1650,14 @@ export class ListServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public listServiceUpdateListCommunication(
+  public updateListCommunication(
     listId: string,
     id: string,
     body: EngineUpdateListCommunicationRequest,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
-      .listServiceUpdateListCommunication(listId, id, body, options)
+      .updateListCommunication(listId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

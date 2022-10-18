@@ -49,7 +49,7 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceCreateQueueResourceGroup: async (
+    createQueueResourceGroup: async (
       queueId: string,
       body: EngineCreateQueueResourceGroupRequest,
       options: any = {}
@@ -58,14 +58,14 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueResourcesServiceCreateQueueResourceGroup.'
+          'Required parameter queueId was null or undefined when calling createQueueResourceGroup.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling queueResourcesServiceCreateQueueResourceGroup.'
+          'Required parameter body was null or undefined when calling createQueueResourceGroup.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/resource_groups`.replace(
@@ -131,7 +131,7 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceDeleteQueueResourceGroup: async (
+    deleteQueueResourceGroup: async (
       queueId: string,
       id: string,
       domainId?: string,
@@ -141,14 +141,14 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueResourcesServiceDeleteQueueResourceGroup.'
+          'Required parameter queueId was null or undefined when calling deleteQueueResourceGroup.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling queueResourcesServiceDeleteQueueResourceGroup.'
+          'Required parameter id was null or undefined when calling deleteQueueResourceGroup.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/resource_groups/{id}`
@@ -209,7 +209,7 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceReadQueueResourceGroup: async (
+    readQueueResourceGroup: async (
       queueId: string,
       id: string,
       domainId?: string,
@@ -219,14 +219,14 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueResourcesServiceReadQueueResourceGroup.'
+          'Required parameter queueId was null or undefined when calling readQueueResourceGroup.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling queueResourcesServiceReadQueueResourceGroup.'
+          'Required parameter id was null or undefined when calling readQueueResourceGroup.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/resource_groups/{id}`
@@ -291,7 +291,7 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceSearchQueueResourceGroup: async (
+    searchQueueResourceGroup: async (
       queueId: string,
       page?: number,
       size?: number,
@@ -305,7 +305,7 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueResourcesServiceSearchQueueResourceGroup.'
+          'Required parameter queueId was null or undefined when calling searchQueueResourceGroup.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/resource_groups`.replace(
@@ -387,7 +387,7 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceUpdateQueueResourceGroup: async (
+    updateQueueResourceGroup: async (
       queueId: string,
       id: string,
       body: EngineUpdateQueueResourceGroupRequest,
@@ -397,21 +397,21 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling queueResourcesServiceUpdateQueueResourceGroup.'
+          'Required parameter queueId was null or undefined when calling updateQueueResourceGroup.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling queueResourcesServiceUpdateQueueResourceGroup.'
+          'Required parameter id was null or undefined when calling updateQueueResourceGroup.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling queueResourcesServiceUpdateQueueResourceGroup.'
+          'Required parameter body was null or undefined when calling updateQueueResourceGroup.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/resource_groups/{id}`
@@ -486,7 +486,7 @@ export const QueueResourcesServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueResourcesServiceCreateQueueResourceGroup(
+    async createQueueResourceGroup(
       queueId: string,
       body: EngineCreateQueueResourceGroupRequest,
       options?: any
@@ -498,7 +498,7 @@ export const QueueResourcesServiceApiFp = function(
     > {
       const localVarAxiosArgs = await QueueResourcesServiceApiAxiosParamCreator(
         configuration
-      ).queueResourcesServiceCreateQueueResourceGroup(queueId, body, options)
+      ).createQueueResourceGroup(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -519,7 +519,7 @@ export const QueueResourcesServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueResourcesServiceDeleteQueueResourceGroup(
+    async deleteQueueResourceGroup(
       queueId: string,
       id: string,
       domainId?: string,
@@ -532,12 +532,7 @@ export const QueueResourcesServiceApiFp = function(
     > {
       const localVarAxiosArgs = await QueueResourcesServiceApiAxiosParamCreator(
         configuration
-      ).queueResourcesServiceDeleteQueueResourceGroup(
-        queueId,
-        id,
-        domainId,
-        options
-      )
+      ).deleteQueueResourceGroup(queueId, id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -558,7 +553,7 @@ export const QueueResourcesServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueResourcesServiceReadQueueResourceGroup(
+    async readQueueResourceGroup(
       queueId: string,
       id: string,
       domainId?: string,
@@ -571,12 +566,7 @@ export const QueueResourcesServiceApiFp = function(
     > {
       const localVarAxiosArgs = await QueueResourcesServiceApiAxiosParamCreator(
         configuration
-      ).queueResourcesServiceReadQueueResourceGroup(
-        queueId,
-        id,
-        domainId,
-        options
-      )
+      ).readQueueResourceGroup(queueId, id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -601,7 +591,7 @@ export const QueueResourcesServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueResourcesServiceSearchQueueResourceGroup(
+    async searchQueueResourceGroup(
       queueId: string,
       page?: number,
       size?: number,
@@ -618,7 +608,7 @@ export const QueueResourcesServiceApiFp = function(
     > {
       const localVarAxiosArgs = await QueueResourcesServiceApiAxiosParamCreator(
         configuration
-      ).queueResourcesServiceSearchQueueResourceGroup(
+      ).searchQueueResourceGroup(
         queueId,
         page,
         size,
@@ -648,7 +638,7 @@ export const QueueResourcesServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async queueResourcesServiceUpdateQueueResourceGroup(
+    async updateQueueResourceGroup(
       queueId: string,
       id: string,
       body: EngineUpdateQueueResourceGroupRequest,
@@ -661,12 +651,7 @@ export const QueueResourcesServiceApiFp = function(
     > {
       const localVarAxiosArgs = await QueueResourcesServiceApiAxiosParamCreator(
         configuration
-      ).queueResourcesServiceUpdateQueueResourceGroup(
-        queueId,
-        id,
-        body,
-        options
-      )
+      ).updateQueueResourceGroup(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -699,13 +684,13 @@ export const QueueResourcesServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceCreateQueueResourceGroup(
+    createQueueResourceGroup(
       queueId: string,
       body: EngineCreateQueueResourceGroupRequest,
       options?: any
     ): AxiosPromise<EngineQueueResourceGroup> {
       return QueueResourcesServiceApiFp(configuration)
-        .queueResourcesServiceCreateQueueResourceGroup(queueId, body, options)
+        .createQueueResourceGroup(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -717,19 +702,14 @@ export const QueueResourcesServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceDeleteQueueResourceGroup(
+    deleteQueueResourceGroup(
       queueId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineQueueResourceGroup> {
       return QueueResourcesServiceApiFp(configuration)
-        .queueResourcesServiceDeleteQueueResourceGroup(
-          queueId,
-          id,
-          domainId,
-          options
-        )
+        .deleteQueueResourceGroup(queueId, id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -741,19 +721,14 @@ export const QueueResourcesServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceReadQueueResourceGroup(
+    readQueueResourceGroup(
       queueId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineQueueResourceGroup> {
       return QueueResourcesServiceApiFp(configuration)
-        .queueResourcesServiceReadQueueResourceGroup(
-          queueId,
-          id,
-          domainId,
-          options
-        )
+        .readQueueResourceGroup(queueId, id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -769,7 +744,7 @@ export const QueueResourcesServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceSearchQueueResourceGroup(
+    searchQueueResourceGroup(
       queueId: string,
       page?: number,
       size?: number,
@@ -780,7 +755,7 @@ export const QueueResourcesServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListQueueResourceGroup> {
       return QueueResourcesServiceApiFp(configuration)
-        .queueResourcesServiceSearchQueueResourceGroup(
+        .searchQueueResourceGroup(
           queueId,
           page,
           size,
@@ -801,19 +776,14 @@ export const QueueResourcesServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    queueResourcesServiceUpdateQueueResourceGroup(
+    updateQueueResourceGroup(
       queueId: string,
       id: string,
       body: EngineUpdateQueueResourceGroupRequest,
       options?: any
     ): AxiosPromise<EngineQueueResourceGroup> {
       return QueueResourcesServiceApiFp(configuration)
-        .queueResourcesServiceUpdateQueueResourceGroup(
-          queueId,
-          id,
-          body,
-          options
-        )
+        .updateQueueResourceGroup(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -835,13 +805,13 @@ export class QueueResourcesServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueResourcesServiceApi
    */
-  public queueResourcesServiceCreateQueueResourceGroup(
+  public createQueueResourceGroup(
     queueId: string,
     body: EngineCreateQueueResourceGroupRequest,
     options?: any
   ) {
     return QueueResourcesServiceApiFp(this.configuration)
-      .queueResourcesServiceCreateQueueResourceGroup(queueId, body, options)
+      .createQueueResourceGroup(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -855,19 +825,14 @@ export class QueueResourcesServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueResourcesServiceApi
    */
-  public queueResourcesServiceDeleteQueueResourceGroup(
+  public deleteQueueResourceGroup(
     queueId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return QueueResourcesServiceApiFp(this.configuration)
-      .queueResourcesServiceDeleteQueueResourceGroup(
-        queueId,
-        id,
-        domainId,
-        options
-      )
+      .deleteQueueResourceGroup(queueId, id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -881,19 +846,14 @@ export class QueueResourcesServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueResourcesServiceApi
    */
-  public queueResourcesServiceReadQueueResourceGroup(
+  public readQueueResourceGroup(
     queueId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return QueueResourcesServiceApiFp(this.configuration)
-      .queueResourcesServiceReadQueueResourceGroup(
-        queueId,
-        id,
-        domainId,
-        options
-      )
+      .readQueueResourceGroup(queueId, id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -911,7 +871,7 @@ export class QueueResourcesServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueResourcesServiceApi
    */
-  public queueResourcesServiceSearchQueueResourceGroup(
+  public searchQueueResourceGroup(
     queueId: string,
     page?: number,
     size?: number,
@@ -922,7 +882,7 @@ export class QueueResourcesServiceApi extends BaseAPI {
     options?: any
   ) {
     return QueueResourcesServiceApiFp(this.configuration)
-      .queueResourcesServiceSearchQueueResourceGroup(
+      .searchQueueResourceGroup(
         queueId,
         page,
         size,
@@ -945,14 +905,14 @@ export class QueueResourcesServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof QueueResourcesServiceApi
    */
-  public queueResourcesServiceUpdateQueueResourceGroup(
+  public updateQueueResourceGroup(
     queueId: string,
     id: string,
     body: EngineUpdateQueueResourceGroupRequest,
     options?: any
   ) {
     return QueueResourcesServiceApiFp(this.configuration)
-      .queueResourcesServiceUpdateQueueResourceGroup(queueId, id, body, options)
+      .updateQueueResourceGroup(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

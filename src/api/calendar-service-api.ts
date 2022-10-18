@@ -50,7 +50,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceCreateCalendar: async (
+    createCalendar: async (
       body: EngineCreateCalendarRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -58,7 +58,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling calendarServiceCreateCalendar.'
+          'Required parameter body was null or undefined when calling createCalendar.'
         )
       }
       const localVarPath = `/calendars`
@@ -120,7 +120,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceDeleteCalendar: async (
+    deleteCalendar: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -129,7 +129,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling calendarServiceDeleteCalendar.'
+          'Required parameter id was null or undefined when calling deleteCalendar.'
         )
       }
       const localVarPath = `/calendars/{id}`.replace(
@@ -190,7 +190,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceReadCalendar: async (
+    readCalendar: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -199,7 +199,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling calendarServiceReadCalendar.'
+          'Required parameter id was null or undefined when calling readCalendar.'
         )
       }
       const localVarPath = `/calendars/{id}`.replace(
@@ -264,7 +264,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceSearchCalendar: async (
+    searchCalendar: async (
       page?: number,
       size?: number,
       q?: string,
@@ -349,7 +349,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceSearchTimezones: async (
+    searchTimezones: async (
       page?: number,
       size?: number,
       q?: string,
@@ -418,7 +418,7 @@ export const CalendarServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceUpdateCalendar: async (
+    updateCalendar: async (
       id: string,
       body: EngineUpdateCalendarRequest,
       options: any = {}
@@ -427,14 +427,14 @@ export const CalendarServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling calendarServiceUpdateCalendar.'
+          'Required parameter id was null or undefined when calling updateCalendar.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling calendarServiceUpdateCalendar.'
+          'Required parameter body was null or undefined when calling updateCalendar.'
         )
       }
       const localVarPath = `/calendars/{id}`.replace(
@@ -507,7 +507,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async calendarServiceCreateCalendar(
+    async createCalendar(
       body: EngineCreateCalendarRequest,
       options?: any
     ): Promise<
@@ -515,7 +515,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CalendarServiceApiAxiosParamCreator(
         configuration
-      ).calendarServiceCreateCalendar(body, options)
+      ).createCalendar(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -535,7 +535,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async calendarServiceDeleteCalendar(
+    async deleteCalendar(
       id: string,
       domainId?: string,
       options?: any
@@ -544,7 +544,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CalendarServiceApiAxiosParamCreator(
         configuration
-      ).calendarServiceDeleteCalendar(id, domainId, options)
+      ).deleteCalendar(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -564,7 +564,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async calendarServiceReadCalendar(
+    async readCalendar(
       id: string,
       domainId?: string,
       options?: any
@@ -573,7 +573,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CalendarServiceApiAxiosParamCreator(
         configuration
-      ).calendarServiceReadCalendar(id, domainId, options)
+      ).readCalendar(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -597,7 +597,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async calendarServiceSearchCalendar(
+    async searchCalendar(
       page?: number,
       size?: number,
       q?: string,
@@ -613,7 +613,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CalendarServiceApiAxiosParamCreator(
         configuration
-      ).calendarServiceSearchCalendar(page, size, q, sort, fields, id, options)
+      ).searchCalendar(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -634,7 +634,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async calendarServiceSearchTimezones(
+    async searchTimezones(
       page?: number,
       size?: number,
       q?: string,
@@ -647,7 +647,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CalendarServiceApiAxiosParamCreator(
         configuration
-      ).calendarServiceSearchTimezones(page, size, q, options)
+      ).searchTimezones(page, size, q, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -667,7 +667,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async calendarServiceUpdateCalendar(
+    async updateCalendar(
       id: string,
       body: EngineUpdateCalendarRequest,
       options?: any
@@ -676,7 +676,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CalendarServiceApiAxiosParamCreator(
         configuration
-      ).calendarServiceUpdateCalendar(id, body, options)
+      ).updateCalendar(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -708,12 +708,12 @@ export const CalendarServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceCreateCalendar(
+    createCalendar(
       body: EngineCreateCalendarRequest,
       options?: any
     ): AxiosPromise<EngineCalendar> {
       return CalendarServiceApiFp(configuration)
-        .calendarServiceCreateCalendar(body, options)
+        .createCalendar(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -724,13 +724,13 @@ export const CalendarServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceDeleteCalendar(
+    deleteCalendar(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineCalendar> {
       return CalendarServiceApiFp(configuration)
-        .calendarServiceDeleteCalendar(id, domainId, options)
+        .deleteCalendar(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -741,13 +741,13 @@ export const CalendarServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceReadCalendar(
+    readCalendar(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineCalendar> {
       return CalendarServiceApiFp(configuration)
-        .calendarServiceReadCalendar(id, domainId, options)
+        .readCalendar(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -762,7 +762,7 @@ export const CalendarServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceSearchCalendar(
+    searchCalendar(
       page?: number,
       size?: number,
       q?: string,
@@ -772,7 +772,7 @@ export const CalendarServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListCalendar> {
       return CalendarServiceApiFp(configuration)
-        .calendarServiceSearchCalendar(page, size, q, sort, fields, id, options)
+        .searchCalendar(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -784,14 +784,14 @@ export const CalendarServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceSearchTimezones(
+    searchTimezones(
       page?: number,
       size?: number,
       q?: string,
       options?: any
     ): AxiosPromise<EngineListTimezoneResponse> {
       return CalendarServiceApiFp(configuration)
-        .calendarServiceSearchTimezones(page, size, q, options)
+        .searchTimezones(page, size, q, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -802,13 +802,13 @@ export const CalendarServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    calendarServiceUpdateCalendar(
+    updateCalendar(
       id: string,
       body: EngineUpdateCalendarRequest,
       options?: any
     ): AxiosPromise<EngineCalendar> {
       return CalendarServiceApiFp(configuration)
-        .calendarServiceUpdateCalendar(id, body, options)
+        .updateCalendar(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -829,12 +829,9 @@ export class CalendarServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public calendarServiceCreateCalendar(
-    body: EngineCreateCalendarRequest,
-    options?: any
-  ) {
+  public createCalendar(body: EngineCreateCalendarRequest, options?: any) {
     return CalendarServiceApiFp(this.configuration)
-      .calendarServiceCreateCalendar(body, options)
+      .createCalendar(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -847,13 +844,9 @@ export class CalendarServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public calendarServiceDeleteCalendar(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public deleteCalendar(id: string, domainId?: string, options?: any) {
     return CalendarServiceApiFp(this.configuration)
-      .calendarServiceDeleteCalendar(id, domainId, options)
+      .deleteCalendar(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -866,13 +859,9 @@ export class CalendarServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public calendarServiceReadCalendar(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public readCalendar(id: string, domainId?: string, options?: any) {
     return CalendarServiceApiFp(this.configuration)
-      .calendarServiceReadCalendar(id, domainId, options)
+      .readCalendar(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -889,7 +878,7 @@ export class CalendarServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public calendarServiceSearchCalendar(
+  public searchCalendar(
     page?: number,
     size?: number,
     q?: string,
@@ -899,7 +888,7 @@ export class CalendarServiceApi extends BaseAPI {
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration)
-      .calendarServiceSearchCalendar(page, size, q, sort, fields, id, options)
+      .searchCalendar(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -913,14 +902,14 @@ export class CalendarServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public calendarServiceSearchTimezones(
+  public searchTimezones(
     page?: number,
     size?: number,
     q?: string,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration)
-      .calendarServiceSearchTimezones(page, size, q, options)
+      .searchTimezones(page, size, q, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -933,13 +922,13 @@ export class CalendarServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
-  public calendarServiceUpdateCalendar(
+  public updateCalendar(
     id: string,
     body: EngineUpdateCalendarRequest,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration)
-      .calendarServiceUpdateCalendar(id, body, options)
+      .updateCalendar(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

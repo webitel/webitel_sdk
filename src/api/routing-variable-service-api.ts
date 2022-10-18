@@ -48,7 +48,7 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceCreateRoutingVariable: async (
+    createRoutingVariable: async (
       body: EngineCreateRoutingVariableRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -56,7 +56,7 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling routingVariableServiceCreateRoutingVariable.'
+          'Required parameter body was null or undefined when calling createRoutingVariable.'
         )
       }
       const localVarPath = `/routing/variables`
@@ -118,7 +118,7 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceDeleteRoutingVariable: async (
+    deleteRoutingVariable: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -127,7 +127,7 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling routingVariableServiceDeleteRoutingVariable.'
+          'Required parameter id was null or undefined when calling deleteRoutingVariable.'
         )
       }
       const localVarPath = `/routing/variables/{id}`.replace(
@@ -188,7 +188,7 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceReadRoutingVariable: async (
+    readRoutingVariable: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -197,7 +197,7 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling routingVariableServiceReadRoutingVariable.'
+          'Required parameter id was null or undefined when calling readRoutingVariable.'
         )
       }
       const localVarPath = `/routing/variables/{id}`.replace(
@@ -259,7 +259,7 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceSearchRoutingVariable: async (
+    searchRoutingVariable: async (
       page?: number,
       size?: number,
       domainId?: string,
@@ -328,7 +328,7 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceUpdateRoutingVariable: async (
+    updateRoutingVariable: async (
       id: string,
       body: EngineUpdateRoutingVariableRequest,
       options: any = {}
@@ -337,14 +337,14 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling routingVariableServiceUpdateRoutingVariable.'
+          'Required parameter id was null or undefined when calling updateRoutingVariable.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling routingVariableServiceUpdateRoutingVariable.'
+          'Required parameter body was null or undefined when calling updateRoutingVariable.'
         )
       }
       const localVarPath = `/routing/variables/{id}`.replace(
@@ -419,7 +419,7 @@ export const RoutingVariableServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingVariableServiceCreateRoutingVariable(
+    async createRoutingVariable(
       body: EngineCreateRoutingVariableRequest,
       options?: any
     ): Promise<
@@ -430,7 +430,7 @@ export const RoutingVariableServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).routingVariableServiceCreateRoutingVariable(body, options)
+      ).createRoutingVariable(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -450,7 +450,7 @@ export const RoutingVariableServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingVariableServiceDeleteRoutingVariable(
+    async deleteRoutingVariable(
       id: string,
       domainId?: string,
       options?: any
@@ -462,7 +462,7 @@ export const RoutingVariableServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).routingVariableServiceDeleteRoutingVariable(id, domainId, options)
+      ).deleteRoutingVariable(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -482,7 +482,7 @@ export const RoutingVariableServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingVariableServiceReadRoutingVariable(
+    async readRoutingVariable(
       id: string,
       domainId?: string,
       options?: any
@@ -494,7 +494,7 @@ export const RoutingVariableServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).routingVariableServiceReadRoutingVariable(id, domainId, options)
+      ).readRoutingVariable(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -515,7 +515,7 @@ export const RoutingVariableServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingVariableServiceSearchRoutingVariable(
+    async searchRoutingVariable(
       page?: number,
       size?: number,
       domainId?: string,
@@ -528,12 +528,7 @@ export const RoutingVariableServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).routingVariableServiceSearchRoutingVariable(
-        page,
-        size,
-        domainId,
-        options
-      )
+      ).searchRoutingVariable(page, size, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -553,7 +548,7 @@ export const RoutingVariableServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routingVariableServiceUpdateRoutingVariable(
+    async updateRoutingVariable(
       id: string,
       body: EngineUpdateRoutingVariableRequest,
       options?: any
@@ -565,7 +560,7 @@ export const RoutingVariableServiceApiFp = function(
     > {
       const localVarAxiosArgs = await RoutingVariableServiceApiAxiosParamCreator(
         configuration
-      ).routingVariableServiceUpdateRoutingVariable(id, body, options)
+      ).updateRoutingVariable(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -597,12 +592,12 @@ export const RoutingVariableServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceCreateRoutingVariable(
+    createRoutingVariable(
       body: EngineCreateRoutingVariableRequest,
       options?: any
     ): AxiosPromise<EngineRoutingVariable> {
       return RoutingVariableServiceApiFp(configuration)
-        .routingVariableServiceCreateRoutingVariable(body, options)
+        .createRoutingVariable(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -613,13 +608,13 @@ export const RoutingVariableServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceDeleteRoutingVariable(
+    deleteRoutingVariable(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineRoutingVariable> {
       return RoutingVariableServiceApiFp(configuration)
-        .routingVariableServiceDeleteRoutingVariable(id, domainId, options)
+        .deleteRoutingVariable(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -630,13 +625,13 @@ export const RoutingVariableServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceReadRoutingVariable(
+    readRoutingVariable(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineRoutingVariable> {
       return RoutingVariableServiceApiFp(configuration)
-        .routingVariableServiceReadRoutingVariable(id, domainId, options)
+        .readRoutingVariable(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -648,19 +643,14 @@ export const RoutingVariableServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceSearchRoutingVariable(
+    searchRoutingVariable(
       page?: number,
       size?: number,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineListRoutingVariable> {
       return RoutingVariableServiceApiFp(configuration)
-        .routingVariableServiceSearchRoutingVariable(
-          page,
-          size,
-          domainId,
-          options
-        )
+        .searchRoutingVariable(page, size, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -671,13 +661,13 @@ export const RoutingVariableServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routingVariableServiceUpdateRoutingVariable(
+    updateRoutingVariable(
       id: string,
       body: EngineUpdateRoutingVariableRequest,
       options?: any
     ): AxiosPromise<EngineRoutingVariable> {
       return RoutingVariableServiceApiFp(configuration)
-        .routingVariableServiceUpdateRoutingVariable(id, body, options)
+        .updateRoutingVariable(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -698,12 +688,12 @@ export class RoutingVariableServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
-  public routingVariableServiceCreateRoutingVariable(
+  public createRoutingVariable(
     body: EngineCreateRoutingVariableRequest,
     options?: any
   ) {
     return RoutingVariableServiceApiFp(this.configuration)
-      .routingVariableServiceCreateRoutingVariable(body, options)
+      .createRoutingVariable(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -716,13 +706,9 @@ export class RoutingVariableServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
-  public routingVariableServiceDeleteRoutingVariable(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public deleteRoutingVariable(id: string, domainId?: string, options?: any) {
     return RoutingVariableServiceApiFp(this.configuration)
-      .routingVariableServiceDeleteRoutingVariable(id, domainId, options)
+      .deleteRoutingVariable(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -735,13 +721,9 @@ export class RoutingVariableServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
-  public routingVariableServiceReadRoutingVariable(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public readRoutingVariable(id: string, domainId?: string, options?: any) {
     return RoutingVariableServiceApiFp(this.configuration)
-      .routingVariableServiceReadRoutingVariable(id, domainId, options)
+      .readRoutingVariable(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -755,19 +737,14 @@ export class RoutingVariableServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
-  public routingVariableServiceSearchRoutingVariable(
+  public searchRoutingVariable(
     page?: number,
     size?: number,
     domainId?: string,
     options?: any
   ) {
     return RoutingVariableServiceApiFp(this.configuration)
-      .routingVariableServiceSearchRoutingVariable(
-        page,
-        size,
-        domainId,
-        options
-      )
+      .searchRoutingVariable(page, size, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -780,13 +757,13 @@ export class RoutingVariableServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
-  public routingVariableServiceUpdateRoutingVariable(
+  public updateRoutingVariable(
     id: string,
     body: EngineUpdateRoutingVariableRequest,
     options?: any
   ) {
     return RoutingVariableServiceApiFp(this.configuration)
-      .routingVariableServiceUpdateRoutingVariable(id, body, options)
+      .updateRoutingVariable(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

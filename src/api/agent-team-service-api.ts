@@ -48,7 +48,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceCreateAgentTeam: async (
+    createAgentTeam: async (
       body: EngineCreateAgentTeamRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -56,7 +56,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling agentTeamServiceCreateAgentTeam.'
+          'Required parameter body was null or undefined when calling createAgentTeam.'
         )
       }
       const localVarPath = `/call_center/teams`
@@ -118,7 +118,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceDeleteAgentTeam: async (
+    deleteAgentTeam: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -127,7 +127,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling agentTeamServiceDeleteAgentTeam.'
+          'Required parameter id was null or undefined when calling deleteAgentTeam.'
         )
       }
       const localVarPath = `/call_center/teams/{id}`.replace(
@@ -188,7 +188,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceReadAgentTeam: async (
+    readAgentTeam: async (
       id: string,
       domainId?: string,
       options: any = {}
@@ -197,7 +197,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling agentTeamServiceReadAgentTeam.'
+          'Required parameter id was null or undefined when calling readAgentTeam.'
         )
       }
       const localVarPath = `/call_center/teams/{id}`.replace(
@@ -264,7 +264,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceSearchAgentTeam: async (
+    searchAgentTeam: async (
       page?: number,
       size?: number,
       q?: string,
@@ -358,7 +358,7 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceUpdateAgentTeam: async (
+    updateAgentTeam: async (
       id: string,
       body: EngineUpdateAgentTeamRequest,
       options: any = {}
@@ -367,14 +367,14 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling agentTeamServiceUpdateAgentTeam.'
+          'Required parameter id was null or undefined when calling updateAgentTeam.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling agentTeamServiceUpdateAgentTeam.'
+          'Required parameter body was null or undefined when calling updateAgentTeam.'
         )
       }
       const localVarPath = `/call_center/teams/{id}`.replace(
@@ -447,7 +447,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async agentTeamServiceCreateAgentTeam(
+    async createAgentTeam(
       body: EngineCreateAgentTeamRequest,
       options?: any
     ): Promise<
@@ -458,7 +458,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).agentTeamServiceCreateAgentTeam(body, options)
+      ).createAgentTeam(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -478,7 +478,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async agentTeamServiceDeleteAgentTeam(
+    async deleteAgentTeam(
       id: string,
       domainId?: string,
       options?: any
@@ -490,7 +490,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).agentTeamServiceDeleteAgentTeam(id, domainId, options)
+      ).deleteAgentTeam(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -510,7 +510,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async agentTeamServiceReadAgentTeam(
+    async readAgentTeam(
       id: string,
       domainId?: string,
       options?: any
@@ -522,7 +522,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).agentTeamServiceReadAgentTeam(id, domainId, options)
+      ).readAgentTeam(id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -548,7 +548,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async agentTeamServiceSearchAgentTeam(
+    async searchAgentTeam(
       page?: number,
       size?: number,
       q?: string,
@@ -566,7 +566,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).agentTeamServiceSearchAgentTeam(
+      ).searchAgentTeam(
         page,
         size,
         q,
@@ -596,7 +596,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async agentTeamServiceUpdateAgentTeam(
+    async updateAgentTeam(
       id: string,
       body: EngineUpdateAgentTeamRequest,
       options?: any
@@ -608,7 +608,7 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentTeamServiceApiAxiosParamCreator(
         configuration
-      ).agentTeamServiceUpdateAgentTeam(id, body, options)
+      ).updateAgentTeam(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -640,12 +640,12 @@ export const AgentTeamServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceCreateAgentTeam(
+    createAgentTeam(
       body: EngineCreateAgentTeamRequest,
       options?: any
     ): AxiosPromise<EngineAgentTeam> {
       return AgentTeamServiceApiFp(configuration)
-        .agentTeamServiceCreateAgentTeam(body, options)
+        .createAgentTeam(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -656,13 +656,13 @@ export const AgentTeamServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceDeleteAgentTeam(
+    deleteAgentTeam(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineAgentTeam> {
       return AgentTeamServiceApiFp(configuration)
-        .agentTeamServiceDeleteAgentTeam(id, domainId, options)
+        .deleteAgentTeam(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -673,13 +673,13 @@ export const AgentTeamServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceReadAgentTeam(
+    readAgentTeam(
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineAgentTeam> {
       return AgentTeamServiceApiFp(configuration)
-        .agentTeamServiceReadAgentTeam(id, domainId, options)
+        .readAgentTeam(id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -696,7 +696,7 @@ export const AgentTeamServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceSearchAgentTeam(
+    searchAgentTeam(
       page?: number,
       size?: number,
       q?: string,
@@ -708,7 +708,7 @@ export const AgentTeamServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListAgentTeam> {
       return AgentTeamServiceApiFp(configuration)
-        .agentTeamServiceSearchAgentTeam(
+        .searchAgentTeam(
           page,
           size,
           q,
@@ -729,13 +729,13 @@ export const AgentTeamServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    agentTeamServiceUpdateAgentTeam(
+    updateAgentTeam(
       id: string,
       body: EngineUpdateAgentTeamRequest,
       options?: any
     ): AxiosPromise<EngineAgentTeam> {
       return AgentTeamServiceApiFp(configuration)
-        .agentTeamServiceUpdateAgentTeam(id, body, options)
+        .updateAgentTeam(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -756,12 +756,9 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
-  public agentTeamServiceCreateAgentTeam(
-    body: EngineCreateAgentTeamRequest,
-    options?: any
-  ) {
+  public createAgentTeam(body: EngineCreateAgentTeamRequest, options?: any) {
     return AgentTeamServiceApiFp(this.configuration)
-      .agentTeamServiceCreateAgentTeam(body, options)
+      .createAgentTeam(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -774,13 +771,9 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
-  public agentTeamServiceDeleteAgentTeam(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public deleteAgentTeam(id: string, domainId?: string, options?: any) {
     return AgentTeamServiceApiFp(this.configuration)
-      .agentTeamServiceDeleteAgentTeam(id, domainId, options)
+      .deleteAgentTeam(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -793,13 +786,9 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
-  public agentTeamServiceReadAgentTeam(
-    id: string,
-    domainId?: string,
-    options?: any
-  ) {
+  public readAgentTeam(id: string, domainId?: string, options?: any) {
     return AgentTeamServiceApiFp(this.configuration)
-      .agentTeamServiceReadAgentTeam(id, domainId, options)
+      .readAgentTeam(id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -818,7 +807,7 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
-  public agentTeamServiceSearchAgentTeam(
+  public searchAgentTeam(
     page?: number,
     size?: number,
     q?: string,
@@ -830,7 +819,7 @@ export class AgentTeamServiceApi extends BaseAPI {
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration)
-      .agentTeamServiceSearchAgentTeam(
+      .searchAgentTeam(
         page,
         size,
         q,
@@ -853,13 +842,13 @@ export class AgentTeamServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
-  public agentTeamServiceUpdateAgentTeam(
+  public updateAgentTeam(
     id: string,
     body: EngineUpdateAgentTeamRequest,
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration)
-      .agentTeamServiceUpdateAgentTeam(id, body, options)
+      .updateAgentTeam(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

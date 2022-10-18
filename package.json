@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.164",
+  "version": "0.1.165",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -45,7 +45,7 @@
     "release:npm": "npm publish dist",
     "release:preflight": "npm pack ./dist --dry-run",
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js",
-    "api": "openapi-generator generate -g typescript-axios --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
+    "api": "openapi-generator generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
     "format-build": "npm run format:fix && npm run build",
     "format-build-and-release": "npm run format:fix && npm run build && npm run release:npm",
     "clean:js": "find src -name \"*.js.map\" -type f -delete && find src -name \"*.js\" -type f -delete"
@@ -75,17 +75,17 @@
     ]
   },
   "peerDependencies": {
+    "axios": "0.27.2",
     "ee-ts": "1.0.1",
     "jssip": "^3.3.6",
-    "tslib": ">=1.10.0",
-    "axios": "0.27.2"
+    "tslib": ">=1.10.0"
   },
   "dependencies": {
     "@types/webrtc": "0.0.26",
     "deep-copy": "1.4.2",
     "ee-ts": "1.0.1",
     "json-refs": "3.0.13",
-    "jssip": "3.8.2",
+    "jssip": "^3.3.6",
     "query-string": "7.0.0"
   },
   "devDependencies": {

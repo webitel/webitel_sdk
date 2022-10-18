@@ -78,7 +78,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceAttemptCallback: async (
+    attemptCallback: async (
       attemptId: string,
       body: EngineAttemptCallbackRequest,
       options: any = {}
@@ -87,14 +87,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (attemptId === null || attemptId === undefined) {
         throw new RequiredError(
           'attemptId',
-          'Required parameter attemptId was null or undefined when calling memberServiceAttemptCallback.'
+          'Required parameter attemptId was null or undefined when calling attemptCallback.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceAttemptCallback.'
+          'Required parameter body was null or undefined when calling attemptCallback.'
         )
       }
       const localVarPath = `/call_center/attempts/{attempt_id}`.replace(
@@ -160,7 +160,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceAttemptResult: async (
+    attemptResult: async (
       queueId: number,
       memberId: string,
       attemptId: string,
@@ -171,28 +171,28 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceAttemptResult.'
+          'Required parameter queueId was null or undefined when calling attemptResult.'
         )
       }
       // verify required parameter 'memberId' is not null or undefined
       if (memberId === null || memberId === undefined) {
         throw new RequiredError(
           'memberId',
-          'Required parameter memberId was null or undefined when calling memberServiceAttemptResult.'
+          'Required parameter memberId was null or undefined when calling attemptResult.'
         )
       }
       // verify required parameter 'attemptId' is not null or undefined
       if (attemptId === null || attemptId === undefined) {
         throw new RequiredError(
           'attemptId',
-          'Required parameter attemptId was null or undefined when calling memberServiceAttemptResult.'
+          'Required parameter attemptId was null or undefined when calling attemptResult.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceAttemptResult.'
+          'Required parameter body was null or undefined when calling attemptResult.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/{member_id}/attempts/{attempt_id}`
@@ -256,7 +256,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceAttemptsRenewalResult: async (
+    attemptsRenewalResult: async (
       attemptId: string,
       body: EngineAttemptRenewalResultRequest,
       options: any = {}
@@ -265,14 +265,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (attemptId === null || attemptId === undefined) {
         throw new RequiredError(
           'attemptId',
-          'Required parameter attemptId was null or undefined when calling memberServiceAttemptsRenewalResult.'
+          'Required parameter attemptId was null or undefined when calling attemptsRenewalResult.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceAttemptsRenewalResult.'
+          'Required parameter body was null or undefined when calling attemptsRenewalResult.'
         )
       }
       const localVarPath = `/call_center/queues/attempts/{attempt_id}/renewal`.replace(
@@ -338,7 +338,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceCreateAttempt: async (
+    createAttempt: async (
       queueId: string,
       memberId: string,
       body: EngineCreateAttemptRequest,
@@ -348,21 +348,21 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceCreateAttempt.'
+          'Required parameter queueId was null or undefined when calling createAttempt.'
         )
       }
       // verify required parameter 'memberId' is not null or undefined
       if (memberId === null || memberId === undefined) {
         throw new RequiredError(
           'memberId',
-          'Required parameter memberId was null or undefined when calling memberServiceCreateAttempt.'
+          'Required parameter memberId was null or undefined when calling createAttempt.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceCreateAttempt.'
+          'Required parameter body was null or undefined when calling createAttempt.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/{member_id}/attempts`
@@ -426,7 +426,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceCreateMember: async (
+    createMember: async (
       queueId: string,
       body: EngineCreateMemberRequest,
       options: any = {}
@@ -435,14 +435,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceCreateMember.'
+          'Required parameter queueId was null or undefined when calling createMember.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceCreateMember.'
+          'Required parameter body was null or undefined when calling createMember.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members`.replace(
@@ -507,7 +507,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceCreateMemberBulk: async (
+    createMemberBulk: async (
       queueId: string,
       body: EngineCreateMemberBulkRequest,
       options: any = {}
@@ -516,14 +516,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceCreateMemberBulk.'
+          'Required parameter queueId was null or undefined when calling createMemberBulk.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceCreateMemberBulk.'
+          'Required parameter body was null or undefined when calling createMemberBulk.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/bulk`.replace(
@@ -589,7 +589,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceDeleteMember: async (
+    deleteMember: async (
       queueId: string,
       id: string,
       domainId?: string,
@@ -599,14 +599,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceDeleteMember.'
+          'Required parameter queueId was null or undefined when calling deleteMember.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling memberServiceDeleteMember.'
+          'Required parameter id was null or undefined when calling deleteMember.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
@@ -666,7 +666,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceDeleteMembers: async (
+    deleteMembers: async (
       queueId: string,
       body: EngineDeleteMembersRequest,
       options: any = {}
@@ -675,14 +675,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceDeleteMembers.'
+          'Required parameter queueId was null or undefined when calling deleteMembers.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceDeleteMembers.'
+          'Required parameter body was null or undefined when calling deleteMembers.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members`.replace(
@@ -748,7 +748,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServicePatchMember: async (
+    patchMember: async (
       queueId: string,
       id: string,
       body: EnginePatchMemberRequest,
@@ -758,21 +758,21 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServicePatchMember.'
+          'Required parameter queueId was null or undefined when calling patchMember.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling memberServicePatchMember.'
+          'Required parameter id was null or undefined when calling patchMember.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServicePatchMember.'
+          'Required parameter body was null or undefined when calling patchMember.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
@@ -837,7 +837,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceReadMember: async (
+    readMember: async (
       queueId: string,
       id: string,
       domainId?: string,
@@ -847,14 +847,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceReadMember.'
+          'Required parameter queueId was null or undefined when calling readMember.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling memberServiceReadMember.'
+          'Required parameter id was null or undefined when calling readMember.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
@@ -914,7 +914,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceResetMembers: async (
+    resetMembers: async (
       queueId: string,
       body: EngineResetMembersRequest,
       options: any = {}
@@ -923,14 +923,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceResetMembers.'
+          'Required parameter queueId was null or undefined when calling resetMembers.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceResetMembers.'
+          'Required parameter body was null or undefined when calling resetMembers.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/reset`.replace(
@@ -1012,7 +1012,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchAttempts: async (
+    searchAttempts: async (
       page?: number,
       size?: number,
       q?: string,
@@ -1178,7 +1178,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchAttemptsHistory: async (
+    searchAttemptsHistory: async (
       page?: number,
       size?: number,
       q?: string,
@@ -1328,7 +1328,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchMemberAttempts: async (
+    searchMemberAttempts: async (
       queueId: string,
       memberId: string,
       domainId?: string,
@@ -1338,14 +1338,14 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceSearchMemberAttempts.'
+          'Required parameter queueId was null or undefined when calling searchMemberAttempts.'
         )
       }
       // verify required parameter 'memberId' is not null or undefined
       if (memberId === null || memberId === undefined) {
         throw new RequiredError(
           'memberId',
-          'Required parameter memberId was null or undefined when calling memberServiceSearchMemberAttempts.'
+          'Required parameter memberId was null or undefined when calling searchMemberAttempts.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/{member_id}/attempts`
@@ -1423,7 +1423,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchMemberInQueue: async (
+    searchMemberInQueue: async (
       queueId: number,
       page?: number,
       size?: number,
@@ -1450,7 +1450,7 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceSearchMemberInQueue.'
+          'Required parameter queueId was null or undefined when calling searchMemberInQueue.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members`.replace(
@@ -1601,7 +1601,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchMembers: async (
+    searchMembers: async (
       page?: number,
       size?: number,
       q?: string,
@@ -1756,7 +1756,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceUpdateMember: async (
+    updateMember: async (
       queueId: string,
       id: string,
       body: EngineUpdateMemberRequest,
@@ -1766,21 +1766,21 @@ export const MemberServiceApiAxiosParamCreator = function(
       if (queueId === null || queueId === undefined) {
         throw new RequiredError(
           'queueId',
-          'Required parameter queueId was null or undefined when calling memberServiceUpdateMember.'
+          'Required parameter queueId was null or undefined when calling updateMember.'
         )
       }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling memberServiceUpdateMember.'
+          'Required parameter id was null or undefined when calling updateMember.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling memberServiceUpdateMember.'
+          'Required parameter body was null or undefined when calling updateMember.'
         )
       }
       const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
@@ -1852,7 +1852,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceAttemptCallback(
+    async attemptCallback(
       attemptId: string,
       body: EngineAttemptCallbackRequest,
       options?: any
@@ -1864,7 +1864,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceAttemptCallback(attemptId, body, options)
+      ).attemptCallback(attemptId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1885,7 +1885,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceAttemptResult(
+    async attemptResult(
       queueId: number,
       memberId: string,
       attemptId: string,
@@ -1899,7 +1899,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceAttemptResult(queueId, memberId, attemptId, body, options)
+      ).attemptResult(queueId, memberId, attemptId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1918,7 +1918,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceAttemptsRenewalResult(
+    async attemptsRenewalResult(
       attemptId: string,
       body: EngineAttemptRenewalResultRequest,
       options?: any
@@ -1927,7 +1927,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceAttemptsRenewalResult(attemptId, body, options)
+      ).attemptsRenewalResult(attemptId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1948,7 +1948,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceCreateAttempt(
+    async createAttempt(
       queueId: string,
       memberId: string,
       body: EngineCreateAttemptRequest,
@@ -1961,7 +1961,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceCreateAttempt(queueId, memberId, body, options)
+      ).createAttempt(queueId, memberId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1981,7 +1981,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceCreateMember(
+    async createMember(
       queueId: string,
       body: EngineCreateMemberRequest,
       options?: any
@@ -1993,7 +1993,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceCreateMember(queueId, body, options)
+      ).createMember(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2013,7 +2013,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceCreateMemberBulk(
+    async createMemberBulk(
       queueId: string,
       body: EngineCreateMemberBulkRequest,
       options?: any
@@ -2025,7 +2025,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceCreateMemberBulk(queueId, body, options)
+      ).createMemberBulk(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2046,7 +2046,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceDeleteMember(
+    async deleteMember(
       queueId: string,
       id: string,
       domainId?: string,
@@ -2059,7 +2059,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceDeleteMember(queueId, id, domainId, options)
+      ).deleteMember(queueId, id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2079,7 +2079,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceDeleteMembers(
+    async deleteMembers(
       queueId: string,
       body: EngineDeleteMembersRequest,
       options?: any
@@ -2091,7 +2091,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceDeleteMembers(queueId, body, options)
+      ).deleteMembers(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2112,7 +2112,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServicePatchMember(
+    async patchMember(
       queueId: string,
       id: string,
       body: EnginePatchMemberRequest,
@@ -2125,7 +2125,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServicePatchMember(queueId, id, body, options)
+      ).patchMember(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2146,7 +2146,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceReadMember(
+    async readMember(
       queueId: string,
       id: string,
       domainId?: string,
@@ -2159,7 +2159,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceReadMember(queueId, id, domainId, options)
+      ).readMember(queueId, id, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2179,7 +2179,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceResetMembers(
+    async resetMembers(
       queueId: string,
       body: EngineResetMembersRequest,
       options?: any
@@ -2191,7 +2191,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceResetMembers(queueId, body, options)
+      ).resetMembers(queueId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2228,7 +2228,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceSearchAttempts(
+    async searchAttempts(
       page?: number,
       size?: number,
       q?: string,
@@ -2257,7 +2257,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceSearchAttempts(
+      ).searchAttempts(
         page,
         size,
         q,
@@ -2315,7 +2315,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceSearchAttemptsHistory(
+    async searchAttemptsHistory(
       page?: number,
       size?: number,
       q?: string,
@@ -2344,7 +2344,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceSearchAttemptsHistory(
+      ).searchAttemptsHistory(
         page,
         size,
         q,
@@ -2386,7 +2386,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceSearchMemberAttempts(
+    async searchMemberAttempts(
       queueId: string,
       memberId: string,
       domainId?: string,
@@ -2399,7 +2399,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceSearchMemberAttempts(queueId, memberId, domainId, options)
+      ).searchMemberAttempts(queueId, memberId, domainId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2437,7 +2437,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceSearchMemberInQueue(
+    async searchMemberInQueue(
       queueId: number,
       page?: number,
       size?: number,
@@ -2467,7 +2467,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceSearchMemberInQueue(
+      ).searchMemberInQueue(
         queueId,
         page,
         size,
@@ -2527,7 +2527,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceSearchMembers(
+    async searchMembers(
       page?: number,
       size?: number,
       q?: string,
@@ -2557,7 +2557,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceSearchMembers(
+      ).searchMembers(
         page,
         size,
         q,
@@ -2600,7 +2600,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async memberServiceUpdateMember(
+    async updateMember(
       queueId: string,
       id: string,
       body: EngineUpdateMemberRequest,
@@ -2613,7 +2613,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).memberServiceUpdateMember(queueId, id, body, options)
+      ).updateMember(queueId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -2645,13 +2645,13 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceAttemptCallback(
+    attemptCallback(
       attemptId: string,
       body: EngineAttemptCallbackRequest,
       options?: any
     ): AxiosPromise<EngineAttemptResultResponse> {
       return MemberServiceApiFp(configuration)
-        .memberServiceAttemptCallback(attemptId, body, options)
+        .attemptCallback(attemptId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2663,7 +2663,7 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceAttemptResult(
+    attemptResult(
       queueId: number,
       memberId: string,
       attemptId: string,
@@ -2671,7 +2671,7 @@ export const MemberServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineAttemptResultResponse> {
       return MemberServiceApiFp(configuration)
-        .memberServiceAttemptResult(queueId, memberId, attemptId, body, options)
+        .attemptResult(queueId, memberId, attemptId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2681,13 +2681,13 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceAttemptsRenewalResult(
+    attemptsRenewalResult(
       attemptId: string,
       body: EngineAttemptRenewalResultRequest,
       options?: any
     ): AxiosPromise<object> {
       return MemberServiceApiFp(configuration)
-        .memberServiceAttemptsRenewalResult(attemptId, body, options)
+        .attemptsRenewalResult(attemptId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2699,14 +2699,14 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceCreateAttempt(
+    createAttempt(
       queueId: string,
       memberId: string,
       body: EngineCreateAttemptRequest,
       options?: any
     ): AxiosPromise<EngineCreateAttemptResponse> {
       return MemberServiceApiFp(configuration)
-        .memberServiceCreateAttempt(queueId, memberId, body, options)
+        .createAttempt(queueId, memberId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2717,13 +2717,13 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceCreateMember(
+    createMember(
       queueId: string,
       body: EngineCreateMemberRequest,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
-        .memberServiceCreateMember(queueId, body, options)
+        .createMember(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2734,13 +2734,13 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceCreateMemberBulk(
+    createMemberBulk(
       queueId: string,
       body: EngineCreateMemberBulkRequest,
       options?: any
     ): AxiosPromise<EngineMemberBulkResponse> {
       return MemberServiceApiFp(configuration)
-        .memberServiceCreateMemberBulk(queueId, body, options)
+        .createMemberBulk(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2752,14 +2752,14 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceDeleteMember(
+    deleteMember(
       queueId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
-        .memberServiceDeleteMember(queueId, id, domainId, options)
+        .deleteMember(queueId, id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2770,13 +2770,13 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceDeleteMembers(
+    deleteMembers(
       queueId: string,
       body: EngineDeleteMembersRequest,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
-        .memberServiceDeleteMembers(queueId, body, options)
+        .deleteMembers(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2788,14 +2788,14 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServicePatchMember(
+    patchMember(
       queueId: string,
       id: string,
       body: EnginePatchMemberRequest,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
-        .memberServicePatchMember(queueId, id, body, options)
+        .patchMember(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2807,14 +2807,14 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceReadMember(
+    readMember(
       queueId: string,
       id: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
-        .memberServiceReadMember(queueId, id, domainId, options)
+        .readMember(queueId, id, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2825,13 +2825,13 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceResetMembers(
+    resetMembers(
       queueId: string,
       body: EngineResetMembersRequest,
       options?: any
     ): AxiosPromise<EngineResetMembersResponse> {
       return MemberServiceApiFp(configuration)
-        .memberServiceResetMembers(queueId, body, options)
+        .resetMembers(queueId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2859,7 +2859,7 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchAttempts(
+    searchAttempts(
       page?: number,
       size?: number,
       q?: string,
@@ -2882,7 +2882,7 @@ export const MemberServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListAttempt> {
       return MemberServiceApiFp(configuration)
-        .memberServiceSearchAttempts(
+        .searchAttempts(
           page,
           size,
           q,
@@ -2931,7 +2931,7 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchAttemptsHistory(
+    searchAttemptsHistory(
       page?: number,
       size?: number,
       q?: string,
@@ -2954,7 +2954,7 @@ export const MemberServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListHistoryAttempt> {
       return MemberServiceApiFp(configuration)
-        .memberServiceSearchAttemptsHistory(
+        .searchAttemptsHistory(
           page,
           size,
           q,
@@ -2987,14 +2987,14 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchMemberAttempts(
+    searchMemberAttempts(
       queueId: string,
       memberId: string,
       domainId?: string,
       options?: any
     ): AxiosPromise<EngineListMemberAttempt> {
       return MemberServiceApiFp(configuration)
-        .memberServiceSearchMemberAttempts(queueId, memberId, domainId, options)
+        .searchMemberAttempts(queueId, memberId, domainId, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -3023,7 +3023,7 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchMemberInQueue(
+    searchMemberInQueue(
       queueId: number,
       page?: number,
       size?: number,
@@ -3047,7 +3047,7 @@ export const MemberServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
-        .memberServiceSearchMemberInQueue(
+        .searchMemberInQueue(
           queueId,
           page,
           size,
@@ -3098,7 +3098,7 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceSearchMembers(
+    searchMembers(
       page?: number,
       size?: number,
       q?: string,
@@ -3122,7 +3122,7 @@ export const MemberServiceApiFactory = function(
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
-        .memberServiceSearchMembers(
+        .searchMembers(
           page,
           size,
           q,
@@ -3156,14 +3156,14 @@ export const MemberServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    memberServiceUpdateMember(
+    updateMember(
       queueId: string,
       id: string,
       body: EngineUpdateMemberRequest,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
-        .memberServiceUpdateMember(queueId, id, body, options)
+        .updateMember(queueId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -3184,13 +3184,13 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceAttemptCallback(
+  public attemptCallback(
     attemptId: string,
     body: EngineAttemptCallbackRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceAttemptCallback(attemptId, body, options)
+      .attemptCallback(attemptId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3204,7 +3204,7 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceAttemptResult(
+  public attemptResult(
     queueId: number,
     memberId: string,
     attemptId: string,
@@ -3212,7 +3212,7 @@ export class MemberServiceApi extends BaseAPI {
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceAttemptResult(queueId, memberId, attemptId, body, options)
+      .attemptResult(queueId, memberId, attemptId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3224,13 +3224,13 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceAttemptsRenewalResult(
+  public attemptsRenewalResult(
     attemptId: string,
     body: EngineAttemptRenewalResultRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceAttemptsRenewalResult(attemptId, body, options)
+      .attemptsRenewalResult(attemptId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3244,14 +3244,14 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceCreateAttempt(
+  public createAttempt(
     queueId: string,
     memberId: string,
     body: EngineCreateAttemptRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceCreateAttempt(queueId, memberId, body, options)
+      .createAttempt(queueId, memberId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3264,13 +3264,13 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceCreateMember(
+  public createMember(
     queueId: string,
     body: EngineCreateMemberRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceCreateMember(queueId, body, options)
+      .createMember(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3283,13 +3283,13 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceCreateMemberBulk(
+  public createMemberBulk(
     queueId: string,
     body: EngineCreateMemberBulkRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceCreateMemberBulk(queueId, body, options)
+      .createMemberBulk(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3303,14 +3303,14 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceDeleteMember(
+  public deleteMember(
     queueId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceDeleteMember(queueId, id, domainId, options)
+      .deleteMember(queueId, id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3323,13 +3323,13 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceDeleteMembers(
+  public deleteMembers(
     queueId: string,
     body: EngineDeleteMembersRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceDeleteMembers(queueId, body, options)
+      .deleteMembers(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3343,14 +3343,14 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServicePatchMember(
+  public patchMember(
     queueId: string,
     id: string,
     body: EnginePatchMemberRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServicePatchMember(queueId, id, body, options)
+      .patchMember(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3364,14 +3364,14 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceReadMember(
+  public readMember(
     queueId: string,
     id: string,
     domainId?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceReadMember(queueId, id, domainId, options)
+      .readMember(queueId, id, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3384,13 +3384,13 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceResetMembers(
+  public resetMembers(
     queueId: string,
     body: EngineResetMembersRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceResetMembers(queueId, body, options)
+      .resetMembers(queueId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3420,7 +3420,7 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceSearchAttempts(
+  public searchAttempts(
     page?: number,
     size?: number,
     q?: string,
@@ -3443,7 +3443,7 @@ export class MemberServiceApi extends BaseAPI {
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceSearchAttempts(
+      .searchAttempts(
         page,
         size,
         q,
@@ -3494,7 +3494,7 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceSearchAttemptsHistory(
+  public searchAttemptsHistory(
     page?: number,
     size?: number,
     q?: string,
@@ -3517,7 +3517,7 @@ export class MemberServiceApi extends BaseAPI {
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceSearchAttemptsHistory(
+      .searchAttemptsHistory(
         page,
         size,
         q,
@@ -3552,14 +3552,14 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceSearchMemberAttempts(
+  public searchMemberAttempts(
     queueId: string,
     memberId: string,
     domainId?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceSearchMemberAttempts(queueId, memberId, domainId, options)
+      .searchMemberAttempts(queueId, memberId, domainId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3590,7 +3590,7 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceSearchMemberInQueue(
+  public searchMemberInQueue(
     queueId: number,
     page?: number,
     size?: number,
@@ -3614,7 +3614,7 @@ export class MemberServiceApi extends BaseAPI {
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceSearchMemberInQueue(
+      .searchMemberInQueue(
         queueId,
         page,
         size,
@@ -3667,7 +3667,7 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceSearchMembers(
+  public searchMembers(
     page?: number,
     size?: number,
     q?: string,
@@ -3691,7 +3691,7 @@ export class MemberServiceApi extends BaseAPI {
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceSearchMembers(
+      .searchMembers(
         page,
         size,
         q,
@@ -3727,14 +3727,14 @@ export class MemberServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
-  public memberServiceUpdateMember(
+  public updateMember(
     queueId: string,
     id: string,
     body: EngineUpdateMemberRequest,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .memberServiceUpdateMember(queueId, id, body, options)
+      .updateMember(queueId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
