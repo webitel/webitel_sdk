@@ -35,6 +35,7 @@ import {
   BaseError,
   DeviceNotAllowPermissionError,
   DeviceNotFoundError,
+  LicencePermissionError,
   RolePermissionError,
   TypeErrors,
 } from './errors'
@@ -809,6 +810,8 @@ export class Client extends EventEmitter<ClientEvents> {
           const err = message.error as BaseError
           if (err && err.id === TypeErrors.RolePermission) {
             promise!.reject(new RolePermissionError(err.detail))
+          } else if (err && err.id === TypeErrors.LicencePermission) {
+            promise!.reject(new LicencePermissionError(err.detail))
           } else {
             promise!.reject(message.error!)
           }

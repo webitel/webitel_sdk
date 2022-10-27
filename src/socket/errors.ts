@@ -1,5 +1,6 @@
 export enum TypeErrors {
   RolePermission = 'api.context.permissions.app_error',
+  LicencePermission = 'api.context.permissions.license',
 }
 
 export interface BaseError {
@@ -30,10 +31,20 @@ export class DeviceNotAllowPermissionError extends Error {
 
 // tslint:disable-next-line: max-classes-per-file
 export class RolePermissionError extends Error {
-  static id = `api.context.permissions.app_error`
+  static id = TypeErrors.RolePermission
   id: string
   constructor(msg: string) {
     super(msg)
     this.id = RolePermissionError.id
+  }
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class LicencePermissionError extends Error {
+  static id = TypeErrors.LicencePermission
+  id: string
+  constructor(msg: string) {
+    super(msg)
+    this.id = LicencePermissionError.id
   }
 }
