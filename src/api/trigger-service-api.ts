@@ -512,6 +512,9 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {string} [createdAtTo]
      * @param {string} [startedAtFrom]
      * @param {string} [startedAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
+     * @param {Array<'idle' | 'active' | 'done' | 'error'>} [state]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -526,6 +529,9 @@ export const TriggerServiceApiAxiosParamCreator = function(
       createdAtTo?: string,
       startedAtFrom?: string,
       startedAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
+      state?: Array<'idle' | 'active' | 'done' | 'error'>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'triggerId' is not null or undefined
@@ -595,6 +601,18 @@ export const TriggerServiceApiAxiosParamCreator = function(
 
       if (startedAtTo !== undefined) {
         localVarQueryParameter['started_at.to'] = startedAtTo
+      }
+
+      if (durationFrom !== undefined) {
+        localVarQueryParameter['duration.from'] = durationFrom
+      }
+
+      if (durationTo !== undefined) {
+        localVarQueryParameter['duration.to'] = durationTo
+      }
+
+      if (state) {
+        localVarQueryParameter['state'] = state
       }
 
       localVarUrlObj.query = {
@@ -901,6 +919,9 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [createdAtTo]
      * @param {string} [startedAtFrom]
      * @param {string} [startedAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
+     * @param {Array<'idle' | 'active' | 'done' | 'error'>} [state]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -915,6 +936,9 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
       createdAtTo?: string,
       startedAtFrom?: string,
       startedAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
+      state?: Array<'idle' | 'active' | 'done' | 'error'>,
       options?: any
     ): Promise<
       (
@@ -935,6 +959,9 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
         createdAtTo,
         startedAtFrom,
         startedAtTo,
+        durationFrom,
+        durationTo,
+        state,
         options
       )
       return (
@@ -1100,6 +1127,9 @@ export const TriggerServiceApiFactory = function(
      * @param {string} [createdAtTo]
      * @param {string} [startedAtFrom]
      * @param {string} [startedAtTo]
+     * @param {string} [durationFrom]
+     * @param {string} [durationTo]
+     * @param {Array<'idle' | 'active' | 'done' | 'error'>} [state]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1114,6 +1144,9 @@ export const TriggerServiceApiFactory = function(
       createdAtTo?: string,
       startedAtFrom?: string,
       startedAtTo?: string,
+      durationFrom?: string,
+      durationTo?: string,
+      state?: Array<'idle' | 'active' | 'done' | 'error'>,
       options?: any
     ): AxiosPromise<EngineListTriggerJob> {
       return TriggerServiceApiFp(configuration)
@@ -1128,6 +1161,9 @@ export const TriggerServiceApiFactory = function(
           createdAtTo,
           startedAtFrom,
           startedAtTo,
+          durationFrom,
+          durationTo,
+          state,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1278,6 +1314,9 @@ export class TriggerServiceApi extends BaseAPI {
    * @param {string} [createdAtTo]
    * @param {string} [startedAtFrom]
    * @param {string} [startedAtTo]
+   * @param {string} [durationFrom]
+   * @param {string} [durationTo]
+   * @param {Array<'idle' | 'active' | 'done' | 'error'>} [state]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
@@ -1293,6 +1332,9 @@ export class TriggerServiceApi extends BaseAPI {
     createdAtTo?: string,
     startedAtFrom?: string,
     startedAtTo?: string,
+    durationFrom?: string,
+    durationTo?: string,
+    state?: Array<'idle' | 'active' | 'done' | 'error'>,
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
@@ -1307,6 +1349,9 @@ export class TriggerServiceApi extends BaseAPI {
         createdAtTo,
         startedAtFrom,
         startedAtTo,
+        durationFrom,
+        durationTo,
+        state,
         options
       )
       .then((request) => request(this.axios, this.basePath))
