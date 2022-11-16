@@ -510,6 +510,8 @@ export const TriggerServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
+     * @param {string} [startedAtFrom]
+     * @param {string} [startedAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -522,6 +524,8 @@ export const TriggerServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
+      startedAtFrom?: string,
+      startedAtTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'triggerId' is not null or undefined
@@ -583,6 +587,14 @@ export const TriggerServiceApiAxiosParamCreator = function(
 
       if (createdAtTo !== undefined) {
         localVarQueryParameter['created_at.to'] = createdAtTo
+      }
+
+      if (startedAtFrom !== undefined) {
+        localVarQueryParameter['started_at.from'] = startedAtFrom
+      }
+
+      if (startedAtTo !== undefined) {
+        localVarQueryParameter['started_at.to'] = startedAtTo
       }
 
       localVarUrlObj.query = {
@@ -887,6 +899,8 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
+     * @param {string} [startedAtFrom]
+     * @param {string} [startedAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -899,6 +913,8 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
+      startedAtFrom?: string,
+      startedAtTo?: string,
       options?: any
     ): Promise<
       (
@@ -917,6 +933,8 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
         fields,
         createdAtFrom,
         createdAtTo,
+        startedAtFrom,
+        startedAtTo,
         options
       )
       return (
@@ -1080,6 +1098,8 @@ export const TriggerServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {string} [createdAtFrom]
      * @param {string} [createdAtTo]
+     * @param {string} [startedAtFrom]
+     * @param {string} [startedAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1092,6 +1112,8 @@ export const TriggerServiceApiFactory = function(
       fields?: Array<string>,
       createdAtFrom?: string,
       createdAtTo?: string,
+      startedAtFrom?: string,
+      startedAtTo?: string,
       options?: any
     ): AxiosPromise<EngineListTriggerJob> {
       return TriggerServiceApiFp(configuration)
@@ -1104,6 +1126,8 @@ export const TriggerServiceApiFactory = function(
           fields,
           createdAtFrom,
           createdAtTo,
+          startedAtFrom,
+          startedAtTo,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1252,6 +1276,8 @@ export class TriggerServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {string} [createdAtFrom]
    * @param {string} [createdAtTo]
+   * @param {string} [startedAtFrom]
+   * @param {string} [startedAtTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
@@ -1265,6 +1291,8 @@ export class TriggerServiceApi extends BaseAPI {
     fields?: Array<string>,
     createdAtFrom?: string,
     createdAtTo?: string,
+    startedAtFrom?: string,
+    startedAtTo?: string,
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
@@ -1277,6 +1305,8 @@ export class TriggerServiceApi extends BaseAPI {
         fields,
         createdAtFrom,
         createdAtTo,
+        startedAtFrom,
+        startedAtTo,
         options
       )
       .then((request) => request(this.axios, this.basePath))

@@ -52,6 +52,8 @@ import { EngineListCall } from '../api'
 // @ts-ignore
 import { EngineListHistoryCall } from '../api'
 // @ts-ignore
+import { EngineSetVariablesCallRequest } from '../api'
+// @ts-ignore
 import { EngineUpdateCallAnnotationRequest } from '../api'
 // @ts-ignore
 import { EngineUserCallRequest } from '../api'
@@ -1400,6 +1402,86 @@ export const CallServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
+     * @param {EngineSetVariablesCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    setVariablesCall: async (
+      id: string,
+      body: EngineSetVariablesCallRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling setVariablesCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling setVariablesCall.'
+        )
+      }
+      const localVarPath = `/calls/active/{id}/variables`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
      * @param {EngineUserCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2162,6 +2244,34 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} id
+     * @param {EngineSetVariablesCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async setVariablesCall(
+      id: string,
+      body: EngineSetVariablesCallRequest,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).setVariablesCall(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
      * @param {EngineUserCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2641,6 +2751,22 @@ export const CallServiceApiFactory = function(
     /**
      *
      * @param {string} id
+     * @param {EngineSetVariablesCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    setVariablesCall(
+      id: string,
+      body: EngineSetVariablesCallRequest,
+      options?: any
+    ): AxiosPromise<object> {
+      return CallServiceApiFp(configuration)
+        .setVariablesCall(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} id
      * @param {EngineUserCallRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3084,6 +3210,24 @@ export class CallServiceApi extends BaseAPI {
         granteeId,
         options
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineSetVariablesCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public setVariablesCall(
+    id: string,
+    body: EngineSetVariablesCallRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration)
+      .setVariablesCall(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
