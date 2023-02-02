@@ -23,12 +23,14 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
   constructor(private instanceId: string, debug?: boolean) {
     super()
+
+    this.log = new Log()
     if (debug) {
+      this.log.info(`JsSip version: ${JsSip.version}`)
       JsSip.debug.enable('*')
     } else {
       JsSip.debug.disable()
     }
-    this.log = new Log()
 
     this.on('unregistered', () => {
       this.sessionCache.clear()

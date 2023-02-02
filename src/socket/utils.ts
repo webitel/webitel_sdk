@@ -22,7 +22,7 @@ export function chunkString(str: string, len: number): string[] {
   let offset = 0
 
   for (let i = 0; i < size; i++) {
-    r[i] = str.substr(offset, len)
+    r[i] = str.substring(offset, offset + len)
     offset += len
   }
 

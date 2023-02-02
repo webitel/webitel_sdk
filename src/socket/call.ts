@@ -25,6 +25,12 @@ export enum CallReportingStatus {
   Transferred = 'transferred',
 }
 
+export enum EavesdropState {
+  Muted = 'muted',
+  Conference = 'conference',
+  Prompt = 'prompt',
+}
+
 export interface Categories {
   [key: string]: string
 }
@@ -88,6 +94,15 @@ export interface EavesdropRequest {
   group?: string
 }
 
+export interface EavesdropData {
+  type: string
+  name: string
+  number: string
+  duration: number
+
+  state: EavesdropState
+}
+
 export enum CallActions {
   Ringing = 'ringing',
   Active = 'active',
@@ -103,6 +118,7 @@ export enum CallActions {
   PeerStream = 'peerStream',
   LocalStream = 'localStream',
   Destroy = 'destroy',
+  Eavesdrop = 'eavesdrop',
 }
 
 export enum CallDirection {
@@ -134,6 +150,10 @@ export interface CallEventDTMF extends CallEventData {
   digit: string
 }
 
+export interface CallEventEavesdrop extends CallEventData {
+  state: EavesdropState
+}
+
 export interface CallEndpoint {
   type: string
   number?: string
@@ -163,6 +183,7 @@ export interface CallInfo extends CallEventData {
   payload: Map<string, string>
 
   params?: CallParams
+  eavesdrop?: EavesdropData
 }
 
 export interface CallHangup extends CallEventData {
@@ -228,6 +249,7 @@ export class Call {
   voice: boolean
   task: Task | null
   autoAnswered: boolean
+  _eavesdrop: EavesdropData | null
 
   constructor(protected client: Client, e: CallEventData) {
     // FIXME check _muted from channel
@@ -237,6 +259,7 @@ export class Call {
     this.createdAt = +e.timestamp
     this.task = null
     this.data = null
+    this._eavesdrop = null
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -246,6 +269,10 @@ export class Call {
 
     this.peerStreams = []
     this.localStreams = []
+
+    if (callInfo.eavesdrop) {
+      this._eavesdrop = callInfo.eavesdrop
+    }
 
     // fixme
     if (client.phone) {
@@ -326,6 +353,36 @@ export class Call {
     } else {
       return this.task.communication
     }
+  }
+
+  get isEavesdrop() {
+    return !!this._eavesdrop
+  }
+
+  get eavesdropName() {
+    return this.isEavesdrop ? this._eavesdrop!.name : ''
+  }
+  get eavesdropNumber() {
+    return this.isEavesdrop ? this._eavesdrop!.number : ''
+  }
+  get eavesdropDuration() {
+    return this.isEavesdrop ? this._eavesdrop!.duration : 0
+  }
+
+  get eavesdropState() {
+    return this.isEavesdrop ? this._eavesdrop!.state : null
+  }
+
+  get eavesdropIsMuted() {
+    return this.eavesdropState === EavesdropState.Muted
+  }
+
+  get eavesdropIsConference() {
+    return this.eavesdropState === EavesdropState.Conference
+  }
+
+  get eavesdropIsPrompt() {
+    return this.eavesdropState === EavesdropState.Prompt
   }
 
   // todo
@@ -430,6 +487,12 @@ export class Call {
 
   addDigit(s: CallEventDTMF) {
     this.digits.push(s.digit)
+  }
+
+  setEavesdropState(e: CallEventEavesdrop) {
+    if (this.isEavesdrop) {
+      this._eavesdrop!.state = e.state
+    }
   }
 
   setHangup(s: CallEventData) {
@@ -572,6 +635,21 @@ export class Call {
     req.id = this.id
 
     return this.client.request('call_eavesdrop', req)
+  }
+
+  async changeEavesdropState(state: EavesdropState) {
+    if (!this.isEavesdrop) {
+      throw new Error(`this call not in eavesdrop`)
+    }
+
+    if (this.eavesdropState === state) {
+      throw new Error(`this call already eavesdrop state: ${state}`)
+    }
+
+    return this.client.request('call_eavesdrop_state', {
+      id: this.id,
+      state,
+    })
   }
 
   async toggleHold() {

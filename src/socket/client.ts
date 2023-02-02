@@ -13,6 +13,7 @@ import {
   CallActions,
   CallEventData,
   CallEventDTMF,
+  CallEventEavesdrop,
   CallEventExecute,
   CallItem,
   CallVariables,
@@ -29,6 +30,7 @@ import {
   InviteEvent,
   JoinedEvent,
   LeavedEvent,
+  MessageDeleted,
   MessageEvent,
 } from './conversation'
 import {
@@ -1044,6 +1046,13 @@ export class Client extends EventEmitter<ClientEvents> {
         }
         break
 
+      case CallActions.Eavesdrop:
+        call = this.callById(event.id)
+        if (call) {
+          call.setEavesdropState(event.data as CallEventEavesdrop)
+        }
+        break
+
       case CallActions.Voice:
         call = this.callById(event.id)
         if (call) {
@@ -1103,6 +1112,21 @@ export class Client extends EventEmitter<ClientEvents> {
         conversation.setInvite(inv.invite_id, timestamp)
         this.conversationStore.set(conversation.id, conversation)
         break
+
+      case ChatActions.MessageDeleted:
+        const deleted = event.data as MessageDeleted
+        // fixme
+        for (const v of this.allConversations()) {
+          if (!v.closedAt && v.membersId.indexOf(deleted.channel_id) > -1) {
+            conversation = v
+            break
+          }
+        }
+        if (conversation) {
+          conversation.setDeletedMessage(deleted)
+        }
+
+        return
 
       case ChatActions.Joined:
         const joined = event.data as JoinedEvent

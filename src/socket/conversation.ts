@@ -2,7 +2,6 @@ import { CallVariables } from './call'
 import { Client, FileUploadProgress } from './client'
 import { Reporting, Task, TaskData } from './task'
 import { chunkString } from './utils'
-import any = jasmine.any
 
 const maxSizeMessage = 4096
 
@@ -23,6 +22,7 @@ export enum ChatActions {
   Decline = 'decline_invite',
   Update = 'update_channel',
   Destroy = 'destroy',
+  MessageDeleted = 'message_deleted',
 }
 
 export enum ConversationState {
@@ -84,10 +84,20 @@ export interface Message {
   channel_id: string
   type: string
   text: string
-  file: MessageFile
+  file?: MessageFile
   contact?: object
   created_at: number
   updated_at?: number | null
+}
+
+export interface MessageDeleted {
+  id: number
+  channel_id: string
+  conversation_id: string
+  type: string
+  text: string
+  timestamp: number
+  created_at?: number
 }
 
 export interface ChatChannel {
@@ -248,6 +258,16 @@ export class Conversation {
     this.setClosed(e.timestamp)
   }
 
+  setDeletedMessage(d: MessageDeleted) {
+    const messages = this._messages
+    for (let i = 0; i < messages.length; i++) {
+      if (messages[i].id === d.id) {
+        d.created_at = messages[i].created_at
+        messages.splice(i, 1, d as Message)
+      }
+    }
+  }
+
   get id() {
     return this.channelId || this.inviteId || this.conversationId
   }
@@ -273,8 +293,11 @@ export class Conversation {
       } as MessageWithChannel
 
       if (i.hasOwnProperty('file')) {
-        i.file.url = this.client.fileUrlDownload(i.file.id)
-        i.file.streamUrl = this.client.fileUrlStream(i.file.id)
+        if (i.file && i.file.id > 0) {
+          i.file.url = this.client.fileUrlDownload(i.file.id)
+          i.file.streamUrl = this.client.fileUrlStream(i.file.id)
+        }
+
         msg.file = i.file
       }
 
