@@ -9,6 +9,7 @@ export enum DeclineCause {
   Timeout = 'TIMEOUT',
   Busy = 'BUSY',
   Cancel = 'CANCEL',
+  Transfer = 'TRANSFER',
 }
 
 export enum ChatActions {
@@ -61,6 +62,7 @@ export interface MessageEvent extends BaseChatEvent, Message {}
 
 export interface LeavedEvent extends BaseChatEvent {
   leaved_channel_id: string
+  cause?: DeclineCause | null
 }
 
 export interface CloseEvent extends BaseChatEvent {
@@ -255,6 +257,10 @@ export class Conversation {
   }
 
   setLeave(e: LeavedEvent) {
+    if (e.cause) {
+      this._cause = e.cause
+    }
+
     this.setClosed(e.timestamp)
   }
 
@@ -357,6 +363,10 @@ export class Conversation {
   // todo task is deprecated
   get attempt() {
     return this.task
+  }
+
+  get isTransferred() {
+    return (this._cause && this._cause.toUpperCase()) === DeclineCause.Transfer
   }
 
   /*
