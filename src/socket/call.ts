@@ -31,6 +31,12 @@ export enum EavesdropState {
   Prompt = 'prompt',
 }
 
+export enum EavesdropType {
+  Joined = 'joined',
+  Leave = 'leave',
+  Hide = 'hide',
+}
+
 export interface Categories {
   [key: string]: string
 }
@@ -95,12 +101,12 @@ export interface EavesdropRequest {
 }
 
 export interface EavesdropData {
-  type: string
-  name: string
-  number: string
-  duration: number
-
+  type: EavesdropType
   state: EavesdropState
+
+  name?: string
+  number?: string
+  duration?: number
 }
 
 export enum CallActions {
@@ -150,9 +156,7 @@ export interface CallEventDTMF extends CallEventData {
   digit: string
 }
 
-export interface CallEventEavesdrop extends CallEventData {
-  state: EavesdropState
-}
+export interface CallEventEavesdrop extends CallEventData, EavesdropData {}
 
 export interface CallEndpoint {
   type: string
@@ -490,7 +494,11 @@ export class Call {
   }
 
   setEavesdropState(e: CallEventEavesdrop) {
-    if (this.isEavesdrop) {
+    if (e.type === EavesdropType.Joined) {
+      this._eavesdrop = e
+    } else if (e.type === EavesdropType.Leave) {
+      this._eavesdrop = null
+    } else {
       this._eavesdrop!.state = e.state
     }
   }
