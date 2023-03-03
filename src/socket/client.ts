@@ -734,7 +734,7 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   phoneIsRegister() {
-    if (this.phone) {
+    if (this.phone && this.phone.isRegistered) {
       return this.phone.isRegistered()
     }
 
