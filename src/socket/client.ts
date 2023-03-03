@@ -733,6 +733,14 @@ export class Client extends EventEmitter<ClientEvents> {
     phone.on('unregistered', () => this.emit('phone_registered', false))
   }
 
+  phoneIsRegister() {
+    if (this.phone) {
+      return this.phone.isRegistered()
+    }
+
+    return false
+  }
+
   async deviceConfig(name?: string) {
     return this.request(WEBSOCKET_DEFAULT_DEVICE_CONFIG, { name })
   }

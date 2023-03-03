@@ -215,6 +215,14 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     }
   }
 
+  isRegistered() {
+    if (this.ua) {
+      return this.ua.isRegistered()
+    }
+
+    return false
+  }
+
   sipSessionByCallId(id: string): CallSession | null {
     for (const sess of this.allSession) {
       if (sess.callId === id) {

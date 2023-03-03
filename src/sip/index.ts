@@ -64,6 +64,7 @@ export abstract class SipClient extends EventEmitter<SipClientEvents> {
   abstract async unregister(): Promise<void | Error>
 
   abstract async call(req: Outbound): Promise<void | Error>
+  abstract isRegistered(): boolean
 
   // TODO del me
   abstract sipSessionByCallId(id: string): CallSession | null

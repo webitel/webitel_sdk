@@ -40,6 +40,10 @@ export class ExternalClient extends EventEmitter<SipClientEvents>
     this.exec(id, 'answer')
   }
 
+  isRegistered() {
+    return false
+  }
+
   sipSessionByCallId(id: string): CallSession | null {
     return new Session(this, id)
   }
