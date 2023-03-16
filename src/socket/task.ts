@@ -1,4 +1,4 @@
-import { CallVariables, Categories } from './call'
+import { CallVariables } from './call'
 import { Client } from './client'
 import { Form } from './form'
 
@@ -6,7 +6,6 @@ export interface Reporting {
   success?: boolean
   agent_id?: number
   next_distribute_at?: number
-  categories?: Categories
 
   communication?: MemberCommunication
   new_communication?: MemberCommunication[]

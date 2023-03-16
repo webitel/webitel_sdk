@@ -71,7 +71,7 @@ const plugins = /** @type {Plugin[]} */ ([
   }),
   replace({
     exclude: 'node_modules/**',
-    __VERSION__: JSON.stringify(pkg.version),
+    PKG_VERSION: JSON.stringify(pkg.version),
   }),
 ])
 

@@ -1,6 +1,8 @@
+import { VERSION } from './environment'
+
 const getVersion = () => {
   // @ts-ignore
-  return '__VERSION__'
+  return VERSION || '0.0.2'
 }
 
 export default getVersion()

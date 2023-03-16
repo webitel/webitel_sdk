@@ -14,7 +14,8 @@ interface PeerConnectionEvent {
 
 export class SipPhone extends EventEmitter<SipClientEvents>
   implements SipClient {
-  static readonly userAgent = 'Webitel-Phone/0.0.1'
+  static readonly userAgent = `Webitel-Phone/${JsSip.version}`
+  static readonly sipVersion = JsSip.version
   readonly type = 'webrtc'
 
   private ua!: any

@@ -37,10 +37,6 @@ export enum EavesdropType {
   Hide = 'hide',
 }
 
-export interface Categories {
-  [key: string]: string
-}
-
 export interface CallVariables {
   [key: string]: string
 }
@@ -200,7 +196,7 @@ export interface CallParams {
   audio?: boolean
   video?: boolean
   screen?: boolean
-  autoAnswer?: boolean
+  autoAnswer?: boolean | string
   disableStun?: boolean
 }
 
@@ -254,6 +250,7 @@ export class Call {
   task: Task | null
   autoAnswered: boolean
   _eavesdrop: EavesdropData | null
+  _autoAnswerTimerId: any | null
 
   constructor(protected client: Client, e: CallEventData) {
     // FIXME check _muted from channel
@@ -264,6 +261,7 @@ export class Call {
     this.task = null
     this.data = null
     this._eavesdrop = null
+    this._autoAnswerTimerId = null
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -406,6 +404,10 @@ export class Call {
   }
 
   setActive(e: CallEventData) {
+    if (this._autoAnswerTimerId) {
+      clearTimeout(this._autoAnswerTimerId)
+      this._autoAnswerTimerId = null
+    }
     if (!this.answeredAt) {
       if (this.direction === CallDirection.Inbound) {
         this.bridgedAt = +e.timestamp
@@ -587,8 +589,18 @@ export class Call {
   get autoAnswer() {
     return (
       (this.queue && this.queue.queue_type === 'offline') ||
-      (this.params && this.params.autoAnswer === true)
+      this.autoAnswerDelay > 0
     )
+  }
+
+  get autoAnswerDelay() {
+    if (!this.params.autoAnswer || `${this.params.autoAnswer}` === 'false') {
+      return 0
+    } else if (isFinite(+this.params.autoAnswer)) {
+      return +this.params.autoAnswer
+    }
+
+    return this.client.autoAnswerDelayTime
   }
 
   // todo task is deprecated
@@ -612,15 +624,15 @@ export class Call {
     return false
   }
 
-  answerDelay(req: AnswerRequest, delay: number) {
+  answerDelay(req: AnswerRequest) {
     if (this.autoAnswered) {
       return
     }
 
     this.autoAnswered = true
-    setTimeout(async () => {
+    this._autoAnswerTimerId = setTimeout(async () => {
       await this.answer(req)
-    }, delay)
+    }, this.autoAnswerDelay)
   }
 
   async hangup(cause?: string) {

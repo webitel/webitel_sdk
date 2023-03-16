@@ -969,14 +969,11 @@ export class Client extends EventEmitter<ClientEvents> {
 
   private checkAutoAnswer(call: Call) {
     if (/*!document.hidden && */ call.autoAnswer) {
-      call.answerDelay(
-        {
-          video: call.params.video,
-          screen: call.params.screen,
-          disableStun: call.params.disableStun,
-        },
-        this.autoAnswerDelayTime
-      )
+      call.answerDelay({
+        video: call.params.video,
+        screen: call.params.screen,
+        disableStun: call.params.disableStun,
+      })
     }
   }
 
