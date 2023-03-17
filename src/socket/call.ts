@@ -594,7 +594,11 @@ export class Call {
   }
 
   get autoAnswerDelay() {
-    if (!this.params.autoAnswer || `${this.params.autoAnswer}` === 'false') {
+    if (
+      !this.params ||
+      !this.params.autoAnswer ||
+      `${this.params.autoAnswer}` === 'false'
+    ) {
       return 0
     } else if (isFinite(+this.params.autoAnswer)) {
       return +this.params.autoAnswer
