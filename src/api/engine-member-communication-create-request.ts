@@ -39,6 +39,12 @@ export interface EngineMemberCommunicationCreateRequest {
   display?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineMemberCommunicationCreateRequest
+   */
+  dtmf?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineMemberCommunicationCreateRequest
    */

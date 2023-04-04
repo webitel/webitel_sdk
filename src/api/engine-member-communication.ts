@@ -48,6 +48,12 @@ export interface EngineMemberCommunication {
    * @type {string}
    * @memberof EngineMemberCommunication
    */
+  dtmf?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineMemberCommunication
+   */
   id?: string
   /**
    *

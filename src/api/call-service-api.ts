@@ -1158,7 +1158,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [amdAiResult]
      * @param {string} [talkFrom]
      * @param {string} [talkTo]
-     * @param {boolean} [rated]
+     * @param {'undefined' | 'true' | 'false'} [rated]
      * @param {Array<string>} [ratedBy]
      * @param {string} [scoreRequiredFrom]
      * @param {string} [scoreRequiredTo]
@@ -1211,7 +1211,7 @@ export const CallServiceApiAxiosParamCreator = function(
       amdAiResult?: Array<string>,
       talkFrom?: string,
       talkTo?: string,
-      rated?: boolean,
+      rated?: 'undefined' | 'true' | 'false',
       ratedBy?: Array<string>,
       scoreRequiredFrom?: string,
       scoreRequiredTo?: string,
@@ -2199,7 +2199,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [amdAiResult]
      * @param {string} [talkFrom]
      * @param {string} [talkTo]
-     * @param {boolean} [rated]
+     * @param {'undefined' | 'true' | 'false'} [rated]
      * @param {Array<string>} [ratedBy]
      * @param {string} [scoreRequiredFrom]
      * @param {string} [scoreRequiredTo]
@@ -2252,7 +2252,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       amdAiResult?: Array<string>,
       talkFrom?: string,
       talkTo?: string,
-      rated?: boolean,
+      rated?: 'undefined' | 'true' | 'false',
       ratedBy?: Array<string>,
       scoreRequiredFrom?: string,
       scoreRequiredTo?: string,
@@ -2751,7 +2751,7 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [amdAiResult]
      * @param {string} [talkFrom]
      * @param {string} [talkTo]
-     * @param {boolean} [rated]
+     * @param {'undefined' | 'true' | 'false'} [rated]
      * @param {Array<string>} [ratedBy]
      * @param {string} [scoreRequiredFrom]
      * @param {string} [scoreRequiredTo]
@@ -2804,7 +2804,7 @@ export const CallServiceApiFactory = function(
       amdAiResult?: Array<string>,
       talkFrom?: string,
       talkTo?: string,
-      rated?: boolean,
+      rated?: 'undefined' | 'true' | 'false',
       ratedBy?: Array<string>,
       scoreRequiredFrom?: string,
       scoreRequiredTo?: string,
@@ -3244,7 +3244,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [amdAiResult]
    * @param {string} [talkFrom]
    * @param {string} [talkTo]
-   * @param {boolean} [rated]
+   * @param {'undefined' | 'true' | 'false'} [rated]
    * @param {Array<string>} [ratedBy]
    * @param {string} [scoreRequiredFrom]
    * @param {string} [scoreRequiredTo]
@@ -3298,7 +3298,7 @@ export class CallServiceApi extends BaseAPI {
     amdAiResult?: Array<string>,
     talkFrom?: string,
     talkTo?: string,
-    rated?: boolean,
+    rated?: 'undefined' | 'true' | 'false',
     ratedBy?: Array<string>,
     scoreRequiredFrom?: string,
     scoreRequiredTo?: string,
