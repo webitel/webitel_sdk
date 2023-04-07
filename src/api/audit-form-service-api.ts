@@ -467,6 +467,7 @@ export const AuditFormServiceApiAxiosParamCreator = function(
      * @param {boolean} [archive]
      * @param {boolean} [editable]
      * @param {boolean} [active]
+     * @param {string} [question]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -482,6 +483,7 @@ export const AuditFormServiceApiAxiosParamCreator = function(
       archive?: boolean,
       editable?: boolean,
       active?: boolean,
+      question?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/audit/forms`
@@ -549,6 +551,10 @@ export const AuditFormServiceApiAxiosParamCreator = function(
 
       if (active !== undefined) {
         localVarQueryParameter['active'] = active
+      }
+
+      if (question !== undefined) {
+        localVarQueryParameter['question'] = question
       }
 
       localVarUrlObj.query = {
@@ -972,6 +978,7 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
      * @param {boolean} [archive]
      * @param {boolean} [editable]
      * @param {boolean} [active]
+     * @param {string} [question]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -987,6 +994,7 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
       archive?: boolean,
       editable?: boolean,
       active?: boolean,
+      question?: string,
       options?: any
     ): Promise<
       (
@@ -1008,6 +1016,7 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
         archive,
         editable,
         active,
+        question,
         options
       )
       return (
@@ -1217,6 +1226,7 @@ export const AuditFormServiceApiFactory = function(
      * @param {boolean} [archive]
      * @param {boolean} [editable]
      * @param {boolean} [active]
+     * @param {string} [question]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1232,6 +1242,7 @@ export const AuditFormServiceApiFactory = function(
       archive?: boolean,
       editable?: boolean,
       active?: boolean,
+      question?: string,
       options?: any
     ): AxiosPromise<EngineListAuditForm> {
       return AuditFormServiceApiFp(configuration)
@@ -1247,6 +1258,7 @@ export const AuditFormServiceApiFactory = function(
           archive,
           editable,
           active,
+          question,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1423,6 +1435,7 @@ export class AuditFormServiceApi extends BaseAPI {
    * @param {boolean} [archive]
    * @param {boolean} [editable]
    * @param {boolean} [active]
+   * @param {string} [question]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AuditFormServiceApi
@@ -1439,6 +1452,7 @@ export class AuditFormServiceApi extends BaseAPI {
     archive?: boolean,
     editable?: boolean,
     active?: boolean,
+    question?: string,
     options?: any
   ) {
     return AuditFormServiceApiFp(this.configuration)
@@ -1454,6 +1468,7 @@ export class AuditFormServiceApi extends BaseAPI {
         archive,
         editable,
         active,
+        question,
         options
       )
       .then((request) => request(this.axios, this.basePath))
