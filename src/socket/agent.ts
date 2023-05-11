@@ -195,14 +195,6 @@ export class Agent {
         task = this.task.get(e.attempt_id!)
         if (task) {
           task.setOffering(evOffering)
-          if (
-            evOffering.offering.auto_answer &&
-            task.channel === ChannelType.Job
-          ) {
-            task.accept().catch((err) => {
-              this.client.emit('error', err)
-            })
-          }
         }
         break
 

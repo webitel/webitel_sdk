@@ -1,3 +1,4 @@
+import { ChannelType } from './agent'
 import { CallVariables } from './call'
 import { Client } from './client'
 import { Form } from './form'
@@ -166,6 +167,10 @@ export class Task {
   form: Form | null
   _processing: Processing | null
 
+  autoAnswered: boolean
+  _autoAnswerParam: boolean | string | number
+  _autoAnswerTimerId: any | null
+
   constructor(
     private readonly client: Client,
     e: ChannelEvent,
@@ -185,6 +190,10 @@ export class Task {
     this.stopAt = 0
     this.closedAt = 0
     this.form = null
+
+    this.autoAnswered = false
+    this._autoAnswerParam = false
+    this._autoAnswerTimerId = null
 
     this.communication = distribute.communication
     this.history = [distribute]
@@ -256,10 +265,22 @@ export class Task {
   setAnswered(t: number) {
     this.answeredAt = t
     this.lastStatusChange = Date.now()
+
+    if (this._autoAnswerTimerId) {
+      clearTimeout(this._autoAnswerTimerId)
+      this._autoAnswerTimerId = null
+    }
   }
 
   setOffering(e: OfferingEvent) {
     this.offeringAt = e.timestamp
+
+    if (e.offering.auto_answer && this.channel === ChannelType.Job) {
+      this._autoAnswerParam = e.offering.auto_answer
+      this.acceptDelay().catch((err) => {
+        this.client.emit('error', err)
+      })
+    }
   }
 
   setBridged(e: BridgedEvent) {
@@ -354,6 +375,20 @@ export class Task {
     return this._processing.renewal_sec
   }
 
+  get autoAnswer() {
+    return this.autoAnswerDelay > 0
+  }
+
+  get autoAnswerDelay() {
+    if (!this._autoAnswerParam || `${this._autoAnswerParam}` === 'false') {
+      return 0
+    } else if (isFinite(+this._autoAnswerParam)) {
+      return +this._autoAnswerParam
+    }
+
+    return this.client.autoAnswerDelayTime
+  }
+
   /*
     control
    */
@@ -364,6 +399,19 @@ export class Task {
       attempt_id: this.id,
       app_id: this.distribute.app_id,
     })
+  }
+
+  async acceptDelay() {
+    if (this.autoAnswered) {
+      return
+    }
+
+    this.autoAnswered = true
+    this._autoAnswerTimerId = setTimeout(async () => {
+      if (!this.answeredAt) {
+        await this.accept()
+      }
+    }, this.autoAnswerDelay)
   }
 
   async close() {

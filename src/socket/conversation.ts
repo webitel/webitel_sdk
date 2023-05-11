@@ -165,7 +165,9 @@ export class Conversation {
   members!: ChatChannel[]
   _cause!: DeclineCause | null
   _messages: Message[]
-  _autoAnswer: boolean
+  autoAnswered: boolean
+  _autoAnswerParam: boolean | string | number
+  _autoAnswerTimerId: any | null
 
   createdAt: number
   updatedAt: number
@@ -201,14 +203,16 @@ export class Conversation {
     this.state = ConversationState.Invite
     this.variables = {}
     this._hasReporting = !!(variables && variables.cc_reporting === 'true')
-    this._autoAnswer = false
+    this.autoAnswered = false
+    this._autoAnswerParam = false
+    this._autoAnswerTimerId = null
     this._cause = null
     this.lastAction = null
 
     for (const k in variables) {
       if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
         if (k === 'wbt_auto_answer') {
-          this._autoAnswer = variables.wbt_auto_answer === 'true'
+          this._autoAnswerParam = variables.wbt_auto_answer
         } else {
           this.variables[k] = variables[k]
         }
@@ -231,17 +235,36 @@ export class Conversation {
   setInvite(inviteId: string, timestamp: number) {
     this.inviteId = inviteId
     this.invitedAt = timestamp
-    if (this._autoAnswer) {
-      this.join().catch((e) => {
+
+    if (this.autoAnswer) {
+      this.joinDelay().catch((e) => {
         this.client.emit('error', e)
       })
     }
+  }
+
+  get autoAnswer() {
+    return this.autoAnswerDelay > 0
+  }
+
+  get autoAnswerDelay() {
+    if (!this._autoAnswerParam || `${this._autoAnswerParam}` === 'false') {
+      return 0
+    } else if (isFinite(+this._autoAnswerParam)) {
+      return +this._autoAnswerParam
+    }
+
+    return this.client.autoAnswerDelayTime
   }
 
   setAnswered(channelId: string, timestamp: number, member: ChatChannel) {
     this.state = ConversationState.Active
     this.answeredAt = timestamp
     this.channelId = channelId
+    if (this._autoAnswerTimerId) {
+      clearTimeout(this._autoAnswerTimerId)
+      this._autoAnswerTimerId = null
+    }
     this.member = wrapChannelMember(member)
     this.inviteId = null // deleted in DB
   }
@@ -385,6 +408,19 @@ export class Conversation {
       invite_id: this.inviteId,
       cause: _cause,
     })
+  }
+
+  async joinDelay() {
+    if (this.autoAnswered) {
+      return
+    }
+
+    this.autoAnswered = true
+    this._autoAnswerTimerId = setTimeout(async () => {
+      if (!this.answeredAt) {
+        await this.join()
+      }
+    }, this.autoAnswerDelay)
   }
 
   async join() {
