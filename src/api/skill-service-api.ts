@@ -24,9 +24,23 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { EngineCreateSkillAgentRequest } from '../api'
+// @ts-ignore
+import { EngineCreateSkillAgentResponse } from '../api'
+// @ts-ignore
 import { EngineCreateSkillRequest } from '../api'
 // @ts-ignore
+import { EngineDeleteSkillAgentRequest } from '../api'
+// @ts-ignore
+import { EngineDeleteSkillAgentResponse } from '../api'
+// @ts-ignore
 import { EngineListSkill } from '../api'
+// @ts-ignore
+import { EngineListSkillAgent } from '../api'
+// @ts-ignore
+import { EnginePatchSkillAgentRequest } from '../api'
+// @ts-ignore
+import { EnginePatchSkillAgentResponse } from '../api'
 // @ts-ignore
 import { EngineSkill } from '../api'
 // @ts-ignore
@@ -60,6 +74,86 @@ export const SkillServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/skills`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} skillId
+     * @param {EngineCreateSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createSkillAgent: async (
+      skillId: string,
+      body: EngineCreateSkillAgentRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'skillId' is not null or undefined
+      if (skillId === null || skillId === undefined) {
+        throw new RequiredError(
+          'skillId',
+          'Required parameter skillId was null or undefined when calling createSkillAgent.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createSkillAgent.'
+        )
+      }
+      const localVarPath = `/call_center/skills/{skill_id}/agents`.replace(
+        `{${'skill_id'}}`,
+        encodeURIComponent(String(skillId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -174,6 +268,166 @@ export const SkillServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} skillId
+     * @param {EngineDeleteSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteSkillAgent: async (
+      skillId: string,
+      body: EngineDeleteSkillAgentRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'skillId' is not null or undefined
+      if (skillId === null || skillId === undefined) {
+        throw new RequiredError(
+          'skillId',
+          'Required parameter skillId was null or undefined when calling deleteSkillAgent.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling deleteSkillAgent.'
+        )
+      }
+      const localVarPath = `/call_center/skills/{skill_id}/agents`.replace(
+        `{${'skill_id'}}`,
+        encodeURIComponent(String(skillId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} skillId
+     * @param {EnginePatchSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchSkillAgent: async (
+      skillId: string,
+      body: EnginePatchSkillAgentRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'skillId' is not null or undefined
+      if (skillId === null || skillId === undefined) {
+        throw new RequiredError(
+          'skillId',
+          'Required parameter skillId was null or undefined when calling patchSkillAgent.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchSkillAgent.'
+        )
+      }
+      const localVarPath = `/call_center/skills/{skill_id}/agents`.replace(
+        `{${'skill_id'}}`,
+        encodeURIComponent(String(skillId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -340,6 +594,112 @@ export const SkillServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary For agents SearchSkillAgent
+     * @param {string} skillId
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchSkillAgent: async (
+      skillId: string,
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      agentId?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'skillId' is not null or undefined
+      if (skillId === null || skillId === undefined) {
+        throw new RequiredError(
+          'skillId',
+          'Required parameter skillId was null or undefined when calling searchSkillAgent.'
+        )
+      }
+      const localVarPath = `/call_center/skills/{skill_id}/agents`.replace(
+        `{${'skill_id'}}`,
+        encodeURIComponent(String(skillId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (agentId) {
+        localVarQueryParameter['agent_id'] = agentId
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Update Skill
      * @param {string} id
      * @param {EngineUpdateSkillRequest} body
@@ -457,6 +817,37 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} skillId
+     * @param {EngineCreateSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async createSkillAgent(
+      skillId: string,
+      body: EngineCreateSkillAgentRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineCreateSkillAgentResponse>
+    > {
+      const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
+        configuration
+      ).createSkillAgent(skillId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Remove Skill
      * @param {string} id
      * @param {string} [domainId]
@@ -473,6 +864,68 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
         configuration
       ).deleteSkill(id, domainId, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} skillId
+     * @param {EngineDeleteSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteSkillAgent(
+      skillId: string,
+      body: EngineDeleteSkillAgentRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineDeleteSkillAgentResponse>
+    > {
+      const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
+        configuration
+      ).deleteSkillAgent(skillId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} skillId
+     * @param {EnginePatchSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchSkillAgent(
+      skillId: string,
+      body: EnginePatchSkillAgentRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EnginePatchSkillAgentResponse>
+    > {
+      const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
+        configuration
+      ).patchSkillAgent(skillId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -555,6 +1008,60 @@ export const SkillServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary For agents SearchSkillAgent
+     * @param {string} skillId
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchSkillAgent(
+      skillId: string,
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      agentId?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListSkillAgent>
+    > {
+      const localVarAxiosArgs = await SkillServiceApiAxiosParamCreator(
+        configuration
+      ).searchSkillAgent(
+        skillId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        agentId,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Update Skill
      * @param {string} id
      * @param {EngineUpdateSkillRequest} body
@@ -612,6 +1119,22 @@ export const SkillServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} skillId
+     * @param {EngineCreateSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createSkillAgent(
+      skillId: string,
+      body: EngineCreateSkillAgentRequest,
+      options?: any
+    ): AxiosPromise<EngineCreateSkillAgentResponse> {
+      return SkillServiceApiFp(configuration)
+        .createSkillAgent(skillId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Remove Skill
      * @param {string} id
      * @param {string} [domainId]
@@ -625,6 +1148,38 @@ export const SkillServiceApiFactory = function(
     ): AxiosPromise<EngineSkill> {
       return SkillServiceApiFp(configuration)
         .deleteSkill(id, domainId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} skillId
+     * @param {EngineDeleteSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteSkillAgent(
+      skillId: string,
+      body: EngineDeleteSkillAgentRequest,
+      options?: any
+    ): AxiosPromise<EngineDeleteSkillAgentResponse> {
+      return SkillServiceApiFp(configuration)
+        .deleteSkillAgent(skillId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} skillId
+     * @param {EnginePatchSkillAgentRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchSkillAgent(
+      skillId: string,
+      body: EnginePatchSkillAgentRequest,
+      options?: any
+    ): AxiosPromise<EnginePatchSkillAgentResponse> {
+      return SkillServiceApiFp(configuration)
+        .patchSkillAgent(skillId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -671,6 +1226,45 @@ export const SkillServiceApiFactory = function(
     },
     /**
      *
+     * @summary For agents SearchSkillAgent
+     * @param {string} skillId
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [agentId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchSkillAgent(
+      skillId: string,
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      agentId?: Array<string>,
+      options?: any
+    ): AxiosPromise<EngineListSkillAgent> {
+      return SkillServiceApiFp(configuration)
+        .searchSkillAgent(
+          skillId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          agentId,
+          options
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Update Skill
      * @param {string} id
      * @param {EngineUpdateSkillRequest} body
@@ -712,6 +1306,24 @@ export class SkillServiceApi extends BaseAPI {
 
   /**
    *
+   * @param {string} skillId
+   * @param {EngineCreateSkillAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  public createSkillAgent(
+    skillId: string,
+    body: EngineCreateSkillAgentRequest,
+    options?: any
+  ) {
+    return SkillServiceApiFp(this.configuration)
+      .createSkillAgent(skillId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary Remove Skill
    * @param {string} id
    * @param {string} [domainId]
@@ -722,6 +1334,42 @@ export class SkillServiceApi extends BaseAPI {
   public deleteSkill(id: string, domainId?: string, options?: any) {
     return SkillServiceApiFp(this.configuration)
       .deleteSkill(id, domainId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} skillId
+   * @param {EngineDeleteSkillAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  public deleteSkillAgent(
+    skillId: string,
+    body: EngineDeleteSkillAgentRequest,
+    options?: any
+  ) {
+    return SkillServiceApiFp(this.configuration)
+      .deleteSkillAgent(skillId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} skillId
+   * @param {EnginePatchSkillAgentRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  public patchSkillAgent(
+    skillId: string,
+    body: EnginePatchSkillAgentRequest,
+    options?: any
+  ) {
+    return SkillServiceApiFp(this.configuration)
+      .patchSkillAgent(skillId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -764,6 +1412,47 @@ export class SkillServiceApi extends BaseAPI {
   ) {
     return SkillServiceApiFp(this.configuration)
       .searchSkill(page, size, q, sort, fields, id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary For agents SearchSkillAgent
+   * @param {string} skillId
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [agentId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SkillServiceApi
+   */
+  public searchSkillAgent(
+    skillId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<string>,
+    agentId?: Array<string>,
+    options?: any
+  ) {
+    return SkillServiceApiFp(this.configuration)
+      .searchSkillAgent(
+        skillId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        agentId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

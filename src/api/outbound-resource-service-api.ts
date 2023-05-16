@@ -24,6 +24,8 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { EngineCreateOutboundResourceDisplayBulkRequest } from '../api'
+// @ts-ignore
 import { EngineCreateOutboundResourceDisplayRequest } from '../api'
 // @ts-ignore
 import { EngineCreateOutboundResourceRequest } from '../api'
@@ -31,6 +33,8 @@ import { EngineCreateOutboundResourceRequest } from '../api'
 import { EngineListOutboundResource } from '../api'
 // @ts-ignore
 import { EngineListOutboundResourceDisplay } from '../api'
+// @ts-ignore
+import { EngineListResourceDisplay } from '../api'
 // @ts-ignore
 import { EngineOutboundResource } from '../api'
 // @ts-ignore
@@ -148,6 +152,87 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/resources/{resource_id}/display`.replace(
+        `{${'resource_id'}}`,
+        encodeURIComponent(String(resourceId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Create CreateOutboundResourceDisplay
+     * @param {string} resourceId
+     * @param {EngineCreateOutboundResourceDisplayBulkRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceDisplayBulk: async (
+      resourceId: string,
+      body: EngineCreateOutboundResourceDisplayBulkRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'resourceId' is not null or undefined
+      if (resourceId === null || resourceId === undefined) {
+        throw new RequiredError(
+          'resourceId',
+          'Required parameter resourceId was null or undefined when calling createOutboundResourceDisplayBulk.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createOutboundResourceDisplayBulk.'
+        )
+      }
+      const localVarPath = `/call_center/resources/{resource_id}/display/bulk`.replace(
         `{${'resource_id'}}`,
         encodeURIComponent(String(resourceId))
       )
@@ -327,6 +412,76 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
 
       if (domainId !== undefined) {
         localVarQueryParameter['domain_id'] = domainId
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Remove ResourceDisplays
+     * @param {string} resourceId
+     * @param {Array<string>} [items]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOutboundResourceDisplays: async (
+      resourceId: string,
+      items?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'resourceId' is not null or undefined
+      if (resourceId === null || resourceId === undefined) {
+        throw new RequiredError(
+          'resourceId',
+          'Required parameter resourceId was null or undefined when calling deleteOutboundResourceDisplays.'
+        )
+      }
+      const localVarPath = `/call_center/resources/{resource_id}/display`.replace(
+        `{${'resource_id'}}`,
+        encodeURIComponent(String(resourceId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (items) {
+        localVarQueryParameter['items'] = items
       }
 
       localVarUrlObj.query = {
@@ -1011,6 +1166,38 @@ export const OutboundResourceServiceApiFp = function(
     },
     /**
      *
+     * @summary Create CreateOutboundResourceDisplay
+     * @param {string} resourceId
+     * @param {EngineCreateOutboundResourceDisplayBulkRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async createOutboundResourceDisplayBulk(
+      resourceId: string,
+      body: EngineCreateOutboundResourceDisplayBulkRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListResourceDisplay>
+    > {
+      const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
+        configuration
+      ).createOutboundResourceDisplayBulk(resourceId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Remove OutboundResource
      * @param {string} id
      * @param {string} [domainId]
@@ -1064,6 +1251,35 @@ export const OutboundResourceServiceApiFp = function(
       const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
         configuration
       ).deleteOutboundResourceDisplay(resourceId, id, domainId, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Remove ResourceDisplays
+     * @param {string} resourceId
+     * @param {Array<string>} [items]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteOutboundResourceDisplays(
+      resourceId: string,
+      items?: Array<string>,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+    > {
+      const localVarAxiosArgs = await OutboundResourceServiceApiAxiosParamCreator(
+        configuration
+      ).deleteOutboundResourceDisplays(resourceId, items, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1377,6 +1593,23 @@ export const OutboundResourceServiceApiFactory = function(
     },
     /**
      *
+     * @summary Create CreateOutboundResourceDisplay
+     * @param {string} resourceId
+     * @param {EngineCreateOutboundResourceDisplayBulkRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createOutboundResourceDisplayBulk(
+      resourceId: string,
+      body: EngineCreateOutboundResourceDisplayBulkRequest,
+      options?: any
+    ): AxiosPromise<EngineListResourceDisplay> {
+      return OutboundResourceServiceApiFp(configuration)
+        .createOutboundResourceDisplayBulk(resourceId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Remove OutboundResource
      * @param {string} id
      * @param {string} [domainId]
@@ -1409,6 +1642,23 @@ export const OutboundResourceServiceApiFactory = function(
     ): AxiosPromise<EngineResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
         .deleteOutboundResourceDisplay(resourceId, id, domainId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary Remove ResourceDisplays
+     * @param {string} resourceId
+     * @param {Array<string>} [items]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOutboundResourceDisplays(
+      resourceId: string,
+      items?: Array<string>,
+      options?: any
+    ): AxiosPromise<object> {
+      return OutboundResourceServiceApiFp(configuration)
+        .deleteOutboundResourceDisplays(resourceId, items, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1609,6 +1859,25 @@ export class OutboundResourceServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary Create CreateOutboundResourceDisplay
+   * @param {string} resourceId
+   * @param {EngineCreateOutboundResourceDisplayBulkRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  public createOutboundResourceDisplayBulk(
+    resourceId: string,
+    body: EngineCreateOutboundResourceDisplayBulkRequest,
+    options?: any
+  ) {
+    return OutboundResourceServiceApiFp(this.configuration)
+      .createOutboundResourceDisplayBulk(resourceId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary Remove OutboundResource
    * @param {string} id
    * @param {string} [domainId]
@@ -1640,6 +1909,25 @@ export class OutboundResourceServiceApi extends BaseAPI {
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
       .deleteOutboundResourceDisplay(resourceId, id, domainId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Remove ResourceDisplays
+   * @param {string} resourceId
+   * @param {Array<string>} [items]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OutboundResourceServiceApi
+   */
+  public deleteOutboundResourceDisplays(
+    resourceId: string,
+    items?: Array<string>,
+    options?: any
+  ) {
+    return OutboundResourceServiceApiFp(this.configuration)
+      .deleteOutboundResourceDisplays(resourceId, items, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

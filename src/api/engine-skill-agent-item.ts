@@ -11,46 +11,48 @@
  * Do not edit the class manually.
  */
 
+import { EngineLookup } from './engine-lookup'
+
 /**
  *
  * @export
- * @interface EnginePatchAgentSkillsRequest
+ * @interface EngineSkillAgentItem
  */
-export interface EnginePatchAgentSkillsRequest {
+export interface EngineSkillAgentItem {
   /**
    *
-   * @type {string}
-   * @memberof EnginePatchAgentSkillsRequest
+   * @type {EngineLookup}
+   * @memberof EngineSkillAgentItem
    */
-  agent_id?: string
+  agent?: EngineLookup
   /**
    *
    * @type {number}
-   * @memberof EnginePatchAgentSkillsRequest
+   * @memberof EngineSkillAgentItem
    */
   capacity?: number
   /**
    *
    * @type {boolean}
-   * @memberof EnginePatchAgentSkillsRequest
+   * @memberof EngineSkillAgentItem
    */
   enabled?: boolean
   /**
    *
-   * @type {Array<string>}
-   * @memberof EnginePatchAgentSkillsRequest
+   * @type {string}
+   * @memberof EngineSkillAgentItem
    */
-  fields?: Array<string>
+  id?: string
   /**
    *
-   * @type {Array<string>}
-   * @memberof EnginePatchAgentSkillsRequest
+   * @type {EngineLookup}
+   * @memberof EngineSkillAgentItem
    */
-  id?: Array<string>
+  skill?: EngineLookup
   /**
    *
-   * @type {Array<string>}
-   * @memberof EnginePatchAgentSkillsRequest
+   * @type {EngineLookup}
+   * @memberof EngineSkillAgentItem
    */
-  skill_id?: Array<string>
+  team?: EngineLookup
 }

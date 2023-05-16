@@ -75,6 +75,12 @@ export interface EngineHistoryCall {
   app_id?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  attempt_id?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineHistoryCall
    */

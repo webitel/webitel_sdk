@@ -11,40 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { EngineSkillAgentItem } from './engine-skill-agent-item'
+
 /**
  *
  * @export
- * @interface EngineSkill
+ * @interface EngineListSkillAgent
  */
-export interface EngineSkill {
+export interface EngineListSkillAgent {
   /**
    *
-   * @type {number}
-   * @memberof EngineSkill
+   * @type {Array<EngineSkillAgentItem>}
+   * @memberof EngineListSkillAgent
    */
-  agents?: number
+  items?: Array<EngineSkillAgentItem>
   /**
    *
-   * @type {string}
-   * @memberof EngineSkill
+   * @type {boolean}
+   * @memberof EngineListSkillAgent
    */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineSkill
-   */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineSkill
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineSkill
-   */
-  name?: string
+  next?: boolean
 }

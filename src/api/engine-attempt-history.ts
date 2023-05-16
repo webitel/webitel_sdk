@@ -40,6 +40,12 @@ export interface EngineAttemptHistory {
   amd_result?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineAttemptHistory
+   */
+  attempts?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineAttemptHistory
    */

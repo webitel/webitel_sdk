@@ -39,6 +39,12 @@ export interface EngineMemberAttempt {
   answered_at?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineMemberAttempt
+   */
+  attempts?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineMemberAttempt
    */

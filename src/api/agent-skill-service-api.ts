@@ -293,15 +293,15 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} agentId
-     * @param {Array<number>} [id]
-     * @param {Array<number>} [skillId]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAgentSkills: async (
       agentId: string,
-      id?: Array<number>,
-      skillId?: Array<number>,
+      id?: Array<string>,
+      skillId?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -620,8 +620,8 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
-     * @param {Array<number>} [skillId]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -632,8 +632,8 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      id?: Array<number>,
-      skillId?: Array<number>,
+      id?: Array<string>,
+      skillId?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -1003,15 +1003,15 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} agentId
-     * @param {Array<number>} [id]
-     * @param {Array<number>} [skillId]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteAgentSkills(
       agentId: string,
-      id?: Array<number>,
-      skillId?: Array<number>,
+      id?: Array<string>,
+      skillId?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -1140,8 +1140,8 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
-     * @param {Array<number>} [skillId]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1152,8 +1152,8 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      id?: Array<number>,
-      skillId?: Array<number>,
+      id?: Array<string>,
+      skillId?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -1332,15 +1332,15 @@ export const AgentSkillServiceApiFactory = function(
     /**
      *
      * @param {string} agentId
-     * @param {Array<number>} [id]
-     * @param {Array<number>} [skillId]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteAgentSkills(
       agentId: string,
-      id?: Array<number>,
-      skillId?: Array<number>,
+      id?: Array<string>,
+      skillId?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
@@ -1409,8 +1409,8 @@ export const AgentSkillServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<number>} [id]
-     * @param {Array<number>} [skillId]
+     * @param {Array<string>} [id]
+     * @param {Array<string>} [skillId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1421,8 +1421,8 @@ export const AgentSkillServiceApiFactory = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      id?: Array<number>,
-      skillId?: Array<number>,
+      id?: Array<string>,
+      skillId?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
@@ -1559,16 +1559,16 @@ export class AgentSkillServiceApi extends BaseAPI {
   /**
    *
    * @param {string} agentId
-   * @param {Array<number>} [id]
-   * @param {Array<number>} [skillId]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [skillId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public deleteAgentSkills(
     agentId: string,
-    id?: Array<number>,
-    skillId?: Array<number>,
+    id?: Array<string>,
+    skillId?: Array<string>,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
@@ -1644,8 +1644,8 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<number>} [id]
-   * @param {Array<number>} [skillId]
+   * @param {Array<string>} [id]
+   * @param {Array<string>} [skillId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
@@ -1657,8 +1657,8 @@ export class AgentSkillServiceApi extends BaseAPI {
     q?: string,
     sort?: string,
     fields?: Array<string>,
-    id?: Array<number>,
-    skillId?: Array<number>,
+    id?: Array<string>,
+    skillId?: Array<string>,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)

@@ -14,37 +14,25 @@
 /**
  *
  * @export
- * @interface EngineSkill
+ * @interface EngineDeleteSkillAgentRequest
  */
-export interface EngineSkill {
+export interface EngineDeleteSkillAgentRequest {
   /**
    *
-   * @type {number}
-   * @memberof EngineSkill
+   * @type {Array<string>}
+   * @memberof EngineDeleteSkillAgentRequest
    */
-  agents?: number
+  agent_id?: Array<string>
   /**
    *
-   * @type {string}
-   * @memberof EngineSkill
+   * @type {Array<string>}
+   * @memberof EngineDeleteSkillAgentRequest
    */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineSkill
-   */
-  domain_id?: string
+  id?: Array<string>
   /**
    *
    * @type {string}
-   * @memberof EngineSkill
+   * @memberof EngineDeleteSkillAgentRequest
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineSkill
-   */
-  name?: string
+  skill_id?: string
 }

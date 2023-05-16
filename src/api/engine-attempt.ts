@@ -34,6 +34,12 @@ export interface EngineAttempt {
   agent_call_id?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineAttempt
+   */
+  attempts?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineAttempt
    */
