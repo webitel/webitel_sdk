@@ -289,6 +289,11 @@ export class Task {
     if (e.form) {
       this.form = e.form
     }
+
+    if (this._autoAnswerTimerId) {
+      clearTimeout(this._autoAnswerTimerId)
+      this._autoAnswerTimerId = null
+    }
   }
 
   setProcessing(now: number, p: Processing) {
@@ -402,13 +407,13 @@ export class Task {
   }
 
   async acceptDelay() {
-    if (this.autoAnswered) {
-      return
-    }
-
-    this.autoAnswered = true
     this._autoAnswerTimerId = setTimeout(async () => {
+      if (this.autoAnswered) {
+        return
+      }
+
       if (!this.answeredAt) {
+        this.autoAnswered = true
         await this.accept()
       }
     }, this.autoAnswerDelay)
