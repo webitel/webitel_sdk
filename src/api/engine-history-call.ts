@@ -39,6 +39,12 @@ export interface EngineHistoryCall {
   agent_description?: string
   /**
    *
+   * @type {boolean}
+   * @memberof EngineHistoryCall
+   */
+  allow_evaluation?: boolean
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineHistoryCall
    */

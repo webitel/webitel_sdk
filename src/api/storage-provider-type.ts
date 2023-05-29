@@ -19,4 +19,5 @@
 export enum StorageProviderType {
   DefaultProvider = 'DefaultProvider',
   Microsoft = 'Microsoft',
+  Google = 'Google',
 }
