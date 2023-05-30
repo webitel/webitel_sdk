@@ -947,7 +947,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
   private callBySession(session: CallSession): Call | undefined {
     for (const call of this.allCall()) {
-      if (call.sip === session) {
+      if (call.sip && call.sip.id === session.id) {
         return call
       }
     }
