@@ -915,8 +915,9 @@ export class Client extends EventEmitter<ClientEvents> {
   private async pingServer() {
     if (this.pingTimer && this.connectionInfo.ping_interval) {
       const t = setTimeout(async () => {
+        this.log.error('close socket without pong')
         this.socket.close(3005)
-      }, +this.connectionInfo.ping_interval / 2)
+      }, 2000)
       await this.ping()
       clearTimeout(t)
     }

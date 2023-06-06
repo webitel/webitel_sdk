@@ -53,6 +53,7 @@ export class Socket extends EventEmitter<SocketEvents> {
   close(code?: number) {
     this.socket!.close(code || 1000)
     delete this.socket
+    this.onClose(code || 1000)
   }
 
   private onOpen() {
