@@ -65,10 +65,10 @@ export interface StorageCognitiveProfile {
   name?: string
   /**
    *
-   * @type {{ [key: string]: string; }}
+   * @type {object}
    * @memberof StorageCognitiveProfile
    */
-  properties?: { [key: string]: string }
+  properties?: object
   /**
    *
    * @type {StorageProviderType}

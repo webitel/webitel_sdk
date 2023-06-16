@@ -58,10 +58,10 @@ export interface StoragePatchCognitiveProfileRequest {
   name?: string
   /**
    *
-   * @type {{ [key: string]: string; }}
+   * @type {object}
    * @memberof StoragePatchCognitiveProfileRequest
    */
-  properties?: { [key: string]: string }
+  properties?: object
   /**
    *
    * @type {StorageProviderType}

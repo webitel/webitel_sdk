@@ -159,6 +159,12 @@ export interface EngineHistoryCall {
   files_job?: Array<EngineHistoryFileJob>
   /**
    *
+   * @type {object}
+   * @memberof EngineHistoryCall
+   */
+  form_fields?: object
+  /**
+   *
    * @type {EngineEndpoint}
    * @memberof EngineHistoryCall
    */

@@ -44,6 +44,8 @@ import { EngineEavesdropCallRequest } from '../api'
 // @ts-ignore
 import { EngineHangupCallRequest } from '../api'
 // @ts-ignore
+import { EngineHistoryCall } from '../api'
+// @ts-ignore
 import { EngineHoldCallResponse } from '../api'
 // @ts-ignore
 import { EngineListAggregate } from '../api'
@@ -51,6 +53,10 @@ import { EngineListAggregate } from '../api'
 import { EngineListCall } from '../api'
 // @ts-ignore
 import { EngineListHistoryCall } from '../api'
+// @ts-ignore
+import { EnginePatchHistoryCallRequest } from '../api'
+// @ts-ignore
+import { EngineSearchHistoryCallRequest } from '../api'
 // @ts-ignore
 import { EngineSetVariablesCallRequest } from '../api'
 // @ts-ignore
@@ -820,6 +826,86 @@ export const CallServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {EnginePatchHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchHistoryCall: async (
+      id: string,
+      body: EnginePatchHistoryCallRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchHistoryCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchHistoryCall.'
+        )
+      }
+      const localVarPath = `/calls/history/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Call item
      * @param {string} id
      * @param {string} [domainId]
@@ -1461,6 +1547,75 @@ export const CallServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary List of call
+     * @param {EngineSearchHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchHistoryCallPost: async (
+      body: EngineSearchHistoryCallRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling searchHistoryCallPost.'
+        )
+      }
+      const localVarPath = `/calls/history`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {EngineSetVariablesCallRequest} body
      * @param {*} [options] Override http request option.
@@ -2011,6 +2166,37 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} id
+     * @param {EnginePatchHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchHistoryCall(
+      id: string,
+      body: EnginePatchHistoryCallRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineHistoryCall>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).patchHistoryCall(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Call item
      * @param {string} id
      * @param {string} [domainId]
@@ -2333,6 +2519,36 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary List of call
+     * @param {EngineSearchHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchHistoryCallPost(
+      body: EngineSearchHistoryCallRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListHistoryCall>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).searchHistoryCallPost(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {EngineSetVariablesCallRequest} body
      * @param {*} [options] Override http request option.
@@ -2586,6 +2802,22 @@ export const CallServiceApiFactory = function(
     ): AxiosPromise<EngineHoldCallResponse> {
       return CallServiceApiFp(configuration)
         .holdCall(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EnginePatchHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchHistoryCall(
+      id: string,
+      body: EnginePatchHistoryCallRequest,
+      options?: any
+    ): AxiosPromise<EngineHistoryCall> {
+      return CallServiceApiFp(configuration)
+        .patchHistoryCall(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -2870,6 +3102,21 @@ export const CallServiceApiFactory = function(
     },
     /**
      *
+     * @summary List of call
+     * @param {EngineSearchHistoryCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchHistoryCallPost(
+      body: EngineSearchHistoryCallRequest,
+      options?: any
+    ): AxiosPromise<EngineListHistoryCall> {
+      return CallServiceApiFp(configuration)
+        .searchHistoryCallPost(body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {string} id
      * @param {EngineSetVariablesCallRequest} body
      * @param {*} [options] Override http request option.
@@ -3078,6 +3325,24 @@ export class CallServiceApi extends BaseAPI {
   public holdCall(id: string, body: EngineUserCallRequest, options?: any) {
     return CallServiceApiFp(this.configuration)
       .holdCall(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EnginePatchHistoryCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public patchHistoryCall(
+    id: string,
+    body: EnginePatchHistoryCallRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration)
+      .patchHistoryCall(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -3360,6 +3625,23 @@ export class CallServiceApi extends BaseAPI {
         ratedUser,
         options
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary List of call
+   * @param {EngineSearchHistoryCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public searchHistoryCallPost(
+    body: EngineSearchHistoryCallRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration)
+      .searchHistoryCallPost(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
