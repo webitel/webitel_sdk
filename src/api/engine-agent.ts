@@ -34,10 +34,10 @@ export interface EngineAgent {
   auditor?: Array<EngineLookup>
   /**
    *
-   * @type {EngineAgentChannel}
+   * @type {Array<EngineAgentChannel>}
    * @memberof EngineAgent
    */
-  channel?: EngineAgentChannel
+  channel?: Array<EngineAgentChannel>
   /**
    *
    * @type {number}

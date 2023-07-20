@@ -65,10 +65,10 @@ export interface EngineAggregateHistoryCallRequest {
   created_at?: EngineFilterBetween
   /**
    *
-   * @type {Array<string>}
+   * @type {string}
    * @memberof EngineAggregateHistoryCallRequest
    */
-  dependency_id?: Array<string>
+  dependency_id?: string
   /**
    *
    * @type {string}

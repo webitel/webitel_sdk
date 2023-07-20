@@ -11,12 +11,20 @@
  * Do not edit the class manually.
  */
 
+import { EngineCommunicationChannels } from './engine-communication-channels'
+
 /**
  *
  * @export
  * @interface EngineCommunicationType
  */
 export interface EngineCommunicationType {
+  /**
+   *
+   * @type {EngineCommunicationChannels}
+   * @memberof EngineCommunicationType
+   */
+  channel?: EngineCommunicationChannels
   /**
    *
    * @type {string}
@@ -47,10 +55,4 @@ export interface EngineCommunicationType {
    * @memberof EngineCommunicationType
    */
   name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineCommunicationType
-   */
-  type?: string
 }

@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "0.1.193",
+  "version": "0.1.196",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -45,7 +45,7 @@
     "release:npm": "npm publish dist",
     "release:preflight": "npm pack ./dist --dry-run",
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js",
-    "api": "openapi-generator generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
+    "api": "openapi-generator-cli generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
     "format-build": "npm run format:fix && npm run build",
     "format-build-and-release": "npm run format:fix && npm run build && npm run release:npm",
     "clean:js": "find src -name \"*.js.map\" -type f -delete && find src -name \"*.js\" -type f -delete"
@@ -91,7 +91,7 @@
   "devDependencies": {
     "@commitlint/cli": "7.2.1",
     "@commitlint/config-conventional": "7.1.2",
-    "@openapitools/openapi-generator-cli": "1.0.18-4.3.1",
+    "@openapitools/openapi-generator-cli": "2.6.0",
     "@types/jest": "23.3.10",
     "@types/node": "8.10.*",
     "@types/prettier": "1.15.2",

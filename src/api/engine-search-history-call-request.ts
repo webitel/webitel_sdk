@@ -64,10 +64,10 @@ export interface EngineSearchHistoryCallRequest {
   created_at?: EngineFilterBetween
   /**
    *
-   * @type {Array<string>}
+   * @type {string}
    * @memberof EngineSearchHistoryCallRequest
    */
-  dependency_id?: Array<string>
+  dependency_id?: string
   /**
    *
    * @type {string}

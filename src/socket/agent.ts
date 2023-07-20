@@ -14,7 +14,7 @@ import {
 } from './task'
 
 export interface Channel {
-  channel: ChannelType | null
+  channel: ChannelType
   state: string
   joined_at: number
   timeout?: number
@@ -96,12 +96,13 @@ export interface OfflineMemberList {
 
 export class Agent {
   task: Map<number, Task>
-  _channel: Channel
+  _channels: Map<string, Channel>
   _listOfflineMembers: OfflineMemberList | null
   lastStatusChange: number
   constructor(protected readonly client: Client, protected info: AgentSession) {
     this.task = new Map<number, Task>()
-    this._channel = info.channels[0] // todo
+    this._channels = new Map<string, Channel>()
+    this.initChannels(info.channels)
     this._listOfflineMembers = null
 
     this.lastStatusChange = Date.now() - this.info.status_duration * 1000
@@ -144,11 +145,11 @@ export class Agent {
   }
 
   get channels() {
-    return [this._channel]
+    return Array.from(this._channels.values())
   }
 
   get channel() {
-    return this._channel
+    return this._channels.get(ChannelType.Call)
   }
 
   get stateDuration() {
@@ -245,11 +246,7 @@ export class Agent {
             }
             task.setMissed()
 
-            this.setChannelStateTimeout(
-              e.channel,
-              e,
-              missedEvent.missed.timeout
-            )
+            this.setChannelStateTimeout(e, missedEvent.missed.timeout)
             this.task.delete(e.attempt_id)
             this.client.reportingChannelTask(task)
 
@@ -284,7 +281,6 @@ export class Agent {
           if (task) {
             task.setProcessing(e.timestamp, processingEvent.processing)
             this.setChannelStateTimeout(
-              e.channel,
               e,
               processingEvent.processing.timeout || 0
             )
@@ -310,7 +306,7 @@ export class Agent {
       // throw new Error("not found task")
     }
 
-    this.setChannelState(e.channel, e)
+    this.setChannelState(e)
 
     if (task) {
       task.setState(e.status)
@@ -340,8 +336,7 @@ export class Agent {
   setStatus(e: AgentStatusEvent) {
     if (e.status === AgentStatus.Online) {
       this.info.on_demand = e.on_demand || false
-
-      this._channel = e.channels[0]
+      this.initChannels(e.channels)
     }
 
     this.info.status = e.status
@@ -375,21 +370,31 @@ export class Agent {
     return this.task.has(task.id)
   }
 
-  private setChannelState(name: string, e: ChannelEvent) {
-    this._channel.channel = name ? (name as ChannelType) : null
-    this._channel.state = e.status
-    this._channel.joined_at = e.timestamp
-    this._channel.timeout = undefined
+  private initChannels(channels: Channel[]) {
+    for (const c of channels) {
+      this._channels.set(c.channel, c)
+    }
   }
 
-  private setChannelStateTimeout(
-    name: string,
-    e: ChannelEvent,
-    timeout: number
-  ) {
-    this._channel.channel = name ? (name as ChannelType) : null
-    this._channel.state = e.status // FIXME
-    this._channel.timeout = timeout
-    this._channel.joined_at = e.timestamp
+  private getChannel(name: string) {
+    return this._channels.get(name)
+  }
+
+  private setChannelState(e: ChannelEvent) {
+    const chan = this.getChannel(e.channel)
+    if (chan) {
+      chan.state = e.status
+      chan.joined_at = e.timestamp
+      chan.timeout = undefined
+    }
+  }
+
+  private setChannelStateTimeout(e: ChannelEvent, timeout: number) {
+    const channel = this.getChannel(e.channel)
+    if (channel) {
+      channel.state = e.status
+      channel.timeout = timeout
+      channel.joined_at = e.timestamp
+    }
   }
 }

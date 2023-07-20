@@ -1232,7 +1232,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [id]
      * @param {Array<string>} [transferFrom]
      * @param {Array<string>} [transferTo]
-     * @param {Array<string>} [dependencyId]
+     * @param {string} [dependencyId]
      * @param {Array<string>} [tags]
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
@@ -1285,7 +1285,7 @@ export const CallServiceApiAxiosParamCreator = function(
       id?: Array<string>,
       transferFrom?: Array<string>,
       transferTo?: Array<string>,
-      dependencyId?: Array<string>,
+      dependencyId?: string,
       tags?: Array<string>,
       amdResult?: Array<string>,
       fts?: string,
@@ -1449,7 +1449,7 @@ export const CallServiceApiAxiosParamCreator = function(
         localVarQueryParameter['transfer_to'] = transferTo
       }
 
-      if (dependencyId) {
+      if (dependencyId !== undefined) {
         localVarQueryParameter['dependency_id'] = dependencyId
       }
 
@@ -2373,7 +2373,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [id]
      * @param {Array<string>} [transferFrom]
      * @param {Array<string>} [transferTo]
-     * @param {Array<string>} [dependencyId]
+     * @param {string} [dependencyId]
      * @param {Array<string>} [tags]
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
@@ -2426,7 +2426,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       id?: Array<string>,
       transferFrom?: Array<string>,
       transferTo?: Array<string>,
-      dependencyId?: Array<string>,
+      dependencyId?: string,
       tags?: Array<string>,
       amdResult?: Array<string>,
       fts?: string,
@@ -2971,7 +2971,7 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [id]
      * @param {Array<string>} [transferFrom]
      * @param {Array<string>} [transferTo]
-     * @param {Array<string>} [dependencyId]
+     * @param {string} [dependencyId]
      * @param {Array<string>} [tags]
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
@@ -3024,7 +3024,7 @@ export const CallServiceApiFactory = function(
       id?: Array<string>,
       transferFrom?: Array<string>,
       transferTo?: Array<string>,
-      dependencyId?: Array<string>,
+      dependencyId?: string,
       tags?: Array<string>,
       amdResult?: Array<string>,
       fts?: string,
@@ -3497,7 +3497,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [id]
    * @param {Array<string>} [transferFrom]
    * @param {Array<string>} [transferTo]
-   * @param {Array<string>} [dependencyId]
+   * @param {string} [dependencyId]
    * @param {Array<string>} [tags]
    * @param {Array<string>} [amdResult]
    * @param {string} [fts]
@@ -3551,7 +3551,7 @@ export class CallServiceApi extends BaseAPI {
     id?: Array<string>,
     transferFrom?: Array<string>,
     transferTo?: Array<string>,
-    dependencyId?: Array<string>,
+    dependencyId?: string,
     tags?: Array<string>,
     amdResult?: Array<string>,
     fts?: string,

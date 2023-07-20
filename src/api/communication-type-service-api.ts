@@ -259,6 +259,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
+     * @param {Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>} [channel]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -269,6 +270,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
+      channel?: Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/communication_type`
@@ -316,6 +318,10 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
 
       if (id) {
         localVarQueryParameter['id'] = id
+      }
+
+      if (channel) {
+        localVarQueryParameter['channel'] = channel
       }
 
       localVarUrlObj.query = {
@@ -533,6 +539,7 @@ export const CommunicationTypeServiceApiFp = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
+     * @param {Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>} [channel]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -543,6 +550,7 @@ export const CommunicationTypeServiceApiFp = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
+      channel?: Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>,
       options?: any
     ): Promise<
       (
@@ -552,7 +560,16 @@ export const CommunicationTypeServiceApiFp = function(
     > {
       const localVarAxiosArgs = await CommunicationTypeServiceApiAxiosParamCreator(
         configuration
-      ).searchCommunicationType(page, size, q, sort, fields, id, options)
+      ).searchCommunicationType(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        channel,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -667,6 +684,7 @@ export const CommunicationTypeServiceApiFactory = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
+     * @param {Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>} [channel]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -677,10 +695,20 @@ export const CommunicationTypeServiceApiFactory = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
+      channel?: Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>,
       options?: any
     ): AxiosPromise<EngineListCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
-        .searchCommunicationType(page, size, q, sort, fields, id, options)
+        .searchCommunicationType(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          channel,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -766,6 +794,7 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
+   * @param {Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>} [channel]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
@@ -777,10 +806,20 @@ export class CommunicationTypeServiceApi extends BaseAPI {
     sort?: string,
     fields?: Array<string>,
     id?: Array<number>,
+    channel?: Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>,
     options?: any
   ) {
     return CommunicationTypeServiceApiFp(this.configuration)
-      .searchCommunicationType(page, size, q, sort, fields, id, options)
+      .searchCommunicationType(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        channel,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
