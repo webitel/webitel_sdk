@@ -109,8 +109,6 @@ export const ContactsApiAxiosParamCreator = function(
         ? JSON.stringify(input !== undefined ? input : {})
         : input || ''
 
-      debugger
-
       return {
         url: globalImportUrl.format(localVarUrlObj),
         options: localVarRequestOptions,
@@ -356,14 +354,6 @@ export const ContactsApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      // @ts-ignore
-      window.t = {
-        globalImportUrl,
-        localVarUrlObj,
-      }
-
-      // @ts-ignore
-      debugger
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
