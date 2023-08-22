@@ -251,6 +251,7 @@ export class Call {
   autoAnswered: boolean
   _eavesdrop: EavesdropData | null
   _autoAnswerTimerId: any | null
+  _activeCounter: number
 
   constructor(protected client: Client, e: CallEventData) {
     // FIXME check _muted from channel
@@ -262,6 +263,7 @@ export class Call {
     this.data = null
     this._eavesdrop = null
     this._autoAnswerTimerId = null
+    this._activeCounter = 0
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -403,7 +405,12 @@ export class Call {
     return !!(this.task && this.task.isMember)
   }
 
+  get firstActive() {
+    return this._activeCounter === 1
+  }
+
   setActive(e: CallEventData) {
+    this._activeCounter++
     if (this._autoAnswerTimerId) {
       clearTimeout(this._autoAnswerTimerId)
       this._autoAnswerTimerId = null
