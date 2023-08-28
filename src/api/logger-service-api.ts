@@ -46,7 +46,7 @@ export const LoggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getLogsByConfigId: async (
+    getByConfigId: async (
       configId: number,
       page?: number,
       size?: number,
@@ -59,7 +59,7 @@ export const LoggerServiceApiAxiosParamCreator = function(
       if (configId === null || configId === undefined) {
         throw new RequiredError(
           'configId',
-          'Required parameter configId was null or undefined when calling getLogsByConfigId.'
+          'Required parameter configId was null or undefined when calling getByConfigId.'
         )
       }
       const localVarPath = `/logger/config/{config_id}/logs`.replace(
@@ -139,7 +139,7 @@ export const LoggerServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getLogsByUserId: async (
+    getByUserId: async (
       userId: number,
       page?: number,
       size?: number,
@@ -152,7 +152,7 @@ export const LoggerServiceApiAxiosParamCreator = function(
       if (userId === null || userId === undefined) {
         throw new RequiredError(
           'userId',
-          'Required parameter userId was null or undefined when calling getLogsByUserId.'
+          'Required parameter userId was null or undefined when calling getByUserId.'
         )
       }
       const localVarPath = `/logger/user/{user_id}/logs`.replace(
@@ -241,7 +241,7 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getLogsByConfigId(
+    async getByConfigId(
       configId: number,
       page?: number,
       size?: number,
@@ -254,7 +254,7 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await LoggerServiceApiAxiosParamCreator(
         configuration
-      ).getLogsByConfigId(configId, page, size, q, sort, fields, options)
+      ).getByConfigId(configId, page, size, q, sort, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -277,7 +277,7 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getLogsByUserId(
+    async getByUserId(
       userId: number,
       page?: number,
       size?: number,
@@ -290,7 +290,7 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await LoggerServiceApiAxiosParamCreator(
         configuration
-      ).getLogsByUserId(userId, page, size, q, sort, fields, options)
+      ).getByUserId(userId, page, size, q, sort, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -326,7 +326,7 @@ export const LoggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getLogsByConfigId(
+    getByConfigId(
       configId: number,
       page?: number,
       size?: number,
@@ -336,7 +336,7 @@ export const LoggerServiceApiFactory = function(
       options?: any
     ): AxiosPromise<LoggerLogs> {
       return LoggerServiceApiFp(configuration)
-        .getLogsByConfigId(configId, page, size, q, sort, fields, options)
+        .getByConfigId(configId, page, size, q, sort, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -350,7 +350,7 @@ export const LoggerServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getLogsByUserId(
+    getByUserId(
       userId: number,
       page?: number,
       size?: number,
@@ -360,7 +360,7 @@ export const LoggerServiceApiFactory = function(
       options?: any
     ): AxiosPromise<LoggerLogs> {
       return LoggerServiceApiFp(configuration)
-        .getLogsByUserId(userId, page, size, q, sort, fields, options)
+        .getByUserId(userId, page, size, q, sort, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -385,7 +385,7 @@ export class LoggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof LoggerServiceApi
    */
-  public getLogsByConfigId(
+  public getByConfigId(
     configId: number,
     page?: number,
     size?: number,
@@ -395,7 +395,7 @@ export class LoggerServiceApi extends BaseAPI {
     options?: any
   ) {
     return LoggerServiceApiFp(this.configuration)
-      .getLogsByConfigId(configId, page, size, q, sort, fields, options)
+      .getByConfigId(configId, page, size, q, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -411,7 +411,7 @@ export class LoggerServiceApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof LoggerServiceApi
    */
-  public getLogsByUserId(
+  public getByUserId(
     userId: number,
     page?: number,
     size?: number,
@@ -421,7 +421,7 @@ export class LoggerServiceApi extends BaseAPI {
     options?: any
   ) {
     return LoggerServiceApiFp(this.configuration)
-      .getLogsByUserId(userId, page, size, q, sort, fields, options)
+      .getByUserId(userId, page, size, q, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

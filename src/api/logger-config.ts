@@ -45,10 +45,10 @@ export interface LoggerConfig {
   object?: LoggerLookup
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof LoggerConfig
    */
-  period?: string
+  period?: number
   /**
    *
    * @type {LoggerLookup}

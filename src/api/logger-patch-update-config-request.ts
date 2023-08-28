@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { LoggerLookup } from './logger-lookup'
+
 /**
  *
  * @export
@@ -43,14 +45,14 @@ export interface LoggerPatchUpdateConfigRequest {
   fields?: Array<string>
   /**
    *
-   * @type {string}
-   * @memberof LoggerPatchUpdateConfigRequest
-   */
-  period?: string
-  /**
-   *
    * @type {number}
    * @memberof LoggerPatchUpdateConfigRequest
    */
-  storage_id?: number
+  period?: number
+  /**
+   *
+   * @type {LoggerLookup}
+   * @memberof LoggerPatchUpdateConfigRequest
+   */
+  storage?: LoggerLookup
 }

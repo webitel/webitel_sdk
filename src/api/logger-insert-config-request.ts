@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { LoggerLookup } from './logger-lookup'
+
 /**
  *
  * @export
@@ -31,20 +33,20 @@ export interface LoggerInsertConfigRequest {
   enabled?: boolean
   /**
    *
-   * @type {number}
+   * @type {LoggerLookup}
    * @memberof LoggerInsertConfigRequest
    */
-  object_id?: number
-  /**
-   *
-   * @type {string}
-   * @memberof LoggerInsertConfigRequest
-   */
-  period?: string
+  object?: LoggerLookup
   /**
    *
    * @type {number}
    * @memberof LoggerInsertConfigRequest
    */
-  storage_id?: number
+  period?: number
+  /**
+   *
+   * @type {LoggerLookup}
+   * @memberof LoggerInsertConfigRequest
+   */
+  storage?: LoggerLookup
 }
