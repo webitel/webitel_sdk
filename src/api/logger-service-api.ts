@@ -37,29 +37,41 @@ export const LoggerServiceApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @param {number} configId
+     * @param {number} configId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {number} [userId]
+     * @param {string} [userName]
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {string} [userIp]
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getByConfigId: async (
+    searchLogByConfigId: async (
       configId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      userId?: number,
+      userName?: string,
+      action?: 'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE',
+      userIp?: string,
+      dateFrom?: string,
+      dateTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'configId' is not null or undefined
       if (configId === null || configId === undefined) {
         throw new RequiredError(
           'configId',
-          'Required parameter configId was null or undefined when calling getByConfigId.'
+          'Required parameter configId was null or undefined when calling searchLogByConfigId.'
         )
       }
       const localVarPath = `/logger/config/{config_id}/logs`.replace(
@@ -108,6 +120,30 @@ export const LoggerServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
+      if (userId !== undefined) {
+        localVarQueryParameter['user.id'] = userId
+      }
+
+      if (userName !== undefined) {
+        localVarQueryParameter['user.name'] = userName
+      }
+
+      if (action !== undefined) {
+        localVarQueryParameter['action'] = action
+      }
+
+      if (userIp !== undefined) {
+        localVarQueryParameter['userIp'] = userIp
+      }
+
+      if (dateFrom !== undefined) {
+        localVarQueryParameter['dateFrom'] = dateFrom
+      }
+
+      if (dateTo !== undefined) {
+        localVarQueryParameter['dateTo'] = dateTo
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -130,29 +166,41 @@ export const LoggerServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} userId
+     * @param {number} userId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {number} [objectId]
+     * @param {string} [objectName]
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {string} [userIp]
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getByUserId: async (
+    searchLogByUserId: async (
       userId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      objectId?: number,
+      objectName?: string,
+      action?: 'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE',
+      userIp?: string,
+      dateFrom?: string,
+      dateTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'userId' is not null or undefined
       if (userId === null || userId === undefined) {
         throw new RequiredError(
           'userId',
-          'Required parameter userId was null or undefined when calling getByUserId.'
+          'Required parameter userId was null or undefined when calling searchLogByUserId.'
         )
       }
       const localVarPath = `/logger/user/{user_id}/logs`.replace(
@@ -201,6 +249,30 @@ export const LoggerServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
+      if (objectId !== undefined) {
+        localVarQueryParameter['object.id'] = objectId
+      }
+
+      if (objectName !== undefined) {
+        localVarQueryParameter['object.name'] = objectName
+      }
+
+      if (action !== undefined) {
+        localVarQueryParameter['action'] = action
+      }
+
+      if (userIp !== undefined) {
+        localVarQueryParameter['userIp'] = userIp
+      }
+
+      if (dateFrom !== undefined) {
+        localVarQueryParameter['dateFrom'] = dateFrom
+      }
+
+      if (dateTo !== undefined) {
+        localVarQueryParameter['dateTo'] = dateTo
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -232,29 +304,55 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {number} configId
+     * @param {number} configId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {number} [userId]
+     * @param {string} [userName]
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {string} [userIp]
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getByConfigId(
+    async searchLogByConfigId(
       configId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      userId?: number,
+      userName?: string,
+      action?: 'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE',
+      userIp?: string,
+      dateFrom?: string,
+      dateTo?: string,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerLogs>
     > {
       const localVarAxiosArgs = await LoggerServiceApiAxiosParamCreator(
         configuration
-      ).getByConfigId(configId, page, size, q, sort, fields, options)
+      ).searchLogByConfigId(
+        configId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        userId,
+        userName,
+        action,
+        userIp,
+        dateFrom,
+        dateTo,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -268,29 +366,55 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} userId
+     * @param {number} userId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {number} [objectId]
+     * @param {string} [objectName]
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {string} [userIp]
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getByUserId(
+    async searchLogByUserId(
       userId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      objectId?: number,
+      objectName?: string,
+      action?: 'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE',
+      userIp?: string,
+      dateFrom?: string,
+      dateTo?: string,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerLogs>
     > {
       const localVarAxiosArgs = await LoggerServiceApiAxiosParamCreator(
         configuration
-      ).getByUserId(userId, page, size, q, sort, fields, options)
+      ).searchLogByUserId(
+        userId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        objectId,
+        objectName,
+        action,
+        userIp,
+        dateFrom,
+        dateTo,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -317,50 +441,102 @@ export const LoggerServiceApiFactory = function(
   return {
     /**
      *
-     * @param {number} configId
+     * @param {number} configId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {number} [userId]
+     * @param {string} [userName]
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {string} [userIp]
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getByConfigId(
+    searchLogByConfigId(
       configId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      userId?: number,
+      userName?: string,
+      action?: 'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE',
+      userIp?: string,
+      dateFrom?: string,
+      dateTo?: string,
       options?: any
     ): AxiosPromise<LoggerLogs> {
       return LoggerServiceApiFp(configuration)
-        .getByConfigId(configId, page, size, q, sort, fields, options)
+        .searchLogByConfigId(
+          configId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          userId,
+          userName,
+          action,
+          userIp,
+          dateFrom,
+          dateTo,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} userId
+     * @param {number} userId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {number} [objectId]
+     * @param {string} [objectName]
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {string} [userIp]
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getByUserId(
+    searchLogByUserId(
       userId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      objectId?: number,
+      objectName?: string,
+      action?: 'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE',
+      userIp?: string,
+      dateFrom?: string,
+      dateTo?: string,
       options?: any
     ): AxiosPromise<LoggerLogs> {
       return LoggerServiceApiFp(configuration)
-        .getByUserId(userId, page, size, q, sort, fields, options)
+        .searchLogByUserId(
+          userId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          objectId,
+          objectName,
+          action,
+          userIp,
+          dateFrom,
+          dateTo,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -375,53 +551,105 @@ export const LoggerServiceApiFactory = function(
 export class LoggerServiceApi extends BaseAPI {
   /**
    *
-   * @param {number} configId
+   * @param {number} configId REQUIRED filter
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
+   * @param {number} [userId]
+   * @param {string} [userName]
+   * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+   * @param {string} [userIp]
+   * @param {string} [dateFrom]
+   * @param {string} [dateTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof LoggerServiceApi
    */
-  public getByConfigId(
+  public searchLogByConfigId(
     configId: number,
     page?: number,
     size?: number,
     q?: string,
     sort?: string,
     fields?: Array<string>,
+    userId?: number,
+    userName?: string,
+    action?: 'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE',
+    userIp?: string,
+    dateFrom?: string,
+    dateTo?: string,
     options?: any
   ) {
     return LoggerServiceApiFp(this.configuration)
-      .getByConfigId(configId, page, size, q, sort, fields, options)
+      .searchLogByConfigId(
+        configId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        userId,
+        userName,
+        action,
+        userIp,
+        dateFrom,
+        dateTo,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} userId
+   * @param {number} userId REQUIRED filter
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
+   * @param {number} [objectId]
+   * @param {string} [objectName]
+   * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+   * @param {string} [userIp]
+   * @param {string} [dateFrom]
+   * @param {string} [dateTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof LoggerServiceApi
    */
-  public getByUserId(
+  public searchLogByUserId(
     userId: number,
     page?: number,
     size?: number,
     q?: string,
     sort?: string,
     fields?: Array<string>,
+    objectId?: number,
+    objectName?: string,
+    action?: 'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE',
+    userIp?: string,
+    dateFrom?: string,
+    dateTo?: string,
     options?: any
   ) {
     return LoggerServiceApiFp(this.configuration)
-      .getByUserId(userId, page, size, q, sort, fields, options)
+      .searchLogByUserId(
+        userId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        objectId,
+        objectName,
+        action,
+        userIp,
+        dateFrom,
+        dateTo,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }

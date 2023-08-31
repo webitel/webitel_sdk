@@ -16,43 +16,49 @@ import { LoggerLookup } from './logger-lookup'
 /**
  *
  * @export
- * @interface LoggerUpdateConfigRequest
+ * @interface LoggerPatchConfigRequest
  */
-export interface LoggerUpdateConfigRequest {
+export interface LoggerPatchConfigRequest {
   /**
    *
    * @type {number}
-   * @memberof LoggerUpdateConfigRequest
+   * @memberof LoggerPatchConfigRequest
    */
   config_id?: number
   /**
    *
    * @type {number}
-   * @memberof LoggerUpdateConfigRequest
+   * @memberof LoggerPatchConfigRequest
    */
   days_to_store?: number
   /**
    *
    * @type {string}
-   * @memberof LoggerUpdateConfigRequest
+   * @memberof LoggerPatchConfigRequest
    */
   description?: string
   /**
    *
    * @type {boolean}
-   * @memberof LoggerUpdateConfigRequest
+   * @memberof LoggerPatchConfigRequest
    */
   enabled?: boolean
   /**
    *
+   * @type {Array<string>}
+   * @memberof LoggerPatchConfigRequest
+   */
+  fields?: Array<string>
+  /**
+   *
    * @type {number}
-   * @memberof LoggerUpdateConfigRequest
+   * @memberof LoggerPatchConfigRequest
    */
   period?: number
   /**
    *
    * @type {LoggerLookup}
-   * @memberof LoggerUpdateConfigRequest
+   * @memberof LoggerPatchConfigRequest
    */
   storage?: LoggerLookup
 }

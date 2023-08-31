@@ -27,6 +27,12 @@ export interface LoggerConfig {
   days_to_store?: number
   /**
    *
+   * @type {string}
+   * @memberof LoggerConfig
+   */
+  description?: string
+  /**
+   *
    * @type {boolean}
    * @memberof LoggerConfig
    */

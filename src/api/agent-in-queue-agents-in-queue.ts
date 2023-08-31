@@ -22,6 +22,12 @@ export interface AgentInQueueAgentsInQueue {
    * @type {number}
    * @memberof AgentInQueueAgentsInQueue
    */
+  allow_pause?: number
+  /**
+   *
+   * @type {number}
+   * @memberof AgentInQueueAgentsInQueue
+   */
   free?: number
   /**
    *
