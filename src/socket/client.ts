@@ -885,6 +885,16 @@ export class Client extends EventEmitter<ClientEvents> {
           }
         }
         break
+      case NotificationActions.WaitingList:
+        if (this.agent) {
+          this.agent.setWaitingList(e.body)
+        }
+        break
+      case NotificationActions.HideAttempt:
+        if (this.agent) {
+          this.agent.deleteWaitingAttempt(e.body)
+        }
+        break
       default:
         this.log.error(`notification "${e.action}" not handled`)
     }

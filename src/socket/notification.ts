@@ -1,4 +1,4 @@
-type keyable = {
+export type keyable = {
   [key: string]: any
 }
 
@@ -12,4 +12,6 @@ export interface Notification {
 
 export enum NotificationActions {
   HideMember = 'hide_member',
+  HideAttempt = 'hide_attempt',
+  WaitingList = 'waiting_list',
 }

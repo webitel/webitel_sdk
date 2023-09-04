@@ -1,6 +1,7 @@
 export enum TypeErrors {
   RolePermission = 'api.context.permissions.app_error',
   LicencePermission = 'api.context.permissions.license',
+  PauseNotAllow = 'app.agent.set_pause.not_allow',
 }
 
 export interface BaseError {
@@ -46,5 +47,15 @@ export class LicencePermissionError extends Error {
   constructor(msg: string) {
     super(msg)
     this.id = LicencePermissionError.id
+  }
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class PauseNotAllowedError extends Error {
+  static id = TypeErrors.PauseNotAllow
+  id: string
+  constructor(msg: string) {
+    super(msg)
+    this.id = PauseNotAllowedError.id
   }
 }

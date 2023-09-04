@@ -1,4 +1,6 @@
 import { Client } from './client'
+import { PauseNotAllowedError, TypeErrors } from './errors'
+import { keyable } from './notification'
 import {
   BridgedEvent,
   ChannelEvent,
@@ -12,6 +14,16 @@ import {
   TransferEvent,
   WrapTimeEvent,
 } from './task'
+
+export interface WaitingMember {
+  attempt_id: number
+  channel: string
+  communication: object
+  deadline: number
+  position: number
+  queue: object
+  wait: number
+}
 
 export interface Channel {
   channel: ChannelType
@@ -96,6 +108,7 @@ export interface OfflineMemberList {
 
 export class Agent {
   task: Map<number, Task>
+  waitingList: WaitingMember[]
   _channels: Map<string, Channel>
   _listOfflineMembers: OfflineMemberList | null
   lastStatusChange: number
@@ -104,6 +117,7 @@ export class Agent {
     this._channels = new Map<string, Channel>()
     this.initChannels(info.channels)
     this._listOfflineMembers = null
+    this.waitingList = []
 
     this.lastStatusChange = Date.now() - this.info.status_duration * 1000
   }
@@ -157,6 +171,32 @@ export class Agent {
   }
 
   // todo need refactor
+
+  setWaitingList(e: keyable | undefined) {
+    if (e) {
+      const list = e.list as WaitingMember[]
+      this.waitingList.length = 0
+      this.waitingList = this.waitingList.concat(...list)
+    }
+  }
+  deleteWaitingAttempt(e: keyable | undefined) {
+    if (e) {
+      const attemptId = e.attempt_id
+      for (let i = 0; i < this.waitingList.length; i++) {
+        if (this.waitingList[i].attempt_id === attemptId) {
+          this.waitingList.splice(i, 1)
+          break
+        }
+      }
+    }
+  }
+
+  async interceptAttempt(id: number) {
+    return this.client.request(`cc_intercept_attempt`, {
+      attempt_id: id,
+      agent_id: this.agentId,
+    })
+  }
 
   onChannelEvent(e: ChannelEvent) {
     let task: Task | undefined
@@ -326,7 +366,15 @@ export class Agent {
   }
 
   async pause(payload?: any) {
-    return this.client.agentSetPause(this.agentId, payload)
+    try {
+      return await this.client.agentSetPause(this.agentId, payload)
+    } catch (e) {
+      if (e.id === TypeErrors.PauseNotAllow) {
+        return new PauseNotAllowedError(e.detail)
+      }
+
+      return e
+    }
   }
 
   async offline() {
