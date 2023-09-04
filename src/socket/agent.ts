@@ -108,7 +108,8 @@ export interface OfflineMemberList {
 
 export class Agent {
   task: Map<number, Task>
-  waitingList: WaitingMember[]
+  waitingListChats: WaitingMember[]
+  waitingListCalls: WaitingMember[]
   _channels: Map<string, Channel>
   _listOfflineMembers: OfflineMemberList | null
   lastStatusChange: number
@@ -117,7 +118,8 @@ export class Agent {
     this._channels = new Map<string, Channel>()
     this.initChannels(info.channels)
     this._listOfflineMembers = null
-    this.waitingList = []
+    this.waitingListChats = []
+    this.waitingListCalls = []
 
     this.lastStatusChange = Date.now() - this.info.status_duration * 1000
   }
@@ -175,18 +177,27 @@ export class Agent {
   setWaitingList(e: keyable | undefined) {
     if (e) {
       const list = e.list as WaitingMember[]
-      this.waitingList.length = 0
-      this.waitingList = this.waitingList.concat(...list)
+      this.waitingListCalls.length = 0
+      this.waitingListChats.length = 0
+      for (const el of list) {
+        switch (el.channel) {
+          case ChannelType.Call:
+            this.waitingListCalls.push(el)
+            break
+          case ChannelType.Chat:
+            this.waitingListChats.push(el)
+            break
+          default:
+        }
+      }
     }
   }
   deleteWaitingAttempt(e: keyable | undefined) {
     if (e) {
       const attemptId = e.attempt_id
-      for (let i = 0; i < this.waitingList.length; i++) {
-        if (this.waitingList[i].attempt_id === attemptId) {
-          this.waitingList.splice(i, 1)
-          break
-        }
+
+      if (!removeWaitingList(this.waitingListCalls, attemptId)) {
+        removeWaitingList(this.waitingListChats, attemptId)
       }
     }
   }
@@ -445,4 +456,16 @@ export class Agent {
       channel.joined_at = e.timestamp
     }
   }
+}
+
+function removeWaitingList(list: WaitingMember[], attemptId: number): boolean {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].attempt_id === attemptId) {
+      list.splice(i, 1)
+
+      return true
+    }
+  }
+
+  return false
 }
