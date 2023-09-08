@@ -16,10 +16,10 @@
  * @export
  * @enum {string}
  */
-export enum LoggerACTION {
-  DEFAULTNOACTION = 'DEFAULT_NO_ACTION',
-  CREATE = 'CREATE',
-  UPDATE = 'UPDATE',
-  READ = 'READ',
-  DELETE = 'DELETE',
+export enum LoggerAction {
+  DefaultNoAction = 'default_no_action',
+  Create = 'create',
+  Update = 'update',
+  Read = 'read',
+  Delete = 'delete',
 }

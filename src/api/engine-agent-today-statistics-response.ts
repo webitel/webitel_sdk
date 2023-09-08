@@ -91,6 +91,12 @@ export interface EngineAgentTodayStatisticsResponse {
   processing?: number
   /**
    *
+   * @type {number}
+   * @memberof EngineAgentTodayStatisticsResponse
+   */
+  queue_talk_sec?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentTodayStatisticsResponse
    */
@@ -125,6 +131,12 @@ export interface EngineAgentTodayStatisticsResponse {
    * @memberof EngineAgentTodayStatisticsResponse
    */
   sum_talk_sec?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTodayStatisticsResponse
+   */
+  task_accepts?: number
   /**
    *
    * @type {number}
