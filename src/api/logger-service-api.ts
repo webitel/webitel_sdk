@@ -37,7 +37,7 @@ export const LoggerServiceApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @param {number} configId REQUIRED filter
+     * @param {number} configId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -45,7 +45,7 @@ export const LoggerServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {number} [userId]
      * @param {string} [userName]
-     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -133,15 +133,15 @@ export const LoggerServiceApiAxiosParamCreator = function(
       }
 
       if (userIp !== undefined) {
-        localVarQueryParameter['userIp'] = userIp
+        localVarQueryParameter['user_ip'] = userIp
       }
 
       if (dateFrom !== undefined) {
-        localVarQueryParameter['dateFrom'] = dateFrom
+        localVarQueryParameter['date_from'] = dateFrom
       }
 
       if (dateTo !== undefined) {
-        localVarQueryParameter['dateTo'] = dateTo
+        localVarQueryParameter['date_to'] = dateTo
       }
 
       localVarUrlObj.query = {
@@ -262,15 +262,15 @@ export const LoggerServiceApiAxiosParamCreator = function(
       }
 
       if (userIp !== undefined) {
-        localVarQueryParameter['userIp'] = userIp
+        localVarQueryParameter['user_ip'] = userIp
       }
 
       if (dateFrom !== undefined) {
-        localVarQueryParameter['dateFrom'] = dateFrom
+        localVarQueryParameter['date_from'] = dateFrom
       }
 
       if (dateTo !== undefined) {
-        localVarQueryParameter['dateTo'] = dateTo
+        localVarQueryParameter['date_to'] = dateTo
       }
 
       localVarUrlObj.query = {
@@ -304,7 +304,7 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {number} configId REQUIRED filter
+     * @param {number} configId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -312,7 +312,7 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [fields]
      * @param {number} [userId]
      * @param {string} [userName]
-     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -441,7 +441,7 @@ export const LoggerServiceApiFactory = function(
   return {
     /**
      *
-     * @param {number} configId REQUIRED filter
+     * @param {number} configId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -449,7 +449,7 @@ export const LoggerServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {number} [userId]
      * @param {string} [userName]
-     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+     * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -551,7 +551,7 @@ export const LoggerServiceApiFactory = function(
 export class LoggerServiceApi extends BaseAPI {
   /**
    *
-   * @param {number} configId REQUIRED filter
+   * @param {number} configId
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
@@ -559,7 +559,7 @@ export class LoggerServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {number} [userId]
    * @param {string} [userName]
-   * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action] GENERAL filters.
+   * @param {'DEFAULT_NO_ACTION' | 'CREATE' | 'UPDATE' | 'READ' | 'DELETE'} [action]
    * @param {string} [userIp]
    * @param {string} [dateFrom]
    * @param {string} [dateTo]

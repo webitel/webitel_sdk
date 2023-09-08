@@ -391,10 +391,14 @@ export const ConfigServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {boolean} [includeExisting]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSystemObjects: async (options: any = {}): Promise<RequestArgs> => {
+    readSystemObjects: async (
+      includeExisting?: boolean,
+      options: any = {}
+    ): Promise<RequestArgs> => {
       const localVarPath = `/logger/available_objects`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -416,6 +420,10 @@ export const ConfigServiceApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (includeExisting !== undefined) {
+        localVarQueryParameter['include_existing'] = includeExisting
       }
 
       localVarUrlObj.query = {
@@ -742,10 +750,12 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {boolean} [includeExisting]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async readSystemObjects(
+      includeExisting?: boolean,
       options?: any
     ): Promise<
       (
@@ -755,7 +765,7 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
         configuration
-      ).readSystemObjects(options)
+      ).readSystemObjects(includeExisting, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -910,12 +920,16 @@ export const ConfigServiceApiFactory = function(
     },
     /**
      *
+     * @param {boolean} [includeExisting]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSystemObjects(options?: any): AxiosPromise<LoggerSystemObjects> {
+    readSystemObjects(
+      includeExisting?: boolean,
+      options?: any
+    ): AxiosPromise<LoggerSystemObjects> {
       return ConfigServiceApiFp(configuration)
-        .readSystemObjects(options)
+        .readSystemObjects(includeExisting, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1038,13 +1052,14 @@ export class ConfigServiceApi extends BaseAPI {
 
   /**
    *
+   * @param {boolean} [includeExisting]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConfigServiceApi
    */
-  public readSystemObjects(options?: any) {
+  public readSystemObjects(includeExisting?: boolean, options?: any) {
     return ConfigServiceApiFp(this.configuration)
-      .readSystemObjects(options)
+      .readSystemObjects(includeExisting, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

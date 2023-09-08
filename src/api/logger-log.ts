@@ -54,6 +54,12 @@ export interface LoggerLog {
    * @type {LoggerLookup}
    * @memberof LoggerLog
    */
+  object?: LoggerLookup
+  /**
+   *
+   * @type {LoggerLookup}
+   * @memberof LoggerLog
+   */
   record?: LoggerLookup
   /**
    *

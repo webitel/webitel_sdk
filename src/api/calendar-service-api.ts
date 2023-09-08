@@ -346,6 +346,9 @@ export const CalendarServiceApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -353,6 +356,9 @@ export const CalendarServiceApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calendars/timezones`
@@ -388,6 +394,18 @@ export const CalendarServiceApiAxiosParamCreator = function(
 
       if (q !== undefined) {
         localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -631,6 +649,9 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -638,6 +659,9 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -647,7 +671,7 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CalendarServiceApiAxiosParamCreator(
         configuration
-      ).searchTimezones(page, size, q, options)
+      ).searchTimezones(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -781,6 +805,9 @@ export const CalendarServiceApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -788,10 +815,13 @@ export const CalendarServiceApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListTimezoneResponse> {
       return CalendarServiceApiFp(configuration)
-        .searchTimezones(page, size, q, options)
+        .searchTimezones(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -898,6 +928,9 @@ export class CalendarServiceApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
@@ -906,10 +939,13 @@ export class CalendarServiceApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration)
-      .searchTimezones(page, size, q, options)
+      .searchTimezones(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
