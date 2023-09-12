@@ -453,6 +453,7 @@ export const ConfigServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<'cc_queue' | 'schema'>} [object] NOT USED.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -462,6 +463,7 @@ export const ConfigServiceApiAxiosParamCreator = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      object?: Array<'cc_queue' | 'schema'>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/logger/config`
@@ -505,6 +507,10 @@ export const ConfigServiceApiAxiosParamCreator = function(
 
       if (fields) {
         localVarQueryParameter['fields'] = fields
+      }
+
+      if (object) {
+        localVarQueryParameter['object'] = object
       }
 
       localVarUrlObj.query = {
@@ -784,6 +790,7 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<'cc_queue' | 'schema'>} [object] NOT USED.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -793,13 +800,14 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      object?: Array<'cc_queue' | 'schema'>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerConfigs>
     > {
       const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
         configuration
-      ).searchConfig(page, size, q, sort, fields, options)
+      ).searchConfig(page, size, q, sort, fields, object, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -939,6 +947,7 @@ export const ConfigServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<'cc_queue' | 'schema'>} [object] NOT USED.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -948,10 +957,11 @@ export const ConfigServiceApiFactory = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      object?: Array<'cc_queue' | 'schema'>,
       options?: any
     ): AxiosPromise<LoggerConfigs> {
       return ConfigServiceApiFp(configuration)
-        .searchConfig(page, size, q, sort, fields, options)
+        .searchConfig(page, size, q, sort, fields, object, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1070,6 +1080,7 @@ export class ConfigServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
+   * @param {Array<'cc_queue' | 'schema'>} [object] NOT USED.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConfigServiceApi
@@ -1080,10 +1091,11 @@ export class ConfigServiceApi extends BaseAPI {
     q?: string,
     sort?: string,
     fields?: Array<string>,
+    object?: Array<'cc_queue' | 'schema'>,
     options?: any
   ) {
     return ConfigServiceApiFp(this.configuration)
-      .searchConfig(page, size, q, sort, fields, options)
+      .searchConfig(page, size, q, sort, fields, object, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

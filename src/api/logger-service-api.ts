@@ -43,9 +43,8 @@ export const LoggerServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {number} [userId]
-     * @param {string} [userName]
-     * @param {'default_no_action' | 'create' | 'update' | 'read' | 'delete'} [action]
+     * @param {Array<string>} [userId]
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -59,9 +58,10 @@ export const LoggerServiceApiAxiosParamCreator = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      userId?: number,
-      userName?: string,
-      action?: 'default_no_action' | 'create' | 'update' | 'read' | 'delete',
+      userId?: Array<string>,
+      action?: Array<
+        'default_no_action' | 'create' | 'update' | 'read' | 'delete'
+      >,
       userIp?: string,
       dateFrom?: string,
       dateTo?: string,
@@ -120,15 +120,11 @@ export const LoggerServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (userId !== undefined) {
-        localVarQueryParameter['user.id'] = userId
+      if (userId) {
+        localVarQueryParameter['user_id'] = userId
       }
 
-      if (userName !== undefined) {
-        localVarQueryParameter['user.name'] = userName
-      }
-
-      if (action !== undefined) {
+      if (action) {
         localVarQueryParameter['action'] = action
       }
 
@@ -172,9 +168,8 @@ export const LoggerServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {number} [objectId]
-     * @param {string} [objectName]
-     * @param {'default_no_action' | 'create' | 'update' | 'read' | 'delete'} [action] GENERAL filters.
+     * @param {Array<string>} [objectId] SPECIFIC filter.
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -188,9 +183,10 @@ export const LoggerServiceApiAxiosParamCreator = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      objectId?: number,
-      objectName?: string,
-      action?: 'default_no_action' | 'create' | 'update' | 'read' | 'delete',
+      objectId?: Array<string>,
+      action?: Array<
+        'default_no_action' | 'create' | 'update' | 'read' | 'delete'
+      >,
       userIp?: string,
       dateFrom?: string,
       dateTo?: string,
@@ -249,15 +245,11 @@ export const LoggerServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (objectId !== undefined) {
-        localVarQueryParameter['object.id'] = objectId
+      if (objectId) {
+        localVarQueryParameter['object_id'] = objectId
       }
 
-      if (objectName !== undefined) {
-        localVarQueryParameter['object.name'] = objectName
-      }
-
-      if (action !== undefined) {
+      if (action) {
         localVarQueryParameter['action'] = action
       }
 
@@ -310,9 +302,8 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {number} [userId]
-     * @param {string} [userName]
-     * @param {'default_no_action' | 'create' | 'update' | 'read' | 'delete'} [action]
+     * @param {Array<string>} [userId]
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -326,9 +317,10 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      userId?: number,
-      userName?: string,
-      action?: 'default_no_action' | 'create' | 'update' | 'read' | 'delete',
+      userId?: Array<string>,
+      action?: Array<
+        'default_no_action' | 'create' | 'update' | 'read' | 'delete'
+      >,
       userIp?: string,
       dateFrom?: string,
       dateTo?: string,
@@ -346,7 +338,6 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
         sort,
         fields,
         userId,
-        userName,
         action,
         userIp,
         dateFrom,
@@ -372,9 +363,8 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {number} [objectId]
-     * @param {string} [objectName]
-     * @param {'default_no_action' | 'create' | 'update' | 'read' | 'delete'} [action] GENERAL filters.
+     * @param {Array<string>} [objectId] SPECIFIC filter.
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -388,9 +378,10 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      objectId?: number,
-      objectName?: string,
-      action?: 'default_no_action' | 'create' | 'update' | 'read' | 'delete',
+      objectId?: Array<string>,
+      action?: Array<
+        'default_no_action' | 'create' | 'update' | 'read' | 'delete'
+      >,
       userIp?: string,
       dateFrom?: string,
       dateTo?: string,
@@ -408,7 +399,6 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
         sort,
         fields,
         objectId,
-        objectName,
         action,
         userIp,
         dateFrom,
@@ -447,9 +437,8 @@ export const LoggerServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {number} [userId]
-     * @param {string} [userName]
-     * @param {'default_no_action' | 'create' | 'update' | 'read' | 'delete'} [action]
+     * @param {Array<string>} [userId]
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -463,9 +452,10 @@ export const LoggerServiceApiFactory = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      userId?: number,
-      userName?: string,
-      action?: 'default_no_action' | 'create' | 'update' | 'read' | 'delete',
+      userId?: Array<string>,
+      action?: Array<
+        'default_no_action' | 'create' | 'update' | 'read' | 'delete'
+      >,
       userIp?: string,
       dateFrom?: string,
       dateTo?: string,
@@ -480,7 +470,6 @@ export const LoggerServiceApiFactory = function(
           sort,
           fields,
           userId,
-          userName,
           action,
           userIp,
           dateFrom,
@@ -497,9 +486,8 @@ export const LoggerServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {number} [objectId]
-     * @param {string} [objectName]
-     * @param {'default_no_action' | 'create' | 'update' | 'read' | 'delete'} [action] GENERAL filters.
+     * @param {Array<string>} [objectId] SPECIFIC filter.
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -513,9 +501,10 @@ export const LoggerServiceApiFactory = function(
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      objectId?: number,
-      objectName?: string,
-      action?: 'default_no_action' | 'create' | 'update' | 'read' | 'delete',
+      objectId?: Array<string>,
+      action?: Array<
+        'default_no_action' | 'create' | 'update' | 'read' | 'delete'
+      >,
       userIp?: string,
       dateFrom?: string,
       dateTo?: string,
@@ -530,7 +519,6 @@ export const LoggerServiceApiFactory = function(
           sort,
           fields,
           objectId,
-          objectName,
           action,
           userIp,
           dateFrom,
@@ -557,9 +545,8 @@ export class LoggerServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {number} [userId]
-   * @param {string} [userName]
-   * @param {'default_no_action' | 'create' | 'update' | 'read' | 'delete'} [action]
+   * @param {Array<string>} [userId]
+   * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action]
    * @param {string} [userIp]
    * @param {string} [dateFrom]
    * @param {string} [dateTo]
@@ -574,9 +561,10 @@ export class LoggerServiceApi extends BaseAPI {
     q?: string,
     sort?: string,
     fields?: Array<string>,
-    userId?: number,
-    userName?: string,
-    action?: 'default_no_action' | 'create' | 'update' | 'read' | 'delete',
+    userId?: Array<string>,
+    action?: Array<
+      'default_no_action' | 'create' | 'update' | 'read' | 'delete'
+    >,
     userIp?: string,
     dateFrom?: string,
     dateTo?: string,
@@ -591,7 +579,6 @@ export class LoggerServiceApi extends BaseAPI {
         sort,
         fields,
         userId,
-        userName,
         action,
         userIp,
         dateFrom,
@@ -609,9 +596,8 @@ export class LoggerServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {number} [objectId]
-   * @param {string} [objectName]
-   * @param {'default_no_action' | 'create' | 'update' | 'read' | 'delete'} [action] GENERAL filters.
+   * @param {Array<string>} [objectId] SPECIFIC filter.
+   * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
    * @param {string} [userIp]
    * @param {string} [dateFrom]
    * @param {string} [dateTo]
@@ -626,9 +612,10 @@ export class LoggerServiceApi extends BaseAPI {
     q?: string,
     sort?: string,
     fields?: Array<string>,
-    objectId?: number,
-    objectName?: string,
-    action?: 'default_no_action' | 'create' | 'update' | 'read' | 'delete',
+    objectId?: Array<string>,
+    action?: Array<
+      'default_no_action' | 'create' | 'update' | 'read' | 'delete'
+    >,
     userIp?: string,
     dateFrom?: string,
     dateTo?: string,
@@ -643,7 +630,6 @@ export class LoggerServiceApi extends BaseAPI {
         sort,
         fields,
         objectId,
-        objectName,
         action,
         userIp,
         dateFrom,
