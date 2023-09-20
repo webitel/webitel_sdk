@@ -15,14 +15,34 @@ import {
   WrapTimeEvent,
 } from './task'
 
-export interface WaitingMember {
-  attempt_id: number
-  channel: string
-  communication: object
+export interface WaitingMemberProperties {
   deadline: number
   position: number
   queue: object
   wait: number
+}
+
+export interface WaitingMember extends WaitingMemberProperties {
+  attempt_id: number
+  communication: keyable
+  channel: string
+  session_id: string
+}
+
+export interface WaitingMemberCall extends WaitingMemberProperties {
+  attemptId: number
+  sessionId: string
+  displayName: string
+  displayNumber: string
+}
+
+export interface WaitingMemberChat extends WaitingMemberProperties {
+  attemptId: number
+  sessionId: string
+  message: string
+  displayName: string
+  peer: string
+  chat: string
 }
 
 export interface Channel {
@@ -108,8 +128,8 @@ export interface OfflineMemberList {
 
 export class Agent {
   task: Map<number, Task>
-  waitingListChats: WaitingMember[]
-  waitingListCalls: WaitingMember[]
+  waitingListChats: WaitingMemberChat[]
+  waitingListCalls: WaitingMemberCall[]
   _channels: Map<string, Channel>
   _listOfflineMembers: OfflineMemberList | null
   lastStatusChange: number
@@ -182,10 +202,30 @@ export class Agent {
       for (const el of list) {
         switch (el.channel) {
           case ChannelType.Call:
-            this.waitingListCalls.push(el)
+            this.waitingListCalls.push({
+              displayName: el.communication.name || '',
+              displayNumber: el.communication.destination || '',
+              attemptId: el.attempt_id,
+              sessionId: el.session_id,
+              deadline: el.deadline,
+              position: el.position,
+              queue: el.queue,
+              wait: el.wait,
+            })
             break
           case ChannelType.Chat:
-            this.waitingListChats.push(el)
+            this.waitingListChats.push({
+              chat: el.communication.chat || '',
+              displayName: el.communication.name || '',
+              message: el.communication.msg || '',
+              peer: el.communication.destination || '',
+              attemptId: el.attempt_id,
+              sessionId: el.session_id,
+              deadline: el.deadline,
+              position: el.position,
+              queue: el.queue,
+              wait: el.wait,
+            })
             break
           default:
         }
@@ -458,9 +498,12 @@ export class Agent {
   }
 }
 
-function removeWaitingList(list: WaitingMember[], attemptId: number): boolean {
+function removeWaitingList(
+  list: WaitingMemberChat[] | WaitingMemberCall[],
+  attemptId: number
+): boolean {
   for (let i = 0; i < list.length; i++) {
-    if (list[i].attempt_id === attemptId) {
+    if (list[i].attemptId === attemptId) {
       list.splice(i, 1)
 
       return true

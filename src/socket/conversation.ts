@@ -323,8 +323,8 @@ export class Conversation {
 
       if (i.hasOwnProperty('file')) {
         if (i.file && i.file.id > 0) {
-          i.file.url = this.client.fileUrlDownload(i.file.id)
-          i.file.streamUrl = this.client.fileUrlStream(i.file.id)
+          i.file.url = this.client.fileUrlDownload(i.file.id, i.file.mime)
+          i.file.streamUrl = this.client.fileUrlStream(i.file.id, i.file.mime)
         }
 
         msg.file = i.file

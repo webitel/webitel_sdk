@@ -775,16 +775,20 @@ export class Client extends EventEmitter<ClientEvents> {
     return data
   }
 
-  fileUrlDownload(fileId: number) {
-    return `${this.basePath}/api/storage/file/${fileId}/download?access_token=${
-      this._config.token
-    }`
+  fileUrlDownload(fileId: number, mime: string) {
+    const params = this.fileUrlParams(mime)
+
+    return `${this.basePath}/api/storage/file/${fileId}/download?${params.join(
+      '&'
+    )}`
   }
 
-  fileUrlStream(fileId: number) {
-    return `${this.basePath}/api/storage/file/${fileId}/stream?access_token=${
-      this._config.token
-    }`
+  fileUrlStream(fileId: number, mime: string) {
+    const params = this.fileUrlParams(mime)
+
+    return `${this.basePath}/api/storage/file/${fileId}/stream?${params.join(
+      '&'
+    )}`
   }
 
   handleError(e?: Error) {
@@ -1219,6 +1223,19 @@ export class Client extends EventEmitter<ClientEvents> {
     // FIXME sync channel & call event
     this.callStore.delete(call.id)
     this.eventHandler.emit(WEBSOCKET_EVENT_CALL, CallActions.Destroy, call)
+  }
+
+  private fileUrlParams(mime: string) {
+    const params = [`access_token=${this._config.token}`]
+
+    if (mime) {
+      const source = mime.replace(/.*;source=([-._A-Za-z0-9/]+).*/, '$1')
+      if (source) {
+        params.push(`source=${source}`)
+      }
+    }
+
+    return params
   }
 }
 
