@@ -17,7 +17,6 @@ import {
 
 export interface WaitingMemberProperties {
   deadline: number
-  position: number
   queue: object
   wait: number
 }
@@ -192,43 +191,39 @@ export class Agent {
     return Math.round((Date.now() - this.lastStatusChange) / 1000)
   }
 
-  // todo need refactor
-
   setWaitingList(e: keyable | undefined) {
     if (e) {
-      const list = e.list as WaitingMember[]
       this.waitingListCalls.length = 0
       this.waitingListChats.length = 0
-      for (const el of list) {
-        switch (el.channel) {
-          case ChannelType.Call:
-            this.waitingListCalls.push({
-              displayName: el.communication.name || '',
-              displayNumber: el.communication.destination || '',
-              attemptId: el.attempt_id,
-              sessionId: el.session_id,
-              deadline: el.deadline,
-              position: el.position,
-              queue: el.queue,
-              wait: el.wait,
-            })
-            break
-          case ChannelType.Chat:
-            this.waitingListChats.push({
-              chat: el.communication.chat || '',
-              displayName: el.communication.name || '',
-              message: el.communication.msg || '',
-              peer: el.communication.destination || '',
-              attemptId: el.attempt_id,
-              sessionId: el.session_id,
-              deadline: el.deadline,
-              position: el.position,
-              queue: el.queue,
-              wait: el.wait,
-            })
-            break
-          default:
-        }
+
+      if (this.status !== AgentStatus.Online) {
+        return
+      }
+
+      for (const el of (e.calls || []) as WaitingMember[]) {
+        this.waitingListCalls.push({
+          displayName: el.communication.name || '',
+          displayNumber: el.communication.destination || '',
+          attemptId: el.attempt_id,
+          sessionId: el.session_id,
+          deadline: el.deadline,
+          queue: el.queue,
+          wait: el.wait,
+        })
+      }
+
+      for (const el of (e.chats || []) as WaitingMember[]) {
+        this.waitingListChats.push({
+          chat: el.communication.chat || '',
+          displayName: el.communication.name || '',
+          message: el.communication.msg || '',
+          peer: el.communication.destination || '',
+          attemptId: el.attempt_id,
+          sessionId: el.session_id,
+          deadline: el.deadline,
+          queue: el.queue,
+          wait: el.wait,
+        })
       }
     }
   }
@@ -436,6 +431,9 @@ export class Agent {
     if (e.status === AgentStatus.Online) {
       this.info.on_demand = e.on_demand || false
       this.initChannels(e.channels)
+    } else {
+      this.waitingListCalls.length = 0
+      this.waitingListChats.length = 0
     }
 
     this.info.status = e.status
