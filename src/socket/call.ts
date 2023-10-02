@@ -640,11 +640,16 @@ export class Call {
       return
     }
 
+    if (this._autoAnswerTimerId) {
+      clearTimeout(this._autoAnswerTimerId)
+    }
+
     this._autoAnswerTimerId = setTimeout(async () => {
       if (this.autoAnswered) {
         return
       }
-      this.autoAnswered = await this.answer(req)
+      this.autoAnswered = true
+      await this.answer(req)
     }, this.autoAnswerDelay)
   }
 

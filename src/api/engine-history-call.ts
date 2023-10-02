@@ -117,6 +117,12 @@ export interface EngineHistoryCall {
   cause?: string
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineHistoryCall
+   */
+  contact?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineHistoryCall
    */

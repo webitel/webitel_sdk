@@ -14,7 +14,7 @@
 import { WebitelContactsTimezone } from './webitel-contacts-timezone'
 
 /**
- * Timezone dataset. NOTE: Edge represents connection between two nodes. So this ContactLabels.data are always subordinate to some contact.id.
+ * Timezone dataset. NOTE: Edge represents connection between two nodes. So this ContactTimezones.data are always subordinate to some contact.id.
  * @export
  * @interface WebitelContactsTimezoneList
  */

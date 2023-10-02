@@ -14,27 +14,21 @@
 import { WebitelContactsLookup } from './webitel-contacts-lookup'
 
 /**
- * An input of the Contact\'s timezones.
+ *
  * @export
- * @interface WebitelContactsInputTimezone
+ * @interface NEWUpdateOfTheTimezoneLink1
  */
-export interface WebitelContactsInputTimezone {
-  /**
-   * Unique ID of the latest version of an existing resource.
-   * @type {string}
-   * @memberof WebitelContactsInputTimezone
-   */
-  etag: string
+export interface NEWUpdateOfTheTimezoneLink1 {
   /**
    * Indicates whether this association must be default among others.
    * @type {boolean}
-   * @memberof WebitelContactsInputTimezone
+   * @memberof NEWUpdateOfTheTimezoneLink1
    */
   primary?: boolean
   /**
    *
    * @type {WebitelContactsLookup}
-   * @memberof WebitelContactsInputTimezone
+   * @memberof NEWUpdateOfTheTimezoneLink1
    */
   timezone?: WebitelContactsLookup
 }

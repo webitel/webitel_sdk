@@ -44,18 +44,6 @@ export interface WebitelContactsTimezone {
    */
   id?: string
   /**
-   * The Location name corresponding to a file in the IANA Time Zone database, such as \"Europe/Kyiv\".
-   * @type {string}
-   * @memberof WebitelContactsTimezone
-   */
-  location?: string
-  /**
-   * Custom location offset (seconds east of UTC).
-   * @type {string}
-   * @memberof WebitelContactsTimezone
-   */
-  offset?: string
-  /**
    * Indicates whether this association is the default among others of the same type.
    * @type {boolean}
    * @memberof WebitelContactsTimezone
@@ -63,10 +51,10 @@ export interface WebitelContactsTimezone {
   primary?: boolean
   /**
    *
-   * @type {string}
+   * @type {WebitelContactsLookup}
    * @memberof WebitelContactsTimezone
    */
-  time?: string
+  timezone?: WebitelContactsLookup
   /**
    * Timestamp(milli) of the last Field update. Take part in Etag generation.
    * @type {string}

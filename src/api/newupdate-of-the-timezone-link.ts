@@ -11,16 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsLookup } from './webitel-contacts-lookup'
+
 /**
  *
  * @export
- * @interface WebitelContactsLabelInfo
+ * @interface NEWUpdateOfTheTimezoneLink
  */
-export interface WebitelContactsLabelInfo {
+export interface NEWUpdateOfTheTimezoneLink {
   /**
-   * Label tag.  Count of sources. int32 count = 2;  Sources of Contacts assigned. repeated string sources = 3;
-   * @type {string}
-   * @memberof WebitelContactsLabelInfo
+   * Indicates whether this association must be default among others.
+   * @type {boolean}
+   * @memberof NEWUpdateOfTheTimezoneLink
    */
-  label?: string
+  primary?: boolean
+  /**
+   *
+   * @type {WebitelContactsLookup}
+   * @memberof NEWUpdateOfTheTimezoneLink
+   */
+  timezone?: WebitelContactsLookup
 }

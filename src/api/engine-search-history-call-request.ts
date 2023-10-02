@@ -58,6 +58,12 @@ export interface EngineSearchHistoryCallRequest {
   cause?: Array<string>
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineSearchHistoryCallRequest
+   */
+  contact_id?: Array<string>
+  /**
+   *
    * @type {EngineFilterBetween}
    * @memberof EngineSearchHistoryCallRequest
    */

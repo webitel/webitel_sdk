@@ -59,6 +59,12 @@ export interface EngineAggregateHistoryCallRequest {
   cause?: Array<string>
   /**
    *
+   * @type {Array<string>}
+   * @memberof EngineAggregateHistoryCallRequest
+   */
+  contact_id?: Array<string>
+  /**
+   *
    * @type {EngineFilterBetween}
    * @memberof EngineAggregateHistoryCallRequest
    */
