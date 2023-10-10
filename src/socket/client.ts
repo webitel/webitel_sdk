@@ -280,26 +280,31 @@ export class Client extends EventEmitter<ClientEvents> {
 
         // call.reportingAt = c.reporting_at || 0
         if (c.task) {
-          call.task = new Task(
-            this,
-            {
-              attempt_id: c.task.attempt_id,
-              channel: c.task.channel,
-              status: c.task.status,
-              timestamp: Date.now(),
-            },
-            c.task
-          )
-          call.queue!.reporting = 'true'
-          call.task.form = c.task.form || null
-          if (c.leaving_at && c.task.processing_sec) {
-            call.task.startProcessingAt = c.leaving_at
-            call.task.setProcessing(c.leaving_at, {
-              sec: c.task.processing_sec || 0,
-              timeout: c.task.processing_timeout_at || null,
-              renewal_sec: c.task.processing_renewal_sec || 0,
-            })
+          let task = this.getTask(c.task.attempt_id!)
+          if (!task) {
+            task = new Task(
+              this,
+              {
+                attempt_id: c.task.attempt_id,
+                channel: c.task.channel,
+                status: c.task.status,
+                timestamp: Date.now(),
+              },
+              c.task
+            )
+
+            task.form = c.task.form || null
+            if (c.leaving_at && c.task.processing_sec) {
+              task.startProcessingAt = c.leaving_at
+              task.setProcessing(c.leaving_at, {
+                sec: c.task.processing_sec || 0,
+                timeout: c.task.processing_timeout_at || null,
+                renewal_sec: c.task.processing_renewal_sec || 0,
+              })
+            }
           }
+          call.task = task
+          call.queue!.reporting = 'true'
         }
         this.callStore.set(call.id, call)
       }
@@ -332,26 +337,29 @@ export class Client extends EventEmitter<ClientEvents> {
         c.closedAt = conv.closed_at
 
         if (conv.task) {
-          c.task = new Task(
-            this,
-            {
-              attempt_id: conv.task.attempt_id,
-              channel: conv.task.channel,
-              status: conv.task.status,
-              timestamp: Date.now(),
-            },
-            conv.task // todo add app_id
-          )
-
-          if (conv.leaving_at && conv.task.processing_sec) {
-            c.task.startProcessingAt = conv.leaving_at
-            c.task.setProcessing(conv.leaving_at, {
-              sec: conv.task.processing_sec || 0,
-              timeout: conv.task.processing_timeout_at || null,
-              renewal_sec: conv.task.processing_renewal_sec || 0,
-            })
+          let task = this.getTask(conv.task.attempt_id!)
+          if (!task) {
+            task = new Task(
+              this,
+              {
+                attempt_id: conv.task.attempt_id,
+                channel: conv.task.channel,
+                status: conv.task.status,
+                timestamp: Date.now(),
+              },
+              conv.task // todo add app_id
+            )
+            if (conv.leaving_at && conv.task.processing_sec) {
+              task.startProcessingAt = conv.leaving_at
+              task.setProcessing(conv.leaving_at, {
+                sec: conv.task.processing_sec || 0,
+                timeout: conv.task.processing_timeout_at || null,
+                renewal_sec: conv.task.processing_renewal_sec || 0,
+              })
+            }
+            task.form = conv.task.form || null
           }
-          c.task.form = conv.task.form || null
+          c.task = task
         }
 
         if (conv.invite_id) {
@@ -386,6 +394,14 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler.on(WEBSOCKET_EVENT_AGENT_STATUS, handler)
 
     return res
+  }
+
+  getTask(id: number) {
+    if (!this.agent) {
+      return undefined
+    }
+
+    return this.agent.task.get(id)
   }
 
   subscribeTask(handler: TaskEventHandler) {
