@@ -728,7 +728,17 @@ export class Call {
     })
   }
 
-  async blindTransfer(destination: string) {
+  async blindTransfer(destination: string, variables?: object) {
+    if (variables) {
+      return this.client.request('call_blind_transfer_ext', {
+        id: this.id,
+        app_id: this.appId,
+        destination,
+        variables,
+      })
+    }
+
+    // todo deprecated
     return this.client.request('call_blind_transfer', {
       id: this.id,
       app_id: this.appId,
@@ -747,12 +757,13 @@ export class Call {
     return res
   }
 
-  async bridgeTo(call: Call) {
+  async bridgeTo(call: Call, variables?: object) {
     return this.client.request('call_bridge', {
       from_id: this.id,
       from_app_id: this.appId,
       to_id: call.id,
       to_app_id: call.appId,
+      variables,
     })
   }
 
