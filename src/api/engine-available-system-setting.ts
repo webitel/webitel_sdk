@@ -11,24 +11,16 @@
  * Do not edit the class manually.
  */
 
-import { EngineSystemSettingName } from './engine-system-setting-name'
-
 /**
  *
  * @export
- * @interface EngineCreateSystemSettingRequest
+ * @interface EngineAvailableSystemSetting
  */
-export interface EngineCreateSystemSettingRequest {
+export interface EngineAvailableSystemSetting {
   /**
    *
-   * @type {EngineSystemSettingName}
-   * @memberof EngineCreateSystemSettingRequest
+   * @type {string}
+   * @memberof EngineAvailableSystemSetting
    */
-  name?: EngineSystemSettingName
-  /**
-   *
-   * @type {object}
-   * @memberof EngineCreateSystemSettingRequest
-   */
-  value?: object
+  name?: string
 }

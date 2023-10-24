@@ -26,6 +26,8 @@ import {
 // @ts-ignore
 import { EngineCreateSystemSettingRequest } from '../api'
 // @ts-ignore
+import { EngineListAvailableSystemSetting } from '../api'
+// @ts-ignore
 import { EngineListSystemSetting } from '../api'
 // @ts-ignore
 import { EnginePatchSystemSettingRequest } from '../api'
@@ -275,6 +277,57 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAvailableSystemSetting: async (
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/settings/available`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -609,6 +662,33 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchAvailableSystemSetting(
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListAvailableSystemSetting>
+    > {
+      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+        configuration
+      ).searchAvailableSystemSetting(options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -748,6 +828,18 @@ export const SystemSettingServiceApiFactory = function(
     },
     /**
      *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAvailableSystemSetting(
+      options?: any
+    ): AxiosPromise<EngineListAvailableSystemSetting> {
+      return SystemSettingServiceApiFp(configuration)
+        .searchAvailableSystemSetting(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -851,6 +943,18 @@ export class SystemSettingServiceApi extends BaseAPI {
   public readSystemSetting(id: number, options?: any) {
     return SystemSettingServiceApiFp(this.configuration)
       .readSystemSetting(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SystemSettingServiceApi
+   */
+  public searchAvailableSystemSetting(options?: any) {
+    return SystemSettingServiceApiFp(this.configuration)
+      .searchAvailableSystemSetting(options)
       .then((request) => request(this.axios, this.basePath))
   }
 

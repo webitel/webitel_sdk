@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineSystemSettingName } from './engine-system-setting-name'
+
 /**
  *
  * @export
@@ -25,10 +27,10 @@ export interface EngineSystemSetting {
   id?: number
   /**
    *
-   * @type {string}
+   * @type {EngineSystemSettingName}
    * @memberof EngineSystemSetting
    */
-  name?: string
+  name?: EngineSystemSettingName
   /**
    *
    * @type {object}

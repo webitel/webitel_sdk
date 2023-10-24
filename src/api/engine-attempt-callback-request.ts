@@ -71,4 +71,10 @@ export interface EngineAttemptCallbackRequest {
    * @memberof EngineAttemptCallbackRequest
    */
   variables?: { [key: string]: string }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  wait_between_retries?: number
 }

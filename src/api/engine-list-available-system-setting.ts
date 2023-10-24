@@ -11,24 +11,24 @@
  * Do not edit the class manually.
  */
 
-import { EngineSystemSettingName } from './engine-system-setting-name'
+import { EngineAvailableSystemSetting } from './engine-available-system-setting'
 
 /**
  *
  * @export
- * @interface EngineCreateSystemSettingRequest
+ * @interface EngineListAvailableSystemSetting
  */
-export interface EngineCreateSystemSettingRequest {
+export interface EngineListAvailableSystemSetting {
   /**
    *
-   * @type {EngineSystemSettingName}
-   * @memberof EngineCreateSystemSettingRequest
+   * @type {Array<EngineAvailableSystemSetting>}
+   * @memberof EngineListAvailableSystemSetting
    */
-  name?: EngineSystemSettingName
+  items?: Array<EngineAvailableSystemSetting>
   /**
    *
-   * @type {object}
-   * @memberof EngineCreateSystemSettingRequest
+   * @type {boolean}
+   * @memberof EngineListAvailableSystemSetting
    */
-  value?: object
+  next?: boolean
 }

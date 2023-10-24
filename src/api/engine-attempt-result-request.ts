@@ -95,4 +95,10 @@ export interface EngineAttemptResultRequest {
    * @memberof EngineAttemptResultRequest
    */
   variables?: { [key: string]: string }
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAttemptResultRequest
+   */
+  wait_between_retries?: number
 }

@@ -11,24 +11,13 @@
  * Do not edit the class manually.
  */
 
-import { EngineSystemSettingName } from './engine-system-setting-name'
-
 /**
  *
  * @export
- * @interface EngineCreateSystemSettingRequest
+ * @enum {string}
  */
-export interface EngineCreateSystemSettingRequest {
-  /**
-   *
-   * @type {EngineSystemSettingName}
-   * @memberof EngineCreateSystemSettingRequest
-   */
-  name?: EngineSystemSettingName
-  /**
-   *
-   * @type {object}
-   * @memberof EngineCreateSystemSettingRequest
-   */
-  value?: object
+export enum EngineSystemSettingName {
+  EmptySystemSettingsName = 'empty_system_settings_name',
+  EnableOmnichannel = 'enable_omnichannel',
+  MemberChunkSize = 'member_chunk_size',
 }
