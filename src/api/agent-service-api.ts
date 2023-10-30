@@ -54,6 +54,8 @@ import { EngineListAgentStatsStatistic } from '../api'
 // @ts-ignore
 import { EngineListAgentUser } from '../api'
 // @ts-ignore
+import { EngineListUserStatus } from '../api'
+// @ts-ignore
 import { EnginePatchAgentRequest } from '../api'
 // @ts-ignore
 import { EngineResponse } from '../api'
@@ -1608,6 +1610,88 @@ export const AgentServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary List of UserStatus
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchUserStatus: async (
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/call_center/users`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -2489,6 +2573,44 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary List of UserStatus
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchUserStatus(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListUserStatus>
+    > {
+      const localVarAxiosArgs = await AgentServiceApiAxiosParamCreator(
+        configuration
+      ).searchUserStatus(page, size, q, sort, fields, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -3030,6 +3152,29 @@ export const AgentServiceApiFactory = function(
     },
     /**
      *
+     * @summary List of UserStatus
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchUserStatus(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      options?: any
+    ): AxiosPromise<EngineListUserStatus> {
+      return AgentServiceApiFp(configuration)
+        .searchUserStatus(page, size, q, sort, fields, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Update Agent
      * @param {string} id
      * @param {EngineUpdateAgentRequest} body
@@ -3558,6 +3703,31 @@ export class AgentServiceApi extends BaseAPI {
   ) {
     return AgentServiceApiFp(this.configuration)
       .searchPauseCauseForAgent(agentId, allowChange, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary List of UserStatus
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentServiceApi
+   */
+  public searchUserStatus(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    options?: any
+  ) {
+    return AgentServiceApiFp(this.configuration)
+      .searchUserStatus(page, size, q, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
