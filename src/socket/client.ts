@@ -817,7 +817,10 @@ export class Client extends EventEmitter<ClientEvents> {
           this.emit('error', new DeviceNotAllowPermissionError(e.message))
           break
         default:
-          this.emit('error', e)
+          if (e.name !== 'INVALID_STATE_ERROR') {
+            // TODO: DEV-3409
+            this.emit('error', e)
+          }
       }
     }
   }
