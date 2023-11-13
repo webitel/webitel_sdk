@@ -128,6 +128,16 @@ export enum CallDirection {
   Outbound = 'outbound',
 }
 
+interface ContactDataEvent {
+  contact_id?: number
+  hide_contact?: boolean
+}
+
+interface Contact {
+  id: number | null
+  hide: boolean
+}
+
 export interface AnswerRequest {
   audio?: boolean
   video?: boolean
@@ -161,14 +171,14 @@ export interface CallEndpoint {
   name?: string
 }
 
-export interface CallBridged extends CallEventData {
+export interface CallBridged extends CallEventData, ContactDataEvent {
   bridged_id: string
   to?: CallEndpoint
   queue?: QueueParameters
   payload?: Map<string, string>
 }
 
-export interface CallInfo extends CallEventData {
+export interface CallInfo extends CallEventData, ContactDataEvent {
   sip_id: string
 
   parent_id?: string
@@ -252,6 +262,7 @@ export class Call {
   _eavesdrop: EavesdropData | null
   _autoAnswerTimerId: any | null
   _activeCounter: number
+  contact: Contact | null
 
   constructor(protected client: Client, e: CallEventData) {
     // FIXME check _muted from channel
@@ -264,6 +275,7 @@ export class Call {
     this._eavesdrop = null
     this._autoAnswerTimerId = null
     this._activeCounter = 0
+    this.contact = null
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -389,6 +401,14 @@ export class Call {
     return this.eavesdropState === EavesdropState.Prompt
   }
 
+  get contactId() {
+    return (this.contact && this.contact.id) || null
+  }
+
+  get hideContact() {
+    return this.contact && this.contact.hide
+  }
+
   // todo
   async getMember(req: MemberInfoRequest) {
     if (!this.isMember) {
@@ -450,6 +470,8 @@ export class Call {
     if (bridged.queue) {
       this.queue = bridged.queue
     }
+
+    this.setContactData(bridged)
   }
 
   setHold(e: CallEventData) {
@@ -468,6 +490,8 @@ export class Call {
 
     this.sipId = s.sip_id || null
     this.params = s.params as CallParams
+
+    this.setContactData(s)
   }
 
   setPeerStreams(streams: MediaStream[] | null) {
@@ -789,5 +813,19 @@ export class Call {
     req.sendToCallId = this.parentId || null
 
     return this.client.inviteToUser(req)
+  }
+
+  async setContact(contactId: number) {
+    return this.client.request(`call_set_contact`, {
+      id: this.id,
+      contact_id: contactId,
+    })
+  }
+
+  private setContactData(e: ContactDataEvent) {
+    this.contact = {
+      id: e.contact_id || null,
+      hide: e.hide_contact || false,
+    }
   }
 }
