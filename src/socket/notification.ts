@@ -14,4 +14,5 @@ export enum NotificationActions {
   HideMember = 'hide_member',
   HideAttempt = 'hide_attempt',
   WaitingList = 'waiting_list',
+  SetContact = 'set_contact',
 }

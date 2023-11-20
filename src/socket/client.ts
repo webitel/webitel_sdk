@@ -908,6 +908,15 @@ export class Client extends EventEmitter<ClientEvents> {
           }
         }
         break
+      case NotificationActions.SetContact:
+        if (e.body) {
+          const contactId = e.body.contact_id as number
+          const call = this.callById(e.body.id as string)
+          if (call) {
+            call.setContactId(contactId)
+          }
+        }
+        break
       case NotificationActions.WaitingList:
         if (this.agent) {
           this.agent.setWaitingList(e.body)

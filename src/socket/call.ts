@@ -478,6 +478,17 @@ export class Call {
     this.setState(e)
   }
 
+  setContactId(id: number) {
+    if (!this.contact) {
+      this.contact = {
+        hide: false,
+        id,
+      }
+    } else {
+      this.contact.id = id
+    }
+  }
+
   setInfo(s: CallInfo) {
     this.parentId = s.parent_id
     this.destination = s.destination
