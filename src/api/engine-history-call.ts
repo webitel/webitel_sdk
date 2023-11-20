@@ -258,6 +258,12 @@ export interface EngineHistoryCall {
    * @type {string}
    * @memberof EngineHistoryCall
    */
+  member_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
   parent_id?: string
   /**
    *

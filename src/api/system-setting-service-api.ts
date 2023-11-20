@@ -321,10 +321,20 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAvailableSystemSetting: async (
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/settings/available`
@@ -348,6 +358,26 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       localVarUrlObj.query = {
@@ -662,10 +692,20 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchAvailableSystemSetting(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -675,7 +715,7 @@ export const SystemSettingServiceApiFp = function(
     > {
       const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
         configuration
-      ).searchAvailableSystemSetting(options)
+      ).searchAvailableSystemSetting(page, size, q, sort, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -828,14 +868,24 @@ export const SystemSettingServiceApiFactory = function(
     },
     /**
      *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchAvailableSystemSetting(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListAvailableSystemSetting> {
       return SystemSettingServiceApiFp(configuration)
-        .searchAvailableSystemSetting(options)
+        .searchAvailableSystemSetting(page, size, q, sort, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -948,13 +998,25 @@ export class SystemSettingServiceApi extends BaseAPI {
 
   /**
    *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingServiceApi
    */
-  public searchAvailableSystemSetting(options?: any) {
+  public searchAvailableSystemSetting(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return SystemSettingServiceApiFp(this.configuration)
-      .searchAvailableSystemSetting(options)
+      .searchAvailableSystemSetting(page, size, q, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

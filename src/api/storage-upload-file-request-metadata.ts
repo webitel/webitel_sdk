@@ -37,6 +37,12 @@ export interface StorageUploadFileRequestMetadata {
   name?: string
   /**
    *
+   * @type {string}
+   * @memberof StorageUploadFileRequestMetadata
+   */
+  profile_id?: string
+  /**
+   *
    * @type {boolean}
    * @memberof StorageUploadFileRequestMetadata
    */
