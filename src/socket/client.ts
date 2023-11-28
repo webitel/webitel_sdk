@@ -157,6 +157,13 @@ export interface StorageFile {
 
 export type FileUploadProgress = (progress: any) => void
 
+interface Latency {
+  server_ts: number
+  client_ts: number
+  server_ack_ts: number
+  client_ack_ts: number
+}
+
 export type CallEventHandler = (action: CallActions, call: Call) => void
 export type ChatEventHandler = (
   action: string,
@@ -198,6 +205,7 @@ export class Client extends EventEmitter<ClientEvents> {
   agent!: Agent
   phone?: SipPhone
   lastError: null | Error
+  lastLatency: number | null
   private socket!: Socket
   private connectionInfo!: ConnectionInfo
   private readonly basePath: string
@@ -224,6 +232,7 @@ export class Client extends EventEmitter<ClientEvents> {
       _config.storageEndpoint || _config.endpoint
     )}`
     this.lastError = null
+    this.lastLatency = null
   }
 
   async connect() {
@@ -496,9 +505,21 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   async ping() {
-    return this.request(WEBSOCKET_PING, {
+    const response = (await this.request(WEBSOCKET_PING, {
       ping: 1,
-    })
+    })) as any
+    if (response && response.server_ts) {
+      const ack = {
+        client_ts: 0,
+        client_ack_ts: 0,
+        server_ts: response.server_ts as number,
+        server_ack_ts: 0,
+      }
+
+      return this.calculateLatency(ack)
+    }
+
+    return response
   }
 
   sessionInfo(): Session {
@@ -986,6 +1007,33 @@ export class Client extends EventEmitter<ClientEvents> {
     return this.registerCallClient(
       new SipPhone(this.instanceId, this._config.debug)
     )
+  }
+
+  private async latency() {
+    const ack = {
+      client_ts: 0,
+      client_ack_ts: 0,
+      server_ts: 0,
+      server_ack_ts: 0,
+    }
+
+    Object.assign(ack, await this.request(`latency_start`, ack))
+
+    return this.calculateLatency(ack)
+  }
+
+  private async calculateLatency(ack: Latency) {
+    ack.client_ts = Date.now()
+    Object.assign(ack, await this.request(`latency_ack`, ack))
+    ack.client_ack_ts = Date.now()
+    this.lastLatency = Math.abs(
+      ack.server_ack_ts -
+        ack.server_ts -
+        (ack.client_ack_ts - ack.client_ts) * 0.5
+    )
+    this.log.info(`[websocket] latency: ${this.lastLatency}`)
+
+    return this.lastLatency
   }
 
   private callBySession(session: CallSession): Call | undefined {
