@@ -84,5 +84,11 @@ export interface EngineUpdateAgentTeamRequest {
    * @type {number}
    * @memberof EngineUpdateAgentTeamRequest
    */
+  task_accept_timeout?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateAgentTeamRequest
+   */
   wrap_up_time?: number
 }

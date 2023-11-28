@@ -24,6 +24,8 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { EngineActivityWorkspaceWidgetResponse } from '../api'
+// @ts-ignore
 import { EngineDefaultDeviceConfigResponse } from '../api'
 // @ts-ignore
 import { RuntimeError } from '../api'
@@ -35,6 +37,63 @@ export const UserHelperServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
+    /**
+     *
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    activityWorkspaceWidget: async (
+      fields?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/user/widget/activity/today`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @param {string} type
@@ -109,6 +168,35 @@ export const UserHelperServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async activityWorkspaceWidget(
+      fields?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineActivityWorkspaceWidgetResponse>
+    > {
+      const localVarAxiosArgs = await UserHelperServiceApiAxiosParamCreator(
+        configuration
+      ).activityWorkspaceWidget(fields, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -151,6 +239,20 @@ export const UserHelperServiceApiFactory = function(
   return {
     /**
      *
+     * @param {Array<string>} [fields]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    activityWorkspaceWidget(
+      fields?: Array<string>,
+      options?: any
+    ): AxiosPromise<EngineActivityWorkspaceWidgetResponse> {
+      return UserHelperServiceApiFp(configuration)
+        .activityWorkspaceWidget(fields, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {string} type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -173,6 +275,19 @@ export const UserHelperServiceApiFactory = function(
  * @extends {BaseAPI}
  */
 export class UserHelperServiceApi extends BaseAPI {
+  /**
+   *
+   * @param {Array<string>} [fields]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UserHelperServiceApi
+   */
+  public activityWorkspaceWidget(fields?: Array<string>, options?: any) {
+    return UserHelperServiceApiFp(this.configuration)
+      .activityWorkspaceWidget(fields, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @param {string} type

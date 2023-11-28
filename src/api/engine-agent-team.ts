@@ -81,6 +81,12 @@ export interface EngineAgentTeam {
   strategy?: string
   /**
    *
+   * @type {number}
+   * @memberof EngineAgentTeam
+   */
+  task_accept_timeout?: number
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentTeam
    */
