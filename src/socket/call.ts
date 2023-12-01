@@ -76,6 +76,7 @@ export interface CallItem {
   reporting_sec?: number
   display?: number
   task?: TaskData
+  contact_id?: number
 }
 
 export interface OutboundCallRequest {

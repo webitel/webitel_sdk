@@ -315,6 +315,11 @@ export class Client extends EventEmitter<ClientEvents> {
           call.task = task
           call.queue!.reporting = 'true'
         }
+
+        if (c.contact_id) {
+          call.setContactId(c.contact_id)
+        }
+
         this.callStore.set(call.id, call)
       }
     }
