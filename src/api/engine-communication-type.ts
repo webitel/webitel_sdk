@@ -33,6 +33,12 @@ export interface EngineCommunicationType {
   code?: string
   /**
    *
+   * @type {boolean}
+   * @memberof EngineCommunicationType
+   */
+  _default?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineCommunicationType
    */

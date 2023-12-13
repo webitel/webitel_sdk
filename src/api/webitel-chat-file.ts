@@ -18,13 +18,13 @@
  */
 export interface WebitelChatFile {
   /**
-   * Unique media file identifier.
+   *
    * @type {string}
    * @memberof WebitelChatFile
    */
   id?: string
   /**
-   * Filename.
+   *
    * @type {string}
    * @memberof WebitelChatFile
    */
@@ -36,7 +36,7 @@ export interface WebitelChatFile {
    */
   size?: string
   /**
-   * MIME-Type of the media content.
+   *
    * @type {string}
    * @memberof WebitelChatFile
    */

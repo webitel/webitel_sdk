@@ -16,43 +16,49 @@ import { EngineCommunicationChannels } from './engine-communication-channels'
 /**
  *
  * @export
- * @interface EngineUpdateCommunicationTypeRequest
+ * @interface EnginePatchCommunicationTypeRequest
  */
-export interface EngineUpdateCommunicationTypeRequest {
+export interface EnginePatchCommunicationTypeRequest {
   /**
    *
    * @type {EngineCommunicationChannels}
-   * @memberof EngineUpdateCommunicationTypeRequest
+   * @memberof EnginePatchCommunicationTypeRequest
    */
   channel?: EngineCommunicationChannels
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateCommunicationTypeRequest
+   * @memberof EnginePatchCommunicationTypeRequest
    */
   code?: string
   /**
    *
    * @type {boolean}
-   * @memberof EngineUpdateCommunicationTypeRequest
+   * @memberof EnginePatchCommunicationTypeRequest
    */
   _default?: boolean
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateCommunicationTypeRequest
+   * @memberof EnginePatchCommunicationTypeRequest
    */
   description?: string
   /**
    *
+   * @type {Array<string>}
+   * @memberof EnginePatchCommunicationTypeRequest
+   */
+  fields?: Array<string>
+  /**
+   *
    * @type {string}
-   * @memberof EngineUpdateCommunicationTypeRequest
+   * @memberof EnginePatchCommunicationTypeRequest
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateCommunicationTypeRequest
+   * @memberof EnginePatchCommunicationTypeRequest
    */
   name?: string
 }

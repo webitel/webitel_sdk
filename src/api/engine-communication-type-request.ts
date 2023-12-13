@@ -33,16 +33,16 @@ export interface EngineCommunicationTypeRequest {
   code?: string
   /**
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof EngineCommunicationTypeRequest
    */
-  description?: string
+  _default?: boolean
   /**
    *
    * @type {string}
    * @memberof EngineCommunicationTypeRequest
    */
-  domain_id?: string
+  description?: string
   /**
    *
    * @type {string}

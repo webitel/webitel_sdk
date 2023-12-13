@@ -30,6 +30,8 @@ import { EngineCommunicationTypeRequest } from '../api'
 // @ts-ignore
 import { EngineListCommunicationType } from '../api'
 // @ts-ignore
+import { EnginePatchCommunicationTypeRequest } from '../api'
+// @ts-ignore
 import { EngineUpdateCommunicationTypeRequest } from '../api'
 // @ts-ignore
 import { RuntimeError } from '../api'
@@ -182,6 +184,86 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {EnginePatchCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchCommunicationType: async (
+      id: string,
+      body: EnginePatchCommunicationTypeRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchCommunicationType.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchCommunicationType.'
+        )
+      }
+      const localVarPath = `/call_center/communication_type/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary CommunicationType item
      * @param {string} id
      * @param {string} [domainId]
@@ -260,6 +342,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>} [channel]
+     * @param {boolean} [_default]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -271,6 +354,7 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       id?: Array<number>,
       channel?: Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>,
+      _default?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/communication_type`
@@ -322,6 +406,10 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
 
       if (channel) {
         localVarQueryParameter['channel'] = channel
+      }
+
+      if (_default !== undefined) {
+        localVarQueryParameter['default'] = _default
       }
 
       localVarUrlObj.query = {
@@ -500,6 +588,37 @@ export const CommunicationTypeServiceApiFp = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {EnginePatchCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchCommunicationType(
+      id: string,
+      body: EnginePatchCommunicationTypeRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineCommunicationType>
+    > {
+      const localVarAxiosArgs = await CommunicationTypeServiceApiAxiosParamCreator(
+        configuration
+      ).patchCommunicationType(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary CommunicationType item
      * @param {string} id
      * @param {string} [domainId]
@@ -540,6 +659,7 @@ export const CommunicationTypeServiceApiFp = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>} [channel]
+     * @param {boolean} [_default]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -551,6 +671,7 @@ export const CommunicationTypeServiceApiFp = function(
       fields?: Array<string>,
       id?: Array<number>,
       channel?: Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>,
+      _default?: boolean,
       options?: any
     ): Promise<
       (
@@ -568,6 +689,7 @@ export const CommunicationTypeServiceApiFp = function(
         fields,
         id,
         channel,
+        _default,
         options
       )
       return (
@@ -660,6 +782,22 @@ export const CommunicationTypeServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {EnginePatchCommunicationTypeRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchCommunicationType(
+      id: string,
+      body: EnginePatchCommunicationTypeRequest,
+      options?: any
+    ): AxiosPromise<EngineCommunicationType> {
+      return CommunicationTypeServiceApiFp(configuration)
+        .patchCommunicationType(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary CommunicationType item
      * @param {string} id
      * @param {string} [domainId]
@@ -685,6 +823,7 @@ export const CommunicationTypeServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
      * @param {Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>} [channel]
+     * @param {boolean} [_default]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -696,6 +835,7 @@ export const CommunicationTypeServiceApiFactory = function(
       fields?: Array<string>,
       id?: Array<number>,
       channel?: Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>,
+      _default?: boolean,
       options?: any
     ): AxiosPromise<EngineListCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
@@ -707,6 +847,7 @@ export const CommunicationTypeServiceApiFactory = function(
           fields,
           id,
           channel,
+          _default,
           options
         )
         .then((request) => request(axios, basePath))
@@ -772,6 +913,24 @@ export class CommunicationTypeServiceApi extends BaseAPI {
 
   /**
    *
+   * @param {string} id
+   * @param {EnginePatchCommunicationTypeRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CommunicationTypeServiceApi
+   */
+  public patchCommunicationType(
+    id: string,
+    body: EnginePatchCommunicationTypeRequest,
+    options?: any
+  ) {
+    return CommunicationTypeServiceApiFp(this.configuration)
+      .patchCommunicationType(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary CommunicationType item
    * @param {string} id
    * @param {string} [domainId]
@@ -795,6 +954,7 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
    * @param {Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>} [channel]
+   * @param {boolean} [_default]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
@@ -807,6 +967,7 @@ export class CommunicationTypeServiceApi extends BaseAPI {
     fields?: Array<string>,
     id?: Array<number>,
     channel?: Array<'Undefined' | 'Phone' | 'Email' | 'Messaging'>,
+    _default?: boolean,
     options?: any
   ) {
     return CommunicationTypeServiceApiFp(this.configuration)
@@ -818,6 +979,7 @@ export class CommunicationTypeServiceApi extends BaseAPI {
         fields,
         id,
         channel,
+        _default,
         options
       )
       .then((request) => request(this.axios, this.basePath))

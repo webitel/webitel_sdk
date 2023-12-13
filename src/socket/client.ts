@@ -985,7 +985,7 @@ export class Client extends EventEmitter<ClientEvents> {
       const t = setTimeout(async () => {
         this.log.error('close socket without pong')
         this.socket.close(3005)
-      }, 2000)
+      }, 3000)
       await this.ping()
       clearTimeout(t)
     }
