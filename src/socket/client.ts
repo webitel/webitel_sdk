@@ -980,12 +980,20 @@ export class Client extends EventEmitter<ClientEvents> {
     }
   }
 
+  private deadlinePingTime(interval: number) {
+    if (interval > 10000) {
+      return interval / 2
+    }
+
+    return 3000
+  }
+
   private async pingServer() {
     if (this.pingTimer && this.connectionInfo.ping_interval) {
       const t = setTimeout(async () => {
         this.log.error('close socket without pong')
         this.socket.close(3005)
-      }, 3000)
+      }, this.deadlinePingTime(this.connectionInfo.ping_interval))
       await this.ping()
       clearTimeout(t)
     }
@@ -1029,7 +1037,13 @@ export class Client extends EventEmitter<ClientEvents> {
 
   private async calculateLatency(ack: Latency) {
     ack.client_ts = Date.now()
-    Object.assign(ack, await this.request(`latency_ack`, ack))
+    Object.assign(
+      ack,
+      await this.request(`latency_ack`, {
+        ...ack,
+        last_latency: this.lastLatency || 0,
+      })
+    )
     ack.client_ack_ts = Date.now()
     this.lastLatency = Math.abs(
       ack.server_ack_ts -
