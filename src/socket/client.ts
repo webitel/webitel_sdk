@@ -384,6 +384,9 @@ export class Client extends EventEmitter<ClientEvents> {
             name: 'TODO',
             type: 'webitel',
           })
+          if (conv.closed_at) {
+            c.setClosed(conv.closed_at)
+          }
         } else {
           this.log.error(`conversation ${conv.id} not valid`)
           continue
