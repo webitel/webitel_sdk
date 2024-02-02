@@ -2,7 +2,6 @@
   "extends": [
     "tslint:recommended",
     "tslint-config-standard",
-    "tslint-etc",
     "tslint-react",
     "tslint-config-prettier"
   ],
@@ -56,11 +55,13 @@
       "options": "check-function-in-method"
     },
     "no-invalid-template-strings": true,
-    "ordered-imports": true,
+    "ordered-imports": false,
     "prefer-template": true,
     "newline-before-return": true,
     "match-default-export-name": true,
     "no-parameter-reassignment": true,
+    "handle-callback-err": false,
+    "constant-condition": false,
     "file-name-casing": {
       "options": [
         "kebab-case"

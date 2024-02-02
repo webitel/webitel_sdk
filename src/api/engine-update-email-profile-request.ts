@@ -11,20 +11,21 @@
  * Do not edit the class manually.
  */
 
+import { EngineEmailAuthType } from './engine-email-auth-type'
 import { EngineLookup } from './engine-lookup'
 
 /**
- * Update email profile for gateway
+ *
  * @export
  * @interface EngineUpdateEmailProfileRequest
  */
 export interface EngineUpdateEmailProfileRequest {
   /**
    *
-   * @type {string}
+   * @type {EngineEmailAuthType}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  auth_type?: string
+  auth_type?: EngineEmailAuthType
   /**
    *
    * @type {string}
@@ -42,7 +43,7 @@ export interface EngineUpdateEmailProfileRequest {
    * @type {number}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  fetch_interval: number
+  fetch_interval?: number
   /**
    *
    * @type {string}
@@ -54,13 +55,13 @@ export interface EngineUpdateEmailProfileRequest {
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  imap_host: string
+  imap_host?: string
   /**
    *
    * @type {number}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  imap_port: number
+  imap_port?: number
   /**
    *
    * @type {boolean}
@@ -72,19 +73,19 @@ export interface EngineUpdateEmailProfileRequest {
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  login: string
+  login?: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  mailbox: string
+  mailbox?: string
   /**
    *
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  name: string
+  name?: string
   /**
    *
    * @type {string}
@@ -96,17 +97,17 @@ export interface EngineUpdateEmailProfileRequest {
    * @type {EngineLookup}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  schema: EngineLookup
+  schema?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  smtp_host: string
+  smtp_host?: string
   /**
    *
    * @type {number}
    * @memberof EngineUpdateEmailProfileRequest
    */
-  smtp_port: number
+  smtp_port?: number
 }

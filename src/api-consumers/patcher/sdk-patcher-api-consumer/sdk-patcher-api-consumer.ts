@@ -47,6 +47,7 @@ export default class SdkPatcherApiConsumer extends BasePatcherApiConsumer {
 
   protected async _patchItem(args: any[]) {
     try {
+      // @ts-ignore
       const response = await this.SDKMethod(...args)
 
       return response

@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineEmailAuthType } from './engine-email-auth-type'
+
 /**
  *
  * @export
@@ -19,10 +21,10 @@
 export interface EngineLoginEmailProfileResponse {
   /**
    *
-   * @type {string}
+   * @type {EngineEmailAuthType}
    * @memberof EngineLoginEmailProfileResponse
    */
-  auth_type?: string
+  auth_type?: EngineEmailAuthType
   /**
    *
    * @type {{ [key: string]: string; }}

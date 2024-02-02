@@ -1,5 +1,5 @@
 import { Client } from './client'
-import { PauseNotAllowedError, TypeErrors } from './errors'
+import { BaseError, PauseNotAllowedError, TypeErrors } from './errors'
 import { keyable } from './notification'
 import {
   BridgedEvent,
@@ -414,7 +414,8 @@ export class Agent {
   async pause(payload?: any) {
     try {
       return await this.client.agentSetPause(this.agentId, payload)
-    } catch (e) {
+    } catch (err) {
+      const e = err as BaseError
       if (e.id === TypeErrors.PauseNotAllow) {
         return new PauseNotAllowedError(e.detail)
       }

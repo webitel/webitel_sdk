@@ -41,4 +41,22 @@ export interface EngineExceptDate {
    * @memberof EngineExceptDate
    */
   repeat?: boolean
+  /**
+   *
+   * @type {number}
+   * @memberof EngineExceptDate
+   */
+  work_start?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineExceptDate
+   */
+  work_stop?: number
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineExceptDate
+   */
+  working?: boolean
 }

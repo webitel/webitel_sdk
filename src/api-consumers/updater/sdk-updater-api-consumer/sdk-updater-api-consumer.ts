@@ -50,6 +50,7 @@ export default class SdkUpdaterApiConsumer extends BaseUpdaterApiConsumer {
 
   protected async _updateItem(args: any[]): Promise<UpdaterResponse> {
     try {
+      // @ts-ignore
       const response = await this.SDKMethod(...args)
 
       return this.responseHandler(response)

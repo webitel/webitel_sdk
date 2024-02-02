@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { UserStatusUserPresence } from './user-status-user-presence'
+
 /**
  *
  * @export
@@ -37,10 +39,10 @@ export interface EngineUserStatus {
   name?: string
   /**
    *
-   * @type {Array<string>}
+   * @type {UserStatusUserPresence}
    * @memberof EngineUserStatus
    */
-  presence?: Array<string>
+  presence?: UserStatusUserPresence
   /**
    *
    * @type {string}

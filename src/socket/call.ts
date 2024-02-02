@@ -662,7 +662,7 @@ export class Call {
         const params = await this.client.phone.callOption(req)
         await this.sip.answer(params)
       } catch (e) {
-        this.client.handleError(e)
+        this.client.handleError(e as Error)
       }
 
       return true

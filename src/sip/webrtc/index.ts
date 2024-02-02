@@ -1,12 +1,12 @@
 import { EventEmitter } from 'ee-ts'
-
-import * as JsSip from 'jssip'
-import { IncomingRTCSessionEvent, OutgoingRTCSessionEvent } from 'jssip/lib/UA'
+// @ts-ignore
+import { debug, version, UA, WebSocketInterface } from 'jssip/lib-es5/JsSIP'
 
 import { Answer, CallSession, Outbound, SipClient, SipConfiguration } from '../'
 import { Log } from '../../log'
 import { SipClientEvents } from '../index'
 import { Session } from './session'
+import { RTCSessionEvent } from './types'
 
 interface PeerConnectionEvent {
   peerconnection: RTCPeerConnection
@@ -14,23 +14,23 @@ interface PeerConnectionEvent {
 
 export class SipPhone extends EventEmitter<SipClientEvents>
   implements SipClient {
-  static readonly userAgent = `Webitel-Phone/${JsSip.version}`
-  static readonly sipVersion = JsSip.version
+  static readonly userAgent = `Webitel-Phone/${version}`
+  static readonly sipVersion = version
   readonly type = 'webrtc'
 
   private ua!: any
   private sessionCache = new Map<string, Session>()
   private log: Log
 
-  constructor(private instanceId: string, debug?: boolean) {
+  constructor(private instanceId: string, d?: boolean) {
     super()
 
     this.log = new Log()
-    if (debug) {
-      this.log.info(`JsSip version: ${JsSip.version}`)
-      JsSip.debug.enable('*')
+    if (d) {
+      this.log.info(`JsSip version: ${version}`)
+      debug.enable('*')
     } else {
-      JsSip.debug.disable()
+      debug.disable()
     }
 
     this.on('unregistered', () => {
@@ -93,7 +93,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   }
 
   async register(sipConf: SipConfiguration) {
-    const socket = new JsSip.WebSocketInterface(sipConf.server)
+    const socket = new WebSocketInterface(sipConf.server)
 
     const configuration = {
       realm: sipConf.realm,
@@ -111,80 +111,77 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       // instance_id: '8f1fa16a-1165-4a96-8341-785b1ef24f13',
     }
 
-    const ua = (this.ua = new JsSip.UA(configuration))
+    const ua = (this.ua = new UA(configuration))
 
     // ua.on('connected', (e: object) => {})
 
-    ua.on(
-      'newRTCSession',
-      (e: IncomingRTCSessionEvent | OutgoingRTCSessionEvent) => {
-        const session = e.session
-        const id = session.id
+    ua.on('newRTCSession', (e: RTCSessionEvent) => {
+      const session = e.session
+      const id = session.id
 
-        const callSession = new Session(e)
+      const callSession = new Session(session, e.request)
 
-        this.storeSession(id, callSession)
+      this.storeSession(id, callSession)
 
-        session.on('connecting', () => {
+      session.on('connecting', () => {
+        this.emit(
+          'localStreams',
+          callSession,
+          session.connection.getLocalStreams()
+        )
+      })
+
+      if (session.connection) {
+        session.connection.addEventListener('addstream', (evt: object) => {
           this.emit(
-            'localStreams',
+            'peerStreams',
             callSession,
-            (session.connection as any).getLocalStreams()
+            new Array((evt as any).stream as MediaStream)
           )
         })
+      }
 
-        if (session.connection) {
-          session.connection.addEventListener('addstream', (evt: object) => {
+      session.on('peerconnection', (peer: PeerConnectionEvent) => {
+        peer.peerconnection.addEventListener(
+          'addstream',
+          async (evt: Event) => {
+            // set remote audio stream
             this.emit(
               'peerStreams',
               callSession,
-              new Array((evt as MediaStreamEvent).stream as MediaStream)
-            )
-          })
-        }
-
-        session.on('peerconnection', (peer: PeerConnectionEvent) => {
-          peer.peerconnection.addEventListener(
-            'addstream',
-            async (evt: Event) => {
-              // set remote audio stream
-              this.emit(
-                'peerStreams',
-                callSession,
-                new Array((evt as MediaStreamEvent).stream as MediaStream)
-              )
-            }
-          )
-        })
-
-        session.on('ended', () => {
-          // this handler will be called for incoming calls too
-          this.removeSession(id, session.connection)
-        })
-
-        session.on('failed', () => {
-          // this handler will be called for incoming calls too
-          this.removeSession(id, session.connection)
-        })
-
-        session.on('accepted', () => {
-          // the call has answered
-          if (!callSession.incoming) {
-            this.emit(
-              'peerStreams',
-              callSession,
-              (session.connection as any).getRemoteStreams()
+              new Array((evt as any).stream as MediaStream)
             )
           }
-        })
+        )
+      })
 
-        session.on('confirmed', () => {
-          // this handler will be called for incoming calls too
-        })
+      session.on('ended', () => {
+        // this handler will be called for incoming calls too
+        this.removeSession(id, session.connection)
+      })
 
-        this.emit('newSession', callSession)
-      }
-    )
+      session.on('failed', () => {
+        // this handler will be called for incoming calls too
+        this.removeSession(id, session.connection)
+      })
+
+      session.on('accepted', () => {
+        // the call has answered
+        if (!callSession.incoming) {
+          this.emit(
+            'peerStreams',
+            callSession,
+            session.connection.getReceivers()
+          )
+        }
+      })
+
+      session.on('confirmed', () => {
+        // this handler will be called for incoming calls too
+      })
+
+      this.emit('newSession', callSession)
+    })
 
     ua.on('disconnected', (e: object) => {
       this.emit('unregistered')
@@ -247,7 +244,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   private removeSession(id: string, connection: any): boolean {
     if (connection) {
       const localStreams = connection.getLocalStreams()
-      const remoteStreams = connection.getRemoteStreams()
+      const remoteStreams = connection.getReceivers()
 
       if (localStreams) {
         localStreams.forEach((stream: MediaStream) => {
@@ -258,9 +255,8 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       }
       if (remoteStreams) {
         remoteStreams.forEach((stream: MediaStream) => {
-          stream.getTracks().forEach((track) => {
-            track.stop()
-          })
+          // @ts-ignore
+          stream.track.stop()
         })
       }
     }
@@ -323,7 +319,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
           const stream = (await (navigator.mediaDevices as any).getDisplayMedia()) as MediaStream
           resolve(stream)
         } catch (e) {
-          reject(e)
+          reject(e as Error)
         }
       }
     )

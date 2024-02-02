@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+import { EngineEmailAuthType } from './engine-email-auth-type'
 import { EngineLookup } from './engine-lookup'
 
 /**
@@ -27,10 +28,10 @@ export interface EngineEmailProfile {
   activity_at?: string
   /**
    *
-   * @type {string}
+   * @type {EngineEmailAuthType}
    * @memberof EngineEmailProfile
    */
-  auth_type?: string
+  auth_type?: EngineEmailAuthType
   /**
    *
    * @type {string}

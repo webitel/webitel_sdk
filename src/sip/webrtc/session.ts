@@ -1,6 +1,6 @@
-import { RTCSession } from 'jssip/lib/RTCSession'
-import { IncomingRTCSessionEvent, OutgoingRTCSessionEvent } from 'jssip/lib/UA'
+// import { IncomingRTCSessionEvent, OutgoingRTCSessionEvent } from 'jssip/lib/UA'
 import { CallSession } from '../index'
+import { RTCSession, RTCSessionRequest } from './types'
 
 export class Session implements CallSession {
   callId?: string
@@ -9,11 +9,11 @@ export class Session implements CallSession {
 
   private session: RTCSession
 
-  constructor(e: IncomingRTCSessionEvent | OutgoingRTCSessionEvent) {
-    this.session = e.session
-    this.callId = e.request.getHeader('X-Webitel-Uuid')
-    this.incoming = e.session.direction === 'incoming'
-    this.instanceId = e.request.getHeader('X-Webitel-Sock-Id')
+  constructor(session: RTCSession, request: RTCSessionRequest) {
+    this.session = session
+    this.callId = request.getHeader('X-Webitel-Uuid')
+    this.incoming = session.direction === 'incoming'
+    this.instanceId = request.getHeader('X-Webitel-Sock-Id')
   }
 
   get id(): string {
@@ -22,7 +22,7 @@ export class Session implements CallSession {
 
   getLocalMedia(): MediaStream[] {
     if (this.session.connection) {
-      const local = (this.session.connection as any).getLocalStreams()
+      const local = this.session.connection.getLocalStreams()
 
       if (local.length) {
         return local
@@ -33,7 +33,7 @@ export class Session implements CallSession {
   }
   getPeerMedia(): MediaStream[] {
     if (this.session.connection) {
-      const peer = (this.session.connection as any).getRemoteStreams()
+      const peer = this.session.connection.getRemoteStreams()
 
       if (peer.length) {
         return peer

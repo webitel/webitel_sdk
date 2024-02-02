@@ -506,7 +506,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
       return resp
     } catch (err) {
-      this.handleError(err)
+      this.handleError(err as Error)
       await this.disconnect()
       throw err
     }
@@ -622,7 +622,7 @@ export class Client extends EventEmitter<ClientEvents> {
       try {
         await this.phone.call(req)
       } catch (e) {
-        this.handleError(e)
+        this.handleError(e as Error)
       }
     } else {
       await this.invite(req)
@@ -675,6 +675,7 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   request(action: string, data?: object): Promise<object> {
+    // @ts-ignore
     return new Promise<Error>((resolve: () => void, reject: () => void) => {
       this.queueRequest.set(++this.reqSeq, { resolve, reject })
       this.socket.send({
@@ -737,8 +738,7 @@ export class Client extends EventEmitter<ClientEvents> {
       const conf = await this.deviceConfig(this.phone.type)
       await this.phone.register(conf as SipConfiguration)
     } catch (e) {
-      // FIXME add handle error
-      this.log.error(e)
+      this.emit('error', e as Error)
     }
   }
 

@@ -11,20 +11,21 @@
  * Do not edit the class manually.
  */
 
+import { EngineEmailAuthType } from './engine-email-auth-type'
 import { EngineLookup } from './engine-lookup'
 
 /**
- * Create email profile for gateway
+ *
  * @export
  * @interface EngineCreateEmailProfileRequest
  */
 export interface EngineCreateEmailProfileRequest {
   /**
    *
-   * @type {string}
+   * @type {EngineEmailAuthType}
    * @memberof EngineCreateEmailProfileRequest
    */
-  auth_type?: string
+  auth_type?: EngineEmailAuthType
   /**
    *
    * @type {string}
@@ -42,19 +43,19 @@ export interface EngineCreateEmailProfileRequest {
    * @type {number}
    * @memberof EngineCreateEmailProfileRequest
    */
-  fetch_interval: number
+  fetch_interval?: number
   /**
    *
    * @type {string}
    * @memberof EngineCreateEmailProfileRequest
    */
-  imap_host: string
+  imap_host?: string
   /**
    *
    * @type {number}
    * @memberof EngineCreateEmailProfileRequest
    */
-  imap_port: number
+  imap_port?: number
   /**
    *
    * @type {boolean}
@@ -66,19 +67,19 @@ export interface EngineCreateEmailProfileRequest {
    * @type {string}
    * @memberof EngineCreateEmailProfileRequest
    */
-  login: string
+  login?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateEmailProfileRequest
    */
-  mailbox: string
+  mailbox?: string
   /**
    *
    * @type {string}
    * @memberof EngineCreateEmailProfileRequest
    */
-  name: string
+  name?: string
   /**
    *
    * @type {string}
@@ -90,17 +91,17 @@ export interface EngineCreateEmailProfileRequest {
    * @type {EngineLookup}
    * @memberof EngineCreateEmailProfileRequest
    */
-  schema: EngineLookup
+  schema?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineCreateEmailProfileRequest
    */
-  smtp_host: string
+  smtp_host?: string
   /**
    *
    * @type {number}
    * @memberof EngineCreateEmailProfileRequest
    */
-  smtp_port: number
+  smtp_port?: number
 }

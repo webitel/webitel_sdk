@@ -19,6 +19,12 @@
 export interface EnginePatchHistoryCallRequest {
   /**
    *
+   * @type {boolean}
+   * @memberof EnginePatchHistoryCallRequest
+   */
+  hide_missed?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EnginePatchHistoryCallRequest
    */

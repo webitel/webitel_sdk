@@ -39,6 +39,7 @@ export default class SdkListGetterApiConsumer extends BaseListGetterApiConsumer 
 
   protected async _getList(args: any[]): Promise<ListGetterResponse> {
     try {
+      // @ts-ignore
       let response = await this.SDKMethod(...args)
       response = this.responseHandler(response)
       if (this.userResponseHandler) {

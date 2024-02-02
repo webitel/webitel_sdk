@@ -45,6 +45,7 @@ export default class SdkCreatorApiConsumer extends BaseCreatorApiConsumer {
 
   protected async _createItem(args: any[]): Promise<CreatorResponse> {
     try {
+      // @ts-ignore
       const response = await this.SDKMethod(...args)
 
       return this.responseHandler(response)

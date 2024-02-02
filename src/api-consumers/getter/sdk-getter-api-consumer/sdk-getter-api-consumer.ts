@@ -24,6 +24,7 @@ export default class SdkGetterApiConsumer extends BaseGetterApiConsumer {
 
   protected async _getItem(args: any[]): Promise<GetterResponse> {
     try {
+      // @ts-ignore
       let response = await this.SDKMethod(...args)
       response = this.responseHandler(response)
       if (this.userResponseHandler) {

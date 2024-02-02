@@ -12,27 +12,15 @@
  */
 
 /**
- * Peer contact.
+ *
  * @export
- * @interface WebitelChatPeer
+ * @interface EngineRedialCallRequest
  */
-export interface WebitelChatPeer {
+export interface EngineRedialCallRequest {
   /**
-   * Contact unique **ID**entifier. Contact **type**-specific string.
+   *
    * @type {string}
-   * @memberof WebitelChatPeer
+   * @memberof EngineRedialCallRequest
    */
-  id?: string
-  /**
-   * Contact display **name**.
-   * @type {string}
-   * @memberof WebitelChatPeer
-   */
-  name?: string
-  /**
-   * Contact **type** provider.
-   * @type {string}
-   * @memberof WebitelChatPeer
-   */
-  type?: string
+  call_id?: string
 }

@@ -11,8 +11,6 @@
  * Do not edit the class manually.
  */
 
-import { WebitelContactsLookup } from './webitel-contacts-lookup'
-
 /**
  * Input of the contact IM client.
  * @export
@@ -20,23 +18,29 @@ import { WebitelContactsLookup } from './webitel-contacts-lookup'
  */
 export interface WebitelContactsInputIMClient {
   /**
-   *
-   * @type {WebitelContactsLookup}
-   * @memberof WebitelContactsInputIMClient
-   */
-  app?: WebitelContactsLookup
-  /**
-   * Unique ID of the latest version of an existing resorce.
+   * Id of Agent created this IM client.
    * @type {string}
    * @memberof WebitelContactsInputIMClient
    */
-  etag?: string
+  created_by?: string
   /**
    *
-   * @type {WebitelContactsLookup}
+   * @type {string}
    * @memberof WebitelContactsInputIMClient
    */
-  user: WebitelContactsLookup
+  external_user?: string
+  /**
+   * App (Text-Gateway) used to connect the IM client.
+   * @type {string}
+   * @memberof WebitelContactsInputIMClient
+   */
+  gateway_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelContactsInputIMClient
+   */
+  protocol?: string
   /**
    * [Via] App(-specific) peer(-id) to connect[from] the IM client.
    * @type {string}

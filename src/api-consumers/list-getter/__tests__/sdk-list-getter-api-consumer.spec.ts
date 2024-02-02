@@ -32,6 +32,7 @@ describe('Sdk List Getter Api Consumer', () => {
   })
   it('correctly passes received arguments to passed SDK method', async () => {
     await listGetter.getList(params)
+    // @ts-ignore
     expect(sdkMethod).toHaveBeenCalledWith(...Object.values(params))
   })
 })

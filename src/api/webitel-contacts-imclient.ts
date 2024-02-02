@@ -50,6 +50,12 @@ export interface WebitelContactsIMClient {
    */
   id?: string
   /**
+   * Protocol used to connect the IM client.
+   * @type {string}
+   * @memberof WebitelContactsIMClient
+   */
+  protocol?: string
+  /**
    * Timestamp(milli) of the last Field update. Take part in Etag generation.
    * @type {string}
    * @memberof WebitelContactsIMClient

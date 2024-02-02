@@ -25,6 +25,7 @@ export class Log implements Log {
     supportingDetails: any[]
   ) {
     if (supportingDetails.length > 0) {
+      // @ts-ignore
       console[msgType](msg, ...supportingDetails)
     } else {
       console[msgType](msg)

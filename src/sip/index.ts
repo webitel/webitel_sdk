@@ -59,11 +59,11 @@ export interface SipClientEvents {
 export abstract class SipClient extends EventEmitter<SipClientEvents> {
   abstract readonly type: string
 
-  abstract async callOption(req: Answer): Promise<object | Error>
-  abstract async register(sipConf: SipConfiguration): Promise<Error | void>
-  abstract async unregister(): Promise<void | Error>
+  abstract callOption(req: Answer): Promise<object | Error>
+  abstract register(sipConf: SipConfiguration): Promise<Error | void>
+  abstract unregister(): Promise<void | Error>
 
-  abstract async call(req: Outbound): Promise<void | Error>
+  abstract call(req: Outbound): Promise<void | Error>
   abstract isRegistered(): boolean
 
   // TODO del me

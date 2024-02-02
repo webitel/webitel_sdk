@@ -169,6 +169,7 @@ export const CatalogApiAxiosParamCreator = function(
      * @param {string} [dateSince] Since epochtime (milli). **Match**: greater than ..
      * @param {string} [dateUntil] Until epochtime (milli). **Match**: less or equal ..
      * @param {boolean} [online] Dialogs ONLY that are currently [not] active( closed: ? ).
+     * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -188,6 +189,7 @@ export const CatalogApiAxiosParamCreator = function(
       dateSince?: string,
       dateUntil?: string,
       online?: boolean,
+      groupString?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/chat/dialogs`
@@ -273,6 +275,10 @@ export const CatalogApiAxiosParamCreator = function(
         localVarQueryParameter['online'] = online
       }
 
+      if (groupString !== undefined) {
+        localVarQueryParameter['group[string]'] = groupString
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -295,7 +301,7 @@ export const CatalogApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Query of chat messages history
+     * @summary Query of the chat history
      * @param {string} chatId Unique chat dialog
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
      * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
@@ -305,6 +311,7 @@ export const CatalogApiAxiosParamCreator = function(
      * @param {string} [peerId] Contact unique **ID**entifier. Contact **type**-specific string.
      * @param {string} [peerType] Contact **type** provider.
      * @param {string} [peerName] Contact display **name**.
+     * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -318,6 +325,7 @@ export const CatalogApiAxiosParamCreator = function(
       peerId?: string,
       peerType?: string,
       peerName?: string,
+      groupString?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'chatId' is not null or undefined
@@ -385,6 +393,10 @@ export const CatalogApiAxiosParamCreator = function(
         localVarQueryParameter['peer.name'] = peerName
       }
 
+      if (groupString !== undefined) {
+        localVarQueryParameter['group[string]'] = groupString
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -407,7 +419,7 @@ export const CatalogApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Query of chat messages history
+     * @summary Query of the chat history
      * @param {string} peerType Contact **type** provider.
      * @param {string} peerId Contact unique **ID**entifier. Contact **type**-specific string.
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
@@ -417,6 +429,7 @@ export const CatalogApiAxiosParamCreator = function(
      * @param {Array<string>} [fields] Fields to return into result.
      * @param {string} [chatId] Unique chat dialog
      * @param {string} [peerName] Contact display **name**.
+     * @param {string} [groupStringString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -430,6 +443,7 @@ export const CatalogApiAxiosParamCreator = function(
       fields?: Array<string>,
       chatId?: string,
       peerName?: string,
+      groupStringString?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'peerType' is not null or undefined
@@ -497,6 +511,10 @@ export const CatalogApiAxiosParamCreator = function(
 
       if (peerName !== undefined) {
         localVarQueryParameter['peer.name'] = peerName
+      }
+
+      if (groupStringString !== undefined) {
+        localVarQueryParameter['group[string][string]'] = groupStringString
       }
 
       localVarUrlObj.query = {
@@ -766,6 +784,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
      * @param {string} [dateSince] Since epochtime (milli). **Match**: greater than ..
      * @param {string} [dateUntil] Until epochtime (milli). **Match**: less or equal ..
      * @param {boolean} [online] Dialogs ONLY that are currently [not] active( closed: ? ).
+     * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -785,6 +804,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
       dateSince?: string,
       dateUntil?: string,
       online?: boolean,
+      groupString?: string,
       options?: any
     ): Promise<
       (
@@ -810,6 +830,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
         dateSince,
         dateUntil,
         online,
+        groupString,
         options
       )
       return (
@@ -825,7 +846,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Query of chat messages history
+     * @summary Query of the chat history
      * @param {string} chatId Unique chat dialog
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
      * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
@@ -835,6 +856,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
      * @param {string} [peerId] Contact unique **ID**entifier. Contact **type**-specific string.
      * @param {string} [peerType] Contact **type** provider.
      * @param {string} [peerName] Contact display **name**.
+     * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -848,6 +870,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
       peerId?: string,
       peerType?: string,
       peerName?: string,
+      groupString?: string,
       options?: any
     ): Promise<
       (
@@ -867,6 +890,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
         peerId,
         peerType,
         peerName,
+        groupString,
         options
       )
       return (
@@ -882,7 +906,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Query of chat messages history
+     * @summary Query of the chat history
      * @param {string} peerType Contact **type** provider.
      * @param {string} peerId Contact unique **ID**entifier. Contact **type**-specific string.
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
@@ -892,6 +916,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [fields] Fields to return into result.
      * @param {string} [chatId] Unique chat dialog
      * @param {string} [peerName] Contact display **name**.
+     * @param {string} [groupStringString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -905,6 +930,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       chatId?: string,
       peerName?: string,
+      groupStringString?: string,
       options?: any
     ): Promise<
       (
@@ -924,6 +950,7 @@ export const CatalogApiFp = function(configuration?: Configuration) {
         fields,
         chatId,
         peerName,
+        groupStringString,
         options
       )
       return (
@@ -1094,6 +1121,7 @@ export const CatalogApiFactory = function(
      * @param {string} [dateSince] Since epochtime (milli). **Match**: greater than ..
      * @param {string} [dateUntil] Until epochtime (milli). **Match**: less or equal ..
      * @param {boolean} [online] Dialogs ONLY that are currently [not] active( closed: ? ).
+     * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1113,6 +1141,7 @@ export const CatalogApiFactory = function(
       dateSince?: string,
       dateUntil?: string,
       online?: boolean,
+      groupString?: string,
       options?: any
     ): AxiosPromise<WebitelChatChatDialogs> {
       return CatalogApiFp(configuration)
@@ -1132,13 +1161,14 @@ export const CatalogApiFactory = function(
           dateSince,
           dateUntil,
           online,
+          groupString,
           options
         )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Query of chat messages history
+     * @summary Query of the chat history
      * @param {string} chatId Unique chat dialog
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
      * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
@@ -1148,6 +1178,7 @@ export const CatalogApiFactory = function(
      * @param {string} [peerId] Contact unique **ID**entifier. Contact **type**-specific string.
      * @param {string} [peerType] Contact **type** provider.
      * @param {string} [peerName] Contact display **name**.
+     * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1161,6 +1192,7 @@ export const CatalogApiFactory = function(
       peerId?: string,
       peerType?: string,
       peerName?: string,
+      groupString?: string,
       options?: any
     ): AxiosPromise<WebitelChatChatMessages> {
       return CatalogApiFp(configuration)
@@ -1174,13 +1206,14 @@ export const CatalogApiFactory = function(
           peerId,
           peerType,
           peerName,
+          groupString,
           options
         )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Query of chat messages history
+     * @summary Query of the chat history
      * @param {string} peerType Contact **type** provider.
      * @param {string} peerId Contact unique **ID**entifier. Contact **type**-specific string.
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
@@ -1190,6 +1223,7 @@ export const CatalogApiFactory = function(
      * @param {Array<string>} [fields] Fields to return into result.
      * @param {string} [chatId] Unique chat dialog
      * @param {string} [peerName] Contact display **name**.
+     * @param {string} [groupStringString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1203,6 +1237,7 @@ export const CatalogApiFactory = function(
       fields?: Array<string>,
       chatId?: string,
       peerName?: string,
+      groupStringString?: string,
       options?: any
     ): AxiosPromise<WebitelChatChatMessages> {
       return CatalogApiFp(configuration)
@@ -1216,6 +1251,7 @@ export const CatalogApiFactory = function(
           fields,
           chatId,
           peerName,
+          groupStringString,
           options
         )
         .then((request) => request(axios, basePath))
@@ -1361,6 +1397,7 @@ export class CatalogApi extends BaseAPI {
    * @param {string} [dateSince] Since epochtime (milli). **Match**: greater than ..
    * @param {string} [dateUntil] Until epochtime (milli). **Match**: less or equal ..
    * @param {boolean} [online] Dialogs ONLY that are currently [not] active( closed: ? ).
+   * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogApi
@@ -1381,6 +1418,7 @@ export class CatalogApi extends BaseAPI {
     dateSince?: string,
     dateUntil?: string,
     online?: boolean,
+    groupString?: string,
     options?: any
   ) {
     return CatalogApiFp(this.configuration)
@@ -1400,6 +1438,7 @@ export class CatalogApi extends BaseAPI {
         dateSince,
         dateUntil,
         online,
+        groupString,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1407,7 +1446,7 @@ export class CatalogApi extends BaseAPI {
 
   /**
    *
-   * @summary Query of chat messages history
+   * @summary Query of the chat history
    * @param {string} chatId Unique chat dialog
    * @param {string} [offsetId] Messages ONLY starting from the specified message ID
    * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
@@ -1417,6 +1456,7 @@ export class CatalogApi extends BaseAPI {
    * @param {string} [peerId] Contact unique **ID**entifier. Contact **type**-specific string.
    * @param {string} [peerType] Contact **type** provider.
    * @param {string} [peerName] Contact display **name**.
+   * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogApi
@@ -1431,6 +1471,7 @@ export class CatalogApi extends BaseAPI {
     peerId?: string,
     peerType?: string,
     peerName?: string,
+    groupString?: string,
     options?: any
   ) {
     return CatalogApiFp(this.configuration)
@@ -1444,6 +1485,7 @@ export class CatalogApi extends BaseAPI {
         peerId,
         peerType,
         peerName,
+        groupString,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1451,7 +1493,7 @@ export class CatalogApi extends BaseAPI {
 
   /**
    *
-   * @summary Query of chat messages history
+   * @summary Query of the chat history
    * @param {string} peerType Contact **type** provider.
    * @param {string} peerId Contact unique **ID**entifier. Contact **type**-specific string.
    * @param {string} [offsetId] Messages ONLY starting from the specified message ID
@@ -1461,6 +1503,7 @@ export class CatalogApi extends BaseAPI {
    * @param {Array<string>} [fields] Fields to return into result.
    * @param {string} [chatId] Unique chat dialog
    * @param {string} [peerName] Contact display **name**.
+   * @param {string} [groupStringString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogApi
@@ -1475,6 +1518,7 @@ export class CatalogApi extends BaseAPI {
     fields?: Array<string>,
     chatId?: string,
     peerName?: string,
+    groupStringString?: string,
     options?: any
   ) {
     return CatalogApiFp(this.configuration)
@@ -1488,6 +1532,7 @@ export class CatalogApi extends BaseAPI {
         fields,
         chatId,
         peerName,
+        groupStringString,
         options
       )
       .then((request) => request(this.axios, this.basePath))

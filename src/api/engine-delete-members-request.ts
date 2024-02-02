@@ -121,4 +121,10 @@ export interface EngineDeleteMembersRequest {
    * @memberof EngineDeleteMembersRequest
    */
   variables?: { [key: string]: string }
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineDeleteMembersRequest
+   */
+  without_members?: boolean
 }

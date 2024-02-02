@@ -14,7 +14,7 @@
 import { EngineLookup } from './engine-lookup'
 
 /**
- * Update email profile for gateway
+ *
  * @export
  * @interface EnginePatchEmailProfileRequest
  */
@@ -48,7 +48,7 @@ export interface EnginePatchEmailProfileRequest {
    * @type {string}
    * @memberof EnginePatchEmailProfileRequest
    */
-  id: string
+  id?: string
   /**
    *
    * @type {string}

@@ -52,6 +52,12 @@ export interface EngineUpdateRoutingSchemaRequest {
   name?: string
   /**
    *
+   * @type {string}
+   * @memberof EngineUpdateRoutingSchemaRequest
+   */
+  note?: string
+  /**
+   *
    * @type {object}
    * @memberof EngineUpdateRoutingSchemaRequest
    */

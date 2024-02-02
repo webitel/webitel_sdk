@@ -26,6 +26,7 @@ export default class Session implements CallSession {
   answer(s: object): Promise<Error> {
     return new Promise<Error>((resolve) => {
       this.client.answer(this.id)
+      // @ts-ignore
       resolve()
     })
   }

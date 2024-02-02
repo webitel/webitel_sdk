@@ -58,6 +58,8 @@ import { EngineListHistoryCall } from '../api'
 // @ts-ignore
 import { EnginePatchHistoryCallRequest } from '../api'
 // @ts-ignore
+import { EngineRedialCallRequest } from '../api'
+// @ts-ignore
 import { EngineSearchHistoryCallRequest } from '../api'
 // @ts-ignore
 import { EngineSetVariablesCallRequest } from '../api'
@@ -968,6 +970,86 @@ export const CallServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} callId
+     * @param {EngineRedialCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    redialCall: async (
+      callId: string,
+      body: EngineRedialCallRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'callId' is not null or undefined
+      if (callId === null || callId === undefined) {
+        throw new RequiredError(
+          'callId',
+          'Required parameter callId was null or undefined when calling redialCall.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling redialCall.'
+        )
+      }
+      const localVarPath = `/calls/history/{call_id}/redial`.replace(
+        `{${'call_id'}}`,
+        encodeURIComponent(String(callId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -2235,6 +2317,37 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} callId
+     * @param {EngineRedialCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async redialCall(
+      callId: string,
+      body: EngineRedialCallRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineCreateCallResponse>
+    > {
+      const localVarAxiosArgs = await CallServiceApiAxiosParamCreator(
+        configuration
+      ).redialCall(callId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -2848,6 +2961,22 @@ export const CallServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} callId
+     * @param {EngineRedialCallRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    redialCall(
+      callId: string,
+      body: EngineRedialCallRequest,
+      options?: any
+    ): AxiosPromise<EngineCreateCallResponse> {
+      return CallServiceApiFp(configuration)
+        .redialCall(callId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -3370,6 +3499,24 @@ export class CallServiceApi extends BaseAPI {
   public readCall(id: string, domainId?: string, options?: any) {
     return CallServiceApiFp(this.configuration)
       .readCall(id, domainId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} callId
+   * @param {EngineRedialCallRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CallServiceApi
+   */
+  public redialCall(
+    callId: string,
+    body: EngineRedialCallRequest,
+    options?: any
+  ) {
+    return CallServiceApiFp(this.configuration)
+      .redialCall(callId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
