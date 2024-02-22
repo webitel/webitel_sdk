@@ -11,15 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsDayTimeline } from './webitel-contacts-day-timeline'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface WebitelContactsGetTimelineResponse
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
+export interface WebitelContactsGetTimelineResponse {
+  /**
+   *
+   * @type {Array<WebitelContactsDayTimeline>}
+   * @memberof WebitelContactsGetTimelineResponse
+   */
+  days?: Array<WebitelContactsDayTimeline>
 }

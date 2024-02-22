@@ -87,6 +87,12 @@ export interface EngineUpdateAgentRequest {
   supervisor?: Array<EngineLookup>
   /**
    *
+   * @type {number}
+   * @memberof EngineUpdateAgentRequest
+   */
+  task_count?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineUpdateAgentRequest
    */

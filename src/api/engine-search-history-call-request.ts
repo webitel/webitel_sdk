@@ -11,7 +11,6 @@
  * Do not edit the class manually.
  */
 
-import { EngineBoolFilter } from './engine-bool-filter'
 import { EngineFilterBetween } from './engine-filter-between'
 
 /**
@@ -124,16 +123,16 @@ export interface EngineSearchHistoryCallRequest {
   grantee_id?: Array<string>
   /**
    *
-   * @type {EngineBoolFilter}
+   * @type {boolean}
    * @memberof EngineSearchHistoryCallRequest
    */
-  has_file?: EngineBoolFilter
+  has_file?: boolean
   /**
    *
-   * @type {EngineBoolFilter}
+   * @type {boolean}
    * @memberof EngineSearchHistoryCallRequest
    */
-  has_transcript?: EngineBoolFilter
+  has_transcript?: boolean
   /**
    *
    * @type {Array<string>}
@@ -190,10 +189,10 @@ export interface EngineSearchHistoryCallRequest {
   queue_id?: Array<string>
   /**
    *
-   * @type {EngineBoolFilter}
+   * @type {boolean}
    * @memberof EngineSearchHistoryCallRequest
    */
-  rated?: EngineBoolFilter
+  rated?: boolean
   /**
    *
    * @type {Array<string>}

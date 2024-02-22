@@ -14,12 +14,25 @@
 /**
  *
  * @export
- * @enum {string}
+ * @interface EngineCreateSchemaVariableRequest
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
+export interface EngineCreateSchemaVariableRequest {
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineCreateSchemaVariableRequest
+   */
+  encrypt?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateSchemaVariableRequest
+   */
+  name?: string
+  /**
+   *
+   * @type {object}
+   * @memberof EngineCreateSchemaVariableRequest
+   */
+  value?: object
 }
