@@ -12,7 +12,6 @@
  */
 
 import { EngineAggregateRequest } from './engine-aggregate-request'
-import { EngineBoolFilter } from './engine-bool-filter'
 import { EngineFilterBetween } from './engine-filter-between'
 
 /**
@@ -113,16 +112,16 @@ export interface EngineAggregateHistoryCallRequest {
   gateway_id?: Array<string>
   /**
    *
-   * @type {EngineBoolFilter}
+   * @type {boolean}
    * @memberof EngineAggregateHistoryCallRequest
    */
-  has_file?: EngineBoolFilter
+  has_file?: boolean
   /**
    *
-   * @type {EngineBoolFilter}
+   * @type {boolean}
    * @memberof EngineAggregateHistoryCallRequest
    */
-  has_transcript?: EngineBoolFilter
+  has_transcript?: boolean
   /**
    *
    * @type {Array<string>}

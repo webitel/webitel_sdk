@@ -12,6 +12,7 @@
  */
 
 import { EngineEmailAuthType } from './engine-email-auth-type'
+import { EngineEmailProfileParams } from './engine-email-profile-params'
 import { EngineLookup } from './engine-lookup'
 
 /**
@@ -94,6 +95,12 @@ export interface EngineEmailProfile {
   listen?: boolean
   /**
    *
+   * @type {boolean}
+   * @memberof EngineEmailProfile
+   */
+  logged?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineEmailProfile
    */
@@ -110,6 +117,12 @@ export interface EngineEmailProfile {
    * @memberof EngineEmailProfile
    */
   name?: string
+  /**
+   *
+   * @type {EngineEmailProfileParams}
+   * @memberof EngineEmailProfile
+   */
+  params?: EngineEmailProfileParams
   /**
    *
    * @type {string}

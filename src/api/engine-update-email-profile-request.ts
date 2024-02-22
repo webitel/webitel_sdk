@@ -12,6 +12,7 @@
  */
 
 import { EngineEmailAuthType } from './engine-email-auth-type'
+import { EngineEmailProfileParams } from './engine-email-profile-params'
 import { EngineLookup } from './engine-lookup'
 
 /**
@@ -86,6 +87,12 @@ export interface EngineUpdateEmailProfileRequest {
    * @memberof EngineUpdateEmailProfileRequest
    */
   name?: string
+  /**
+   *
+   * @type {EngineEmailProfileParams}
+   * @memberof EngineUpdateEmailProfileRequest
+   */
+  params?: EngineEmailProfileParams
   /**
    *
    * @type {string}

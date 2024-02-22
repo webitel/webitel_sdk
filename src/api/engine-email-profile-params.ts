@@ -11,15 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { EmailProfileParamsOAuth2 } from './email-profile-params-oauth2'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface EngineEmailProfileParams
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
+export interface EngineEmailProfileParams {
+  /**
+   *
+   * @type {EmailProfileParamsOAuth2}
+   * @memberof EngineEmailProfileParams
+   */
+  oauth2?: EmailProfileParamsOAuth2
 }

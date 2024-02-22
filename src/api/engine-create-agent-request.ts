@@ -81,6 +81,12 @@ export interface EngineCreateAgentRequest {
   supervisor?: Array<EngineLookup>
   /**
    *
+   * @type {number}
+   * @memberof EngineCreateAgentRequest
+   */
+  task_count?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineCreateAgentRequest
    */

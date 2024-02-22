@@ -124,6 +124,12 @@ export interface EngineAgent {
   supervisor?: Array<EngineLookup>
   /**
    *
+   * @type {number}
+   * @memberof EngineAgent
+   */
+  task_count?: number
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineAgent
    */

@@ -1302,7 +1302,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
-     * @param {'undefined' | 'true' | 'false'} [hasFile]
+     * @param {boolean} [hasFile]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -1319,14 +1319,14 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
      * @param {Array<string>} [directions]
-     * @param {'undefined' | 'true' | 'false'} [hasTranscript]
+     * @param {boolean} [hasTranscript]
      * @param {string} [agentDescription]
      * @param {Array<string>} [ownerId]
      * @param {Array<string>} [granteeId]
      * @param {Array<string>} [amdAiResult]
      * @param {string} [talkFrom]
      * @param {string} [talkTo]
-     * @param {'undefined' | 'true' | 'false'} [rated]
+     * @param {boolean} [rated]
      * @param {Array<string>} [ratedBy]
      * @param {string} [scoreRequiredFrom]
      * @param {string} [scoreRequiredTo]
@@ -1356,7 +1356,7 @@ export const CallServiceApiAxiosParamCreator = function(
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
-      hasFile?: 'undefined' | 'true' | 'false',
+      hasFile?: boolean,
       domainId?: string,
       number?: string,
       direction?: string,
@@ -1373,14 +1373,14 @@ export const CallServiceApiAxiosParamCreator = function(
       amdResult?: Array<string>,
       fts?: string,
       directions?: Array<string>,
-      hasTranscript?: 'undefined' | 'true' | 'false',
+      hasTranscript?: boolean,
       agentDescription?: string,
       ownerId?: Array<string>,
       granteeId?: Array<string>,
       amdAiResult?: Array<string>,
       talkFrom?: string,
       talkTo?: string,
-      rated?: 'undefined' | 'true' | 'false',
+      rated?: boolean,
       ratedBy?: Array<string>,
       scoreRequiredFrom?: string,
       scoreRequiredTo?: string,
@@ -2480,7 +2480,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
-     * @param {'undefined' | 'true' | 'false'} [hasFile]
+     * @param {boolean} [hasFile]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -2497,14 +2497,14 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
      * @param {Array<string>} [directions]
-     * @param {'undefined' | 'true' | 'false'} [hasTranscript]
+     * @param {boolean} [hasTranscript]
      * @param {string} [agentDescription]
      * @param {Array<string>} [ownerId]
      * @param {Array<string>} [granteeId]
      * @param {Array<string>} [amdAiResult]
      * @param {string} [talkFrom]
      * @param {string} [talkTo]
-     * @param {'undefined' | 'true' | 'false'} [rated]
+     * @param {boolean} [rated]
      * @param {Array<string>} [ratedBy]
      * @param {string} [scoreRequiredFrom]
      * @param {string} [scoreRequiredTo]
@@ -2534,7 +2534,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
-      hasFile?: 'undefined' | 'true' | 'false',
+      hasFile?: boolean,
       domainId?: string,
       number?: string,
       direction?: string,
@@ -2551,14 +2551,14 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       amdResult?: Array<string>,
       fts?: string,
       directions?: Array<string>,
-      hasTranscript?: 'undefined' | 'true' | 'false',
+      hasTranscript?: boolean,
       agentDescription?: string,
       ownerId?: Array<string>,
       granteeId?: Array<string>,
       amdAiResult?: Array<string>,
       talkFrom?: string,
       talkTo?: string,
-      rated?: 'undefined' | 'true' | 'false',
+      rated?: boolean,
       ratedBy?: Array<string>,
       scoreRequiredFrom?: string,
       scoreRequiredTo?: string,
@@ -3097,7 +3097,7 @@ export const CallServiceApiFactory = function(
      * @param {boolean} [skipParent]
      * @param {string} [parentId]
      * @param {Array<string>} [cause]
-     * @param {'undefined' | 'true' | 'false'} [hasFile]
+     * @param {boolean} [hasFile]
      * @param {string} [domainId]
      * @param {string} [number]
      * @param {string} [direction]
@@ -3114,14 +3114,14 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [amdResult]
      * @param {string} [fts]
      * @param {Array<string>} [directions]
-     * @param {'undefined' | 'true' | 'false'} [hasTranscript]
+     * @param {boolean} [hasTranscript]
      * @param {string} [agentDescription]
      * @param {Array<string>} [ownerId]
      * @param {Array<string>} [granteeId]
      * @param {Array<string>} [amdAiResult]
      * @param {string} [talkFrom]
      * @param {string} [talkTo]
-     * @param {'undefined' | 'true' | 'false'} [rated]
+     * @param {boolean} [rated]
      * @param {Array<string>} [ratedBy]
      * @param {string} [scoreRequiredFrom]
      * @param {string} [scoreRequiredTo]
@@ -3151,7 +3151,7 @@ export const CallServiceApiFactory = function(
       skipParent?: boolean,
       parentId?: string,
       cause?: Array<string>,
-      hasFile?: 'undefined' | 'true' | 'false',
+      hasFile?: boolean,
       domainId?: string,
       number?: string,
       direction?: string,
@@ -3168,14 +3168,14 @@ export const CallServiceApiFactory = function(
       amdResult?: Array<string>,
       fts?: string,
       directions?: Array<string>,
-      hasTranscript?: 'undefined' | 'true' | 'false',
+      hasTranscript?: boolean,
       agentDescription?: string,
       ownerId?: Array<string>,
       granteeId?: Array<string>,
       amdAiResult?: Array<string>,
       talkFrom?: string,
       talkTo?: string,
-      rated?: 'undefined' | 'true' | 'false',
+      rated?: boolean,
       ratedBy?: Array<string>,
       scoreRequiredFrom?: string,
       scoreRequiredTo?: string,
@@ -3644,7 +3644,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {boolean} [skipParent]
    * @param {string} [parentId]
    * @param {Array<string>} [cause]
-   * @param {'undefined' | 'true' | 'false'} [hasFile]
+   * @param {boolean} [hasFile]
    * @param {string} [domainId]
    * @param {string} [number]
    * @param {string} [direction]
@@ -3661,14 +3661,14 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [amdResult]
    * @param {string} [fts]
    * @param {Array<string>} [directions]
-   * @param {'undefined' | 'true' | 'false'} [hasTranscript]
+   * @param {boolean} [hasTranscript]
    * @param {string} [agentDescription]
    * @param {Array<string>} [ownerId]
    * @param {Array<string>} [granteeId]
    * @param {Array<string>} [amdAiResult]
    * @param {string} [talkFrom]
    * @param {string} [talkTo]
-   * @param {'undefined' | 'true' | 'false'} [rated]
+   * @param {boolean} [rated]
    * @param {Array<string>} [ratedBy]
    * @param {string} [scoreRequiredFrom]
    * @param {string} [scoreRequiredTo]
@@ -3699,7 +3699,7 @@ export class CallServiceApi extends BaseAPI {
     skipParent?: boolean,
     parentId?: string,
     cause?: Array<string>,
-    hasFile?: 'undefined' | 'true' | 'false',
+    hasFile?: boolean,
     domainId?: string,
     number?: string,
     direction?: string,
@@ -3716,14 +3716,14 @@ export class CallServiceApi extends BaseAPI {
     amdResult?: Array<string>,
     fts?: string,
     directions?: Array<string>,
-    hasTranscript?: 'undefined' | 'true' | 'false',
+    hasTranscript?: boolean,
     agentDescription?: string,
     ownerId?: Array<string>,
     granteeId?: Array<string>,
     amdAiResult?: Array<string>,
     talkFrom?: string,
     talkTo?: string,
-    rated?: 'undefined' | 'true' | 'false',
+    rated?: boolean,
     ratedBy?: Array<string>,
     scoreRequiredFrom?: string,
     scoreRequiredTo?: string,
