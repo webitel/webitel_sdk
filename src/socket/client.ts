@@ -199,6 +199,7 @@ export interface ClientEvents {
   connected(): void
   error(e: Error): void
   phone_registered(registered: boolean): void
+  phone_connected(connected: boolean): void
 }
 
 export class Client extends EventEmitter<ClientEvents> {
@@ -775,6 +776,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
     phone.on('newSession', this.onNewCallSession.bind(this))
     phone.on('registered', () => this.emit('phone_registered', true))
+    phone.on('connected', () => this.emit('phone_connected', true))
     phone.on('unregistered', () => this.emit('phone_registered', false))
   }
 

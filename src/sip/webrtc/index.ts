@@ -201,6 +201,11 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       this.emit('registered')
     })
 
+    // fixes WTEL-4236
+    ua.on('connected', (e: object) => {
+      this.emit('connected')
+    })
+
     ua.start()
   }
 

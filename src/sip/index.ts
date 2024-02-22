@@ -50,6 +50,7 @@ export interface CallSession {
 export interface SipClientEvents {
   registered(): void
   unregistered(): void
+  connected(): void
   error(err: Error): void
   peerStreams(session: CallSession, e: MediaStream[] | null): void
   localStreams(session: CallSession, e: MediaStream[] | null): void
