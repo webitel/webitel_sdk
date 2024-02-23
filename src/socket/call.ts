@@ -685,7 +685,7 @@ export class Call {
         return
       }
       this.autoAnswered = true
-      await this.answer(req)
+      this.autoAnswered = await this.answer(req)
     }, this.autoAnswerDelay)
   }
 

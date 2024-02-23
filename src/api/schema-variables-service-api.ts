@@ -30,6 +30,8 @@ import { EngineCreateSchemaVariableRequest } from '../api'
 // @ts-ignore
 import { EngineListSchemaVariable } from '../api'
 // @ts-ignore
+import { EnginePatchSchemaVariableRequest } from '../api'
+// @ts-ignore
 import { EngineSchemaVariable } from '../api'
 // @ts-ignore
 import { EngineUpdateSchemaVariableRequest } from '../api'
@@ -166,6 +168,86 @@ export const SchemaVariablesServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {number} id
+     * @param {EnginePatchSchemaVariableRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchSchemaVariable: async (
+      id: number,
+      body: EnginePatchSchemaVariableRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchSchemaVariable.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchSchemaVariable.'
+        )
+      }
+      const localVarPath = `/routing/schema/variables/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -468,6 +550,37 @@ export const SchemaVariablesServiceApiFp = function(
     /**
      *
      * @param {number} id
+     * @param {EnginePatchSchemaVariableRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchSchemaVariable(
+      id: number,
+      body: EnginePatchSchemaVariableRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineSchemaVariable>
+    > {
+      const localVarAxiosArgs = await SchemaVariablesServiceApiAxiosParamCreator(
+        configuration
+      ).patchSchemaVariable(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -606,6 +719,22 @@ export const SchemaVariablesServiceApiFactory = function(
     /**
      *
      * @param {number} id
+     * @param {EnginePatchSchemaVariableRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchSchemaVariable(
+      id: number,
+      body: EnginePatchSchemaVariableRequest,
+      options?: any
+    ): AxiosPromise<EngineSchemaVariable> {
+      return SchemaVariablesServiceApiFp(configuration)
+        .patchSchemaVariable(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -691,6 +820,24 @@ export class SchemaVariablesServiceApi extends BaseAPI {
   public deleteSchemaVariable(id: number, options?: any) {
     return SchemaVariablesServiceApiFp(this.configuration)
       .deleteSchemaVariable(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} id
+   * @param {EnginePatchSchemaVariableRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof SchemaVariablesServiceApi
+   */
+  public patchSchemaVariable(
+    id: number,
+    body: EnginePatchSchemaVariableRequest,
+    options?: any
+  ) {
+    return SchemaVariablesServiceApiFp(this.configuration)
+      .patchSchemaVariable(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -14,31 +14,37 @@
 /**
  *
  * @export
- * @interface EngineUpdateSchemaVariableRequest
+ * @interface EnginePatchSchemaVariableRequest
  */
-export interface EngineUpdateSchemaVariableRequest {
+export interface EnginePatchSchemaVariableRequest {
   /**
    *
    * @type {boolean}
-   * @memberof EngineUpdateSchemaVariableRequest
+   * @memberof EnginePatchSchemaVariableRequest
    */
   encrypt?: boolean
   /**
    *
+   * @type {Array<string>}
+   * @memberof EnginePatchSchemaVariableRequest
+   */
+  fields?: Array<string>
+  /**
+   *
    * @type {number}
-   * @memberof EngineUpdateSchemaVariableRequest
+   * @memberof EnginePatchSchemaVariableRequest
    */
   id?: number
   /**
    *
    * @type {string}
-   * @memberof EngineUpdateSchemaVariableRequest
+   * @memberof EnginePatchSchemaVariableRequest
    */
   name?: string
   /**
    *
    * @type {object}
-   * @memberof EngineUpdateSchemaVariableRequest
+   * @memberof EnginePatchSchemaVariableRequest
    */
   value?: object
 }
