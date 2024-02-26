@@ -26,46 +26,53 @@ import {
 // @ts-ignore
 import { EngineApiError } from '../api'
 // @ts-ignore
-import { EngineCreateEmailProfileRequest } from '../api'
+import { EngineCreateTeamHookRequest } from '../api'
 // @ts-ignore
-import { EngineEmailProfile } from '../api'
+import { EngineListTeamHook } from '../api'
 // @ts-ignore
-import { EngineListEmailProfile } from '../api'
+import { EnginePatchTeamHookRequest } from '../api'
 // @ts-ignore
-import { EngineLoginEmailProfileResponse } from '../api'
+import { EngineTeamHook } from '../api'
 // @ts-ignore
-import { EnginePatchEmailProfileRequest } from '../api'
-// @ts-ignore
-import { EngineTestEmailProfileResponse } from '../api'
-// @ts-ignore
-import { EngineUpdateEmailProfileRequest } from '../api'
+import { EngineUpdateTeamHookRequest } from '../api'
 /**
- * EmailProfileServiceApi - axios parameter creator
+ * TeamHookServiceApi - axios parameter creator
  * @export
  */
-export const EmailProfileServiceApiAxiosParamCreator = function(
+export const TeamHookServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @summary Create EmailProfile
-     * @param {EngineCreateEmailProfileRequest} body
+     * @param {number} teamId
+     * @param {EngineCreateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createEmailProfile: async (
-      body: EngineCreateEmailProfileRequest,
+    createTeamHook: async (
+      teamId: number,
+      body: EngineCreateTeamHookRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
+        throw new RequiredError(
+          'teamId',
+          'Required parameter teamId was null or undefined when calling createTeamHook.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createEmailProfile.'
+          'Required parameter body was null or undefined when calling createTeamHook.'
         )
       }
-      const localVarPath = `/email/profile`
+      const localVarPath = `/call_center/teams/{team_id}/hooks`.replace(
+        `{${'team_id'}}`,
+        encodeURIComponent(String(teamId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -118,26 +125,33 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Remove EmailProfile
-     * @param {string} id
+     * @param {number} teamId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteEmailProfile: async (
-      id: string,
+    deleteTeamHook: async (
+      teamId: number,
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
+        throw new RequiredError(
+          'teamId',
+          'Required parameter teamId was null or undefined when calling deleteTeamHook.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteEmailProfile.'
+          'Required parameter id was null or undefined when calling deleteTeamHook.'
         )
       }
-      const localVarPath = `/email/profile/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/teams/{team_id}/hooks/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -182,160 +196,42 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {number} teamId
      * @param {number} id
+     * @param {EnginePatchTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    loginEmailProfile: async (
+    patchTeamHook: async (
+      teamId: number,
       id: number,
+      body: EnginePatchTeamHookRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling loginEmailProfile.'
+          'teamId',
+          'Required parameter teamId was null or undefined when calling patchTeamHook.'
         )
       }
-      const localVarPath = `/email/profile/{id}/login`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {number} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    logoutEmailProfile: async (
-      id: number,
-      options: any = {}
-    ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling logoutEmailProfile.'
-        )
-      }
-      const localVarPath = `/email/profile/{id}/logout`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PATCH',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {string} id
-     * @param {EnginePatchEmailProfileRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    patchEmailProfile: async (
-      id: string,
-      body: EnginePatchEmailProfileRequest,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling patchEmailProfile.'
+          'Required parameter id was null or undefined when calling patchTeamHook.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchEmailProfile.'
+          'Required parameter body was null or undefined when calling patchTeamHook.'
         )
       }
-      const localVarPath = `/email/profile/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/teams/{team_id}/hooks/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -388,26 +284,33 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary EmailProfile item
-     * @param {string} id
+     * @param {number} teamId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readEmailProfile: async (
-      id: string,
+    readTeamHook: async (
+      teamId: number,
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
+        throw new RequiredError(
+          'teamId',
+          'Required parameter teamId was null or undefined when calling readTeamHook.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readEmailProfile.'
+          'Required parameter id was null or undefined when calling readTeamHook.'
         )
       }
-      const localVarPath = `/email/profile/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/teams/{team_id}/hooks/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -452,24 +355,41 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Search EmailProfile
+     * @param {number} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
+     * @param {Array<'teamHookEventUndefined' | 'agent_status'>} [event]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchEmailProfile: async (
+    searchTeamHook: async (
+      teamId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
+      schemaId?: Array<number>,
+      event?: Array<'teamHookEventUndefined' | 'agent_status'>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/email/profile`
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
+        throw new RequiredError(
+          'teamId',
+          'Required parameter teamId was null or undefined when calling searchTeamHook.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/hooks`.replace(
+        `{${'team_id'}}`,
+        encodeURIComponent(String(teamId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -512,6 +432,18 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (schemaId) {
+        localVarQueryParameter['schema_id'] = schemaId
+      }
+
+      if (event) {
+        localVarQueryParameter['event'] = event
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -534,99 +466,42 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary EmailProfile check login
+     * @param {number} teamId
      * @param {number} id
+     * @param {EngineUpdateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    testEmailProfile: async (
+    updateTeamHook: async (
+      teamId: number,
       id: number,
+      body: EngineUpdateTeamHookRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling testEmailProfile.'
+          'teamId',
+          'Required parameter teamId was null or undefined when calling updateTeamHook.'
         )
       }
-      const localVarPath = `/email/profile/{id}/test`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary Update EmailProfile
-     * @param {string} id
-     * @param {EngineUpdateEmailProfileRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateEmailProfile: async (
-      id: string,
-      body: EngineUpdateEmailProfileRequest,
-      options: any = {}
-    ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling updateEmailProfile.'
+          'Required parameter id was null or undefined when calling updateTeamHook.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateEmailProfile.'
+          'Required parameter body was null or undefined when calling updateTeamHook.'
         )
       }
-      const localVarPath = `/email/profile/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/call_center/teams/{team_id}/hooks/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -681,32 +556,28 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
 }
 
 /**
- * EmailProfileServiceApi - functional programming interface
+ * TeamHookServiceApi - functional programming interface
  * @export
  */
-export const EmailProfileServiceApiFp = function(
-  configuration?: Configuration
-) {
+export const TeamHookServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @summary Create EmailProfile
-     * @param {EngineCreateEmailProfileRequest} body
+     * @param {number} teamId
+     * @param {EngineCreateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createEmailProfile(
-      body: EngineCreateEmailProfileRequest,
+    async createTeamHook(
+      teamId: number,
+      body: EngineCreateTeamHookRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineEmailProfile>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTeamHook>
     > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TeamHookServiceApiAxiosParamCreator(
         configuration
-      ).createEmailProfile(body, options)
+      ).createTeamHook(teamId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -720,52 +591,21 @@ export const EmailProfileServiceApiFp = function(
     },
     /**
      *
-     * @summary Remove EmailProfile
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async deleteEmailProfile(
-      id: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineEmailProfile>
-    > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
-        configuration
-      ).deleteEmailProfile(id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
+     * @param {number} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async loginEmailProfile(
+    async deleteTeamHook(
+      teamId: number,
       id: number,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineLoginEmailProfileResponse>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTeamHook>
     > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TeamHookServiceApiAxiosParamCreator(
         configuration
-      ).loginEmailProfile(id, options)
+      ).deleteTeamHook(teamId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -779,19 +619,51 @@ export const EmailProfileServiceApiFp = function(
     },
     /**
      *
+     * @param {number} teamId
+     * @param {number} id
+     * @param {EnginePatchTeamHookRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchTeamHook(
+      teamId: number,
+      id: number,
+      body: EnginePatchTeamHookRequest,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTeamHook>
+    > {
+      const localVarAxiosArgs = await TeamHookServiceApiAxiosParamCreator(
+        configuration
+      ).patchTeamHook(teamId, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async logoutEmailProfile(
+    async readTeamHook(
+      teamId: number,
       id: number,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTeamHook>
     > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TeamHookServiceApiAxiosParamCreator(
         configuration
-      ).logoutEmailProfile(id, options)
+      ).readTeamHook(teamId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -805,92 +677,49 @@ export const EmailProfileServiceApiFp = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {EnginePatchEmailProfileRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async patchEmailProfile(
-      id: string,
-      body: EnginePatchEmailProfileRequest,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineEmailProfile>
-    > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
-        configuration
-      ).patchEmailProfile(id, body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary EmailProfile item
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async readEmailProfile(
-      id: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineEmailProfile>
-    > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
-        configuration
-      ).readEmailProfile(id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Search EmailProfile
+     * @param {number} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
+     * @param {Array<'teamHookEventUndefined' | 'agent_status'>} [event]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchEmailProfile(
+    async searchTeamHook(
+      teamId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
+      schemaId?: Array<number>,
+      event?: Array<'teamHookEventUndefined' | 'agent_status'>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListEmailProfile>
+      ) => AxiosPromise<EngineListTeamHook>
     > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TeamHookServiceApiAxiosParamCreator(
         configuration
-      ).searchEmailProfile(page, size, q, sort, fields, options)
+      ).searchTeamHook(
+        teamId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        schemaId,
+        event,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -904,55 +733,23 @@ export const EmailProfileServiceApiFp = function(
     },
     /**
      *
-     * @summary EmailProfile check login
+     * @param {number} teamId
      * @param {number} id
+     * @param {EngineUpdateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async testEmailProfile(
+    async updateTeamHook(
+      teamId: number,
       id: number,
+      body: EngineUpdateTeamHookRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineTestEmailProfileResponse>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTeamHook>
     > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TeamHookServiceApiAxiosParamCreator(
         configuration
-      ).testEmailProfile(id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Update EmailProfile
-     * @param {string} id
-     * @param {EngineUpdateEmailProfileRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateEmailProfile(
-      id: string,
-      body: EngineUpdateEmailProfileRequest,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineEmailProfile>
-    > {
-      const localVarAxiosArgs = await EmailProfileServiceApiAxiosParamCreator(
-        configuration
-      ).updateEmailProfile(id, body, options)
+      ).updateTeamHook(teamId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -968,10 +765,10 @@ export const EmailProfileServiceApiFp = function(
 }
 
 /**
- * EmailProfileServiceApi - factory interface
+ * TeamHookServiceApi - factory interface
  * @export
  */
-export const EmailProfileServiceApiFactory = function(
+export const TeamHookServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -979,299 +776,265 @@ export const EmailProfileServiceApiFactory = function(
   return {
     /**
      *
-     * @summary Create EmailProfile
-     * @param {EngineCreateEmailProfileRequest} body
+     * @param {number} teamId
+     * @param {EngineCreateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createEmailProfile(
-      body: EngineCreateEmailProfileRequest,
+    createTeamHook(
+      teamId: number,
+      body: EngineCreateTeamHookRequest,
       options?: any
-    ): AxiosPromise<EngineEmailProfile> {
-      return EmailProfileServiceApiFp(configuration)
-        .createEmailProfile(body, options)
+    ): AxiosPromise<EngineTeamHook> {
+      return TeamHookServiceApiFp(configuration)
+        .createTeamHook(teamId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Remove EmailProfile
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteEmailProfile(
-      id: string,
-      options?: any
-    ): AxiosPromise<EngineEmailProfile> {
-      return EmailProfileServiceApiFp(configuration)
-        .deleteEmailProfile(id, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
+     * @param {number} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    loginEmailProfile(
+    deleteTeamHook(
+      teamId: number,
       id: number,
       options?: any
-    ): AxiosPromise<EngineLoginEmailProfileResponse> {
-      return EmailProfileServiceApiFp(configuration)
-        .loginEmailProfile(id, options)
+    ): AxiosPromise<EngineTeamHook> {
+      return TeamHookServiceApiFp(configuration)
+        .deleteTeamHook(teamId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {number} teamId
+     * @param {number} id
+     * @param {EnginePatchTeamHookRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchTeamHook(
+      teamId: number,
+      id: number,
+      body: EnginePatchTeamHookRequest,
+      options?: any
+    ): AxiosPromise<EngineTeamHook> {
+      return TeamHookServiceApiFp(configuration)
+        .patchTeamHook(teamId, id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {number} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    logoutEmailProfile(id: number, options?: any): AxiosPromise<object> {
-      return EmailProfileServiceApiFp(configuration)
-        .logoutEmailProfile(id, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {string} id
-     * @param {EnginePatchEmailProfileRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    patchEmailProfile(
-      id: string,
-      body: EnginePatchEmailProfileRequest,
+    readTeamHook(
+      teamId: number,
+      id: number,
       options?: any
-    ): AxiosPromise<EngineEmailProfile> {
-      return EmailProfileServiceApiFp(configuration)
-        .patchEmailProfile(id, body, options)
+    ): AxiosPromise<EngineTeamHook> {
+      return TeamHookServiceApiFp(configuration)
+        .readTeamHook(teamId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary EmailProfile item
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readEmailProfile(
-      id: string,
-      options?: any
-    ): AxiosPromise<EngineEmailProfile> {
-      return EmailProfileServiceApiFp(configuration)
-        .readEmailProfile(id, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary Search EmailProfile
+     * @param {number} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
+     * @param {Array<'teamHookEventUndefined' | 'agent_status'>} [event]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchEmailProfile(
+    searchTeamHook(
+      teamId: number,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
+      schemaId?: Array<number>,
+      event?: Array<'teamHookEventUndefined' | 'agent_status'>,
       options?: any
-    ): AxiosPromise<EngineListEmailProfile> {
-      return EmailProfileServiceApiFp(configuration)
-        .searchEmailProfile(page, size, q, sort, fields, options)
+    ): AxiosPromise<EngineListTeamHook> {
+      return TeamHookServiceApiFp(configuration)
+        .searchTeamHook(
+          teamId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          schemaId,
+          event,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary EmailProfile check login
+     * @param {number} teamId
      * @param {number} id
+     * @param {EngineUpdateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    testEmailProfile(
+    updateTeamHook(
+      teamId: number,
       id: number,
+      body: EngineUpdateTeamHookRequest,
       options?: any
-    ): AxiosPromise<EngineTestEmailProfileResponse> {
-      return EmailProfileServiceApiFp(configuration)
-        .testEmailProfile(id, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary Update EmailProfile
-     * @param {string} id
-     * @param {EngineUpdateEmailProfileRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateEmailProfile(
-      id: string,
-      body: EngineUpdateEmailProfileRequest,
-      options?: any
-    ): AxiosPromise<EngineEmailProfile> {
-      return EmailProfileServiceApiFp(configuration)
-        .updateEmailProfile(id, body, options)
+    ): AxiosPromise<EngineTeamHook> {
+      return TeamHookServiceApiFp(configuration)
+        .updateTeamHook(teamId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * EmailProfileServiceApi - object-oriented interface
+ * TeamHookServiceApi - object-oriented interface
  * @export
- * @class EmailProfileServiceApi
+ * @class TeamHookServiceApi
  * @extends {BaseAPI}
  */
-export class EmailProfileServiceApi extends BaseAPI {
+export class TeamHookServiceApi extends BaseAPI {
   /**
    *
-   * @summary Create EmailProfile
-   * @param {EngineCreateEmailProfileRequest} body
+   * @param {number} teamId
+   * @param {EngineCreateTeamHookRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
+   * @memberof TeamHookServiceApi
    */
-  public createEmailProfile(
-    body: EngineCreateEmailProfileRequest,
+  public createTeamHook(
+    teamId: number,
+    body: EngineCreateTeamHookRequest,
     options?: any
   ) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .createEmailProfile(body, options)
+    return TeamHookServiceApiFp(this.configuration)
+      .createTeamHook(teamId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Remove EmailProfile
-   * @param {string} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
-   */
-  public deleteEmailProfile(id: string, options?: any) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .deleteEmailProfile(id, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
+   * @param {number} teamId
    * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
+   * @memberof TeamHookServiceApi
    */
-  public loginEmailProfile(id: number, options?: any) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .loginEmailProfile(id, options)
+  public deleteTeamHook(teamId: number, id: number, options?: any) {
+    return TeamHookServiceApiFp(this.configuration)
+      .deleteTeamHook(teamId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
+   * @param {number} teamId
+   * @param {number} id
+   * @param {EnginePatchTeamHookRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TeamHookServiceApi
+   */
+  public patchTeamHook(
+    teamId: number,
+    id: number,
+    body: EnginePatchTeamHookRequest,
+    options?: any
+  ) {
+    return TeamHookServiceApiFp(this.configuration)
+      .patchTeamHook(teamId, id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} teamId
    * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
+   * @memberof TeamHookServiceApi
    */
-  public logoutEmailProfile(id: number, options?: any) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .logoutEmailProfile(id, options)
+  public readTeamHook(teamId: number, id: number, options?: any) {
+    return TeamHookServiceApiFp(this.configuration)
+      .readTeamHook(teamId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} id
-   * @param {EnginePatchEmailProfileRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
-   */
-  public patchEmailProfile(
-    id: string,
-    body: EnginePatchEmailProfileRequest,
-    options?: any
-  ) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .patchEmailProfile(id, body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary EmailProfile item
-   * @param {string} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
-   */
-  public readEmailProfile(id: string, options?: any) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .readEmailProfile(id, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary Search EmailProfile
+   * @param {number} teamId
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
+   * @param {Array<number>} [schemaId]
+   * @param {Array<'teamHookEventUndefined' | 'agent_status'>} [event]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
+   * @memberof TeamHookServiceApi
    */
-  public searchEmailProfile(
+  public searchTeamHook(
+    teamId: number,
     page?: number,
     size?: number,
     q?: string,
     sort?: string,
     fields?: Array<string>,
+    id?: Array<number>,
+    schemaId?: Array<number>,
+    event?: Array<'teamHookEventUndefined' | 'agent_status'>,
     options?: any
   ) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .searchEmailProfile(page, size, q, sort, fields, options)
+    return TeamHookServiceApiFp(this.configuration)
+      .searchTeamHook(
+        teamId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        schemaId,
+        event,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary EmailProfile check login
+   * @param {number} teamId
    * @param {number} id
+   * @param {EngineUpdateTeamHookRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
+   * @memberof TeamHookServiceApi
    */
-  public testEmailProfile(id: number, options?: any) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .testEmailProfile(id, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary Update EmailProfile
-   * @param {string} id
-   * @param {EngineUpdateEmailProfileRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof EmailProfileServiceApi
-   */
-  public updateEmailProfile(
-    id: string,
-    body: EngineUpdateEmailProfileRequest,
+  public updateTeamHook(
+    teamId: number,
+    id: number,
+    body: EngineUpdateTeamHookRequest,
     options?: any
   ) {
-    return EmailProfileServiceApiFp(this.configuration)
-      .updateEmailProfile(id, body, options)
+    return TeamHookServiceApiFp(this.configuration)
+      .updateTeamHook(teamId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
