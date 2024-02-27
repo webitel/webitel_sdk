@@ -45,13 +45,13 @@ export const TeamHookServiceApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {EngineCreateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTeamHook: async (
-      teamId: number,
+      teamId: string,
       body: EngineCreateTeamHookRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -125,13 +125,13 @@ export const TeamHookServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteTeamHook: async (
-      teamId: number,
+      teamId: string,
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -196,14 +196,14 @@ export const TeamHookServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {EnginePatchTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchTeamHook: async (
-      teamId: number,
+      teamId: string,
       id: number,
       body: EnginePatchTeamHookRequest,
       options: any = {}
@@ -284,13 +284,13 @@ export const TeamHookServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readTeamHook: async (
-      teamId: number,
+      teamId: string,
       id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -355,7 +355,7 @@ export const TeamHookServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -368,7 +368,7 @@ export const TeamHookServiceApiAxiosParamCreator = function(
      * @throws {RequiredError}
      */
     searchTeamHook: async (
-      teamId: number,
+      teamId: string,
       page?: number,
       size?: number,
       q?: string,
@@ -466,14 +466,14 @@ export const TeamHookServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {EngineUpdateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateTeamHook: async (
-      teamId: number,
+      teamId: string,
       id: number,
       body: EngineUpdateTeamHookRequest,
       options: any = {}
@@ -563,13 +563,13 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {EngineCreateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createTeamHook(
-      teamId: number,
+      teamId: string,
       body: EngineCreateTeamHookRequest,
       options?: any
     ): Promise<
@@ -591,13 +591,13 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteTeamHook(
-      teamId: number,
+      teamId: string,
       id: number,
       options?: any
     ): Promise<
@@ -619,14 +619,14 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {EnginePatchTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchTeamHook(
-      teamId: number,
+      teamId: string,
       id: number,
       body: EnginePatchTeamHookRequest,
       options?: any
@@ -649,13 +649,13 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async readTeamHook(
-      teamId: number,
+      teamId: string,
       id: number,
       options?: any
     ): Promise<
@@ -677,7 +677,7 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -690,7 +690,7 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async searchTeamHook(
-      teamId: number,
+      teamId: string,
       page?: number,
       size?: number,
       q?: string,
@@ -733,14 +733,14 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {EngineUpdateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateTeamHook(
-      teamId: number,
+      teamId: string,
       id: number,
       body: EngineUpdateTeamHookRequest,
       options?: any
@@ -776,13 +776,13 @@ export const TeamHookServiceApiFactory = function(
   return {
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {EngineCreateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTeamHook(
-      teamId: number,
+      teamId: string,
       body: EngineCreateTeamHookRequest,
       options?: any
     ): AxiosPromise<EngineTeamHook> {
@@ -792,13 +792,13 @@ export const TeamHookServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteTeamHook(
-      teamId: number,
+      teamId: string,
       id: number,
       options?: any
     ): AxiosPromise<EngineTeamHook> {
@@ -808,14 +808,14 @@ export const TeamHookServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {EnginePatchTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchTeamHook(
-      teamId: number,
+      teamId: string,
       id: number,
       body: EnginePatchTeamHookRequest,
       options?: any
@@ -826,13 +826,13 @@ export const TeamHookServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     readTeamHook(
-      teamId: number,
+      teamId: string,
       id: number,
       options?: any
     ): AxiosPromise<EngineTeamHook> {
@@ -842,7 +842,7 @@ export const TeamHookServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -855,7 +855,7 @@ export const TeamHookServiceApiFactory = function(
      * @throws {RequiredError}
      */
     searchTeamHook(
-      teamId: number,
+      teamId: string,
       page?: number,
       size?: number,
       q?: string,
@@ -883,14 +883,14 @@ export const TeamHookServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} teamId
+     * @param {string} teamId
      * @param {number} id
      * @param {EngineUpdateTeamHookRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateTeamHook(
-      teamId: number,
+      teamId: string,
       id: number,
       body: EngineUpdateTeamHookRequest,
       options?: any
@@ -911,14 +911,14 @@ export const TeamHookServiceApiFactory = function(
 export class TeamHookServiceApi extends BaseAPI {
   /**
    *
-   * @param {number} teamId
+   * @param {string} teamId
    * @param {EngineCreateTeamHookRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamHookServiceApi
    */
   public createTeamHook(
-    teamId: number,
+    teamId: string,
     body: EngineCreateTeamHookRequest,
     options?: any
   ) {
@@ -929,13 +929,13 @@ export class TeamHookServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} teamId
+   * @param {string} teamId
    * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamHookServiceApi
    */
-  public deleteTeamHook(teamId: number, id: number, options?: any) {
+  public deleteTeamHook(teamId: string, id: number, options?: any) {
     return TeamHookServiceApiFp(this.configuration)
       .deleteTeamHook(teamId, id, options)
       .then((request) => request(this.axios, this.basePath))
@@ -943,7 +943,7 @@ export class TeamHookServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} teamId
+   * @param {string} teamId
    * @param {number} id
    * @param {EnginePatchTeamHookRequest} body
    * @param {*} [options] Override http request option.
@@ -951,7 +951,7 @@ export class TeamHookServiceApi extends BaseAPI {
    * @memberof TeamHookServiceApi
    */
   public patchTeamHook(
-    teamId: number,
+    teamId: string,
     id: number,
     body: EnginePatchTeamHookRequest,
     options?: any
@@ -963,13 +963,13 @@ export class TeamHookServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} teamId
+   * @param {string} teamId
    * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamHookServiceApi
    */
-  public readTeamHook(teamId: number, id: number, options?: any) {
+  public readTeamHook(teamId: string, id: number, options?: any) {
     return TeamHookServiceApiFp(this.configuration)
       .readTeamHook(teamId, id, options)
       .then((request) => request(this.axios, this.basePath))
@@ -977,7 +977,7 @@ export class TeamHookServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} teamId
+   * @param {string} teamId
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
@@ -991,7 +991,7 @@ export class TeamHookServiceApi extends BaseAPI {
    * @memberof TeamHookServiceApi
    */
   public searchTeamHook(
-    teamId: number,
+    teamId: string,
     page?: number,
     size?: number,
     q?: string,
@@ -1020,7 +1020,7 @@ export class TeamHookServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} teamId
+   * @param {string} teamId
    * @param {number} id
    * @param {EngineUpdateTeamHookRequest} body
    * @param {*} [options] Override http request option.
@@ -1028,7 +1028,7 @@ export class TeamHookServiceApi extends BaseAPI {
    * @memberof TeamHookServiceApi
    */
   public updateTeamHook(
-    teamId: number,
+    teamId: string,
     id: number,
     body: EngineUpdateTeamHookRequest,
     options?: any

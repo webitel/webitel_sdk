@@ -23,6 +23,8 @@ import {
   BaseAPI,
   RequiredError,
 } from '../base'
+// @ts-ignore
+import { WebitelChatLookup } from '../api'
 /**
  * ContactLinkingServiceApi - axios parameter creator
  * @export
@@ -35,11 +37,25 @@ export const ContactLinkingServiceApiAxiosParamCreator = function(
      *
      * @summary CreateContactFromConversation creates new contact from the data existing in the conversation and after that links this contact to the external user.
      * @param {string} conversationId
+     * @param {string} [timezoneId]
+     * @param {string} [timezoneName]
+     * @param {string} [ownerId]
+     * @param {string} [ownerName]
+     * @param {Array<string>} [label]
+     * @param {string} [name]
+     * @param {string} [description]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createContactFromConversation: async (
       conversationId: string,
+      timezoneId?: string,
+      timezoneName?: string,
+      ownerId?: string,
+      ownerName?: string,
+      label?: Array<string>,
+      name?: string,
+      description?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'conversationId' is not null or undefined
@@ -73,6 +89,34 @@ export const ContactLinkingServiceApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (timezoneId !== undefined) {
+        localVarQueryParameter['timezone.id'] = timezoneId
+      }
+
+      if (timezoneName !== undefined) {
+        localVarQueryParameter['timezone.name'] = timezoneName
+      }
+
+      if (ownerId !== undefined) {
+        localVarQueryParameter['owner.id'] = ownerId
+      }
+
+      if (ownerName !== undefined) {
+        localVarQueryParameter['owner.name'] = ownerName
+      }
+
+      if (label) {
+        localVarQueryParameter['label'] = label
+      }
+
+      if (name !== undefined) {
+        localVarQueryParameter['name'] = name
+      }
+
+      if (description !== undefined) {
+        localVarQueryParameter['description'] = description
       }
 
       localVarUrlObj.query = {
@@ -180,18 +224,45 @@ export const ContactLinkingServiceApiFp = function(
      *
      * @summary CreateContactFromConversation creates new contact from the data existing in the conversation and after that links this contact to the external user.
      * @param {string} conversationId
+     * @param {string} [timezoneId]
+     * @param {string} [timezoneName]
+     * @param {string} [ownerId]
+     * @param {string} [ownerName]
+     * @param {Array<string>} [label]
+     * @param {string} [name]
+     * @param {string} [description]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createContactFromConversation(
       conversationId: string,
+      timezoneId?: string,
+      timezoneName?: string,
+      ownerId?: string,
+      ownerName?: string,
+      label?: Array<string>,
+      name?: string,
+      description?: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelChatLookup>
     > {
       const localVarAxiosArgs = await ContactLinkingServiceApiAxiosParamCreator(
         configuration
-      ).createContactFromConversation(conversationId, options)
+      ).createContactFromConversation(
+        conversationId,
+        timezoneId,
+        timezoneName,
+        ownerId,
+        ownerName,
+        label,
+        name,
+        description,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -249,15 +320,39 @@ export const ContactLinkingServiceApiFactory = function(
      *
      * @summary CreateContactFromConversation creates new contact from the data existing in the conversation and after that links this contact to the external user.
      * @param {string} conversationId
+     * @param {string} [timezoneId]
+     * @param {string} [timezoneName]
+     * @param {string} [ownerId]
+     * @param {string} [ownerName]
+     * @param {Array<string>} [label]
+     * @param {string} [name]
+     * @param {string} [description]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createContactFromConversation(
       conversationId: string,
+      timezoneId?: string,
+      timezoneName?: string,
+      ownerId?: string,
+      ownerName?: string,
+      label?: Array<string>,
+      name?: string,
+      description?: string,
       options?: any
-    ): AxiosPromise<object> {
+    ): AxiosPromise<WebitelChatLookup> {
       return ContactLinkingServiceApiFp(configuration)
-        .createContactFromConversation(conversationId, options)
+        .createContactFromConversation(
+          conversationId,
+          timezoneId,
+          timezoneName,
+          ownerId,
+          ownerName,
+          label,
+          name,
+          description,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -291,13 +386,40 @@ export class ContactLinkingServiceApi extends BaseAPI {
    *
    * @summary CreateContactFromConversation creates new contact from the data existing in the conversation and after that links this contact to the external user.
    * @param {string} conversationId
+   * @param {string} [timezoneId]
+   * @param {string} [timezoneName]
+   * @param {string} [ownerId]
+   * @param {string} [ownerName]
+   * @param {Array<string>} [label]
+   * @param {string} [name]
+   * @param {string} [description]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactLinkingServiceApi
    */
-  public createContactFromConversation(conversationId: string, options?: any) {
+  public createContactFromConversation(
+    conversationId: string,
+    timezoneId?: string,
+    timezoneName?: string,
+    ownerId?: string,
+    ownerName?: string,
+    label?: Array<string>,
+    name?: string,
+    description?: string,
+    options?: any
+  ) {
     return ContactLinkingServiceApiFp(this.configuration)
-      .createContactFromConversation(conversationId, options)
+      .createContactFromConversation(
+        conversationId,
+        timezoneId,
+        timezoneName,
+        ownerId,
+        ownerName,
+        label,
+        name,
+        description,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

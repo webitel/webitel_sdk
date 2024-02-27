@@ -52,8 +52,8 @@ export interface EngineUpdateTeamHookRequest {
   schema?: EngineLookup
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof EngineUpdateTeamHookRequest
    */
-  team_id?: number
+  team_id?: string
 }
