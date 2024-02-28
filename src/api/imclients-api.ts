@@ -35,6 +35,77 @@ export const IMClientsApiAxiosParamCreator = function(
   return {
     /**
      *
+     * @param {string} contactId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteIMClient: async (
+      contactId: string,
+      id: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'contactId' is not null or undefined
+      if (contactId === null || contactId === undefined) {
+        throw new RequiredError(
+          'contactId',
+          'Required parameter contactId was null or undefined when calling deleteIMClient.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteIMClient.'
+        )
+      }
+      const localVarPath = `/contacts/{contact_id}/imclients/{id}`
+        .replace(`{${'contact_id'}}`, encodeURIComponent(String(contactId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Search IM client links
      * @param {string} contactId Link contact ID.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
@@ -144,6 +215,34 @@ export const IMClientsApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
+     * @param {string} contactId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteIMClient(
+      contactId: string,
+      id: string,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+    > {
+      const localVarAxiosArgs = await IMClientsApiAxiosParamCreator(
+        configuration
+      ).deleteIMClient(contactId, id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Search IM client links
      * @param {string} contactId Link contact ID.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
@@ -199,6 +298,22 @@ export const IMClientsApiFactory = function(
   return {
     /**
      *
+     * @param {string} contactId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteIMClient(
+      contactId: string,
+      id: string,
+      options?: any
+    ): AxiosPromise<object> {
+      return IMClientsApiFp(configuration)
+        .deleteIMClient(contactId, id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Search IM client links
      * @param {string} contactId Link contact ID.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
@@ -234,6 +349,20 @@ export const IMClientsApiFactory = function(
  * @extends {BaseAPI}
  */
 export class IMClientsApi extends BaseAPI {
+  /**
+   *
+   * @param {string} contactId
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IMClientsApi
+   */
+  public deleteIMClient(contactId: string, id: string, options?: any) {
+    return IMClientsApiFp(this.configuration)
+      .deleteIMClient(contactId, id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary Search IM client links
