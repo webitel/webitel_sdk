@@ -24,8 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { RuntimeError } from '../api'
-// @ts-ignore
 import { StorageCreateImportTemplateRequest } from '../api'
 // @ts-ignore
 import { StorageImportTemplate } from '../api'

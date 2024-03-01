@@ -14,11 +14,13 @@
 /**
  *
  * @export
- * @enum {string}
+ * @interface StorageGenerateFileLinkResponse
  */
-export enum StorageProviderType {
-  DefaultProvider = 'DefaultProvider',
-  Microsoft = 'Microsoft',
-  Google = 'Google',
-  Elevenlabs = 'Elevenlabs',
+export interface StorageGenerateFileLinkResponse {
+  /**
+   *
+   * @type {string}
+   * @memberof StorageGenerateFileLinkResponse
+   */
+  url?: string
 }
