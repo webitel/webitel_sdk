@@ -200,6 +200,7 @@ export interface ClientEvents {
   error(e: Error): void
   phone_registered(registered: boolean): void
   phone_connected(connected: boolean): void
+  refresh_missed(ev: object): void
 }
 
 export class Client extends EventEmitter<ClientEvents> {
@@ -957,6 +958,9 @@ export class Client extends EventEmitter<ClientEvents> {
         if (this.agent) {
           this.agent.deleteWaitingAttempt(e.body)
         }
+        break
+      case NotificationActions.RefreshMissed:
+        this.emit(`refresh_missed`, e.body as object)
         break
       default:
         this.log.error(`notification "${e.action}" not handled`)

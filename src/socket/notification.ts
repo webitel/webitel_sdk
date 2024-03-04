@@ -15,4 +15,5 @@ export enum NotificationActions {
   HideAttempt = 'hide_attempt',
   WaitingList = 'waiting_list',
   SetContact = 'set_contact',
+  RefreshMissed = 'refresh_missed',
 }
