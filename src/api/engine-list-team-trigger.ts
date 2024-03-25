@@ -11,21 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { EngineTeamTrigger } from './engine-team-trigger'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface EngineListTeamTrigger
  */
-export enum LoggerAvailableSystemObjects {
-  CcQueue = 'cc_queue',
-  Schema = 'schema',
-  Users = 'users',
-  Devices = 'devices',
-  Calendars = 'calendars',
-  CcList = 'cc_list',
-  CcTeam = 'cc_team',
-  CcAgent = 'cc_agent',
-  CcResource = 'cc_resource',
-  CcResourceGroup = 'cc_resource_group',
-  ChatBots = 'chat_bots',
+export interface EngineListTeamTrigger {
+  /**
+   *
+   * @type {Array<EngineTeamTrigger>}
+   * @memberof EngineListTeamTrigger
+   */
+  items?: Array<EngineTeamTrigger>
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineListTeamTrigger
+   */
+  next?: boolean
 }

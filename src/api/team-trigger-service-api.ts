@@ -24,45 +24,59 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { LoggerConfig } from '../api'
+import { EngineApiError } from '../api'
 // @ts-ignore
-import { LoggerConfigs } from '../api'
+import { EngineCreateTeamTriggerRequest } from '../api'
 // @ts-ignore
-import { LoggerCreateConfigRequest } from '../api'
+import { EngineListTeamTrigger } from '../api'
 // @ts-ignore
-import { LoggerDeleteConfigBulkRequest } from '../api'
+import { EnginePatchTeamTriggerRequest } from '../api'
 // @ts-ignore
-import { LoggerPatchConfigRequest } from '../api'
+import { EngineRunTeamTriggerRequest } from '../api'
 // @ts-ignore
-import { LoggerSystemObjects } from '../api'
+import { EngineRunTeamTriggerResponse } from '../api'
 // @ts-ignore
-import { LoggerUpdateConfigRequest } from '../api'
+import { EngineTeamTrigger } from '../api'
+// @ts-ignore
+import { EngineUpdateTeamTriggerRequest } from '../api'
 /**
- * ConfigServiceApi - axios parameter creator
+ * TeamTriggerServiceApi - axios parameter creator
  * @export
  */
-export const ConfigServiceApiAxiosParamCreator = function(
+export const TeamTriggerServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {LoggerCreateConfigRequest} body
+     * @param {string} teamId
+     * @param {EngineCreateTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createConfig: async (
-      body: LoggerCreateConfigRequest,
+    createTeamTrigger: async (
+      teamId: string,
+      body: EngineCreateTeamTriggerRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
+        throw new RequiredError(
+          'teamId',
+          'Required parameter teamId was null or undefined when calling createTeamTrigger.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createConfig.'
+          'Required parameter body was null or undefined when calling createTeamTrigger.'
         )
       }
-      const localVarPath = `/logger/config`
+      const localVarPath = `/call_center/teams/{team_id}/triggers`.replace(
+        `{${'team_id'}}`,
+        encodeURIComponent(String(teamId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -115,25 +129,33 @@ export const ConfigServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} configId
+     * @param {string} teamId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteConfig: async (
-      configId: number,
+    deleteTeamTrigger: async (
+      teamId: string,
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'configId' is not null or undefined
-      if (configId === null || configId === undefined) {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
         throw new RequiredError(
-          'configId',
-          'Required parameter configId was null or undefined when calling deleteConfig.'
+          'teamId',
+          'Required parameter teamId was null or undefined when calling deleteTeamTrigger.'
         )
       }
-      const localVarPath = `/logger/config/{config_id}`.replace(
-        `{${'config_id'}}`,
-        encodeURIComponent(String(configId))
-      )
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteTeamTrigger.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/triggers/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -178,102 +200,42 @@ export const ConfigServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {LoggerDeleteConfigBulkRequest} body
+     * @param {string} teamId
+     * @param {number} id
+     * @param {EnginePatchTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteConfigBulk: async (
-      body: LoggerDeleteConfigBulkRequest,
+    patchTeamTrigger: async (
+      teamId: string,
+      id: number,
+      body: EnginePatchTeamTriggerRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling deleteConfigBulk.'
+          'teamId',
+          'Required parameter teamId was null or undefined when calling patchTeamTrigger.'
         )
       }
-      const localVarPath = `/logger/config`
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'DELETE',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof body !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {number} configId
-     * @param {LoggerPatchConfigRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    patchConfig: async (
-      configId: number,
-      body: LoggerPatchConfigRequest,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'configId' is not null or undefined
-      if (configId === null || configId === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'configId',
-          'Required parameter configId was null or undefined when calling patchConfig.'
+          'id',
+          'Required parameter id was null or undefined when calling patchTeamTrigger.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling patchConfig.'
+          'Required parameter body was null or undefined when calling patchTeamTrigger.'
         )
       }
-      const localVarPath = `/logger/config/{config_id}`.replace(
-        `{${'config_id'}}`,
-        encodeURIComponent(String(configId))
-      )
+      const localVarPath = `/call_center/teams/{team_id}/triggers/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -326,24 +288,104 @@ export const ConfigServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} configId
+     * @param {string} teamId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readConfig: async (
-      configId: number,
+    readTeamTrigger: async (
+      teamId: string,
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'configId' is not null or undefined
-      if (configId === null || configId === undefined) {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
         throw new RequiredError(
-          'configId',
-          'Required parameter configId was null or undefined when calling readConfig.'
+          'teamId',
+          'Required parameter teamId was null or undefined when calling readTeamTrigger.'
         )
       }
-      const localVarPath = `/logger/config/{config_id}`.replace(
-        `{${'config_id'}}`,
-        encodeURIComponent(String(configId))
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readTeamTrigger.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/triggers/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} triggerId
+     * @param {EngineRunTeamTriggerRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    runTeamTrigger: async (
+      triggerId: string,
+      body: EngineRunTeamTriggerRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'triggerId' is not null or undefined
+      if (triggerId === null || triggerId === undefined) {
+        throw new RequiredError(
+          'triggerId',
+          'Required parameter triggerId was null or undefined when calling runTeamTrigger.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling runTeamTrigger.'
+        )
+      }
+      const localVarPath = `/call_center/teams/triggers/{trigger_id}`.replace(
+        `{${'trigger_id'}}`,
+        encodeURIComponent(String(triggerId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -351,7 +393,7 @@ export const ConfigServiceApiAxiosParamCreator = function(
         baseOptions = configuration.baseOptions
       }
       const localVarRequestOptions = {
-        method: 'GET',
+        method: 'POST',
         ...baseOptions,
         ...options,
       }
@@ -367,62 +409,7 @@ export const ConfigServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {boolean} [includeExisting]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readSystemObjects: async (
-      includeExisting?: boolean,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/logger/available_objects`
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (includeExisting !== undefined) {
-        localVarQueryParameter['include_existing'] = includeExisting
-      }
+      localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
@@ -438,6 +425,12 @@ export const ConfigServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -446,37 +439,41 @@ export const ConfigServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots'>} [object] NOT USED.
+     * @param {boolean} [enabled]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchConfig: async (
+    searchTeamTrigger: async (
+      teamId: string,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      object?: Array<
-        | 'cc_queue'
-        | 'schema'
-        | 'users'
-        | 'devices'
-        | 'calendars'
-        | 'cc_list'
-        | 'cc_team'
-        | 'cc_agent'
-        | 'cc_resource'
-        | 'cc_resource_group'
-        | 'chat_bots'
-      >,
+      enabled?: boolean,
+      id?: Array<number>,
+      schemaId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/logger/config`
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
+        throw new RequiredError(
+          'teamId',
+          'Required parameter teamId was null or undefined when calling searchTeamTrigger.'
+        )
+      }
+      const localVarPath = `/call_center/teams/{team_id}/triggers`.replace(
+        `{${'team_id'}}`,
+        encodeURIComponent(String(teamId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -519,8 +516,16 @@ export const ConfigServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (object) {
-        localVarQueryParameter['object'] = object
+      if (enabled !== undefined) {
+        localVarQueryParameter['enabled'] = enabled
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (schemaId) {
+        localVarQueryParameter['schema_id'] = schemaId
       }
 
       localVarUrlObj.query = {
@@ -545,34 +550,42 @@ export const ConfigServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} configId
-     * @param {LoggerUpdateConfigRequest} body
+     * @param {string} teamId
+     * @param {number} id
+     * @param {EngineUpdateTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateConfig: async (
-      configId: number,
-      body: LoggerUpdateConfigRequest,
+    updateTeamTrigger: async (
+      teamId: string,
+      id: number,
+      body: EngineUpdateTeamTriggerRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'configId' is not null or undefined
-      if (configId === null || configId === undefined) {
+      // verify required parameter 'teamId' is not null or undefined
+      if (teamId === null || teamId === undefined) {
         throw new RequiredError(
-          'configId',
-          'Required parameter configId was null or undefined when calling updateConfig.'
+          'teamId',
+          'Required parameter teamId was null or undefined when calling updateTeamTrigger.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateTeamTrigger.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateConfig.'
+          'Required parameter body was null or undefined when calling updateTeamTrigger.'
         )
       }
-      const localVarPath = `/logger/config/{config_id}`.replace(
-        `{${'config_id'}}`,
-        encodeURIComponent(String(configId))
-      )
+      const localVarPath = `/call_center/teams/{team_id}/triggers/{id}`
+        .replace(`{${'team_id'}}`, encodeURIComponent(String(teamId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -627,161 +640,31 @@ export const ConfigServiceApiAxiosParamCreator = function(
 }
 
 /**
- * ConfigServiceApi - functional programming interface
+ * TeamTriggerServiceApi - functional programming interface
  * @export
  */
-export const ConfigServiceApiFp = function(configuration?: Configuration) {
+export const TeamTriggerServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {LoggerCreateConfigRequest} body
+     * @param {string} teamId
+     * @param {EngineCreateTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createConfig(
-      body: LoggerCreateConfigRequest,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerConfig>
-    > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
-        configuration
-      ).createConfig(body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {number} configId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async deleteConfig(
-      configId: number,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
-    > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
-        configuration
-      ).deleteConfig(configId, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {LoggerDeleteConfigBulkRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async deleteConfigBulk(
-      body: LoggerDeleteConfigBulkRequest,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
-    > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
-        configuration
-      ).deleteConfigBulk(body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {number} configId
-     * @param {LoggerPatchConfigRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async patchConfig(
-      configId: number,
-      body: LoggerPatchConfigRequest,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerConfig>
-    > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
-        configuration
-      ).patchConfig(configId, body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {number} configId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async readConfig(
-      configId: number,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerConfig>
-    > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
-        configuration
-      ).readConfig(configId, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {boolean} [includeExisting]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async readSystemObjects(
-      includeExisting?: boolean,
+    async createTeamTrigger(
+      teamId: string,
+      body: EngineCreateTeamTriggerRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<LoggerSystemObjects>
+      ) => AxiosPromise<EngineTeamTrigger>
     > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TeamTriggerServiceApiAxiosParamCreator(
         configuration
-      ).readSystemObjects(includeExisting, options)
+      ).createTeamTrigger(teamId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -795,41 +678,175 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} teamId
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteTeamTrigger(
+      teamId: string,
+      id: number,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineTeamTrigger>
+    > {
+      const localVarAxiosArgs = await TeamTriggerServiceApiAxiosParamCreator(
+        configuration
+      ).deleteTeamTrigger(teamId, id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} teamId
+     * @param {number} id
+     * @param {EnginePatchTeamTriggerRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchTeamTrigger(
+      teamId: string,
+      id: number,
+      body: EnginePatchTeamTriggerRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineTeamTrigger>
+    > {
+      const localVarAxiosArgs = await TeamTriggerServiceApiAxiosParamCreator(
+        configuration
+      ).patchTeamTrigger(teamId, id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} teamId
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async readTeamTrigger(
+      teamId: string,
+      id: number,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineTeamTrigger>
+    > {
+      const localVarAxiosArgs = await TeamTriggerServiceApiAxiosParamCreator(
+        configuration
+      ).readTeamTrigger(teamId, id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} triggerId
+     * @param {EngineRunTeamTriggerRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async runTeamTrigger(
+      triggerId: string,
+      body: EngineRunTeamTriggerRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineRunTeamTriggerResponse>
+    > {
+      const localVarAxiosArgs = await TeamTriggerServiceApiAxiosParamCreator(
+        configuration
+      ).runTeamTrigger(triggerId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots'>} [object] NOT USED.
+     * @param {boolean} [enabled]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchConfig(
+    async searchTeamTrigger(
+      teamId: string,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      object?: Array<
-        | 'cc_queue'
-        | 'schema'
-        | 'users'
-        | 'devices'
-        | 'calendars'
-        | 'cc_list'
-        | 'cc_team'
-        | 'cc_agent'
-        | 'cc_resource'
-        | 'cc_resource_group'
-        | 'chat_bots'
-      >,
+      enabled?: boolean,
+      id?: Array<number>,
+      schemaId?: Array<number>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerConfigs>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListTeamTrigger>
     > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TeamTriggerServiceApiAxiosParamCreator(
         configuration
-      ).searchConfig(page, size, q, sort, fields, object, options)
+      ).searchTeamTrigger(
+        teamId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        enabled,
+        id,
+        schemaId,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -843,21 +860,26 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} configId
-     * @param {LoggerUpdateConfigRequest} body
+     * @param {string} teamId
+     * @param {number} id
+     * @param {EngineUpdateTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateConfig(
-      configId: number,
-      body: LoggerUpdateConfigRequest,
+    async updateTeamTrigger(
+      teamId: string,
+      id: number,
+      body: EngineUpdateTeamTriggerRequest,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerConfig>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineTeamTrigger>
     > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await TeamTriggerServiceApiAxiosParamCreator(
         configuration
-      ).updateConfig(configId, body, options)
+      ).updateTeamTrigger(teamId, id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -873,10 +895,10 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
 }
 
 /**
- * ConfigServiceApi - factory interface
+ * TeamTriggerServiceApi - factory interface
  * @export
  */
-export const ConfigServiceApiFactory = function(
+export const TeamTriggerServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -884,282 +906,299 @@ export const ConfigServiceApiFactory = function(
   return {
     /**
      *
-     * @param {LoggerCreateConfigRequest} body
+     * @param {string} teamId
+     * @param {EngineCreateTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createConfig(
-      body: LoggerCreateConfigRequest,
+    createTeamTrigger(
+      teamId: string,
+      body: EngineCreateTeamTriggerRequest,
       options?: any
-    ): AxiosPromise<LoggerConfig> {
-      return ConfigServiceApiFp(configuration)
-        .createConfig(body, options)
+    ): AxiosPromise<EngineTeamTrigger> {
+      return TeamTriggerServiceApiFp(configuration)
+        .createTeamTrigger(teamId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} configId
+     * @param {string} teamId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteConfig(configId: number, options?: any): AxiosPromise<object> {
-      return ConfigServiceApiFp(configuration)
-        .deleteConfig(configId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {LoggerDeleteConfigBulkRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteConfigBulk(
-      body: LoggerDeleteConfigBulkRequest,
+    deleteTeamTrigger(
+      teamId: string,
+      id: number,
       options?: any
-    ): AxiosPromise<object> {
-      return ConfigServiceApiFp(configuration)
-        .deleteConfigBulk(body, options)
+    ): AxiosPromise<EngineTeamTrigger> {
+      return TeamTriggerServiceApiFp(configuration)
+        .deleteTeamTrigger(teamId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} configId
-     * @param {LoggerPatchConfigRequest} body
+     * @param {string} teamId
+     * @param {number} id
+     * @param {EnginePatchTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchConfig(
-      configId: number,
-      body: LoggerPatchConfigRequest,
+    patchTeamTrigger(
+      teamId: string,
+      id: number,
+      body: EnginePatchTeamTriggerRequest,
       options?: any
-    ): AxiosPromise<LoggerConfig> {
-      return ConfigServiceApiFp(configuration)
-        .patchConfig(configId, body, options)
+    ): AxiosPromise<EngineTeamTrigger> {
+      return TeamTriggerServiceApiFp(configuration)
+        .patchTeamTrigger(teamId, id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} configId
+     * @param {string} teamId
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readConfig(configId: number, options?: any): AxiosPromise<LoggerConfig> {
-      return ConfigServiceApiFp(configuration)
-        .readConfig(configId, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {boolean} [includeExisting]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readSystemObjects(
-      includeExisting?: boolean,
+    readTeamTrigger(
+      teamId: string,
+      id: number,
       options?: any
-    ): AxiosPromise<LoggerSystemObjects> {
-      return ConfigServiceApiFp(configuration)
-        .readSystemObjects(includeExisting, options)
+    ): AxiosPromise<EngineTeamTrigger> {
+      return TeamTriggerServiceApiFp(configuration)
+        .readTeamTrigger(teamId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {string} triggerId
+     * @param {EngineRunTeamTriggerRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    runTeamTrigger(
+      triggerId: string,
+      body: EngineRunTeamTriggerRequest,
+      options?: any
+    ): AxiosPromise<EngineRunTeamTriggerResponse> {
+      return TeamTriggerServiceApiFp(configuration)
+        .runTeamTrigger(triggerId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots'>} [object] NOT USED.
+     * @param {boolean} [enabled]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchConfig(
+    searchTeamTrigger(
+      teamId: string,
       page?: number,
       size?: number,
       q?: string,
       sort?: string,
       fields?: Array<string>,
-      object?: Array<
-        | 'cc_queue'
-        | 'schema'
-        | 'users'
-        | 'devices'
-        | 'calendars'
-        | 'cc_list'
-        | 'cc_team'
-        | 'cc_agent'
-        | 'cc_resource'
-        | 'cc_resource_group'
-        | 'chat_bots'
-      >,
+      enabled?: boolean,
+      id?: Array<number>,
+      schemaId?: Array<number>,
       options?: any
-    ): AxiosPromise<LoggerConfigs> {
-      return ConfigServiceApiFp(configuration)
-        .searchConfig(page, size, q, sort, fields, object, options)
+    ): AxiosPromise<EngineListTeamTrigger> {
+      return TeamTriggerServiceApiFp(configuration)
+        .searchTeamTrigger(
+          teamId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          enabled,
+          id,
+          schemaId,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} configId
-     * @param {LoggerUpdateConfigRequest} body
+     * @param {string} teamId
+     * @param {number} id
+     * @param {EngineUpdateTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateConfig(
-      configId: number,
-      body: LoggerUpdateConfigRequest,
+    updateTeamTrigger(
+      teamId: string,
+      id: number,
+      body: EngineUpdateTeamTriggerRequest,
       options?: any
-    ): AxiosPromise<LoggerConfig> {
-      return ConfigServiceApiFp(configuration)
-        .updateConfig(configId, body, options)
+    ): AxiosPromise<EngineTeamTrigger> {
+      return TeamTriggerServiceApiFp(configuration)
+        .updateTeamTrigger(teamId, id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * ConfigServiceApi - object-oriented interface
+ * TeamTriggerServiceApi - object-oriented interface
  * @export
- * @class ConfigServiceApi
+ * @class TeamTriggerServiceApi
  * @extends {BaseAPI}
  */
-export class ConfigServiceApi extends BaseAPI {
+export class TeamTriggerServiceApi extends BaseAPI {
   /**
    *
-   * @param {LoggerCreateConfigRequest} body
+   * @param {string} teamId
+   * @param {EngineCreateTeamTriggerRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ConfigServiceApi
+   * @memberof TeamTriggerServiceApi
    */
-  public createConfig(body: LoggerCreateConfigRequest, options?: any) {
-    return ConfigServiceApiFp(this.configuration)
-      .createConfig(body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {number} configId
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ConfigServiceApi
-   */
-  public deleteConfig(configId: number, options?: any) {
-    return ConfigServiceApiFp(this.configuration)
-      .deleteConfig(configId, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {LoggerDeleteConfigBulkRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ConfigServiceApi
-   */
-  public deleteConfigBulk(body: LoggerDeleteConfigBulkRequest, options?: any) {
-    return ConfigServiceApiFp(this.configuration)
-      .deleteConfigBulk(body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {number} configId
-   * @param {LoggerPatchConfigRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ConfigServiceApi
-   */
-  public patchConfig(
-    configId: number,
-    body: LoggerPatchConfigRequest,
+  public createTeamTrigger(
+    teamId: string,
+    body: EngineCreateTeamTriggerRequest,
     options?: any
   ) {
-    return ConfigServiceApiFp(this.configuration)
-      .patchConfig(configId, body, options)
+    return TeamTriggerServiceApiFp(this.configuration)
+      .createTeamTrigger(teamId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} configId
+   * @param {string} teamId
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ConfigServiceApi
+   * @memberof TeamTriggerServiceApi
    */
-  public readConfig(configId: number, options?: any) {
-    return ConfigServiceApiFp(this.configuration)
-      .readConfig(configId, options)
+  public deleteTeamTrigger(teamId: string, id: number, options?: any) {
+    return TeamTriggerServiceApiFp(this.configuration)
+      .deleteTeamTrigger(teamId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {boolean} [includeExisting]
+   * @param {string} teamId
+   * @param {number} id
+   * @param {EnginePatchTeamTriggerRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ConfigServiceApi
+   * @memberof TeamTriggerServiceApi
    */
-  public readSystemObjects(includeExisting?: boolean, options?: any) {
-    return ConfigServiceApiFp(this.configuration)
-      .readSystemObjects(includeExisting, options)
+  public patchTeamTrigger(
+    teamId: string,
+    id: number,
+    body: EnginePatchTeamTriggerRequest,
+    options?: any
+  ) {
+    return TeamTriggerServiceApiFp(this.configuration)
+      .patchTeamTrigger(teamId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
+   * @param {string} teamId
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TeamTriggerServiceApi
+   */
+  public readTeamTrigger(teamId: string, id: number, options?: any) {
+    return TeamTriggerServiceApiFp(this.configuration)
+      .readTeamTrigger(teamId, id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} triggerId
+   * @param {EngineRunTeamTriggerRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TeamTriggerServiceApi
+   */
+  public runTeamTrigger(
+    triggerId: string,
+    body: EngineRunTeamTriggerRequest,
+    options?: any
+  ) {
+    return TeamTriggerServiceApiFp(this.configuration)
+      .runTeamTrigger(triggerId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} teamId
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots'>} [object] NOT USED.
+   * @param {boolean} [enabled]
+   * @param {Array<number>} [id]
+   * @param {Array<number>} [schemaId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ConfigServiceApi
+   * @memberof TeamTriggerServiceApi
    */
-  public searchConfig(
+  public searchTeamTrigger(
+    teamId: string,
     page?: number,
     size?: number,
     q?: string,
     sort?: string,
     fields?: Array<string>,
-    object?: Array<
-      | 'cc_queue'
-      | 'schema'
-      | 'users'
-      | 'devices'
-      | 'calendars'
-      | 'cc_list'
-      | 'cc_team'
-      | 'cc_agent'
-      | 'cc_resource'
-      | 'cc_resource_group'
-      | 'chat_bots'
-    >,
+    enabled?: boolean,
+    id?: Array<number>,
+    schemaId?: Array<number>,
     options?: any
   ) {
-    return ConfigServiceApiFp(this.configuration)
-      .searchConfig(page, size, q, sort, fields, object, options)
+    return TeamTriggerServiceApiFp(this.configuration)
+      .searchTeamTrigger(
+        teamId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        enabled,
+        id,
+        schemaId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} configId
-   * @param {LoggerUpdateConfigRequest} body
+   * @param {string} teamId
+   * @param {number} id
+   * @param {EngineUpdateTeamTriggerRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ConfigServiceApi
+   * @memberof TeamTriggerServiceApi
    */
-  public updateConfig(
-    configId: number,
-    body: LoggerUpdateConfigRequest,
+  public updateTeamTrigger(
+    teamId: string,
+    id: number,
+    body: EngineUpdateTeamTriggerRequest,
     options?: any
   ) {
-    return ConfigServiceApiFp(this.configuration)
-      .updateConfig(configId, body, options)
+    return TeamTriggerServiceApiFp(this.configuration)
+      .updateTeamTrigger(teamId, id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

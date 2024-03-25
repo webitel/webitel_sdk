@@ -25,8 +25,6 @@ import {
 } from '../base'
 // @ts-ignore
 import { LoggerLogs } from '../api'
-// @ts-ignore
-import { RuntimeError } from '../api'
 /**
  * LoggerServiceApi - axios parameter creator
  * @export
@@ -162,7 +160,7 @@ export const LoggerServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {'cc_queue' | 'schema'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
@@ -178,7 +176,18 @@ export const LoggerServiceApiAxiosParamCreator = function(
      * @throws {RequiredError}
      */
     searchLogByRecordId: async (
-      object: 'cc_queue' | 'schema',
+      object:
+        | 'cc_queue'
+        | 'schema'
+        | 'users'
+        | 'devices'
+        | 'calendars'
+        | 'cc_list'
+        | 'cc_team'
+        | 'cc_agent'
+        | 'cc_resource'
+        | 'cc_resource_group'
+        | 'chat_bots',
       recordId: number,
       page?: number,
       size?: number,
@@ -490,7 +499,7 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {'cc_queue' | 'schema'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
@@ -506,7 +515,18 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async searchLogByRecordId(
-      object: 'cc_queue' | 'schema',
+      object:
+        | 'cc_queue'
+        | 'schema'
+        | 'users'
+        | 'devices'
+        | 'calendars'
+        | 'cc_list'
+        | 'cc_team'
+        | 'cc_agent'
+        | 'cc_resource'
+        | 'cc_resource_group'
+        | 'chat_bots',
       recordId: number,
       page?: number,
       size?: number,
@@ -677,7 +697,7 @@ export const LoggerServiceApiFactory = function(
     },
     /**
      *
-     * @param {'cc_queue' | 'schema'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
@@ -693,7 +713,18 @@ export const LoggerServiceApiFactory = function(
      * @throws {RequiredError}
      */
     searchLogByRecordId(
-      object: 'cc_queue' | 'schema',
+      object:
+        | 'cc_queue'
+        | 'schema'
+        | 'users'
+        | 'devices'
+        | 'calendars'
+        | 'cc_list'
+        | 'cc_team'
+        | 'cc_agent'
+        | 'cc_resource'
+        | 'cc_resource_group'
+        | 'chat_bots',
       recordId: number,
       page?: number,
       size?: number,
@@ -839,7 +870,7 @@ export class LoggerServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {'cc_queue' | 'schema'} object SPECIFIC filter
+   * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots'} object SPECIFIC filter
    * @param {number} recordId REQUIRED filter
    * @param {number} [page]
    * @param {number} [size]
@@ -856,7 +887,18 @@ export class LoggerServiceApi extends BaseAPI {
    * @memberof LoggerServiceApi
    */
   public searchLogByRecordId(
-    object: 'cc_queue' | 'schema',
+    object:
+      | 'cc_queue'
+      | 'schema'
+      | 'users'
+      | 'devices'
+      | 'calendars'
+      | 'cc_list'
+      | 'cc_team'
+      | 'cc_agent'
+      | 'cc_resource'
+      | 'cc_resource_group'
+      | 'chat_bots',
     recordId: number,
     page?: number,
     size?: number,
