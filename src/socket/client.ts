@@ -41,7 +41,11 @@ import {
   RolePermissionError,
   TypeErrors,
 } from './errors'
-import { Notification, NotificationActions } from './notification'
+import {
+  MessageNotification,
+  Notification,
+  NotificationActions,
+} from './notification'
 import { QueueJoinMemberEvent } from './queue'
 import { Message, Socket } from './socket'
 import {
@@ -201,6 +205,7 @@ export interface ClientEvents {
   phone_registered(registered: boolean): void
   phone_connected(connected: boolean): void
   refresh_missed(ev: object): void
+  show_message(ev: MessageNotification): void
 }
 
 export class Client extends EventEmitter<ClientEvents> {
@@ -961,6 +966,9 @@ export class Client extends EventEmitter<ClientEvents> {
         break
       case NotificationActions.RefreshMissed:
         this.emit(`refresh_missed`, e.body as object)
+        break
+      case NotificationActions.ShowMessage:
+        this.emit(`show_message`, e.body as MessageNotification)
         break
       default:
         this.log.error(`notification "${e.action}" not handled`)
