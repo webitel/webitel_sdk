@@ -114,7 +114,7 @@ export const TimelineApiAxiosParamCreator = function(
      * @param {string} contactId
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<string>} [type]
+     * @param {Array<'chat' | 'call'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -122,7 +122,7 @@ export const TimelineApiAxiosParamCreator = function(
       contactId: string,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<string>,
+      type?: Array<'chat' | 'call'>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'contactId' is not null or undefined
@@ -235,7 +235,7 @@ export const TimelineApiFp = function(configuration?: Configuration) {
      * @param {string} contactId
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<string>} [type]
+     * @param {Array<'chat' | 'call'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -243,7 +243,7 @@ export const TimelineApiFp = function(configuration?: Configuration) {
       contactId: string,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<string>,
+      type?: Array<'chat' | 'call'>,
       options?: any
     ): Promise<
       (
@@ -299,7 +299,7 @@ export const TimelineApiFactory = function(
      * @param {string} contactId
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<string>} [type]
+     * @param {Array<'chat' | 'call'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -307,7 +307,7 @@ export const TimelineApiFactory = function(
       contactId: string,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<string>,
+      type?: Array<'chat' | 'call'>,
       options?: any
     ): AxiosPromise<WebitelContactsGetTimelineResponse> {
       return TimelineApiFp(configuration)
@@ -347,7 +347,7 @@ export class TimelineApi extends BaseAPI {
    * @param {string} contactId
    * @param {string} [dateFrom]
    * @param {string} [dateTo]
-   * @param {Array<string>} [type]
+   * @param {Array<'chat' | 'call'>} [type]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TimelineApi
@@ -356,7 +356,7 @@ export class TimelineApi extends BaseAPI {
     contactId: string,
     dateFrom?: string,
     dateTo?: string,
-    type?: Array<string>,
+    type?: Array<'chat' | 'call'>,
     options?: any
   ) {
     return TimelineApiFp(this.configuration)

@@ -359,13 +359,13 @@ export const TeamTriggerServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} triggerId
+     * @param {number} triggerId
      * @param {EngineRunTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     runTeamTrigger: async (
-      triggerId: string,
+      triggerId: number,
       body: EngineRunTeamTriggerRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -773,13 +773,13 @@ export const TeamTriggerServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {string} triggerId
+     * @param {number} triggerId
      * @param {EngineRunTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async runTeamTrigger(
-      triggerId: string,
+      triggerId: number,
       body: EngineRunTeamTriggerRequest,
       options?: any
     ): Promise<
@@ -972,13 +972,13 @@ export const TeamTriggerServiceApiFactory = function(
     },
     /**
      *
-     * @param {string} triggerId
+     * @param {number} triggerId
      * @param {EngineRunTeamTriggerRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     runTeamTrigger(
-      triggerId: string,
+      triggerId: number,
       body: EngineRunTeamTriggerRequest,
       options?: any
     ): AxiosPromise<EngineRunTeamTriggerResponse> {
@@ -1123,14 +1123,14 @@ export class TeamTriggerServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {string} triggerId
+   * @param {number} triggerId
    * @param {EngineRunTeamTriggerRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamTriggerServiceApi
    */
   public runTeamTrigger(
-    triggerId: string,
+    triggerId: number,
     body: EngineRunTeamTriggerRequest,
     options?: any
   ) {

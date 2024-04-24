@@ -207,6 +207,12 @@ export interface EngineSearchHistoryCallRequest {
   rated_user?: Array<string>
   /**
    *
+   * @type {Array<number>}
+   * @memberof EngineSearchHistoryCallRequest
+   */
+  schema_id?: Array<number>
+  /**
+   *
    * @type {EngineFilterBetween}
    * @memberof EngineSearchHistoryCallRequest
    */

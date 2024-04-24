@@ -19,10 +19,10 @@
 export interface EngineRunTeamTriggerRequest {
   /**
    *
-   * @type {string}
+   * @type {number}
    * @memberof EngineRunTeamTriggerRequest
    */
-  trigger_id?: string
+  trigger_id?: number
   /**
    *
    * @type {{ [key: string]: string; }}

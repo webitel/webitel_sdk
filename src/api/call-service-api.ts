@@ -1334,6 +1334,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {string} [scoreOptionalTo]
      * @param {Array<string>} [ratedUser]
      * @param {Array<string>} [contactId]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1388,6 +1389,7 @@ export const CallServiceApiAxiosParamCreator = function(
       scoreOptionalTo?: string,
       ratedUser?: Array<string>,
       contactId?: Array<string>,
+      schemaId?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/history`
@@ -1611,6 +1613,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (contactId) {
         localVarQueryParameter['contact_id'] = contactId
+      }
+
+      if (schemaId) {
+        localVarQueryParameter['schema_id'] = schemaId
       }
 
       localVarUrlObj.query = {
@@ -2512,6 +2518,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [scoreOptionalTo]
      * @param {Array<string>} [ratedUser]
      * @param {Array<string>} [contactId]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2566,6 +2573,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       scoreOptionalTo?: string,
       ratedUser?: Array<string>,
       contactId?: Array<string>,
+      schemaId?: Array<number>,
       options?: any
     ): Promise<
       (
@@ -2626,6 +2634,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         scoreOptionalTo,
         ratedUser,
         contactId,
+        schemaId,
         options
       )
       return (
@@ -3129,6 +3138,7 @@ export const CallServiceApiFactory = function(
      * @param {string} [scoreOptionalTo]
      * @param {Array<string>} [ratedUser]
      * @param {Array<string>} [contactId]
+     * @param {Array<number>} [schemaId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3183,6 +3193,7 @@ export const CallServiceApiFactory = function(
       scoreOptionalTo?: string,
       ratedUser?: Array<string>,
       contactId?: Array<string>,
+      schemaId?: Array<number>,
       options?: any
     ): AxiosPromise<EngineListHistoryCall> {
       return CallServiceApiFp(configuration)
@@ -3237,6 +3248,7 @@ export const CallServiceApiFactory = function(
           scoreOptionalTo,
           ratedUser,
           contactId,
+          schemaId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3676,6 +3688,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {string} [scoreOptionalTo]
    * @param {Array<string>} [ratedUser]
    * @param {Array<string>} [contactId]
+   * @param {Array<number>} [schemaId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -3731,6 +3744,7 @@ export class CallServiceApi extends BaseAPI {
     scoreOptionalTo?: string,
     ratedUser?: Array<string>,
     contactId?: Array<string>,
+    schemaId?: Array<number>,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
@@ -3785,6 +3799,7 @@ export class CallServiceApi extends BaseAPI {
         scoreOptionalTo,
         ratedUser,
         contactId,
+        schemaId,
         options
       )
       .then((request) => request(this.axios, this.basePath))

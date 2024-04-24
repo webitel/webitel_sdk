@@ -327,6 +327,12 @@ export interface EngineHistoryCall {
   result?: string
   /**
    *
+   * @type {Array<EngineLookup>}
+   * @memberof EngineHistoryCall
+   */
+  schemas?: Array<EngineLookup>
+  /**
+   *
    * @type {number}
    * @memberof EngineHistoryCall
    */
