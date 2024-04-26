@@ -19,16 +19,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org'
         cache: 'npm'
-    - run: npm ci
     - run: npm i
     - run: npm run format:fix
     - run: npm run build
-    - run: npm config set _authToken=$NPM_TOKEN
     - run: npm publish dist
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

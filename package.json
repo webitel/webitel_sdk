@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "24.02.09",
+  "version": "24.02.10",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -10,7 +10,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/navrotskyj/webitel_sdk"
+    "url": "https://github.com/webitel/webitel_sdk.git"
   },
   "author": "navrotskyj <navrotskyj@gmail.com>",
   "license": "MIT",
