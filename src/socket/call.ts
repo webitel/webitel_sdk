@@ -117,6 +117,7 @@ export enum CallActions {
   Execute = 'execute',
   Update = 'update',
   Hangup = 'hangup',
+  Heartbeat = 'heartbeat',
   Reporting = 'reporting',
   PeerStream = 'peerStream',
   LocalStream = 'localStream',
@@ -354,9 +355,7 @@ export class Call {
       this.client.phone &&
       this.hangupAt === 0 &&
       this.answeredAt === 0 &&
-      (this.queue ||
-        this.direction === CallDirection.Inbound ||
-        (this.params && !this.params.autoAnswer))
+      !!(this.queue || this.direction === CallDirection.Inbound || this.params)
     )
   }
 
