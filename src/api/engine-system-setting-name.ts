@@ -22,4 +22,5 @@ export enum EngineSystemSettingName {
   MemberChunkSize = 'member_chunk_size',
   AmdCancelNotHuman = 'amd_cancel_not_human',
   SchemeVersionLimit = 'scheme_version_limit',
+  Enable2fa = 'enable_2fa',
 }
