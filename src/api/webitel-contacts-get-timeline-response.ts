@@ -25,4 +25,16 @@ export interface WebitelContactsGetTimelineResponse {
    * @memberof WebitelContactsGetTimelineResponse
    */
   days?: Array<WebitelContactsDayTimeline>
+  /**
+   *
+   * @type {boolean}
+   * @memberof WebitelContactsGetTimelineResponse
+   */
+  next?: boolean
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelContactsGetTimelineResponse
+   */
+  page?: string
 }
