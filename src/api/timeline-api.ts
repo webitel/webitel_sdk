@@ -36,21 +36,27 @@ export const TimelineApiAxiosParamCreator = function(
     /**
      *
      * @param {string} contactId
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [ids]
+     * @param {string} [sort]
+     * @param {string} [page]
+     * @param {string} [size]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
      * @param {Array<'chat' | 'call'>} [type]
-     * @param {string} [page]
-     * @param {string} [size]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getTimeline: async (
       contactId: string,
+      fields?: Array<string>,
+      ids?: Array<string>,
+      sort?: string,
+      page?: string,
+      size?: string,
       dateFrom?: string,
       dateTo?: string,
       type?: Array<'chat' | 'call'>,
-      page?: string,
-      size?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'contactId' is not null or undefined
@@ -86,6 +92,26 @@ export const TimelineApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (ids) {
+        localVarQueryParameter['ids'] = ids
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
       if (dateFrom !== undefined) {
         localVarQueryParameter['date_from'] = dateFrom
       }
@@ -96,14 +122,6 @@ export const TimelineApiAxiosParamCreator = function(
 
       if (type) {
         localVarQueryParameter['type'] = type
-      }
-
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
-      }
-
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
       }
 
       localVarUrlObj.query = {
@@ -138,21 +156,27 @@ export const TimelineApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} contactId
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [ids]
+     * @param {string} [sort]
+     * @param {string} [page]
+     * @param {string} [size]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
      * @param {Array<'chat' | 'call'>} [type]
-     * @param {string} [page]
-     * @param {string} [size]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getTimeline(
       contactId: string,
+      fields?: Array<string>,
+      ids?: Array<string>,
+      sort?: string,
+      page?: string,
+      size?: string,
       dateFrom?: string,
       dateTo?: string,
       type?: Array<'chat' | 'call'>,
-      page?: string,
-      size?: string,
       options?: any
     ): Promise<
       (
@@ -162,7 +186,18 @@ export const TimelineApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await TimelineApiAxiosParamCreator(
         configuration
-      ).getTimeline(contactId, dateFrom, dateTo, type, page, size, options)
+      ).getTimeline(
+        contactId,
+        fields,
+        ids,
+        sort,
+        page,
+        size,
+        dateFrom,
+        dateTo,
+        type,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -190,25 +225,42 @@ export const TimelineApiFactory = function(
     /**
      *
      * @param {string} contactId
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [ids]
+     * @param {string} [sort]
+     * @param {string} [page]
+     * @param {string} [size]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
      * @param {Array<'chat' | 'call'>} [type]
-     * @param {string} [page]
-     * @param {string} [size]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getTimeline(
       contactId: string,
+      fields?: Array<string>,
+      ids?: Array<string>,
+      sort?: string,
+      page?: string,
+      size?: string,
       dateFrom?: string,
       dateTo?: string,
       type?: Array<'chat' | 'call'>,
-      page?: string,
-      size?: string,
       options?: any
     ): AxiosPromise<WebitelContactsGetTimelineResponse> {
       return TimelineApiFp(configuration)
-        .getTimeline(contactId, dateFrom, dateTo, type, page, size, options)
+        .getTimeline(
+          contactId,
+          fields,
+          ids,
+          sort,
+          page,
+          size,
+          dateFrom,
+          dateTo,
+          type,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
   }
@@ -224,26 +276,43 @@ export class TimelineApi extends BaseAPI {
   /**
    *
    * @param {string} contactId
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [ids]
+   * @param {string} [sort]
+   * @param {string} [page]
+   * @param {string} [size]
    * @param {string} [dateFrom]
    * @param {string} [dateTo]
    * @param {Array<'chat' | 'call'>} [type]
-   * @param {string} [page]
-   * @param {string} [size]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TimelineApi
    */
   public getTimeline(
     contactId: string,
+    fields?: Array<string>,
+    ids?: Array<string>,
+    sort?: string,
+    page?: string,
+    size?: string,
     dateFrom?: string,
     dateTo?: string,
     type?: Array<'chat' | 'call'>,
-    page?: string,
-    size?: string,
     options?: any
   ) {
     return TimelineApiFp(this.configuration)
-      .getTimeline(contactId, dateFrom, dateTo, type, page, size, options)
+      .getTimeline(
+        contactId,
+        fields,
+        ids,
+        sort,
+        page,
+        size,
+        dateFrom,
+        dateTo,
+        type,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }
