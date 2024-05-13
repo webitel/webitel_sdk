@@ -24,6 +24,8 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { WebitelContactsGetTimelineCounterResponse } from '../api'
+// @ts-ignore
 import { WebitelContactsGetTimelineResponse } from '../api'
 /**
  * TimelineApi - axios parameter creator
@@ -36,11 +38,12 @@ export const TimelineApiAxiosParamCreator = function(
     /**
      *
      * @param {string} contactId
-     * @param {Array<string>} [fields]
-     * @param {Array<string>} [ids]
-     * @param {string} [sort]
      * @param {string} [page]
      * @param {string} [size]
+     * @param {string} [search]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
      * @param {Array<'chat' | 'call'>} [type]
@@ -49,11 +52,12 @@ export const TimelineApiAxiosParamCreator = function(
      */
     getTimeline: async (
       contactId: string,
-      fields?: Array<string>,
-      ids?: Array<string>,
-      sort?: string,
       page?: string,
       size?: string,
+      search?: string,
+      sort?: string,
+      fields?: Array<string>,
+      ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
       type?: Array<'chat' | 'call'>,
@@ -92,24 +96,28 @@ export const TimelineApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      if (ids) {
-        localVarQueryParameter['ids'] = ids
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
-      }
-
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
+      }
+
+      if (search !== undefined) {
+        localVarQueryParameter['search'] = search
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (ids) {
+        localVarQueryParameter['ids'] = ids
       }
 
       if (dateFrom !== undefined) {
@@ -144,6 +152,69 @@ export const TimelineApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @param {string} contactId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getTimelineCounter: async (
+      contactId: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'contactId' is not null or undefined
+      if (contactId === null || contactId === undefined) {
+        throw new RequiredError(
+          'contactId',
+          'Required parameter contactId was null or undefined when calling getTimelineCounter.'
+        )
+      }
+      const localVarPath = `/contacts/{contact_id}/timeline/counter`.replace(
+        `{${'contact_id'}}`,
+        encodeURIComponent(String(contactId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -156,11 +227,12 @@ export const TimelineApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} contactId
-     * @param {Array<string>} [fields]
-     * @param {Array<string>} [ids]
-     * @param {string} [sort]
      * @param {string} [page]
      * @param {string} [size]
+     * @param {string} [search]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
      * @param {Array<'chat' | 'call'>} [type]
@@ -169,11 +241,12 @@ export const TimelineApiFp = function(configuration?: Configuration) {
      */
     async getTimeline(
       contactId: string,
-      fields?: Array<string>,
-      ids?: Array<string>,
-      sort?: string,
       page?: string,
       size?: string,
+      search?: string,
+      sort?: string,
+      fields?: Array<string>,
+      ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
       type?: Array<'chat' | 'call'>,
@@ -188,16 +261,46 @@ export const TimelineApiFp = function(configuration?: Configuration) {
         configuration
       ).getTimeline(
         contactId,
-        fields,
-        ids,
-        sort,
         page,
         size,
+        search,
+        sort,
+        fields,
+        ids,
         dateFrom,
         dateTo,
         type,
         options
       )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} contactId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getTimelineCounter(
+      contactId: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelContactsGetTimelineCounterResponse>
+    > {
+      const localVarAxiosArgs = await TimelineApiAxiosParamCreator(
+        configuration
+      ).getTimelineCounter(contactId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -225,11 +328,12 @@ export const TimelineApiFactory = function(
     /**
      *
      * @param {string} contactId
-     * @param {Array<string>} [fields]
-     * @param {Array<string>} [ids]
-     * @param {string} [sort]
      * @param {string} [page]
      * @param {string} [size]
+     * @param {string} [search]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
      * @param {Array<'chat' | 'call'>} [type]
@@ -238,11 +342,12 @@ export const TimelineApiFactory = function(
      */
     getTimeline(
       contactId: string,
-      fields?: Array<string>,
-      ids?: Array<string>,
-      sort?: string,
       page?: string,
       size?: string,
+      search?: string,
+      sort?: string,
+      fields?: Array<string>,
+      ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
       type?: Array<'chat' | 'call'>,
@@ -251,16 +356,31 @@ export const TimelineApiFactory = function(
       return TimelineApiFp(configuration)
         .getTimeline(
           contactId,
-          fields,
-          ids,
-          sort,
           page,
           size,
+          search,
+          sort,
+          fields,
+          ids,
           dateFrom,
           dateTo,
           type,
           options
         )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} contactId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getTimelineCounter(
+      contactId: string,
+      options?: any
+    ): AxiosPromise<WebitelContactsGetTimelineCounterResponse> {
+      return TimelineApiFp(configuration)
+        .getTimelineCounter(contactId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -276,11 +396,12 @@ export class TimelineApi extends BaseAPI {
   /**
    *
    * @param {string} contactId
-   * @param {Array<string>} [fields]
-   * @param {Array<string>} [ids]
-   * @param {string} [sort]
    * @param {string} [page]
    * @param {string} [size]
+   * @param {string} [search]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [ids]
    * @param {string} [dateFrom]
    * @param {string} [dateTo]
    * @param {Array<'chat' | 'call'>} [type]
@@ -290,11 +411,12 @@ export class TimelineApi extends BaseAPI {
    */
   public getTimeline(
     contactId: string,
-    fields?: Array<string>,
-    ids?: Array<string>,
-    sort?: string,
     page?: string,
     size?: string,
+    search?: string,
+    sort?: string,
+    fields?: Array<string>,
+    ids?: Array<string>,
     dateFrom?: string,
     dateTo?: string,
     type?: Array<'chat' | 'call'>,
@@ -303,16 +425,30 @@ export class TimelineApi extends BaseAPI {
     return TimelineApiFp(this.configuration)
       .getTimeline(
         contactId,
-        fields,
-        ids,
-        sort,
         page,
         size,
+        search,
+        sort,
+        fields,
+        ids,
         dateFrom,
         dateTo,
         type,
         options
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} contactId
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TimelineApi
+   */
+  public getTimelineCounter(contactId: string, options?: any) {
+    return TimelineApiFp(this.configuration)
+      .getTimelineCounter(contactId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
