@@ -61,6 +61,12 @@ export interface WebitelContactsTimelineRecord {
    * @type {boolean}
    * @memberof WebitelContactsTimelineRecord
    */
+  is_detailed?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof WebitelContactsTimelineRecord
+   */
   is_inbound?: boolean
   /**
    *

@@ -18,6 +18,7 @@ import { EngineEndpoint } from './engine-endpoint'
 import { EngineHistoryFileJob } from './engine-history-file-job'
 import { EngineLookup } from './engine-lookup'
 import { EngineTranscriptLookup } from './engine-transcript-lookup'
+import { HistoryCallBlindTransfer } from './history-call-blind-transfer'
 
 /**
  *
@@ -97,6 +98,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   blind_transfer?: string
+  /**
+   *
+   * @type {Array<HistoryCallBlindTransfer>}
+   * @memberof EngineHistoryCall
+   */
+  blind_transfers?: Array<HistoryCallBlindTransfer>
   /**
    *
    * @type {string}
@@ -211,6 +218,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   hangup_disposition?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  hangup_phrase?: string
   /**
    *
    * @type {boolean}
