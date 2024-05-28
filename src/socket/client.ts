@@ -948,9 +948,19 @@ export class Client extends EventEmitter<ClientEvents> {
       case NotificationActions.SetContact:
         if (e.body) {
           const contactId = e.body.contact_id as number
-          const call = this.callById(e.body.id as string)
-          if (call) {
-            call.setContactId(contactId)
+          const channel = e.body.channel as string
+          switch (channel) {
+            case 'chat':
+              const conv = this.conversationById(e.body.id as string)
+              if (conv) {
+                conv.setContactId(contactId)
+              }
+              break
+            default:
+              const call = this.callById(e.body.id as string)
+              if (call) {
+                call.setContactId(contactId)
+              }
           }
         }
         break

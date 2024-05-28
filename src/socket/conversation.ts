@@ -156,6 +156,11 @@ export interface ConversationItem {
   task?: TaskData
 }
 
+interface Contact {
+  id: number | null
+  hide: boolean
+}
+
 export class Conversation {
   data: any
   state: ConversationState
@@ -180,6 +185,7 @@ export class Conversation {
   variables?: CallVariables
   task: Task | null
   queue: object | null
+  contact: Contact | null
 
   constructor(
     private readonly client: Client,
@@ -208,11 +214,15 @@ export class Conversation {
     this._autoAnswerTimerId = null
     this._cause = null
     this.lastAction = null
+    this.contact = null
 
     for (const k in variables) {
       if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
         if (k === 'wbt_auto_answer') {
           this._autoAnswerParam = variables.wbt_auto_answer
+        }
+        if (k === 'wbt_contact_id') {
+          this.contact = { id: +variables[k], hide: false }
         } else {
           this.variables[k] = variables[k]
         }
@@ -240,6 +250,25 @@ export class Conversation {
       this.joinDelay().catch((e) => {
         this.client.emit('error', e)
       })
+    }
+  }
+
+  get contactId() {
+    return (this.contact && this.contact.id) || null
+  }
+
+  get hideContact() {
+    return this.contact && this.contact.hide
+  }
+
+  setContactId(id: number) {
+    if (!this.contact) {
+      this.contact = {
+        hide: false,
+        id,
+      }
+    } else {
+      this.contact.id = id
     }
   }
 
@@ -559,6 +588,14 @@ export class Conversation {
       conversation_id: this.conversationId,
       channel_id: this.channelId,
       user_id: userId,
+    })
+  }
+
+  async setContact(contactId: number) {
+    return this.client.request(`chat_set_contact`, {
+      id: this.conversationId,
+      channel_id: this.channelId,
+      contact_id: contactId,
     })
   }
 
