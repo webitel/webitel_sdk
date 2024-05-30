@@ -123,61 +123,37 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
       this.storeSession(id, callSession)
 
-      session.on('connecting', () => {
-        this.emit(
-          'localStreams',
-          callSession,
-          session.connection.getLocalStreams()
-        )
-      })
-
-      if (session.connection) {
-        session.connection.addEventListener('addstream', (evt: object) => {
-          this.emit(
-            'peerStreams',
-            callSession,
-            new Array((evt as any).stream as MediaStream)
-          )
-        })
-      }
-
-      session.on('peerconnection', (peer: PeerConnectionEvent) => {
-        peer.peerconnection.addEventListener(
-          'addstream',
-          async (evt: Event) => {
-            // set remote audio stream
-            this.emit(
-              'peerStreams',
-              callSession,
-              new Array((evt as any).stream as MediaStream)
-            )
-          }
-        )
-      })
-
       session.on('ended', () => {
         // this handler will be called for incoming calls too
-        this.removeSession(id, session.connection)
+        this.removeSession(callSession)
       })
 
       session.on('failed', () => {
         // this handler will be called for incoming calls too
-        this.removeSession(id, session.connection)
+        this.removeSession(callSession)
       })
 
       session.on('accepted', () => {
         // the call has answered
         if (!callSession.incoming) {
-          this.emit(
-            'peerStreams',
-            callSession,
-            session.connection.getReceivers()
-          )
+          this.initPeerStream(callSession, session.connection)
+        }
+      })
+
+      session.on('progress', () => {
+        // the call has answered
+        if (!callSession.incoming) {
+          this.initPeerStream(callSession, session.connection)
         }
       })
 
       session.on('confirmed', () => {
-        // this handler will be called for incoming calls too
+        this.initPeerStream(callSession, session.connection)
+
+        const localStream = new MediaStream()
+        localStream.addTrack(session.connection.getSenders()[0].track)
+        callSession.localStream = localStream
+        this.emit('localStreams', callSession, callSession.getLocalMedia())
       })
 
       this.emit('newSession', callSession)
@@ -246,28 +222,15 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     return null
   }
 
-  private removeSession(id: string, connection: any): boolean {
-    if (connection) {
-      const localStreams = connection.getLocalStreams()
-      const remoteStreams = connection.getReceivers()
-
-      if (localStreams) {
-        localStreams.forEach((stream: MediaStream) => {
-          stream.getTracks().forEach((track) => {
-            track.stop()
-          })
-        })
-      }
-      if (remoteStreams) {
-        remoteStreams.forEach((stream: MediaStream) => {
-          // @ts-ignore
-          stream.track.stop()
-        })
-      }
-    }
-
-    if (this.sessionCache.has(id)) {
-      this.sessionCache.delete(id)
+  private removeSession(s: Session): boolean {
+    if (this.sessionCache.has(s.id)) {
+      this.sessionCache.delete(s.id)
+      s.getLocalMedia().forEach((m) => {
+        m.getTracks().forEach((track) => track.stop())
+      })
+      s.getPeerMedia().forEach((m) => {
+        m.getTracks().forEach((track) => track.stop())
+      })
 
       return true
     }
@@ -312,6 +275,15 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
   private hasSession(id: string | null): boolean {
     return this.sessionCache.has(id!)
+  }
+
+  private initPeerStream(sess: Session, connection: any) {
+    if (!sess.peerStream) {
+      const peerStream = new MediaStream()
+      peerStream.addTrack(connection.getReceivers()[0].track)
+      sess.peerStream = peerStream
+      this.emit('peerStreams', sess, sess.getPeerMedia())
+    }
   }
 
   private async getUserScreen(): Promise<MediaStream> {

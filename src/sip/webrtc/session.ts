@@ -6,6 +6,8 @@ export class Session implements CallSession {
   callId?: string
   incoming: boolean
   instanceId: string
+  peerStream: MediaStream | null
+  localStream: MediaStream | null
 
   private session: RTCSession
 
@@ -14,6 +16,8 @@ export class Session implements CallSession {
     this.callId = request.getHeader('X-Webitel-Uuid')
     this.incoming = session.direction === 'incoming'
     this.instanceId = request.getHeader('X-Webitel-Sock-Id')
+    this.peerStream = null
+    this.localStream = null
   }
 
   get id(): string {
@@ -21,23 +25,15 @@ export class Session implements CallSession {
   }
 
   getLocalMedia(): MediaStream[] {
-    if (this.session.connection) {
-      const local = this.session.connection.getLocalStreams()
-
-      if (local.length) {
-        return local
-      }
+    if (this.localStream) {
+      return [this.localStream]
     }
 
     return []
   }
   getPeerMedia(): MediaStream[] {
-    if (this.session.connection) {
-      const peer = this.session.connection.getRemoteStreams()
-
-      if (peer.length) {
-        return peer
-      }
+    if (this.peerStream) {
+      return [this.peerStream]
     }
 
     return []
