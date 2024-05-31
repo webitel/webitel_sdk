@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "24.04.02",
+  "version": "24.04.03",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
