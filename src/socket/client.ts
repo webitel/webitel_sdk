@@ -3,8 +3,9 @@ import Axios from 'axios'
 import { EventEmitter } from 'ee-ts'
 
 import { Log } from '../log'
-import { CallSession, SipConfiguration } from '../sip'
+import { CallSession, SipClient, SipConfiguration } from '../sip'
 import { SipPhone } from '../sip/webrtc'
+import { SipPhone as ExperimentalPhone } from '../sip/webrtc2'
 import version from '../version'
 import { Agent, AgentSession, AgentStatusEvent, ChannelState } from './agent'
 import {
@@ -86,6 +87,14 @@ export interface UserCallRequest {
   variables?: CallVariables
 }
 
+export interface SdpEvent {
+  sip_id: string
+  sdp: {
+    sdp: string
+    type: string
+  }
+}
+
 const API_HEADER_TOKEN = 'X-Webitel-Access'
 const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
 const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
@@ -109,6 +118,7 @@ const TASK_EVENT = 'task'
 const JOB_EVENT = 'job'
 
 const WEBSOCKET_EVENT_SIP = 'sip'
+const WEBSOCKET_EVENT_SDP = 'sdp'
 
 enum HandleError {
   NotFoundError = 'NotFoundError',
@@ -135,6 +145,7 @@ export interface ConnectionInfo {
   server_time: number
   ping_interval?: number
   session: Session
+  b2bua?: boolean
 }
 
 export interface CallListResponse {
@@ -206,11 +217,14 @@ export interface ClientEvents {
   phone_connected(connected: boolean): void
   refresh_missed(ev: object): void
   show_message(ev: MessageNotification): void
+  sdp(sock: string, ev: SdpEvent): void
+  call_receive(call: Call): void
+  call_hangup(call: Call): void
 }
 
 export class Client extends EventEmitter<ClientEvents> {
   agent!: Agent
-  phone?: SipPhone
+  phone?: SipClient
   lastError: null | Error
   lastLatency: number | null
   private socket!: Socket
@@ -737,7 +751,7 @@ export class Client extends EventEmitter<ClientEvents> {
     }
   }
 
-  async registerCallClient(phone: SipPhone) {
+  async registerCallClient(phone: SipClient) {
     this.phone = phone
     this.subscribePhone(phone)
 
@@ -749,7 +763,7 @@ export class Client extends EventEmitter<ClientEvents> {
     }
   }
 
-  subscribePhone(phone: SipPhone) {
+  subscribePhone(phone: SipClient) {
     phone.on(
       'peerStreams',
       (session: CallSession, streams: MediaStream[] | null) => {
@@ -911,6 +925,14 @@ export class Client extends EventEmitter<ClientEvents> {
           this.eventHandler.emit(WEBSOCKET_EVENT_SIP, message.data)
           break
 
+        case WEBSOCKET_EVENT_SDP:
+          this.emit(
+            WEBSOCKET_EVENT_SDP,
+            message.sock_id as string,
+            message.data
+          )
+          break
+
         case WEBSOCKET_EVENT_AGENT_STATUS:
           this.handleAgentStatus(message.data as AgentStatusEvent)
           break
@@ -1045,7 +1067,9 @@ export class Client extends EventEmitter<ClientEvents> {
     }
 
     return this.registerCallClient(
-      new SipPhone(this.instanceId, this._config.debug)
+      this.connectionInfo.b2bua
+        ? new ExperimentalPhone(this)
+        : new SipPhone(this.instanceId, this._config.debug)
     )
   }
 
@@ -1155,6 +1179,7 @@ export class Client extends EventEmitter<ClientEvents> {
     switch (event.event) {
       case CallActions.Ringing:
         call = new Call(this, event)
+        this.emit('call_receive', call)
 
         this.callStore.set(call.id, call)
         this.checkAutoAnswer(call)
@@ -1220,6 +1245,7 @@ export class Client extends EventEmitter<ClientEvents> {
         call = this.callById(event.id)
         if (call) {
           call.setHangup(event)
+          this.emit('call_hangup', call)
         }
         break
 

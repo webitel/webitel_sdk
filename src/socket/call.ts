@@ -1,7 +1,8 @@
 import { CallSession } from '../sip'
-import { Client, UserCallRequest } from './client'
+import { Client, SdpEvent, UserCallRequest } from './client'
 import { QueueParameters } from './queue'
 import { MemberCommunication, Reporting, Task, TaskData } from './task'
+import { MessageNotification } from './notification'
 
 export interface CallParameters {
   timeout?: number
@@ -214,6 +215,10 @@ export interface CallParams {
 
 export interface MemberInfoRequest {
   fields?: string[]
+}
+
+export interface CallEvents {
+  hangup(): void
 }
 
 export class Call {

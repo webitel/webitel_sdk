@@ -11,6 +11,7 @@ export interface Message {
   seq_reply?: number
   data: any
   error?: object
+  sock_id?: string
 }
 
 export interface Request {
