@@ -197,12 +197,14 @@ export interface CallInfo extends CallEventData, ContactDataEvent {
 
   params?: CallParams
   eavesdrop?: EavesdropData
+  originate?: boolean
 }
 
 export interface CallHangup extends CallEventData {
   cause: string
   sip: number
   reporting_at: number
+  notification_hangup?: boolean
 }
 
 export interface CallParams {
@@ -254,6 +256,7 @@ export class Call {
 
   hangupCause!: string
   hangupSipCode!: number
+  notificationHangup: boolean
 
   parentId?: string
   bridgedId!: string
@@ -270,6 +273,7 @@ export class Call {
   _autoAnswerTimerId: any | null
   _activeCounter: number
   contact: Contact | null
+  originate: boolean
 
   constructor(protected client: Client, e: CallEventData) {
     // FIXME check _muted from channel
@@ -283,6 +287,7 @@ export class Call {
     this._autoAnswerTimerId = null
     this._activeCounter = 0
     this.contact = null
+    this.notificationHangup = false
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -296,6 +301,8 @@ export class Call {
     if (callInfo.eavesdrop) {
       this._eavesdrop = callInfo.eavesdrop
     }
+
+    this.originate = callInfo.originate || false
 
     // fixme
     if (client.phone) {
@@ -557,6 +564,7 @@ export class Call {
     this.hangupAt = +s.timestamp
     this.hangupCause = hangup.cause
     this.hangupSipCode = hangup.sip
+    this.notificationHangup = hangup.notification_hangup || false
     this.voice = false
     this.peerStreams = []
     if (+hangup.reporting_at) {

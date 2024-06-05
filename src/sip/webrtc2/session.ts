@@ -48,8 +48,7 @@ export class Session implements CallSession {
         sdp: this.rtc.localSdp,
       })
 
-      this.cli.emit('localStreams', this, this.getLocalMedia())
-      this.cli.emit('peerStreams', this, this.getPeerMedia())
+      this.cli.emitSessionMedia(this)
     })
   }
 

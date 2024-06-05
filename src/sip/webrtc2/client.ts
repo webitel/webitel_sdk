@@ -18,11 +18,13 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   readonly type = 'webrtc'
   sessions: Session[]
   registered: boolean
+  ua: object
 
   constructor(private rpc: RPC) {
     super()
     this.sessions = []
     this.registered = false
+    this.ua = {}
 
     this.rpc.on('sdp', async (sock, e) => {
       const sess = this.sipSessionBySipId(e.sip_id as string)
@@ -32,8 +34,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       if (sock === this.rpc.instanceId) {
         if (!sess.answered) {
           await sess.handleAnswerFromOffer(e.sdp)
-          this.emit('localStreams', sess, sess.getLocalMedia())
-          this.emit('peerStreams', sess, sess.getPeerMedia())
+          this.emitSessionMedia(sess)
         }
       } else {
         this.emit('localStreams', sess, [])
@@ -43,7 +44,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     })
 
     this.rpc.on('call_receive', (call: any) => {
-      if ((call.direction as string) === 'inbound') {
+      if ((call.direction as string) === 'inbound' || call.originate) {
         const sess = new Session(this, this.rpc)
         sess.callId = call.id as string
         this.sessions.push(sess)
@@ -52,10 +53,13 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     })
 
     this.rpc.on('call_hangup', async (call: any) => {
-      // tslint:disable-next-line: no-console
-      console.error(call)
       await this.removeSession((call.sipId as string) || (call.id as string))
     })
+  }
+
+  emitSessionMedia(sess: Session) {
+    this.emit('localStreams', sess, sess.getLocalMedia())
+    this.emit('peerStreams', sess, sess.getPeerMedia())
   }
 
   async callOption(req: Answer = {}) {
@@ -80,6 +84,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     } catch (e) {}
 
     this.setRegister(true)
+    this.emit('connected')
   }
 
   async unregister() {

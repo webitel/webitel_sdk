@@ -241,6 +241,7 @@ export class Client extends EventEmitter<ClientEvents> {
   private callStore: Map<string, Call>
   private conversationStore: Map<string, Conversation>
   private pingTimer: number | null
+  private toneTimer: number | null
 
   constructor(protected readonly _config: Config) {
     super()
@@ -249,6 +250,7 @@ export class Client extends EventEmitter<ClientEvents> {
     this.callStore = new Map<string, Call>()
     this.conversationStore = new Map<string, Conversation>()
     this.pingTimer = null
+    this.toneTimer = null
     this.basePath = `${formatBaseUri(
       _config.storageEndpoint || _config.endpoint
     )}`
@@ -1246,6 +1248,10 @@ export class Client extends EventEmitter<ClientEvents> {
         if (call) {
           call.setHangup(event)
           this.emit('call_hangup', call)
+
+          if (call.notificationHangup) {
+            this.generateTone()
+          }
         }
         break
 
@@ -1259,6 +1265,28 @@ export class Client extends EventEmitter<ClientEvents> {
       if (this.callDestroyed(call)) {
         this.destroyCall(call)
       }
+    }
+  }
+
+  private generateTone() {
+    if (this.toneTimer) {
+      return
+    }
+
+    try {
+      const context = new AudioContext()
+      const oscillator = context.createOscillator() // Oscillator defaults to sine wave
+      oscillator.connect(context.destination)
+      // @ts-ignore
+      // oscillator.type = "sawtooth";
+      oscillator.start()
+      // @ts-ignore
+      this.toneTimer = setTimeout(() => {
+        this.toneTimer = null
+        oscillator.stop()
+      }, 500)
+    } catch (e) {
+      this.emit('error', e as Error)
     }
   }
 
