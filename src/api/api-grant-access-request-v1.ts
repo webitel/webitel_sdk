@@ -11,17 +11,30 @@
  * Do not edit the class manually.
  */
 
+import { ApiObjectId } from './api-object-id'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface ApiGrantAccessRequestV1
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export interface ApiGrantAccessRequestV1 {
+  /**
+   *
+   * @type {string}
+   * @memberof ApiGrantAccessRequestV1
+   */
+  grantee?: string
+  /**
+   *
+   * @type {string}
+   * @memberof ApiGrantAccessRequestV1
+   */
+  grants?: string
+  /**
+   *
+   * @type {ApiObjectId}
+   * @memberof ApiGrantAccessRequestV1
+   */
+  object?: ApiObjectId
 }

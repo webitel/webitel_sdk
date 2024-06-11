@@ -24,45 +24,41 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
+import { ApiCreateDomainRequest } from '../api'
 // @ts-ignore
-import { EngineCreateSystemSettingRequest } from '../api'
+import { ApiDomainsUpdateDomainBody } from '../api'
 // @ts-ignore
-import { EngineListAvailableSystemSetting } from '../api'
+import { ApiReadDomainResponse } from '../api'
 // @ts-ignore
-import { EngineListSystemSetting } from '../api'
+import { ApiSearchDomainsResponse } from '../api'
 // @ts-ignore
-import { EnginePatchSystemSettingRequest } from '../api'
-// @ts-ignore
-import { EngineSystemSetting } from '../api'
-// @ts-ignore
-import { EngineUpdateSystemSettingRequest } from '../api'
+import { ApiUpdateDomainResponse } from '../api'
 /**
- * SystemSettingServiceApi - axios parameter creator
+ * DomainsApi - axios parameter creator
  * @export
  */
-export const SystemSettingServiceApiAxiosParamCreator = function(
+export const DomainsApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {EngineCreateSystemSettingRequest} body
+     * @param {ApiCreateDomainRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSystemSetting: async (
-      body: EngineCreateSystemSettingRequest,
+    createDomain: async (
+      body: ApiCreateDomainRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createSystemSetting.'
+          'Required parameter body was null or undefined when calling createDomain.'
         )
       }
-      const localVarPath = `/settings`
+      const localVarPath = `/domains`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -115,24 +111,89 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} [domain]
+     * @param {string} [dc]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSystemSetting: async (
-      id: number,
+    deleteDomain: async (
+      domain?: string,
+      dc?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      const localVarPath = `/domain`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (domain !== undefined) {
+        localVarQueryParameter['domain'] = domain
+      }
+
+      if (dc !== undefined) {
+        localVarQueryParameter['dc'] = dc
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} dc
+     * @param {string} [domain]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteDomain2: async (
+      dc: string,
+      domain?: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'dc' is not null or undefined
+      if (dc === null || dc === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling deleteSystemSetting.'
+          'dc',
+          'Required parameter dc was null or undefined when calling deleteDomain2.'
         )
       }
-      const localVarPath = `/settings/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/domains/{dc}`.replace(
+        `{${'dc'}}`,
+        encodeURIComponent(String(dc))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -156,6 +217,10 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (domain !== undefined) {
+        localVarQueryParameter['domain'] = domain
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -178,41 +243,24 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
+     * @param {string} [domain]
+     * @param {string} [dc]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchSystemSetting: async (
-      id: number,
-      body: EnginePatchSystemSettingRequest,
+    readDomain: async (
+      domain?: string,
+      dc?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling patchSystemSetting.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling patchSystemSetting.'
-        )
-      }
-      const localVarPath = `/settings/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/domain`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
         baseOptions = configuration.baseOptions
       }
       const localVarRequestOptions = {
-        method: 'PATCH',
+        method: 'GET',
         ...baseOptions,
         ...options,
       }
@@ -228,7 +276,13 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      localVarHeaderParameter['Content-Type'] = 'application/json'
+      if (domain !== undefined) {
+        localVarQueryParameter['domain'] = domain
+      }
+
+      if (dc !== undefined) {
+        localVarQueryParameter['dc'] = dc
+      }
 
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
@@ -244,12 +298,6 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
-      const needsSerialization =
-        typeof body !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -258,24 +306,26 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} dc
+     * @param {string} [domain]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSystemSetting: async (
-      id: number,
+    readDomain2: async (
+      dc: string,
+      domain?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'dc' is not null or undefined
+      if (dc === null || dc === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling readSystemSetting.'
+          'dc',
+          'Required parameter dc was null or undefined when calling readDomain2.'
         )
       }
-      const localVarPath = `/settings/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/domains/{dc}`.replace(
+        `{${'dc'}}`,
+        encodeURIComponent(String(dc))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -299,6 +349,10 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (domain !== undefined) {
+        localVarQueryParameter['domain'] = domain
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -321,23 +375,23 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
+     * @param {string} [domain] like
+     * @param {Array<string>} [fields] attrs
+     * @param {Array<string>} [sort]
+     * @param {string} [page]
+     * @param {string} [size]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAvailableSystemSetting: async (
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
+    searchDomains: async (
+      domain?: string,
       fields?: Array<string>,
+      sort?: Array<string>,
+      page?: string,
+      size?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/settings/available`
+      const localVarPath = `/domains`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -360,24 +414,24 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (domain !== undefined) {
+        localVarQueryParameter['domain'] = domain
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort) {
+        localVarQueryParameter['sort'] = sort
+      }
+
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
-      }
-
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
       }
 
       localVarUrlObj.query = {
@@ -402,128 +456,33 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings'>} [name] Filter by setting names.
+     * @param {string} domainDc component
+     * @param {ApiDomainsUpdateDomainBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchSystemSetting: async (
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
-      fields?: Array<string>,
-      name?: Array<
-        | 'empty_system_settings_name'
-        | 'enable_omnichannel'
-        | 'member_chunk_size'
-        | 'amd_cancel_not_human'
-        | 'scheme_version_limit'
-        | 'enable_2fa'
-        | 'export_settings'
-      >,
+    updateDomain: async (
+      domainDc: string,
+      body: ApiDomainsUpdateDomainBody,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/settings`
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
-      }
-
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
-      }
-
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      if (name) {
-        localVarQueryParameter['name'] = name
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateSystemSetting: async (
-      id: number,
-      body: EngineUpdateSystemSettingRequest,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'domainDc' is not null or undefined
+      if (domainDc === null || domainDc === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling updateSystemSetting.'
+          'domainDc',
+          'Required parameter domainDc was null or undefined when calling updateDomain.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateSystemSetting.'
+          'Required parameter body was null or undefined when calling updateDomain.'
         )
       }
-      const localVarPath = `/settings/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/domains/{domain.dc}`.replace(
+        `{${'domain.dc'}}`,
+        encodeURIComponent(String(domainDc))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -575,35 +534,110 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @param {string} domainDc component
+     * @param {ApiDomainsUpdateDomainBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateDomain2: async (
+      domainDc: string,
+      body: ApiDomainsUpdateDomainBody,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'domainDc' is not null or undefined
+      if (domainDc === null || domainDc === undefined) {
+        throw new RequiredError(
+          'domainDc',
+          'Required parameter domainDc was null or undefined when calling updateDomain2.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateDomain2.'
+        )
+      }
+      const localVarPath = `/domains/{domain.dc}`.replace(
+        `{${'domain.dc'}}`,
+        encodeURIComponent(String(domainDc))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
 /**
- * SystemSettingServiceApi - functional programming interface
+ * DomainsApi - functional programming interface
  * @export
  */
-export const SystemSettingServiceApiFp = function(
-  configuration?: Configuration
-) {
+export const DomainsApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {EngineCreateSystemSettingRequest} body
+     * @param {ApiCreateDomainRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createSystemSetting(
-      body: EngineCreateSystemSettingRequest,
+    async createDomain(
+      body: ApiCreateDomainRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await DomainsApiAxiosParamCreator(
         configuration
-      ).createSystemSetting(body, options)
+      ).createDomain(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -617,22 +651,21 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} [domain]
+     * @param {string} [dc]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteSystemSetting(
-      id: number,
+    async deleteDomain(
+      domain?: string,
+      dc?: string,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await DomainsApiAxiosParamCreator(
         configuration
-      ).deleteSystemSetting(id, options)
+      ).deleteDomain(domain, dc, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -646,24 +679,21 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
+     * @param {string} dc
+     * @param {string} [domain]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchSystemSetting(
-      id: number,
-      body: EnginePatchSystemSettingRequest,
+    async deleteDomain2(
+      dc: string,
+      domain?: string,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await DomainsApiAxiosParamCreator(
         configuration
-      ).patchSystemSetting(id, body, options)
+      ).deleteDomain2(dc, domain, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -677,22 +707,24 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {string} [domain]
+     * @param {string} [dc]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readSystemSetting(
-      id: number,
+    async readDomain(
+      domain?: string,
+      dc?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      ) => AxiosPromise<ApiReadDomainResponse>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await DomainsApiAxiosParamCreator(
         configuration
-      ).readSystemSetting(id, options)
+      ).readDomain(domain, dc, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -706,30 +738,61 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
+     * @param {string} dc
+     * @param {string} [domain]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchAvailableSystemSetting(
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
+    async readDomain2(
+      dc: string,
+      domain?: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ApiReadDomainResponse>
+    > {
+      const localVarAxiosArgs = await DomainsApiAxiosParamCreator(
+        configuration
+      ).readDomain2(dc, domain, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} [domain] like
+     * @param {Array<string>} [fields] attrs
+     * @param {Array<string>} [sort]
+     * @param {string} [page]
+     * @param {string} [size]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchDomains(
+      domain?: string,
       fields?: Array<string>,
+      sort?: Array<string>,
+      page?: string,
+      size?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListAvailableSystemSetting>
+      ) => AxiosPromise<ApiSearchDomainsResponse>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await DomainsApiAxiosParamCreator(
         configuration
-      ).searchAvailableSystemSetting(page, size, q, sort, fields, options)
+      ).searchDomains(domain, fields, sort, page, size, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -743,40 +806,24 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings'>} [name] Filter by setting names.
+     * @param {string} domainDc component
+     * @param {ApiDomainsUpdateDomainBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchSystemSetting(
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
-      fields?: Array<string>,
-      name?: Array<
-        | 'empty_system_settings_name'
-        | 'enable_omnichannel'
-        | 'member_chunk_size'
-        | 'amd_cancel_not_human'
-        | 'scheme_version_limit'
-        | 'enable_2fa'
-        | 'export_settings'
-      >,
+    async updateDomain(
+      domainDc: string,
+      body: ApiDomainsUpdateDomainBody,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListSystemSetting>
+      ) => AxiosPromise<ApiUpdateDomainResponse>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await DomainsApiAxiosParamCreator(
         configuration
-      ).searchSystemSetting(page, size, q, sort, fields, name, options)
+      ).updateDomain(domainDc, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -790,24 +837,24 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
+     * @param {string} domainDc component
+     * @param {ApiDomainsUpdateDomainBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateSystemSetting(
-      id: number,
-      body: EngineUpdateSystemSettingRequest,
+    async updateDomain2(
+      domainDc: string,
+      body: ApiDomainsUpdateDomainBody,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      ) => AxiosPromise<ApiUpdateDomainResponse>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await DomainsApiAxiosParamCreator(
         configuration
-      ).updateSystemSetting(id, body, options)
+      ).updateDomain2(domainDc, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -823,10 +870,10 @@ export const SystemSettingServiceApiFp = function(
 }
 
 /**
- * SystemSettingServiceApi - factory interface
+ * DomainsApi - factory interface
  * @export
  */
-export const SystemSettingServiceApiFactory = function(
+export const DomainsApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -834,275 +881,272 @@ export const SystemSettingServiceApiFactory = function(
   return {
     /**
      *
-     * @param {EngineCreateSystemSettingRequest} body
+     * @param {ApiCreateDomainRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSystemSetting(
-      body: EngineCreateSystemSettingRequest,
+    createDomain(
+      body: ApiCreateDomainRequest,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .createSystemSetting(body, options)
+    ): AxiosPromise<object> {
+      return DomainsApiFp(configuration)
+        .createDomain(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
+     * @param {string} [domain]
+     * @param {string} [dc]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSystemSetting(
-      id: number,
+    deleteDomain(
+      domain?: string,
+      dc?: string,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .deleteSystemSetting(id, options)
+    ): AxiosPromise<object> {
+      return DomainsApiFp(configuration)
+        .deleteDomain(domain, dc, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
+     * @param {string} dc
+     * @param {string} [domain]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchSystemSetting(
-      id: number,
-      body: EnginePatchSystemSettingRequest,
+    deleteDomain2(
+      dc: string,
+      domain?: string,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .patchSystemSetting(id, body, options)
+    ): AxiosPromise<object> {
+      return DomainsApiFp(configuration)
+        .deleteDomain2(dc, domain, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
+     * @param {string} [domain]
+     * @param {string} [dc]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSystemSetting(
-      id: number,
+    readDomain(
+      domain?: string,
+      dc?: string,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .readSystemSetting(id, options)
+    ): AxiosPromise<ApiReadDomainResponse> {
+      return DomainsApiFp(configuration)
+        .readDomain(domain, dc, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
+     * @param {string} dc
+     * @param {string} [domain]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchAvailableSystemSetting(
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
+    readDomain2(
+      dc: string,
+      domain?: string,
+      options?: any
+    ): AxiosPromise<ApiReadDomainResponse> {
+      return DomainsApiFp(configuration)
+        .readDomain2(dc, domain, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} [domain] like
+     * @param {Array<string>} [fields] attrs
+     * @param {Array<string>} [sort]
+     * @param {string} [page]
+     * @param {string} [size]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchDomains(
+      domain?: string,
       fields?: Array<string>,
+      sort?: Array<string>,
+      page?: string,
+      size?: string,
       options?: any
-    ): AxiosPromise<EngineListAvailableSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .searchAvailableSystemSetting(page, size, q, sort, fields, options)
+    ): AxiosPromise<ApiSearchDomainsResponse> {
+      return DomainsApiFp(configuration)
+        .searchDomains(domain, fields, sort, page, size, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings'>} [name] Filter by setting names.
+     * @param {string} domainDc component
+     * @param {ApiDomainsUpdateDomainBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchSystemSetting(
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
-      fields?: Array<string>,
-      name?: Array<
-        | 'empty_system_settings_name'
-        | 'enable_omnichannel'
-        | 'member_chunk_size'
-        | 'amd_cancel_not_human'
-        | 'scheme_version_limit'
-        | 'enable_2fa'
-        | 'export_settings'
-      >,
+    updateDomain(
+      domainDc: string,
+      body: ApiDomainsUpdateDomainBody,
       options?: any
-    ): AxiosPromise<EngineListSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .searchSystemSetting(page, size, q, sort, fields, name, options)
+    ): AxiosPromise<ApiUpdateDomainResponse> {
+      return DomainsApiFp(configuration)
+        .updateDomain(domainDc, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
+     * @param {string} domainDc component
+     * @param {ApiDomainsUpdateDomainBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateSystemSetting(
-      id: number,
-      body: EngineUpdateSystemSettingRequest,
+    updateDomain2(
+      domainDc: string,
+      body: ApiDomainsUpdateDomainBody,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .updateSystemSetting(id, body, options)
+    ): AxiosPromise<ApiUpdateDomainResponse> {
+      return DomainsApiFp(configuration)
+        .updateDomain2(domainDc, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * SystemSettingServiceApi - object-oriented interface
+ * DomainsApi - object-oriented interface
  * @export
- * @class SystemSettingServiceApi
+ * @class DomainsApi
  * @extends {BaseAPI}
  */
-export class SystemSettingServiceApi extends BaseAPI {
+export class DomainsApi extends BaseAPI {
   /**
    *
-   * @param {EngineCreateSystemSettingRequest} body
+   * @param {ApiCreateDomainRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof DomainsApi
    */
-  public createSystemSetting(
-    body: EngineCreateSystemSettingRequest,
-    options?: any
-  ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .createSystemSetting(body, options)
+  public createDomain(body: ApiCreateDomainRequest, options?: any) {
+    return DomainsApiFp(this.configuration)
+      .createDomain(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} id
+   * @param {string} [domain]
+   * @param {string} [dc]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof DomainsApi
    */
-  public deleteSystemSetting(id: number, options?: any) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .deleteSystemSetting(id, options)
+  public deleteDomain(domain?: string, dc?: string, options?: any) {
+    return DomainsApiFp(this.configuration)
+      .deleteDomain(domain, dc, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} id
-   * @param {EnginePatchSystemSettingRequest} body
+   * @param {string} dc
+   * @param {string} [domain]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof DomainsApi
    */
-  public patchSystemSetting(
-    id: number,
-    body: EnginePatchSystemSettingRequest,
-    options?: any
-  ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .patchSystemSetting(id, body, options)
+  public deleteDomain2(dc: string, domain?: string, options?: any) {
+    return DomainsApiFp(this.configuration)
+      .deleteDomain2(dc, domain, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} id
+   * @param {string} [domain]
+   * @param {string} [dc]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof DomainsApi
    */
-  public readSystemSetting(id: number, options?: any) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .readSystemSetting(id, options)
+  public readDomain(domain?: string, dc?: string, options?: any) {
+    return DomainsApiFp(this.configuration)
+      .readDomain(domain, dc, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
+   * @param {string} dc
+   * @param {string} [domain]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof DomainsApi
    */
-  public searchAvailableSystemSetting(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
+  public readDomain2(dc: string, domain?: string, options?: any) {
+    return DomainsApiFp(this.configuration)
+      .readDomain2(dc, domain, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} [domain] like
+   * @param {Array<string>} [fields] attrs
+   * @param {Array<string>} [sort]
+   * @param {string} [page]
+   * @param {string} [size]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DomainsApi
+   */
+  public searchDomains(
+    domain?: string,
     fields?: Array<string>,
+    sort?: Array<string>,
+    page?: string,
+    size?: string,
     options?: any
   ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .searchAvailableSystemSetting(page, size, q, sort, fields, options)
+    return DomainsApiFp(this.configuration)
+      .searchDomains(domain, fields, sort, page, size, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings'>} [name] Filter by setting names.
+   * @param {string} domainDc component
+   * @param {ApiDomainsUpdateDomainBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof DomainsApi
    */
-  public searchSystemSetting(
-    page?: number,
-    size?: number,
-    q?: string,
-    sort?: string,
-    fields?: Array<string>,
-    name?: Array<
-      | 'empty_system_settings_name'
-      | 'enable_omnichannel'
-      | 'member_chunk_size'
-      | 'amd_cancel_not_human'
-      | 'scheme_version_limit'
-      | 'enable_2fa'
-      | 'export_settings'
-    >,
+  public updateDomain(
+    domainDc: string,
+    body: ApiDomainsUpdateDomainBody,
     options?: any
   ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .searchSystemSetting(page, size, q, sort, fields, name, options)
+    return DomainsApiFp(this.configuration)
+      .updateDomain(domainDc, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} id
-   * @param {EngineUpdateSystemSettingRequest} body
+   * @param {string} domainDc component
+   * @param {ApiDomainsUpdateDomainBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof DomainsApi
    */
-  public updateSystemSetting(
-    id: number,
-    body: EngineUpdateSystemSettingRequest,
+  public updateDomain2(
+    domainDc: string,
+    body: ApiDomainsUpdateDomainBody,
     options?: any
   ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .updateSystemSetting(id, body, options)
+    return DomainsApiFp(this.configuration)
+      .updateDomain2(domainDc, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

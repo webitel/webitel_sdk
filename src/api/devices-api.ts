@@ -595,7 +595,7 @@ export const DevicesApiAxiosParamCreator = function(
           'Required parameter deviceId was null or undefined when calling searchDeviceAudit.'
         )
       }
-      const localVarPath = `/devices/{device.id}/audit`.replace(
+      const localVarPath = `/devices/{device.id}/users/audit`.replace(
         `{${'device.id'}}`,
         encodeURIComponent(String(deviceId))
       )

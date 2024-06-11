@@ -11,17 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { ApiOrganization } from './api-organization'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface ApiSearchDomainsResponse
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export interface ApiSearchDomainsResponse {
+  /**
+   *
+   * @type {Array<ApiOrganization>}
+   * @memberof ApiSearchDomainsResponse
+   */
+  domains?: Array<ApiOrganization>
 }

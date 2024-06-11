@@ -14,14 +14,19 @@
 /**
  *
  * @export
- * @enum {string}
+ * @interface ApiVerification
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export interface ApiVerification {
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof ApiVerification
+   */
+  errors?: Array<string>
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof ApiVerification
+   */
+  notify?: Array<string>
 }

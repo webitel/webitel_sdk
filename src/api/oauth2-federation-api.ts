@@ -24,45 +24,41 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
+import { ApiDeleteOAuthServiceRequest } from '../api'
 // @ts-ignore
-import { EngineCreateSystemSettingRequest } from '../api'
+import { ApiOAuth2FederationDeleteOAuthServiceBody } from '../api'
 // @ts-ignore
-import { EngineListAvailableSystemSetting } from '../api'
+import { ApiOAuth2FederationUpdateOAuthServiceBody } from '../api'
 // @ts-ignore
-import { EngineListSystemSetting } from '../api'
+import { ApiOAuthService } from '../api'
 // @ts-ignore
-import { EnginePatchSystemSettingRequest } from '../api'
-// @ts-ignore
-import { EngineSystemSetting } from '../api'
-// @ts-ignore
-import { EngineUpdateSystemSettingRequest } from '../api'
+import { ApiSearchOAuthServiceResponse } from '../api'
 /**
- * SystemSettingServiceApi - axios parameter creator
+ * OAuth2FederationApi - axios parameter creator
  * @export
  */
-export const SystemSettingServiceApiAxiosParamCreator = function(
+export const OAuth2FederationApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {EngineCreateSystemSettingRequest} body
+     * @param {ApiOAuthService} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSystemSetting: async (
-      body: EngineCreateSystemSettingRequest,
+    createOAuthService: async (
+      body: ApiOAuthService,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createSystemSetting.'
+          'Required parameter body was null or undefined when calling createOAuthService.'
         )
       }
-      const localVarPath = `/settings`
+      const localVarPath = `/oauth/apps`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -115,25 +111,22 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {ApiDeleteOAuthServiceRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSystemSetting: async (
-      id: number,
+    deleteOAuthService: async (
+      body: ApiDeleteOAuthServiceRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling deleteSystemSetting.'
+          'body',
+          'Required parameter body was null or undefined when calling deleteOAuthService.'
         )
       }
-      const localVarPath = `/settings/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/oauth/apps`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -141,78 +134,6 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
       }
       const localVarRequestOptions = {
         method: 'DELETE',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    patchSystemSetting: async (
-      id: number,
-      body: EnginePatchSystemSettingRequest,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling patchSystemSetting.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling patchSystemSetting.'
-        )
-      }
-      const localVarPath = `/settings/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PATCH',
         ...baseOptions,
         ...options,
       }
@@ -258,22 +179,118 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {Array<string>} id
+     * @param {ApiOAuth2FederationDeleteOAuthServiceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSystemSetting: async (
-      id: number,
+    deleteOAuthService2: async (
+      id: Array<string>,
+      body: ApiOAuth2FederationDeleteOAuthServiceBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readSystemSetting.'
+          'Required parameter id was null or undefined when calling deleteOAuthService2.'
         )
       }
-      const localVarPath = `/settings/{id}`.replace(
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling deleteOAuthService2.'
+        )
+      }
+      const localVarPath = `/oauth/apps/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {Array<string>} id ----- Search Basic Filters ---------------------------  selection: by unique identifier
+     * @param {number} [page] ----- Select Options -------------------------  default: 1
+     * @param {number} [size] default: 16
+     * @param {Array<string>} [fields] attributes list
+     * @param {Array<string>} [sort] e.g.: \&quot;updated_at\&quot; - ASC; \&quot;!updated_at\&quot; - DESC;
+     * @param {string} [q] term-of-search: lookup[name]
+     * @param {string} [name] case-ignore substring match: ILIKE \&#39;*\&#39; - any; \&#39;?\&#39; - one
+     * @param {string} [access] [M]andatory[A]ccess[C]ontrol: with access mode (action) granted!
+     * @param {boolean} [enabled] ----- OAuthService-Specific Filters ----------------
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    locateOAuthService: async (
+      id: Array<string>,
+      page?: number,
+      size?: number,
+      fields?: Array<string>,
+      sort?: Array<string>,
+      q?: string,
+      name?: string,
+      access?: string,
+      enabled?: boolean,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling locateOAuthService.'
+        )
+      }
+      const localVarPath = `/oauth/apps/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -299,67 +316,6 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAvailableSystemSetting: async (
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
-      fields?: Array<string>,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/settings/available`
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
       }
@@ -368,113 +324,30 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
-      }
-
       if (fields) {
         localVarQueryParameter['fields'] = fields
       }
 
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings'>} [name] Filter by setting names.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchSystemSetting: async (
-      page?: number,
-      size?: number,
-      q?: string,
-      sort?: string,
-      fields?: Array<string>,
-      name?: Array<
-        | 'empty_system_settings_name'
-        | 'enable_omnichannel'
-        | 'member_chunk_size'
-        | 'amd_cancel_not_human'
-        | 'scheme_version_limit'
-        | 'enable_2fa'
-        | 'export_settings'
-      >,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/settings`
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
-      }
-
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
+      if (sort) {
+        localVarQueryParameter['sort'] = sort
       }
 
       if (q !== undefined) {
         localVarQueryParameter['q'] = q
       }
 
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      if (name) {
+      if (name !== undefined) {
         localVarQueryParameter['name'] = name
       }
 
+      if (access !== undefined) {
+        localVarQueryParameter['access'] = access
+      }
+
+      if (enabled !== undefined) {
+        localVarQueryParameter['enabled'] = enabled
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -497,33 +370,138 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
+     * @param {number} [page] ----- Select Options -------------------------  default: 1
+     * @param {number} [size] default: 16
+     * @param {Array<string>} [fields] attributes list
+     * @param {Array<string>} [sort] e.g.: \&quot;updated_at\&quot; - ASC; \&quot;!updated_at\&quot; - DESC;
+     * @param {Array<string>} [id] ----- Search Basic Filters ---------------------------  selection: by unique identifier
+     * @param {string} [q] term-of-search: lookup[name]
+     * @param {string} [name] case-ignore substring match: ILIKE \&#39;*\&#39; - any; \&#39;?\&#39; - one
+     * @param {string} [access] [M]andatory[A]ccess[C]ontrol: with access mode (action) granted!
+     * @param {boolean} [enabled] ----- OAuthService-Specific Filters ----------------
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateSystemSetting: async (
-      id: number,
-      body: EngineUpdateSystemSettingRequest,
+    searchOAuthService: async (
+      page?: number,
+      size?: number,
+      fields?: Array<string>,
+      sort?: Array<string>,
+      id?: Array<string>,
+      q?: string,
+      name?: string,
+      access?: string,
+      enabled?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      const localVarPath = `/oauth/apps`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (name !== undefined) {
+        localVarQueryParameter['name'] = name
+      }
+
+      if (access !== undefined) {
+        localVarQueryParameter['access'] = access
+      }
+
+      if (enabled !== undefined) {
+        localVarQueryParameter['enabled'] = enabled
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} changesId
+     * @param {ApiOAuth2FederationUpdateOAuthServiceBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOAuthService: async (
+      changesId: string,
+      body: ApiOAuth2FederationUpdateOAuthServiceBody,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'changesId' is not null or undefined
+      if (changesId === null || changesId === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling updateSystemSetting.'
+          'changesId',
+          'Required parameter changesId was null or undefined when calling updateOAuthService.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateSystemSetting.'
+          'Required parameter body was null or undefined when calling updateOAuthService.'
         )
       }
-      const localVarPath = `/settings/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/oauth/apps/{changes.id}`.replace(
+        `{${'changes.id'}}`,
+        encodeURIComponent(String(changesId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -575,35 +553,113 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @param {string} changesId
+     * @param {ApiOAuth2FederationUpdateOAuthServiceBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOAuthService2: async (
+      changesId: string,
+      body: ApiOAuth2FederationUpdateOAuthServiceBody,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'changesId' is not null or undefined
+      if (changesId === null || changesId === undefined) {
+        throw new RequiredError(
+          'changesId',
+          'Required parameter changesId was null or undefined when calling updateOAuthService2.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateOAuthService2.'
+        )
+      }
+      const localVarPath = `/oauth/apps/{changes.id}`.replace(
+        `{${'changes.id'}}`,
+        encodeURIComponent(String(changesId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
 /**
- * SystemSettingServiceApi - functional programming interface
+ * OAuth2FederationApi - functional programming interface
  * @export
  */
-export const SystemSettingServiceApiFp = function(
-  configuration?: Configuration
-) {
+export const OAuth2FederationApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {EngineCreateSystemSettingRequest} body
+     * @param {ApiOAuthService} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createSystemSetting(
-      body: EngineCreateSystemSettingRequest,
+    async createOAuthService(
+      body: ApiOAuthService,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      ) => AxiosPromise<ApiOAuthService>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await OAuth2FederationApiAxiosParamCreator(
         configuration
-      ).createSystemSetting(body, options)
+      ).createOAuthService(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -617,22 +673,19 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {ApiDeleteOAuthServiceRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteSystemSetting(
-      id: number,
+    async deleteOAuthService(
+      body: ApiDeleteOAuthServiceRequest,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await OAuth2FederationApiAxiosParamCreator(
         configuration
-      ).deleteSystemSetting(id, options)
+      ).deleteOAuthService(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -646,24 +699,21 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
+     * @param {Array<string>} id
+     * @param {ApiOAuth2FederationDeleteOAuthServiceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async patchSystemSetting(
-      id: number,
-      body: EnginePatchSystemSettingRequest,
+    async deleteOAuthService2(
+      id: Array<string>,
+      body: ApiOAuth2FederationDeleteOAuthServiceBody,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await OAuth2FederationApiAxiosParamCreator(
         configuration
-      ).patchSystemSetting(id, body, options)
+      ).deleteOAuthService2(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -677,59 +727,49 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} id
+     * @param {Array<string>} id ----- Search Basic Filters ---------------------------  selection: by unique identifier
+     * @param {number} [page] ----- Select Options -------------------------  default: 1
+     * @param {number} [size] default: 16
+     * @param {Array<string>} [fields] attributes list
+     * @param {Array<string>} [sort] e.g.: \&quot;updated_at\&quot; - ASC; \&quot;!updated_at\&quot; - DESC;
+     * @param {string} [q] term-of-search: lookup[name]
+     * @param {string} [name] case-ignore substring match: ILIKE \&#39;*\&#39; - any; \&#39;?\&#39; - one
+     * @param {string} [access] [M]andatory[A]ccess[C]ontrol: with access mode (action) granted!
+     * @param {boolean} [enabled] ----- OAuthService-Specific Filters ----------------
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readSystemSetting(
-      id: number,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
-    > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
-        configuration
-      ).readSystemSetting(id, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async searchAvailableSystemSetting(
+    async locateOAuthService(
+      id: Array<string>,
       page?: number,
       size?: number,
-      q?: string,
-      sort?: string,
       fields?: Array<string>,
+      sort?: Array<string>,
+      q?: string,
+      name?: string,
+      access?: string,
+      enabled?: boolean,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListAvailableSystemSetting>
+      ) => AxiosPromise<ApiOAuthService>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await OAuth2FederationApiAxiosParamCreator(
         configuration
-      ).searchAvailableSystemSetting(page, size, q, sort, fields, options)
+      ).locateOAuthService(
+        id,
+        page,
+        size,
+        fields,
+        sort,
+        q,
+        name,
+        access,
+        enabled,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -743,40 +783,49 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings'>} [name] Filter by setting names.
+     * @param {number} [page] ----- Select Options -------------------------  default: 1
+     * @param {number} [size] default: 16
+     * @param {Array<string>} [fields] attributes list
+     * @param {Array<string>} [sort] e.g.: \&quot;updated_at\&quot; - ASC; \&quot;!updated_at\&quot; - DESC;
+     * @param {Array<string>} [id] ----- Search Basic Filters ---------------------------  selection: by unique identifier
+     * @param {string} [q] term-of-search: lookup[name]
+     * @param {string} [name] case-ignore substring match: ILIKE \&#39;*\&#39; - any; \&#39;?\&#39; - one
+     * @param {string} [access] [M]andatory[A]ccess[C]ontrol: with access mode (action) granted!
+     * @param {boolean} [enabled] ----- OAuthService-Specific Filters ----------------
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchSystemSetting(
+    async searchOAuthService(
       page?: number,
       size?: number,
-      q?: string,
-      sort?: string,
       fields?: Array<string>,
-      name?: Array<
-        | 'empty_system_settings_name'
-        | 'enable_omnichannel'
-        | 'member_chunk_size'
-        | 'amd_cancel_not_human'
-        | 'scheme_version_limit'
-        | 'enable_2fa'
-        | 'export_settings'
-      >,
+      sort?: Array<string>,
+      id?: Array<string>,
+      q?: string,
+      name?: string,
+      access?: string,
+      enabled?: boolean,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineListSystemSetting>
+      ) => AxiosPromise<ApiSearchOAuthServiceResponse>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await OAuth2FederationApiAxiosParamCreator(
         configuration
-      ).searchSystemSetting(page, size, q, sort, fields, name, options)
+      ).searchOAuthService(
+        page,
+        size,
+        fields,
+        sort,
+        id,
+        q,
+        name,
+        access,
+        enabled,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -790,24 +839,55 @@ export const SystemSettingServiceApiFp = function(
     },
     /**
      *
-     * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
+     * @param {string} changesId
+     * @param {ApiOAuth2FederationUpdateOAuthServiceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateSystemSetting(
-      id: number,
-      body: EngineUpdateSystemSettingRequest,
+    async updateOAuthService(
+      changesId: string,
+      body: ApiOAuth2FederationUpdateOAuthServiceBody,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<EngineSystemSetting>
+      ) => AxiosPromise<ApiOAuthService>
     > {
-      const localVarAxiosArgs = await SystemSettingServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await OAuth2FederationApiAxiosParamCreator(
         configuration
-      ).updateSystemSetting(id, body, options)
+      ).updateOAuthService(changesId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} changesId
+     * @param {ApiOAuth2FederationUpdateOAuthServiceBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateOAuthService2(
+      changesId: string,
+      body: ApiOAuth2FederationUpdateOAuthServiceBody,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<ApiOAuthService>
+    > {
+      const localVarAxiosArgs = await OAuth2FederationApiAxiosParamCreator(
+        configuration
+      ).updateOAuthService2(changesId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -823,10 +903,10 @@ export const SystemSettingServiceApiFp = function(
 }
 
 /**
- * SystemSettingServiceApi - factory interface
+ * OAuth2FederationApi - factory interface
  * @export
  */
-export const SystemSettingServiceApiFactory = function(
+export const OAuth2FederationApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -834,275 +914,335 @@ export const SystemSettingServiceApiFactory = function(
   return {
     /**
      *
-     * @param {EngineCreateSystemSettingRequest} body
+     * @param {ApiOAuthService} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createSystemSetting(
-      body: EngineCreateSystemSettingRequest,
+    createOAuthService(
+      body: ApiOAuthService,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .createSystemSetting(body, options)
+    ): AxiosPromise<ApiOAuthService> {
+      return OAuth2FederationApiFp(configuration)
+        .createOAuthService(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
+     * @param {ApiDeleteOAuthServiceRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSystemSetting(
-      id: number,
+    deleteOAuthService(
+      body: ApiDeleteOAuthServiceRequest,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .deleteSystemSetting(id, options)
+    ): AxiosPromise<object> {
+      return OAuth2FederationApiFp(configuration)
+        .deleteOAuthService(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
+     * @param {Array<string>} id
+     * @param {ApiOAuth2FederationDeleteOAuthServiceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    patchSystemSetting(
-      id: number,
-      body: EnginePatchSystemSettingRequest,
+    deleteOAuthService2(
+      id: Array<string>,
+      body: ApiOAuth2FederationDeleteOAuthServiceBody,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .patchSystemSetting(id, body, options)
+    ): AxiosPromise<object> {
+      return OAuth2FederationApiFp(configuration)
+        .deleteOAuthService2(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
+     * @param {Array<string>} id ----- Search Basic Filters ---------------------------  selection: by unique identifier
+     * @param {number} [page] ----- Select Options -------------------------  default: 1
+     * @param {number} [size] default: 16
+     * @param {Array<string>} [fields] attributes list
+     * @param {Array<string>} [sort] e.g.: \&quot;updated_at\&quot; - ASC; \&quot;!updated_at\&quot; - DESC;
+     * @param {string} [q] term-of-search: lookup[name]
+     * @param {string} [name] case-ignore substring match: ILIKE \&#39;*\&#39; - any; \&#39;?\&#39; - one
+     * @param {string} [access] [M]andatory[A]ccess[C]ontrol: with access mode (action) granted!
+     * @param {boolean} [enabled] ----- OAuthService-Specific Filters ----------------
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readSystemSetting(
-      id: number,
-      options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .readSystemSetting(id, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchAvailableSystemSetting(
+    locateOAuthService(
+      id: Array<string>,
       page?: number,
       size?: number,
-      q?: string,
-      sort?: string,
       fields?: Array<string>,
+      sort?: Array<string>,
+      q?: string,
+      name?: string,
+      access?: string,
+      enabled?: boolean,
       options?: any
-    ): AxiosPromise<EngineListAvailableSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .searchAvailableSystemSetting(page, size, q, sort, fields, options)
+    ): AxiosPromise<ApiOAuthService> {
+      return OAuth2FederationApiFp(configuration)
+        .locateOAuthService(
+          id,
+          page,
+          size,
+          fields,
+          sort,
+          q,
+          name,
+          access,
+          enabled,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings'>} [name] Filter by setting names.
+     * @param {number} [page] ----- Select Options -------------------------  default: 1
+     * @param {number} [size] default: 16
+     * @param {Array<string>} [fields] attributes list
+     * @param {Array<string>} [sort] e.g.: \&quot;updated_at\&quot; - ASC; \&quot;!updated_at\&quot; - DESC;
+     * @param {Array<string>} [id] ----- Search Basic Filters ---------------------------  selection: by unique identifier
+     * @param {string} [q] term-of-search: lookup[name]
+     * @param {string} [name] case-ignore substring match: ILIKE \&#39;*\&#39; - any; \&#39;?\&#39; - one
+     * @param {string} [access] [M]andatory[A]ccess[C]ontrol: with access mode (action) granted!
+     * @param {boolean} [enabled] ----- OAuthService-Specific Filters ----------------
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchSystemSetting(
+    searchOAuthService(
       page?: number,
       size?: number,
-      q?: string,
-      sort?: string,
       fields?: Array<string>,
-      name?: Array<
-        | 'empty_system_settings_name'
-        | 'enable_omnichannel'
-        | 'member_chunk_size'
-        | 'amd_cancel_not_human'
-        | 'scheme_version_limit'
-        | 'enable_2fa'
-        | 'export_settings'
-      >,
+      sort?: Array<string>,
+      id?: Array<string>,
+      q?: string,
+      name?: string,
+      access?: string,
+      enabled?: boolean,
       options?: any
-    ): AxiosPromise<EngineListSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .searchSystemSetting(page, size, q, sort, fields, name, options)
+    ): AxiosPromise<ApiSearchOAuthServiceResponse> {
+      return OAuth2FederationApiFp(configuration)
+        .searchOAuthService(
+          page,
+          size,
+          fields,
+          sort,
+          id,
+          q,
+          name,
+          access,
+          enabled,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
+     * @param {string} changesId
+     * @param {ApiOAuth2FederationUpdateOAuthServiceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateSystemSetting(
-      id: number,
-      body: EngineUpdateSystemSettingRequest,
+    updateOAuthService(
+      changesId: string,
+      body: ApiOAuth2FederationUpdateOAuthServiceBody,
       options?: any
-    ): AxiosPromise<EngineSystemSetting> {
-      return SystemSettingServiceApiFp(configuration)
-        .updateSystemSetting(id, body, options)
+    ): AxiosPromise<ApiOAuthService> {
+      return OAuth2FederationApiFp(configuration)
+        .updateOAuthService(changesId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} changesId
+     * @param {ApiOAuth2FederationUpdateOAuthServiceBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateOAuthService2(
+      changesId: string,
+      body: ApiOAuth2FederationUpdateOAuthServiceBody,
+      options?: any
+    ): AxiosPromise<ApiOAuthService> {
+      return OAuth2FederationApiFp(configuration)
+        .updateOAuthService2(changesId, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * SystemSettingServiceApi - object-oriented interface
+ * OAuth2FederationApi - object-oriented interface
  * @export
- * @class SystemSettingServiceApi
+ * @class OAuth2FederationApi
  * @extends {BaseAPI}
  */
-export class SystemSettingServiceApi extends BaseAPI {
+export class OAuth2FederationApi extends BaseAPI {
   /**
    *
-   * @param {EngineCreateSystemSettingRequest} body
+   * @param {ApiOAuthService} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof OAuth2FederationApi
    */
-  public createSystemSetting(
-    body: EngineCreateSystemSettingRequest,
+  public createOAuthService(body: ApiOAuthService, options?: any) {
+    return OAuth2FederationApiFp(this.configuration)
+      .createOAuthService(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {ApiDeleteOAuthServiceRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OAuth2FederationApi
+   */
+  public deleteOAuthService(body: ApiDeleteOAuthServiceRequest, options?: any) {
+    return OAuth2FederationApiFp(this.configuration)
+      .deleteOAuthService(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {Array<string>} id
+   * @param {ApiOAuth2FederationDeleteOAuthServiceBody} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OAuth2FederationApi
+   */
+  public deleteOAuthService2(
+    id: Array<string>,
+    body: ApiOAuth2FederationDeleteOAuthServiceBody,
     options?: any
   ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .createSystemSetting(body, options)
+    return OAuth2FederationApiFp(this.configuration)
+      .deleteOAuthService2(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} id
+   * @param {Array<string>} id ----- Search Basic Filters ---------------------------  selection: by unique identifier
+   * @param {number} [page] ----- Select Options -------------------------  default: 1
+   * @param {number} [size] default: 16
+   * @param {Array<string>} [fields] attributes list
+   * @param {Array<string>} [sort] e.g.: \&quot;updated_at\&quot; - ASC; \&quot;!updated_at\&quot; - DESC;
+   * @param {string} [q] term-of-search: lookup[name]
+   * @param {string} [name] case-ignore substring match: ILIKE \&#39;*\&#39; - any; \&#39;?\&#39; - one
+   * @param {string} [access] [M]andatory[A]ccess[C]ontrol: with access mode (action) granted!
+   * @param {boolean} [enabled] ----- OAuthService-Specific Filters ----------------
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof OAuth2FederationApi
    */
-  public deleteSystemSetting(id: number, options?: any) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .deleteSystemSetting(id, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {number} id
-   * @param {EnginePatchSystemSettingRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
-   */
-  public patchSystemSetting(
-    id: number,
-    body: EnginePatchSystemSettingRequest,
-    options?: any
-  ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .patchSystemSetting(id, body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {number} id
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
-   */
-  public readSystemSetting(id: number, options?: any) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .readSystemSetting(id, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
-   */
-  public searchAvailableSystemSetting(
+  public locateOAuthService(
+    id: Array<string>,
     page?: number,
     size?: number,
-    q?: string,
-    sort?: string,
     fields?: Array<string>,
+    sort?: Array<string>,
+    q?: string,
+    name?: string,
+    access?: string,
+    enabled?: boolean,
     options?: any
   ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .searchAvailableSystemSetting(page, size, q, sort, fields, options)
+    return OAuth2FederationApiFp(this.configuration)
+      .locateOAuthService(
+        id,
+        page,
+        size,
+        fields,
+        sort,
+        q,
+        name,
+        access,
+        enabled,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings'>} [name] Filter by setting names.
+   * @param {number} [page] ----- Select Options -------------------------  default: 1
+   * @param {number} [size] default: 16
+   * @param {Array<string>} [fields] attributes list
+   * @param {Array<string>} [sort] e.g.: \&quot;updated_at\&quot; - ASC; \&quot;!updated_at\&quot; - DESC;
+   * @param {Array<string>} [id] ----- Search Basic Filters ---------------------------  selection: by unique identifier
+   * @param {string} [q] term-of-search: lookup[name]
+   * @param {string} [name] case-ignore substring match: ILIKE \&#39;*\&#39; - any; \&#39;?\&#39; - one
+   * @param {string} [access] [M]andatory[A]ccess[C]ontrol: with access mode (action) granted!
+   * @param {boolean} [enabled] ----- OAuthService-Specific Filters ----------------
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof OAuth2FederationApi
    */
-  public searchSystemSetting(
+  public searchOAuthService(
     page?: number,
     size?: number,
-    q?: string,
-    sort?: string,
     fields?: Array<string>,
-    name?: Array<
-      | 'empty_system_settings_name'
-      | 'enable_omnichannel'
-      | 'member_chunk_size'
-      | 'amd_cancel_not_human'
-      | 'scheme_version_limit'
-      | 'enable_2fa'
-      | 'export_settings'
-    >,
+    sort?: Array<string>,
+    id?: Array<string>,
+    q?: string,
+    name?: string,
+    access?: string,
+    enabled?: boolean,
     options?: any
   ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .searchSystemSetting(page, size, q, sort, fields, name, options)
+    return OAuth2FederationApiFp(this.configuration)
+      .searchOAuthService(
+        page,
+        size,
+        fields,
+        sort,
+        id,
+        q,
+        name,
+        access,
+        enabled,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} id
-   * @param {EngineUpdateSystemSettingRequest} body
+   * @param {string} changesId
+   * @param {ApiOAuth2FederationUpdateOAuthServiceBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof SystemSettingServiceApi
+   * @memberof OAuth2FederationApi
    */
-  public updateSystemSetting(
-    id: number,
-    body: EngineUpdateSystemSettingRequest,
+  public updateOAuthService(
+    changesId: string,
+    body: ApiOAuth2FederationUpdateOAuthServiceBody,
     options?: any
   ) {
-    return SystemSettingServiceApiFp(this.configuration)
-      .updateSystemSetting(id, body, options)
+    return OAuth2FederationApiFp(this.configuration)
+      .updateOAuthService(changesId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} changesId
+   * @param {ApiOAuth2FederationUpdateOAuthServiceBody} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof OAuth2FederationApi
+   */
+  public updateOAuthService2(
+    changesId: string,
+    body: ApiOAuth2FederationUpdateOAuthServiceBody,
+    options?: any
+  ) {
+    return OAuth2FederationApiFp(this.configuration)
+      .updateOAuthService2(changesId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

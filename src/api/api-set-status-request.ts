@@ -11,17 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { ApiUserPresence } from './api-user-presence'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface ApiSetStatusRequest
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export interface ApiSetStatusRequest {
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof ApiSetStatusRequest
+   */
+  fields?: Array<string>
+  /**
+   *
+   * @type {ApiUserPresence}
+   * @memberof ApiSetStatusRequest
+   */
+  publish?: ApiUserPresence
 }

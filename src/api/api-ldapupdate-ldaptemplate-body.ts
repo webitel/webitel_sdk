@@ -11,17 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { TemplateChanges } from './template-changes'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface ApiLDAPUpdateLDAPTemplateBody
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export interface ApiLDAPUpdateLDAPTemplateBody {
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof ApiLDAPUpdateLDAPTemplateBody
+   */
+  fields?: Array<string>
+  /**
+   *
+   * @type {TemplateChanges}
+   * @memberof ApiLDAPUpdateLDAPTemplateBody
+   */
+  template?: TemplateChanges
 }

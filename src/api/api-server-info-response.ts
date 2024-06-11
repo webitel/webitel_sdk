@@ -14,14 +14,13 @@
 /**
  *
  * @export
- * @enum {string}
+ * @interface ApiServerInfoResponse
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export interface ApiServerInfoResponse {
+  /**
+   *
+   * @type {string}
+   * @memberof ApiServerInfoResponse
+   */
+  key?: string
 }

@@ -14,14 +14,25 @@
 /**
  *
  * @export
- * @enum {string}
+ * @interface ApiLDAPControl
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export interface ApiLDAPControl {
+  /**
+   *
+   * @type {string}
+   * @memberof ApiLDAPControl
+   */
+  controlType?: string
+  /**
+   *
+   * @type {string}
+   * @memberof ApiLDAPControl
+   */
+  controlValue?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof ApiLDAPControl
+   */
+  criticality?: boolean
 }

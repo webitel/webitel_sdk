@@ -11,17 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { ApiLDAProcessOptions } from './api-ldaprocess-options'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface ApiLDAPResyncLDAPCatalogBody
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export interface ApiLDAPResyncLDAPCatalogBody {
+  /**
+   *
+   * @type {ApiLDAProcessOptions}
+   * @memberof ApiLDAPResyncLDAPCatalogBody
+   */
+  options?: ApiLDAProcessOptions
 }

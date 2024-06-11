@@ -16,12 +16,18 @@
  * @export
  * @enum {string}
  */
-export enum EngineSystemSettingName {
-  EmptySystemSettingsName = 'empty_system_settings_name',
-  EnableOmnichannel = 'enable_omnichannel',
-  MemberChunkSize = 'member_chunk_size',
-  AmdCancelNotHuman = 'amd_cancel_not_human',
-  SchemeVersionLimit = 'scheme_version_limit',
-  Enable2fa = 'enable_2fa',
-  ExportSettings = 'export_settings',
+export enum ApiSystemObjects {
+  Contacts = 'contacts',
+  CcList = 'cc_list',
+  CcBucket = 'cc_bucket',
+  Calendars = 'calendars',
+  Devices = 'devices',
+  CcAgent = 'cc_agent',
+  CcTeam = 'cc_team',
+  CcResource = 'cc_resource',
+  CcResourceGroup = 'cc_resource_group',
+  CcQueue = 'cc_queue',
+  Roles = 'roles',
+  Users = 'users',
+  CognitiveProfile = 'cognitive_profile',
 }
