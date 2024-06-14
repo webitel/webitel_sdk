@@ -24,4 +24,5 @@ export enum EngineSystemSettingName {
   SchemeVersionLimit = 'scheme_version_limit',
   Enable2fa = 'enable_2fa',
   ExportSettings = 'export_settings',
+  SearchNumberLength = 'search_number_length',
 }
