@@ -25,4 +25,5 @@ export enum EngineSystemSettingName {
   Enable2fa = 'enable_2fa',
   ExportSettings = 'export_settings',
   SearchNumberLength = 'search_number_length',
+  ChatAiConnection = 'chat_ai_connection',
 }

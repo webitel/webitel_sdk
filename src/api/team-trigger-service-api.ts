@@ -439,6 +439,111 @@ export const TeamTriggerServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} [teamId]
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {boolean} [enabled]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentTrigger: async (
+      teamId?: string,
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      enabled?: boolean,
+      id?: Array<number>,
+      schemaId?: Array<number>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/call_center/teams/triggers/agent`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (teamId !== undefined) {
+        localVarQueryParameter['team_id'] = teamId
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (enabled !== undefined) {
+        localVarQueryParameter['enabled'] = enabled
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (schemaId) {
+        localVarQueryParameter['schema_id'] = schemaId
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
@@ -804,6 +909,62 @@ export const TeamTriggerServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} [teamId]
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {boolean} [enabled]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchAgentTrigger(
+      teamId?: string,
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      enabled?: boolean,
+      id?: Array<number>,
+      schemaId?: Array<number>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListTeamTrigger>
+    > {
+      const localVarAxiosArgs = await TeamTriggerServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentTrigger(
+        teamId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        enabled,
+        id,
+        schemaId,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
@@ -988,6 +1149,47 @@ export const TeamTriggerServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} [teamId]
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {boolean} [enabled]
+     * @param {Array<number>} [id]
+     * @param {Array<number>} [schemaId]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentTrigger(
+      teamId?: string,
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      enabled?: boolean,
+      id?: Array<number>,
+      schemaId?: Array<number>,
+      options?: any
+    ): AxiosPromise<EngineListTeamTrigger> {
+      return TeamTriggerServiceApiFp(configuration)
+        .searchAgentTrigger(
+          teamId,
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          enabled,
+          id,
+          schemaId,
+          options
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {string} teamId
      * @param {number} [page]
      * @param {number} [size]
@@ -1136,6 +1338,49 @@ export class TeamTriggerServiceApi extends BaseAPI {
   ) {
     return TeamTriggerServiceApiFp(this.configuration)
       .runTeamTrigger(triggerId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} [teamId]
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {boolean} [enabled]
+   * @param {Array<number>} [id]
+   * @param {Array<number>} [schemaId]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof TeamTriggerServiceApi
+   */
+  public searchAgentTrigger(
+    teamId?: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    enabled?: boolean,
+    id?: Array<number>,
+    schemaId?: Array<number>,
+    options?: any
+  ) {
+    return TeamTriggerServiceApiFp(this.configuration)
+      .searchAgentTrigger(
+        teamId,
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        enabled,
+        id,
+        schemaId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
