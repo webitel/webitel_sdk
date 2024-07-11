@@ -25,6 +25,12 @@ import { ApiUserPresence } from './api-user-presence'
 export interface ApiUser {
   /**
    *
+   * @type {ApiObjectId}
+   * @memberof ApiUser
+   */
+  contact?: ApiObjectId
+  /**
+   *
    * @type {string}
    * @memberof ApiUser
    */

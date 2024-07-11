@@ -11,11 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { WfmWorkingCondition } from './wfm-working-condition'
+
 /**
- * `NullValue` is a singleton enumeration to represent the null value for the `Value` type union.  The JSON representation for `NullValue` is JSON `null`.   - NULL_VALUE: Null value.
+ *
  * @export
- * @enum {string}
+ * @interface WfmReadWorkingConditionResponse
  */
-export enum ProtobufNullValue {
-  NULLVALUE = 'NULL_VALUE',
+export interface WfmReadWorkingConditionResponse {
+  /**
+   *
+   * @type {WfmWorkingCondition}
+   * @memberof WfmReadWorkingConditionResponse
+   */
+  item?: WfmWorkingCondition
 }

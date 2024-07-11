@@ -11,11 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { WfmPauseTemplateCause } from './wfm-pause-template-cause'
+
 /**
- * `NullValue` is a singleton enumeration to represent the null value for the `Value` type union.  The JSON representation for `NullValue` is JSON `null`.   - NULL_VALUE: Null value.
+ *
  * @export
- * @enum {string}
+ * @interface InlineObject2
  */
-export enum ProtobufNullValue {
-  NULLVALUE = 'NULL_VALUE',
+export interface InlineObject2 {
+  /**
+   *
+   * @type {Array<WfmPauseTemplateCause>}
+   * @memberof InlineObject2
+   */
+  items?: Array<WfmPauseTemplateCause>
 }

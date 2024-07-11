@@ -59,6 +59,12 @@ export interface EngineCreateCalendarRequest {
   name?: string
   /**
    *
+   * @type {Array<EngineAcceptOfDay>}
+   * @memberof EngineCreateCalendarRequest
+   */
+  specials?: Array<EngineAcceptOfDay>
+  /**
+   *
    * @type {string}
    * @memberof EngineCreateCalendarRequest
    */

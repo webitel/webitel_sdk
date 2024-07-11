@@ -65,6 +65,12 @@ export interface EngineUpdateCalendarRequest {
   name?: string
   /**
    *
+   * @type {Array<EngineAcceptOfDay>}
+   * @memberof EngineUpdateCalendarRequest
+   */
+  specials?: Array<EngineAcceptOfDay>
+  /**
+   *
    * @type {string}
    * @memberof EngineUpdateCalendarRequest
    */

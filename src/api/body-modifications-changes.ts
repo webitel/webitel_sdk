@@ -25,6 +25,12 @@ import { ApiUserPresence } from './api-user-presence'
 export interface BodyModificationsChanges {
   /**
    *
+   * @type {ApiObjectId}
+   * @memberof BodyModificationsChanges
+   */
+  contact?: ApiObjectId
+  /**
+   *
    * @type {string}
    * @memberof BodyModificationsChanges
    */

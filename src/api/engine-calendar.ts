@@ -77,6 +77,12 @@ export interface EngineCalendar {
   name?: string
   /**
    *
+   * @type {Array<EngineAcceptOfDay>}
+   * @memberof EngineCalendar
+   */
+  specials?: Array<EngineAcceptOfDay>
+  /**
+   *
    * @type {string}
    * @memberof EngineCalendar
    */

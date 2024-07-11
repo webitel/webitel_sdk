@@ -146,6 +146,12 @@ export interface WebitelContactsContact {
   updated_by?: WebitelContactsLookup
   /**
    *
+   * @type {WebitelContactsLookup}
+   * @memberof WebitelContactsContact
+   */
+  user?: WebitelContactsLookup
+  /**
+   *
    * @type {WebitelContactsVariableList}
    * @memberof WebitelContactsContact
    */
