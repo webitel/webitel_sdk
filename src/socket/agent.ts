@@ -127,6 +127,7 @@ export interface OfflineMemberList {
 
 export class Agent {
   task: Map<number, Task>
+  maxWaitingListChats: number
   waitingListChats: WaitingMemberChat[]
   waitingListCalls: WaitingMemberCall[]
   _channels: Map<string, Channel>
@@ -137,6 +138,7 @@ export class Agent {
     this._channels = new Map<string, Channel>()
     this.initChannels(info.channels)
     this._listOfflineMembers = null
+    this.maxWaitingListChats = 10
     this.waitingListChats = []
     this.waitingListCalls = []
 
@@ -224,6 +226,10 @@ export class Agent {
           queue: el.queue,
           wait: el.wait,
         })
+
+        if (this.waitingListChats.length >= this.maxWaitingListChats) {
+          break
+        }
       }
     }
   }
@@ -426,6 +432,10 @@ export class Agent {
 
   async offline() {
     return this.client.agentSetOffline(this.agentId)
+  }
+
+  limitWaitingListChats(limit: number) {
+    this.maxWaitingListChats = limit
   }
 
   setStatus(e: AgentStatusEvent) {
