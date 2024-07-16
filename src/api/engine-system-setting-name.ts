@@ -27,4 +27,5 @@ export enum EngineSystemSettingName {
   SearchNumberLength = 'search_number_length',
   ChatAiConnection = 'chat_ai_connection',
   PasswordRegExp = 'password_reg_exp',
+  PasswordValidationText = 'password_validation_text',
 }
