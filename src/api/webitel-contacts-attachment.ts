@@ -11,42 +11,40 @@
  * Do not edit the class manually.
  */
 
-import { WebitelContactsEvent } from './webitel-contacts-event'
-
 /**
  *
  * @export
- * @interface WebitelContactsDayTimeline
+ * @interface WebitelContactsAttachment
  */
-export interface WebitelContactsDayTimeline {
+export interface WebitelContactsAttachment {
   /**
    *
    * @type {string}
-   * @memberof WebitelContactsDayTimeline
+   * @memberof WebitelContactsAttachment
    */
-  calls_count?: string
+  id?: string
   /**
    *
    * @type {string}
-   * @memberof WebitelContactsDayTimeline
+   * @memberof WebitelContactsAttachment
    */
-  chats_count?: string
+  mime?: string
   /**
    *
    * @type {string}
-   * @memberof WebitelContactsDayTimeline
+   * @memberof WebitelContactsAttachment
    */
-  day_timestamp?: string
+  name?: string
   /**
    *
    * @type {string}
-   * @memberof WebitelContactsDayTimeline
+   * @memberof WebitelContactsAttachment
    */
-  emails_count?: string
+  size?: string
   /**
    *
-   * @type {Array<WebitelContactsEvent>}
-   * @memberof WebitelContactsDayTimeline
+   * @type {string}
+   * @memberof WebitelContactsAttachment
    */
-  items?: Array<WebitelContactsEvent>
+  url?: string
 }

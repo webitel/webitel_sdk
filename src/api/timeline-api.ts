@@ -46,7 +46,7 @@ export const TimelineApiAxiosParamCreator = function(
      * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<'chat' | 'call'>} [type]
+     * @param {Array<'chat' | 'call' | 'email'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -60,7 +60,7 @@ export const TimelineApiAxiosParamCreator = function(
       ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<'chat' | 'call'>,
+      type?: Array<'chat' | 'call' | 'email'>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'contactId' is not null or undefined
@@ -235,7 +235,7 @@ export const TimelineApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<'chat' | 'call'>} [type]
+     * @param {Array<'chat' | 'call' | 'email'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -249,7 +249,7 @@ export const TimelineApiFp = function(configuration?: Configuration) {
       ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<'chat' | 'call'>,
+      type?: Array<'chat' | 'call' | 'email'>,
       options?: any
     ): Promise<
       (
@@ -336,7 +336,7 @@ export const TimelineApiFactory = function(
      * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<'chat' | 'call'>} [type]
+     * @param {Array<'chat' | 'call' | 'email'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -350,7 +350,7 @@ export const TimelineApiFactory = function(
       ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<'chat' | 'call'>,
+      type?: Array<'chat' | 'call' | 'email'>,
       options?: any
     ): AxiosPromise<WebitelContactsGetTimelineResponse> {
       return TimelineApiFp(configuration)
@@ -404,7 +404,7 @@ export class TimelineApi extends BaseAPI {
    * @param {Array<string>} [ids]
    * @param {string} [dateFrom]
    * @param {string} [dateTo]
-   * @param {Array<'chat' | 'call'>} [type]
+   * @param {Array<'chat' | 'call' | 'email'>} [type]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TimelineApi
@@ -419,7 +419,7 @@ export class TimelineApi extends BaseAPI {
     ids?: Array<string>,
     dateFrom?: string,
     dateTo?: string,
-    type?: Array<'chat' | 'call'>,
+    type?: Array<'chat' | 'call' | 'email'>,
     options?: any
   ) {
     return TimelineApiFp(this.configuration)

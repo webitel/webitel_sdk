@@ -19,4 +19,5 @@
 export enum WebitelContactsTimelineEventType {
   Chat = 'chat',
   Call = 'call',
+  Email = 'email',
 }

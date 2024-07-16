@@ -41,4 +41,10 @@ export interface WebitelContactsGetTimelineCounterResponse {
    * @memberof WebitelContactsGetTimelineCounterResponse
    */
   date_to?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelContactsGetTimelineCounterResponse
+   */
+  emails_count?: string
 }
