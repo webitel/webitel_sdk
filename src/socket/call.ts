@@ -339,6 +339,10 @@ export class Call {
     }
   }
 
+  get manualDistribution() {
+    return this.queue && this.queue.manual_distribution === 'true'
+  }
+
   get duration() {
     if (this.hangupAt === 0) {
       return Math.round((Date.now() - this.createdAt) / 1000) // tslint:disable-line

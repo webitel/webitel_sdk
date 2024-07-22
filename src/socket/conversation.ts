@@ -184,7 +184,7 @@ export class Conversation {
 
   variables?: CallVariables
   task: Task | null
-  queue: object | null
+  queue: { [index: string]: any } | null
   contact: Contact | null
 
   constructor(
@@ -237,6 +237,7 @@ export class Conversation {
       this.queue = {
         id: +variables.cc_queue_id || null,
         name: variables.cc_queue_name || '',
+        manual_distribution: variables.cc_manual_distribution === 'true',
       }
       this.task = this.client.agent.task.get(+variables.cc_attempt_id) || null
     }
@@ -251,6 +252,10 @@ export class Conversation {
         this.client.emit('error', e)
       })
     }
+  }
+
+  get manualDistribution() {
+    return this.queue && (this.queue.manual_distribution as boolean)
   }
 
   get contactId() {

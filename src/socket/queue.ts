@@ -7,6 +7,7 @@ export interface QueueParameters {
   reporting: string // TODO
 
   resource_id?: number
+  manual_distribution?: string // TODO
 }
 
 export interface QueueJoinMemberEvent {
