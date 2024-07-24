@@ -28,4 +28,5 @@ export enum EngineSystemSettingName {
   ChatAiConnection = 'chat_ai_connection',
   PasswordRegExp = 'password_reg_exp',
   PasswordValidationText = 'password_validation_text',
+  AutolinkCallToContact = 'autolink_call_to_contact',
 }
