@@ -12,45 +12,33 @@
  */
 
 /**
- *
+ * Media File.
  * @export
- * @interface StorageStreamFileMetadata
+ * @interface WebitelChatMessageFile
  */
-export interface StorageStreamFileMetadata {
+export interface WebitelChatMessageFile {
   /**
    *
    * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof WebitelChatMessageFile
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageStreamFileMetadata
-   */
-  mime_type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof WebitelChatMessageFile
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof StorageStreamFileMetadata
-   */
-  sha256sum?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof WebitelChatMessageFile
    */
   size?: string
   /**
    *
    * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof WebitelChatMessageFile
    */
-  uuid?: string
+  type?: string
 }

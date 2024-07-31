@@ -16,49 +16,55 @@ import { StorageUploadFileChannel } from './storage-upload-file-channel'
 /**
  *
  * @export
- * @interface StorageUploadFileRequestMetadata
+ * @interface StorageSafeUploadFileRequestMetadata
  */
-export interface StorageUploadFileRequestMetadata {
+export interface StorageSafeUploadFileRequestMetadata {
   /**
    *
    * @type {StorageUploadFileChannel}
-   * @memberof StorageUploadFileRequestMetadata
+   * @memberof StorageSafeUploadFileRequestMetadata
    */
   channel?: StorageUploadFileChannel
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileRequestMetadata
+   * @memberof StorageSafeUploadFileRequestMetadata
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileRequestMetadata
+   * @memberof StorageSafeUploadFileRequestMetadata
    */
   mime_type?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileRequestMetadata
+   * @memberof StorageSafeUploadFileRequestMetadata
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileRequestMetadata
+   * @memberof StorageSafeUploadFileRequestMetadata
    */
   profile_id?: string
   /**
    *
    * @type {boolean}
-   * @memberof StorageUploadFileRequestMetadata
+   * @memberof StorageSafeUploadFileRequestMetadata
+   */
+  progress?: boolean
+  /**
+   *
+   * @type {boolean}
+   * @memberof StorageSafeUploadFileRequestMetadata
    */
   stream_response?: boolean
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileRequestMetadata
+   * @memberof StorageSafeUploadFileRequestMetadata
    */
   uuid?: string
 }

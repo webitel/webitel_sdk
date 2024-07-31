@@ -14,6 +14,8 @@
 import { WebitelChatChat } from './webitel-chat-chat'
 import { WebitelChatFile } from './webitel-chat-file'
 import { WebitelChatPeer } from './webitel-chat-peer'
+import { WebitelChatPostback } from './webitel-chat-postback'
+import { WebitelChatReplyMarkup } from './webitel-chat-reply-markup'
 
 /**
  * Chat Message.
@@ -63,6 +65,18 @@ export interface WebitelChatMessage {
    * @memberof WebitelChatMessage
    */
   id?: string
+  /**
+   *
+   * @type {WebitelChatReplyMarkup}
+   * @memberof WebitelChatMessage
+   */
+  keyboard?: WebitelChatReplyMarkup
+  /**
+   *
+   * @type {WebitelChatPostback}
+   * @memberof WebitelChatMessage
+   */
+  postback?: WebitelChatPostback
   /**
    *
    * @type {WebitelChatChat}

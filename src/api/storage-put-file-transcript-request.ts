@@ -11,46 +11,42 @@
  * Do not edit the class manually.
  */
 
+import { StorageTranscriptPhrase } from './storage-transcript-phrase'
+
 /**
  *
  * @export
- * @interface StorageStreamFileMetadata
+ * @interface StoragePutFileTranscriptRequest
  */
-export interface StorageStreamFileMetadata {
+export interface StoragePutFileTranscriptRequest {
   /**
    *
    * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof StoragePutFileTranscriptRequest
    */
-  id?: string
+  file_id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof StoragePutFileTranscriptRequest
    */
-  mime_type?: string
+  locale?: string
   /**
    *
-   * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @type {Array<StorageTranscriptPhrase>}
+   * @memberof StoragePutFileTranscriptRequest
    */
-  name?: string
+  phrases?: Array<StorageTranscriptPhrase>
   /**
    *
    * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof StoragePutFileTranscriptRequest
    */
-  sha256sum?: string
+  text?: string
   /**
    *
    * @type {string}
-   * @memberof StorageStreamFileMetadata
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof StoragePutFileTranscriptRequest
    */
   uuid?: string
 }

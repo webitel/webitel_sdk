@@ -30,6 +30,10 @@ import { StorageDeleteFileTranscriptResponse } from '../api'
 // @ts-ignore
 import { StorageListPhrases } from '../api'
 // @ts-ignore
+import { StoragePutFileTranscriptRequest } from '../api'
+// @ts-ignore
+import { StoragePutFileTranscriptResponse } from '../api'
+// @ts-ignore
 import { StorageStartFileTranscriptRequest } from '../api'
 // @ts-ignore
 import { StorageStartFileTranscriptResponse } from '../api'
@@ -252,6 +256,74 @@ export const FileTranscriptServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @param {StoragePutFileTranscriptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    putFileTranscript: async (
+      body: StoragePutFileTranscriptRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling putFileTranscript.'
+        )
+      }
+      const localVarPath = `/storage/transcript_file`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -354,6 +426,35 @@ export const FileTranscriptServiceApiFp = function(
         return axios.request(axiosRequestArgs)
       }
     },
+    /**
+     *
+     * @param {StoragePutFileTranscriptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async putFileTranscript(
+      body: StoragePutFileTranscriptRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StoragePutFileTranscriptResponse>
+    > {
+      const localVarAxiosArgs = await FileTranscriptServiceApiAxiosParamCreator(
+        configuration
+      ).putFileTranscript(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
   }
 }
 
@@ -411,6 +512,20 @@ export const FileTranscriptServiceApiFactory = function(
     ): AxiosPromise<StorageListPhrases> {
       return FileTranscriptServiceApiFp(configuration)
         .getFileTranscriptPhrases(id, page, size, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {StoragePutFileTranscriptRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    putFileTranscript(
+      body: StoragePutFileTranscriptRequest,
+      options?: any
+    ): AxiosPromise<StoragePutFileTranscriptResponse> {
+      return FileTranscriptServiceApiFp(configuration)
+        .putFileTranscript(body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -472,6 +587,22 @@ export class FileTranscriptServiceApi extends BaseAPI {
   ) {
     return FileTranscriptServiceApiFp(this.configuration)
       .getFileTranscriptPhrases(id, page, size, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {StoragePutFileTranscriptRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FileTranscriptServiceApi
+   */
+  public putFileTranscript(
+    body: StoragePutFileTranscriptRequest,
+    options?: any
+  ) {
+    return FileTranscriptServiceApiFp(this.configuration)
+      .putFileTranscript(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

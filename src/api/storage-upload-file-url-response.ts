@@ -42,6 +42,12 @@ export interface StorageUploadFileUrlResponse {
    * @type {string}
    * @memberof StorageUploadFileUrlResponse
    */
+  sha256sum?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageUploadFileUrlResponse
+   */
   size?: string
   /**
    *
