@@ -11,48 +11,46 @@
  * Do not edit the class manually.
  */
 
-import { StorageUploadStatusCode } from './storage-upload-status-code'
-
 /**
  *
  * @export
- * @interface StorageUploadFileUrlResponse
+ * @interface WebitelContactsCallFile
  */
-export interface StorageUploadFileUrlResponse {
-  /**
-   *
-   * @type {StorageUploadStatusCode}
-   * @memberof StorageUploadFileUrlResponse
-   */
-  code?: StorageUploadStatusCode
+export interface WebitelContactsCallFile {
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileUrlResponse
+   * @memberof WebitelContactsCallFile
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileUrlResponse
+   * @memberof WebitelContactsCallFile
    */
-  mime?: string
+  mime_type?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileUrlResponse
+   * @memberof WebitelContactsCallFile
    */
-  sha256sum?: string
+  name?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileUrlResponse
+   * @memberof WebitelContactsCallFile
    */
   size?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileUrlResponse
+   * @memberof WebitelContactsCallFile
    */
-  url?: string
+  start_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelContactsCallFile
+   */
+  stop_at?: string
 }

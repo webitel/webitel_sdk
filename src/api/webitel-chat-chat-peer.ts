@@ -12,45 +12,27 @@
  */
 
 /**
- *
+ * Peer contact.
  * @export
- * @interface StorageStreamFileMetadata
+ * @interface WebitelChatChatPeer
  */
-export interface StorageStreamFileMetadata {
+export interface WebitelChatChatPeer {
   /**
-   *
+   * Contact unique **ID**entifier. Contact **type**-specific string.
    * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof WebitelChatChatPeer
    */
   id?: string
   /**
-   *
+   * Contact display **name**.
    * @type {string}
-   * @memberof StorageStreamFileMetadata
-   */
-  mime_type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof WebitelChatChatPeer
    */
   name?: string
   /**
-   *
+   * Contact **type** provider.
    * @type {string}
-   * @memberof StorageStreamFileMetadata
+   * @memberof WebitelChatChatPeer
    */
-  sha256sum?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StorageStreamFileMetadata
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StorageStreamFileMetadata
-   */
-  uuid?: string
+  type?: string
 }

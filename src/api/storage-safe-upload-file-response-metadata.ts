@@ -16,43 +16,61 @@ import { StorageUploadStatusCode } from './storage-upload-status-code'
 /**
  *
  * @export
- * @interface StorageUploadFileResponse
+ * @interface StorageSafeUploadFileResponseMetadata
  */
-export interface StorageUploadFileResponse {
+export interface StorageSafeUploadFileResponseMetadata {
   /**
    *
    * @type {StorageUploadStatusCode}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageSafeUploadFileResponseMetadata
    */
   code?: StorageUploadStatusCode
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageSafeUploadFileResponseMetadata
    */
   file_id?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageSafeUploadFileResponseMetadata
    */
   file_url?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageSafeUploadFileResponseMetadata
+   */
+  mime_type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageSafeUploadFileResponseMetadata
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageSafeUploadFileResponseMetadata
    */
   server?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageSafeUploadFileResponseMetadata
    */
   sha256sum?: string
   /**
    *
    * @type {string}
-   * @memberof StorageUploadFileResponse
+   * @memberof StorageSafeUploadFileResponseMetadata
    */
   size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof StorageSafeUploadFileResponseMetadata
+   */
+  uuid?: string
 }

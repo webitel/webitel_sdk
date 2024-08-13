@@ -11,7 +11,9 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsCallFile } from './webitel-contacts-call-file'
 import { WebitelContactsLookup } from './webitel-contacts-lookup'
+import { WebitelContactsTranscriptLookup } from './webitel-contacts-transcript-lookup'
 
 /**
  *
@@ -31,6 +33,12 @@ export interface WebitelContactsCallEvent {
    * @memberof WebitelContactsCallEvent
    */
   duration?: string
+  /**
+   *
+   * @type {Array<WebitelContactsCallFile>}
+   * @memberof WebitelContactsCallEvent
+   */
+  files?: Array<WebitelContactsCallFile>
   /**
    *
    * @type {WebitelContactsLookup}
@@ -79,4 +87,10 @@ export interface WebitelContactsCallEvent {
    * @memberof WebitelContactsCallEvent
    */
   queue?: WebitelContactsLookup
+  /**
+   *
+   * @type {Array<WebitelContactsTranscriptLookup>}
+   * @memberof WebitelContactsCallEvent
+   */
+  transcripts?: Array<WebitelContactsTranscriptLookup>
 }
