@@ -62,6 +62,16 @@ import { formatBaseUri } from './utils'
 
 /**
  * Налаштування клієнта.
+ *
+ * @interface Config
+ * @property {string} endpoint - URL-адреса кінцевої точки для підключення клієнта.
+ * @property {string} [storageEndpoint] - (Необов'язковий) URL-адреса кінцевої точки для зберігання даних.
+ * @property {string} [token] - (Необов'язковий) Токен для аутентифікації клієнта.
+ * @property {'debug' | 'info' | 'warn' | 'error'} [logLvl] - (Необов'язковий) Рівень логування для клієнта.
+ * @property {boolean} [registerWebDevice] - (Необов'язковий) Вказує, чи слід реєструвати веб-пристрій.
+ * @property {number} [phone] - (Необов'язковий) Номер телефону для реєстрації.
+ * @property {boolean} [debug] - (Необов'язковий) Вказує, чи слід увімкнути режим налагодження.
+ * @property {number} [autoAnswerDelayTime] - (Необов'язковий) Час затримки перед автоматичною відповіддю на дзвінок.
  */
 export interface Config {
   endpoint: string
@@ -84,6 +94,16 @@ interface PromiseCallback {
 
 /**
  * Запит на дзвінок користувачу.
+ *
+ * @interface UserCallRequest
+ * @property {string | null} [nodeId] - (Необов'язковий) Ідентифікатор вузла, з якого здійснюється дзвінок. Якщо не вказано, значення буде null.
+ * @property {string | null} [parentCallId] - (Необов'язковий) Ідентифікатор батьківського дзвінка, якщо такий існує.
+ * @property {string | null} [sendToCallId] - (Необов'язковий) Ідентифікатор дзвінка, на який потрібно відправити виклик, якщо такий існує.
+ * @property {string} toUserId - Ідентифікатор користувача, якому призначений дзвінок.
+ * @property {boolean} [useVideo] - (Необов'язковий) Вказує, чи буде використовуватись відео під час дзвінка.
+ * @property {boolean} [useScreen] - (Необов'язковий) Вказує, чи буде використовуватись спільний доступ до екрану під час дзвінка.
+ * @property {boolean} [useAudio] - (Необов'язковий) Вказує, чи буде використовуватись аудіо під час дзвінка.
+ * @property {CallVariables} [variables] - (Необов'язковий) Додаткові змінні, які будуть використані під час дзвінка.
  */
 export interface UserCallRequest {
   nodeId?: string | null
@@ -107,29 +127,64 @@ export interface SdpEvent {
   }
 }
 
+// Назва заголовку для токена доступу
 const API_HEADER_TOKEN = 'X-Webitel-Access'
-const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
-const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
-const WEBSOCKET_AGENT_SESSION = 'cc_agent_session'
-const WEBSOCKET_PING = 'ping'
-// const WEBSOCKET_CALL_BY_USER = 'call_by_user'
 
+// Тип події WebSocket для аутентифікації
+const WEBSOCKET_AUTHENTICATION_CHALLENGE = 'authentication_challenge'
+
+// Конфігурація пристрою за замовчуванням для користувача через WebSocket
+const WEBSOCKET_DEFAULT_DEVICE_CONFIG = 'user_default_device'
+
+// Подія WebSocket для сесії агента контакт-центру
+const WEBSOCKET_AGENT_SESSION = 'cc_agent_session'
+
+// Подія WebSocket для перевірки підключення (ping)
+const WEBSOCKET_PING = 'ping'
+
+// Подія WebSocket для створення вихідного дзвінка
 const WEBSOCKET_MAKE_OUTBOUND_CALL = 'call_invite'
+
+// Подія WebSocket для виклику користувача
 const WEBSOCKET_MAKE_USER_CALL = 'call_user'
+
+// Подія WebSocket для ініціалізації (hello)
 const WEBSOCKET_EVENT_HELLO = 'hello'
+
+// Подія WebSocket для обробки дзвінків
 const WEBSOCKET_EVENT_CALL = 'call'
+
+// Подія WebSocket для обробки чатів
 const WEBSOCKET_EVENT_CHAT = 'chat'
+
+// Подія WebSocket для відстеження стану користувача
 const WEBSOCKET_EVENT_USER_STATE = 'user_state'
+
+// Подія WebSocket для оновлення статусу агента
 const WEBSOCKET_EVENT_AGENT_STATUS = 'agent_status'
+
+// Подія WebSocket для оновлення стану каналу зв'язку
 const WEBSOCKET_EVENT_CHANNEL_STATUS = 'channel'
+
+// Подія WebSocket для обробки додавання учасника в чергу
 const WEBSOCKET_EVENT_QUEUE_JOIN_MEMBER = 'queue_join_member'
+
+// Подія WebSocket для обробки помилок
 const WEBSOCKET_EVENT_ERROR = 'error'
+
+// Подія WebSocket для обробки загальних повідомлень
 const WEBSOCKET_EVENT_NOTIFICATION = 'notification'
 
+// Подія WebSocket для обробки завдань
 const TASK_EVENT = 'task'
+
+// Подія WebSocket для обробки робіт
 const JOB_EVENT = 'job'
 
+// Подія WebSocket для обробки SIP повідомлень
 const WEBSOCKET_EVENT_SIP = 'sip'
+
+// Подія WebSocket для обробки SDP повідомлень
 const WEBSOCKET_EVENT_SDP = 'sdp'
 
 /**
@@ -150,25 +205,75 @@ export enum Response {
 
 /**
  * Інформація про сесію.
+ *
+ * Цей інтерфейс описує структуру даних, яка містить інформацію про сесію користувача.
  */
 export interface Session {
+  /**
+   * Унікальний ідентифікатор сесії.
+   */
   id: string
+
+  /**
+   * Час закінчення дії сесії в секундах (UNIX timestamp).
+   */
   expire: number
+
+  /**
+   * Ідентифікатор користувача, до якого належить сесія.
+   */
   user_id: number
+
+  /**
+   * Список ідентифікаторів ролей, які має користувач у межах цієї сесії.
+   */
   role_ids: number[]
 }
 
 /**
  * Інформація про з'єднання.
+ *
+ * Цей інтерфейс описує структуру даних, яка містить інформацію про поточне з'єднання з сервером.
  */
 export interface ConnectionInfo {
+  /**
+   * Ідентифікатор сокет-з'єднання.
+   */
   sock_id: string
+
+  /**
+   * Коміт ідентифікатора збірки сервера.
+   */
   server_build_commit: string
+
+  /**
+   * Ідентифікатор вузла сервера, з яким встановлено з'єднання.
+   */
   server_node_id: string
+
+  /**
+   * Версія сервера, з яким встановлено з'єднання.
+   */
   server_version: string
+
+  /**
+   * Поточний час сервера в секундах (UNIX timestamp).
+   */
   server_time: number
+
+  /**
+   * Інтервал пінг-запитів у мілісекундах (необов'язкове).
+   */
   ping_interval?: number
+
+  /**
+   * Інформація про сесію користувача, пов'язану з цим з'єднанням.
+   */
   session: Session
+
+  /**
+   * Вказує на те, чи підтримує сервер Back-to-Back User Agent (необов'язкове).
+   */
   b2bua?: boolean
 }
 
@@ -197,12 +302,33 @@ export interface ConversationListResponse {
 
 /**
  * Інформація про файл у сховищі.
+ *
+ * Цей інтерфейс описує структуру даних, яка містить інформацію про файл, збережений у сховищі.
  */
 export interface StorageFile {
+  /**
+   * Унікальний ідентифікатор файлу.
+   */
   id: number
+
+  /**
+   * Розмір файлу в байтах.
+   */
   size: number
+
+  /**
+   * MIME-тип файлу, який вказує на його формат.
+   */
   mime: string
+
+  /**
+   * Назва файлу.
+   */
   name: string
+
+  /**
+   * Посилання для доступу до файлу, якщо файл спільний.
+   */
   shared: string
 }
 
@@ -280,20 +406,80 @@ interface EventHandler {
 
 /**
  * Події клієнта.
+ *
+ * Цей інтерфейс описує набір подій, які можуть бути викликані в процесі роботи клієнта.
  */
 export interface ClientEvents {
+  /**
+   * Викликається при відключенні клієнта.
+   * @param code - Код відключення.
+   * @param err - Інформація про помилку, якщо вона є.
+   */
   disconnected(code: number, err: Error | null): void
+
+  /**
+   * Викликається при успішному підключенні клієнта.
+   */
   connected(): void
+
+  /**
+   * Викликається при виникненні помилки.
+   * @param e - Об'єкт помилки.
+   */
   error(e: Error): void
+
+  /**
+   * Викликається при зміні статусу реєстрації телефону.
+   * @param registered - Булевий статус реєстрації телефону.
+   */
   phone_registered(registered: boolean): void
+
+  /**
+   * Викликається при зміні статусу підключення телефону.
+   * @param connected - Булевий статус підключення телефону.
+   */
   phone_connected(connected: boolean): void
+
+  /**
+   * Викликається для оновлення пропущених подій.
+   * @param ev - Об'єкт, що містить інформацію про пропущені події.
+   */
   refresh_missed(ev: object): void
+
+  /**
+   * Викликається для відображення повідомлення.
+   * @param ev - Об'єкт сповіщення.
+   */
   show_message(ev: MessageNotification): void
+
+  /**
+   * Викликається при отриманні SDP-повідомлення.
+   * @param sock - Ідентифікатор сокету.
+   * @param ev - Об'єкт події SDP.
+   */
   sdp(sock: string, ev: SdpEvent): void
+
+  /**
+   * Викликається при отриманні вхідного дзвінка.
+   * @param call - Об'єкт дзвінка.
+   */
   call_receive(call: Call): void
+
+  /**
+   * Викликається при завершенні дзвінка.
+   * @param call - Об'єкт дзвінка.
+   */
   call_hangup(call: Call): void
 }
 
+/**
+ * Цей клас Client розширює EventEmitter, який використовується для керування подіями,
+ * що описані в інтерфейсі ClientEvents. Він має декілька полів для збереження стану клієнта,
+ * таких як agent, phone, lastError, lastLatency, а також деякі приватні поля для внутрішнього використання,
+ * такі як socket, connectionInfo, reqSeq, queueRequest, log, eventHandler, callStore, conversationStore,
+ * pingTimer, та toneTimer.
+ * Конструктор класу приймає конфігураційні параметри, які використовуються для ініціалізації клієнта.
+ */
 export class Client extends EventEmitter<ClientEvents> {
   agent!: Agent
   phone?: SipClient
@@ -315,6 +501,11 @@ export class Client extends EventEmitter<ClientEvents> {
   private pingTimer: number | null
   private toneTimer: number | null
 
+  /**
+   * Конструктор для створення екземпляра клієнта.
+   *
+   * @param _config - Конфігураційні параметри клієнта.
+   */
   constructor(protected readonly _config: Config) {
     super()
     this.log = new Log()
@@ -421,7 +612,12 @@ export class Client extends EventEmitter<ClientEvents> {
 
     return calls
   }
-
+  /**
+   * Підписується на події чату.
+   *
+   * @param handler - Обробник подій чату.
+   * @param data - Додаткові дані для підписки (необов'язково).
+   */
   async subscribeChat(handler: ChatEventHandler, data?: object) {
     const res = (await this.request(
       `subscribe_chat`,
