@@ -1,7 +1,19 @@
+/**
+ * Функція, що форматує URI WebSocket.
+ * @function
+ * @param {string} host - Хост.
+ * @returns {string} - URI WebSocket.
+ */
 export function formatWebSocketUri(host: string): string {
   return host.replace(/^http/, 'ws')
 }
 
+/**
+ * Функція, що форматує базовий URI.
+ * @function
+ * @param {string} host - Хост.
+ * @returns {string} - Базовий URI.
+ */
 export function formatBaseUri(host: string): string {
   let res = host.replace(/^ws/, 'http')
 
@@ -16,6 +28,13 @@ export function formatBaseUri(host: string): string {
   return res
 }
 
+/**
+ * Функція, що розбиває рядок на частини заданої довжини.
+ * @function
+ * @param {string} str - Рядок.
+ * @param {number} len - Довжина частини.
+ * @returns {string[]} - Масив частин рядка.
+ */
 export function chunkString(str: string, len: number): string[] {
   const size = Math.ceil(str.length / len)
   const r = new Array(size)

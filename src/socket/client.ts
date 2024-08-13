@@ -60,6 +60,9 @@ import {
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
 
+/**
+ * Налаштування клієнта.
+ */
 export interface Config {
   endpoint: string
   storageEndpoint?: string
@@ -71,11 +74,17 @@ export interface Config {
   autoAnswerDelayTime?: number
 }
 
+/**
+ * Інтерфейс для зворотного виклику обіцянки.
+ */
 interface PromiseCallback {
   resolve: (res: object) => void
   reject: (err: object) => void
 }
 
+/**
+ * Запит на дзвінок користувачу.
+ */
 export interface UserCallRequest {
   nodeId?: string | null
   parentCallId?: string | null
@@ -87,6 +96,9 @@ export interface UserCallRequest {
   variables?: CallVariables
 }
 
+/**
+ * Подія SDP (Session Description Protocol).
+ */
 export interface SdpEvent {
   sip_id: string
   sdp: {
@@ -120,16 +132,25 @@ const JOB_EVENT = 'job'
 const WEBSOCKET_EVENT_SIP = 'sip'
 const WEBSOCKET_EVENT_SDP = 'sdp'
 
+/**
+ * Помилки обробки.
+ */
 enum HandleError {
   NotFoundError = 'NotFoundError',
   NotAllowedError = 'NotAllowedError',
 }
 
+/**
+ * Статус відповіді.
+ */
 export enum Response {
   STATUS_FAIL = 'FAIL',
   STATUS_OK = 'OK',
 }
 
+/**
+ * Інформація про сесію.
+ */
 export interface Session {
   id: string
   expire: number
@@ -137,6 +158,9 @@ export interface Session {
   role_ids: number[]
 }
 
+/**
+ * Інформація про з'єднання.
+ */
 export interface ConnectionInfo {
   sock_id: string
   server_build_commit: string
@@ -148,20 +172,32 @@ export interface ConnectionInfo {
   b2bua?: boolean
 }
 
+/**
+ * Відповідь списку дзвінків.
+ */
 export interface CallListResponse {
   items?: CallItem[]
   next?: boolean
 }
 
+/**
+ * Відповідь списку завдань.
+ */
 export interface TaskListResponse {
   items: TaskData[]
 }
 
+/**
+ * Відповідь списку розмов.
+ */
 export interface ConversationListResponse {
   items?: ConversationItem[]
   next?: boolean
 }
 
+/**
+ * Інформація про файл у сховищі.
+ */
 export interface StorageFile {
   id: number
   size: number
@@ -170,8 +206,14 @@ export interface StorageFile {
   shared: string
 }
 
+/**
+ * Функція для відстеження прогресу завантаження файлу.
+ */
 export type FileUploadProgress = (progress: any) => void
 
+/**
+ * Інтерфейс затримки.
+ */
 interface Latency {
   server_ts: number
   client_ts: number
@@ -179,23 +221,50 @@ interface Latency {
   client_ack_ts: number
 }
 
+/**
+ * Обробник подій дзвінка.
+ */
 export type CallEventHandler = (action: CallActions, call: Call) => void
+
+/**
+ * Обробник подій чату.
+ */
 export type ChatEventHandler = (
   action: string,
   conversation: Conversation
 ) => void
 
+/**
+ * Обробник подій статусу користувачів.
+ */
 export type UsersStatusEventHandler = (state: UserStatus) => void
+
+/**
+ * Обробник подій статусу агента.
+ */
 export type AgentStatusEventHandler = (
   state: AgentStatusEvent,
   agent: Agent
 ) => void
 
+/**
+ * Обробник подій завдання.
+ */
 export type TaskEventHandler = (action: string, task: Task | undefined) => void
+
+/**
+ * Обробник подій роботи.
+ */
 export type JobEventHandler = (action: string, task: Task) => void
 
+/**
+ * Обробник подій приєднання абонента до черги.
+ */
 export type QueueJoinMemberHandler = (member: QueueJoinMemberEvent) => void
 
+/**
+ * Інтерфейс обробника подій.
+ */
 interface EventHandler {
   [WEBSOCKET_EVENT_CALL](action: CallActions, call: Call): void
   [WEBSOCKET_EVENT_USER_STATE](state: UserStatus): void
@@ -209,6 +278,9 @@ interface EventHandler {
   [WEBSOCKET_EVENT_ERROR](err: Error): void
 }
 
+/**
+ * Події клієнта.
+ */
 export interface ClientEvents {
   disconnected(code: number, err: Error | null): void
   connected(): void

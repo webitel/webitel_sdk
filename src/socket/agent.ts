@@ -15,6 +15,10 @@ import {
   WrapTimeEvent,
 } from './task'
 
+/**
+ * Інтерфейс, що представляє властивості абонента, який очікує на відповідь.
+ * @interface
+ */
 export interface WaitingMemberProperties {
   deadline: number
   queue: object
@@ -28,6 +32,10 @@ export interface WaitingMember extends WaitingMemberProperties {
   session_id: string
 }
 
+/**
+ * Інтерфейс, що представляє абонента, який очікує на відповідь від дзвінка.
+ * @interface
+ */
 export interface WaitingMemberCall extends WaitingMemberProperties {
   attemptId: number
   sessionId: string
@@ -35,6 +43,10 @@ export interface WaitingMemberCall extends WaitingMemberProperties {
   displayNumber: string
 }
 
+/**
+ * Інтерфейс, що представляє абонента, який очікує на відповідь від чату.
+ * @interface
+ */
 export interface WaitingMemberChat extends WaitingMemberProperties {
   attemptId: number
   sessionId: string
@@ -44,6 +56,10 @@ export interface WaitingMemberChat extends WaitingMemberProperties {
   chat: string
 }
 
+/**
+ * Інтерфейс, що представляє канал зв'язку.
+ * @interface
+ */
 export interface Channel {
   channel: ChannelType
   state: string
@@ -54,6 +70,10 @@ export interface Channel {
   wrap_time_ids: number[]
 }
 
+/**
+ * Інтерфейс, що представляє сесію агента.
+ * @interface
+ */
 export interface AgentSession {
   agent_id: number
   status: string
@@ -69,10 +89,18 @@ export interface AgentSession {
   auditor: object | null
 }
 
+/**
+ * Інтерфейс, що представляє відповідь на запит для сесії агента.
+ * @interface
+ */
 export interface AgentSessionResponse extends AgentSession {
   task?: Distribute[]
 }
 
+/**
+ * Інтерфейс, що представляє подію зміни статусу агента.
+ * @interface
+ */
 export interface AgentStatusEvent {
   user_id: number
   agent_id: number
@@ -84,47 +112,146 @@ export interface AgentStatusEvent {
   on_demand?: boolean
 }
 
+/**
+ * Перелік статусів агента.
+ * @enum {string}
+ */
 export enum AgentStatus {
+  /**
+   * Агент онлайн.
+   */
   Online = 'online',
+
+  /**
+   * Агент офлайн.
+   */
   Offline = 'offline',
+
+  /**
+   * Агент на паузі.
+   */
   Pause = 'pause',
+
+  /**
+   * Агент у перерві.
+   */
   BreakOut = 'break_out',
 }
 
+/**
+ * Перелік станів каналу зв'язку.
+ * @enum {string}
+ */
 export enum ChannelState {
+  /**
+   * Канал очікує.
+   */
   Waiting = 'waiting',
 
-  Distribute = 'distribute', // ring
-  Offering = 'offering', // ring
+  /**
+   * Канал розподіляється (дзвінок дзвонить).
+   */
+  Distribute = 'distribute',
 
+  /**
+   * Канал пропонує (дзвінок дзвонить).
+   */
+  Offering = 'offering',
+
+  /**
+   * Канал відповів на дзвінок.
+   */
   Answered = 'answered',
+
+  /**
+   * Канал активний.
+   */
   Active = 'active',
+
+  /**
+   * Канал з'єднаний.
+   */
   Bridged = 'bridged',
-  Hold = 'hold', // TODO
+
+  /**
+   * Канал на утриманні.
+   */
+  Hold = 'hold',
+
+  /**
+   * Канал пропущено.
+   */
   Missed = 'missed',
+
+  /**
+   * Канал у часі обробки.
+   */
   WrapTime = 'wrap_time',
+
+  /**
+   * Канал обробляється.
+   */
   Processing = 'processing',
+
+  /**
+   * Канал у процесі передачі.
+   */
   Transfer = 'transfer',
+
+  /**
+   * Канал заповнюється формою.
+   */
   Form = 'form',
 }
 
+/**
+ * Перелік типів каналів зв'язку.
+ * @enum {string}
+ */
 export enum ChannelType {
+  /**
+   * Тип каналу - дзвінок.
+   */
   Call = 'call',
+
+  /**
+   * Тип каналу - електронна пошта.
+   */
   Email = 'email',
+
+  /**
+   * Тип каналу - чат.
+   */
   Chat = 'chat',
-  Job = 'task', // todo rename task to job
+
+  /**
+   * Тип каналу - завдання (планується перейменування на job).
+   */
+  Job = 'task',
 }
 
+/**
+ * Інтерфейс, що представляє відключеного абонента.
+ * @interface
+ */
 type OfflineMember = {
   id: number
   [key: string]: any
 }
 
+/**
+ * Інтерфейс, що представляє список відключених членів.
+ * @interface
+ */
 export interface OfflineMemberList {
   items: OfflineMember[]
   next?: boolean
 }
 
+/**
+ * Клас, що представляє агента.
+ * @class
+ */
 export class Agent {
   task: Map<number, Task>
   maxWaitingListChats: number
@@ -133,6 +260,13 @@ export class Agent {
   _channels: Map<string, Channel>
   _listOfflineMembers: OfflineMemberList | null
   lastStatusChange: number
+
+  /**
+   * Конструктор класу Agent.
+   * @constructor
+   * @param {Client} client - Клієнт.
+   * @param {AgentSession} info - Сесія агента.
+   */
   constructor(protected readonly client: Client, protected info: AgentSession) {
     this.task = new Map<number, Task>()
     this._channels = new Map<string, Channel>()
@@ -145,54 +279,119 @@ export class Agent {
     this.lastStatusChange = Date.now() - this.info.status_duration * 1000
   }
 
+  /**
+   * Метод, що повертає ідентифікатор агента.
+   * @method
+   * @returns {number} - Ідентифікатор агента.
+   */
   get agentId() {
     return this.info.agent_id
   }
 
+  /**
+   * Метод, що повертає статус "On Demand".
+   * @method
+   * @returns {boolean} - Статус "On Demand".
+   */
   get onDemand() {
     return this.info.on_demand
   }
 
+  /**
+   * Метод, що повертає статус агента.
+   * @method
+   * @returns {string} - Статус агента.
+   */
   get status() {
     return this.info.status
   }
 
+  /**
+   * Метод, що повертає додаткову інформацію про статус агента.
+   * @method
+   * @returns {any} - Додаткова інформація про статус агента.
+   */
   get statusPayload() {
     return this.info.status_payload
   }
 
+  /**
+   * Метод, що повертає, чи є агент адміністратором.
+   * @method
+   * @returns {boolean} - Чи є агент адміністратором.
+   */
   get isAdmin() {
     return this.info.is_admin
   }
 
+  /**
+   * Метод, що повертає, чи є агент супервайзером.
+   * @method
+   * @returns {boolean} - Чи є агент супервайзером.
+   */
   get isSupervisor() {
     return this.info.is_supervisor
   }
 
+  /**
+   * Метод, що повертає команду агента.
+   * @method
+   * @returns {object | null} - Команда агента.
+   */
   get team() {
     return this.info.team
   }
 
+  /**
+   * Метод, що повертає супервайзера агента.
+   * @method
+   * @returns {object | null} - Супервайзер агента.
+   */
   get supervisor() {
     return this.info.supervisor
   }
 
+  /**
+   * Метод, що повертає аудитора агента.
+   * @method
+   * @returns {object | null} - Аудитор агента.
+   */
   get auditor() {
     return this.info.auditor
   }
 
+  /**
+   * Метод, що повертає список каналів зв'язку.
+   * @method
+   * @returns {Channel[]} - Список каналів зв'язку.
+   */
   get channels() {
     return Array.from(this._channels.values())
   }
 
+  /**
+   * Метод, що повертає канал зв'язку.
+   * @method
+   * @returns {Channel | undefined} - Канал зв'язку.
+   */
   get channel() {
     return this._channels.get(ChannelType.Call)
   }
 
+  /**
+   * Метод, що повертає тривалість стану.
+   * @method
+   * @returns {number} - Тривалість стану.
+   */
   get stateDuration() {
     return Math.round((Date.now() - this.lastStatusChange) / 1000)
   }
 
+  /**
+   * Метод, що встановлює список членів, які очікують на відповідь.
+   * @method
+   * @param {keyable | undefined} e - Об'єкт зі списком членів, які очікують на відповідь.
+   */
   setWaitingList(e: keyable | undefined) {
     if (e) {
       this.waitingListCalls.length = 0
@@ -233,6 +432,12 @@ export class Agent {
       }
     }
   }
+
+  /**
+   * Метод, що видаляє спробу очікування на відповідь.
+   * @method
+   * @param {keyable | undefined} e - Об'єкт зі списком членів, які очікують на відповідь.
+   */
   deleteWaitingAttempt(e: keyable | undefined) {
     if (e) {
       const attemptId = e.attempt_id
@@ -243,6 +448,12 @@ export class Agent {
     }
   }
 
+  /**
+   * Метод, що перехоплює спробу.
+   * @method
+   * @param {number} id - Ідентифікатор спроби.
+   * @returns {Promise<any>} - Результат запиту.
+   */
   async interceptAttempt(id: number) {
     return this.client.request(`cc_intercept_attempt`, {
       attempt_id: id,
@@ -250,6 +461,12 @@ export class Agent {
     })
   }
 
+  /**
+   * Метод, що обробляє подію каналу зв'язку.
+   * @method
+   * @param {ChannelEvent} e - Подія каналу зв'язку.
+   * @returns {Task | undefined | BaseError | PauseNotAllowedError} - Задача, помилка або undefined.
+   */
   onChannelEvent(e: ChannelEvent) {
     let task: Task | undefined
 
@@ -409,14 +626,34 @@ export class Agent {
     }
   }
 
+  /**
+   * Метод, що встановлює статус "Online" для агента.
+   * @method
+   * @param {string[]} channels - Список каналів зв'язку.
+   * @param {boolean} onDemand - Статус "On Demand".
+   * @returns {Promise<any>} - Об'єкт з інформацією про сесію агента.
+   */
   async online(channels: string[], onDemand: boolean) {
     return this.client.agentSetOnline(this.agentId, channels, onDemand)
   }
 
+  /**
+   * Метод, що встановлює статус "Waiting" для агента.
+   * @method
+   * @param {string} channel - Канал зв'язку.
+   * @returns {Promise<any>} - Об'єкт з інформацією про сесію агента.
+   */
   async waiting(channel: string) {
     return this.client.agentSetWaiting(this.agentId, channel)
   }
 
+  /**
+   * Метод, що встановлює статус "Pause" для агента.
+   * @method
+   * @param {any} payload - Додаткова інформація про статус "Pause".
+   * @returns {Promise<any>} - Об'єкт з інформацією про сесію агента або об'єкт помилки.
+   * Якщо статус "Pause" не дозволений, повертається об'єкт помилки PauseNotAllowedError.
+   */
   async pause(payload?: any) {
     try {
       return await this.client.agentSetPause(this.agentId, payload)
@@ -430,14 +667,29 @@ export class Agent {
     }
   }
 
+  /**
+   * Метод, що встановлює статус "Offline".
+   * @method
+   * @returns {Promise<any>} - Результат запиту.
+   */
   async offline() {
     return this.client.agentSetOffline(this.agentId)
   }
 
+  /**
+   * Метод, що обмежує список членів, які очікують на відповідь від чату.
+   * @method
+   * @param {number} limit - Ліміт.
+   */
   limitWaitingListChats(limit: number) {
     this.maxWaitingListChats = limit
   }
 
+  /**
+   * Метод, що встановлює статус агента.
+   * @method
+   * @param {AgentStatusEvent} e - Подія зміни статусу агента.
+   */
   setStatus(e: AgentStatusEvent) {
     if (e.status === AgentStatus.Online) {
       this.info.on_demand = e.on_demand || false
@@ -452,6 +704,13 @@ export class Agent {
     this.lastStatusChange = Date.now()
   }
 
+  /**
+   * Метод, що направляє абонента.
+   * @method
+   * @param {number} memberId - Ідентифікатор абонента.
+   * @param {number} communicationId - Ідентифікатор зв'язку.
+   * @returns {Promise<any>} - Результат запиту.
+   */
   async directMember(memberId: number, communicationId: number) {
     return this.client.request(`cc_member_direct`, {
       agent_id: this.agentId,
@@ -460,6 +719,14 @@ export class Agent {
     })
   }
 
+  /**
+   * Метод, що повертає список відключених абонентів.
+   * @method
+   * @param {string} q - Пошуковий запит.
+   * @param {number} page - Номер сторінки.
+   * @param {number} perPage - Кількість елементів на сторінці.
+   * @returns {Promise<OfflineMemberList>} - Список абонентів із офлайн черги.
+   */
   async offlineMembers(q: string, page: number, perPage: number) {
     this._listOfflineMembers = (await this.client.request(
       `cc_fetch_offline_members`,
@@ -474,6 +741,12 @@ export class Agent {
     return this._listOfflineMembers
   }
 
+  /**
+   * Метод, що перевіряє, чи має задачу агент.
+   * @method
+   * @param {Task} task - Задача.
+   * @returns {boolean} - true, якщо агент має задачу, false - якщо ні.
+   */
   hasTask(task: Task) {
     return this.task.has(task.id)
   }
@@ -507,6 +780,11 @@ export class Agent {
   }
 }
 
+/**
+ * Функція, що видаляє спробу очікування на відповідь.
+ * @function
+ * @param {WaitingMemberChat[] | WaitingMemberCall[]} list - Список членів, які очікують
+ */
 function removeWaitingList(
   list: WaitingMemberChat[] | WaitingMemberCall[],
   attemptId: number
