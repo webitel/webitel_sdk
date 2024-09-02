@@ -11,18 +11,18 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
+import { WfmShiftTemplateTime } from './wfm-shift-template-time'
 
 /**
  *
  * @export
- * @interface InlineObject5
+ * @interface InlineObject6
  */
-export interface InlineObject5 {
+export interface InlineObject6 {
   /**
    *
-   * @type {WfmLookupsPauseTemplatesItemIdItem}
-   * @memberof InlineObject5
+   * @type {Array<WfmShiftTemplateTime>}
+   * @memberof InlineObject6
    */
-  item?: WfmLookupsPauseTemplatesItemIdItem
+  items?: Array<WfmShiftTemplateTime>
 }

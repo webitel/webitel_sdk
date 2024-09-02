@@ -11,18 +11,16 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
-
 /**
  *
  * @export
- * @interface InlineObject5
+ * @interface WfmDeleteAgentAbsenceResponse
  */
-export interface InlineObject5 {
+export interface WfmDeleteAgentAbsenceResponse {
   /**
    *
-   * @type {WfmLookupsPauseTemplatesItemIdItem}
-   * @memberof InlineObject5
+   * @type {string}
+   * @memberof WfmDeleteAgentAbsenceResponse
    */
-  item?: WfmLookupsPauseTemplatesItemIdItem
+  id?: string
 }

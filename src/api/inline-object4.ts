@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmShiftTemplateTime } from './wfm-shift-template-time'
+import { WfmPauseTemplateCause } from './wfm-pause-template-cause'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmShiftTemplateTime } from './wfm-shift-template-time'
 export interface InlineObject4 {
   /**
    *
-   * @type {Array<WfmShiftTemplateTime>}
+   * @type {Array<WfmPauseTemplateCause>}
    * @memberof InlineObject4
    */
-  items?: Array<WfmShiftTemplateTime>
+  items?: Array<WfmPauseTemplateCause>
 }

@@ -28,6 +28,12 @@ export interface WebitelChatDialog {
    */
   closed?: string
   /**
+   *
+   * @type {string}
+   * @memberof WebitelChatDialog
+   */
+  closed_cause?: string
+  /**
    * Context. Variables. Environment.
    * @type {{ [key: string]: string; }}
    * @memberof WebitelChatDialog
@@ -69,6 +75,12 @@ export interface WebitelChatDialog {
    * @memberof WebitelChatDialog
    */
   message?: WebitelChatMessage
+  /**
+   *
+   * @type {WebitelChatPeer}
+   * @memberof WebitelChatDialog
+   */
+  queue?: WebitelChatPeer
   /**
    * Timestamp when dialog started.
    * @type {string}

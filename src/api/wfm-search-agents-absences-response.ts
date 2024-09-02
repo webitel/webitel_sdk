@@ -11,18 +11,24 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
+import { WfmAgentAbsences } from './wfm-agent-absences'
 
 /**
  *
  * @export
- * @interface InlineObject5
+ * @interface WfmSearchAgentsAbsencesResponse
  */
-export interface InlineObject5 {
+export interface WfmSearchAgentsAbsencesResponse {
   /**
    *
-   * @type {WfmLookupsPauseTemplatesItemIdItem}
-   * @memberof InlineObject5
+   * @type {Array<WfmAgentAbsences>}
+   * @memberof WfmSearchAgentsAbsencesResponse
    */
-  item?: WfmLookupsPauseTemplatesItemIdItem
+  items?: Array<WfmAgentAbsences>
+  /**
+   *
+   * @type {boolean}
+   * @memberof WfmSearchAgentsAbsencesResponse
+   */
+  next?: boolean
 }

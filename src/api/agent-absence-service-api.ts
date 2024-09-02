@@ -24,53 +24,63 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject5 } from '../api'
+import { InlineObject1 } from '../api'
 // @ts-ignore
-import { InlineObject6 } from '../api'
+import { InlineObject2 } from '../api'
 // @ts-ignore
 import { RpcStatus } from '../api'
 // @ts-ignore
-import { WfmCreateShiftTemplateRequest } from '../api'
+import { WfmCreateAgentAbsenceResponse } from '../api'
 // @ts-ignore
-import { WfmCreateShiftTemplateResponse } from '../api'
+import { WfmCreateAgentsAbsencesBulkRequest } from '../api'
 // @ts-ignore
-import { WfmDeleteShiftTemplateResponse } from '../api'
+import { WfmCreateAgentsAbsencesBulkResponse } from '../api'
 // @ts-ignore
-import { WfmReadShiftTemplateResponse } from '../api'
+import { WfmDeleteAgentAbsenceResponse } from '../api'
 // @ts-ignore
-import { WfmSearchShiftTemplateResponse } from '../api'
+import { WfmReadAgentAbsencesResponse } from '../api'
 // @ts-ignore
-import { WfmSearchShiftTemplateTimeResponse } from '../api'
+import { WfmSearchAgentsAbsencesResponse } from '../api'
 // @ts-ignore
-import { WfmUpdateShiftTemplateResponse } from '../api'
-// @ts-ignore
-import { WfmUpdateShiftTemplateTimeBulkResponse } from '../api'
+import { WfmUpdateAgentAbsenceResponse } from '../api'
 /**
- * ShiftTemplateServiceApi - axios parameter creator
+ * AgentAbsenceServiceApi - axios parameter creator
  * @export
  */
-export const ShiftTemplateServiceApiAxiosParamCreator = function(
+export const AgentAbsenceServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {WfmCreateShiftTemplateRequest} body
+     * @param {string} itemAgentId
+     * @param {InlineObject1} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createShiftTemplate: async (
-      body: WfmCreateShiftTemplateRequest,
+    createAgentAbsence: async (
+      itemAgentId: string,
+      body: InlineObject1,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'itemAgentId' is not null or undefined
+      if (itemAgentId === null || itemAgentId === undefined) {
+        throw new RequiredError(
+          'itemAgentId',
+          'Required parameter itemAgentId was null or undefined when calling createAgentAbsence.'
+        )
+      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createShiftTemplate.'
+          'Required parameter body was null or undefined when calling createAgentAbsence.'
         )
       }
-      const localVarPath = `/wfm/lookups/shift_templates`
+      const localVarPath = `/wfm/agents/{item.agent.id}/absences`.replace(
+        `{${'item.agent.id'}}`,
+        encodeURIComponent(String(itemAgentId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -123,25 +133,101 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {WfmCreateAgentsAbsencesBulkRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAgentsAbsencesBulk: async (
+      body: WfmCreateAgentsAbsencesBulkRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling createAgentsAbsencesBulk.'
+        )
+      }
+      const localVarPath = `/wfm/agents/absences`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} agentId
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteShiftTemplate: async (
+    deleteAgentAbsence: async (
+      agentId: string,
       id: string,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
+        throw new RequiredError(
+          'agentId',
+          'Required parameter agentId was null or undefined when calling deleteAgentAbsence.'
+        )
+      }
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteShiftTemplate.'
+          'Required parameter id was null or undefined when calling deleteAgentAbsence.'
         )
       }
-      const localVarPath = `/wfm/lookups/shift_templates/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
+      const localVarPath = `/wfm/agents/{agent_id}/absences/{id}`
+        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agentId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -186,26 +272,28 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {Array<string>} [fields]
+     * @param {string} agentId
+     * @param {string} [absentAtFrom]
+     * @param {string} [absentAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readShiftTemplate: async (
-      id: string,
-      fields?: Array<string>,
+    readAgentAbsences: async (
+      agentId: string,
+      absentAtFrom?: string,
+      absentAtTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling readShiftTemplate.'
+          'agentId',
+          'Required parameter agentId was null or undefined when calling readAgentAbsences.'
         )
       }
-      const localVarPath = `/wfm/lookups/shift_templates/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/wfm/agents/{agent_id}/absences`.replace(
+        `{${'agent_id'}}`,
+        encodeURIComponent(String(agentId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -229,8 +317,12 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
+      if (absentAtFrom !== undefined) {
+        localVarQueryParameter['absent_at_from'] = absentAtFrom
+      }
+
+      if (absentAtTo !== undefined) {
+        localVarQueryParameter['absent_at_to'] = absentAtTo
       }
 
       localVarUrlObj.query = {
@@ -260,18 +352,28 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
      * @param {number} [size]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<string>} [supervisorId]
+     * @param {Array<string>} [teamId]
+     * @param {Array<string>} [skillId]
+     * @param {string} [absentAtFrom]
+     * @param {string} [absentAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchShiftTemplate: async (
+    searchAgentsAbsences: async (
       q?: string,
       page?: number,
       size?: number,
       sort?: string,
       fields?: Array<string>,
+      supervisorId?: Array<string>,
+      teamId?: Array<string>,
+      skillId?: Array<string>,
+      absentAtFrom?: string,
+      absentAtTo?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/wfm/lookups/shift_templates`
+      const localVarPath = `/wfm/agents/absences`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -314,6 +416,26 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
+      if (supervisorId) {
+        localVarQueryParameter['supervisor_id'] = supervisorId
+      }
+
+      if (teamId) {
+        localVarQueryParameter['team_id'] = teamId
+      }
+
+      if (skillId) {
+        localVarQueryParameter['skill_id'] = skillId
+      }
+
+      if (absentAtFrom !== undefined) {
+        localVarQueryParameter['absent_at_from'] = absentAtFrom
+      }
+
+      if (absentAtTo !== undefined) {
+        localVarQueryParameter['absent_at_to'] = absentAtTo
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -336,209 +458,48 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary SearchShiftTemplateTime returns a list of pause template times.
-     * @param {string} shiftTemplateId
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
+     * @param {string} itemAgentId
+     * @param {string} itemAbsenceId
+     * @param {InlineObject2} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchShiftTemplateTime: async (
-      shiftTemplateId: string,
-      q?: string,
-      page?: number,
-      size?: number,
-      sort?: string,
-      fields?: Array<string>,
+    updateAgentAbsence: async (
+      itemAgentId: string,
+      itemAbsenceId: string,
+      body: InlineObject2,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'shiftTemplateId' is not null or undefined
-      if (shiftTemplateId === null || shiftTemplateId === undefined) {
+      // verify required parameter 'itemAgentId' is not null or undefined
+      if (itemAgentId === null || itemAgentId === undefined) {
         throw new RequiredError(
-          'shiftTemplateId',
-          'Required parameter shiftTemplateId was null or undefined when calling searchShiftTemplateTime.'
+          'itemAgentId',
+          'Required parameter itemAgentId was null or undefined when calling updateAgentAbsence.'
         )
       }
-      const localVarPath = `/wfm/lookups/shift_templates/{shift_template_id}/times`.replace(
-        `{${'shift_template_id'}}`,
-        encodeURIComponent(String(shiftTemplateId))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
-      }
-
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {string} itemId
-     * @param {InlineObject5} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateShiftTemplate: async (
-      itemId: string,
-      body: InlineObject5,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'itemId' is not null or undefined
-      if (itemId === null || itemId === undefined) {
+      // verify required parameter 'itemAbsenceId' is not null or undefined
+      if (itemAbsenceId === null || itemAbsenceId === undefined) {
         throw new RequiredError(
-          'itemId',
-          'Required parameter itemId was null or undefined when calling updateShiftTemplate.'
+          'itemAbsenceId',
+          'Required parameter itemAbsenceId was null or undefined when calling updateAgentAbsence.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateShiftTemplate.'
+          'Required parameter body was null or undefined when calling updateAgentAbsence.'
         )
       }
-      const localVarPath = `/wfm/lookups/shift_templates/{item.id}`.replace(
-        `{${'item.id'}}`,
-        encodeURIComponent(String(itemId))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PUT',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof body !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary UpdateShiftTemplateTimeBulk updates a list of shift template times. Update existing, create that not exists in database and delete that not exists in the list.
-     * @param {string} shiftTemplateId
-     * @param {InlineObject6} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateShiftTemplateTimeBulk: async (
-      shiftTemplateId: string,
-      body: InlineObject6,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'shiftTemplateId' is not null or undefined
-      if (shiftTemplateId === null || shiftTemplateId === undefined) {
-        throw new RequiredError(
-          'shiftTemplateId',
-          'Required parameter shiftTemplateId was null or undefined when calling updateShiftTemplateTimeBulk.'
+      const localVarPath = `/wfm/agents/{item.agent.id}/absences/{item.absence.id}`
+        .replace(
+          `{${'item.agent.id'}}`,
+          encodeURIComponent(String(itemAgentId))
         )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateShiftTemplateTimeBulk.'
+        .replace(
+          `{${'item.absence.id'}}`,
+          encodeURIComponent(String(itemAbsenceId))
         )
-      }
-      const localVarPath = `/wfm/lookups/shift_templates/{shift_template_id}/times`.replace(
-        `{${'shift_template_id'}}`,
-        encodeURIComponent(String(shiftTemplateId))
-      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -593,31 +554,33 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
 }
 
 /**
- * ShiftTemplateServiceApi - functional programming interface
+ * AgentAbsenceServiceApi - functional programming interface
  * @export
  */
-export const ShiftTemplateServiceApiFp = function(
+export const AgentAbsenceServiceApiFp = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {WfmCreateShiftTemplateRequest} body
+     * @param {string} itemAgentId
+     * @param {InlineObject1} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createShiftTemplate(
-      body: WfmCreateShiftTemplateRequest,
+    async createAgentAbsence(
+      itemAgentId: string,
+      body: InlineObject1,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmCreateShiftTemplateResponse>
+      ) => AxiosPromise<WfmCreateAgentAbsenceResponse>
     > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).createShiftTemplate(body, options)
+      ).createAgentAbsence(itemAgentId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -631,22 +594,22 @@ export const ShiftTemplateServiceApiFp = function(
     },
     /**
      *
-     * @param {string} id
+     * @param {WfmCreateAgentsAbsencesBulkRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteShiftTemplate(
-      id: string,
+    async createAgentsAbsencesBulk(
+      body: WfmCreateAgentsAbsencesBulkRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmDeleteShiftTemplateResponse>
+      ) => AxiosPromise<WfmCreateAgentsAbsencesBulkResponse>
     > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).deleteShiftTemplate(id, options)
+      ).createAgentsAbsencesBulk(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -660,24 +623,57 @@ export const ShiftTemplateServiceApiFp = function(
     },
     /**
      *
+     * @param {string} agentId
      * @param {string} id
-     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readShiftTemplate(
+    async deleteAgentAbsence(
+      agentId: string,
       id: string,
-      fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmReadShiftTemplateResponse>
+      ) => AxiosPromise<WfmDeleteAgentAbsenceResponse>
     > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).readShiftTemplate(id, fields, options)
+      ).deleteAgentAbsence(agentId, id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} agentId
+     * @param {string} [absentAtFrom]
+     * @param {string} [absentAtTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async readAgentAbsences(
+      agentId: string,
+      absentAtFrom?: string,
+      absentAtTo?: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WfmReadAgentAbsencesResponse>
+    > {
+      const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
+        configuration
+      ).readAgentAbsences(agentId, absentAtFrom, absentAtTo, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -696,71 +692,45 @@ export const ShiftTemplateServiceApiFp = function(
      * @param {number} [size]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<string>} [supervisorId]
+     * @param {Array<string>} [teamId]
+     * @param {Array<string>} [skillId]
+     * @param {string} [absentAtFrom]
+     * @param {string} [absentAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchShiftTemplate(
+    async searchAgentsAbsences(
       q?: string,
       page?: number,
       size?: number,
       sort?: string,
       fields?: Array<string>,
+      supervisorId?: Array<string>,
+      teamId?: Array<string>,
+      skillId?: Array<string>,
+      absentAtFrom?: string,
+      absentAtTo?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmSearchShiftTemplateResponse>
+      ) => AxiosPromise<WfmSearchAgentsAbsencesResponse>
     > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).searchShiftTemplate(q, page, size, sort, fields, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary SearchShiftTemplateTime returns a list of pause template times.
-     * @param {string} shiftTemplateId
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async searchShiftTemplateTime(
-      shiftTemplateId: string,
-      q?: string,
-      page?: number,
-      size?: number,
-      sort?: string,
-      fields?: Array<string>,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WfmSearchShiftTemplateTimeResponse>
-    > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
-        configuration
-      ).searchShiftTemplateTime(
-        shiftTemplateId,
+      ).searchAgentsAbsences(
         q,
         page,
         size,
         sort,
         fields,
+        supervisorId,
+        teamId,
+        skillId,
+        absentAtFrom,
+        absentAtTo,
         options
       )
       return (
@@ -776,56 +746,26 @@ export const ShiftTemplateServiceApiFp = function(
     },
     /**
      *
-     * @param {string} itemId
-     * @param {InlineObject5} body
+     * @param {string} itemAgentId
+     * @param {string} itemAbsenceId
+     * @param {InlineObject2} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateShiftTemplate(
-      itemId: string,
-      body: InlineObject5,
+    async updateAgentAbsence(
+      itemAgentId: string,
+      itemAbsenceId: string,
+      body: InlineObject2,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmUpdateShiftTemplateResponse>
+      ) => AxiosPromise<WfmUpdateAgentAbsenceResponse>
     > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).updateShiftTemplate(itemId, body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary UpdateShiftTemplateTimeBulk updates a list of shift template times. Update existing, create that not exists in database and delete that not exists in the list.
-     * @param {string} shiftTemplateId
-     * @param {InlineObject6} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateShiftTemplateTimeBulk(
-      shiftTemplateId: string,
-      body: InlineObject6,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WfmUpdateShiftTemplateTimeBulkResponse>
-    > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
-        configuration
-      ).updateShiftTemplateTimeBulk(shiftTemplateId, body, options)
+      ).updateAgentAbsence(itemAgentId, itemAbsenceId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -841,10 +781,10 @@ export const ShiftTemplateServiceApiFp = function(
 }
 
 /**
- * ShiftTemplateServiceApi - factory interface
+ * AgentAbsenceServiceApi - factory interface
  * @export
  */
-export const ShiftTemplateServiceApiFactory = function(
+export const AgentAbsenceServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -852,46 +792,66 @@ export const ShiftTemplateServiceApiFactory = function(
   return {
     /**
      *
-     * @param {WfmCreateShiftTemplateRequest} body
+     * @param {string} itemAgentId
+     * @param {InlineObject1} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createShiftTemplate(
-      body: WfmCreateShiftTemplateRequest,
+    createAgentAbsence(
+      itemAgentId: string,
+      body: InlineObject1,
       options?: any
-    ): AxiosPromise<WfmCreateShiftTemplateResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .createShiftTemplate(body, options)
+    ): AxiosPromise<WfmCreateAgentAbsenceResponse> {
+      return AgentAbsenceServiceApiFp(configuration)
+        .createAgentAbsence(itemAgentId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} id
+     * @param {WfmCreateAgentsAbsencesBulkRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteShiftTemplate(
-      id: string,
+    createAgentsAbsencesBulk(
+      body: WfmCreateAgentsAbsencesBulkRequest,
       options?: any
-    ): AxiosPromise<WfmDeleteShiftTemplateResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .deleteShiftTemplate(id, options)
+    ): AxiosPromise<WfmCreateAgentsAbsencesBulkResponse> {
+      return AgentAbsenceServiceApiFp(configuration)
+        .createAgentsAbsencesBulk(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {string} agentId
      * @param {string} id
-     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readShiftTemplate(
+    deleteAgentAbsence(
+      agentId: string,
       id: string,
-      fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WfmReadShiftTemplateResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .readShiftTemplate(id, fields, options)
+    ): AxiosPromise<WfmDeleteAgentAbsenceResponse> {
+      return AgentAbsenceServiceApiFp(configuration)
+        .deleteAgentAbsence(agentId, id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} agentId
+     * @param {string} [absentAtFrom]
+     * @param {string} [absentAtTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readAgentAbsences(
+      agentId: string,
+      absentAtFrom?: string,
+      absentAtTo?: string,
+      options?: any
+    ): AxiosPromise<WfmReadAgentAbsencesResponse> {
+      return AgentAbsenceServiceApiFp(configuration)
+        .readAgentAbsences(agentId, absentAtFrom, absentAtTo, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -901,137 +861,136 @@ export const ShiftTemplateServiceApiFactory = function(
      * @param {number} [size]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<string>} [supervisorId]
+     * @param {Array<string>} [teamId]
+     * @param {Array<string>} [skillId]
+     * @param {string} [absentAtFrom]
+     * @param {string} [absentAtTo]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchShiftTemplate(
+    searchAgentsAbsences(
       q?: string,
       page?: number,
       size?: number,
       sort?: string,
       fields?: Array<string>,
+      supervisorId?: Array<string>,
+      teamId?: Array<string>,
+      skillId?: Array<string>,
+      absentAtFrom?: string,
+      absentAtTo?: string,
       options?: any
-    ): AxiosPromise<WfmSearchShiftTemplateResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .searchShiftTemplate(q, page, size, sort, fields, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary SearchShiftTemplateTime returns a list of pause template times.
-     * @param {string} shiftTemplateId
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchShiftTemplateTime(
-      shiftTemplateId: string,
-      q?: string,
-      page?: number,
-      size?: number,
-      sort?: string,
-      fields?: Array<string>,
-      options?: any
-    ): AxiosPromise<WfmSearchShiftTemplateTimeResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .searchShiftTemplateTime(
-          shiftTemplateId,
+    ): AxiosPromise<WfmSearchAgentsAbsencesResponse> {
+      return AgentAbsenceServiceApiFp(configuration)
+        .searchAgentsAbsences(
           q,
           page,
           size,
           sort,
           fields,
+          supervisorId,
+          teamId,
+          skillId,
+          absentAtFrom,
+          absentAtTo,
           options
         )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} itemId
-     * @param {InlineObject5} body
+     * @param {string} itemAgentId
+     * @param {string} itemAbsenceId
+     * @param {InlineObject2} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateShiftTemplate(
-      itemId: string,
-      body: InlineObject5,
+    updateAgentAbsence(
+      itemAgentId: string,
+      itemAbsenceId: string,
+      body: InlineObject2,
       options?: any
-    ): AxiosPromise<WfmUpdateShiftTemplateResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .updateShiftTemplate(itemId, body, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary UpdateShiftTemplateTimeBulk updates a list of shift template times. Update existing, create that not exists in database and delete that not exists in the list.
-     * @param {string} shiftTemplateId
-     * @param {InlineObject6} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateShiftTemplateTimeBulk(
-      shiftTemplateId: string,
-      body: InlineObject6,
-      options?: any
-    ): AxiosPromise<WfmUpdateShiftTemplateTimeBulkResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .updateShiftTemplateTimeBulk(shiftTemplateId, body, options)
+    ): AxiosPromise<WfmUpdateAgentAbsenceResponse> {
+      return AgentAbsenceServiceApiFp(configuration)
+        .updateAgentAbsence(itemAgentId, itemAbsenceId, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * ShiftTemplateServiceApi - object-oriented interface
+ * AgentAbsenceServiceApi - object-oriented interface
  * @export
- * @class ShiftTemplateServiceApi
+ * @class AgentAbsenceServiceApi
  * @extends {BaseAPI}
  */
-export class ShiftTemplateServiceApi extends BaseAPI {
+export class AgentAbsenceServiceApi extends BaseAPI {
   /**
    *
-   * @param {WfmCreateShiftTemplateRequest} body
+   * @param {string} itemAgentId
+   * @param {InlineObject1} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
+   * @memberof AgentAbsenceServiceApi
    */
-  public createShiftTemplate(
-    body: WfmCreateShiftTemplateRequest,
+  public createAgentAbsence(
+    itemAgentId: string,
+    body: InlineObject1,
     options?: any
   ) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .createShiftTemplate(body, options)
+    return AgentAbsenceServiceApiFp(this.configuration)
+      .createAgentAbsence(itemAgentId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} id
+   * @param {WfmCreateAgentsAbsencesBulkRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
+   * @memberof AgentAbsenceServiceApi
    */
-  public deleteShiftTemplate(id: string, options?: any) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .deleteShiftTemplate(id, options)
+  public createAgentsAbsencesBulk(
+    body: WfmCreateAgentsAbsencesBulkRequest,
+    options?: any
+  ) {
+    return AgentAbsenceServiceApiFp(this.configuration)
+      .createAgentsAbsencesBulk(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
+   * @param {string} agentId
    * @param {string} id
-   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
+   * @memberof AgentAbsenceServiceApi
    */
-  public readShiftTemplate(id: string, fields?: Array<string>, options?: any) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .readShiftTemplate(id, fields, options)
+  public deleteAgentAbsence(agentId: string, id: string, options?: any) {
+    return AgentAbsenceServiceApiFp(this.configuration)
+      .deleteAgentAbsence(agentId, id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} agentId
+   * @param {string} [absentAtFrom]
+   * @param {string} [absentAtTo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentAbsenceServiceApi
+   */
+  public readAgentAbsences(
+    agentId: string,
+    absentAtFrom?: string,
+    absentAtTo?: string,
+    options?: any
+  ) {
+    return AgentAbsenceServiceApiFp(this.configuration)
+      .readAgentAbsences(agentId, absentAtFrom, absentAtTo, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1042,53 +1001,40 @@ export class ShiftTemplateServiceApi extends BaseAPI {
    * @param {number} [size]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
+   * @param {Array<string>} [supervisorId]
+   * @param {Array<string>} [teamId]
+   * @param {Array<string>} [skillId]
+   * @param {string} [absentAtFrom]
+   * @param {string} [absentAtTo]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
+   * @memberof AgentAbsenceServiceApi
    */
-  public searchShiftTemplate(
+  public searchAgentsAbsences(
     q?: string,
     page?: number,
     size?: number,
     sort?: string,
     fields?: Array<string>,
+    supervisorId?: Array<string>,
+    teamId?: Array<string>,
+    skillId?: Array<string>,
+    absentAtFrom?: string,
+    absentAtTo?: string,
     options?: any
   ) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .searchShiftTemplate(q, page, size, sort, fields, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary SearchShiftTemplateTime returns a list of pause template times.
-   * @param {string} shiftTemplateId
-   * @param {string} [q]
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
-   */
-  public searchShiftTemplateTime(
-    shiftTemplateId: string,
-    q?: string,
-    page?: number,
-    size?: number,
-    sort?: string,
-    fields?: Array<string>,
-    options?: any
-  ) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .searchShiftTemplateTime(
-        shiftTemplateId,
+    return AgentAbsenceServiceApiFp(this.configuration)
+      .searchAgentsAbsences(
         q,
         page,
         size,
         sort,
         fields,
+        supervisorId,
+        teamId,
+        skillId,
+        absentAtFrom,
+        absentAtTo,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -1096,38 +1042,21 @@ export class ShiftTemplateServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {string} itemId
-   * @param {InlineObject5} body
+   * @param {string} itemAgentId
+   * @param {string} itemAbsenceId
+   * @param {InlineObject2} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
+   * @memberof AgentAbsenceServiceApi
    */
-  public updateShiftTemplate(
-    itemId: string,
-    body: InlineObject5,
+  public updateAgentAbsence(
+    itemAgentId: string,
+    itemAbsenceId: string,
+    body: InlineObject2,
     options?: any
   ) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .updateShiftTemplate(itemId, body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary UpdateShiftTemplateTimeBulk updates a list of shift template times. Update existing, create that not exists in database and delete that not exists in the list.
-   * @param {string} shiftTemplateId
-   * @param {InlineObject6} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
-   */
-  public updateShiftTemplateTimeBulk(
-    shiftTemplateId: string,
-    body: InlineObject6,
-    options?: any
-  ) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .updateShiftTemplateTimeBulk(shiftTemplateId, body, options)
+    return AgentAbsenceServiceApiFp(this.configuration)
+      .updateAgentAbsence(itemAgentId, itemAbsenceId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

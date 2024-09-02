@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmPauseTemplateCause } from './wfm-pause-template-cause'
+import { WfmAgentsItemAgentIdAbsencesItemAbsenceIdItem } from './wfm-agents-item-agent-id-absences-item-absence-id-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmPauseTemplateCause } from './wfm-pause-template-cause'
 export interface InlineObject2 {
   /**
    *
-   * @type {Array<WfmPauseTemplateCause>}
+   * @type {WfmAgentsItemAgentIdAbsencesItemAbsenceIdItem}
    * @memberof InlineObject2
    */
-  items?: Array<WfmPauseTemplateCause>
+  item?: WfmAgentsItemAgentIdAbsencesItemAbsenceIdItem
 }

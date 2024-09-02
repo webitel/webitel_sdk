@@ -63,6 +63,12 @@ export interface WebitelChatChat {
    */
   peer?: WebitelChatPeer
   /**
+   *
+   * @type {WebitelChatPeer}
+   * @memberof WebitelChatChat
+   */
+  queue?: WebitelChatPeer
+  /**
    * [TO]: Chat title.
    * @type {string}
    * @memberof WebitelChatChat

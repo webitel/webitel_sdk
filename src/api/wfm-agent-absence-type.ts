@@ -11,18 +11,14 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
-
 /**
  *
  * @export
- * @interface InlineObject5
+ * @enum {string}
  */
-export interface InlineObject5 {
-  /**
-   *
-   * @type {WfmLookupsPauseTemplatesItemIdItem}
-   * @memberof InlineObject5
-   */
-  item?: WfmLookupsPauseTemplatesItemIdItem
+export enum WfmAgentAbsenceType {
+  UNSPECIFIED = 'AGENT_ABSENCE_TYPE_UNSPECIFIED',
+  DAYOFF = 'AGENT_ABSENCE_TYPE_DAYOFF',
+  VACATION = 'AGENT_ABSENCE_TYPE_VACATION',
+  SICKDAY = 'AGENT_ABSENCE_TYPE_SICKDAY',
 }

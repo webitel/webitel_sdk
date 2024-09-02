@@ -24,7 +24,7 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject5 } from '../api'
+import { InlineObject7 } from '../api'
 // @ts-ignore
 import { RpcStatus } from '../api'
 // @ts-ignore
@@ -330,21 +330,21 @@ export const WorkingConditionServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {InlineObject5} body
+     * @param {string} itemId
+     * @param {InlineObject7} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingCondition: async (
-      id: string,
-      body: InlineObject5,
+      itemId: string,
+      body: InlineObject7,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'itemId' is not null or undefined
+      if (itemId === null || itemId === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling updateWorkingCondition.'
+          'itemId',
+          'Required parameter itemId was null or undefined when calling updateWorkingCondition.'
         )
       }
       // verify required parameter 'body' is not null or undefined
@@ -354,9 +354,9 @@ export const WorkingConditionServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling updateWorkingCondition.'
         )
       }
-      const localVarPath = `/wfm/lookups/working_conditions/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/wfm/lookups/working_conditions/{item.id}`.replace(
+        `{${'item.id'}}`,
+        encodeURIComponent(String(itemId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -547,14 +547,14 @@ export const WorkingConditionServiceApiFp = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {InlineObject5} body
+     * @param {string} itemId
+     * @param {InlineObject7} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateWorkingCondition(
-      id: string,
-      body: InlineObject5,
+      itemId: string,
+      body: InlineObject7,
       options?: any
     ): Promise<
       (
@@ -564,7 +564,7 @@ export const WorkingConditionServiceApiFp = function(
     > {
       const localVarAxiosArgs = await WorkingConditionServiceApiAxiosParamCreator(
         configuration
-      ).updateWorkingCondition(id, body, options)
+      ).updateWorkingCondition(itemId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -657,18 +657,18 @@ export const WorkingConditionServiceApiFactory = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {InlineObject5} body
+     * @param {string} itemId
+     * @param {InlineObject7} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingCondition(
-      id: string,
-      body: InlineObject5,
+      itemId: string,
+      body: InlineObject7,
       options?: any
     ): AxiosPromise<WfmUpdateWorkingConditionResponse> {
       return WorkingConditionServiceApiFp(configuration)
-        .updateWorkingCondition(id, body, options)
+        .updateWorkingCondition(itemId, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -754,19 +754,19 @@ export class WorkingConditionServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {string} id
-   * @param {InlineObject5} body
+   * @param {string} itemId
+   * @param {InlineObject7} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WorkingConditionServiceApi
    */
   public updateWorkingCondition(
-    id: string,
-    body: InlineObject5,
+    itemId: string,
+    body: InlineObject7,
     options?: any
   ) {
     return WorkingConditionServiceApiFp(this.configuration)
-      .updateWorkingCondition(id, body, options)
+      .updateWorkingCondition(itemId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

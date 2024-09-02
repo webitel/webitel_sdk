@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmShiftTemplate } from './wfm-shift-template'
+import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmShiftTemplate } from './wfm-shift-template'
 export interface InlineObject3 {
   /**
    *
-   * @type {WfmShiftTemplate}
+   * @type {WfmLookupsPauseTemplatesItemIdItem}
    * @memberof InlineObject3
    */
-  item?: WfmShiftTemplate
+  item?: WfmLookupsPauseTemplatesItemIdItem
 }

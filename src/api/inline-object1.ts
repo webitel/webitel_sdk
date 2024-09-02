@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmPauseTemplate } from './wfm-pause-template'
+import { WfmAgentsItemAgentIdAbsencesItem } from './wfm-agents-item-agent-id-absences-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmPauseTemplate } from './wfm-pause-template'
 export interface InlineObject1 {
   /**
    *
-   * @type {WfmPauseTemplate}
+   * @type {WfmAgentsItemAgentIdAbsencesItem}
    * @memberof InlineObject1
    */
-  item?: WfmPauseTemplate
+  item?: WfmAgentsItemAgentIdAbsencesItem
 }

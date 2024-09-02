@@ -11,18 +11,18 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
+import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
 
 /**
  *
  * @export
- * @interface InlineObject5
+ * @interface InlineObject7
  */
-export interface InlineObject5 {
+export interface InlineObject7 {
   /**
    *
-   * @type {WfmLookupsPauseTemplatesItemIdItem}
-   * @memberof InlineObject5
+   * @type {WfmLookupsWorkingConditionsItemIdItem}
+   * @memberof InlineObject7
    */
-  item?: WfmLookupsPauseTemplatesItemIdItem
+  item?: WfmLookupsWorkingConditionsItemIdItem
 }

@@ -39,7 +39,8 @@ export const ContactsChatCatalogApiAxiosParamCreator = function(
      * @param {string} chatId Unique chat dialog
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
      * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
-     * @param {number} [limit] Number of messages to return.
+     * @param {number} [size] Number of messages to return.
+     * @param {number} [page]
      * @param {string} [q] Search term: message.text
      * @param {Array<string>} [fields] Fields to return into result.
      * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
@@ -51,7 +52,8 @@ export const ContactsChatCatalogApiAxiosParamCreator = function(
       chatId: string,
       offsetId?: string,
       offsetDate?: string,
-      limit?: number,
+      size?: number,
+      page?: number,
       q?: string,
       fields?: Array<string>,
       groupString?: string,
@@ -104,8 +106,12 @@ export const ContactsChatCatalogApiAxiosParamCreator = function(
         localVarQueryParameter['offset.date'] = offsetDate
       }
 
-      if (limit !== undefined) {
-        localVarQueryParameter['limit'] = limit
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
       if (q !== undefined) {
@@ -118,6 +124,117 @@ export const ContactsChatCatalogApiAxiosParamCreator = function(
 
       if (groupString !== undefined) {
         localVarQueryParameter['group[string]'] = groupString
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} contactId Contact identificator
+     * @param {string} [offsetId] Messages ONLY starting from the specified message ID
+     * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
+     * @param {number} [size] Number of messages to return.
+     * @param {number} [page]
+     * @param {string} [q] Search term: message.text
+     * @param {Array<string>} [fields] Fields to return into result.
+     * @param {string} [chatId] Unique chat dialog
+     * @param {string} [groupStringString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getContactChatHistory2: async (
+      contactId: string,
+      offsetId?: string,
+      offsetDate?: string,
+      size?: number,
+      page?: number,
+      q?: string,
+      fields?: Array<string>,
+      chatId?: string,
+      groupStringString?: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'contactId' is not null or undefined
+      if (contactId === null || contactId === undefined) {
+        throw new RequiredError(
+          'contactId',
+          'Required parameter contactId was null or undefined when calling getContactChatHistory2.'
+        )
+      }
+      const localVarPath = `/contacts/{contact_id}/chat/messages`.replace(
+        `{${'contact_id'}}`,
+        encodeURIComponent(String(contactId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (offsetId !== undefined) {
+        localVarQueryParameter['offset.id'] = offsetId
+      }
+
+      if (offsetDate !== undefined) {
+        localVarQueryParameter['offset.date'] = offsetDate
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (chatId !== undefined) {
+        localVarQueryParameter['chat_id'] = chatId
+      }
+
+      if (groupStringString !== undefined) {
+        localVarQueryParameter['group[string][string]'] = groupStringString
       }
 
       localVarUrlObj.query = {
@@ -157,7 +274,8 @@ export const ContactsChatCatalogApiFp = function(
      * @param {string} chatId Unique chat dialog
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
      * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
-     * @param {number} [limit] Number of messages to return.
+     * @param {number} [size] Number of messages to return.
+     * @param {number} [page]
      * @param {string} [q] Search term: message.text
      * @param {Array<string>} [fields] Fields to return into result.
      * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
@@ -169,7 +287,8 @@ export const ContactsChatCatalogApiFp = function(
       chatId: string,
       offsetId?: string,
       offsetDate?: string,
-      limit?: number,
+      size?: number,
+      page?: number,
       q?: string,
       fields?: Array<string>,
       groupString?: string,
@@ -187,10 +306,67 @@ export const ContactsChatCatalogApiFp = function(
         chatId,
         offsetId,
         offsetDate,
-        limit,
+        size,
+        page,
         q,
         fields,
         groupString,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} contactId Contact identificator
+     * @param {string} [offsetId] Messages ONLY starting from the specified message ID
+     * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
+     * @param {number} [size] Number of messages to return.
+     * @param {number} [page]
+     * @param {string} [q] Search term: message.text
+     * @param {Array<string>} [fields] Fields to return into result.
+     * @param {string} [chatId] Unique chat dialog
+     * @param {string} [groupStringString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getContactChatHistory2(
+      contactId: string,
+      offsetId?: string,
+      offsetDate?: string,
+      size?: number,
+      page?: number,
+      q?: string,
+      fields?: Array<string>,
+      chatId?: string,
+      groupStringString?: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelChatGetContactChatHistoryResponse>
+    > {
+      const localVarAxiosArgs = await ContactsChatCatalogApiAxiosParamCreator(
+        configuration
+      ).getContactChatHistory2(
+        contactId,
+        offsetId,
+        offsetDate,
+        size,
+        page,
+        q,
+        fields,
+        chatId,
+        groupStringString,
         options
       )
       return (
@@ -223,7 +399,8 @@ export const ContactsChatCatalogApiFactory = function(
      * @param {string} chatId Unique chat dialog
      * @param {string} [offsetId] Messages ONLY starting from the specified message ID
      * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
-     * @param {number} [limit] Number of messages to return.
+     * @param {number} [size] Number of messages to return.
+     * @param {number} [page]
      * @param {string} [q] Search term: message.text
      * @param {Array<string>} [fields] Fields to return into result.
      * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
@@ -235,7 +412,8 @@ export const ContactsChatCatalogApiFactory = function(
       chatId: string,
       offsetId?: string,
       offsetDate?: string,
-      limit?: number,
+      size?: number,
+      page?: number,
       q?: string,
       fields?: Array<string>,
       groupString?: string,
@@ -247,10 +425,52 @@ export const ContactsChatCatalogApiFactory = function(
           chatId,
           offsetId,
           offsetDate,
-          limit,
+          size,
+          page,
           q,
           fields,
           groupString,
+          options
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} contactId Contact identificator
+     * @param {string} [offsetId] Messages ONLY starting from the specified message ID
+     * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
+     * @param {number} [size] Number of messages to return.
+     * @param {number} [page]
+     * @param {string} [q] Search term: message.text
+     * @param {Array<string>} [fields] Fields to return into result.
+     * @param {string} [chatId] Unique chat dialog
+     * @param {string} [groupStringString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getContactChatHistory2(
+      contactId: string,
+      offsetId?: string,
+      offsetDate?: string,
+      size?: number,
+      page?: number,
+      q?: string,
+      fields?: Array<string>,
+      chatId?: string,
+      groupStringString?: string,
+      options?: any
+    ): AxiosPromise<WebitelChatGetContactChatHistoryResponse> {
+      return ContactsChatCatalogApiFp(configuration)
+        .getContactChatHistory2(
+          contactId,
+          offsetId,
+          offsetDate,
+          size,
+          page,
+          q,
+          fields,
+          chatId,
+          groupStringString,
           options
         )
         .then((request) => request(axios, basePath))
@@ -271,7 +491,8 @@ export class ContactsChatCatalogApi extends BaseAPI {
    * @param {string} chatId Unique chat dialog
    * @param {string} [offsetId] Messages ONLY starting from the specified message ID
    * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
-   * @param {number} [limit] Number of messages to return.
+   * @param {number} [size] Number of messages to return.
+   * @param {number} [page]
    * @param {string} [q] Search term: message.text
    * @param {Array<string>} [fields] Fields to return into result.
    * @param {string} [groupString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
@@ -284,7 +505,8 @@ export class ContactsChatCatalogApi extends BaseAPI {
     chatId: string,
     offsetId?: string,
     offsetDate?: string,
-    limit?: number,
+    size?: number,
+    page?: number,
     q?: string,
     fields?: Array<string>,
     groupString?: string,
@@ -296,10 +518,54 @@ export class ContactsChatCatalogApi extends BaseAPI {
         chatId,
         offsetId,
         offsetDate,
-        limit,
+        size,
+        page,
         q,
         fields,
         groupString,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} contactId Contact identificator
+   * @param {string} [offsetId] Messages ONLY starting from the specified message ID
+   * @param {string} [offsetDate] Messages ONLY been sent before the specified epochtime(milli).
+   * @param {number} [size] Number of messages to return.
+   * @param {number} [page]
+   * @param {string} [q] Search term: message.text
+   * @param {Array<string>} [fields] Fields to return into result.
+   * @param {string} [chatId] Unique chat dialog
+   * @param {string} [groupStringString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ContactsChatCatalogApi
+   */
+  public getContactChatHistory2(
+    contactId: string,
+    offsetId?: string,
+    offsetDate?: string,
+    size?: number,
+    page?: number,
+    q?: string,
+    fields?: Array<string>,
+    chatId?: string,
+    groupStringString?: string,
+    options?: any
+  ) {
+    return ContactsChatCatalogApiFp(this.configuration)
+      .getContactChatHistory2(
+        contactId,
+        offsetId,
+        offsetDate,
+        size,
+        page,
+        q,
+        fields,
+        chatId,
+        groupStringString,
         options
       )
       .then((request) => request(this.axios, this.basePath))
