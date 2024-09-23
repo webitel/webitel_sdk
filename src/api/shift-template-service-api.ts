@@ -26,8 +26,6 @@ import {
 // @ts-ignore
 import { InlineObject5 } from '../api'
 // @ts-ignore
-import { InlineObject6 } from '../api'
-// @ts-ignore
 import { RpcStatus } from '../api'
 // @ts-ignore
 import { WfmCreateShiftTemplateRequest } from '../api'
@@ -40,11 +38,7 @@ import { WfmReadShiftTemplateResponse } from '../api'
 // @ts-ignore
 import { WfmSearchShiftTemplateResponse } from '../api'
 // @ts-ignore
-import { WfmSearchShiftTemplateTimeResponse } from '../api'
-// @ts-ignore
 import { WfmUpdateShiftTemplateResponse } from '../api'
-// @ts-ignore
-import { WfmUpdateShiftTemplateTimeBulkResponse } from '../api'
 /**
  * ShiftTemplateServiceApi - axios parameter creator
  * @export
@@ -336,100 +330,7 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary SearchShiftTemplateTime returns a list of pause template times.
-     * @param {string} shiftTemplateId
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchShiftTemplateTime: async (
-      shiftTemplateId: string,
-      q?: string,
-      page?: number,
-      size?: number,
-      sort?: string,
-      fields?: Array<string>,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'shiftTemplateId' is not null or undefined
-      if (shiftTemplateId === null || shiftTemplateId === undefined) {
-        throw new RequiredError(
-          'shiftTemplateId',
-          'Required parameter shiftTemplateId was null or undefined when calling searchShiftTemplateTime.'
-        )
-      }
-      const localVarPath = `/wfm/lookups/shift_templates/{shift_template_id}/times`.replace(
-        `{${'shift_template_id'}}`,
-        encodeURIComponent(String(shiftTemplateId))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
-      if (page !== undefined) {
-        localVarQueryParameter['page'] = page
-      }
-
-      if (size !== undefined) {
-        localVarQueryParameter['size'] = size
-      }
-
-      if (sort !== undefined) {
-        localVarQueryParameter['sort'] = sort
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
+     * @summary UpdateShiftTemplate updates a shift template with a list times. Update existing time, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
      * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
@@ -457,87 +358,6 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
       const localVarPath = `/wfm/lookups/shift_templates/{item.id}`.replace(
         `{${'item.id'}}`,
         encodeURIComponent(String(itemId))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PUT',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof body !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary UpdateShiftTemplateTimeBulk updates a list of shift template times. Update existing, create that not exists in database and delete that not exists in the list.
-     * @param {string} shiftTemplateId
-     * @param {InlineObject6} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateShiftTemplateTimeBulk: async (
-      shiftTemplateId: string,
-      body: InlineObject6,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'shiftTemplateId' is not null or undefined
-      if (shiftTemplateId === null || shiftTemplateId === undefined) {
-        throw new RequiredError(
-          'shiftTemplateId',
-          'Required parameter shiftTemplateId was null or undefined when calling updateShiftTemplateTimeBulk.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateShiftTemplateTimeBulk.'
-        )
-      }
-      const localVarPath = `/wfm/lookups/shift_templates/{shift_template_id}/times`.replace(
-        `{${'shift_template_id'}}`,
-        encodeURIComponent(String(shiftTemplateId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -728,54 +548,7 @@ export const ShiftTemplateServiceApiFp = function(
     },
     /**
      *
-     * @summary SearchShiftTemplateTime returns a list of pause template times.
-     * @param {string} shiftTemplateId
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async searchShiftTemplateTime(
-      shiftTemplateId: string,
-      q?: string,
-      page?: number,
-      size?: number,
-      sort?: string,
-      fields?: Array<string>,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WfmSearchShiftTemplateTimeResponse>
-    > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
-        configuration
-      ).searchShiftTemplateTime(
-        shiftTemplateId,
-        q,
-        page,
-        size,
-        sort,
-        fields,
-        options
-      )
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
+     * @summary UpdateShiftTemplate updates a shift template with a list times. Update existing time, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
      * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
@@ -794,38 +567,6 @@ export const ShiftTemplateServiceApiFp = function(
       const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
         configuration
       ).updateShiftTemplate(itemId, body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary UpdateShiftTemplateTimeBulk updates a list of shift template times. Update existing, create that not exists in database and delete that not exists in the list.
-     * @param {string} shiftTemplateId
-     * @param {InlineObject6} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateShiftTemplateTimeBulk(
-      shiftTemplateId: string,
-      body: InlineObject6,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WfmUpdateShiftTemplateTimeBulkResponse>
-    > {
-      const localVarAxiosArgs = await ShiftTemplateServiceApiAxiosParamCreator(
-        configuration
-      ).updateShiftTemplateTimeBulk(shiftTemplateId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -918,39 +659,7 @@ export const ShiftTemplateServiceApiFactory = function(
     },
     /**
      *
-     * @summary SearchShiftTemplateTime returns a list of pause template times.
-     * @param {string} shiftTemplateId
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchShiftTemplateTime(
-      shiftTemplateId: string,
-      q?: string,
-      page?: number,
-      size?: number,
-      sort?: string,
-      fields?: Array<string>,
-      options?: any
-    ): AxiosPromise<WfmSearchShiftTemplateTimeResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .searchShiftTemplateTime(
-          shiftTemplateId,
-          q,
-          page,
-          size,
-          sort,
-          fields,
-          options
-        )
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
+     * @summary UpdateShiftTemplate updates a shift template with a list times. Update existing time, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
      * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
@@ -963,23 +672,6 @@ export const ShiftTemplateServiceApiFactory = function(
     ): AxiosPromise<WfmUpdateShiftTemplateResponse> {
       return ShiftTemplateServiceApiFp(configuration)
         .updateShiftTemplate(itemId, body, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary UpdateShiftTemplateTimeBulk updates a list of shift template times. Update existing, create that not exists in database and delete that not exists in the list.
-     * @param {string} shiftTemplateId
-     * @param {InlineObject6} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateShiftTemplateTimeBulk(
-      shiftTemplateId: string,
-      body: InlineObject6,
-      options?: any
-    ): AxiosPromise<WfmUpdateShiftTemplateTimeBulkResponse> {
-      return ShiftTemplateServiceApiFp(configuration)
-        .updateShiftTemplateTimeBulk(shiftTemplateId, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1061,41 +753,7 @@ export class ShiftTemplateServiceApi extends BaseAPI {
 
   /**
    *
-   * @summary SearchShiftTemplateTime returns a list of pause template times.
-   * @param {string} shiftTemplateId
-   * @param {string} [q]
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
-   */
-  public searchShiftTemplateTime(
-    shiftTemplateId: string,
-    q?: string,
-    page?: number,
-    size?: number,
-    sort?: string,
-    fields?: Array<string>,
-    options?: any
-  ) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .searchShiftTemplateTime(
-        shiftTemplateId,
-        q,
-        page,
-        size,
-        sort,
-        fields,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
+   * @summary UpdateShiftTemplate updates a shift template with a list times. Update existing time, create that not exists in database and delete that not exists in the list.
    * @param {string} itemId
    * @param {InlineObject5} body
    * @param {*} [options] Override http request option.
@@ -1109,25 +767,6 @@ export class ShiftTemplateServiceApi extends BaseAPI {
   ) {
     return ShiftTemplateServiceApiFp(this.configuration)
       .updateShiftTemplate(itemId, body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary UpdateShiftTemplateTimeBulk updates a list of shift template times. Update existing, create that not exists in database and delete that not exists in the list.
-   * @param {string} shiftTemplateId
-   * @param {InlineObject6} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ShiftTemplateServiceApi
-   */
-  public updateShiftTemplateTimeBulk(
-    shiftTemplateId: string,
-    body: InlineObject6,
-    options?: any
-  ) {
-    return ShiftTemplateServiceApiFp(this.configuration)
-      .updateShiftTemplateTimeBulk(shiftTemplateId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

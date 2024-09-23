@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { WfmAgentAbsences } from './wfm-agent-absences'
+
 /**
  *
  * @export
@@ -19,8 +21,8 @@
 export interface WfmCreateAgentsAbsencesBulkResponse {
   /**
    *
-   * @type {Array<string>}
+   * @type {Array<WfmAgentAbsences>}
    * @memberof WfmCreateAgentsAbsencesBulkResponse
    */
-  items?: Array<string>
+  items?: Array<WfmAgentAbsences>
 }

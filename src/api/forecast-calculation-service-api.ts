@@ -24,47 +24,49 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject4 } from '../api'
+import { InlineObject3 } from '../api'
 // @ts-ignore
 import { RpcStatus } from '../api'
 // @ts-ignore
-import { WfmCreatePauseTemplateRequest } from '../api'
+import { WfmCreateForecastCalculationRequest } from '../api'
 // @ts-ignore
-import { WfmCreatePauseTemplateResponse } from '../api'
+import { WfmCreateForecastCalculationResponse } from '../api'
 // @ts-ignore
-import { WfmDeletePauseTemplateResponse } from '../api'
+import { WfmDeleteForecastCalculationResponse } from '../api'
 // @ts-ignore
-import { WfmReadPauseTemplateResponse } from '../api'
+import { WfmExecuteForecastCalculationResponse } from '../api'
 // @ts-ignore
-import { WfmSearchPauseTemplateResponse } from '../api'
+import { WfmReadForecastCalculationResponse } from '../api'
 // @ts-ignore
-import { WfmUpdatePauseTemplateResponse } from '../api'
+import { WfmSearchForecastCalculationResponse } from '../api'
+// @ts-ignore
+import { WfmUpdateForecastCalculationResponse } from '../api'
 /**
- * PauseTemplateServiceApi - axios parameter creator
+ * ForecastCalculationServiceApi - axios parameter creator
  * @export
  */
-export const PauseTemplateServiceApiAxiosParamCreator = function(
+export const ForecastCalculationServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {WfmCreatePauseTemplateRequest} body
+     * @param {WfmCreateForecastCalculationRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createPauseTemplate: async (
-      body: WfmCreatePauseTemplateRequest,
+    createForecastCalculation: async (
+      body: WfmCreateForecastCalculationRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createPauseTemplate.'
+          'Required parameter body was null or undefined when calling createForecastCalculation.'
         )
       }
-      const localVarPath = `/wfm/lookups/pause_templates`
+      const localVarPath = `/wfm/lookups/forecast_calculation`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -121,7 +123,7 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deletePauseTemplate: async (
+    deleteForecastCalculation: async (
       id: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -129,10 +131,10 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deletePauseTemplate.'
+          'Required parameter id was null or undefined when calling deleteForecastCalculation.'
         )
       }
-      const localVarPath = `/wfm/lookups/pause_templates/{id}`.replace(
+      const localVarPath = `/wfm/lookups/forecast_calculation/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -180,12 +182,75 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} id1
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeForecastCalculation: async (
+      id1: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id1' is not null or undefined
+      if (id1 === null || id1 === undefined) {
+        throw new RequiredError(
+          'id1',
+          'Required parameter id1 was null or undefined when calling executeForecastCalculation.'
+        )
+      }
+      const localVarPath = `/wfm/lookups/forecast_calculation/{id_1}`.replace(
+        `{${'id_1'}}`,
+        encodeURIComponent(String(id1))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readPauseTemplate: async (
+    readForecastCalculation: async (
       id: string,
       fields?: Array<string>,
       options: any = {}
@@ -194,10 +259,10 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling readPauseTemplate.'
+          'Required parameter id was null or undefined when calling readForecastCalculation.'
         )
       }
-      const localVarPath = `/wfm/lookups/pause_templates/{id}`.replace(
+      const localVarPath = `/wfm/lookups/forecast_calculation/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -257,7 +322,7 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchPauseTemplate: async (
+    searchForecastCalculation: async (
       q?: string,
       page?: number,
       size?: number,
@@ -265,7 +330,7 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/wfm/lookups/pause_templates`
+      const localVarPath = `/wfm/lookups/forecast_calculation`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -330,32 +395,31 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary UpdatePauseTemplateCauseBulk updates a pause template with a list of causes. Update existing cause, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject4} body
+     * @param {InlineObject3} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updatePauseTemplate: async (
+    updateForecastCalculation: async (
       itemId: string,
-      body: InlineObject4,
+      body: InlineObject3,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemId' is not null or undefined
       if (itemId === null || itemId === undefined) {
         throw new RequiredError(
           'itemId',
-          'Required parameter itemId was null or undefined when calling updatePauseTemplate.'
+          'Required parameter itemId was null or undefined when calling updateForecastCalculation.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updatePauseTemplate.'
+          'Required parameter body was null or undefined when calling updateForecastCalculation.'
         )
       }
-      const localVarPath = `/wfm/lookups/pause_templates/{item.id}`.replace(
+      const localVarPath = `/wfm/lookups/forecast_calculation/{item.id}`.replace(
         `{${'item.id'}}`,
         encodeURIComponent(String(itemId))
       )
@@ -413,31 +477,31 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
 }
 
 /**
- * PauseTemplateServiceApi - functional programming interface
+ * ForecastCalculationServiceApi - functional programming interface
  * @export
  */
-export const PauseTemplateServiceApiFp = function(
+export const ForecastCalculationServiceApiFp = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {WfmCreatePauseTemplateRequest} body
+     * @param {WfmCreateForecastCalculationRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createPauseTemplate(
-      body: WfmCreatePauseTemplateRequest,
+    async createForecastCalculation(
+      body: WfmCreateForecastCalculationRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmCreatePauseTemplateResponse>
+      ) => AxiosPromise<WfmCreateForecastCalculationResponse>
     > {
-      const localVarAxiosArgs = await PauseTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
         configuration
-      ).createPauseTemplate(body, options)
+      ).createForecastCalculation(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -455,18 +519,47 @@ export const PauseTemplateServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deletePauseTemplate(
+    async deleteForecastCalculation(
       id: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmDeletePauseTemplateResponse>
+      ) => AxiosPromise<WfmDeleteForecastCalculationResponse>
     > {
-      const localVarAxiosArgs = await PauseTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
         configuration
-      ).deletePauseTemplate(id, options)
+      ).deleteForecastCalculation(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id1
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async executeForecastCalculation(
+      id1: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WfmExecuteForecastCalculationResponse>
+    > {
+      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+        configuration
+      ).executeForecastCalculation(id1, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -485,7 +578,7 @@ export const PauseTemplateServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readPauseTemplate(
+    async readForecastCalculation(
       id: string,
       fields?: Array<string>,
       options?: any
@@ -493,11 +586,11 @@ export const PauseTemplateServiceApiFp = function(
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmReadPauseTemplateResponse>
+      ) => AxiosPromise<WfmReadForecastCalculationResponse>
     > {
-      const localVarAxiosArgs = await PauseTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
         configuration
-      ).readPauseTemplate(id, fields, options)
+      ).readForecastCalculation(id, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -519,7 +612,7 @@ export const PauseTemplateServiceApiFp = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchPauseTemplate(
+    async searchForecastCalculation(
       q?: string,
       page?: number,
       size?: number,
@@ -530,11 +623,11 @@ export const PauseTemplateServiceApiFp = function(
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmSearchPauseTemplateResponse>
+      ) => AxiosPromise<WfmSearchForecastCalculationResponse>
     > {
-      const localVarAxiosArgs = await PauseTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
         configuration
-      ).searchPauseTemplate(q, page, size, sort, fields, options)
+      ).searchForecastCalculation(q, page, size, sort, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -548,25 +641,24 @@ export const PauseTemplateServiceApiFp = function(
     },
     /**
      *
-     * @summary UpdatePauseTemplateCauseBulk updates a pause template with a list of causes. Update existing cause, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject4} body
+     * @param {InlineObject3} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updatePauseTemplate(
+    async updateForecastCalculation(
       itemId: string,
-      body: InlineObject4,
+      body: InlineObject3,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmUpdatePauseTemplateResponse>
+      ) => AxiosPromise<WfmUpdateForecastCalculationResponse>
     > {
-      const localVarAxiosArgs = await PauseTemplateServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
         configuration
-      ).updatePauseTemplate(itemId, body, options)
+      ).updateForecastCalculation(itemId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -582,10 +674,10 @@ export const PauseTemplateServiceApiFp = function(
 }
 
 /**
- * PauseTemplateServiceApi - factory interface
+ * ForecastCalculationServiceApi - factory interface
  * @export
  */
-export const PauseTemplateServiceApiFactory = function(
+export const ForecastCalculationServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -593,16 +685,16 @@ export const PauseTemplateServiceApiFactory = function(
   return {
     /**
      *
-     * @param {WfmCreatePauseTemplateRequest} body
+     * @param {WfmCreateForecastCalculationRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createPauseTemplate(
-      body: WfmCreatePauseTemplateRequest,
+    createForecastCalculation(
+      body: WfmCreateForecastCalculationRequest,
       options?: any
-    ): AxiosPromise<WfmCreatePauseTemplateResponse> {
-      return PauseTemplateServiceApiFp(configuration)
-        .createPauseTemplate(body, options)
+    ): AxiosPromise<WfmCreateForecastCalculationResponse> {
+      return ForecastCalculationServiceApiFp(configuration)
+        .createForecastCalculation(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -611,12 +703,26 @@ export const PauseTemplateServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deletePauseTemplate(
+    deleteForecastCalculation(
       id: string,
       options?: any
-    ): AxiosPromise<WfmDeletePauseTemplateResponse> {
-      return PauseTemplateServiceApiFp(configuration)
-        .deletePauseTemplate(id, options)
+    ): AxiosPromise<WfmDeleteForecastCalculationResponse> {
+      return ForecastCalculationServiceApiFp(configuration)
+        .deleteForecastCalculation(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} id1
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeForecastCalculation(
+      id1: string,
+      options?: any
+    ): AxiosPromise<WfmExecuteForecastCalculationResponse> {
+      return ForecastCalculationServiceApiFp(configuration)
+        .executeForecastCalculation(id1, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -626,13 +732,13 @@ export const PauseTemplateServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readPauseTemplate(
+    readForecastCalculation(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WfmReadPauseTemplateResponse> {
-      return PauseTemplateServiceApiFp(configuration)
-        .readPauseTemplate(id, fields, options)
+    ): AxiosPromise<WfmReadForecastCalculationResponse> {
+      return ForecastCalculationServiceApiFp(configuration)
+        .readForecastCalculation(id, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -645,58 +751,57 @@ export const PauseTemplateServiceApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchPauseTemplate(
+    searchForecastCalculation(
       q?: string,
       page?: number,
       size?: number,
       sort?: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WfmSearchPauseTemplateResponse> {
-      return PauseTemplateServiceApiFp(configuration)
-        .searchPauseTemplate(q, page, size, sort, fields, options)
+    ): AxiosPromise<WfmSearchForecastCalculationResponse> {
+      return ForecastCalculationServiceApiFp(configuration)
+        .searchForecastCalculation(q, page, size, sort, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary UpdatePauseTemplateCauseBulk updates a pause template with a list of causes. Update existing cause, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject4} body
+     * @param {InlineObject3} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updatePauseTemplate(
+    updateForecastCalculation(
       itemId: string,
-      body: InlineObject4,
+      body: InlineObject3,
       options?: any
-    ): AxiosPromise<WfmUpdatePauseTemplateResponse> {
-      return PauseTemplateServiceApiFp(configuration)
-        .updatePauseTemplate(itemId, body, options)
+    ): AxiosPromise<WfmUpdateForecastCalculationResponse> {
+      return ForecastCalculationServiceApiFp(configuration)
+        .updateForecastCalculation(itemId, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * PauseTemplateServiceApi - object-oriented interface
+ * ForecastCalculationServiceApi - object-oriented interface
  * @export
- * @class PauseTemplateServiceApi
+ * @class ForecastCalculationServiceApi
  * @extends {BaseAPI}
  */
-export class PauseTemplateServiceApi extends BaseAPI {
+export class ForecastCalculationServiceApi extends BaseAPI {
   /**
    *
-   * @param {WfmCreatePauseTemplateRequest} body
+   * @param {WfmCreateForecastCalculationRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof PauseTemplateServiceApi
+   * @memberof ForecastCalculationServiceApi
    */
-  public createPauseTemplate(
-    body: WfmCreatePauseTemplateRequest,
+  public createForecastCalculation(
+    body: WfmCreateForecastCalculationRequest,
     options?: any
   ) {
-    return PauseTemplateServiceApiFp(this.configuration)
-      .createPauseTemplate(body, options)
+    return ForecastCalculationServiceApiFp(this.configuration)
+      .createForecastCalculation(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -705,11 +810,24 @@ export class PauseTemplateServiceApi extends BaseAPI {
    * @param {string} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof PauseTemplateServiceApi
+   * @memberof ForecastCalculationServiceApi
    */
-  public deletePauseTemplate(id: string, options?: any) {
-    return PauseTemplateServiceApiFp(this.configuration)
-      .deletePauseTemplate(id, options)
+  public deleteForecastCalculation(id: string, options?: any) {
+    return ForecastCalculationServiceApiFp(this.configuration)
+      .deleteForecastCalculation(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} id1
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ForecastCalculationServiceApi
+   */
+  public executeForecastCalculation(id1: string, options?: any) {
+    return ForecastCalculationServiceApiFp(this.configuration)
+      .executeForecastCalculation(id1, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -719,11 +837,15 @@ export class PauseTemplateServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof PauseTemplateServiceApi
+   * @memberof ForecastCalculationServiceApi
    */
-  public readPauseTemplate(id: string, fields?: Array<string>, options?: any) {
-    return PauseTemplateServiceApiFp(this.configuration)
-      .readPauseTemplate(id, fields, options)
+  public readForecastCalculation(
+    id: string,
+    fields?: Array<string>,
+    options?: any
+  ) {
+    return ForecastCalculationServiceApiFp(this.configuration)
+      .readForecastCalculation(id, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -736,9 +858,9 @@ export class PauseTemplateServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof PauseTemplateServiceApi
+   * @memberof ForecastCalculationServiceApi
    */
-  public searchPauseTemplate(
+  public searchForecastCalculation(
     q?: string,
     page?: number,
     size?: number,
@@ -746,27 +868,26 @@ export class PauseTemplateServiceApi extends BaseAPI {
     fields?: Array<string>,
     options?: any
   ) {
-    return PauseTemplateServiceApiFp(this.configuration)
-      .searchPauseTemplate(q, page, size, sort, fields, options)
+    return ForecastCalculationServiceApiFp(this.configuration)
+      .searchForecastCalculation(q, page, size, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary UpdatePauseTemplateCauseBulk updates a pause template with a list of causes. Update existing cause, create that not exists in database and delete that not exists in the list.
    * @param {string} itemId
-   * @param {InlineObject4} body
+   * @param {InlineObject3} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof PauseTemplateServiceApi
+   * @memberof ForecastCalculationServiceApi
    */
-  public updatePauseTemplate(
+  public updateForecastCalculation(
     itemId: string,
-    body: InlineObject4,
+    body: InlineObject3,
     options?: any
   ) {
-    return PauseTemplateServiceApiFp(this.configuration)
-      .updatePauseTemplate(itemId, body, options)
+    return ForecastCalculationServiceApiFp(this.configuration)
+      .updateForecastCalculation(itemId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -24,7 +24,13 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { LoggerDeleteConfigLogsRequest } from '../api'
+// @ts-ignore
+import { LoggerDeleteConfigLogsResponse } from '../api'
+// @ts-ignore
 import { LoggerLogs } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * LoggerServiceApi - axios parameter creator
  * @export
@@ -33,6 +39,86 @@ export const LoggerServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
+    /**
+     *
+     * @param {string} configId Required
+     * @param {LoggerDeleteConfigLogsRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteConfigLogs: async (
+      configId: string,
+      body: LoggerDeleteConfigLogsRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'configId' is not null or undefined
+      if (configId === null || configId === undefined) {
+        throw new RequiredError(
+          'configId',
+          'Required parameter configId was null or undefined when calling deleteConfigLogs.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling deleteConfigLogs.'
+        )
+      }
+      const localVarPath = `/logger/config/{config_id}/logs`.replace(
+        `{${'config_id'}}`,
+        encodeURIComponent(String(configId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @param {number} configId
@@ -438,6 +524,37 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
+     * @param {string} configId Required
+     * @param {LoggerDeleteConfigLogsRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteConfigLogs(
+      configId: string,
+      body: LoggerDeleteConfigLogsRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<LoggerDeleteConfigLogsResponse>
+    > {
+      const localVarAxiosArgs = await LoggerServiceApiAxiosParamCreator(
+        configuration
+      ).deleteConfigLogs(configId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {number} configId
      * @param {number} [page]
      * @param {number} [size]
@@ -648,6 +765,22 @@ export const LoggerServiceApiFactory = function(
   return {
     /**
      *
+     * @param {string} configId Required
+     * @param {LoggerDeleteConfigLogsRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteConfigLogs(
+      configId: string,
+      body: LoggerDeleteConfigLogsRequest,
+      options?: any
+    ): AxiosPromise<LoggerDeleteConfigLogsResponse> {
+      return LoggerServiceApiFp(configuration)
+        .deleteConfigLogs(configId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {number} configId
      * @param {number} [page]
      * @param {number} [size]
@@ -817,6 +950,24 @@ export const LoggerServiceApiFactory = function(
  * @extends {BaseAPI}
  */
 export class LoggerServiceApi extends BaseAPI {
+  /**
+   *
+   * @param {string} configId Required
+   * @param {LoggerDeleteConfigLogsRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LoggerServiceApi
+   */
+  public deleteConfigLogs(
+    configId: string,
+    body: LoggerDeleteConfigLogsRequest,
+    options?: any
+  ) {
+    return LoggerServiceApiFp(this.configuration)
+      .deleteConfigLogs(configId, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @param {number} configId

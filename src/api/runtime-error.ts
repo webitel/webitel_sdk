@@ -11,18 +11,36 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
+import { ProtobufAny } from './protobuf-any'
 
 /**
  *
  * @export
- * @interface InlineObject6
+ * @interface RuntimeError
  */
-export interface InlineObject6 {
+export interface RuntimeError {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
-   * @memberof InlineObject6
+   * @type {number}
+   * @memberof RuntimeError
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  code?: number
+  /**
+   *
+   * @type {Array<ProtobufAny>}
+   * @memberof RuntimeError
+   */
+  details?: Array<ProtobufAny>
+  /**
+   *
+   * @type {string}
+   * @memberof RuntimeError
+   */
+  error?: string
+  /**
+   *
+   * @type {string}
+   * @memberof RuntimeError
+   */
+  message?: string
 }

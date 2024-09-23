@@ -12,6 +12,7 @@
  */
 
 import { WfmLookupEntity } from './wfm-lookup-entity'
+import { WfmPauseTemplateCause } from './wfm-pause-template-cause'
 
 /**
  *
@@ -19,6 +20,12 @@ import { WfmLookupEntity } from './wfm-lookup-entity'
  * @interface WfmPauseTemplate
  */
 export interface WfmPauseTemplate {
+  /**
+   *
+   * @type {Array<WfmPauseTemplateCause>}
+   * @memberof WfmPauseTemplate
+   */
+  causes?: Array<WfmPauseTemplateCause>
   /**
    *
    * @type {string}

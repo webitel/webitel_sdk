@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
+import { WfmLookupsForecastCalculationItemIdItem } from './wfm-lookups-forecast-calculation-item-id-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-template
 export interface InlineObject3 {
   /**
    *
-   * @type {WfmLookupsPauseTemplatesItemIdItem}
+   * @type {WfmLookupsForecastCalculationItemIdItem}
    * @memberof InlineObject3
    */
-  item?: WfmLookupsPauseTemplatesItemIdItem
+  item?: WfmLookupsForecastCalculationItemIdItem
 }

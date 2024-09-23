@@ -12,66 +12,59 @@
  */
 
 import { WfmLookupEntity } from './wfm-lookup-entity'
-import { WfmShiftTemplateTime } from './wfm-shift-template-time'
 
 /**
  *
  * @export
- * @interface WfmShiftTemplate
+ * @interface WfmLookupsForecastCalculationItemIdItem
  */
-export interface WfmShiftTemplate {
+export interface WfmLookupsForecastCalculationItemIdItem {
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsForecastCalculationItemIdItem
    */
   created_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsForecastCalculationItemIdItem
    */
   created_by?: WfmLookupEntity
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsForecastCalculationItemIdItem
    */
   description?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsForecastCalculationItemIdItem
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsForecastCalculationItemIdItem
    */
   name?: string
   /**
    *
-   * @type {Array<WfmShiftTemplateTime>}
-   * @memberof WfmShiftTemplate
+   * @type {string}
+   * @memberof WfmLookupsForecastCalculationItemIdItem
    */
-  times?: Array<WfmShiftTemplateTime>
+  procedure?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsForecastCalculationItemIdItem
    */
   updated_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsForecastCalculationItemIdItem
    */
   updated_by?: WfmLookupEntity
 }

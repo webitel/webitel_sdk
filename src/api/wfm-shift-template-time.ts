@@ -11,8 +11,6 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupEntity } from './wfm-lookup-entity'
-
 /**
  *
  * @export
@@ -21,50 +19,14 @@ import { WfmLookupEntity } from './wfm-lookup-entity'
 export interface WfmShiftTemplateTime {
   /**
    *
-   * @type {string}
-   * @memberof WfmShiftTemplateTime
-   */
-  created_at?: string
-  /**
-   *
-   * @type {WfmLookupEntity}
-   * @memberof WfmShiftTemplateTime
-   */
-  created_by?: WfmLookupEntity
-  /**
-   *
-   * @type {string}
-   * @memberof WfmShiftTemplateTime
-   */
-  domain_id?: string
-  /**
-   *
    * @type {number}
    * @memberof WfmShiftTemplateTime
    */
   end?: number
   /**
    *
-   * @type {string}
-   * @memberof WfmShiftTemplateTime
-   */
-  id?: string
-  /**
-   *
    * @type {number}
    * @memberof WfmShiftTemplateTime
    */
   start?: number
-  /**
-   *
-   * @type {string}
-   * @memberof WfmShiftTemplateTime
-   */
-  updated_at?: string
-  /**
-   *
-   * @type {WfmLookupEntity}
-   * @memberof WfmShiftTemplateTime
-   */
-  updated_by?: WfmLookupEntity
 }

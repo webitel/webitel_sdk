@@ -37,6 +37,8 @@ import { LoggerPatchConfigRequest } from '../api'
 import { LoggerSystemObjects } from '../api'
 // @ts-ignore
 import { LoggerUpdateConfigRequest } from '../api'
+// @ts-ignore
+import { RuntimeError } from '../api'
 /**
  * ConfigServiceApi - axios parameter creator
  * @export

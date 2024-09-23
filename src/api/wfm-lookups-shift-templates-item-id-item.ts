@@ -17,61 +17,55 @@ import { WfmShiftTemplateTime } from './wfm-shift-template-time'
 /**
  *
  * @export
- * @interface WfmShiftTemplate
+ * @interface WfmLookupsShiftTemplatesItemIdItem
  */
-export interface WfmShiftTemplate {
+export interface WfmLookupsShiftTemplatesItemIdItem {
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsShiftTemplatesItemIdItem
    */
   created_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsShiftTemplatesItemIdItem
    */
   created_by?: WfmLookupEntity
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsShiftTemplatesItemIdItem
    */
   description?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsShiftTemplatesItemIdItem
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsShiftTemplatesItemIdItem
    */
   name?: string
   /**
    *
    * @type {Array<WfmShiftTemplateTime>}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsShiftTemplatesItemIdItem
    */
   times?: Array<WfmShiftTemplateTime>
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsShiftTemplatesItemIdItem
    */
   updated_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmLookupsShiftTemplatesItemIdItem
    */
   updated_by?: WfmLookupEntity
 }

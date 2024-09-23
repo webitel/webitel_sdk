@@ -45,6 +45,18 @@ export interface LoggerConfig {
   id?: number
   /**
    *
+   * @type {string}
+   * @memberof LoggerConfig
+   */
+  logs_count?: string
+  /**
+   *
+   * @type {string}
+   * @memberof LoggerConfig
+   */
+  logs_size?: string
+  /**
+   *
    * @type {LoggerLookup}
    * @memberof LoggerConfig
    */

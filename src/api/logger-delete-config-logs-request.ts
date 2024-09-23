@@ -11,18 +11,22 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
-
 /**
  *
  * @export
- * @interface InlineObject6
+ * @interface LoggerDeleteConfigLogsRequest
  */
-export interface InlineObject6 {
+export interface LoggerDeleteConfigLogsRequest {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
-   * @memberof InlineObject6
+   * @type {string}
+   * @memberof LoggerDeleteConfigLogsRequest
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  config_id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof LoggerDeleteConfigLogsRequest
+   */
+  older_than?: string
 }

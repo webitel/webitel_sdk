@@ -30,41 +30,5 @@ export interface WfmPauseTemplateCause {
    * @type {string}
    * @memberof WfmPauseTemplateCause
    */
-  created_at?: string
-  /**
-   *
-   * @type {WfmLookupEntity}
-   * @memberof WfmPauseTemplateCause
-   */
-  created_by?: WfmLookupEntity
-  /**
-   *
-   * @type {string}
-   * @memberof WfmPauseTemplateCause
-   */
-  domain_id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WfmPauseTemplateCause
-   */
   duration?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WfmPauseTemplateCause
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WfmPauseTemplateCause
-   */
-  updated_at?: string
-  /**
-   *
-   * @type {WfmLookupEntity}
-   * @memberof WfmPauseTemplateCause
-   */
-  updated_by?: WfmLookupEntity
 }

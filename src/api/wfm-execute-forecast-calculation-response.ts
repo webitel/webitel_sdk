@@ -11,18 +11,18 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
+import { ExecuteForecastCalculationResponseForecast } from './execute-forecast-calculation-response-forecast'
 
 /**
  *
  * @export
- * @interface InlineObject6
+ * @interface WfmExecuteForecastCalculationResponse
  */
-export interface InlineObject6 {
+export interface WfmExecuteForecastCalculationResponse {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
-   * @memberof InlineObject6
+   * @type {Array<ExecuteForecastCalculationResponseForecast>}
+   * @memberof WfmExecuteForecastCalculationResponse
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  items?: Array<ExecuteForecastCalculationResponseForecast>
 }

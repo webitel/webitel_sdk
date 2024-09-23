@@ -12,66 +12,65 @@
  */
 
 import { WfmLookupEntity } from './wfm-lookup-entity'
-import { WfmShiftTemplateTime } from './wfm-shift-template-time'
 
 /**
  *
  * @export
- * @interface WfmShiftTemplate
+ * @interface WfmForecastCalculation
  */
-export interface WfmShiftTemplate {
+export interface WfmForecastCalculation {
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmForecastCalculation
    */
   created_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmForecastCalculation
    */
   created_by?: WfmLookupEntity
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmForecastCalculation
    */
   description?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmForecastCalculation
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmForecastCalculation
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmForecastCalculation
    */
   name?: string
   /**
    *
-   * @type {Array<WfmShiftTemplateTime>}
-   * @memberof WfmShiftTemplate
+   * @type {string}
+   * @memberof WfmForecastCalculation
    */
-  times?: Array<WfmShiftTemplateTime>
+  procedure?: string
   /**
    *
    * @type {string}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmForecastCalculation
    */
   updated_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmShiftTemplate
+   * @memberof WfmForecastCalculation
    */
   updated_by?: WfmLookupEntity
 }

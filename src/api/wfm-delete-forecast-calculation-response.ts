@@ -11,18 +11,16 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
-
 /**
  *
  * @export
- * @interface InlineObject6
+ * @interface WfmDeleteForecastCalculationResponse
  */
-export interface InlineObject6 {
+export interface WfmDeleteForecastCalculationResponse {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
-   * @memberof InlineObject6
+   * @type {string}
+   * @memberof WfmDeleteForecastCalculationResponse
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  id?: string
 }

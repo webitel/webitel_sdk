@@ -11,18 +11,24 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
+import { WfmForecastCalculation } from './wfm-forecast-calculation'
 
 /**
  *
  * @export
- * @interface InlineObject6
+ * @interface WfmSearchForecastCalculationResponse
  */
-export interface InlineObject6 {
+export interface WfmSearchForecastCalculationResponse {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
-   * @memberof InlineObject6
+   * @type {Array<WfmForecastCalculation>}
+   * @memberof WfmSearchForecastCalculationResponse
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  items?: Array<WfmForecastCalculation>
+  /**
+   *
+   * @type {boolean}
+   * @memberof WfmSearchForecastCalculationResponse
+   */
+  next?: boolean
 }

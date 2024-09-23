@@ -56,6 +56,8 @@ import { EngineMemberBulkResponse } from '../api'
 // @ts-ignore
 import { EngineMemberInQueue } from '../api'
 // @ts-ignore
+import { EnginePatchMemberOneRequest } from '../api'
+// @ts-ignore
 import { EnginePatchMemberRequest } from '../api'
 // @ts-ignore
 import { EngineResetMembersRequest } from '../api'
@@ -778,6 +780,86 @@ export const MemberServiceApiAxiosParamCreator = function(
       const localVarPath = `/call_center/queues/{queue_id}/members/{id}`
         .replace(`{${'queue_id'}}`, encodeURIComponent(String(queueId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {EnginePatchMemberOneRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchMemberOne: async (
+      id: string,
+      body: EnginePatchMemberOneRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchMemberOne.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchMemberOne.'
+        )
+      }
+      const localVarPath = `/call_center/members/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -2139,6 +2221,37 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} id
+     * @param {EnginePatchMemberOneRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchMemberOne(
+      id: string,
+      body: EnginePatchMemberOneRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineMemberInQueue>
+    > {
+      const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
+        configuration
+      ).patchMemberOne(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queueId
      * @param {string} id
@@ -2800,6 +2913,22 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {EnginePatchMemberOneRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchMemberOne(
+      id: string,
+      body: EnginePatchMemberOneRequest,
+      options?: any
+    ): AxiosPromise<EngineMemberInQueue> {
+      return MemberServiceApiFp(configuration)
+        .patchMemberOne(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary ReadQueueRouting
      * @param {string} queueId
      * @param {string} id
@@ -3351,6 +3480,24 @@ export class MemberServiceApi extends BaseAPI {
   ) {
     return MemberServiceApiFp(this.configuration)
       .patchMember(queueId, id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EnginePatchMemberOneRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public patchMemberOne(
+    id: string,
+    body: EnginePatchMemberOneRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration)
+      .patchMemberOne(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

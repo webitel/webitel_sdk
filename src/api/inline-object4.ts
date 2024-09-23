@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmPauseTemplateCause } from './wfm-pause-template-cause'
+import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmPauseTemplateCause } from './wfm-pause-template-cause'
 export interface InlineObject4 {
   /**
    *
-   * @type {Array<WfmPauseTemplateCause>}
+   * @type {WfmLookupsPauseTemplatesItemIdItem}
    * @memberof InlineObject4
    */
-  items?: Array<WfmPauseTemplateCause>
+  item?: WfmLookupsPauseTemplatesItemIdItem
 }
