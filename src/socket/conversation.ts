@@ -647,17 +647,26 @@ export class Conversation {
     this._autoAnswerTimerId = null
     this._cause = null
     this.lastAction = null
-    this.contact = null
+    this.contact = {
+      id: null,
+      hide: false,
+    }
 
     for (const k in variables) {
       if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
         if (k === 'wbt_auto_answer') {
           this._autoAnswerParam = variables.wbt_auto_answer
         }
-        if (k === 'wbt_contact_id') {
-          this.contact = { id: +variables[k], hide: false }
-        } else {
-          this.variables[k] = variables[k]
+        // TODO move contact to conversation
+        switch (k) {
+          case 'wbt_contact_id':
+            this.contact.id = +variables[k]
+            break
+          case 'wbt_hide_contact':
+            this.contact.hide = variables[k] === 'true'
+            break
+          default:
+            this.variables[k] = variables[k]
         }
       }
     }
