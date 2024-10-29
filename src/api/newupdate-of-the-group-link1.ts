@@ -11,15 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsLookup } from './webitel-contacts-lookup'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface NEWUpdateOfTheGroupLink1
  */
-export enum StorageUploadFileChannel {
-  UnknownChannel = 'UnknownChannel',
-  ChatChannel = 'ChatChannel',
-  MailChannel = 'MailChannel',
-  CallChannel = 'CallChannel',
-  LogChannel = 'LogChannel',
+export interface NEWUpdateOfTheGroupLink1 {
+  /**
+   *
+   * @type {WebitelContactsLookup}
+   * @memberof NEWUpdateOfTheGroupLink1
+   */
+  group?: WebitelContactsLookup
 }

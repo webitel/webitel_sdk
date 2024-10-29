@@ -33,6 +33,12 @@ export interface StorageUploadFileRequestMetadata {
   domain_id?: string
   /**
    *
+   * @type {boolean}
+   * @memberof StorageUploadFileRequestMetadata
+   */
+  generate_thumbnail?: boolean
+  /**
+   *
    * @type {string}
    * @memberof StorageUploadFileRequestMetadata
    */

@@ -68,4 +68,10 @@ export interface WebitelChatAgentChat {
    * @memberof WebitelChatAgentChat
    */
   title?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof WebitelChatAgentChat
+   */
+  unprocessed_close?: boolean
 }

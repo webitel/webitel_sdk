@@ -12,39 +12,21 @@
  */
 
 /**
- * Media File.
+ *
  * @export
- * @interface WebitelChatMessageFile
+ * @interface WfmFilterBetween
  */
-export interface WebitelChatMessageFile {
+export interface WfmFilterBetween {
   /**
    *
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof WfmFilterBetween
    */
-  id?: string
+  from?: string
   /**
    *
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof WfmFilterBetween
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  url?: string
+  to?: string
 }

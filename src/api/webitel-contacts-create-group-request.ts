@@ -12,39 +12,21 @@
  */
 
 /**
- * Media File.
+ * Request message for creating a new group.
  * @export
- * @interface WebitelChatMessageFile
+ * @interface WebitelContactsCreateGroupRequest
  */
-export interface WebitelChatMessageFile {
+export interface WebitelContactsCreateGroupRequest {
   /**
-   *
+   * The description of the group.
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof WebitelContactsCreateGroupRequest
    */
-  id?: string
+  description?: string
   /**
-   *
+   * The name of the group.
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof WebitelContactsCreateGroupRequest
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  url?: string
+  name: string
 }

@@ -24,49 +24,42 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject3 } from '../api'
+import { StorageCreateFilePolicyRequest } from '../api'
 // @ts-ignore
-import { RpcStatus } from '../api'
+import { StorageFilePolicy } from '../api'
 // @ts-ignore
-import { WfmCreateForecastCalculationRequest } from '../api'
+import { StorageListFilePolicies } from '../api'
 // @ts-ignore
-import { WfmCreateForecastCalculationResponse } from '../api'
+import { StoragePatchFilePolicyRequest } from '../api'
 // @ts-ignore
-import { WfmDeleteForecastCalculationResponse } from '../api'
-// @ts-ignore
-import { WfmExecuteForecastCalculationResponse } from '../api'
-// @ts-ignore
-import { WfmReadForecastCalculationResponse } from '../api'
-// @ts-ignore
-import { WfmSearchForecastCalculationResponse } from '../api'
-// @ts-ignore
-import { WfmUpdateForecastCalculationResponse } from '../api'
+import { StorageUpdateFilePolicyRequest } from '../api'
 /**
- * ForecastCalculationServiceApi - axios parameter creator
+ * FilePoliciesServiceApi - axios parameter creator
  * @export
  */
-export const ForecastCalculationServiceApiAxiosParamCreator = function(
+export const FilePoliciesServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {WfmCreateForecastCalculationRequest} body
+     * @summary Create FilePolicy
+     * @param {StorageCreateFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createForecastCalculation: async (
-      body: WfmCreateForecastCalculationRequest,
+    createFilePolicy: async (
+      body: StorageCreateFilePolicyRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createForecastCalculation.'
+          'Required parameter body was null or undefined when calling createFilePolicy.'
         )
       }
-      const localVarPath = `/wfm/lookups/forecast_calculation`
+      const localVarPath = `/storage/file_policies`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -119,22 +112,23 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} id
+     * @summary Remove FilePolicy
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteForecastCalculation: async (
-      id: string,
+    deleteFilePolicy: async (
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteForecastCalculation.'
+          'Required parameter id was null or undefined when calling deleteFilePolicy.'
         )
       }
-      const localVarPath = `/wfm/lookups/forecast_calculation/{id}`.replace(
+      const localVarPath = `/storage/file_policies/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -182,28 +176,104 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {string} [teamId]
-     * @param {string} [forecastDataFrom]
-     * @param {string} [forecastDataTo]
+     * @summary Patch FilePolicy
+     * @param {number} id
+     * @param {StoragePatchFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    executeForecastCalculation: async (
-      id: string,
-      teamId?: string,
-      forecastDataFrom?: string,
-      forecastDataTo?: string,
+    patchFilePolicy: async (
+      id: number,
+      body: StoragePatchFilePolicyRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling executeForecastCalculation.'
+          'Required parameter id was null or undefined when calling patchFilePolicy.'
         )
       }
-      const localVarPath = `/wfm/lookups/forecast_calculation/{id}/execute`.replace(
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchFilePolicy.'
+        )
+      }
+      const localVarPath = `/storage/file_policies/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary FilePolicy item
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readFilePolicy: async (
+      id: number,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readFilePolicy.'
+        )
+      }
+      const localVarPath = `/storage/file_policies/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -229,18 +299,6 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (teamId !== undefined) {
-        localVarQueryParameter['team_id'] = teamId
-      }
-
-      if (forecastDataFrom !== undefined) {
-        localVarQueryParameter['forecast_data.from'] = forecastDataFrom
-      }
-
-      if (forecastDataTo !== undefined) {
-        localVarQueryParameter['forecast_data.to'] = forecastDataTo
-      }
-
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -263,92 +321,26 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readForecastCalculation: async (
-      id: string,
-      fields?: Array<string>,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling readForecastCalculation.'
-        )
-      }
-      const localVarPath = `/wfm/lookups/forecast_calculation/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {string} [q]
+     * @summary List of FilePolicy
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchForecastCalculation: async (
-      q?: string,
+    searchFilePolicies: async (
       page?: number,
       size?: number,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/wfm/lookups/forecast_calculation`
+      const localVarPath = `/storage/file_policies`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -369,10 +361,6 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
       }
 
       if (page !== undefined) {
@@ -383,12 +371,20 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
       if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
       }
 
       if (fields) {
         localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -413,33 +409,34 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} itemId
-     * @param {InlineObject3} body
+     * @summary Update FilePolicy
+     * @param {number} id
+     * @param {StorageUpdateFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateForecastCalculation: async (
-      itemId: string,
-      body: InlineObject3,
+    updateFilePolicy: async (
+      id: number,
+      body: StorageUpdateFilePolicyRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'itemId' is not null or undefined
-      if (itemId === null || itemId === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'itemId',
-          'Required parameter itemId was null or undefined when calling updateForecastCalculation.'
+          'id',
+          'Required parameter id was null or undefined when calling updateFilePolicy.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateForecastCalculation.'
+          'Required parameter body was null or undefined when calling updateFilePolicy.'
         )
       }
-      const localVarPath = `/wfm/lookups/forecast_calculation/{item.id}`.replace(
-        `{${'item.id'}}`,
-        encodeURIComponent(String(itemId))
+      const localVarPath = `/storage/file_policies/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -495,31 +492,32 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
 }
 
 /**
- * ForecastCalculationServiceApi - functional programming interface
+ * FilePoliciesServiceApi - functional programming interface
  * @export
  */
-export const ForecastCalculationServiceApiFp = function(
+export const FilePoliciesServiceApiFp = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {WfmCreateForecastCalculationRequest} body
+     * @summary Create FilePolicy
+     * @param {StorageCreateFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createForecastCalculation(
-      body: WfmCreateForecastCalculationRequest,
+    async createFilePolicy(
+      body: StorageCreateFilePolicyRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmCreateForecastCalculationResponse>
+      ) => AxiosPromise<StorageFilePolicy>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await FilePoliciesServiceApiAxiosParamCreator(
         configuration
-      ).createForecastCalculation(body, options)
+      ).createFilePolicy(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -533,22 +531,23 @@ export const ForecastCalculationServiceApiFp = function(
     },
     /**
      *
-     * @param {string} id
+     * @summary Remove FilePolicy
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteForecastCalculation(
-      id: string,
+    async deleteFilePolicy(
+      id: number,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmDeleteForecastCalculationResponse>
+      ) => AxiosPromise<StorageFilePolicy>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await FilePoliciesServiceApiAxiosParamCreator(
         configuration
-      ).deleteForecastCalculation(id, options)
+      ).deleteFilePolicy(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -562,34 +561,25 @@ export const ForecastCalculationServiceApiFp = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {string} [teamId]
-     * @param {string} [forecastDataFrom]
-     * @param {string} [forecastDataTo]
+     * @summary Patch FilePolicy
+     * @param {number} id
+     * @param {StoragePatchFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async executeForecastCalculation(
-      id: string,
-      teamId?: string,
-      forecastDataFrom?: string,
-      forecastDataTo?: string,
+    async patchFilePolicy(
+      id: number,
+      body: StoragePatchFilePolicyRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmExecuteForecastCalculationResponse>
+      ) => AxiosPromise<StorageFilePolicy>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await FilePoliciesServiceApiAxiosParamCreator(
         configuration
-      ).executeForecastCalculation(
-        id,
-        teamId,
-        forecastDataFrom,
-        forecastDataTo,
-        options
-      )
+      ).patchFilePolicy(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -603,24 +593,23 @@ export const ForecastCalculationServiceApiFp = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {Array<string>} [fields]
+     * @summary FilePolicy item
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readForecastCalculation(
-      id: string,
-      fields?: Array<string>,
+    async readFilePolicy(
+      id: number,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmReadForecastCalculationResponse>
+      ) => AxiosPromise<StorageFilePolicy>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await FilePoliciesServiceApiAxiosParamCreator(
         configuration
-      ).readForecastCalculation(id, fields, options)
+      ).readFilePolicy(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -634,30 +623,33 @@ export const ForecastCalculationServiceApiFp = function(
     },
     /**
      *
-     * @param {string} [q]
+     * @summary List of FilePolicy
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async searchForecastCalculation(
-      q?: string,
+    async searchFilePolicies(
       page?: number,
       size?: number,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmSearchForecastCalculationResponse>
+      ) => AxiosPromise<StorageListFilePolicies>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await FilePoliciesServiceApiAxiosParamCreator(
         configuration
-      ).searchForecastCalculation(q, page, size, sort, fields, options)
+      ).searchFilePolicies(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -671,24 +663,25 @@ export const ForecastCalculationServiceApiFp = function(
     },
     /**
      *
-     * @param {string} itemId
-     * @param {InlineObject3} body
+     * @summary Update FilePolicy
+     * @param {number} id
+     * @param {StorageUpdateFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateForecastCalculation(
-      itemId: string,
-      body: InlineObject3,
+    async updateFilePolicy(
+      id: number,
+      body: StorageUpdateFilePolicyRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmUpdateForecastCalculationResponse>
+      ) => AxiosPromise<StorageFilePolicy>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await FilePoliciesServiceApiAxiosParamCreator(
         configuration
-      ).updateForecastCalculation(itemId, body, options)
+      ).updateFilePolicy(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -704,10 +697,10 @@ export const ForecastCalculationServiceApiFp = function(
 }
 
 /**
- * ForecastCalculationServiceApi - factory interface
+ * FilePoliciesServiceApi - factory interface
  * @export
  */
-export const ForecastCalculationServiceApiFactory = function(
+export const FilePoliciesServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -715,236 +708,219 @@ export const ForecastCalculationServiceApiFactory = function(
   return {
     /**
      *
-     * @param {WfmCreateForecastCalculationRequest} body
+     * @summary Create FilePolicy
+     * @param {StorageCreateFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createForecastCalculation(
-      body: WfmCreateForecastCalculationRequest,
+    createFilePolicy(
+      body: StorageCreateFilePolicyRequest,
       options?: any
-    ): AxiosPromise<WfmCreateForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .createForecastCalculation(body, options)
+    ): AxiosPromise<StorageFilePolicy> {
+      return FilePoliciesServiceApiFp(configuration)
+        .createFilePolicy(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} id
+     * @summary Remove FilePolicy
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteForecastCalculation(
-      id: string,
+    deleteFilePolicy(
+      id: number,
       options?: any
-    ): AxiosPromise<WfmDeleteForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .deleteForecastCalculation(id, options)
+    ): AxiosPromise<StorageFilePolicy> {
+      return FilePoliciesServiceApiFp(configuration)
+        .deleteFilePolicy(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} id
-     * @param {string} [teamId]
-     * @param {string} [forecastDataFrom]
-     * @param {string} [forecastDataTo]
+     * @summary Patch FilePolicy
+     * @param {number} id
+     * @param {StoragePatchFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    executeForecastCalculation(
-      id: string,
-      teamId?: string,
-      forecastDataFrom?: string,
-      forecastDataTo?: string,
+    patchFilePolicy(
+      id: number,
+      body: StoragePatchFilePolicyRequest,
       options?: any
-    ): AxiosPromise<WfmExecuteForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .executeForecastCalculation(
-          id,
-          teamId,
-          forecastDataFrom,
-          forecastDataTo,
-          options
-        )
+    ): AxiosPromise<StorageFilePolicy> {
+      return FilePoliciesServiceApiFp(configuration)
+        .patchFilePolicy(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} id
-     * @param {Array<string>} [fields]
+     * @summary FilePolicy item
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readForecastCalculation(
-      id: string,
-      fields?: Array<string>,
-      options?: any
-    ): AxiosPromise<WfmReadForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .readForecastCalculation(id, fields, options)
+    readFilePolicy(id: number, options?: any): AxiosPromise<StorageFilePolicy> {
+      return FilePoliciesServiceApiFp(configuration)
+        .readFilePolicy(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} [q]
+     * @summary List of FilePolicy
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    searchForecastCalculation(
-      q?: string,
+    searchFilePolicies(
       page?: number,
       size?: number,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
       options?: any
-    ): AxiosPromise<WfmSearchForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .searchForecastCalculation(q, page, size, sort, fields, options)
+    ): AxiosPromise<StorageListFilePolicies> {
+      return FilePoliciesServiceApiFp(configuration)
+        .searchFilePolicies(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} itemId
-     * @param {InlineObject3} body
+     * @summary Update FilePolicy
+     * @param {number} id
+     * @param {StorageUpdateFilePolicyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateForecastCalculation(
-      itemId: string,
-      body: InlineObject3,
+    updateFilePolicy(
+      id: number,
+      body: StorageUpdateFilePolicyRequest,
       options?: any
-    ): AxiosPromise<WfmUpdateForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .updateForecastCalculation(itemId, body, options)
+    ): AxiosPromise<StorageFilePolicy> {
+      return FilePoliciesServiceApiFp(configuration)
+        .updateFilePolicy(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * ForecastCalculationServiceApi - object-oriented interface
+ * FilePoliciesServiceApi - object-oriented interface
  * @export
- * @class ForecastCalculationServiceApi
+ * @class FilePoliciesServiceApi
  * @extends {BaseAPI}
  */
-export class ForecastCalculationServiceApi extends BaseAPI {
+export class FilePoliciesServiceApi extends BaseAPI {
   /**
    *
-   * @param {WfmCreateForecastCalculationRequest} body
+   * @summary Create FilePolicy
+   * @param {StorageCreateFilePolicyRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
+   * @memberof FilePoliciesServiceApi
    */
-  public createForecastCalculation(
-    body: WfmCreateForecastCalculationRequest,
+  public createFilePolicy(body: StorageCreateFilePolicyRequest, options?: any) {
+    return FilePoliciesServiceApiFp(this.configuration)
+      .createFilePolicy(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Remove FilePolicy
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FilePoliciesServiceApi
+   */
+  public deleteFilePolicy(id: number, options?: any) {
+    return FilePoliciesServiceApiFp(this.configuration)
+      .deleteFilePolicy(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Patch FilePolicy
+   * @param {number} id
+   * @param {StoragePatchFilePolicyRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FilePoliciesServiceApi
+   */
+  public patchFilePolicy(
+    id: number,
+    body: StoragePatchFilePolicyRequest,
     options?: any
   ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .createForecastCalculation(body, options)
+    return FilePoliciesServiceApiFp(this.configuration)
+      .patchFilePolicy(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} id
+   * @summary FilePolicy item
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
+   * @memberof FilePoliciesServiceApi
    */
-  public deleteForecastCalculation(id: string, options?: any) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .deleteForecastCalculation(id, options)
+  public readFilePolicy(id: number, options?: any) {
+    return FilePoliciesServiceApiFp(this.configuration)
+      .readFilePolicy(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} id
-   * @param {string} [teamId]
-   * @param {string} [forecastDataFrom]
-   * @param {string} [forecastDataTo]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
-   */
-  public executeForecastCalculation(
-    id: string,
-    teamId?: string,
-    forecastDataFrom?: string,
-    forecastDataTo?: string,
-    options?: any
-  ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .executeForecastCalculation(
-        id,
-        teamId,
-        forecastDataFrom,
-        forecastDataTo,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {string} id
-   * @param {Array<string>} [fields]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
-   */
-  public readForecastCalculation(
-    id: string,
-    fields?: Array<string>,
-    options?: any
-  ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .readForecastCalculation(id, fields, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {string} [q]
+   * @summary List of FilePolicy
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
+   * @memberof FilePoliciesServiceApi
    */
-  public searchForecastCalculation(
-    q?: string,
+  public searchFilePolicies(
     page?: number,
     size?: number,
+    q?: string,
     sort?: string,
     fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .searchForecastCalculation(q, page, size, sort, fields, options)
+    return FilePoliciesServiceApiFp(this.configuration)
+      .searchFilePolicies(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} itemId
-   * @param {InlineObject3} body
+   * @summary Update FilePolicy
+   * @param {number} id
+   * @param {StorageUpdateFilePolicyRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
+   * @memberof FilePoliciesServiceApi
    */
-  public updateForecastCalculation(
-    itemId: string,
-    body: InlineObject3,
+  public updateFilePolicy(
+    id: number,
+    body: StorageUpdateFilePolicyRequest,
     options?: any
   ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .updateForecastCalculation(itemId, body, options)
+    return FilePoliciesServiceApiFp(this.configuration)
+      .updateFilePolicy(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

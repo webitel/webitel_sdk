@@ -12,39 +12,27 @@
  */
 
 /**
- * Media File.
+ * Lookup reference information. Simplified search filter to uniquely identify related object.
  * @export
- * @interface WebitelChatMessageFile
+ * @interface WebitelKnowledgebaseLookup
  */
-export interface WebitelChatMessageFile {
+export interface WebitelKnowledgebaseLookup {
   /**
-   *
+   * Reference Object unique ID.
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof WebitelKnowledgebaseLookup
    */
   id?: string
   /**
-   *
+   * Reference Object display name.
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof WebitelKnowledgebaseLookup
    */
   name?: string
   /**
-   *
+   * Reference Object well-known type.
    * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof WebitelKnowledgebaseLookup
    */
   type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  url?: string
 }

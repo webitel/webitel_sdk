@@ -11,15 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { StorageCognitiveProfileVoice } from './storage-cognitive-profile-voice'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface StorageListCognitiveProfileVoices
  */
-export enum StorageUploadFileChannel {
-  UnknownChannel = 'UnknownChannel',
-  ChatChannel = 'ChatChannel',
-  MailChannel = 'MailChannel',
-  CallChannel = 'CallChannel',
-  LogChannel = 'LogChannel',
+export interface StorageListCognitiveProfileVoices {
+  /**
+   *
+   * @type {Array<StorageCognitiveProfileVoice>}
+   * @memberof StorageListCognitiveProfileVoices
+   */
+  items?: Array<StorageCognitiveProfileVoice>
 }

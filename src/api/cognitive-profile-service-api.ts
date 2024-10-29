@@ -30,6 +30,8 @@ import { StorageCreateCognitiveProfileRequest } from '../api'
 // @ts-ignore
 import { StorageListCognitiveProfile } from '../api'
 // @ts-ignore
+import { StorageListCognitiveProfileVoices } from '../api'
+// @ts-ignore
 import { StoragePatchCognitiveProfileRequest } from '../api'
 // @ts-ignore
 import { StorageUpdateCognitiveProfileRequest } from '../api'
@@ -417,6 +419,82 @@ export const CognitiveProfileServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Search Voices
+     * @param {string} id
+     * @param {string} [q]
+     * @param {string} [key]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCognitiveProfileVoices: async (
+      id: string,
+      q?: string,
+      key?: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling searchCognitiveProfileVoices.'
+        )
+      }
+      const localVarPath = `/storage/cognitive_profiles/{id}/voice`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (key !== undefined) {
+        localVarQueryParameter['key'] = key
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {StorageUpdateCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
@@ -680,6 +758,40 @@ export const CognitiveProfileServiceApiFp = function(
     },
     /**
      *
+     * @summary Search Voices
+     * @param {string} id
+     * @param {string} [q]
+     * @param {string} [key]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchCognitiveProfileVoices(
+      id: string,
+      q?: string,
+      key?: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageListCognitiveProfileVoices>
+    > {
+      const localVarAxiosArgs = await CognitiveProfileServiceApiAxiosParamCreator(
+        configuration
+      ).searchCognitiveProfileVoices(id, q, key, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} id
      * @param {StorageUpdateCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
@@ -821,6 +933,25 @@ export const CognitiveProfileServiceApiFactory = function(
     },
     /**
      *
+     * @summary Search Voices
+     * @param {string} id
+     * @param {string} [q]
+     * @param {string} [key]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCognitiveProfileVoices(
+      id: string,
+      q?: string,
+      key?: string,
+      options?: any
+    ): AxiosPromise<StorageListCognitiveProfileVoices> {
+      return CognitiveProfileServiceApiFp(configuration)
+        .searchCognitiveProfileVoices(id, q, key, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {string} id
      * @param {StorageUpdateCognitiveProfileRequest} body
      * @param {*} [options] Override http request option.
@@ -943,6 +1074,27 @@ export class CognitiveProfileServiceApi extends BaseAPI {
         enabled,
         options
       )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Search Voices
+   * @param {string} id
+   * @param {string} [q]
+   * @param {string} [key]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CognitiveProfileServiceApi
+   */
+  public searchCognitiveProfileVoices(
+    id: string,
+    q?: string,
+    key?: string,
+    options?: any
+  ) {
+    return CognitiveProfileServiceApiFp(this.configuration)
+      .searchCognitiveProfileVoices(id, q, key, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -24,49 +24,42 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject3 } from '../api'
+import { WebitelContactsCreateGroupRequest } from '../api'
 // @ts-ignore
-import { RpcStatus } from '../api'
+import { WebitelContactsGroup } from '../api'
 // @ts-ignore
-import { WfmCreateForecastCalculationRequest } from '../api'
+import { WebitelContactsGroupList } from '../api'
 // @ts-ignore
-import { WfmCreateForecastCalculationResponse } from '../api'
+import { WebitelContactsGroupsUpdateGroupBody } from '../api'
 // @ts-ignore
-import { WfmDeleteForecastCalculationResponse } from '../api'
-// @ts-ignore
-import { WfmExecuteForecastCalculationResponse } from '../api'
-// @ts-ignore
-import { WfmReadForecastCalculationResponse } from '../api'
-// @ts-ignore
-import { WfmSearchForecastCalculationResponse } from '../api'
-// @ts-ignore
-import { WfmUpdateForecastCalculationResponse } from '../api'
+import { WebitelContactsLocateGroupResponse } from '../api'
 /**
- * ForecastCalculationServiceApi - axios parameter creator
+ * GroupsApi - axios parameter creator
  * @export
  */
-export const ForecastCalculationServiceApiAxiosParamCreator = function(
+export const GroupsApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {WfmCreateForecastCalculationRequest} body
+     * @summary Create a new group
+     * @param {WebitelContactsCreateGroupRequest} body Request message for creating a new group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createForecastCalculation: async (
-      body: WfmCreateForecastCalculationRequest,
+    createGroup: async (
+      body: WebitelContactsCreateGroupRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createForecastCalculation.'
+          'Required parameter body was null or undefined when calling createGroup.'
         )
       }
-      const localVarPath = `/wfm/lookups/forecast_calculation`
+      const localVarPath = `/contacts/groups`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -119,11 +112,12 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} id
+     * @summary Delete a group
+     * @param {string} id The unique ID of the group to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteForecastCalculation: async (
+    deleteGroup: async (
       id: string,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -131,10 +125,10 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
-          'Required parameter id was null or undefined when calling deleteForecastCalculation.'
+          'Required parameter id was null or undefined when calling deleteGroup.'
         )
       }
-      const localVarPath = `/wfm/lookups/forecast_calculation/{id}`.replace(
+      const localVarPath = `/contacts/groups/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -182,173 +176,28 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {string} [teamId]
-     * @param {string} [forecastDataFrom]
-     * @param {string} [forecastDataTo]
+     * @summary Retrieve a list of groups or search groups
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [id] Filter by unique IDs.
+     * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
+     * @param {string} [name] Filter by group name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    executeForecastCalculation: async (
-      id: string,
-      teamId?: string,
-      forecastDataFrom?: string,
-      forecastDataTo?: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling executeForecastCalculation.'
-        )
-      }
-      const localVarPath = `/wfm/lookups/forecast_calculation/{id}/execute`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (teamId !== undefined) {
-        localVarQueryParameter['team_id'] = teamId
-      }
-
-      if (forecastDataFrom !== undefined) {
-        localVarQueryParameter['forecast_data.from'] = forecastDataFrom
-      }
-
-      if (forecastDataTo !== undefined) {
-        localVarQueryParameter['forecast_data.to'] = forecastDataTo
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {string} id
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readForecastCalculation: async (
-      id: string,
-      fields?: Array<string>,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling readForecastCalculation.'
-        )
-      }
-      const localVarPath = `/wfm/lookups/forecast_calculation/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchForecastCalculation: async (
-      q?: string,
+    listGroups: async (
       page?: number,
       size?: number,
-      sort?: string,
       fields?: Array<string>,
+      sort?: Array<string>,
+      id?: Array<string>,
+      q?: string,
+      name?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/wfm/lookups/forecast_calculation`
+      const localVarPath = `/contacts/groups`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -369,10 +218,6 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
       }
 
       if (page !== undefined) {
@@ -383,8 +228,90 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (sort !== undefined) {
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (sort) {
         localVarQueryParameter['sort'] = sort
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (name !== undefined) {
+        localVarQueryParameter['name'] = name
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Locate a group by ID
+     * @param {string} id The unique ID of the group to locate.
+     * @param {Array<string>} [fields] Fields to be retrieved into result.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    locateGroup: async (
+      id: string,
+      fields?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling locateGroup.'
+        )
+      }
+      const localVarPath = `/contacts/groups/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
       if (fields) {
@@ -413,33 +340,34 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} itemId
-     * @param {InlineObject3} body
+     * @summary Update an existing group
+     * @param {string} id The unique ID of the group to update.
+     * @param {WebitelContactsGroupsUpdateGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateForecastCalculation: async (
-      itemId: string,
-      body: InlineObject3,
+    updateGroup: async (
+      id: string,
+      body: WebitelContactsGroupsUpdateGroupBody,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'itemId' is not null or undefined
-      if (itemId === null || itemId === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'itemId',
-          'Required parameter itemId was null or undefined when calling updateForecastCalculation.'
+          'id',
+          'Required parameter id was null or undefined when calling updateGroup.'
         )
       }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling updateForecastCalculation.'
+          'Required parameter body was null or undefined when calling updateGroup.'
         )
       }
-      const localVarPath = `/wfm/lookups/forecast_calculation/{item.id}`.replace(
-        `{${'item.id'}}`,
-        encodeURIComponent(String(itemId))
+      const localVarPath = `/contacts/groups/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -491,35 +419,115 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @summary Update an existing group
+     * @param {string} id The unique ID of the group to update.
+     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateGroup2: async (
+      id: string,
+      body: WebitelContactsGroupsUpdateGroupBody,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateGroup2.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateGroup2.'
+        )
+      }
+      const localVarPath = `/contacts/groups/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
 /**
- * ForecastCalculationServiceApi - functional programming interface
+ * GroupsApi - functional programming interface
  * @export
  */
-export const ForecastCalculationServiceApiFp = function(
-  configuration?: Configuration
-) {
+export const GroupsApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {WfmCreateForecastCalculationRequest} body
+     * @summary Create a new group
+     * @param {WebitelContactsCreateGroupRequest} body Request message for creating a new group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createForecastCalculation(
-      body: WfmCreateForecastCalculationRequest,
+    async createGroup(
+      body: WebitelContactsCreateGroupRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmCreateForecastCalculationResponse>
+      ) => AxiosPromise<WebitelContactsGroup>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
         configuration
-      ).createForecastCalculation(body, options)
+      ).createGroup(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -533,22 +541,23 @@ export const ForecastCalculationServiceApiFp = function(
     },
     /**
      *
-     * @param {string} id
+     * @summary Delete a group
+     * @param {string} id The unique ID of the group to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteForecastCalculation(
+    async deleteGroup(
       id: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmDeleteForecastCalculationResponse>
+      ) => AxiosPromise<WebitelContactsGroup>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
         configuration
-      ).deleteForecastCalculation(id, options)
+      ).deleteGroup(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -562,102 +571,35 @@ export const ForecastCalculationServiceApiFp = function(
     },
     /**
      *
-     * @param {string} id
-     * @param {string} [teamId]
-     * @param {string} [forecastDataFrom]
-     * @param {string} [forecastDataTo]
+     * @summary Retrieve a list of groups or search groups
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [id] Filter by unique IDs.
+     * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
+     * @param {string} [name] Filter by group name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async executeForecastCalculation(
-      id: string,
-      teamId?: string,
-      forecastDataFrom?: string,
-      forecastDataTo?: string,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WfmExecuteForecastCalculationResponse>
-    > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
-        configuration
-      ).executeForecastCalculation(
-        id,
-        teamId,
-        forecastDataFrom,
-        forecastDataTo,
-        options
-      )
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {string} id
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async readForecastCalculation(
-      id: string,
-      fields?: Array<string>,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WfmReadForecastCalculationResponse>
-    > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
-        configuration
-      ).readForecastCalculation(id, fields, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async searchForecastCalculation(
-      q?: string,
+    async listGroups(
       page?: number,
       size?: number,
-      sort?: string,
       fields?: Array<string>,
+      sort?: Array<string>,
+      id?: Array<string>,
+      q?: string,
+      name?: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmSearchForecastCalculationResponse>
+      ) => AxiosPromise<WebitelContactsGroupList>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
         configuration
-      ).searchForecastCalculation(q, page, size, sort, fields, options)
+      ).listGroups(page, size, fields, sort, id, q, name, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -671,24 +613,89 @@ export const ForecastCalculationServiceApiFp = function(
     },
     /**
      *
-     * @param {string} itemId
-     * @param {InlineObject3} body
+     * @summary Locate a group by ID
+     * @param {string} id The unique ID of the group to locate.
+     * @param {Array<string>} [fields] Fields to be retrieved into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateForecastCalculation(
-      itemId: string,
-      body: InlineObject3,
+    async locateGroup(
+      id: string,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmUpdateForecastCalculationResponse>
+      ) => AxiosPromise<WebitelContactsLocateGroupResponse>
     > {
-      const localVarAxiosArgs = await ForecastCalculationServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
         configuration
-      ).updateForecastCalculation(itemId, body, options)
+      ).locateGroup(id, fields, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update an existing group
+     * @param {string} id The unique ID of the group to update.
+     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateGroup(
+      id: string,
+      body: WebitelContactsGroupsUpdateGroupBody,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelContactsGroup>
+    > {
+      const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
+        configuration
+      ).updateGroup(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update an existing group
+     * @param {string} id The unique ID of the group to update.
+     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateGroup2(
+      id: string,
+      body: WebitelContactsGroupsUpdateGroupBody,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelContactsGroup>
+    > {
+      const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
+        configuration
+      ).updateGroup2(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -704,10 +711,10 @@ export const ForecastCalculationServiceApiFp = function(
 }
 
 /**
- * ForecastCalculationServiceApi - factory interface
+ * GroupsApi - factory interface
  * @export
  */
-export const ForecastCalculationServiceApiFactory = function(
+export const GroupsApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -715,236 +722,226 @@ export const ForecastCalculationServiceApiFactory = function(
   return {
     /**
      *
-     * @param {WfmCreateForecastCalculationRequest} body
+     * @summary Create a new group
+     * @param {WebitelContactsCreateGroupRequest} body Request message for creating a new group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createForecastCalculation(
-      body: WfmCreateForecastCalculationRequest,
+    createGroup(
+      body: WebitelContactsCreateGroupRequest,
       options?: any
-    ): AxiosPromise<WfmCreateForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .createForecastCalculation(body, options)
+    ): AxiosPromise<WebitelContactsGroup> {
+      return GroupsApiFp(configuration)
+        .createGroup(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} id
+     * @summary Delete a group
+     * @param {string} id The unique ID of the group to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteForecastCalculation(
-      id: string,
-      options?: any
-    ): AxiosPromise<WfmDeleteForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .deleteForecastCalculation(id, options)
+    deleteGroup(id: string, options?: any): AxiosPromise<WebitelContactsGroup> {
+      return GroupsApiFp(configuration)
+        .deleteGroup(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} id
-     * @param {string} [teamId]
-     * @param {string} [forecastDataFrom]
-     * @param {string} [forecastDataTo]
+     * @summary Retrieve a list of groups or search groups
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [id] Filter by unique IDs.
+     * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
+     * @param {string} [name] Filter by group name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    executeForecastCalculation(
-      id: string,
-      teamId?: string,
-      forecastDataFrom?: string,
-      forecastDataTo?: string,
-      options?: any
-    ): AxiosPromise<WfmExecuteForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .executeForecastCalculation(
-          id,
-          teamId,
-          forecastDataFrom,
-          forecastDataTo,
-          options
-        )
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {string} id
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    readForecastCalculation(
-      id: string,
-      fields?: Array<string>,
-      options?: any
-    ): AxiosPromise<WfmReadForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .readForecastCalculation(id, fields, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {string} [q]
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    searchForecastCalculation(
-      q?: string,
+    listGroups(
       page?: number,
       size?: number,
-      sort?: string,
       fields?: Array<string>,
+      sort?: Array<string>,
+      id?: Array<string>,
+      q?: string,
+      name?: string,
       options?: any
-    ): AxiosPromise<WfmSearchForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .searchForecastCalculation(q, page, size, sort, fields, options)
+    ): AxiosPromise<WebitelContactsGroupList> {
+      return GroupsApiFp(configuration)
+        .listGroups(page, size, fields, sort, id, q, name, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} itemId
-     * @param {InlineObject3} body
+     * @summary Locate a group by ID
+     * @param {string} id The unique ID of the group to locate.
+     * @param {Array<string>} [fields] Fields to be retrieved into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateForecastCalculation(
-      itemId: string,
-      body: InlineObject3,
+    locateGroup(
+      id: string,
+      fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WfmUpdateForecastCalculationResponse> {
-      return ForecastCalculationServiceApiFp(configuration)
-        .updateForecastCalculation(itemId, body, options)
+    ): AxiosPromise<WebitelContactsLocateGroupResponse> {
+      return GroupsApiFp(configuration)
+        .locateGroup(id, fields, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary Update an existing group
+     * @param {string} id The unique ID of the group to update.
+     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateGroup(
+      id: string,
+      body: WebitelContactsGroupsUpdateGroupBody,
+      options?: any
+    ): AxiosPromise<WebitelContactsGroup> {
+      return GroupsApiFp(configuration)
+        .updateGroup(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary Update an existing group
+     * @param {string} id The unique ID of the group to update.
+     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateGroup2(
+      id: string,
+      body: WebitelContactsGroupsUpdateGroupBody,
+      options?: any
+    ): AxiosPromise<WebitelContactsGroup> {
+      return GroupsApiFp(configuration)
+        .updateGroup2(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * ForecastCalculationServiceApi - object-oriented interface
+ * GroupsApi - object-oriented interface
  * @export
- * @class ForecastCalculationServiceApi
+ * @class GroupsApi
  * @extends {BaseAPI}
  */
-export class ForecastCalculationServiceApi extends BaseAPI {
+export class GroupsApi extends BaseAPI {
   /**
    *
-   * @param {WfmCreateForecastCalculationRequest} body
+   * @summary Create a new group
+   * @param {WebitelContactsCreateGroupRequest} body Request message for creating a new group.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
+   * @memberof GroupsApi
    */
-  public createForecastCalculation(
-    body: WfmCreateForecastCalculationRequest,
-    options?: any
-  ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .createForecastCalculation(body, options)
+  public createGroup(body: WebitelContactsCreateGroupRequest, options?: any) {
+    return GroupsApiFp(this.configuration)
+      .createGroup(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} id
+   * @summary Delete a group
+   * @param {string} id The unique ID of the group to delete.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
+   * @memberof GroupsApi
    */
-  public deleteForecastCalculation(id: string, options?: any) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .deleteForecastCalculation(id, options)
+  public deleteGroup(id: string, options?: any) {
+    return GroupsApiFp(this.configuration)
+      .deleteGroup(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} id
-   * @param {string} [teamId]
-   * @param {string} [forecastDataFrom]
-   * @param {string} [forecastDataTo]
+   * @summary Retrieve a list of groups or search groups
+   * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+   * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
+   * @param {Array<string>} [sort] Sort the result according to fields.
+   * @param {Array<string>} [id] Filter by unique IDs.
+   * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
+   * @param {string} [name] Filter by group name.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
+   * @memberof GroupsApi
    */
-  public executeForecastCalculation(
-    id: string,
-    teamId?: string,
-    forecastDataFrom?: string,
-    forecastDataTo?: string,
-    options?: any
-  ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .executeForecastCalculation(
-        id,
-        teamId,
-        forecastDataFrom,
-        forecastDataTo,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {string} id
-   * @param {Array<string>} [fields]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
-   */
-  public readForecastCalculation(
-    id: string,
-    fields?: Array<string>,
-    options?: any
-  ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .readForecastCalculation(id, fields, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {string} [q]
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
-   */
-  public searchForecastCalculation(
-    q?: string,
+  public listGroups(
     page?: number,
     size?: number,
-    sort?: string,
     fields?: Array<string>,
+    sort?: Array<string>,
+    id?: Array<string>,
+    q?: string,
+    name?: string,
     options?: any
   ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .searchForecastCalculation(q, page, size, sort, fields, options)
+    return GroupsApiFp(this.configuration)
+      .listGroups(page, size, fields, sort, id, q, name, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} itemId
-   * @param {InlineObject3} body
+   * @summary Locate a group by ID
+   * @param {string} id The unique ID of the group to locate.
+   * @param {Array<string>} [fields] Fields to be retrieved into result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ForecastCalculationServiceApi
+   * @memberof GroupsApi
    */
-  public updateForecastCalculation(
-    itemId: string,
-    body: InlineObject3,
+  public locateGroup(id: string, fields?: Array<string>, options?: any) {
+    return GroupsApiFp(this.configuration)
+      .locateGroup(id, fields, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Update an existing group
+   * @param {string} id The unique ID of the group to update.
+   * @param {WebitelContactsGroupsUpdateGroupBody} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  public updateGroup(
+    id: string,
+    body: WebitelContactsGroupsUpdateGroupBody,
     options?: any
   ) {
-    return ForecastCalculationServiceApiFp(this.configuration)
-      .updateForecastCalculation(itemId, body, options)
+    return GroupsApiFp(this.configuration)
+      .updateGroup(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Update an existing group
+   * @param {string} id The unique ID of the group to update.
+   * @param {WebitelContactsGroupsUpdateGroupBody} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  public updateGroup2(
+    id: string,
+    body: WebitelContactsGroupsUpdateGroupBody,
+    options?: any
+  ) {
+    return GroupsApiFp(this.configuration)
+      .updateGroup2(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

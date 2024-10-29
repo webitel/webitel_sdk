@@ -12,39 +12,27 @@
  */
 
 /**
- * Media File.
+ *
  * @export
- * @interface WebitelChatMessageFile
+ * @interface NEWSpaceSourceChanges
  */
-export interface WebitelChatMessageFile {
+export interface NEWSpaceSourceChanges {
   /**
-   *
+   * BIO. Short description about the space. OPTIONAL. Multi-lined text.
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof NEWSpaceSourceChanges
    */
-  id?: string
+  home_page?: string
   /**
-   *
+   * Represents the name of the knowledge base space.
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof NEWSpaceSourceChanges
    */
   name?: string
   /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
+   * The state of the space.
+   * @type {boolean}
+   * @memberof NEWSpaceSourceChanges
    */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  url?: string
+  state?: boolean
 }

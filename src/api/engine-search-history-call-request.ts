@@ -273,6 +273,12 @@ export interface EngineSearchHistoryCallRequest {
   team_id?: Array<string>
   /**
    *
+   * @type {boolean}
+   * @memberof EngineSearchHistoryCallRequest
+   */
+  timeline?: boolean
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineSearchHistoryCallRequest
    */

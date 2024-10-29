@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+import { StorageThumbnail } from './storage-thumbnail'
 import { StorageUploadStatusCode } from './storage-upload-status-code'
 
 /**
@@ -55,4 +56,10 @@ export interface StorageUploadFileResponse {
    * @memberof StorageUploadFileResponse
    */
   size?: string
+  /**
+   *
+   * @type {StorageThumbnail}
+   * @memberof StorageUploadFileResponse
+   */
+  thumbnail?: StorageThumbnail
 }

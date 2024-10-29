@@ -11,15 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsGroup } from './webitel-contacts-group'
+
 /**
- *
+ * Response message for locating a group.
  * @export
- * @enum {string}
+ * @interface WebitelContactsLocateGroupResponse
  */
-export enum StorageUploadFileChannel {
-  UnknownChannel = 'UnknownChannel',
-  ChatChannel = 'ChatChannel',
-  MailChannel = 'MailChannel',
-  CallChannel = 'CallChannel',
-  LogChannel = 'LogChannel',
+export interface WebitelContactsLocateGroupResponse {
+  /**
+   *
+   * @type {WebitelContactsGroup}
+   * @memberof WebitelContactsLocateGroupResponse
+   */
+  group?: WebitelContactsGroup
 }

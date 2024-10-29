@@ -249,18 +249,18 @@ export const WorkingConditionServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} [q]
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchWorkingCondition: async (
-      q?: string,
       page?: number,
       size?: number,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
       options: any = {}
@@ -288,16 +288,16 @@ export const WorkingConditionServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
       }
 
       if (size !== undefined) {
         localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
       }
 
       if (sort !== undefined) {
@@ -510,18 +510,18 @@ export const WorkingConditionServiceApiFp = function(
     },
     /**
      *
-     * @param {string} [q]
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchWorkingCondition(
-      q?: string,
       page?: number,
       size?: number,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
       options?: any
@@ -533,7 +533,7 @@ export const WorkingConditionServiceApiFp = function(
     > {
       const localVarAxiosArgs = await WorkingConditionServiceApiAxiosParamCreator(
         configuration
-      ).searchWorkingCondition(q, page, size, sort, fields, options)
+      ).searchWorkingCondition(page, size, q, sort, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -635,24 +635,24 @@ export const WorkingConditionServiceApiFactory = function(
     },
     /**
      *
-     * @param {string} [q]
      * @param {number} [page]
      * @param {number} [size]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     searchWorkingCondition(
-      q?: string,
       page?: number,
       size?: number,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<WfmSearchWorkingConditionResponse> {
       return WorkingConditionServiceApiFp(configuration)
-        .searchWorkingCondition(q, page, size, sort, fields, options)
+        .searchWorkingCondition(page, size, q, sort, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -730,9 +730,9 @@ export class WorkingConditionServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {string} [q]
    * @param {number} [page]
    * @param {number} [size]
+   * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
@@ -740,15 +740,15 @@ export class WorkingConditionServiceApi extends BaseAPI {
    * @memberof WorkingConditionServiceApi
    */
   public searchWorkingCondition(
-    q?: string,
     page?: number,
     size?: number,
+    q?: string,
     sort?: string,
     fields?: Array<string>,
     options?: any
   ) {
     return WorkingConditionServiceApiFp(this.configuration)
-      .searchWorkingCondition(q, page, size, sort, fields, options)
+      .searchWorkingCondition(page, size, q, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

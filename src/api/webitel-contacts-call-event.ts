@@ -89,6 +89,12 @@ export interface WebitelContactsCallEvent {
   queue?: WebitelContactsLookup
   /**
    *
+   * @type {string}
+   * @memberof WebitelContactsCallEvent
+   */
+  total_duration?: string
+  /**
+   *
    * @type {Array<WebitelContactsTranscriptLookup>}
    * @memberof WebitelContactsCallEvent
    */

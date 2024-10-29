@@ -1336,6 +1336,7 @@ export const CallServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [contactId]
      * @param {Array<number>} [schemaId]
      * @param {boolean} [hasTransfer]
+     * @param {boolean} [timeline]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1392,6 +1393,7 @@ export const CallServiceApiAxiosParamCreator = function(
       contactId?: Array<string>,
       schemaId?: Array<number>,
       hasTransfer?: boolean,
+      timeline?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/calls/history`
@@ -1623,6 +1625,10 @@ export const CallServiceApiAxiosParamCreator = function(
 
       if (hasTransfer !== undefined) {
         localVarQueryParameter['has_transfer'] = hasTransfer
+      }
+
+      if (timeline !== undefined) {
+        localVarQueryParameter['timeline'] = timeline
       }
 
       localVarUrlObj.query = {
@@ -2526,6 +2532,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [contactId]
      * @param {Array<number>} [schemaId]
      * @param {boolean} [hasTransfer]
+     * @param {boolean} [timeline]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2582,6 +2589,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
       contactId?: Array<string>,
       schemaId?: Array<number>,
       hasTransfer?: boolean,
+      timeline?: boolean,
       options?: any
     ): Promise<
       (
@@ -2644,6 +2652,7 @@ export const CallServiceApiFp = function(configuration?: Configuration) {
         contactId,
         schemaId,
         hasTransfer,
+        timeline,
         options
       )
       return (
@@ -3149,6 +3158,7 @@ export const CallServiceApiFactory = function(
      * @param {Array<string>} [contactId]
      * @param {Array<number>} [schemaId]
      * @param {boolean} [hasTransfer]
+     * @param {boolean} [timeline]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3205,6 +3215,7 @@ export const CallServiceApiFactory = function(
       contactId?: Array<string>,
       schemaId?: Array<number>,
       hasTransfer?: boolean,
+      timeline?: boolean,
       options?: any
     ): AxiosPromise<EngineListHistoryCall> {
       return CallServiceApiFp(configuration)
@@ -3261,6 +3272,7 @@ export const CallServiceApiFactory = function(
           contactId,
           schemaId,
           hasTransfer,
+          timeline,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3702,6 +3714,7 @@ export class CallServiceApi extends BaseAPI {
    * @param {Array<string>} [contactId]
    * @param {Array<number>} [schemaId]
    * @param {boolean} [hasTransfer]
+   * @param {boolean} [timeline]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CallServiceApi
@@ -3759,6 +3772,7 @@ export class CallServiceApi extends BaseAPI {
     contactId?: Array<string>,
     schemaId?: Array<number>,
     hasTransfer?: boolean,
+    timeline?: boolean,
     options?: any
   ) {
     return CallServiceApiFp(this.configuration)
@@ -3815,6 +3829,7 @@ export class CallServiceApi extends BaseAPI {
         contactId,
         schemaId,
         hasTransfer,
+        timeline,
         options
       )
       .then((request) => request(this.axios, this.basePath))

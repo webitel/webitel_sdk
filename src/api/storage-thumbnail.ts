@@ -12,39 +12,27 @@
  */
 
 /**
- * Media File.
+ *
  * @export
- * @interface WebitelChatMessageFile
+ * @interface StorageThumbnail
  */
-export interface WebitelChatMessageFile {
+export interface StorageThumbnail {
   /**
    *
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof StorageThumbnail
    */
-  id?: string
+  mime_type?: string
   /**
    *
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof StorageThumbnail
    */
-  name?: string
+  scale?: string
   /**
    *
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof StorageThumbnail
    */
   size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  url?: string
 }

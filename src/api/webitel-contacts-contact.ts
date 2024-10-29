@@ -12,6 +12,7 @@
  */
 
 import { WebitelContactsCommentList } from './webitel-contacts-comment-list'
+import { WebitelContactsContactGroupList } from './webitel-contacts-contact-group-list'
 import { WebitelContactsEmailList } from './webitel-contacts-email-list'
 import { WebitelContactsIMClientList } from './webitel-contacts-imclient-list'
 import { WebitelContactsLabelList } from './webitel-contacts-label-list'
@@ -72,6 +73,12 @@ export interface WebitelContactsContact {
    * @memberof WebitelContactsContact
    */
   etag?: string
+  /**
+   *
+   * @type {WebitelContactsContactGroupList}
+   * @memberof WebitelContactsContact
+   */
+  groups?: WebitelContactsContactGroupList
   /**
    * The unique ID of the association. Never changes.
    * @type {string}

@@ -11,15 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { StorageFilePolicy } from './storage-file-policy'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface StorageListFilePolicies
  */
-export enum StorageUploadFileChannel {
-  UnknownChannel = 'UnknownChannel',
-  ChatChannel = 'ChatChannel',
-  MailChannel = 'MailChannel',
-  CallChannel = 'CallChannel',
-  LogChannel = 'LogChannel',
+export interface StorageListFilePolicies {
+  /**
+   *
+   * @type {Array<StorageFilePolicy>}
+   * @memberof StorageListFilePolicies
+   */
+  items?: Array<StorageFilePolicy>
+  /**
+   *
+   * @type {boolean}
+   * @memberof StorageListFilePolicies
+   */
+  next?: boolean
 }

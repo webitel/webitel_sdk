@@ -21,6 +21,12 @@ import { WfmLookupEntity } from './wfm-lookup-entity'
 export interface WfmLookupsForecastCalculationItemIdItem {
   /**
    *
+   * @type {Array<string>}
+   * @memberof WfmLookupsForecastCalculationItemIdItem
+   */
+  args?: Array<string>
+  /**
+   *
    * @type {string}
    * @memberof WfmLookupsForecastCalculationItemIdItem
    */

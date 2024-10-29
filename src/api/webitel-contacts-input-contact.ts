@@ -12,6 +12,7 @@
  */
 
 import { WebitelContactsInputComment } from './webitel-contacts-input-comment'
+import { WebitelContactsInputContactGroup } from './webitel-contacts-input-contact-group'
 import { WebitelContactsInputEmailAddress } from './webitel-contacts-input-email-address'
 import { WebitelContactsInputIMClient } from './webitel-contacts-input-imclient'
 import { WebitelContactsInputLabel } from './webitel-contacts-input-label'
@@ -53,6 +54,12 @@ export interface WebitelContactsInputContact {
    * @memberof WebitelContactsInputContact
    */
   etag?: string
+  /**
+   * The Contact\'s associated group(s).
+   * @type {Array<WebitelContactsInputContactGroup>}
+   * @memberof WebitelContactsInputContact
+   */
+  groups?: Array<WebitelContactsInputContactGroup>
   /**
    * The contact\'s [I]nstant[M]essaging clients.
    * @type {Array<WebitelContactsInputIMClient>}

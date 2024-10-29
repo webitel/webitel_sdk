@@ -12,39 +12,21 @@
  */
 
 /**
- * Media File.
+ *
  * @export
- * @interface WebitelChatMessageFile
+ * @interface StorageCognitiveProfileVoice
  */
-export interface WebitelChatMessageFile {
+export interface StorageCognitiveProfileVoice {
   /**
    *
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof StorageCognitiveProfileVoice
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof WebitelChatMessageFile
+   * @memberof StorageCognitiveProfileVoice
    */
   name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatMessageFile
-   */
-  url?: string
 }
