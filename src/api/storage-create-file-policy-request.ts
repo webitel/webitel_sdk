@@ -37,6 +37,12 @@ export interface StorageCreateFilePolicyRequest {
   enabled?: boolean
   /**
    *
+   * @type {string}
+   * @memberof StorageCreateFilePolicyRequest
+   */
+  max_upload_size?: string
+  /**
+   *
    * @type {Array<string>}
    * @memberof StorageCreateFilePolicyRequest
    */

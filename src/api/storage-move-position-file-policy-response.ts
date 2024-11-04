@@ -14,13 +14,13 @@
 /**
  *
  * @export
- * @enum {string}
+ * @interface StorageMovePositionFilePolicyResponse
  */
-export enum StorageUploadFileChannel {
-  UnknownChannel = 'UnknownChannel',
-  ChatChannel = 'ChatChannel',
-  MailChannel = 'MailChannel',
-  CallChannel = 'CallChannel',
-  LogChannel = 'LogChannel',
-  MediaChannel = 'MediaChannel',
+export interface StorageMovePositionFilePolicyResponse {
+  /**
+   *
+   * @type {boolean}
+   * @memberof StorageMovePositionFilePolicyResponse
+   */
+  success?: boolean
 }

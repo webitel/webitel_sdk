@@ -57,6 +57,12 @@ export interface StorageFilePolicy {
   id?: number
   /**
    *
+   * @type {string}
+   * @memberof StorageFilePolicy
+   */
+  max_upload_size?: string
+  /**
+   *
    * @type {Array<string>}
    * @memberof StorageFilePolicy
    */
@@ -67,6 +73,12 @@ export interface StorageFilePolicy {
    * @memberof StorageFilePolicy
    */
   name?: string
+  /**
+   *
+   * @type {number}
+   * @memberof StorageFilePolicy
+   */
+  position?: number
   /**
    *
    * @type {number}

@@ -45,6 +45,12 @@ export interface EngineAgentTeam {
   domain_id?: string
   /**
    *
+   * @type {EngineLookup}
+   * @memberof EngineAgentTeam
+   */
+  forecast_calculation?: EngineLookup
+  /**
+   *
    * @type {string}
    * @memberof EngineAgentTeam
    */

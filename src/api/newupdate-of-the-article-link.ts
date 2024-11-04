@@ -18,6 +18,12 @@
  */
 export interface NEWUpdateOfTheArticleLink {
   /**
+   * The parent article ID.
+   * @type {string}
+   * @memberof NEWUpdateOfTheArticleLink
+   */
+  parent_article?: string
+  /**
    * [VALUE]: -------------------------------------- Space ID associated with.
    * @type {string}
    * @memberof NEWUpdateOfTheArticleLink
@@ -41,4 +47,10 @@ export interface NEWUpdateOfTheArticleLink {
    * @memberof NEWUpdateOfTheArticleLink
    */
   text?: string
+  /**
+   * The title of the article.
+   * @type {string}
+   * @memberof NEWUpdateOfTheArticleLink
+   */
+  title?: string
 }

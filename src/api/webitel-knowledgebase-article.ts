@@ -38,11 +38,23 @@ export interface WebitelKnowledgebaseArticle {
    */
   etag?: string
   /**
+   * Indicates that the article has children.
+   * @type {boolean}
+   * @memberof WebitelKnowledgebaseArticle
+   */
+  has_children?: boolean
+  /**
    * The unique ID of the association. Never changes.
    * @type {string}
    * @memberof WebitelKnowledgebaseArticle
    */
   id?: string
+  /**
+   * The parent article ID.
+   * @type {string}
+   * @memberof WebitelKnowledgebaseArticle
+   */
+  parent_article?: string
   /**
    * Space ID associated with.
    * @type {string}
@@ -67,6 +79,12 @@ export interface WebitelKnowledgebaseArticle {
    * @memberof WebitelKnowledgebaseArticle
    */
   text?: string
+  /**
+   * The title of the article.
+   * @type {string}
+   * @memberof WebitelKnowledgebaseArticle
+   */
+  title?: string
   /**
    * Timestamp(milli) of the last Field update. Take part in Etag generation.
    * @type {string}

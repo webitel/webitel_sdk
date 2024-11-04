@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { StorageThumbnail } from './storage-thumbnail'
+
 /**
  *
  * @export
@@ -47,6 +49,12 @@ export interface StorageStreamFileMetadata {
    * @memberof StorageStreamFileMetadata
    */
   size?: string
+  /**
+   *
+   * @type {StorageThumbnail}
+   * @memberof StorageStreamFileMetadata
+   */
+  thumbnail?: StorageThumbnail
   /**
    *
    * @type {string}

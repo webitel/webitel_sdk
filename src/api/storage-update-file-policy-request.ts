@@ -43,6 +43,12 @@ export interface StorageUpdateFilePolicyRequest {
   id?: number
   /**
    *
+   * @type {string}
+   * @memberof StorageUpdateFilePolicyRequest
+   */
+  max_upload_size?: string
+  /**
+   *
    * @type {Array<string>}
    * @memberof StorageUpdateFilePolicyRequest
    */

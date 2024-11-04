@@ -37,6 +37,12 @@ export interface WebitelChatAgentChat {
    * @type {WebitelChatPeer}
    * @memberof WebitelChatAgentChat
    */
+  contact?: WebitelChatPeer
+  /**
+   *
+   * @type {WebitelChatPeer}
+   * @memberof WebitelChatAgentChat
+   */
   gateway?: WebitelChatPeer
   /**
    *

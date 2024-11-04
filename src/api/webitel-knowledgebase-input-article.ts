@@ -24,6 +24,12 @@ export interface WebitelKnowledgebaseInputArticle {
    */
   etag: string
   /**
+   * The parent article ID.
+   * @type {string}
+   * @memberof WebitelKnowledgebaseInputArticle
+   */
+  parent_article?: string
+  /**
    * [VALUE]: -------------------------------------- Space ID associated with.
    * @type {string}
    * @memberof WebitelKnowledgebaseInputArticle
@@ -47,4 +53,10 @@ export interface WebitelKnowledgebaseInputArticle {
    * @memberof WebitelKnowledgebaseInputArticle
    */
   text?: string
+  /**
+   * The title of the article.
+   * @type {string}
+   * @memberof WebitelKnowledgebaseInputArticle
+   */
+  title?: string
 }

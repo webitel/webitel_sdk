@@ -28,7 +28,15 @@ import { StorageCreateFilePolicyRequest } from '../api'
 // @ts-ignore
 import { StorageFilePolicy } from '../api'
 // @ts-ignore
+import { StorageFilePolicyApplyRequest } from '../api'
+// @ts-ignore
+import { StorageFilePolicyApplyResponse } from '../api'
+// @ts-ignore
 import { StorageListFilePolicies } from '../api'
+// @ts-ignore
+import { StorageMovePositionFilePolicyRequest } from '../api'
+// @ts-ignore
+import { StorageMovePositionFilePolicyResponse } from '../api'
 // @ts-ignore
 import { StoragePatchFilePolicyRequest } from '../api'
 // @ts-ignore
@@ -168,6 +176,174 @@ export const FilePoliciesServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {number} id
+     * @param {StorageFilePolicyApplyRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    filePolicyApply: async (
+      id: number,
+      body: StorageFilePolicyApplyRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling filePolicyApply.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling filePolicyApply.'
+        )
+      }
+      const localVarPath = `/storage/file_policies/{id}/apply`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {number} fromId
+     * @param {number} toId
+     * @param {StorageMovePositionFilePolicyRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    movePositionFilePolicy: async (
+      fromId: number,
+      toId: number,
+      body: StorageMovePositionFilePolicyRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'fromId' is not null or undefined
+      if (fromId === null || fromId === undefined) {
+        throw new RequiredError(
+          'fromId',
+          'Required parameter fromId was null or undefined when calling movePositionFilePolicy.'
+        )
+      }
+      // verify required parameter 'toId' is not null or undefined
+      if (toId === null || toId === undefined) {
+        throw new RequiredError(
+          'toId',
+          'Required parameter toId was null or undefined when calling movePositionFilePolicy.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling movePositionFilePolicy.'
+        )
+      }
+      const localVarPath = `/storage/file_policies/{from_id}/to/{to_id}`
+        .replace(`{${'from_id'}}`, encodeURIComponent(String(fromId)))
+        .replace(`{${'to_id'}}`, encodeURIComponent(String(toId)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -561,6 +737,70 @@ export const FilePoliciesServiceApiFp = function(
     },
     /**
      *
+     * @param {number} id
+     * @param {StorageFilePolicyApplyRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async filePolicyApply(
+      id: number,
+      body: StorageFilePolicyApplyRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageFilePolicyApplyResponse>
+    > {
+      const localVarAxiosArgs = await FilePoliciesServiceApiAxiosParamCreator(
+        configuration
+      ).filePolicyApply(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} fromId
+     * @param {number} toId
+     * @param {StorageMovePositionFilePolicyRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async movePositionFilePolicy(
+      fromId: number,
+      toId: number,
+      body: StorageMovePositionFilePolicyRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageMovePositionFilePolicyResponse>
+    > {
+      const localVarAxiosArgs = await FilePoliciesServiceApiAxiosParamCreator(
+        configuration
+      ).movePositionFilePolicy(fromId, toId, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Patch FilePolicy
      * @param {number} id
      * @param {StoragePatchFilePolicyRequest} body
@@ -738,6 +978,40 @@ export const FilePoliciesServiceApiFactory = function(
     },
     /**
      *
+     * @param {number} id
+     * @param {StorageFilePolicyApplyRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    filePolicyApply(
+      id: number,
+      body: StorageFilePolicyApplyRequest,
+      options?: any
+    ): AxiosPromise<StorageFilePolicyApplyResponse> {
+      return FilePoliciesServiceApiFp(configuration)
+        .filePolicyApply(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {number} fromId
+     * @param {number} toId
+     * @param {StorageMovePositionFilePolicyRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    movePositionFilePolicy(
+      fromId: number,
+      toId: number,
+      body: StorageMovePositionFilePolicyRequest,
+      options?: any
+    ): AxiosPromise<StorageMovePositionFilePolicyResponse> {
+      return FilePoliciesServiceApiFp(configuration)
+        .movePositionFilePolicy(fromId, toId, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Patch FilePolicy
      * @param {number} id
      * @param {StoragePatchFilePolicyRequest} body
@@ -842,6 +1116,44 @@ export class FilePoliciesServiceApi extends BaseAPI {
   public deleteFilePolicy(id: number, options?: any) {
     return FilePoliciesServiceApiFp(this.configuration)
       .deleteFilePolicy(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} id
+   * @param {StorageFilePolicyApplyRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FilePoliciesServiceApi
+   */
+  public filePolicyApply(
+    id: number,
+    body: StorageFilePolicyApplyRequest,
+    options?: any
+  ) {
+    return FilePoliciesServiceApiFp(this.configuration)
+      .filePolicyApply(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} fromId
+   * @param {number} toId
+   * @param {StorageMovePositionFilePolicyRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FilePoliciesServiceApi
+   */
+  public movePositionFilePolicy(
+    fromId: number,
+    toId: number,
+    body: StorageMovePositionFilePolicyRequest,
+    options?: any
+  ) {
+    return FilePoliciesServiceApiFp(this.configuration)
+      .movePositionFilePolicy(fromId, toId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

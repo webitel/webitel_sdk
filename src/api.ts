@@ -13,7 +13,7 @@
 
 export * from './api/access-store-api'
 export * from './api/agent-absence-service-api'
-export * from './api/agent-chats-service-api'
+export * from './api/agent-chat-service-api'
 export * from './api/agent-pause-cause-service-api'
 export * from './api/agent-service-api'
 export * from './api/agent-skill-service-api'

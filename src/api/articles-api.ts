@@ -26,11 +26,11 @@ import {
 // @ts-ignore
 import { NEWUpdateOfTheArticleLink } from '../api'
 // @ts-ignore
-import { NEWUpdateOfTheArticleLink1 } from '../api'
-// @ts-ignore
 import { WebitelKnowledgebaseArticle } from '../api'
 // @ts-ignore
 import { WebitelKnowledgebaseArticleList } from '../api'
+// @ts-ignore
+import { WebitelKnowledgebaseInputArticle } from '../api'
 /**
  * ArticlesApi - axios parameter creator
  * @export
@@ -42,16 +42,14 @@ export const ArticlesApiAxiosParamCreator = function(
     /**
      *
      * @param {string} spaceId Link space ID.
-     * @param {string} etag Unique ID of the latest version of an existing resource.
-     * @param {NEWUpdateOfTheArticleLink} input
+     * @param {WebitelKnowledgebaseInputArticle} input NEW Update of the Article link.
      * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createArticle: async (
       spaceId: string,
-      etag: string,
-      input: NEWUpdateOfTheArticleLink,
+      input: WebitelKnowledgebaseInputArticle,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -62,13 +60,6 @@ export const ArticlesApiAxiosParamCreator = function(
           'Required parameter spaceId was null or undefined when calling createArticle.'
         )
       }
-      // verify required parameter 'etag' is not null or undefined
-      if (etag === null || etag === undefined) {
-        throw new RequiredError(
-          'etag',
-          'Required parameter etag was null or undefined when calling createArticle.'
-        )
-      }
       // verify required parameter 'input' is not null or undefined
       if (input === null || input === undefined) {
         throw new RequiredError(
@@ -76,16 +67,17 @@ export const ArticlesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling createArticle.'
         )
       }
-      const localVarPath = `/spaces/{space_id}/articles/{etag}`
-        .replace(`{${'space_id'}}`, encodeURIComponent(String(spaceId)))
-        .replace(`{${'etag'}}`, encodeURIComponent(String(etag)))
+      const localVarPath = `/spaces/{space_id}/articles`.replace(
+        `{${'space_id'}}`,
+        encodeURIComponent(String(spaceId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
         baseOptions = configuration.baseOptions
       }
       const localVarRequestOptions = {
-        method: 'PUT',
+        method: 'POST',
         ...baseOptions,
         ...options,
       }
@@ -321,12 +313,22 @@ export const ArticlesApiAxiosParamCreator = function(
      *
      * @param {string} spaceId space ID associated with.
      * @param {string} articleId Record(s) with unique ID only.
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {boolean} [state] Active Article only.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     listArticlesChildren: async (
       spaceId: string,
       articleId: string,
+      sort?: Array<string>,
+      fields?: Array<string>,
+      page?: number,
+      size?: number,
+      state?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'spaceId' is not null or undefined
@@ -366,6 +368,26 @@ export const ArticlesApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (sort) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (state !== undefined) {
+        localVarQueryParameter['state'] = state
       }
 
       localVarUrlObj.query = {
@@ -471,7 +493,7 @@ export const ArticlesApiAxiosParamCreator = function(
      * @summary Update the space\'s Article details.
      * @param {string} spaceId Link space ID.
      * @param {string} etag Unique ID of the latest version of an existing resource.
-     * @param {NEWUpdateOfTheArticleLink1} input
+     * @param {NEWUpdateOfTheArticleLink} input
      * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -479,7 +501,7 @@ export const ArticlesApiAxiosParamCreator = function(
     updateArticle: async (
       spaceId: string,
       etag: string,
-      input: NEWUpdateOfTheArticleLink1,
+      input: NEWUpdateOfTheArticleLink,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -573,27 +595,25 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} spaceId Link space ID.
-     * @param {string} etag Unique ID of the latest version of an existing resource.
-     * @param {NEWUpdateOfTheArticleLink} input
+     * @param {WebitelKnowledgebaseInputArticle} input NEW Update of the Article link.
      * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createArticle(
       spaceId: string,
-      etag: string,
-      input: NEWUpdateOfTheArticleLink,
+      input: WebitelKnowledgebaseInputArticle,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelKnowledgebaseArticle>
+      ) => AxiosPromise<WebitelKnowledgebaseArticleList>
     > {
       const localVarAxiosArgs = await ArticlesApiAxiosParamCreator(
         configuration
-      ).createArticle(spaceId, etag, input, fields, options)
+      ).createArticle(spaceId, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -687,12 +707,22 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
      *
      * @param {string} spaceId space ID associated with.
      * @param {string} articleId Record(s) with unique ID only.
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {boolean} [state] Active Article only.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async listArticlesChildren(
       spaceId: string,
       articleId: string,
+      sort?: Array<string>,
+      fields?: Array<string>,
+      page?: number,
+      size?: number,
+      state?: boolean,
       options?: any
     ): Promise<
       (
@@ -702,7 +732,16 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ArticlesApiAxiosParamCreator(
         configuration
-      ).listArticlesChildren(spaceId, articleId, options)
+      ).listArticlesChildren(
+        spaceId,
+        articleId,
+        sort,
+        fields,
+        page,
+        size,
+        state,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -753,7 +792,7 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
      * @summary Update the space\'s Article details.
      * @param {string} spaceId Link space ID.
      * @param {string} etag Unique ID of the latest version of an existing resource.
-     * @param {NEWUpdateOfTheArticleLink1} input
+     * @param {NEWUpdateOfTheArticleLink} input
      * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -761,14 +800,14 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
     async updateArticle(
       spaceId: string,
       etag: string,
-      input: NEWUpdateOfTheArticleLink1,
+      input: NEWUpdateOfTheArticleLink,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelKnowledgebaseArticle>
+      ) => AxiosPromise<WebitelKnowledgebaseArticleList>
     > {
       const localVarAxiosArgs = await ArticlesApiAxiosParamCreator(
         configuration
@@ -800,21 +839,19 @@ export const ArticlesApiFactory = function(
     /**
      *
      * @param {string} spaceId Link space ID.
-     * @param {string} etag Unique ID of the latest version of an existing resource.
-     * @param {NEWUpdateOfTheArticleLink} input
+     * @param {WebitelKnowledgebaseInputArticle} input NEW Update of the Article link.
      * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createArticle(
       spaceId: string,
-      etag: string,
-      input: NEWUpdateOfTheArticleLink,
+      input: WebitelKnowledgebaseInputArticle,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WebitelKnowledgebaseArticle> {
+    ): AxiosPromise<WebitelKnowledgebaseArticleList> {
       return ArticlesApiFp(configuration)
-        .createArticle(spaceId, etag, input, fields, options)
+        .createArticle(spaceId, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -869,16 +906,35 @@ export const ArticlesApiFactory = function(
      *
      * @param {string} spaceId space ID associated with.
      * @param {string} articleId Record(s) with unique ID only.
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {boolean} [state] Active Article only.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     listArticlesChildren(
       spaceId: string,
       articleId: string,
+      sort?: Array<string>,
+      fields?: Array<string>,
+      page?: number,
+      size?: number,
+      state?: boolean,
       options?: any
     ): AxiosPromise<WebitelKnowledgebaseArticleList> {
       return ArticlesApiFp(configuration)
-        .listArticlesChildren(spaceId, articleId, options)
+        .listArticlesChildren(
+          spaceId,
+          articleId,
+          sort,
+          fields,
+          page,
+          size,
+          state,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -905,7 +961,7 @@ export const ArticlesApiFactory = function(
      * @summary Update the space\'s Article details.
      * @param {string} spaceId Link space ID.
      * @param {string} etag Unique ID of the latest version of an existing resource.
-     * @param {NEWUpdateOfTheArticleLink1} input
+     * @param {NEWUpdateOfTheArticleLink} input
      * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -913,10 +969,10 @@ export const ArticlesApiFactory = function(
     updateArticle(
       spaceId: string,
       etag: string,
-      input: NEWUpdateOfTheArticleLink1,
+      input: NEWUpdateOfTheArticleLink,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WebitelKnowledgebaseArticle> {
+    ): AxiosPromise<WebitelKnowledgebaseArticleList> {
       return ArticlesApiFp(configuration)
         .updateArticle(spaceId, etag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -934,8 +990,7 @@ export class ArticlesApi extends BaseAPI {
   /**
    *
    * @param {string} spaceId Link space ID.
-   * @param {string} etag Unique ID of the latest version of an existing resource.
-   * @param {NEWUpdateOfTheArticleLink} input
+   * @param {WebitelKnowledgebaseInputArticle} input NEW Update of the Article link.
    * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -943,13 +998,12 @@ export class ArticlesApi extends BaseAPI {
    */
   public createArticle(
     spaceId: string,
-    etag: string,
-    input: NEWUpdateOfTheArticleLink,
+    input: WebitelKnowledgebaseInputArticle,
     fields?: Array<string>,
     options?: any
   ) {
     return ArticlesApiFp(this.configuration)
-      .createArticle(spaceId, etag, input, fields, options)
+      .createArticle(spaceId, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1009,6 +1063,11 @@ export class ArticlesApi extends BaseAPI {
    *
    * @param {string} spaceId space ID associated with.
    * @param {string} articleId Record(s) with unique ID only.
+   * @param {Array<string>} [sort] Sort the result according to fields.
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
+   * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+   * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+   * @param {boolean} [state] Active Article only.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ArticlesApi
@@ -1016,10 +1075,24 @@ export class ArticlesApi extends BaseAPI {
   public listArticlesChildren(
     spaceId: string,
     articleId: string,
+    sort?: Array<string>,
+    fields?: Array<string>,
+    page?: number,
+    size?: number,
+    state?: boolean,
     options?: any
   ) {
     return ArticlesApiFp(this.configuration)
-      .listArticlesChildren(spaceId, articleId, options)
+      .listArticlesChildren(
+        spaceId,
+        articleId,
+        sort,
+        fields,
+        page,
+        size,
+        state,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1049,7 +1122,7 @@ export class ArticlesApi extends BaseAPI {
    * @summary Update the space\'s Article details.
    * @param {string} spaceId Link space ID.
    * @param {string} etag Unique ID of the latest version of an existing resource.
-   * @param {NEWUpdateOfTheArticleLink1} input
+   * @param {NEWUpdateOfTheArticleLink} input
    * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1058,7 +1131,7 @@ export class ArticlesApi extends BaseAPI {
   public updateArticle(
     spaceId: string,
     etag: string,
-    input: NEWUpdateOfTheArticleLink1,
+    input: NEWUpdateOfTheArticleLink,
     fields?: Array<string>,
     options?: any
   ) {
