@@ -41,4 +41,10 @@ export interface WebitelChatFile {
    * @memberof WebitelChatFile
    */
   type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelChatFile
+   */
+  url?: string
 }

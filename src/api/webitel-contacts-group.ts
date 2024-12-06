@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsDynamicCondition } from './webitel-contacts-dynamic-condition'
+import { WebitelContactsGroupType } from './webitel-contacts-group-type'
 import { WebitelContactsLookup } from './webitel-contacts-lookup'
 
 /**
@@ -19,6 +21,12 @@ import { WebitelContactsLookup } from './webitel-contacts-lookup'
  * @interface WebitelContactsGroup
  */
 export interface WebitelContactsGroup {
+  /**
+   * List of dynamic conditions associated with the group.
+   * @type {Array<WebitelContactsDynamicCondition>}
+   * @memberof WebitelContactsGroup
+   */
+  conditions?: Array<WebitelContactsDynamicCondition>
   /**
    * Timestamp(milli) of the group\'s creation.
    * @type {string}
@@ -32,11 +40,23 @@ export interface WebitelContactsGroup {
    */
   created_by?: WebitelContactsLookup
   /**
+   *
+   * @type {WebitelContactsLookup}
+   * @memberof WebitelContactsGroup
+   */
+  default_group?: WebitelContactsLookup
+  /**
    * The description of the group.
    * @type {string}
    * @memberof WebitelContactsGroup
    */
   description?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof WebitelContactsGroup
+   */
+  enabled?: boolean
   /**
    * The unique ID of the group. Never changes.
    * @type {string}
@@ -49,6 +69,12 @@ export interface WebitelContactsGroup {
    * @memberof WebitelContactsGroup
    */
   name?: string
+  /**
+   *
+   * @type {WebitelContactsGroupType}
+   * @memberof WebitelContactsGroup
+   */
+  type?: WebitelContactsGroupType
   /**
    * Timestamp(milli) of the last group update.
    * @type {string}

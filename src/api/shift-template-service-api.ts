@@ -24,9 +24,7 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject5 } from '../api'
-// @ts-ignore
-import { RpcStatus } from '../api'
+import { InlineObject9 } from '../api'
 // @ts-ignore
 import { WfmCreateShiftTemplateRequest } from '../api'
 // @ts-ignore
@@ -332,13 +330,13 @@ export const ShiftTemplateServiceApiAxiosParamCreator = function(
      *
      * @summary UpdateShiftTemplate updates a shift template with a list times. Update existing time, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject5} body
+     * @param {InlineObject9} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateShiftTemplate: async (
       itemId: string,
-      body: InlineObject5,
+      body: InlineObject9,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemId' is not null or undefined
@@ -550,13 +548,13 @@ export const ShiftTemplateServiceApiFp = function(
      *
      * @summary UpdateShiftTemplate updates a shift template with a list times. Update existing time, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject5} body
+     * @param {InlineObject9} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateShiftTemplate(
       itemId: string,
-      body: InlineObject5,
+      body: InlineObject9,
       options?: any
     ): Promise<
       (
@@ -661,13 +659,13 @@ export const ShiftTemplateServiceApiFactory = function(
      *
      * @summary UpdateShiftTemplate updates a shift template with a list times. Update existing time, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject5} body
+     * @param {InlineObject9} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateShiftTemplate(
       itemId: string,
-      body: InlineObject5,
+      body: InlineObject9,
       options?: any
     ): AxiosPromise<WfmUpdateShiftTemplateResponse> {
       return ShiftTemplateServiceApiFp(configuration)
@@ -755,14 +753,14 @@ export class ShiftTemplateServiceApi extends BaseAPI {
    *
    * @summary UpdateShiftTemplate updates a shift template with a list times. Update existing time, create that not exists in database and delete that not exists in the list.
    * @param {string} itemId
-   * @param {InlineObject5} body
+   * @param {InlineObject9} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ShiftTemplateServiceApi
    */
   public updateShiftTemplate(
     itemId: string,
-    body: InlineObject5,
+    body: InlineObject9,
     options?: any
   ) {
     return ShiftTemplateServiceApiFp(this.configuration)

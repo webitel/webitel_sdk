@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsShiftTemplatesItemIdItem } from './wfm-lookups-shift-templates-item-id-item'
+import { WfmAgentsItemAgentIdAbsencesItem } from './wfm-agents-item-agent-id-absences-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmLookupsShiftTemplatesItemIdItem } from './wfm-lookups-shift-template
 export interface InlineObject5 {
   /**
    *
-   * @type {WfmLookupsShiftTemplatesItemIdItem}
+   * @type {WfmAgentsItemAgentIdAbsencesItem}
    * @memberof InlineObject5
    */
-  item?: WfmLookupsShiftTemplatesItemIdItem
+  item?: WfmAgentsItemAgentIdAbsencesItem
 }

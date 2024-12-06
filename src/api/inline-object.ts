@@ -11,8 +11,6 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
-
 /**
  *
  * @export
@@ -21,8 +19,14 @@ import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
 export interface InlineObject {
   /**
    *
-   * @type {WfmAgentWorkingConditions}
+   * @type {string}
    * @memberof InlineObject
    */
-  item?: WfmAgentWorkingConditions
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof InlineObject
+   */
+  url?: string
 }

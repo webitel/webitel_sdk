@@ -30,13 +30,19 @@ export interface WebitelKnowledgebaseInputArticle {
    */
   parent_article?: string
   /**
+   * Indicates that the article is pinned on the top of list.
+   * @type {boolean}
+   * @memberof WebitelKnowledgebaseInputArticle
+   */
+  pinned?: boolean
+  /**
    * [VALUE]: -------------------------------------- Space ID associated with.
    * @type {string}
    * @memberof WebitelKnowledgebaseInputArticle
    */
   space_id?: string
   /**
-   * Indicates the state of the article.
+   * Indicates if article is active and actual.
    * @type {boolean}
    * @memberof WebitelKnowledgebaseInputArticle
    */

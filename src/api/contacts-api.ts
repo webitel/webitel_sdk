@@ -271,6 +271,8 @@ export const ContactsApiAxiosParamCreator = function(
      * @param {Array<string>} [id] Records with unique IDentifier(s). Accept: &#x60;id&#x60; -or- &#x60;etag&#x60;.
      * @param {Array<string>} [qin] [Q]uery[IN] is a set of search fields for term &#x60;q&#x60;. Default: &#x60;name{common_name}&#x60;.
      * @param {'READ' | 'WRITE' | 'DELETE'} [mode] Source access mode requirement.   - READ: Can &#x60;fetch&#x60; record. [GET]  - WRITE: Can &#x60;update&#x60; record. [PUT|PATCH]  - DELETE: Can &#x60;delete&#x60; record. [DELETE]
+     * @param {string} [groupId] Filter by group ID.
+     * @param {string} [notIdGroup] Filter contacts that are not attached to the provided group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -283,6 +285,8 @@ export const ContactsApiAxiosParamCreator = function(
       id?: Array<string>,
       qin?: Array<string>,
       mode?: 'READ' | 'WRITE' | 'DELETE',
+      groupId?: string,
+      notIdGroup?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/contacts`
@@ -338,6 +342,14 @@ export const ContactsApiAxiosParamCreator = function(
 
       if (mode !== undefined) {
         localVarQueryParameter['mode'] = mode
+      }
+
+      if (groupId !== undefined) {
+        localVarQueryParameter['group_id'] = groupId
+      }
+
+      if (notIdGroup !== undefined) {
+        localVarQueryParameter['not_id_group'] = notIdGroup
       }
 
       localVarUrlObj.query = {
@@ -565,6 +577,8 @@ export const ContactsApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [id] Records with unique IDentifier(s). Accept: &#x60;id&#x60; -or- &#x60;etag&#x60;.
      * @param {Array<string>} [qin] [Q]uery[IN] is a set of search fields for term &#x60;q&#x60;. Default: &#x60;name{common_name}&#x60;.
      * @param {'READ' | 'WRITE' | 'DELETE'} [mode] Source access mode requirement.   - READ: Can &#x60;fetch&#x60; record. [GET]  - WRITE: Can &#x60;update&#x60; record. [PUT|PATCH]  - DELETE: Can &#x60;delete&#x60; record. [DELETE]
+     * @param {string} [groupId] Filter by group ID.
+     * @param {string} [notIdGroup] Filter contacts that are not attached to the provided group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -577,6 +591,8 @@ export const ContactsApiFp = function(configuration?: Configuration) {
       id?: Array<string>,
       qin?: Array<string>,
       mode?: 'READ' | 'WRITE' | 'DELETE',
+      groupId?: string,
+      notIdGroup?: string,
       options?: any
     ): Promise<
       (
@@ -586,7 +602,19 @@ export const ContactsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ContactsApiAxiosParamCreator(
         configuration
-      ).searchContacts(page, size, q, sort, fields, id, qin, mode, options)
+      ).searchContacts(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        qin,
+        mode,
+        groupId,
+        notIdGroup,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -709,6 +737,8 @@ export const ContactsApiFactory = function(
      * @param {Array<string>} [id] Records with unique IDentifier(s). Accept: &#x60;id&#x60; -or- &#x60;etag&#x60;.
      * @param {Array<string>} [qin] [Q]uery[IN] is a set of search fields for term &#x60;q&#x60;. Default: &#x60;name{common_name}&#x60;.
      * @param {'READ' | 'WRITE' | 'DELETE'} [mode] Source access mode requirement.   - READ: Can &#x60;fetch&#x60; record. [GET]  - WRITE: Can &#x60;update&#x60; record. [PUT|PATCH]  - DELETE: Can &#x60;delete&#x60; record. [DELETE]
+     * @param {string} [groupId] Filter by group ID.
+     * @param {string} [notIdGroup] Filter contacts that are not attached to the provided group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -721,10 +751,24 @@ export const ContactsApiFactory = function(
       id?: Array<string>,
       qin?: Array<string>,
       mode?: 'READ' | 'WRITE' | 'DELETE',
+      groupId?: string,
+      notIdGroup?: string,
       options?: any
     ): AxiosPromise<WebitelContactsContactList> {
       return ContactsApiFp(configuration)
-        .searchContacts(page, size, q, sort, fields, id, qin, mode, options)
+        .searchContacts(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          qin,
+          mode,
+          groupId,
+          notIdGroup,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -822,6 +866,8 @@ export class ContactsApi extends BaseAPI {
    * @param {Array<string>} [id] Records with unique IDentifier(s). Accept: &#x60;id&#x60; -or- &#x60;etag&#x60;.
    * @param {Array<string>} [qin] [Q]uery[IN] is a set of search fields for term &#x60;q&#x60;. Default: &#x60;name{common_name}&#x60;.
    * @param {'READ' | 'WRITE' | 'DELETE'} [mode] Source access mode requirement.   - READ: Can &#x60;fetch&#x60; record. [GET]  - WRITE: Can &#x60;update&#x60; record. [PUT|PATCH]  - DELETE: Can &#x60;delete&#x60; record. [DELETE]
+   * @param {string} [groupId] Filter by group ID.
+   * @param {string} [notIdGroup] Filter contacts that are not attached to the provided group.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
@@ -835,10 +881,24 @@ export class ContactsApi extends BaseAPI {
     id?: Array<string>,
     qin?: Array<string>,
     mode?: 'READ' | 'WRITE' | 'DELETE',
+    groupId?: string,
+    notIdGroup?: string,
     options?: any
   ) {
     return ContactsApiFp(this.configuration)
-      .searchContacts(page, size, q, sort, fields, id, qin, mode, options)
+      .searchContacts(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        qin,
+        mode,
+        groupId,
+        notIdGroup,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

@@ -11,7 +11,8 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsForecastCalculationItemIdItem } from './wfm-lookups-forecast-calculation-item-id-item'
+import { CasesCase } from './cases-case'
+import { CasesRelationType } from './cases-relation-type'
 
 /**
  *
@@ -21,8 +22,14 @@ import { WfmLookupsForecastCalculationItemIdItem } from './wfm-lookups-forecast-
 export interface InlineObject3 {
   /**
    *
-   * @type {WfmLookupsForecastCalculationItemIdItem}
+   * @type {CasesCase}
    * @memberof InlineObject3
    */
-  item?: WfmLookupsForecastCalculationItemIdItem
+  relatedTo?: CasesCase
+  /**
+   *
+   * @type {CasesRelationType}
+   * @memberof InlineObject3
+   */
+  relationType?: CasesRelationType
 }

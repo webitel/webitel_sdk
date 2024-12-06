@@ -11,12 +11,27 @@
  * Do not edit the class manually.
  */
 
+import { EngineBroadcastButtons } from './engine-broadcast-buttons'
+import { EngineBroadcastFile } from './engine-broadcast-file'
+
 /**
  *
  * @export
  * @interface EngineBroadcastRequest
  */
 export interface EngineBroadcastRequest {
+  /**
+   *
+   * @type {Array<EngineBroadcastButtons>}
+   * @memberof EngineBroadcastRequest
+   */
+  buttons?: Array<EngineBroadcastButtons>
+  /**
+   *
+   * @type {EngineBroadcastFile}
+   * @memberof EngineBroadcastRequest
+   */
+  file?: EngineBroadcastFile
   /**
    *
    * @type {Array<string>}

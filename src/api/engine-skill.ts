@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineLookup } from './engine-lookup'
+
 /**
  *
  * @export
@@ -23,6 +25,18 @@ export interface EngineSkill {
    * @memberof EngineSkill
    */
   active_agents?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSkill
+   */
+  created_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineSkill
+   */
+  created_by?: EngineLookup
   /**
    *
    * @type {string}
@@ -53,4 +67,16 @@ export interface EngineSkill {
    * @memberof EngineSkill
    */
   total_agents?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineSkill
+   */
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineSkill
+   */
+  updated_by?: EngineLookup
 }

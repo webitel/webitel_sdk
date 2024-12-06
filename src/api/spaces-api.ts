@@ -279,7 +279,7 @@ export const SpacesApiAxiosParamCreator = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    locateSpaces: async (
+    locateSpace: async (
       etag: string,
       fields?: Array<string>,
       options: any = {}
@@ -288,7 +288,7 @@ export const SpacesApiAxiosParamCreator = function(
       if (etag === null || etag === undefined) {
         throw new RequiredError(
           'etag',
-          'Required parameter etag was null or undefined when calling locateSpaces.'
+          'Required parameter etag was null or undefined when calling locateSpace.'
         )
       }
       const localVarPath = `/spaces/{etag}`.replace(
@@ -548,7 +548,7 @@ export const SpacesApiFp = function(configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async locateSpaces(
+    async locateSpace(
       etag: string,
       fields?: Array<string>,
       options?: any
@@ -560,7 +560,7 @@ export const SpacesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SpacesApiAxiosParamCreator(
         configuration
-      ).locateSpaces(etag, fields, options)
+      ).locateSpace(etag, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -685,13 +685,13 @@ export const SpacesApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    locateSpaces(
+    locateSpace(
       etag: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<WebitelKnowledgebaseSpace> {
       return SpacesApiFp(configuration)
-        .locateSpaces(etag, fields, options)
+        .locateSpace(etag, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -792,9 +792,9 @@ export class SpacesApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SpacesApi
    */
-  public locateSpaces(etag: string, fields?: Array<string>, options?: any) {
+  public locateSpace(etag: string, fields?: Array<string>, options?: any) {
     return SpacesApiFp(this.configuration)
-      .locateSpaces(etag, fields, options)
+      .locateSpace(etag, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

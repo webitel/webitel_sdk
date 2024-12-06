@@ -24,6 +24,12 @@ export interface WebitelContactsCreateGroupRequest {
    */
   description?: string
   /**
+   * The enabled status of the group.
+   * @type {boolean}
+   * @memberof WebitelContactsCreateGroupRequest
+   */
+  enabled?: boolean
+  /**
    * The name of the group.
    * @type {string}
    * @memberof WebitelContactsCreateGroupRequest

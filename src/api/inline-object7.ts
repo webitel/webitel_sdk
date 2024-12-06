@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
+import { WfmLookupsForecastCalculationItemIdItem } from './wfm-lookups-forecast-calculation-item-id-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-con
 export interface InlineObject7 {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
+   * @type {WfmLookupsForecastCalculationItemIdItem}
    * @memberof InlineObject7
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  item?: WfmLookupsForecastCalculationItemIdItem
 }

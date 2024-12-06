@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-templates-item-id-item'
+import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmLookupsPauseTemplatesItemIdItem } from './wfm-lookups-pause-template
 export interface InlineObject4 {
   /**
    *
-   * @type {WfmLookupsPauseTemplatesItemIdItem}
+   * @type {WfmAgentWorkingConditions}
    * @memberof InlineObject4
    */
-  item?: WfmLookupsPauseTemplatesItemIdItem
+  item?: WfmAgentWorkingConditions
 }

@@ -56,6 +56,12 @@ export interface WebitelKnowledgebaseArticle {
    */
   parent_article?: string
   /**
+   * Indicates that the article is pinned on the top of list.
+   * @type {boolean}
+   * @memberof WebitelKnowledgebaseArticle
+   */
+  pinned?: boolean
+  /**
    * Space ID associated with.
    * @type {string}
    * @memberof WebitelKnowledgebaseArticle
@@ -97,4 +103,10 @@ export interface WebitelKnowledgebaseArticle {
    * @memberof WebitelKnowledgebaseArticle
    */
   updated_by?: WebitelKnowledgebaseLookup
+  /**
+   * READONLY. Operational attributes Version of the latest update. Numeric sequence.
+   * @type {number}
+   * @memberof WebitelKnowledgebaseArticle
+   */
+  ver?: number
 }

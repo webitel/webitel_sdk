@@ -24,13 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { WebitelContactsContactList } from '../api'
+// @ts-ignore
 import { WebitelContactsCreateGroupRequest } from '../api'
 // @ts-ignore
 import { WebitelContactsGroup } from '../api'
 // @ts-ignore
 import { WebitelContactsGroupList } from '../api'
 // @ts-ignore
-import { WebitelContactsGroupsUpdateGroupBody } from '../api'
+import { WebitelContactsInputGroup } from '../api'
 // @ts-ignore
 import { WebitelContactsLocateGroupResponse } from '../api'
 /**
@@ -41,6 +43,76 @@ export const GroupsApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
+    /**
+     *
+     * @summary Add contacts to a group
+     * @param {string} groupId The unique ID of the group.
+     * @param {Array<string>} [contactIds] List of contact IDs to add to the group.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addContactsToGroup: async (
+      groupId: string,
+      contactIds?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'groupId' is not null or undefined
+      if (groupId === null || groupId === undefined) {
+        throw new RequiredError(
+          'groupId',
+          'Required parameter groupId was null or undefined when calling addContactsToGroup.'
+        )
+      }
+      const localVarPath = `/contacts/groups/{group_id}/contact`.replace(
+        `{${'group_id'}}`,
+        encodeURIComponent(String(groupId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (contactIds) {
+        localVarQueryParameter['contact_ids'] = contactIds
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @summary Create a new group
@@ -184,6 +256,7 @@ export const GroupsApiAxiosParamCreator = function(
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {string} [name] Filter by group name.
+     * @param {'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC'} [type] Filter by group type.   - GROUP_TYPE_UNSPECIFIED: Default value  - STATIC: Static group  - DYNAMIC: Dynamic group
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -195,6 +268,7 @@ export const GroupsApiAxiosParamCreator = function(
       id?: Array<string>,
       q?: string,
       name?: string,
+      type?: 'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC',
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/contacts/groups`
@@ -246,6 +320,10 @@ export const GroupsApiAxiosParamCreator = function(
 
       if (name !== undefined) {
         localVarQueryParameter['name'] = name
+      }
+
+      if (type !== undefined) {
+        localVarQueryParameter['type'] = type
       }
 
       localVarUrlObj.query = {
@@ -340,15 +418,85 @@ export const GroupsApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Remove contacts from a group
+     * @param {string} groupId The unique ID of the group.
+     * @param {Array<string>} [contactIds] List of contact IDs to remove from the group.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    removeContactsFromGroup: async (
+      groupId: string,
+      contactIds?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'groupId' is not null or undefined
+      if (groupId === null || groupId === undefined) {
+        throw new RequiredError(
+          'groupId',
+          'Required parameter groupId was null or undefined when calling removeContactsFromGroup.'
+        )
+      }
+      const localVarPath = `/contacts/groups/{group_id}/contact`.replace(
+        `{${'group_id'}}`,
+        encodeURIComponent(String(groupId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (contactIds) {
+        localVarQueryParameter['contact_ids'] = contactIds
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Update an existing group
      * @param {string} id The unique ID of the group to update.
-     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {WebitelContactsInputGroup} input
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateGroup: async (
       id: string,
-      body: WebitelContactsGroupsUpdateGroupBody,
+      input: WebitelContactsInputGroup,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -358,11 +506,11 @@ export const GroupsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling updateGroup.'
         )
       }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateGroup.'
+          'input',
+          'Required parameter input was null or undefined when calling updateGroup.'
         )
       }
       const localVarPath = `/contacts/groups/{id}`.replace(
@@ -408,11 +556,11 @@ export const GroupsApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -423,13 +571,13 @@ export const GroupsApiAxiosParamCreator = function(
      *
      * @summary Update an existing group
      * @param {string} id The unique ID of the group to update.
-     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {WebitelContactsInputGroup} input
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateGroup2: async (
       id: string,
-      body: WebitelContactsGroupsUpdateGroupBody,
+      input: WebitelContactsInputGroup,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -439,11 +587,11 @@ export const GroupsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling updateGroup2.'
         )
       }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateGroup2.'
+          'input',
+          'Required parameter input was null or undefined when calling updateGroup2.'
         )
       }
       const localVarPath = `/contacts/groups/{id}`.replace(
@@ -489,11 +637,11 @@ export const GroupsApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -509,6 +657,38 @@ export const GroupsApiAxiosParamCreator = function(
  */
 export const GroupsApiFp = function(configuration?: Configuration) {
   return {
+    /**
+     *
+     * @summary Add contacts to a group
+     * @param {string} groupId The unique ID of the group.
+     * @param {Array<string>} [contactIds] List of contact IDs to add to the group.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async addContactsToGroup(
+      groupId: string,
+      contactIds?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelContactsContactList>
+    > {
+      const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
+        configuration
+      ).addContactsToGroup(groupId, contactIds, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
     /**
      *
      * @summary Create a new group
@@ -579,6 +759,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {string} [name] Filter by group name.
+     * @param {'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC'} [type] Filter by group type.   - GROUP_TYPE_UNSPECIFIED: Default value  - STATIC: Static group  - DYNAMIC: Dynamic group
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -590,6 +771,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
       id?: Array<string>,
       q?: string,
       name?: string,
+      type?: 'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC',
       options?: any
     ): Promise<
       (
@@ -599,7 +781,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
         configuration
-      ).listGroups(page, size, fields, sort, id, q, name, options)
+      ).listGroups(page, size, fields, sort, id, q, name, type, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -645,25 +827,25 @@ export const GroupsApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Update an existing group
-     * @param {string} id The unique ID of the group to update.
-     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @summary Remove contacts from a group
+     * @param {string} groupId The unique ID of the group.
+     * @param {Array<string>} [contactIds] List of contact IDs to remove from the group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateGroup(
-      id: string,
-      body: WebitelContactsGroupsUpdateGroupBody,
+    async removeContactsFromGroup(
+      groupId: string,
+      contactIds?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelContactsGroup>
+      ) => AxiosPromise<WebitelContactsContactList>
     > {
       const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
         configuration
-      ).updateGroup(id, body, options)
+      ).removeContactsFromGroup(groupId, contactIds, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -679,13 +861,13 @@ export const GroupsApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing group
      * @param {string} id The unique ID of the group to update.
-     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {WebitelContactsInputGroup} input
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateGroup2(
+    async updateGroup(
       id: string,
-      body: WebitelContactsGroupsUpdateGroupBody,
+      input: WebitelContactsInputGroup,
       options?: any
     ): Promise<
       (
@@ -695,7 +877,39 @@ export const GroupsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
         configuration
-      ).updateGroup2(id, body, options)
+      ).updateGroup(id, input, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Update an existing group
+     * @param {string} id The unique ID of the group to update.
+     * @param {WebitelContactsInputGroup} input
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateGroup2(
+      id: string,
+      input: WebitelContactsInputGroup,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelContactsGroup>
+    > {
+      const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
+        configuration
+      ).updateGroup2(id, input, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -720,6 +934,23 @@ export const GroupsApiFactory = function(
   axios?: AxiosInstance
 ) {
   return {
+    /**
+     *
+     * @summary Add contacts to a group
+     * @param {string} groupId The unique ID of the group.
+     * @param {Array<string>} [contactIds] List of contact IDs to add to the group.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addContactsToGroup(
+      groupId: string,
+      contactIds?: Array<string>,
+      options?: any
+    ): AxiosPromise<WebitelContactsContactList> {
+      return GroupsApiFp(configuration)
+        .addContactsToGroup(groupId, contactIds, options)
+        .then((request) => request(axios, basePath))
+    },
     /**
      *
      * @summary Create a new group
@@ -757,6 +988,7 @@ export const GroupsApiFactory = function(
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {string} [name] Filter by group name.
+     * @param {'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC'} [type] Filter by group type.   - GROUP_TYPE_UNSPECIFIED: Default value  - STATIC: Static group  - DYNAMIC: Dynamic group
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -768,10 +1000,11 @@ export const GroupsApiFactory = function(
       id?: Array<string>,
       q?: string,
       name?: string,
+      type?: 'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC',
       options?: any
     ): AxiosPromise<WebitelContactsGroupList> {
       return GroupsApiFp(configuration)
-        .listGroups(page, size, fields, sort, id, q, name, options)
+        .listGroups(page, size, fields, sort, id, q, name, type, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -793,36 +1026,53 @@ export const GroupsApiFactory = function(
     },
     /**
      *
-     * @summary Update an existing group
-     * @param {string} id The unique ID of the group to update.
-     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @summary Remove contacts from a group
+     * @param {string} groupId The unique ID of the group.
+     * @param {Array<string>} [contactIds] List of contact IDs to remove from the group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateGroup(
-      id: string,
-      body: WebitelContactsGroupsUpdateGroupBody,
+    removeContactsFromGroup(
+      groupId: string,
+      contactIds?: Array<string>,
       options?: any
-    ): AxiosPromise<WebitelContactsGroup> {
+    ): AxiosPromise<WebitelContactsContactList> {
       return GroupsApiFp(configuration)
-        .updateGroup(id, body, options)
+        .removeContactsFromGroup(groupId, contactIds, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary Update an existing group
      * @param {string} id The unique ID of the group to update.
-     * @param {WebitelContactsGroupsUpdateGroupBody} body
+     * @param {WebitelContactsInputGroup} input
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateGroup(
+      id: string,
+      input: WebitelContactsInputGroup,
+      options?: any
+    ): AxiosPromise<WebitelContactsGroup> {
+      return GroupsApiFp(configuration)
+        .updateGroup(id, input, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary Update an existing group
+     * @param {string} id The unique ID of the group to update.
+     * @param {WebitelContactsInputGroup} input
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateGroup2(
       id: string,
-      body: WebitelContactsGroupsUpdateGroupBody,
+      input: WebitelContactsInputGroup,
       options?: any
     ): AxiosPromise<WebitelContactsGroup> {
       return GroupsApiFp(configuration)
-        .updateGroup2(id, body, options)
+        .updateGroup2(id, input, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -835,6 +1085,25 @@ export const GroupsApiFactory = function(
  * @extends {BaseAPI}
  */
 export class GroupsApi extends BaseAPI {
+  /**
+   *
+   * @summary Add contacts to a group
+   * @param {string} groupId The unique ID of the group.
+   * @param {Array<string>} [contactIds] List of contact IDs to add to the group.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  public addContactsToGroup(
+    groupId: string,
+    contactIds?: Array<string>,
+    options?: any
+  ) {
+    return GroupsApiFp(this.configuration)
+      .addContactsToGroup(groupId, contactIds, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary Create a new group
@@ -873,6 +1142,7 @@ export class GroupsApi extends BaseAPI {
    * @param {Array<string>} [id] Filter by unique IDs.
    * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
    * @param {string} [name] Filter by group name.
+   * @param {'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC'} [type] Filter by group type.   - GROUP_TYPE_UNSPECIFIED: Default value  - STATIC: Static group  - DYNAMIC: Dynamic group
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GroupsApi
@@ -885,10 +1155,11 @@ export class GroupsApi extends BaseAPI {
     id?: Array<string>,
     q?: string,
     name?: string,
+    type?: 'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC',
     options?: any
   ) {
     return GroupsApiFp(this.configuration)
-      .listGroups(page, size, fields, sort, id, q, name, options)
+      .listGroups(page, size, fields, sort, id, q, name, type, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -909,20 +1180,20 @@ export class GroupsApi extends BaseAPI {
 
   /**
    *
-   * @summary Update an existing group
-   * @param {string} id The unique ID of the group to update.
-   * @param {WebitelContactsGroupsUpdateGroupBody} body
+   * @summary Remove contacts from a group
+   * @param {string} groupId The unique ID of the group.
+   * @param {Array<string>} [contactIds] List of contact IDs to remove from the group.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GroupsApi
    */
-  public updateGroup(
-    id: string,
-    body: WebitelContactsGroupsUpdateGroupBody,
+  public removeContactsFromGroup(
+    groupId: string,
+    contactIds?: Array<string>,
     options?: any
   ) {
     return GroupsApiFp(this.configuration)
-      .updateGroup(id, body, options)
+      .removeContactsFromGroup(groupId, contactIds, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -930,18 +1201,37 @@ export class GroupsApi extends BaseAPI {
    *
    * @summary Update an existing group
    * @param {string} id The unique ID of the group to update.
-   * @param {WebitelContactsGroupsUpdateGroupBody} body
+   * @param {WebitelContactsInputGroup} input
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof GroupsApi
+   */
+  public updateGroup(
+    id: string,
+    input: WebitelContactsInputGroup,
+    options?: any
+  ) {
+    return GroupsApiFp(this.configuration)
+      .updateGroup(id, input, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Update an existing group
+   * @param {string} id The unique ID of the group to update.
+   * @param {WebitelContactsInputGroup} input
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GroupsApi
    */
   public updateGroup2(
     id: string,
-    body: WebitelContactsGroupsUpdateGroupBody,
+    input: WebitelContactsInputGroup,
     options?: any
   ) {
     return GroupsApiFp(this.configuration)
-      .updateGroup2(id, body, options)
+      .updateGroup2(id, input, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

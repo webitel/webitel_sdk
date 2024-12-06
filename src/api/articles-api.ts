@@ -30,6 +30,8 @@ import { WebitelKnowledgebaseArticle } from '../api'
 // @ts-ignore
 import { WebitelKnowledgebaseArticleList } from '../api'
 // @ts-ignore
+import { WebitelKnowledgebaseAttachmentList } from '../api'
+// @ts-ignore
 import { WebitelKnowledgebaseInputArticle } from '../api'
 /**
  * ArticlesApi - axios parameter creator
@@ -39,6 +41,95 @@ export const ArticlesApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
+    /**
+     *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    articlesAttachmentList: async (
+      spaceId: string,
+      articleId: string,
+      page?: number,
+      size?: number,
+      sort?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'spaceId' is not null or undefined
+      if (spaceId === null || spaceId === undefined) {
+        throw new RequiredError(
+          'spaceId',
+          'Required parameter spaceId was null or undefined when calling articlesAttachmentList.'
+        )
+      }
+      // verify required parameter 'articleId' is not null or undefined
+      if (articleId === null || articleId === undefined) {
+        throw new RequiredError(
+          'articleId',
+          'Required parameter articleId was null or undefined when calling articlesAttachmentList.'
+        )
+      }
+      const localVarPath = `/spaces/{space_id}/articles/{article_id}/attachments`
+        .replace(`{${'space_id'}}`, encodeURIComponent(String(spaceId)))
+        .replace(`{${'article_id'}}`, encodeURIComponent(String(articleId)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (sort) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @param {string} spaceId Link space ID.
@@ -209,11 +300,12 @@ export const ArticlesApiAxiosParamCreator = function(
      * @param {string} spaceId Space ID associated with.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
-     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {Array<string>} [sort] Sort the result according to fields.
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [id] Record(s) with unique ID only.
+     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
+     * @param {string} [articleId] Record(s) with unique ID only.
      * @param {boolean} [state] Active Article only.
+     * @param {Array<string>} [tags] Tags associated with the article.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -221,11 +313,12 @@ export const ArticlesApiAxiosParamCreator = function(
       spaceId: string,
       page?: number,
       size?: number,
-      q?: string,
       sort?: Array<string>,
       fields?: Array<string>,
-      id?: Array<string>,
+      q?: string,
+      articleId?: string,
       state?: boolean,
+      tags?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'spaceId' is not null or undefined
@@ -269,10 +362,6 @@ export const ArticlesApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (q !== undefined) {
-        localVarQueryParameter['q'] = q
-      }
-
       if (sort) {
         localVarQueryParameter['sort'] = sort
       }
@@ -281,12 +370,20 @@ export const ArticlesApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (id) {
-        localVarQueryParameter['id'] = id
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (articleId !== undefined) {
+        localVarQueryParameter['article_id'] = articleId
       }
 
       if (state !== undefined) {
         localVarQueryParameter['state'] = state
+      }
+
+      if (tags) {
+        localVarQueryParameter['tags'] = tags
       }
 
       localVarUrlObj.query = {
@@ -311,38 +408,43 @@ export const ArticlesApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} spaceId space ID associated with.
+     * @summary List of the Space\'s Article(s).
+     * @param {string} spaceId Space ID associated with.
      * @param {string} articleId Record(s) with unique ID only.
-     * @param {Array<string>} [sort] Sort the result according to fields.
-     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {boolean} [state] Active Article only.
+     * @param {Array<string>} [tags] Tags associated with the article.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listArticlesChildren: async (
+    listArticles2: async (
       spaceId: string,
       articleId: string,
-      sort?: Array<string>,
-      fields?: Array<string>,
       page?: number,
       size?: number,
+      sort?: Array<string>,
+      fields?: Array<string>,
+      q?: string,
       state?: boolean,
+      tags?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'spaceId' is not null or undefined
       if (spaceId === null || spaceId === undefined) {
         throw new RequiredError(
           'spaceId',
-          'Required parameter spaceId was null or undefined when calling listArticlesChildren.'
+          'Required parameter spaceId was null or undefined when calling listArticles2.'
         )
       }
       // verify required parameter 'articleId' is not null or undefined
       if (articleId === null || articleId === undefined) {
         throw new RequiredError(
           'articleId',
-          'Required parameter articleId was null or undefined when calling listArticlesChildren.'
+          'Required parameter articleId was null or undefined when calling listArticles2.'
         )
       }
       const localVarPath = `/spaces/{space_id}/articles/{article_id}/childrens`
@@ -370,14 +472,6 @@ export const ArticlesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (sort) {
-        localVarQueryParameter['sort'] = sort
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
       if (page !== undefined) {
         localVarQueryParameter['page'] = page
       }
@@ -386,8 +480,24 @@ export const ArticlesApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
+      if (sort) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
       if (state !== undefined) {
         localVarQueryParameter['state'] = state
+      }
+
+      if (tags) {
+        localVarQueryParameter['tags'] = tags
       }
 
       localVarUrlObj.query = {
@@ -535,7 +645,7 @@ export const ArticlesApiAxiosParamCreator = function(
         baseOptions = configuration.baseOptions
       }
       const localVarRequestOptions = {
-        method: 'POST',
+        method: 'PATCH',
         ...baseOptions,
         ...options,
       }
@@ -592,6 +702,43 @@ export const ArticlesApiAxiosParamCreator = function(
  */
 export const ArticlesApiFp = function(configuration?: Configuration) {
   return {
+    /**
+     *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async articlesAttachmentList(
+      spaceId: string,
+      articleId: string,
+      page?: number,
+      size?: number,
+      sort?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelKnowledgebaseAttachmentList>
+    > {
+      const localVarAxiosArgs = await ArticlesApiAxiosParamCreator(
+        configuration
+      ).articlesAttachmentList(spaceId, articleId, page, size, sort, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
     /**
      *
      * @param {string} spaceId Link space ID.
@@ -665,11 +812,12 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
      * @param {string} spaceId Space ID associated with.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
-     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {Array<string>} [sort] Sort the result according to fields.
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [id] Record(s) with unique ID only.
+     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
+     * @param {string} [articleId] Record(s) with unique ID only.
      * @param {boolean} [state] Active Article only.
+     * @param {Array<string>} [tags] Tags associated with the article.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -677,11 +825,12 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
       spaceId: string,
       page?: number,
       size?: number,
-      q?: string,
       sort?: Array<string>,
       fields?: Array<string>,
-      id?: Array<string>,
+      q?: string,
+      articleId?: string,
       state?: boolean,
+      tags?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -691,7 +840,18 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ArticlesApiAxiosParamCreator(
         configuration
-      ).listArticles(spaceId, page, size, q, sort, fields, id, state, options)
+      ).listArticles(
+        spaceId,
+        page,
+        size,
+        sort,
+        fields,
+        q,
+        articleId,
+        state,
+        tags,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -705,24 +865,29 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {string} spaceId space ID associated with.
+     * @summary List of the Space\'s Article(s).
+     * @param {string} spaceId Space ID associated with.
      * @param {string} articleId Record(s) with unique ID only.
-     * @param {Array<string>} [sort] Sort the result according to fields.
-     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {boolean} [state] Active Article only.
+     * @param {Array<string>} [tags] Tags associated with the article.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async listArticlesChildren(
+    async listArticles2(
       spaceId: string,
       articleId: string,
-      sort?: Array<string>,
-      fields?: Array<string>,
       page?: number,
       size?: number,
+      sort?: Array<string>,
+      fields?: Array<string>,
+      q?: string,
       state?: boolean,
+      tags?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -732,14 +897,16 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ArticlesApiAxiosParamCreator(
         configuration
-      ).listArticlesChildren(
+      ).listArticles2(
         spaceId,
         articleId,
-        sort,
-        fields,
         page,
         size,
+        sort,
+        fields,
+        q,
         state,
+        tags,
         options
       )
       return (
@@ -838,6 +1005,28 @@ export const ArticlesApiFactory = function(
   return {
     /**
      *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    articlesAttachmentList(
+      spaceId: string,
+      articleId: string,
+      page?: number,
+      size?: number,
+      sort?: Array<string>,
+      options?: any
+    ): AxiosPromise<WebitelKnowledgebaseAttachmentList> {
+      return ArticlesApiFp(configuration)
+        .articlesAttachmentList(spaceId, articleId, page, size, sort, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {string} spaceId Link space ID.
      * @param {WebitelKnowledgebaseInputArticle} input NEW Update of the Article link.
      * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
@@ -879,11 +1068,12 @@ export const ArticlesApiFactory = function(
      * @param {string} spaceId Space ID associated with.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
-     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {Array<string>} [sort] Sort the result according to fields.
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [id] Record(s) with unique ID only.
+     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
+     * @param {string} [articleId] Record(s) with unique ID only.
      * @param {boolean} [state] Active Article only.
+     * @param {Array<string>} [tags] Tags associated with the article.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -891,48 +1081,67 @@ export const ArticlesApiFactory = function(
       spaceId: string,
       page?: number,
       size?: number,
-      q?: string,
       sort?: Array<string>,
       fields?: Array<string>,
-      id?: Array<string>,
+      q?: string,
+      articleId?: string,
       state?: boolean,
+      tags?: Array<string>,
       options?: any
     ): AxiosPromise<WebitelKnowledgebaseArticleList> {
       return ArticlesApiFp(configuration)
-        .listArticles(spaceId, page, size, q, sort, fields, id, state, options)
+        .listArticles(
+          spaceId,
+          page,
+          size,
+          sort,
+          fields,
+          q,
+          articleId,
+          state,
+          tags,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} spaceId space ID associated with.
+     * @summary List of the Space\'s Article(s).
+     * @param {string} spaceId Space ID associated with.
      * @param {string} articleId Record(s) with unique ID only.
-     * @param {Array<string>} [sort] Sort the result according to fields.
-     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
+     * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {boolean} [state] Active Article only.
+     * @param {Array<string>} [tags] Tags associated with the article.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listArticlesChildren(
+    listArticles2(
       spaceId: string,
       articleId: string,
-      sort?: Array<string>,
-      fields?: Array<string>,
       page?: number,
       size?: number,
+      sort?: Array<string>,
+      fields?: Array<string>,
+      q?: string,
       state?: boolean,
+      tags?: Array<string>,
       options?: any
     ): AxiosPromise<WebitelKnowledgebaseArticleList> {
       return ArticlesApiFp(configuration)
-        .listArticlesChildren(
+        .listArticles2(
           spaceId,
           articleId,
-          sort,
-          fields,
           page,
           size,
+          sort,
+          fields,
+          q,
           state,
+          tags,
           options
         )
         .then((request) => request(axios, basePath))
@@ -989,6 +1198,30 @@ export const ArticlesApiFactory = function(
 export class ArticlesApi extends BaseAPI {
   /**
    *
+   * @param {string} spaceId Space ID associated with.
+   * @param {string} articleId Record(s) with unique ID only.
+   * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+   * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+   * @param {Array<string>} [sort] Sort the result according to fields.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ArticlesApi
+   */
+  public articlesAttachmentList(
+    spaceId: string,
+    articleId: string,
+    page?: number,
+    size?: number,
+    sort?: Array<string>,
+    options?: any
+  ) {
+    return ArticlesApiFp(this.configuration)
+      .articlesAttachmentList(spaceId, articleId, page, size, sort, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @param {string} spaceId Link space ID.
    * @param {WebitelKnowledgebaseInputArticle} input NEW Update of the Article link.
    * @param {Array<string>} [fields] Fields to be retrieved into result of changes.
@@ -1034,11 +1267,12 @@ export class ArticlesApi extends BaseAPI {
    * @param {string} spaceId Space ID associated with.
    * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
    * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
-   * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
    * @param {Array<string>} [sort] Sort the result according to fields.
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
-   * @param {Array<string>} [id] Record(s) with unique ID only.
+   * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
+   * @param {string} [articleId] Record(s) with unique ID only.
    * @param {boolean} [state] Active Article only.
+   * @param {Array<string>} [tags] Tags associated with the article.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ArticlesApi
@@ -1047,50 +1281,69 @@ export class ArticlesApi extends BaseAPI {
     spaceId: string,
     page?: number,
     size?: number,
-    q?: string,
     sort?: Array<string>,
     fields?: Array<string>,
-    id?: Array<string>,
+    q?: string,
+    articleId?: string,
     state?: boolean,
+    tags?: Array<string>,
     options?: any
   ) {
     return ArticlesApiFp(this.configuration)
-      .listArticles(spaceId, page, size, q, sort, fields, id, state, options)
+      .listArticles(
+        spaceId,
+        page,
+        size,
+        sort,
+        fields,
+        q,
+        articleId,
+        state,
+        tags,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} spaceId space ID associated with.
+   * @summary List of the Space\'s Article(s).
+   * @param {string} spaceId Space ID associated with.
    * @param {string} articleId Record(s) with unique ID only.
-   * @param {Array<string>} [sort] Sort the result according to fields.
-   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
    * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+   * @param {Array<string>} [sort] Sort the result according to fields.
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
+   * @param {string} [q] Search term: location name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
    * @param {boolean} [state] Active Article only.
+   * @param {Array<string>} [tags] Tags associated with the article.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ArticlesApi
    */
-  public listArticlesChildren(
+  public listArticles2(
     spaceId: string,
     articleId: string,
-    sort?: Array<string>,
-    fields?: Array<string>,
     page?: number,
     size?: number,
+    sort?: Array<string>,
+    fields?: Array<string>,
+    q?: string,
     state?: boolean,
+    tags?: Array<string>,
     options?: any
   ) {
     return ArticlesApiFp(this.configuration)
-      .listArticlesChildren(
+      .listArticles2(
         spaceId,
         articleId,
-        sort,
-        fields,
         page,
         size,
+        sort,
+        fields,
+        q,
         state,
+        tags,
         options
       )
       .then((request) => request(this.axios, this.basePath))

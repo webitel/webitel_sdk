@@ -11,8 +11,6 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentsItemAgentIdAbsencesItem } from './wfm-agents-item-agent-id-absences-item'
-
 /**
  *
  * @export
@@ -21,8 +19,14 @@ import { WfmAgentsItemAgentIdAbsencesItem } from './wfm-agents-item-agent-id-abs
 export interface InlineObject1 {
   /**
    *
-   * @type {WfmAgentsItemAgentIdAbsencesItem}
+   * @type {string}
    * @memberof InlineObject1
    */
-  item?: WfmAgentsItemAgentIdAbsencesItem
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof InlineObject1
+   */
+  url?: string
 }

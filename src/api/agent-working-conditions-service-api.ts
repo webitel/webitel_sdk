@@ -24,9 +24,7 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject } from '../api'
-// @ts-ignore
-import { RpcStatus } from '../api'
+import { InlineObject4 } from '../api'
 // @ts-ignore
 import { WfmReadAgentWorkingConditionsResponse } from '../api'
 // @ts-ignore
@@ -105,13 +103,13 @@ export const AgentWorkingConditionsServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} agentId
-     * @param {InlineObject} body
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentWorkingConditions: async (
       agentId: string,
-      body: InlineObject,
+      body: InlineObject4,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -225,13 +223,13 @@ export const AgentWorkingConditionsServiceApiFp = function(
     /**
      *
      * @param {string} agentId
-     * @param {InlineObject} body
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAgentWorkingConditions(
       agentId: string,
-      body: InlineObject,
+      body: InlineObject4,
       options?: any
     ): Promise<
       (
@@ -283,13 +281,13 @@ export const AgentWorkingConditionsServiceApiFactory = function(
     /**
      *
      * @param {string} agentId
-     * @param {InlineObject} body
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentWorkingConditions(
       agentId: string,
-      body: InlineObject,
+      body: InlineObject4,
       options?: any
     ): AxiosPromise<WfmUpdateAgentWorkingConditionsResponse> {
       return AgentWorkingConditionsServiceApiFp(configuration)
@@ -322,14 +320,14 @@ export class AgentWorkingConditionsServiceApi extends BaseAPI {
   /**
    *
    * @param {string} agentId
-   * @param {InlineObject} body
+   * @param {InlineObject4} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentWorkingConditionsServiceApi
    */
   public updateAgentWorkingConditions(
     agentId: string,
-    body: InlineObject,
+    body: InlineObject4,
     options?: any
   ) {
     return AgentWorkingConditionsServiceApiFp(this.configuration)

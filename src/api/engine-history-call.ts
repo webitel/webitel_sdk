@@ -190,6 +190,12 @@ export interface EngineHistoryCall {
   from?: EngineEndpoint
   /**
    *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  from_number?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineHistoryCall
    */
@@ -392,6 +398,12 @@ export interface EngineHistoryCall {
    * @memberof EngineHistoryCall
    */
   to?: EngineEndpoint
+  /**
+   *
+   * @type {string}
+   * @memberof EngineHistoryCall
+   */
+  to_number?: string
   /**
    *
    * @type {Array<EngineTranscriptLookup>}

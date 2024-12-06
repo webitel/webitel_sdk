@@ -24,13 +24,19 @@ export interface NEWUpdateOfTheArticleLink {
    */
   parent_article?: string
   /**
+   * Indicates that the article is pinned on the top of list.
+   * @type {boolean}
+   * @memberof NEWUpdateOfTheArticleLink
+   */
+  pinned?: boolean
+  /**
    * [VALUE]: -------------------------------------- Space ID associated with.
    * @type {string}
    * @memberof NEWUpdateOfTheArticleLink
    */
   space_id?: string
   /**
-   * Indicates the state of the article.
+   * Indicates if article is active and actual.
    * @type {boolean}
    * @memberof NEWUpdateOfTheArticleLink
    */
