@@ -13,7 +13,6 @@
 
 import { CasesCreateCaseCloseInput } from './cases-create-case-close-input'
 import { CasesCreateCaseRelatedCaseInput } from './cases-create-case-related-case-input'
-import { CasesInputCaseComment } from './cases-input-case-comment'
 import { CasesInputCaseLink } from './cases-input-case-link'
 import { CasesRateInfo } from './cases-rate-info'
 
@@ -43,12 +42,6 @@ export interface CasesInputCreateCase {
   closeReason?: string
   /**
    *
-   * @type {Array<CasesInputCaseComment>}
-   * @memberof CasesInputCreateCase
-   */
-  comments?: Array<CasesInputCaseComment>
-  /**
-   *
    * @type {string}
    * @memberof CasesInputCreateCase
    */
@@ -59,12 +52,6 @@ export interface CasesInputCreateCase {
    * @memberof CasesInputCreateCase
    */
   description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCreateCase
-   */
-  etag?: string
   /**
    *
    * @type {string}
@@ -83,12 +70,6 @@ export interface CasesInputCreateCase {
    * @memberof CasesInputCreateCase
    */
   links?: Array<CasesInputCaseLink>
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCreateCase
-   */
-  name?: string
   /**
    *
    * @type {string}

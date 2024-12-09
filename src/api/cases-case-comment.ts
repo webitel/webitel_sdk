@@ -20,6 +20,18 @@ import { GeneralLookup } from './general-lookup'
  */
 export interface CasesCaseComment {
   /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesCaseComment
+   */
+  author?: GeneralLookup
+  /**
+   * Indicates if the comment can be edited by current user.
+   * @type {boolean}
+   * @memberof CasesCaseComment
+   */
+  canEdit?: boolean
+  /**
    * Optional relation to the associated case.
    * @type {string}
    * @memberof CasesCaseComment

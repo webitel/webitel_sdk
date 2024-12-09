@@ -116,27 +116,15 @@ export const SLAsApiAxiosParamCreator = function(
      *
      * @summary Delete an SLA
      * @param {string} id
-     * @param {string} slaId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSLA: async (
-      id: string,
-      slaId: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
+    deleteSLA: async (id: string, options: any = {}): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
       if (id === null || id === undefined) {
         throw new RequiredError(
           'id',
           'Required parameter id was null or undefined when calling deleteSLA.'
-        )
-      }
-      // verify required parameter 'slaId' is not null or undefined
-      if (slaId === null || slaId === undefined) {
-        throw new RequiredError(
-          'slaId',
-          'Required parameter slaId was null or undefined when calling deleteSLA.'
         )
       }
       const localVarPath = `/cases/slas/{id}`.replace(
@@ -163,10 +151,6 @@ export const SLAsApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (slaId !== undefined) {
-        localVarQueryParameter['slaId'] = slaId
       }
 
       localVarUrlObj.query = {
@@ -549,20 +533,18 @@ export const SLAsApiFp = function(configuration?: Configuration) {
      *
      * @summary Delete an SLA
      * @param {string} id
-     * @param {string} slaId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteSLA(
       id: string,
-      slaId: string,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLA>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
-      ).deleteSLA(id, slaId, options)
+      ).deleteSLA(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -733,17 +715,12 @@ export const SLAsApiFactory = function(
      *
      * @summary Delete an SLA
      * @param {string} id
-     * @param {string} slaId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSLA(
-      id: string,
-      slaId: string,
-      options?: any
-    ): AxiosPromise<CasesSLA> {
+    deleteSLA(id: string, options?: any): AxiosPromise<CasesSLA> {
       return SLAsApiFp(configuration)
-        .deleteSLA(id, slaId, options)
+        .deleteSLA(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -850,14 +827,13 @@ export class SLAsApi extends BaseAPI {
    *
    * @summary Delete an SLA
    * @param {string} id
-   * @param {string} slaId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAsApi
    */
-  public deleteSLA(id: string, slaId: string, options?: any) {
+  public deleteSLA(id: string, options?: any) {
     return SLAsApiFp(this.configuration)
-      .deleteSLA(id, slaId, options)
+      .deleteSLA(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

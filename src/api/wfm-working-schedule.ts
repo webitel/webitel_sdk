@@ -115,6 +115,12 @@ export interface WfmWorkingSchedule {
    * @type {string}
    * @memberof WfmWorkingSchedule
    */
+  total_agents?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WfmWorkingSchedule
+   */
   updated_at?: string
   /**
    *

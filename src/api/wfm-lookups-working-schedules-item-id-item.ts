@@ -109,6 +109,12 @@ export interface WfmLookupsWorkingSchedulesItemIdItem {
    * @type {string}
    * @memberof WfmLookupsWorkingSchedulesItemIdItem
    */
+  total_agents?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WfmLookupsWorkingSchedulesItemIdItem
+   */
   updated_at?: string
   /**
    *

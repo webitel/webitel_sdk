@@ -261,10 +261,11 @@ export const CasesApiAxiosParamCreator = function(
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q] covered by filters?
-     * @param {Array<string>} [qin]
+     * @param {string} [q]
+     * @param {Array<string>} [ids]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {string} [filters] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -272,9 +273,10 @@ export const CasesApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       q?: string,
-      qin?: Array<string>,
+      ids?: Array<string>,
       sort?: string,
       fields?: Array<string>,
+      filters?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/cases`
@@ -312,8 +314,8 @@ export const CasesApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (qin) {
-        localVarQueryParameter['qin'] = qin
+      if (ids) {
+        localVarQueryParameter['ids'] = ids
       }
 
       if (sort !== undefined) {
@@ -322,6 +324,10 @@ export const CasesApiAxiosParamCreator = function(
 
       if (fields) {
         localVarQueryParameter['fields'] = fields
+      }
+
+      if (filters !== undefined) {
+        localVarQueryParameter['filters'] = filters
       }
 
       localVarUrlObj.query = {
@@ -617,10 +623,11 @@ export const CasesApiFp = function(configuration?: Configuration) {
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q] covered by filters?
-     * @param {Array<string>} [qin]
+     * @param {string} [q]
+     * @param {Array<string>} [ids]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {string} [filters] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -628,16 +635,17 @@ export const CasesApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       q?: string,
-      qin?: Array<string>,
+      ids?: Array<string>,
       sort?: string,
       fields?: Array<string>,
+      filters?: string,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseList>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).searchCases(page, size, q, qin, sort, fields, options)
+      ).searchCases(page, size, q, ids, sort, fields, filters, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -778,10 +786,11 @@ export const CasesApiFactory = function(
      *
      * @param {number} [page]
      * @param {number} [size]
-     * @param {string} [q] covered by filters?
-     * @param {Array<string>} [qin]
+     * @param {string} [q]
+     * @param {Array<string>} [ids]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {string} [filters] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -789,13 +798,14 @@ export const CasesApiFactory = function(
       page?: number,
       size?: number,
       q?: string,
-      qin?: Array<string>,
+      ids?: Array<string>,
       sort?: string,
       fields?: Array<string>,
+      filters?: string,
       options?: any
     ): AxiosPromise<CasesCaseList> {
       return CasesApiFp(configuration)
-        .searchCases(page, size, q, qin, sort, fields, options)
+        .searchCases(page, size, q, ids, sort, fields, filters, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -898,10 +908,11 @@ export class CasesApi extends BaseAPI {
    *
    * @param {number} [page]
    * @param {number} [size]
-   * @param {string} [q] covered by filters?
-   * @param {Array<string>} [qin]
+   * @param {string} [q]
+   * @param {Array<string>} [ids]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
+   * @param {string} [filters] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
@@ -910,13 +921,14 @@ export class CasesApi extends BaseAPI {
     page?: number,
     size?: number,
     q?: string,
-    qin?: Array<string>,
+    ids?: Array<string>,
     sort?: string,
     fields?: Array<string>,
+    filters?: string,
     options?: any
   ) {
     return CasesApiFp(this.configuration)
-      .searchCases(page, size, q, qin, sort, fields, options)
+      .searchCases(page, size, q, ids, sort, fields, filters, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
