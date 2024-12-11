@@ -24,6 +24,12 @@ import { ApiUserPresence } from './api-user-presence'
  */
 export interface ApiUser {
   /**
+   * The \"chat_name\" field is used to store the name displayed externally on the platform. For example, \"chat_name\" is shown when an agent connects to chats with clients.
+   * @type {string}
+   * @memberof ApiUser
+   */
+  chat_name?: string
+  /**
    *
    * @type {ApiObjectId}
    * @memberof ApiUser
