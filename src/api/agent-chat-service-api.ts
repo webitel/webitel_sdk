@@ -41,6 +41,7 @@ export const AgentChatServiceApiAxiosParamCreator = function(
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {boolean} [onlyClosed] filter
+     * @param {boolean} [onlyUnprocessed]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -51,6 +52,7 @@ export const AgentChatServiceApiAxiosParamCreator = function(
       fields?: Array<string>,
       sort?: string,
       onlyClosed?: boolean,
+      onlyUnprocessed?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/agent/chats`
@@ -98,6 +100,10 @@ export const AgentChatServiceApiAxiosParamCreator = function(
 
       if (onlyClosed !== undefined) {
         localVarQueryParameter['only_closed'] = onlyClosed
+      }
+
+      if (onlyUnprocessed !== undefined) {
+        localVarQueryParameter['only_unprocessed'] = onlyUnprocessed
       }
 
       localVarUrlObj.query = {
@@ -200,6 +206,7 @@ export const AgentChatServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {boolean} [onlyClosed] filter
+     * @param {boolean} [onlyUnprocessed]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -210,6 +217,7 @@ export const AgentChatServiceApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       sort?: string,
       onlyClosed?: boolean,
+      onlyUnprocessed?: boolean,
       options?: any
     ): Promise<
       (
@@ -219,7 +227,16 @@ export const AgentChatServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await AgentChatServiceApiAxiosParamCreator(
         configuration
-      ).getAgentChats(size, page, q, fields, sort, onlyClosed, options)
+      ).getAgentChats(
+        size,
+        page,
+        q,
+        fields,
+        sort,
+        onlyClosed,
+        onlyUnprocessed,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -278,6 +295,7 @@ export const AgentChatServiceApiFactory = function(
      * @param {Array<string>} [fields]
      * @param {string} [sort]
      * @param {boolean} [onlyClosed] filter
+     * @param {boolean} [onlyUnprocessed]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -288,10 +306,20 @@ export const AgentChatServiceApiFactory = function(
       fields?: Array<string>,
       sort?: string,
       onlyClosed?: boolean,
+      onlyUnprocessed?: boolean,
       options?: any
     ): AxiosPromise<WebitelChatGetAgentChatsResponse> {
       return AgentChatServiceApiFp(configuration)
-        .getAgentChats(size, page, q, fields, sort, onlyClosed, options)
+        .getAgentChats(
+          size,
+          page,
+          q,
+          fields,
+          sort,
+          onlyClosed,
+          onlyUnprocessed,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -323,6 +351,7 @@ export class AgentChatServiceApi extends BaseAPI {
    * @param {Array<string>} [fields]
    * @param {string} [sort]
    * @param {boolean} [onlyClosed] filter
+   * @param {boolean} [onlyUnprocessed]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentChatServiceApi
@@ -334,10 +363,20 @@ export class AgentChatServiceApi extends BaseAPI {
     fields?: Array<string>,
     sort?: string,
     onlyClosed?: boolean,
+    onlyUnprocessed?: boolean,
     options?: any
   ) {
     return AgentChatServiceApiFp(this.configuration)
-      .getAgentChats(size, page, q, fields, sort, onlyClosed, options)
+      .getAgentChats(
+        size,
+        page,
+        q,
+        fields,
+        sort,
+        onlyClosed,
+        onlyUnprocessed,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 
