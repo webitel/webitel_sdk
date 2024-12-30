@@ -207,6 +207,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [slaConditionId] Filter by SLACondition Id.
+     * @param {string} [priorityId] filter by priority id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -219,6 +220,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
       id?: Array<string>,
       q?: string,
       slaConditionId?: string,
+      priorityId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'slaId' is not null or undefined
@@ -280,6 +282,10 @@ export const SLAConditionsApiAxiosParamCreator = function(
 
       if (slaConditionId !== undefined) {
         localVarQueryParameter['slaConditionId'] = slaConditionId
+      }
+
+      if (priorityId !== undefined) {
+        localVarQueryParameter['priorityId'] = priorityId
       }
 
       localVarUrlObj.query = {
@@ -642,6 +648,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [slaConditionId] Filter by SLACondition Id.
+     * @param {string} [priorityId] filter by priority id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -654,6 +661,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
       id?: Array<string>,
       q?: string,
       slaConditionId?: string,
+      priorityId?: string,
       options?: any
     ): Promise<
       (
@@ -672,6 +680,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
         id,
         q,
         slaConditionId,
+        priorityId,
         options
       )
       return (
@@ -845,6 +854,7 @@ export const SLAConditionsApiFactory = function(
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [slaConditionId] Filter by SLACondition Id.
+     * @param {string} [priorityId] filter by priority id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -857,6 +867,7 @@ export const SLAConditionsApiFactory = function(
       id?: Array<string>,
       q?: string,
       slaConditionId?: string,
+      priorityId?: string,
       options?: any
     ): AxiosPromise<CasesSLAConditionList> {
       return SLAConditionsApiFp(configuration)
@@ -869,6 +880,7 @@ export const SLAConditionsApiFactory = function(
           id,
           q,
           slaConditionId,
+          priorityId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -985,6 +997,7 @@ export class SLAConditionsApi extends BaseAPI {
    * @param {Array<string>} [id] Filter by unique IDs.
    * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {string} [slaConditionId] Filter by SLACondition Id.
+   * @param {string} [priorityId] filter by priority id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAConditionsApi
@@ -998,6 +1011,7 @@ export class SLAConditionsApi extends BaseAPI {
     id?: Array<string>,
     q?: string,
     slaConditionId?: string,
+    priorityId?: string,
     options?: any
   ) {
     return SLAConditionsApiFp(this.configuration)
@@ -1010,6 +1024,7 @@ export class SLAConditionsApi extends BaseAPI {
         id,
         q,
         slaConditionId,
+        priorityId,
         options
       )
       .then((request) => request(this.axios, this.basePath))

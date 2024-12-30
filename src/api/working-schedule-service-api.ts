@@ -24,9 +24,9 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject11 } from '../api'
+import { InlineObject10 } from '../api'
 // @ts-ignore
-import { InlineObject12 } from '../api'
+import { InlineObject11 } from '../api'
 // @ts-ignore
 import { WfmCreateWorkingScheduleRequest } from '../api'
 // @ts-ignore
@@ -335,13 +335,13 @@ export const WorkingScheduleServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject11} body
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingSchedule: async (
       itemId: string,
-      body: InlineObject11,
+      body: InlineObject10,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemId' is not null or undefined
@@ -415,13 +415,13 @@ export const WorkingScheduleServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} workingScheduleId
-     * @param {InlineObject12} body
+     * @param {InlineObject11} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingScheduleAddAgents: async (
       workingScheduleId: string,
-      body: InlineObject12,
+      body: InlineObject11,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'workingScheduleId' is not null or undefined
@@ -695,13 +695,13 @@ export const WorkingScheduleServiceApiFp = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject11} body
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateWorkingSchedule(
       itemId: string,
-      body: InlineObject11,
+      body: InlineObject10,
       options?: any
     ): Promise<
       (
@@ -726,13 +726,13 @@ export const WorkingScheduleServiceApiFp = function(
     /**
      *
      * @param {string} workingScheduleId
-     * @param {InlineObject12} body
+     * @param {InlineObject11} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateWorkingScheduleAddAgents(
       workingScheduleId: string,
-      body: InlineObject12,
+      body: InlineObject11,
       options?: any
     ): Promise<
       (
@@ -865,13 +865,13 @@ export const WorkingScheduleServiceApiFactory = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject11} body
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingSchedule(
       itemId: string,
-      body: InlineObject11,
+      body: InlineObject10,
       options?: any
     ): AxiosPromise<WfmUpdateWorkingScheduleResponse> {
       return WorkingScheduleServiceApiFp(configuration)
@@ -881,13 +881,13 @@ export const WorkingScheduleServiceApiFactory = function(
     /**
      *
      * @param {string} workingScheduleId
-     * @param {InlineObject12} body
+     * @param {InlineObject11} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingScheduleAddAgents(
       workingScheduleId: string,
-      body: InlineObject12,
+      body: InlineObject11,
       options?: any
     ): AxiosPromise<WfmUpdateWorkingScheduleAddAgentsResponse> {
       return WorkingScheduleServiceApiFp(configuration)
@@ -992,14 +992,14 @@ export class WorkingScheduleServiceApi extends BaseAPI {
   /**
    *
    * @param {string} itemId
-   * @param {InlineObject11} body
+   * @param {InlineObject10} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WorkingScheduleServiceApi
    */
   public updateWorkingSchedule(
     itemId: string,
-    body: InlineObject11,
+    body: InlineObject10,
     options?: any
   ) {
     return WorkingScheduleServiceApiFp(this.configuration)
@@ -1010,14 +1010,14 @@ export class WorkingScheduleServiceApi extends BaseAPI {
   /**
    *
    * @param {string} workingScheduleId
-   * @param {InlineObject12} body
+   * @param {InlineObject11} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WorkingScheduleServiceApi
    */
   public updateWorkingScheduleAddAgents(
     workingScheduleId: string,
-    body: InlineObject12,
+    body: InlineObject11,
     options?: any
   ) {
     return WorkingScheduleServiceApiFp(this.configuration)

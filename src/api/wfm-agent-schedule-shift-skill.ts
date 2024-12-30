@@ -11,18 +11,30 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
+import { WfmLookupEntity } from './wfm-lookup-entity'
 
 /**
  *
  * @export
- * @interface InlineObject3
+ * @interface WfmAgentScheduleShiftSkill
  */
-export interface InlineObject3 {
+export interface WfmAgentScheduleShiftSkill {
   /**
    *
-   * @type {WfmAgentWorkingConditions}
-   * @memberof InlineObject3
+   * @type {string}
+   * @memberof WfmAgentScheduleShiftSkill
    */
-  item?: WfmAgentWorkingConditions
+  capacity?: string
+  /**
+   *
+   * @type {boolean}
+   * @memberof WfmAgentScheduleShiftSkill
+   */
+  enabled?: boolean
+  /**
+   *
+   * @type {WfmLookupEntity}
+   * @memberof WfmAgentScheduleShiftSkill
+   */
+  skill?: WfmLookupEntity
 }

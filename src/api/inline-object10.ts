@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
+import { WfmLookupsWorkingSchedulesItemIdItem } from './wfm-lookups-working-schedules-item-id-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-con
 export interface InlineObject10 {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
+   * @type {WfmLookupsWorkingSchedulesItemIdItem}
    * @memberof InlineObject10
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  item?: WfmLookupsWorkingSchedulesItemIdItem
 }

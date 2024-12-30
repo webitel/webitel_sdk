@@ -14,25 +14,25 @@
 import { CasesRelatedCase } from './cases-related-case'
 
 /**
- *
+ * Paginated list of related cases.
  * @export
  * @interface CasesRelatedCaseList
  */
 export interface CasesRelatedCaseList {
   /**
-   *
+   * List of related cases on the current page.
    * @type {Array<CasesRelatedCase>}
    * @memberof CasesRelatedCaseList
    */
-  items?: Array<CasesRelatedCase>
+  data?: Array<CasesRelatedCase>
   /**
-   *
+   * Flag to indicate if more pages are available.
    * @type {boolean}
    * @memberof CasesRelatedCaseList
    */
   next?: boolean
   /**
-   *
+   * Current page number.
    * @type {string}
    * @memberof CasesRelatedCaseList
    */

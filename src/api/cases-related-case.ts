@@ -11,24 +11,18 @@
  * Do not edit the class manually.
  */
 
-import { CasesCase } from './cases-case'
+import { CasesRelatedCaseLookup } from './cases-related-case-lookup'
 import { CasesRelationType } from './cases-relation-type'
 import { GeneralLookup } from './general-lookup'
 
 /**
- *
+ * Represents a related case with its relationship details.
  * @export
  * @interface CasesRelatedCase
  */
 export interface CasesRelatedCase {
   /**
-   *
-   * @type {CasesCase}
-   * @memberof CasesRelatedCase
-   */
-  child?: CasesCase
-  /**
-   *
+   * Timestamp (in milliseconds) of when the relation was created.
    * @type {string}
    * @memberof CasesRelatedCase
    */
@@ -40,17 +34,23 @@ export interface CasesRelatedCase {
    */
   createdBy?: GeneralLookup
   /**
-   *
-   * @type {string}
-   * @memberof CasesRelatedCase
-   */
-  etag?: string
-  /**
-   *
+   * Unique identifier for the related case.
    * @type {string}
    * @memberof CasesRelatedCase
    */
   id?: string
+  /**
+   *
+   * @type {CasesRelatedCaseLookup}
+   * @memberof CasesRelatedCase
+   */
+  primaryCase?: CasesRelatedCaseLookup
+  /**
+   *
+   * @type {CasesRelatedCaseLookup}
+   * @memberof CasesRelatedCase
+   */
+  relatedCase?: CasesRelatedCaseLookup
   /**
    *
    * @type {CasesRelationType}
@@ -58,7 +58,7 @@ export interface CasesRelatedCase {
    */
   relationType?: CasesRelationType
   /**
-   *
+   * Timestamp (in milliseconds) of the last update.
    * @type {string}
    * @memberof CasesRelatedCase
    */
@@ -70,7 +70,7 @@ export interface CasesRelatedCase {
    */
   updatedBy?: GeneralLookup
   /**
-   *
+   * Version number of the related case, used for concurrency control.
    * @type {number}
    * @memberof CasesRelatedCase
    */

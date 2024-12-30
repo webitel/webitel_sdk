@@ -24,7 +24,7 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject7 } from '../api'
+import { InlineObject6 } from '../api'
 // @ts-ignore
 import { WfmCreateForecastCalculationRequest } from '../api'
 // @ts-ignore
@@ -412,13 +412,13 @@ export const ForecastCalculationServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject7} body
+     * @param {InlineObject6} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateForecastCalculation: async (
       itemId: string,
-      body: InlineObject7,
+      body: InlineObject6,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemId' is not null or undefined
@@ -670,13 +670,13 @@ export const ForecastCalculationServiceApiFp = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject7} body
+     * @param {InlineObject6} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateForecastCalculation(
       itemId: string,
-      body: InlineObject7,
+      body: InlineObject6,
       options?: any
     ): Promise<
       (
@@ -806,13 +806,13 @@ export const ForecastCalculationServiceApiFactory = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject7} body
+     * @param {InlineObject6} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateForecastCalculation(
       itemId: string,
-      body: InlineObject7,
+      body: InlineObject6,
       options?: any
     ): AxiosPromise<WfmUpdateForecastCalculationResponse> {
       return ForecastCalculationServiceApiFp(configuration)
@@ -931,14 +931,14 @@ export class ForecastCalculationServiceApi extends BaseAPI {
   /**
    *
    * @param {string} itemId
-   * @param {InlineObject7} body
+   * @param {InlineObject6} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ForecastCalculationServiceApi
    */
   public updateForecastCalculation(
     itemId: string,
-    body: InlineObject7,
+    body: InlineObject6,
     options?: any
   ) {
     return ForecastCalculationServiceApiFp(this.configuration)

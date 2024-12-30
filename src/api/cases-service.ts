@@ -81,6 +81,12 @@ export interface CasesService {
   rootId?: string
   /**
    *
+   * @type {boolean}
+   * @memberof CasesService
+   */
+  searched?: boolean
+  /**
+   *
    * @type {Array<CasesService>}
    * @memberof CasesService
    */

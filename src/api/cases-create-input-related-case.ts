@@ -11,18 +11,24 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
+import { CasesRelationType } from './cases-relation-type'
 
 /**
- *
+ * Input for creating a related case.
  * @export
- * @interface InlineObject3
+ * @interface CasesCreateInputRelatedCase
  */
-export interface InlineObject3 {
+export interface CasesCreateInputRelatedCase {
+  /**
+   * Related case details.
+   * @type {string}
+   * @memberof CasesCreateInputRelatedCase
+   */
+  relatedCaseId?: string
   /**
    *
-   * @type {WfmAgentWorkingConditions}
-   * @memberof InlineObject3
+   * @type {CasesRelationType}
+   * @memberof CasesCreateInputRelatedCase
    */
-  item?: WfmAgentWorkingConditions
+  relationType?: CasesRelationType
 }

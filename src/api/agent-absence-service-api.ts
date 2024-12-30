@@ -24,9 +24,9 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject5 } from '../api'
+import { InlineObject4 } from '../api'
 // @ts-ignore
-import { InlineObject6 } from '../api'
+import { InlineObject5 } from '../api'
 // @ts-ignore
 import { WfmCreateAgentAbsenceResponse } from '../api'
 // @ts-ignore
@@ -52,13 +52,13 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} itemAgentId
-     * @param {InlineObject5} body
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentAbsence: async (
       itemAgentId: string,
-      body: InlineObject5,
+      body: InlineObject4,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemAgentId' is not null or undefined
@@ -458,14 +458,14 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
      *
      * @param {string} itemAgentId
      * @param {string} itemAbsenceId
-     * @param {InlineObject6} body
+     * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentAbsence: async (
       itemAgentId: string,
       itemAbsenceId: string,
-      body: InlineObject6,
+      body: InlineObject5,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemAgentId' is not null or undefined
@@ -562,13 +562,13 @@ export const AgentAbsenceServiceApiFp = function(
     /**
      *
      * @param {string} itemAgentId
-     * @param {InlineObject5} body
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createAgentAbsence(
       itemAgentId: string,
-      body: InlineObject5,
+      body: InlineObject4,
       options?: any
     ): Promise<
       (
@@ -746,14 +746,14 @@ export const AgentAbsenceServiceApiFp = function(
      *
      * @param {string} itemAgentId
      * @param {string} itemAbsenceId
-     * @param {InlineObject6} body
+     * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAgentAbsence(
       itemAgentId: string,
       itemAbsenceId: string,
-      body: InlineObject6,
+      body: InlineObject5,
       options?: any
     ): Promise<
       (
@@ -791,13 +791,13 @@ export const AgentAbsenceServiceApiFactory = function(
     /**
      *
      * @param {string} itemAgentId
-     * @param {InlineObject5} body
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentAbsence(
       itemAgentId: string,
-      body: InlineObject5,
+      body: InlineObject4,
       options?: any
     ): AxiosPromise<WfmCreateAgentAbsenceResponse> {
       return AgentAbsenceServiceApiFp(configuration)
@@ -900,14 +900,14 @@ export const AgentAbsenceServiceApiFactory = function(
      *
      * @param {string} itemAgentId
      * @param {string} itemAbsenceId
-     * @param {InlineObject6} body
+     * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentAbsence(
       itemAgentId: string,
       itemAbsenceId: string,
-      body: InlineObject6,
+      body: InlineObject5,
       options?: any
     ): AxiosPromise<WfmUpdateAgentAbsenceResponse> {
       return AgentAbsenceServiceApiFp(configuration)
@@ -927,14 +927,14 @@ export class AgentAbsenceServiceApi extends BaseAPI {
   /**
    *
    * @param {string} itemAgentId
-   * @param {InlineObject5} body
+   * @param {InlineObject4} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentAbsenceServiceApi
    */
   public createAgentAbsence(
     itemAgentId: string,
-    body: InlineObject5,
+    body: InlineObject4,
     options?: any
   ) {
     return AgentAbsenceServiceApiFp(this.configuration)
@@ -1042,7 +1042,7 @@ export class AgentAbsenceServiceApi extends BaseAPI {
    *
    * @param {string} itemAgentId
    * @param {string} itemAbsenceId
-   * @param {InlineObject6} body
+   * @param {InlineObject5} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentAbsenceServiceApi
@@ -1050,7 +1050,7 @@ export class AgentAbsenceServiceApi extends BaseAPI {
   public updateAgentAbsence(
     itemAgentId: string,
     itemAbsenceId: string,
-    body: InlineObject6,
+    body: InlineObject5,
     options?: any
   ) {
     return AgentAbsenceServiceApiFp(this.configuration)

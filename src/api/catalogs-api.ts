@@ -184,10 +184,10 @@ export const CatalogsApiAxiosParamCreator = function(
      * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
      * @param {Array<string>} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the catalogs
-     * @param {string} [qQuery] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
-     * @param {'PARTIAL' | 'FULL'} [qFetchType] The type of data fetching for catalog services   - PARTIAL: Only essential fields like [ Id, Name, Description, Created/Updated at ].  Partial info includes only essential fields.  - FULL: The fetch type indicates whether to retrieve all available data for the catalog ( FULL ) or only essential fields ( PARTIAL ).  Full info includes all fields of the catalog.
+     * @param {string} [query] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
-     * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is unlimited,   meaning all nested services and sub-services will be included.
+     * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is limited by 3,   meaning all nested services and sub-services will be included.
+     * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -197,10 +197,10 @@ export const CatalogsApiAxiosParamCreator = function(
       fields?: Array<string>,
       sort?: Array<string>,
       id?: Array<string>,
-      qQuery?: string,
-      qFetchType?: 'PARTIAL' | 'FULL',
+      query?: string,
       state?: boolean,
       depth?: string,
+      subFields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/cases/catalogs`
@@ -246,12 +246,8 @@ export const CatalogsApiAxiosParamCreator = function(
         localVarQueryParameter['id'] = id
       }
 
-      if (qQuery !== undefined) {
-        localVarQueryParameter['q.query'] = qQuery
-      }
-
-      if (qFetchType !== undefined) {
-        localVarQueryParameter['q.fetchType'] = qFetchType
+      if (query !== undefined) {
+        localVarQueryParameter['query'] = query
       }
 
       if (state !== undefined) {
@@ -260,6 +256,10 @@ export const CatalogsApiAxiosParamCreator = function(
 
       if (depth !== undefined) {
         localVarQueryParameter['depth'] = depth
+      }
+
+      if (subFields) {
+        localVarQueryParameter['subFields'] = subFields
       }
 
       localVarUrlObj.query = {
@@ -582,10 +582,10 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
      * @param {Array<string>} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the catalogs
-     * @param {string} [qQuery] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
-     * @param {'PARTIAL' | 'FULL'} [qFetchType] The type of data fetching for catalog services   - PARTIAL: Only essential fields like [ Id, Name, Description, Created/Updated at ].  Partial info includes only essential fields.  - FULL: The fetch type indicates whether to retrieve all available data for the catalog ( FULL ) or only essential fields ( PARTIAL ).  Full info includes all fields of the catalog.
+     * @param {string} [query] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
-     * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is unlimited,   meaning all nested services and sub-services will be included.
+     * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is limited by 3,   meaning all nested services and sub-services will be included.
+     * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -595,10 +595,10 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       sort?: Array<string>,
       id?: Array<string>,
-      qQuery?: string,
-      qFetchType?: 'PARTIAL' | 'FULL',
+      query?: string,
       state?: boolean,
       depth?: string,
+      subFields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -614,10 +614,10 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
         fields,
         sort,
         id,
-        qQuery,
-        qFetchType,
+        query,
         state,
         depth,
+        subFields,
         options
       )
       return (
@@ -770,10 +770,10 @@ export const CatalogsApiFactory = function(
      * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
      * @param {Array<string>} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the catalogs
-     * @param {string} [qQuery] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
-     * @param {'PARTIAL' | 'FULL'} [qFetchType] The type of data fetching for catalog services   - PARTIAL: Only essential fields like [ Id, Name, Description, Created/Updated at ].  Partial info includes only essential fields.  - FULL: The fetch type indicates whether to retrieve all available data for the catalog ( FULL ) or only essential fields ( PARTIAL ).  Full info includes all fields of the catalog.
+     * @param {string} [query] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
-     * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is unlimited,   meaning all nested services and sub-services will be included.
+     * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is limited by 3,   meaning all nested services and sub-services will be included.
+     * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -783,10 +783,10 @@ export const CatalogsApiFactory = function(
       fields?: Array<string>,
       sort?: Array<string>,
       id?: Array<string>,
-      qQuery?: string,
-      qFetchType?: 'PARTIAL' | 'FULL',
+      query?: string,
       state?: boolean,
       depth?: string,
+      subFields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCatalogList> {
       return CatalogsApiFp(configuration)
@@ -796,10 +796,10 @@ export const CatalogsApiFactory = function(
           fields,
           sort,
           id,
-          qQuery,
-          qFetchType,
+          query,
           state,
           depth,
+          subFields,
           options
         )
         .then((request) => request(axios, basePath))
@@ -899,10 +899,10 @@ export class CatalogsApi extends BaseAPI {
    * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
    * @param {Array<string>} [sort] Sorting options by fields
    * @param {Array<string>} [id] List of IDs to filter the catalogs
-   * @param {string} [qQuery] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
-   * @param {'PARTIAL' | 'FULL'} [qFetchType] The type of data fetching for catalog services   - PARTIAL: Only essential fields like [ Id, Name, Description, Created/Updated at ].  Partial info includes only essential fields.  - FULL: The fetch type indicates whether to retrieve all available data for the catalog ( FULL ) or only essential fields ( PARTIAL ).  Full info includes all fields of the catalog.
+   * @param {string} [query] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {boolean} [state] Filter by state (true for active, false for inactive)
-   * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is unlimited,   meaning all nested services and sub-services will be included.
+   * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is limited by 3,   meaning all nested services and sub-services will be included.
+   * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogsApi
@@ -913,10 +913,10 @@ export class CatalogsApi extends BaseAPI {
     fields?: Array<string>,
     sort?: Array<string>,
     id?: Array<string>,
-    qQuery?: string,
-    qFetchType?: 'PARTIAL' | 'FULL',
+    query?: string,
     state?: boolean,
     depth?: string,
+    subFields?: Array<string>,
     options?: any
   ) {
     return CatalogsApiFp(this.configuration)
@@ -926,10 +926,10 @@ export class CatalogsApi extends BaseAPI {
         fields,
         sort,
         id,
-        qQuery,
-        qFetchType,
+        query,
         state,
         depth,
+        subFields,
         options
       )
       .then((request) => request(this.axios, this.basePath))

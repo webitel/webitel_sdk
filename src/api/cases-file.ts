@@ -20,6 +20,12 @@ import { GeneralLookup } from './general-lookup'
  */
 export interface CasesFile {
   /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesFile
+   */
+  author?: GeneralLookup
+  /**
    * Creation timestamp in Unix milliseconds.
    * @type {string}
    * @memberof CasesFile
@@ -55,4 +61,10 @@ export interface CasesFile {
    * @memberof CasesFile
    */
   size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesFile
+   */
+  url?: string
 }

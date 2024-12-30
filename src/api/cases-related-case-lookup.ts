@@ -11,30 +11,34 @@
  * Do not edit the class manually.
  */
 
-import { CasesRelationType } from './cases-relation-type'
-
 /**
- * Input for creating or updating a related case.
+ * RelatedCaseLookup is created specifically to include the subject field.
  * @export
- * @interface CasesInputRelatedCase
+ * @interface CasesRelatedCaseLookup
  */
-export interface CasesInputRelatedCase {
-  /**
-   * Primary case details.
-   * @type {string}
-   * @memberof CasesInputRelatedCase
-   */
-  primaryCaseId?: string
-  /**
-   * Related case details.
-   * @type {string}
-   * @memberof CasesInputRelatedCase
-   */
-  relatedCaseId?: string
+export interface CasesRelatedCaseLookup {
   /**
    *
-   * @type {CasesRelationType}
-   * @memberof CasesInputRelatedCase
+   * @type {string}
+   * @memberof CasesRelatedCaseLookup
    */
-  relationType?: CasesRelationType
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesRelatedCaseLookup
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesRelatedCaseLookup
+   */
+  subject?: string
+  /**
+   *
+   * @type {number}
+   * @memberof CasesRelatedCaseLookup
+   */
+  ver?: number
 }

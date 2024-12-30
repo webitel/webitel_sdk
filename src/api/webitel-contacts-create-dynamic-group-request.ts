@@ -30,7 +30,7 @@ export interface WebitelContactsCreateDynamicGroupRequest {
    * @type {string}
    * @memberof WebitelContactsCreateDynamicGroupRequest
    */
-  default_group?: string
+  default_group_id?: string
   /**
    * The description of the dynamic group.
    * @type {string}

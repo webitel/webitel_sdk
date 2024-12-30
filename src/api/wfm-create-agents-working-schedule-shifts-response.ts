@@ -11,18 +11,18 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
+import { WfmAgentWorkingSchedule } from './wfm-agent-working-schedule'
 
 /**
  *
  * @export
- * @interface InlineObject3
+ * @interface WfmCreateAgentsWorkingScheduleShiftsResponse
  */
-export interface InlineObject3 {
+export interface WfmCreateAgentsWorkingScheduleShiftsResponse {
   /**
    *
-   * @type {WfmAgentWorkingConditions}
-   * @memberof InlineObject3
+   * @type {Array<WfmAgentWorkingSchedule>}
+   * @memberof WfmCreateAgentsWorkingScheduleShiftsResponse
    */
-  item?: WfmAgentWorkingConditions
+  items?: Array<WfmAgentWorkingSchedule>
 }

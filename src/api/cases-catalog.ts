@@ -70,6 +70,12 @@ export interface CasesCatalog {
   prefix?: string
   /**
    *
+   * @type {boolean}
+   * @memberof CasesCatalog
+   */
+  searched?: boolean
+  /**
+   *
    * @type {Array<CasesService>}
    * @memberof CasesCatalog
    */

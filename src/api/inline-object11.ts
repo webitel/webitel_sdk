@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingSchedulesItemIdItem } from './wfm-lookups-working-schedules-item-id-item'
+import { WfmLookupEntity } from './wfm-lookup-entity'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmLookupsWorkingSchedulesItemIdItem } from './wfm-lookups-working-sche
 export interface InlineObject11 {
   /**
    *
-   * @type {WfmLookupsWorkingSchedulesItemIdItem}
+   * @type {Array<WfmLookupEntity>}
    * @memberof InlineObject11
    */
-  item?: WfmLookupsWorkingSchedulesItemIdItem
+  agents?: Array<WfmLookupEntity>
 }

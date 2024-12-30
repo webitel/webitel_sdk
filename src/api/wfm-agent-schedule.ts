@@ -13,7 +13,6 @@
 
 import { WfmAgentAbsenceType } from './wfm-agent-absence-type'
 import { WfmAgentScheduleShift } from './wfm-agent-schedule-shift'
-import { WfmAgentScheduleType } from './wfm-agent-schedule-type'
 
 /**
  *
@@ -35,14 +34,14 @@ export interface WfmAgentSchedule {
   date?: string
   /**
    *
-   * @type {Array<WfmAgentScheduleShift>}
+   * @type {boolean}
    * @memberof WfmAgentSchedule
    */
-  shifts?: Array<WfmAgentScheduleShift>
+  locked?: boolean
   /**
    *
-   * @type {WfmAgentScheduleType}
+   * @type {WfmAgentScheduleShift}
    * @memberof WfmAgentSchedule
    */
-  type?: WfmAgentScheduleType
+  shift?: WfmAgentScheduleShift
 }

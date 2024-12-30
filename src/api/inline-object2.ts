@@ -11,8 +11,9 @@
  * Do not edit the class manually.
  */
 
-import { CasesCase } from './cases-case'
-import { CasesRelationType } from './cases-relation-type'
+import { WfmAgentScheduleShift } from './wfm-agent-schedule-shift'
+import { WfmFilterBetween } from './wfm-filter-between'
+import { WfmLookupEntity } from './wfm-lookup-entity'
 
 /**
  *
@@ -22,14 +23,20 @@ import { CasesRelationType } from './cases-relation-type'
 export interface InlineObject2 {
   /**
    *
-   * @type {CasesCase}
+   * @type {Array<WfmLookupEntity>}
    * @memberof InlineObject2
    */
-  relatedTo?: CasesCase
+  agents?: Array<WfmLookupEntity>
   /**
    *
-   * @type {CasesRelationType}
+   * @type {WfmFilterBetween}
    * @memberof InlineObject2
    */
-  relationType?: CasesRelationType
+  date?: WfmFilterBetween
+  /**
+   * Map key is a day of week: 0 - Sunday, ..., 6 - Saturday.
+   * @type {{ [key: string]: WfmAgentScheduleShift; }}
+   * @memberof InlineObject2
+   */
+  items?: { [key: string]: WfmAgentScheduleShift }
 }

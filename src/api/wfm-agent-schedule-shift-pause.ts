@@ -11,74 +11,66 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentScheduleShiftPause } from './wfm-agent-schedule-shift-pause'
-import { WfmAgentScheduleShiftSkill } from './wfm-agent-schedule-shift-skill'
 import { WfmLookupEntity } from './wfm-lookup-entity'
 
 /**
  *
  * @export
- * @interface WfmAgentScheduleShift
+ * @interface WfmAgentScheduleShiftPause
  */
-export interface WfmAgentScheduleShift {
+export interface WfmAgentScheduleShiftPause {
+  /**
+   *
+   * @type {WfmLookupEntity}
+   * @memberof WfmAgentScheduleShiftPause
+   */
+  cause?: WfmLookupEntity
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentScheduleShiftPause
    */
   created_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentScheduleShiftPause
    */
   created_by?: WfmLookupEntity
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentScheduleShiftPause
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentScheduleShiftPause
    */
   end?: string
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentScheduleShiftPause
    */
   id?: string
   /**
    *
-   * @type {Array<WfmAgentScheduleShiftPause>}
-   * @memberof WfmAgentScheduleShift
-   */
-  pauses?: Array<WfmAgentScheduleShiftPause>
-  /**
-   *
-   * @type {Array<WfmAgentScheduleShiftSkill>}
-   * @memberof WfmAgentScheduleShift
-   */
-  skills?: Array<WfmAgentScheduleShiftSkill>
-  /**
-   *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentScheduleShiftPause
    */
   start?: string
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentScheduleShiftPause
    */
   updated_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentScheduleShiftPause
    */
   updated_by?: WfmLookupEntity
 }

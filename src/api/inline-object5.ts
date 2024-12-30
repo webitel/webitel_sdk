@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentsItemAgentIdAbsencesItem } from './wfm-agents-item-agent-id-absences-item'
+import { WfmAgentsItemAgentIdAbsencesItemAbsenceIdItem } from './wfm-agents-item-agent-id-absences-item-absence-id-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmAgentsItemAgentIdAbsencesItem } from './wfm-agents-item-agent-id-abs
 export interface InlineObject5 {
   /**
    *
-   * @type {WfmAgentsItemAgentIdAbsencesItem}
+   * @type {WfmAgentsItemAgentIdAbsencesItemAbsenceIdItem}
    * @memberof InlineObject5
    */
-  item?: WfmAgentsItemAgentIdAbsencesItem
+  item?: WfmAgentsItemAgentIdAbsencesItemAbsenceIdItem
 }

@@ -12,18 +12,19 @@
  */
 
 /**
- *
+ * Enum for relation types between cases.
  * @export
  * @enum {string}
  */
 export enum CasesRelationType {
-  BlockedBy = 'BlockedBy',
-  Blocks = 'Blocks',
-  Duplicates = 'Duplicates',
-  DuplicatedBy = 'DuplicatedBy',
-  Causes = 'Causes',
-  CausedBy = 'CausedBy',
-  IsChildOf = 'IsChildOf',
-  IsParentOf = 'IsParentOf',
-  RelatesTo = 'RelatesTo',
+  RELATIONTYPEUNSPECIFIED = 'RELATION_TYPE_UNSPECIFIED',
+  DUPLICATES = 'DUPLICATES',
+  ISDUPLICATEDBY = 'IS_DUPLICATED_BY',
+  BLOCKS = 'BLOCKS',
+  ISBLOCKEDBY = 'IS_BLOCKED_BY',
+  CAUSES = 'CAUSES',
+  ISCAUSEDBY = 'IS_CAUSED_BY',
+  ISCHILDOF = 'IS_CHILD_OF',
+  ISPARENTOF = 'IS_PARENT_OF',
+  RELATESTO = 'RELATES_TO',
 }

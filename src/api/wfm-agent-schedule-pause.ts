@@ -11,74 +11,66 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentScheduleShiftPause } from './wfm-agent-schedule-shift-pause'
-import { WfmAgentScheduleShiftSkill } from './wfm-agent-schedule-shift-skill'
 import { WfmLookupEntity } from './wfm-lookup-entity'
 
 /**
  *
  * @export
- * @interface WfmAgentScheduleShift
+ * @interface WfmAgentSchedulePause
  */
-export interface WfmAgentScheduleShift {
+export interface WfmAgentSchedulePause {
+  /**
+   *
+   * @type {WfmLookupEntity}
+   * @memberof WfmAgentSchedulePause
+   */
+  cause?: WfmLookupEntity
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentSchedulePause
    */
   created_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentSchedulePause
    */
   created_by?: WfmLookupEntity
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentSchedulePause
    */
   domain_id?: string
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentSchedulePause
    */
   end?: string
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentSchedulePause
    */
   id?: string
   /**
    *
-   * @type {Array<WfmAgentScheduleShiftPause>}
-   * @memberof WfmAgentScheduleShift
-   */
-  pauses?: Array<WfmAgentScheduleShiftPause>
-  /**
-   *
-   * @type {Array<WfmAgentScheduleShiftSkill>}
-   * @memberof WfmAgentScheduleShift
-   */
-  skills?: Array<WfmAgentScheduleShiftSkill>
-  /**
-   *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentSchedulePause
    */
   start?: string
   /**
    *
    * @type {string}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentSchedulePause
    */
   updated_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmAgentScheduleShift
+   * @memberof WfmAgentSchedulePause
    */
   updated_by?: WfmLookupEntity
 }
