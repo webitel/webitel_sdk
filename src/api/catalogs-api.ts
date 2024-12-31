@@ -286,11 +286,15 @@ export const CatalogsApiAxiosParamCreator = function(
      *
      * @summary Locate a catalog by ID
      * @param {string} id ID of the catalog to be located
+     * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
+     * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateCatalog: async (
       id: string,
+      fields?: Array<string>,
+      subFields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -324,6 +328,14 @@ export const CatalogsApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (subFields) {
+        localVarQueryParameter['subFields'] = subFields
       }
 
       localVarUrlObj.query = {
@@ -635,11 +647,15 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
      *
      * @summary Locate a catalog by ID
      * @param {string} id ID of the catalog to be located
+     * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
+     * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async locateCatalog(
       id: string,
+      fields?: Array<string>,
+      subFields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -649,7 +665,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
-      ).locateCatalog(id, options)
+      ).locateCatalog(id, fields, subFields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -808,15 +824,19 @@ export const CatalogsApiFactory = function(
      *
      * @summary Locate a catalog by ID
      * @param {string} id ID of the catalog to be located
+     * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
+     * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateCatalog(
       id: string,
+      fields?: Array<string>,
+      subFields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesLocateCatalogResponse> {
       return CatalogsApiFp(configuration)
-        .locateCatalog(id, options)
+        .locateCatalog(id, fields, subFields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -939,13 +959,20 @@ export class CatalogsApi extends BaseAPI {
    *
    * @summary Locate a catalog by ID
    * @param {string} id ID of the catalog to be located
+   * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
+   * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogsApi
    */
-  public locateCatalog(id: string, options?: any) {
+  public locateCatalog(
+    id: string,
+    fields?: Array<string>,
+    subFields?: Array<string>,
+    options?: any
+  ) {
     return CatalogsApiFp(this.configuration)
-      .locateCatalog(id, options)
+      .locateCatalog(id, fields, subFields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
