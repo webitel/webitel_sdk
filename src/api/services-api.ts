@@ -186,6 +186,7 @@ export const ServicesApiAxiosParamCreator = function(
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [rootId] Filter services by catalog ID (required)
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -197,6 +198,7 @@ export const ServicesApiAxiosParamCreator = function(
       q?: string,
       rootId?: string,
       state?: boolean,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/cases/services`
@@ -250,6 +252,10 @@ export const ServicesApiAxiosParamCreator = function(
         localVarQueryParameter['state'] = state
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -274,11 +280,13 @@ export const ServicesApiAxiosParamCreator = function(
      *
      * @summary Locate a service by ID
      * @param {string} id ID of the service to be located
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateService: async (
       id: string,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -312,6 +320,10 @@ export const ServicesApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       localVarUrlObj.query = {
@@ -572,6 +584,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [rootId] Filter services by catalog ID (required)
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -583,6 +596,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
       q?: string,
       rootId?: string,
       state?: boolean,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -592,7 +606,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
-      ).listServices(page, size, sort, id, q, rootId, state, options)
+      ).listServices(page, size, sort, id, q, rootId, state, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -608,11 +622,13 @@ export const ServicesApiFp = function(configuration?: Configuration) {
      *
      * @summary Locate a service by ID
      * @param {string} id ID of the service to be located
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async locateService(
       id: string,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -622,7 +638,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
-      ).locateService(id, options)
+      ).locateService(id, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -745,6 +761,7 @@ export const ServicesApiFactory = function(
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [rootId] Filter services by catalog ID (required)
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -756,25 +773,28 @@ export const ServicesApiFactory = function(
       q?: string,
       rootId?: string,
       state?: boolean,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesServiceList> {
       return ServicesApiFp(configuration)
-        .listServices(page, size, sort, id, q, rootId, state, options)
+        .listServices(page, size, sort, id, q, rootId, state, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary Locate a service by ID
      * @param {string} id ID of the service to be located
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateService(
       id: string,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesLocateServiceResponse> {
       return ServicesApiFp(configuration)
-        .locateService(id, options)
+        .locateService(id, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -859,6 +879,7 @@ export class ServicesApi extends BaseAPI {
    * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {string} [rootId] Filter services by catalog ID (required)
    * @param {boolean} [state] Filter by state (true for active, false for inactive)
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ServicesApi
@@ -871,10 +892,11 @@ export class ServicesApi extends BaseAPI {
     q?: string,
     rootId?: string,
     state?: boolean,
+    fields?: Array<string>,
     options?: any
   ) {
     return ServicesApiFp(this.configuration)
-      .listServices(page, size, sort, id, q, rootId, state, options)
+      .listServices(page, size, sort, id, q, rootId, state, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -882,13 +904,14 @@ export class ServicesApi extends BaseAPI {
    *
    * @summary Locate a service by ID
    * @param {string} id ID of the service to be located
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ServicesApi
    */
-  public locateService(id: string, options?: any) {
+  public locateService(id: string, fields?: Array<string>, options?: any) {
     return ServicesApiFp(this.configuration)
-      .locateService(id, options)
+      .locateService(id, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

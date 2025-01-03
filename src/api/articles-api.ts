@@ -30,6 +30,10 @@ import { WebitelKnowledgebaseArticle } from '../api'
 // @ts-ignore
 import { WebitelKnowledgebaseArticleList } from '../api'
 // @ts-ignore
+import { WebitelKnowledgebaseArticleVersion } from '../api'
+// @ts-ignore
+import { WebitelKnowledgebaseArticleVersionList } from '../api'
+// @ts-ignore
 import { WebitelKnowledgebaseAttachmentList } from '../api'
 // @ts-ignore
 import { WebitelKnowledgebaseInputArticle } from '../api'
@@ -41,6 +45,95 @@ export const ArticlesApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
+    /**
+     *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    articleVersionsList: async (
+      spaceId: string,
+      articleId: string,
+      page?: number,
+      size?: number,
+      sort?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'spaceId' is not null or undefined
+      if (spaceId === null || spaceId === undefined) {
+        throw new RequiredError(
+          'spaceId',
+          'Required parameter spaceId was null or undefined when calling articleVersionsList.'
+        )
+      }
+      // verify required parameter 'articleId' is not null or undefined
+      if (articleId === null || articleId === undefined) {
+        throw new RequiredError(
+          'articleId',
+          'Required parameter articleId was null or undefined when calling articleVersionsList.'
+        )
+      }
+      const localVarPath = `/spaces/{space_id}/articles/{article_id}/history`
+        .replace(`{${'space_id'}}`, encodeURIComponent(String(spaceId)))
+        .replace(`{${'article_id'}}`, encodeURIComponent(String(articleId)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (sort) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
     /**
      *
      * @param {string} spaceId Space ID associated with.
@@ -600,6 +693,87 @@ export const ArticlesApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {string} versionId The unique ID of version record
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    locateArticleVersion: async (
+      spaceId: string,
+      articleId: string,
+      versionId: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'spaceId' is not null or undefined
+      if (spaceId === null || spaceId === undefined) {
+        throw new RequiredError(
+          'spaceId',
+          'Required parameter spaceId was null or undefined when calling locateArticleVersion.'
+        )
+      }
+      // verify required parameter 'articleId' is not null or undefined
+      if (articleId === null || articleId === undefined) {
+        throw new RequiredError(
+          'articleId',
+          'Required parameter articleId was null or undefined when calling locateArticleVersion.'
+        )
+      }
+      // verify required parameter 'versionId' is not null or undefined
+      if (versionId === null || versionId === undefined) {
+        throw new RequiredError(
+          'versionId',
+          'Required parameter versionId was null or undefined when calling locateArticleVersion.'
+        )
+      }
+      const localVarPath = `/spaces/{space_id}/articles/{article_id}/history/{version_id}`
+        .replace(`{${'space_id'}}`, encodeURIComponent(String(spaceId)))
+        .replace(`{${'article_id'}}`, encodeURIComponent(String(articleId)))
+        .replace(`{${'version_id'}}`, encodeURIComponent(String(versionId)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Update the space\'s Article details.
      * @param {string} spaceId Link space ID.
      * @param {string} etag Unique ID of the latest version of an existing resource.
@@ -702,6 +876,43 @@ export const ArticlesApiAxiosParamCreator = function(
  */
 export const ArticlesApiFp = function(configuration?: Configuration) {
   return {
+    /**
+     *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async articleVersionsList(
+      spaceId: string,
+      articleId: string,
+      page?: number,
+      size?: number,
+      sort?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelKnowledgebaseArticleVersionList>
+    > {
+      const localVarAxiosArgs = await ArticlesApiAxiosParamCreator(
+        configuration
+      ).articleVersionsList(spaceId, articleId, page, size, sort, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
     /**
      *
      * @param {string} spaceId Space ID associated with.
@@ -956,6 +1167,39 @@ export const ArticlesApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {string} versionId The unique ID of version record
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async locateArticleVersion(
+      spaceId: string,
+      articleId: string,
+      versionId: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelKnowledgebaseArticleVersion>
+    > {
+      const localVarAxiosArgs = await ArticlesApiAxiosParamCreator(
+        configuration
+      ).locateArticleVersion(spaceId, articleId, versionId, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Update the space\'s Article details.
      * @param {string} spaceId Link space ID.
      * @param {string} etag Unique ID of the latest version of an existing resource.
@@ -1003,6 +1247,28 @@ export const ArticlesApiFactory = function(
   axios?: AxiosInstance
 ) {
   return {
+    /**
+     *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+     * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    articleVersionsList(
+      spaceId: string,
+      articleId: string,
+      page?: number,
+      size?: number,
+      sort?: Array<string>,
+      options?: any
+    ): AxiosPromise<WebitelKnowledgebaseArticleVersionList> {
+      return ArticlesApiFp(configuration)
+        .articleVersionsList(spaceId, articleId, page, size, sort, options)
+        .then((request) => request(axios, basePath))
+    },
     /**
      *
      * @param {string} spaceId Space ID associated with.
@@ -1167,6 +1433,24 @@ export const ArticlesApiFactory = function(
     },
     /**
      *
+     * @param {string} spaceId Space ID associated with.
+     * @param {string} articleId Record(s) with unique ID only.
+     * @param {string} versionId The unique ID of version record
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    locateArticleVersion(
+      spaceId: string,
+      articleId: string,
+      versionId: string,
+      options?: any
+    ): AxiosPromise<WebitelKnowledgebaseArticleVersion> {
+      return ArticlesApiFp(configuration)
+        .locateArticleVersion(spaceId, articleId, versionId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Update the space\'s Article details.
      * @param {string} spaceId Link space ID.
      * @param {string} etag Unique ID of the latest version of an existing resource.
@@ -1196,6 +1480,30 @@ export const ArticlesApiFactory = function(
  * @extends {BaseAPI}
  */
 export class ArticlesApi extends BaseAPI {
+  /**
+   *
+   * @param {string} spaceId Space ID associated with.
+   * @param {string} articleId Record(s) with unique ID only.
+   * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
+   * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
+   * @param {Array<string>} [sort] Sort the result according to fields.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ArticlesApi
+   */
+  public articleVersionsList(
+    spaceId: string,
+    articleId: string,
+    page?: number,
+    size?: number,
+    sort?: Array<string>,
+    options?: any
+  ) {
+    return ArticlesApiFp(this.configuration)
+      .articleVersionsList(spaceId, articleId, page, size, sort, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @param {string} spaceId Space ID associated with.
@@ -1367,6 +1675,26 @@ export class ArticlesApi extends BaseAPI {
   ) {
     return ArticlesApiFp(this.configuration)
       .locateArticle(spaceId, etag, fields, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} spaceId Space ID associated with.
+   * @param {string} articleId Record(s) with unique ID only.
+   * @param {string} versionId The unique ID of version record
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ArticlesApi
+   */
+  public locateArticleVersion(
+    spaceId: string,
+    articleId: string,
+    versionId: string,
+    options?: any
+  ) {
+    return ArticlesApiFp(this.configuration)
+      .locateArticleVersion(spaceId, articleId, versionId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
