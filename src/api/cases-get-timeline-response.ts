@@ -11,28 +11,30 @@
  * Do not edit the class manually.
  */
 
+import { CasesDayTimeline } from './cases-day-timeline'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface CasesGetTimelineResponse
  */
-export interface CasesInputCaseLink {
+export interface CasesGetTimelineResponse {
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {Array<CasesDayTimeline>}
+   * @memberof CasesGetTimelineResponse
    */
-  id?: string
+  days?: Array<CasesDayTimeline>
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {boolean}
+   * @memberof CasesGetTimelineResponse
    */
-  name?: string
+  next?: boolean
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {number}
+   * @memberof CasesGetTimelineResponse
    */
-  url?: string
+  page?: number
 }

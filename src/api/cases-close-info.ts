@@ -14,7 +14,7 @@
 import { GeneralLookup } from './general-lookup'
 
 /**
- *
+ * Message representing close information for a case.
  * @export
  * @interface CasesCloseInfo
  */
@@ -26,7 +26,7 @@ export interface CasesCloseInfo {
    */
   closeReason?: GeneralLookup
   /**
-   *
+   * Result or reason for closing the case.
    * @type {string}
    * @memberof CasesCloseInfo
    */

@@ -30,11 +30,11 @@ import { CasesCaseList } from '../api'
 // @ts-ignore
 import { CasesInputCreateCase } from '../api'
 // @ts-ignore
-import { Changes } from '../api'
-// @ts-ignore
-import { Changes1 } from '../api'
-// @ts-ignore
 import { GooglerpcStatus } from '../api'
+// @ts-ignore
+import { InputDataWithUpdatedFields } from '../api'
+// @ts-ignore
+import { InputDataWithUpdatedFields1 } from '../api'
 /**
  * CasesApi - axios parameter creator
  * @export
@@ -45,9 +45,9 @@ export const CasesApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @summary on create, we should accept service and all parameters that correspond to it, priority have the fields that were directly set from the front-end and if they are empty we should fill them from service (we can\'t change the SLA and SLA conditions) etag doesn\'t play any role on this API
-     * @param {CasesInputCreateCase} input
-     * @param {Array<string>} [fields] Result fields to include in the response.
+     * @summary RPC method for creating a new case.
+     * @param {CasesInputCreateCase} input Input data for creating the case.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -120,27 +120,27 @@ export const CasesApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary on delete, we should require etag, to understand if user has right version of the case also will be deleted all objects connected to the case, such as comments, related cases, links and files
-     * @param {string} etag identifier of the object
+     * @summary RPC method for deleting an existing case by its etag.
+     * @param {string} id identifier of the object
      * @param {Array<string>} [fields] fields to return in deleted object
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteCase: async (
-      etag: string,
+      id: string,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'etag' is not null or undefined
-      if (etag === null || etag === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'etag',
-          'Required parameter etag was null or undefined when calling deleteCase.'
+          'id',
+          'Required parameter id was null or undefined when calling deleteCase.'
         )
       }
-      const localVarPath = `/cases/{etag}`.replace(
-        `{${'etag'}}`,
-        encodeURIComponent(String(etag))
+      const localVarPath = `/cases/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -190,26 +190,27 @@ export const CasesApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} etag
+     * @summary RPC method to retrieve a specific case by its etag identifier.
+     * @param {string} id
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateCase: async (
-      etag: string,
+      id: string,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'etag' is not null or undefined
-      if (etag === null || etag === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'etag',
-          'Required parameter etag was null or undefined when calling locateCase.'
+          'id',
+          'Required parameter id was null or undefined when calling locateCase.'
         )
       }
-      const localVarPath = `/cases/{etag}`.replace(
-        `{${'etag'}}`,
-        encodeURIComponent(String(etag))
+      const localVarPath = `/cases/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -259,12 +260,13 @@ export const CasesApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {Array<string>} [ids]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
+     * @summary RPC method for searching cases.
+     * @param {number} [page] Page number for pagination.
+     * @param {number} [size] Number of results per page.
+     * @param {string} [q] Query string for searching cases.
+     * @param {Array<string>} [ids] List of specific case IDs to retrieve.
+     * @param {string} [sort] Sorting criteria (e.g., field:asc).
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {string} [filters] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -352,24 +354,26 @@ export const CasesApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary on update, we should be able to accept service and all parameters that correspond to it, if service and corresponding to it fields were changed simultaneously then priority have service and dependent fields set from the service automatically (we can\'t change the SLA, SLA conditions ) etag is required to update the true version of the case
-     * @param {string} inputEtag
-     * @param {Changes} input
-     * @param {Array<string>} [fields] fields to return in resulting object
+     * @summary RPC method for updating an existing case.
+     * @param {string} inputId
+     * @param {InputDataWithUpdatedFields} input
+     * @param {Array<string>} [xJsonMask] List of JSON fields to update.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCase: async (
-      inputEtag: string,
-      input: Changes,
+      inputId: string,
+      input: InputDataWithUpdatedFields,
+      xJsonMask?: Array<string>,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'inputEtag' is not null or undefined
-      if (inputEtag === null || inputEtag === undefined) {
+      // verify required parameter 'inputId' is not null or undefined
+      if (inputId === null || inputId === undefined) {
         throw new RequiredError(
-          'inputEtag',
-          'Required parameter inputEtag was null or undefined when calling updateCase.'
+          'inputId',
+          'Required parameter inputId was null or undefined when calling updateCase.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -379,9 +383,9 @@ export const CasesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateCase.'
         )
       }
-      const localVarPath = `/cases/{input.etag}`.replace(
-        `{${'input.etag'}}`,
-        encodeURIComponent(String(inputEtag))
+      const localVarPath = `/cases/{input.id}`.replace(
+        `{${'input.id'}}`,
+        encodeURIComponent(String(inputId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -403,6 +407,10 @@ export const CasesApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (xJsonMask) {
+        localVarQueryParameter['xJsonMask'] = xJsonMask
       }
 
       if (fields) {
@@ -439,24 +447,26 @@ export const CasesApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary on update, we should be able to accept service and all parameters that correspond to it, if service and corresponding to it fields were changed simultaneously then priority have service and dependent fields set from the service automatically (we can\'t change the SLA, SLA conditions ) etag is required to update the true version of the case
-     * @param {string} inputEtag
-     * @param {Changes1} input
-     * @param {Array<string>} [fields] fields to return in resulting object
+     * @summary RPC method for updating an existing case.
+     * @param {string} inputId
+     * @param {InputDataWithUpdatedFields1} input
+     * @param {Array<string>} [xJsonMask] List of JSON fields to update.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCase2: async (
-      inputEtag: string,
-      input: Changes1,
+      inputId: string,
+      input: InputDataWithUpdatedFields1,
+      xJsonMask?: Array<string>,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'inputEtag' is not null or undefined
-      if (inputEtag === null || inputEtag === undefined) {
+      // verify required parameter 'inputId' is not null or undefined
+      if (inputId === null || inputId === undefined) {
         throw new RequiredError(
-          'inputEtag',
-          'Required parameter inputEtag was null or undefined when calling updateCase2.'
+          'inputId',
+          'Required parameter inputId was null or undefined when calling updateCase2.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -466,9 +476,9 @@ export const CasesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateCase2.'
         )
       }
-      const localVarPath = `/cases/{input.etag}`.replace(
-        `{${'input.etag'}}`,
-        encodeURIComponent(String(inputEtag))
+      const localVarPath = `/cases/{input.id}`.replace(
+        `{${'input.id'}}`,
+        encodeURIComponent(String(inputId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -490,6 +500,10 @@ export const CasesApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (xJsonMask) {
+        localVarQueryParameter['xJsonMask'] = xJsonMask
       }
 
       if (fields) {
@@ -535,9 +549,9 @@ export const CasesApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @summary on create, we should accept service and all parameters that correspond to it, priority have the fields that were directly set from the front-end and if they are empty we should fill them from service (we can\'t change the SLA and SLA conditions) etag doesn\'t play any role on this API
-     * @param {CasesInputCreateCase} input
-     * @param {Array<string>} [fields] Result fields to include in the response.
+     * @summary RPC method for creating a new case.
+     * @param {CasesInputCreateCase} input Input data for creating the case.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -564,14 +578,14 @@ export const CasesApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary on delete, we should require etag, to understand if user has right version of the case also will be deleted all objects connected to the case, such as comments, related cases, links and files
-     * @param {string} etag identifier of the object
+     * @summary RPC method for deleting an existing case by its etag.
+     * @param {string} id identifier of the object
      * @param {Array<string>} [fields] fields to return in deleted object
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteCase(
-      etag: string,
+      id: string,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -579,7 +593,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).deleteCase(etag, fields, options)
+      ).deleteCase(id, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -593,13 +607,14 @@ export const CasesApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {string} etag
+     * @summary RPC method to retrieve a specific case by its etag identifier.
+     * @param {string} id
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async locateCase(
-      etag: string,
+      id: string,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -607,7 +622,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).locateCase(etag, fields, options)
+      ).locateCase(id, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -621,12 +636,13 @@ export const CasesApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {Array<string>} [ids]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
+     * @summary RPC method for searching cases.
+     * @param {number} [page] Page number for pagination.
+     * @param {number} [size] Number of results per page.
+     * @param {string} [q] Query string for searching cases.
+     * @param {Array<string>} [ids] List of specific case IDs to retrieve.
+     * @param {string} [sort] Sorting criteria (e.g., field:asc).
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {string} [filters] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -659,16 +675,18 @@ export const CasesApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary on update, we should be able to accept service and all parameters that correspond to it, if service and corresponding to it fields were changed simultaneously then priority have service and dependent fields set from the service automatically (we can\'t change the SLA, SLA conditions ) etag is required to update the true version of the case
-     * @param {string} inputEtag
-     * @param {Changes} input
-     * @param {Array<string>} [fields] fields to return in resulting object
+     * @summary RPC method for updating an existing case.
+     * @param {string} inputId
+     * @param {InputDataWithUpdatedFields} input
+     * @param {Array<string>} [xJsonMask] List of JSON fields to update.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCase(
-      inputEtag: string,
-      input: Changes,
+      inputId: string,
+      input: InputDataWithUpdatedFields,
+      xJsonMask?: Array<string>,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -676,7 +694,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).updateCase(inputEtag, input, fields, options)
+      ).updateCase(inputId, input, xJsonMask, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -690,16 +708,18 @@ export const CasesApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary on update, we should be able to accept service and all parameters that correspond to it, if service and corresponding to it fields were changed simultaneously then priority have service and dependent fields set from the service automatically (we can\'t change the SLA, SLA conditions ) etag is required to update the true version of the case
-     * @param {string} inputEtag
-     * @param {Changes1} input
-     * @param {Array<string>} [fields] fields to return in resulting object
+     * @summary RPC method for updating an existing case.
+     * @param {string} inputId
+     * @param {InputDataWithUpdatedFields1} input
+     * @param {Array<string>} [xJsonMask] List of JSON fields to update.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCase2(
-      inputEtag: string,
-      input: Changes1,
+      inputId: string,
+      input: InputDataWithUpdatedFields1,
+      xJsonMask?: Array<string>,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -707,7 +727,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).updateCase2(inputEtag, input, fields, options)
+      ).updateCase2(inputId, input, xJsonMask, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -734,9 +754,9 @@ export const CasesApiFactory = function(
   return {
     /**
      *
-     * @summary on create, we should accept service and all parameters that correspond to it, priority have the fields that were directly set from the front-end and if they are empty we should fill them from service (we can\'t change the SLA and SLA conditions) etag doesn\'t play any role on this API
-     * @param {CasesInputCreateCase} input
-     * @param {Array<string>} [fields] Result fields to include in the response.
+     * @summary RPC method for creating a new case.
+     * @param {CasesInputCreateCase} input Input data for creating the case.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -751,45 +771,47 @@ export const CasesApiFactory = function(
     },
     /**
      *
-     * @summary on delete, we should require etag, to understand if user has right version of the case also will be deleted all objects connected to the case, such as comments, related cases, links and files
-     * @param {string} etag identifier of the object
+     * @summary RPC method for deleting an existing case by its etag.
+     * @param {string} id identifier of the object
      * @param {Array<string>} [fields] fields to return in deleted object
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteCase(
-      etag: string,
+      id: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCase> {
       return CasesApiFp(configuration)
-        .deleteCase(etag, fields, options)
+        .deleteCase(id, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} etag
+     * @summary RPC method to retrieve a specific case by its etag identifier.
+     * @param {string} id
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateCase(
-      etag: string,
+      id: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCase> {
       return CasesApiFp(configuration)
-        .locateCase(etag, fields, options)
+        .locateCase(id, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {Array<string>} [ids]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
+     * @summary RPC method for searching cases.
+     * @param {number} [page] Page number for pagination.
+     * @param {number} [size] Number of results per page.
+     * @param {string} [q] Query string for searching cases.
+     * @param {Array<string>} [ids] List of specific case IDs to retrieve.
+     * @param {string} [sort] Sorting criteria (e.g., field:asc).
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {string} [filters] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -810,40 +832,44 @@ export const CasesApiFactory = function(
     },
     /**
      *
-     * @summary on update, we should be able to accept service and all parameters that correspond to it, if service and corresponding to it fields were changed simultaneously then priority have service and dependent fields set from the service automatically (we can\'t change the SLA, SLA conditions ) etag is required to update the true version of the case
-     * @param {string} inputEtag
-     * @param {Changes} input
-     * @param {Array<string>} [fields] fields to return in resulting object
+     * @summary RPC method for updating an existing case.
+     * @param {string} inputId
+     * @param {InputDataWithUpdatedFields} input
+     * @param {Array<string>} [xJsonMask] List of JSON fields to update.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCase(
-      inputEtag: string,
-      input: Changes,
+      inputId: string,
+      input: InputDataWithUpdatedFields,
+      xJsonMask?: Array<string>,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCase> {
       return CasesApiFp(configuration)
-        .updateCase(inputEtag, input, fields, options)
+        .updateCase(inputId, input, xJsonMask, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary on update, we should be able to accept service and all parameters that correspond to it, if service and corresponding to it fields were changed simultaneously then priority have service and dependent fields set from the service automatically (we can\'t change the SLA, SLA conditions ) etag is required to update the true version of the case
-     * @param {string} inputEtag
-     * @param {Changes1} input
-     * @param {Array<string>} [fields] fields to return in resulting object
+     * @summary RPC method for updating an existing case.
+     * @param {string} inputId
+     * @param {InputDataWithUpdatedFields1} input
+     * @param {Array<string>} [xJsonMask] List of JSON fields to update.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCase2(
-      inputEtag: string,
-      input: Changes1,
+      inputId: string,
+      input: InputDataWithUpdatedFields1,
+      xJsonMask?: Array<string>,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCase> {
       return CasesApiFp(configuration)
-        .updateCase2(inputEtag, input, fields, options)
+        .updateCase2(inputId, input, xJsonMask, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -858,9 +884,9 @@ export const CasesApiFactory = function(
 export class CasesApi extends BaseAPI {
   /**
    *
-   * @summary on create, we should accept service and all parameters that correspond to it, priority have the fields that were directly set from the front-end and if they are empty we should fill them from service (we can\'t change the SLA and SLA conditions) etag doesn\'t play any role on this API
-   * @param {CasesInputCreateCase} input
-   * @param {Array<string>} [fields] Result fields to include in the response.
+   * @summary RPC method for creating a new case.
+   * @param {CasesInputCreateCase} input Input data for creating the case.
+   * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
@@ -877,41 +903,43 @@ export class CasesApi extends BaseAPI {
 
   /**
    *
-   * @summary on delete, we should require etag, to understand if user has right version of the case also will be deleted all objects connected to the case, such as comments, related cases, links and files
-   * @param {string} etag identifier of the object
+   * @summary RPC method for deleting an existing case by its etag.
+   * @param {string} id identifier of the object
    * @param {Array<string>} [fields] fields to return in deleted object
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
    */
-  public deleteCase(etag: string, fields?: Array<string>, options?: any) {
+  public deleteCase(id: string, fields?: Array<string>, options?: any) {
     return CasesApiFp(this.configuration)
-      .deleteCase(etag, fields, options)
+      .deleteCase(id, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} etag
+   * @summary RPC method to retrieve a specific case by its etag identifier.
+   * @param {string} id
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
    */
-  public locateCase(etag: string, fields?: Array<string>, options?: any) {
+  public locateCase(id: string, fields?: Array<string>, options?: any) {
     return CasesApiFp(this.configuration)
-      .locateCase(etag, fields, options)
+      .locateCase(id, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {number} [page]
-   * @param {number} [size]
-   * @param {string} [q]
-   * @param {Array<string>} [ids]
-   * @param {string} [sort]
-   * @param {Array<string>} [fields]
+   * @summary RPC method for searching cases.
+   * @param {number} [page] Page number for pagination.
+   * @param {number} [size] Number of results per page.
+   * @param {string} [q] Query string for searching cases.
+   * @param {Array<string>} [ids] List of specific case IDs to retrieve.
+   * @param {string} [sort] Sorting criteria (e.g., field:asc).
+   * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {string} [filters] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -934,43 +962,47 @@ export class CasesApi extends BaseAPI {
 
   /**
    *
-   * @summary on update, we should be able to accept service and all parameters that correspond to it, if service and corresponding to it fields were changed simultaneously then priority have service and dependent fields set from the service automatically (we can\'t change the SLA, SLA conditions ) etag is required to update the true version of the case
-   * @param {string} inputEtag
-   * @param {Changes} input
-   * @param {Array<string>} [fields] fields to return in resulting object
+   * @summary RPC method for updating an existing case.
+   * @param {string} inputId
+   * @param {InputDataWithUpdatedFields} input
+   * @param {Array<string>} [xJsonMask] List of JSON fields to update.
+   * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
    */
   public updateCase(
-    inputEtag: string,
-    input: Changes,
+    inputId: string,
+    input: InputDataWithUpdatedFields,
+    xJsonMask?: Array<string>,
     fields?: Array<string>,
     options?: any
   ) {
     return CasesApiFp(this.configuration)
-      .updateCase(inputEtag, input, fields, options)
+      .updateCase(inputId, input, xJsonMask, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary on update, we should be able to accept service and all parameters that correspond to it, if service and corresponding to it fields were changed simultaneously then priority have service and dependent fields set from the service automatically (we can\'t change the SLA, SLA conditions ) etag is required to update the true version of the case
-   * @param {string} inputEtag
-   * @param {Changes1} input
-   * @param {Array<string>} [fields] fields to return in resulting object
+   * @summary RPC method for updating an existing case.
+   * @param {string} inputId
+   * @param {InputDataWithUpdatedFields1} input
+   * @param {Array<string>} [xJsonMask] List of JSON fields to update.
+   * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
    */
   public updateCase2(
-    inputEtag: string,
-    input: Changes1,
+    inputId: string,
+    input: InputDataWithUpdatedFields1,
+    xJsonMask?: Array<string>,
     fields?: Array<string>,
     options?: any
   ) {
     return CasesApiFp(this.configuration)
-      .updateCase2(inputEtag, input, fields, options)
+      .updateCase2(inputId, input, xJsonMask, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

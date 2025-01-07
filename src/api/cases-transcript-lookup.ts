@@ -11,28 +11,30 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface CasesTranscriptLookup
  */
-export interface CasesInputCaseLink {
+export interface CasesTranscriptLookup {
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesTranscriptLookup
+   */
+  file?: GeneralLookup
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesTranscriptLookup
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesTranscriptLookup
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  locale?: string
 }

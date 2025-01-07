@@ -22,7 +22,7 @@ import { CasesTimingInfo } from './cases-timing-info'
 import { GeneralLookup } from './general-lookup'
 
 /**
- *
+ * Message representing a case.
  * @export
  * @interface CasesCase
  */
@@ -58,7 +58,7 @@ export interface CasesCase {
    */
   comments?: CasesCaseCommentList
   /**
-   *
+   * Contact information for the case.
    * @type {string}
    * @memberof CasesCase
    */
@@ -76,17 +76,11 @@ export interface CasesCase {
    */
   createdBy?: GeneralLookup
   /**
-   *
+   * Detailed description of the case.
    * @type {string}
    * @memberof CasesCase
    */
   description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesCase
-   */
-  etag?: string
   /**
    *
    * @type {CasesCaseFileList}
@@ -118,19 +112,19 @@ export interface CasesCase {
    */
   links?: CasesCaseLinkList
   /**
-   *
+   * Name of the case (may serve as an ID in docs).
    * @type {string}
    * @memberof CasesCase
    */
   name?: string
   /**
-   *
+   * Planned reaction time (in milliseconds).
    * @type {string}
    * @memberof CasesCase
    */
   plannedReactionAt?: string
   /**
-   *
+   * Planned resolution time (in milliseconds).
    * @type {string}
    * @memberof CasesCase
    */
@@ -172,7 +166,7 @@ export interface CasesCase {
    */
   sla?: GeneralLookup
   /**
-   *
+   * List of SLA conditions.
    * @type {Array<CasesSLACondition>}
    * @memberof CasesCase
    */
@@ -196,7 +190,7 @@ export interface CasesCase {
    */
   statusCondition?: GeneralLookup
   /**
-   *
+   * Subject of the case.
    * @type {string}
    * @memberof CasesCase
    */

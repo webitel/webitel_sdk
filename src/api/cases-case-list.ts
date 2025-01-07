@@ -14,25 +14,25 @@
 import { CasesCase } from './cases-case'
 
 /**
- *
+ * Response message containing a list of cases.
  * @export
  * @interface CasesCaseList
  */
 export interface CasesCaseList {
   /**
-   *
+   * List of cases.
    * @type {Array<CasesCase>}
    * @memberof CasesCaseList
    */
   items?: Array<CasesCase>
   /**
-   *
+   * Flag indicating if there are more pages.
    * @type {boolean}
    * @memberof CasesCaseList
    */
   next?: boolean
   /**
-   *
+   * Current page number.
    * @type {string}
    * @memberof CasesCaseList
    */

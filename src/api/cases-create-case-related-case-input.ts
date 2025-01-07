@@ -24,7 +24,7 @@ export interface CasesCreateCaseRelatedCaseInput {
    * @type {string}
    * @memberof CasesCreateCaseRelatedCaseInput
    */
-  etag?: string
+  id?: string
   /**
    *
    * @type {string}

@@ -12,31 +12,31 @@
  */
 
 /**
- *
+ * Message representing SLA timing information.
  * @export
  * @interface CasesTimingInfo
  */
 export interface CasesTimingInfo {
   /**
-   *
+   * Difference between actual and planned reaction time.
    * @type {string}
    * @memberof CasesTimingInfo
    */
   differenceInReaction?: string
   /**
-   *
+   * Difference between actual and planned resolution time.
    * @type {string}
    * @memberof CasesTimingInfo
    */
   differenceInResolve?: string
   /**
-   *
+   * Actual reaction timestamp (in milliseconds).
    * @type {string}
    * @memberof CasesTimingInfo
    */
   reactedAt?: string
   /**
-   *
+   * Actual resolution timestamp (in milliseconds).
    * @type {string}
    * @memberof CasesTimingInfo
    */

@@ -11,28 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { CasesCaseCommunication } from './cases-case-communication'
+
 /**
- *
+ * Response message after linking communications to a case.
  * @export
- * @interface CasesInputCaseLink
+ * @interface CasesLinkCommunicationResponse
  */
-export interface CasesInputCaseLink {
+export interface CasesLinkCommunicationResponse {
   /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * List of linked communications.
+   * @type {Array<CasesCaseCommunication>}
+   * @memberof CasesLinkCommunicationResponse
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  data?: Array<CasesCaseCommunication>
 }

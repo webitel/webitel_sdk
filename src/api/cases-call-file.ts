@@ -14,25 +14,37 @@
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface CasesCallFile
  */
-export interface CasesInputCaseLink {
+export interface CasesCallFile {
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesCallFile
+   */
+  createdAt?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCallFile
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesCallFile
+   */
+  mimeType?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCallFile
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesCallFile
    */
-  url?: string
+  size?: string
 }

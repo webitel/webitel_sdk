@@ -12,27 +12,15 @@
  */
 
 /**
- *
+ * Response message after unlinking a communication from a case.
  * @export
- * @interface CasesInputCaseLink
+ * @interface CasesUnlinkCommunicationResponse
  */
-export interface CasesInputCaseLink {
+export interface CasesUnlinkCommunicationResponse {
   /**
-   *
+   * Affected rows.
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesUnlinkCommunicationResponse
    */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  affected?: string
 }

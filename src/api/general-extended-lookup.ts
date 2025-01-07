@@ -14,25 +14,25 @@
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface GeneralExtendedLookup
  */
-export interface CasesInputCaseLink {
+export interface GeneralExtendedLookup {
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof GeneralExtendedLookup
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof GeneralExtendedLookup
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof GeneralExtendedLookup
    */
-  url?: string
+  type?: string
 }

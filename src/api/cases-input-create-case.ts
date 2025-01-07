@@ -17,13 +17,13 @@ import { CasesInputCaseLink } from './cases-input-case-link'
 import { CasesRateInfo } from './cases-rate-info'
 
 /**
- *
+ * Input structure for creating a new case.
  * @export
  * @interface CasesInputCreateCase
  */
 export interface CasesInputCreateCase {
   /**
-   *
+   * Optional assignee ID.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
@@ -35,43 +35,43 @@ export interface CasesInputCreateCase {
    */
   close?: CasesCreateCaseCloseInput
   /**
-   *
+   * Optional close reason.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   closeReason?: string
   /**
-   *
+   * Optional contact information.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   contactInfo?: string
   /**
-   *
+   * Optional description of the case.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   description?: string
   /**
-   *
+   * Optional group ID.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   group?: string
   /**
-   *
+   * Required impacted user ID (default: reporter).
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   impacted?: string
   /**
-   *
+   * List of links attached to the case.
    * @type {Array<CasesInputCaseLink>}
    * @memberof CasesInputCreateCase
    */
   links?: Array<CasesInputCaseLink>
   /**
-   *
+   * Optional priority level.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
@@ -83,37 +83,37 @@ export interface CasesInputCreateCase {
    */
   rate?: CasesRateInfo
   /**
-   *
+   * List of related cases.
    * @type {Array<CasesCreateCaseRelatedCaseInput>}
    * @memberof CasesInputCreateCase
    */
   related?: Array<CasesCreateCaseRelatedCaseInput>
   /**
-   *
+   * Required reporter ID (if empty, anonymous contact).
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   reporter?: string
   /**
-   *
+   * Service ID (affects many other readonly fields).
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   service?: string
   /**
-   *
+   * Source of the case.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   source?: string
   /**
-   *
+   * Initial case status (default from lookup or UI).
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   status?: string
   /**
-   *
+   * Required subject of the case.
    * @type {string}
    * @memberof CasesInputCreateCase
    */

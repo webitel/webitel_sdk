@@ -12,19 +12,19 @@
  */
 
 /**
- *
+ * Structure for close information when a case is closed.
  * @export
  * @interface CasesCreateCaseCloseInput
  */
 export interface CasesCreateCaseCloseInput {
   /**
-   *
+   * Close reason ID from lookup.
    * @type {string}
    * @memberof CasesCreateCaseCloseInput
    */
   closeReason?: string
   /**
-   *
+   * Comment or reason for closing the case.
    * @type {string}
    * @memberof CasesCreateCaseCloseInput
    */

@@ -11,28 +11,42 @@
  * Do not edit the class manually.
  */
 
+import { CasesEvent } from './cases-event'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface CasesDayTimeline
  */
-export interface CasesInputCaseLink {
+export interface CasesDayTimeline {
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesDayTimeline
    */
-  id?: string
+  callsCount?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesDayTimeline
    */
-  name?: string
+  chatsCount?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesDayTimeline
    */
-  url?: string
+  dayTimestamp?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesDayTimeline
+   */
+  emailsCount?: string
+  /**
+   *
+   * @type {Array<CasesEvent>}
+   * @memberof CasesDayTimeline
+   */
+  items?: Array<CasesEvent>
 }

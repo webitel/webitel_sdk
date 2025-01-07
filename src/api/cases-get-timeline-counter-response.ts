@@ -14,25 +14,37 @@
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface CasesGetTimelineCounterResponse
  */
-export interface CasesInputCaseLink {
+export interface CasesGetTimelineCounterResponse {
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesGetTimelineCounterResponse
    */
-  id?: string
+  callsCount?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesGetTimelineCounterResponse
    */
-  name?: string
+  chatsCount?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof CasesGetTimelineCounterResponse
    */
-  url?: string
+  dateFrom?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesGetTimelineCounterResponse
+   */
+  dateTo?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesGetTimelineCounterResponse
+   */
+  emailsCount?: string
 }

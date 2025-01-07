@@ -21,121 +21,115 @@ import { GeneralLookup } from './general-lookup'
 /**
  *
  * @export
- * @interface CasesInputCase
+ * @interface InputDataWithUpdatedFields
  */
-export interface CasesInputCase {
+export interface InputDataWithUpdatedFields {
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   assignee?: GeneralLookup
   /**
    *
    * @type {CasesCloseInfo}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   close?: CasesCloseInfo
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   closeReason?: GeneralLookup
   /**
    *
    * @type {Array<CasesInputCaseComment>}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   comments?: Array<CasesInputCaseComment>
   /**
    *
    * @type {string}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   contactInfo?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   description?: string
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   group?: GeneralLookup
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCase
-   */
-  id?: string
-  /**
-   *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   impacted?: GeneralLookup
   /**
    *
    * @type {Array<CasesInputCaseLink>}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   links?: Array<CasesInputCaseLink>
   /**
    *
    * @type {string}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   name?: string
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   priority?: GeneralLookup
   /**
    *
    * @type {CasesRateInfo}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   rate?: CasesRateInfo
   /**
    *
    * @type {Array<CasesInputRelatedCase>}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   related?: Array<CasesInputRelatedCase>
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   reporter?: GeneralLookup
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   service?: GeneralLookup
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   source?: GeneralLookup
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   status?: GeneralLookup
   /**
    *
    * @type {string}
-   * @memberof CasesInputCase
+   * @memberof InputDataWithUpdatedFields
    */
   subject?: string
 }

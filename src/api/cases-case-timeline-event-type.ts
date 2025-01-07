@@ -14,25 +14,10 @@
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @enum {string}
  */
-export interface CasesInputCaseLink {
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+export enum CasesCaseTimelineEventType {
+  CHAT = 'TIMELINE_CHAT',
+  CALL = 'TIMELINE_CALL',
+  EMAIL = 'TIMELINE_EMAIL',
 }

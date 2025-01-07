@@ -12,19 +12,19 @@
  */
 
 /**
- *
+ * Message representing rating information.
  * @export
  * @interface CasesRateInfo
  */
 export interface CasesRateInfo {
   /**
-   *
+   * Rating value.
    * @type {string}
    * @memberof CasesRateInfo
    */
   rating?: string
   /**
-   *
+   * Optional comment for the rating.
    * @type {string}
    * @memberof CasesRateInfo
    */
