@@ -18,6 +18,7 @@ import { CasesCloseInfo } from './cases-close-info'
 import { CasesRateInfo } from './cases-rate-info'
 import { CasesRelatedCaseList } from './cases-related-case-list'
 import { CasesSLACondition } from './cases-slacondition'
+import { CasesSourceTypeLookup } from './cases-source-type-lookup'
 import { CasesTimingInfo } from './cases-timing-info'
 import { GeneralLookup } from './general-lookup'
 
@@ -173,10 +174,10 @@ export interface CasesCase {
   slaCondition?: Array<CasesSLACondition>
   /**
    *
-   * @type {GeneralLookup}
+   * @type {CasesSourceTypeLookup}
    * @memberof CasesCase
    */
-  source?: GeneralLookup
+  source?: CasesSourceTypeLookup
   /**
    *
    * @type {GeneralLookup}
