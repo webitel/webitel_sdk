@@ -1195,13 +1195,15 @@ export class Conversation {
    * Цей метод відправляє запит на сервер для перенесення розмови до зазначеного плану.
    *
    * @param {number} planId - Ідентифікатор плану, до якого потрібно перенести розмову.
+   * @param {CallVariables} variables - Змінні.
    * @returns {Promise<any>} - Результат запиту на сервер для перенесення розмови.
    */
-  async transferToPlan(planId: number) {
+  async transferToPlan(planId: number, variables?: CallVariables) {
     return this.client.request(`blind_transfer_chat`, {
       conversation_id: this.conversationId,
       channel_id: this.channelId,
       plan_id: planId,
+      variables,
     })
   }
 
@@ -1211,13 +1213,15 @@ export class Conversation {
    * Цей метод відправляє запит на сервер для перенесення розмови до вказаного користувача.
    *
    * @param {number} userId - Ідентифікатор користувача, до якого потрібно перенести розмову.
+   * @param {CallVariables} variables - Змінні.
    * @returns {Promise<any>} - Результат запиту на сервер для перенесення розмови.
    */
-  async transferToUser(userId: number) {
+  async transferToUser(userId: number, variables?: CallVariables) {
     return this.client.request(`transfer_user_chat`, {
       conversation_id: this.conversationId,
       channel_id: this.channelId,
       user_id: userId,
+      variables,
     })
   }
 
