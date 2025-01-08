@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { ExecuteForecastCalculationResponseForecast } from './execute-forecast-calculation-response-forecast'
+import { WfmExecuteForecastCalculationResponseForecast } from './wfm-execute-forecast-calculation-response-forecast'
 
 /**
  *
@@ -21,8 +21,8 @@ import { ExecuteForecastCalculationResponseForecast } from './execute-forecast-c
 export interface WfmExecuteForecastCalculationResponse {
   /**
    *
-   * @type {Array<ExecuteForecastCalculationResponseForecast>}
+   * @type {Array<WfmExecuteForecastCalculationResponseForecast>}
    * @memberof WfmExecuteForecastCalculationResponse
    */
-  items?: Array<ExecuteForecastCalculationResponseForecast>
+  items?: Array<WfmExecuteForecastCalculationResponseForecast>
 }

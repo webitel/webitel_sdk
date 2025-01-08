@@ -22,11 +22,11 @@ export interface CasesCreateCaseCloseInput {
    * @type {string}
    * @memberof CasesCreateCaseCloseInput
    */
-  closeReason?: string
+  close_reason?: string
   /**
    * Comment or reason for closing the case.
    * @type {string}
    * @memberof CasesCreateCaseCloseInput
    */
-  closeResult?: string
+  close_result?: string
 }

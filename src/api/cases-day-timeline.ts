@@ -24,25 +24,25 @@ export interface CasesDayTimeline {
    * @type {string}
    * @memberof CasesDayTimeline
    */
-  callsCount?: string
+  calls_count?: string
   /**
    *
    * @type {string}
    * @memberof CasesDayTimeline
    */
-  chatsCount?: string
+  chats_count?: string
   /**
    *
    * @type {string}
    * @memberof CasesDayTimeline
    */
-  dayTimestamp?: string
+  day_timestamp?: string
   /**
    *
    * @type {string}
    * @memberof CasesDayTimeline
    */
-  emailsCount?: string
+  emails_count?: string
   /**
    *
    * @type {Array<CasesEvent>}

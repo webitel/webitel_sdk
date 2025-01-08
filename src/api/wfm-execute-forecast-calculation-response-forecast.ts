@@ -11,24 +11,22 @@
  * Do not edit the class manually.
  */
 
-import { WfmPauseTemplateCause } from './wfm-pause-template-cause'
-
 /**
  *
  * @export
- * @interface WfmUpdatePauseTemplateCauseBulkResponse
+ * @interface WfmExecuteForecastCalculationResponseForecast
  */
-export interface WfmUpdatePauseTemplateCauseBulkResponse {
+export interface WfmExecuteForecastCalculationResponseForecast {
   /**
    *
-   * @type {Array<WfmPauseTemplateCause>}
-   * @memberof WfmUpdatePauseTemplateCauseBulkResponse
+   * @type {string}
+   * @memberof WfmExecuteForecastCalculationResponseForecast
    */
-  items?: Array<WfmPauseTemplateCause>
+  agents?: string
   /**
    *
-   * @type {boolean}
-   * @memberof WfmUpdatePauseTemplateCauseBulkResponse
+   * @type {string}
+   * @memberof WfmExecuteForecastCalculationResponseForecast
    */
-  next?: boolean
+  timestamp?: string
 }

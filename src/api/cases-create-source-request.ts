@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WebitelcasesType } from './webitelcases-type'
+import { CasesSourceType } from './cases-source-type'
 
 /**
  * Request message for creating a new source.
@@ -33,8 +33,8 @@ export interface CasesCreateSourceRequest {
   name: string
   /**
    *
-   * @type {WebitelcasesType}
+   * @type {CasesSourceType}
    * @memberof CasesCreateSourceRequest
    */
-  type: WebitelcasesType
+  type: CasesSourceType
 }

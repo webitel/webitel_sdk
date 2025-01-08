@@ -24,11 +24,11 @@ export interface CasesCloseInfo {
    * @type {GeneralLookup}
    * @memberof CasesCloseInfo
    */
-  closeReason?: GeneralLookup
+  close_reason?: GeneralLookup
   /**
    * Result or reason for closing the case.
    * @type {string}
    * @memberof CasesCloseInfo
    */
-  closeResult?: string
+  close_result?: string
 }

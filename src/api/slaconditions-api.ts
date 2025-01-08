@@ -70,8 +70,8 @@ export const SLAConditionsApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createSLACondition.'
         )
       }
-      const localVarPath = `/slas/{slaId}/sla_condition`.replace(
-        `{${'slaId'}}`,
+      const localVarPath = `/slas/{sla_id}/sla_condition`.replace(
+        `{${'sla_id'}}`,
         encodeURIComponent(String(slaId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -151,8 +151,8 @@ export const SLAConditionsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling deleteSLACondition.'
         )
       }
-      const localVarPath = `/slas/{slaId}/sla_condition/{id}`
-        .replace(`{${'slaId'}}`, encodeURIComponent(String(slaId)))
+      const localVarPath = `/slas/{sla_id}/sla_condition/{id}`
+        .replace(`{${'sla_id'}}`, encodeURIComponent(String(slaId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -230,8 +230,8 @@ export const SLAConditionsApiAxiosParamCreator = function(
           'Required parameter slaId was null or undefined when calling listSLAConditions.'
         )
       }
-      const localVarPath = `/slas/{slaId}/sla_conditions`.replace(
-        `{${'slaId'}}`,
+      const localVarPath = `/slas/{sla_id}/sla_conditions`.replace(
+        `{${'sla_id'}}`,
         encodeURIComponent(String(slaId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -281,11 +281,11 @@ export const SLAConditionsApiAxiosParamCreator = function(
       }
 
       if (slaConditionId !== undefined) {
-        localVarQueryParameter['slaConditionId'] = slaConditionId
+        localVarQueryParameter['sla_condition_id'] = slaConditionId
       }
 
       if (priorityId !== undefined) {
-        localVarQueryParameter['priorityId'] = priorityId
+        localVarQueryParameter['priority_id'] = priorityId
       }
 
       localVarUrlObj.query = {
@@ -337,8 +337,8 @@ export const SLAConditionsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling locateSLACondition.'
         )
       }
-      const localVarPath = `/slas/{slaId}/sla_condition/{id}`
-        .replace(`{${'slaId'}}`, encodeURIComponent(String(slaId)))
+      const localVarPath = `/slas/{sla_id}/sla_condition/{id}`
+        .replace(`{${'sla_id'}}`, encodeURIComponent(String(slaId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -422,8 +422,8 @@ export const SLAConditionsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateSLACondition.'
         )
       }
-      const localVarPath = `/slas/{slaId}/sla_condition/{id}`
-        .replace(`{${'slaId'}}`, encodeURIComponent(String(slaId)))
+      const localVarPath = `/slas/{sla_id}/sla_condition/{id}`
+        .replace(`{${'sla_id'}}`, encodeURIComponent(String(slaId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -511,8 +511,8 @@ export const SLAConditionsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateSLACondition2.'
         )
       }
-      const localVarPath = `/slas/{slaId}/sla_condition/{id}`
-        .replace(`{${'slaId'}}`, encodeURIComponent(String(slaId)))
+      const localVarPath = `/slas/{sla_id}/sla_condition/{id}`
+        .replace(`{${'sla_id'}}`, encodeURIComponent(String(slaId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions

@@ -24,13 +24,13 @@ export interface CasesCaseCommunication {
    * @type {string}
    * @memberof CasesCaseCommunication
    */
-  communicationId?: string
+  communication_id?: string
   /**
    *
    * @type {CasesCaseCommunicationsTypes}
    * @memberof CasesCaseCommunication
    */
-  communicationType?: CasesCaseCommunicationsTypes
+  communication_type?: CasesCaseCommunicationsTypes
   /**
    * Database ID of the communication.
    * @type {string}

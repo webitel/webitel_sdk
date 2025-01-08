@@ -24,13 +24,13 @@ export interface WebitelcasesStatus {
    * @type {string}
    * @memberof WebitelcasesStatus
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof WebitelcasesStatus
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -54,11 +54,11 @@ export interface WebitelcasesStatus {
    * @type {string}
    * @memberof WebitelcasesStatus
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof WebitelcasesStatus
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

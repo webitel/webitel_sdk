@@ -59,8 +59,8 @@ export const CaseCommunicationsApiAxiosParamCreator = function(
           'Required parameter caseId was null or undefined when calling linkCommunication.'
         )
       }
-      const localVarPath = `/cases/{caseId}/communication`.replace(
-        `{${'caseId'}}`,
+      const localVarPath = `/cases/{case_id}/communication`.replace(
+        `{${'case_id'}}`,
         encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -137,8 +137,8 @@ export const CaseCommunicationsApiAxiosParamCreator = function(
           'Required parameter caseId was null or undefined when calling listCommunications.'
         )
       }
-      const localVarPath = `/cases/{caseId}/communication`.replace(
-        `{${'caseId'}}`,
+      const localVarPath = `/cases/{case_id}/communication`.replace(
+        `{${'case_id'}}`,
         encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -232,8 +232,8 @@ export const CaseCommunicationsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling unlinkCommunication.'
         )
       }
-      const localVarPath = `/cases/{caseId}/communication/{id}`
-        .replace(`{${'caseId'}}`, encodeURIComponent(String(caseId)))
+      const localVarPath = `/cases/{case_id}/communication/{id}`
+        .replace(`{${'case_id'}}`, encodeURIComponent(String(caseId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions

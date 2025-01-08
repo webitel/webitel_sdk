@@ -41,7 +41,7 @@ export interface CasesInputCase {
    * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  closeReason?: GeneralLookup
+  close_reason?: GeneralLookup
   /**
    *
    * @type {Array<CasesInputCaseComment>}
@@ -53,7 +53,7 @@ export interface CasesInputCase {
    * @type {string}
    * @memberof CasesInputCase
    */
-  contactInfo?: string
+  contact_info?: string
   /**
    *
    * @type {string}

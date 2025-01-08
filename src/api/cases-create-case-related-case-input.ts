@@ -30,11 +30,11 @@ export interface CasesCreateCaseRelatedCaseInput {
    * @type {string}
    * @memberof CasesCreateCaseRelatedCaseInput
    */
-  relatedTo?: string
+  related_to?: string
   /**
    *
    * @type {CasesRelationType}
    * @memberof CasesCreateCaseRelatedCaseInput
    */
-  relationType?: CasesRelationType
+  relation_type?: CasesRelationType
 }

@@ -22,13 +22,13 @@ export interface CasesInputService {
    * @type {string}
    * @memberof CasesInputService
    */
-  assigneeId?: string
+  assignee_id?: string
   /**
    *
    * @type {string}
    * @memberof CasesInputService
    */
-  catalogId?: string
+  catalog_id?: string
   /**
    *
    * @type {string}
@@ -46,7 +46,7 @@ export interface CasesInputService {
    * @type {string}
    * @memberof CasesInputService
    */
-  groupId?: string
+  group_id?: string
   /**
    *
    * @type {string}
@@ -58,13 +58,13 @@ export interface CasesInputService {
    * @type {string}
    * @memberof CasesInputService
    */
-  rootId?: string
+  root_id?: string
   /**
    *
    * @type {string}
    * @memberof CasesInputService
    */
-  slaId?: string
+  sla_id?: string
   /**
    *
    * @type {boolean}

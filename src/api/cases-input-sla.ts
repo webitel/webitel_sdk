@@ -22,7 +22,7 @@ export interface CasesInputSLA {
    * @type {string}
    * @memberof CasesInputSLA
    */
-  calendarId?: string
+  calendar_id?: string
   /**
    *
    * @type {string}
@@ -40,23 +40,23 @@ export interface CasesInputSLA {
    * @type {string}
    * @memberof CasesInputSLA
    */
-  reactionTime?: string
+  reaction_time?: string
   /**
    *
    * @type {string}
    * @memberof CasesInputSLA
    */
-  resolutionTime?: string
+  resolution_time?: string
   /**
    *
    * @type {string}
    * @memberof CasesInputSLA
    */
-  validFrom?: string
+  valid_from?: string
   /**
    *
    * @type {string}
    * @memberof CasesInputSLA
    */
-  validTo?: string
+  valid_to?: string
 }

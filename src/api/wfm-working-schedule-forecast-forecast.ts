@@ -11,18 +11,22 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupEntity } from './wfm-lookup-entity'
-
 /**
  *
  * @export
- * @interface WfmUpdateWorkingScheduleRemoveAgentsResponse
+ * @interface WfmWorkingScheduleForecastForecast
  */
-export interface WfmUpdateWorkingScheduleRemoveAgentsResponse {
+export interface WfmWorkingScheduleForecastForecast {
   /**
    *
-   * @type {Array<WfmLookupEntity>}
-   * @memberof WfmUpdateWorkingScheduleRemoveAgentsResponse
+   * @type {string}
+   * @memberof WfmWorkingScheduleForecastForecast
    */
-  agents?: Array<WfmLookupEntity>
+  agents?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WfmWorkingScheduleForecastForecast
+   */
+  hour?: string
 }

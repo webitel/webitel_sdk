@@ -39,7 +39,7 @@ export interface CasesEvent {
    * @type {string}
    * @memberof CasesEvent
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {CasesEmailEvent}

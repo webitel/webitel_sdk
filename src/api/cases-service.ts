@@ -30,7 +30,7 @@ export interface CasesService {
    * @type {string}
    * @memberof CasesService
    */
-  catalogId?: string
+  catalog_id?: string
   /**
    *
    * @type {string}
@@ -42,13 +42,13 @@ export interface CasesService {
    * @type {string}
    * @memberof CasesService
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesService
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -78,7 +78,7 @@ export interface CasesService {
    * @type {string}
    * @memberof CasesService
    */
-  rootId?: string
+  root_id?: string
   /**
    *
    * @type {boolean}
@@ -108,11 +108,11 @@ export interface CasesService {
    * @type {string}
    * @memberof CasesService
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesService
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

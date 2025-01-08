@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WebitelcasesType } from './webitelcases-type'
+import { CasesSourceType } from './cases-source-type'
 
 /**
  *
@@ -33,8 +33,8 @@ export interface CasesInputSource {
   name?: string
   /**
    *
-   * @type {WebitelcasesType}
+   * @type {CasesSourceType}
    * @memberof CasesInputSource
    */
-  type?: WebitelcasesType
+  type?: CasesSourceType
 }

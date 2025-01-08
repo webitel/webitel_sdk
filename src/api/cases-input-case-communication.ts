@@ -24,11 +24,11 @@ export interface CasesInputCaseCommunication {
    * @type {string}
    * @memberof CasesInputCaseCommunication
    */
-  communicationId?: string
+  communication_id?: string
   /**
    *
    * @type {CasesCaseCommunicationsTypes}
    * @memberof CasesInputCaseCommunication
    */
-  communicationType?: CasesCaseCommunicationsTypes
+  communication_type?: CasesCaseCommunicationsTypes
 }

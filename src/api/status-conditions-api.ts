@@ -70,8 +70,8 @@ export const StatusConditionsApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createStatusCondition.'
         )
       }
-      const localVarPath = `/statuses/{statusId}/status`.replace(
-        `{${'statusId'}}`,
+      const localVarPath = `/statuses/{status_id}/status`.replace(
+        `{${'status_id'}}`,
         encodeURIComponent(String(statusId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -151,8 +151,8 @@ export const StatusConditionsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling deleteStatusCondition.'
         )
       }
-      const localVarPath = `/statuses/{statusId}/status/{id}`
-        .replace(`{${'statusId'}}`, encodeURIComponent(String(statusId)))
+      const localVarPath = `/statuses/{status_id}/status/{id}`
+        .replace(`{${'status_id'}}`, encodeURIComponent(String(statusId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -226,8 +226,8 @@ export const StatusConditionsApiAxiosParamCreator = function(
           'Required parameter statusId was null or undefined when calling listStatusConditions.'
         )
       }
-      const localVarPath = `/statuses/{statusId}/status`.replace(
-        `{${'statusId'}}`,
+      const localVarPath = `/statuses/{status_id}/status`.replace(
+        `{${'status_id'}}`,
         encodeURIComponent(String(statusId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -325,8 +325,8 @@ export const StatusConditionsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling locateStatusCondition.'
         )
       }
-      const localVarPath = `/statuses/{statusId}/status/{id}`
-        .replace(`{${'statusId'}}`, encodeURIComponent(String(statusId)))
+      const localVarPath = `/statuses/{status_id}/status/{id}`
+        .replace(`{${'status_id'}}`, encodeURIComponent(String(statusId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -410,8 +410,8 @@ export const StatusConditionsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateStatusCondition.'
         )
       }
-      const localVarPath = `/statuses/{statusId}/status/{id}`
-        .replace(`{${'statusId'}}`, encodeURIComponent(String(statusId)))
+      const localVarPath = `/statuses/{status_id}/status/{id}`
+        .replace(`{${'status_id'}}`, encodeURIComponent(String(statusId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -499,8 +499,8 @@ export const StatusConditionsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateStatusCondition2.'
         )
       }
-      const localVarPath = `/statuses/{statusId}/status/{id}`
-        .replace(`{${'statusId'}}`, encodeURIComponent(String(statusId)))
+      const localVarPath = `/statuses/{status_id}/status/{id}`
+        .replace(`{${'status_id'}}`, encodeURIComponent(String(statusId)))
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions

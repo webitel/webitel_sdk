@@ -25,7 +25,7 @@ export interface CasesCatalog {
    * @type {GeneralLookup}
    * @memberof CasesCatalog
    */
-  closeReason?: GeneralLookup
+  close_reason?: GeneralLookup
   /**
    *
    * @type {string}
@@ -37,13 +37,13 @@ export interface CasesCatalog {
    * @type {string}
    * @memberof CasesCatalog
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCatalog
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -115,11 +115,11 @@ export interface CasesCatalog {
    * @type {string}
    * @memberof CasesCatalog
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCatalog
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

@@ -24,13 +24,13 @@ export interface CasesCloseReasonGroup {
    * @type {string}
    * @memberof CasesCloseReasonGroup
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCloseReasonGroup
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -54,11 +54,11 @@ export interface CasesCloseReasonGroup {
    * @type {string}
    * @memberof CasesCloseReasonGroup
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCloseReasonGroup
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

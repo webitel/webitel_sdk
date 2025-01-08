@@ -24,5 +24,5 @@ export interface CasesLocateCloseReasonGroupResponse {
    * @type {CasesCloseReasonGroup}
    * @memberof CasesLocateCloseReasonGroupResponse
    */
-  closeReasonGroup?: CasesCloseReasonGroup
+  close_reason_group?: CasesCloseReasonGroup
 }

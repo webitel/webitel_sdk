@@ -24,13 +24,13 @@ export interface CasesSLACondition {
    * @type {string}
    * @memberof CasesSLACondition
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesSLACondition
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -54,29 +54,29 @@ export interface CasesSLACondition {
    * @type {string}
    * @memberof CasesSLACondition
    */
-  reactionTime?: string
+  reaction_time?: string
   /**
    *
    * @type {string}
    * @memberof CasesSLACondition
    */
-  resolutionTime?: string
+  resolution_time?: string
   /**
    *
    * @type {string}
    * @memberof CasesSLACondition
    */
-  slaId?: string
+  sla_id?: string
   /**
    *
    * @type {string}
    * @memberof CasesSLACondition
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesSLACondition
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

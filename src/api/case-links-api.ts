@@ -66,8 +66,8 @@ export const CaseLinksApiAxiosParamCreator = function(
           'Required parameter caseId was null or undefined when calling createLink.'
         )
       }
-      const localVarPath = `/cases/links/{caseId}`.replace(
-        `{${'caseId'}}`,
+      const localVarPath = `/cases/links/{case_id}`.replace(
+        `{${'case_id'}}`,
         encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -218,8 +218,8 @@ export const CaseLinksApiAxiosParamCreator = function(
           'Required parameter caseId was null or undefined when calling listLinks.'
         )
       }
-      const localVarPath = `/cases/{caseId}/links`.replace(
-        `{${'caseId'}}`,
+      const localVarPath = `/cases/{case_id}/links`.replace(
+        `{${'case_id'}}`,
         encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)

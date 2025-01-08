@@ -34,17 +34,17 @@ export interface CasesInputSLACondition {
    * @type {string}
    * @memberof CasesInputSLACondition
    */
-  reactionTime?: string
+  reaction_time?: string
   /**
    *
    * @type {string}
    * @memberof CasesInputSLACondition
    */
-  resolutionTime?: string
+  resolution_time?: string
   /**
    *
    * @type {string}
    * @memberof CasesInputSLACondition
    */
-  slaId?: string
+  sla_id?: string
 }

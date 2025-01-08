@@ -259,7 +259,7 @@ export const CatalogsApiAxiosParamCreator = function(
       }
 
       if (subFields) {
-        localVarQueryParameter['subFields'] = subFields
+        localVarQueryParameter['sub_fields'] = subFields
       }
 
       localVarUrlObj.query = {
@@ -335,7 +335,7 @@ export const CatalogsApiAxiosParamCreator = function(
       }
 
       if (subFields) {
-        localVarQueryParameter['subFields'] = subFields
+        localVarQueryParameter['sub_fields'] = subFields
       }
 
       localVarUrlObj.query = {

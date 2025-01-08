@@ -30,25 +30,25 @@ export interface CasesCaseComment {
    * @type {boolean}
    * @memberof CasesCaseComment
    */
-  canEdit?: boolean
+  can_edit?: boolean
   /**
    * Optional relation to the associated case.
    * @type {string}
    * @memberof CasesCaseComment
    */
-  caseId?: string
+  case_id?: string
   /**
    * Timestamp (in milliseconds) of when the comment was created.
    * @type {string}
    * @memberof CasesCaseComment
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCaseComment
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    * Indicates if the comment was edited; true if created_at < updated_at.
    * @type {boolean}
@@ -72,13 +72,13 @@ export interface CasesCaseComment {
    * @type {string}
    * @memberof CasesCaseComment
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCaseComment
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
   /**
    * Version number of the comment, used for concurrency control.
    * @type {number}

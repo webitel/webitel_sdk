@@ -61,13 +61,13 @@ export interface CasesEmailEvent {
    * @type {boolean}
    * @memberof CasesEmailEvent
    */
-  isDetailed?: boolean
+  is_detailed?: boolean
   /**
    *
    * @type {boolean}
    * @memberof CasesEmailEvent
    */
-  isInbound?: boolean
+  is_inbound?: boolean
   /**
    *
    * @type {GeneralLookup}

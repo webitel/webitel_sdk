@@ -22,7 +22,7 @@ export interface CasesCallFile {
    * @type {string}
    * @memberof CasesCallFile
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {string}
@@ -34,7 +34,7 @@ export interface CasesCallFile {
    * @type {string}
    * @memberof CasesCallFile
    */
-  mimeType?: string
+  mime_type?: string
   /**
    *
    * @type {string}

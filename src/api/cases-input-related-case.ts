@@ -24,17 +24,17 @@ export interface CasesInputRelatedCase {
    * @type {string}
    * @memberof CasesInputRelatedCase
    */
-  primaryCaseId?: string
+  primary_case_id?: string
   /**
    * Related case details.
    * @type {string}
    * @memberof CasesInputRelatedCase
    */
-  relatedCaseId?: string
+  related_case_id?: string
   /**
    *
    * @type {CasesRelationType}
    * @memberof CasesInputRelatedCase
    */
-  relationType?: CasesRelationType
+  relation_type?: CasesRelationType
 }

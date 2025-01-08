@@ -34,13 +34,15 @@ import { WfmCreateWorkingScheduleResponse } from '../api'
 // @ts-ignore
 import { WfmDeleteWorkingScheduleResponse } from '../api'
 // @ts-ignore
+import { WfmReadWorkingScheduleForecastResponse } from '../api'
+// @ts-ignore
 import { WfmReadWorkingScheduleResponse } from '../api'
 // @ts-ignore
 import { WfmSearchWorkingScheduleResponse } from '../api'
 // @ts-ignore
 import { WfmUpdateWorkingScheduleAddAgentsResponse } from '../api'
 // @ts-ignore
-import { WfmUpdateWorkingScheduleRemoveAgentsResponse } from '../api'
+import { WfmUpdateWorkingScheduleRemoveAgentResponse } from '../api'
 // @ts-ignore
 import { WfmUpdateWorkingScheduleResponse } from '../api'
 /**
@@ -253,6 +255,81 @@ export const WorkingScheduleServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readWorkingScheduleForecast: async (
+      id: string,
+      dateFrom?: string,
+      dateTo?: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readWorkingScheduleForecast.'
+        )
+      }
+      const localVarPath = `/wfm/lookups/working_schedules/{id}/forecast`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (dateFrom !== undefined) {
+        localVarQueryParameter['date.from'] = dateFrom
+      }
+
+      if (dateTo !== undefined) {
+        localVarQueryParameter['date.to'] = dateTo
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @param {string} [q]
      * @param {number} [page]
      * @param {number} [size]
@@ -335,13 +412,13 @@ export const WorkingScheduleServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject10} body
+     * @param {InlineObject11} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingSchedule: async (
       itemId: string,
-      body: InlineObject10,
+      body: InlineObject11,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemId' is not null or undefined
@@ -414,21 +491,21 @@ export const WorkingScheduleServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} workingScheduleId
-     * @param {InlineObject11} body
+     * @param {string} id
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingScheduleAddAgents: async (
-      workingScheduleId: string,
-      body: InlineObject11,
+      id: string,
+      body: InlineObject10,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'workingScheduleId' is not null or undefined
-      if (workingScheduleId === null || workingScheduleId === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'workingScheduleId',
-          'Required parameter workingScheduleId was null or undefined when calling updateWorkingScheduleAddAgents.'
+          'id',
+          'Required parameter id was null or undefined when calling updateWorkingScheduleAddAgents.'
         )
       }
       // verify required parameter 'body' is not null or undefined
@@ -438,9 +515,9 @@ export const WorkingScheduleServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling updateWorkingScheduleAddAgents.'
         )
       }
-      const localVarPath = `/wfm/lookups/working_schedules/{working_schedule_id}/agents`.replace(
-        `{${'working_schedule_id'}}`,
-        encodeURIComponent(String(workingScheduleId))
+      const localVarPath = `/wfm/lookups/working_schedules/{id}/agents`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -494,25 +571,33 @@ export const WorkingScheduleServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} workingScheduleId
+     * @param {string} id
+     * @param {string} agentId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateWorkingScheduleRemoveAgents: async (
-      workingScheduleId: string,
+    updateWorkingScheduleRemoveAgent: async (
+      id: string,
+      agentId: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'workingScheduleId' is not null or undefined
-      if (workingScheduleId === null || workingScheduleId === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'workingScheduleId',
-          'Required parameter workingScheduleId was null or undefined when calling updateWorkingScheduleRemoveAgents.'
+          'id',
+          'Required parameter id was null or undefined when calling updateWorkingScheduleRemoveAgent.'
         )
       }
-      const localVarPath = `/wfm/lookups/working_schedules/{working_schedule_id}/agents`.replace(
-        `{${'working_schedule_id'}}`,
-        encodeURIComponent(String(workingScheduleId))
-      )
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
+        throw new RequiredError(
+          'agentId',
+          'Required parameter agentId was null or undefined when calling updateWorkingScheduleRemoveAgent.'
+        )
+      }
+      const localVarPath = `/wfm/lookups/working_schedules/{id}/agents/{agent_id}`
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agentId)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -657,6 +742,39 @@ export const WorkingScheduleServiceApiFp = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async readWorkingScheduleForecast(
+      id: string,
+      dateFrom?: string,
+      dateTo?: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WfmReadWorkingScheduleForecastResponse>
+    > {
+      const localVarAxiosArgs = await WorkingScheduleServiceApiAxiosParamCreator(
+        configuration
+      ).readWorkingScheduleForecast(id, dateFrom, dateTo, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @param {string} [q]
      * @param {number} [page]
      * @param {number} [size]
@@ -695,13 +813,13 @@ export const WorkingScheduleServiceApiFp = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject10} body
+     * @param {InlineObject11} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateWorkingSchedule(
       itemId: string,
-      body: InlineObject10,
+      body: InlineObject11,
       options?: any
     ): Promise<
       (
@@ -725,14 +843,14 @@ export const WorkingScheduleServiceApiFp = function(
     },
     /**
      *
-     * @param {string} workingScheduleId
-     * @param {InlineObject11} body
+     * @param {string} id
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateWorkingScheduleAddAgents(
-      workingScheduleId: string,
-      body: InlineObject11,
+      id: string,
+      body: InlineObject10,
       options?: any
     ): Promise<
       (
@@ -742,7 +860,7 @@ export const WorkingScheduleServiceApiFp = function(
     > {
       const localVarAxiosArgs = await WorkingScheduleServiceApiAxiosParamCreator(
         configuration
-      ).updateWorkingScheduleAddAgents(workingScheduleId, body, options)
+      ).updateWorkingScheduleAddAgents(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -756,22 +874,24 @@ export const WorkingScheduleServiceApiFp = function(
     },
     /**
      *
-     * @param {string} workingScheduleId
+     * @param {string} id
+     * @param {string} agentId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateWorkingScheduleRemoveAgents(
-      workingScheduleId: string,
+    async updateWorkingScheduleRemoveAgent(
+      id: string,
+      agentId: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmUpdateWorkingScheduleRemoveAgentsResponse>
+      ) => AxiosPromise<WfmUpdateWorkingScheduleRemoveAgentResponse>
     > {
       const localVarAxiosArgs = await WorkingScheduleServiceApiAxiosParamCreator(
         configuration
-      ).updateWorkingScheduleRemoveAgents(workingScheduleId, options)
+      ).updateWorkingScheduleRemoveAgent(id, agentId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -842,6 +962,24 @@ export const WorkingScheduleServiceApiFactory = function(
     },
     /**
      *
+     * @param {string} id
+     * @param {string} [dateFrom]
+     * @param {string} [dateTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readWorkingScheduleForecast(
+      id: string,
+      dateFrom?: string,
+      dateTo?: string,
+      options?: any
+    ): AxiosPromise<WfmReadWorkingScheduleForecastResponse> {
+      return WorkingScheduleServiceApiFp(configuration)
+        .readWorkingScheduleForecast(id, dateFrom, dateTo, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {string} [q]
      * @param {number} [page]
      * @param {number} [size]
@@ -865,13 +1003,13 @@ export const WorkingScheduleServiceApiFactory = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject10} body
+     * @param {InlineObject11} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingSchedule(
       itemId: string,
-      body: InlineObject10,
+      body: InlineObject11,
       options?: any
     ): AxiosPromise<WfmUpdateWorkingScheduleResponse> {
       return WorkingScheduleServiceApiFp(configuration)
@@ -880,32 +1018,34 @@ export const WorkingScheduleServiceApiFactory = function(
     },
     /**
      *
-     * @param {string} workingScheduleId
-     * @param {InlineObject11} body
+     * @param {string} id
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingScheduleAddAgents(
-      workingScheduleId: string,
-      body: InlineObject11,
+      id: string,
+      body: InlineObject10,
       options?: any
     ): AxiosPromise<WfmUpdateWorkingScheduleAddAgentsResponse> {
       return WorkingScheduleServiceApiFp(configuration)
-        .updateWorkingScheduleAddAgents(workingScheduleId, body, options)
+        .updateWorkingScheduleAddAgents(id, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} workingScheduleId
+     * @param {string} id
+     * @param {string} agentId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateWorkingScheduleRemoveAgents(
-      workingScheduleId: string,
+    updateWorkingScheduleRemoveAgent(
+      id: string,
+      agentId: string,
       options?: any
-    ): AxiosPromise<WfmUpdateWorkingScheduleRemoveAgentsResponse> {
+    ): AxiosPromise<WfmUpdateWorkingScheduleRemoveAgentResponse> {
       return WorkingScheduleServiceApiFp(configuration)
-        .updateWorkingScheduleRemoveAgents(workingScheduleId, options)
+        .updateWorkingScheduleRemoveAgent(id, agentId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -967,6 +1107,26 @@ export class WorkingScheduleServiceApi extends BaseAPI {
 
   /**
    *
+   * @param {string} id
+   * @param {string} [dateFrom]
+   * @param {string} [dateTo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof WorkingScheduleServiceApi
+   */
+  public readWorkingScheduleForecast(
+    id: string,
+    dateFrom?: string,
+    dateTo?: string,
+    options?: any
+  ) {
+    return WorkingScheduleServiceApiFp(this.configuration)
+      .readWorkingScheduleForecast(id, dateFrom, dateTo, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @param {string} [q]
    * @param {number} [page]
    * @param {number} [size]
@@ -992,14 +1152,14 @@ export class WorkingScheduleServiceApi extends BaseAPI {
   /**
    *
    * @param {string} itemId
-   * @param {InlineObject10} body
+   * @param {InlineObject11} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WorkingScheduleServiceApi
    */
   public updateWorkingSchedule(
     itemId: string,
-    body: InlineObject10,
+    body: InlineObject11,
     options?: any
   ) {
     return WorkingScheduleServiceApiFp(this.configuration)
@@ -1009,35 +1169,37 @@ export class WorkingScheduleServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {string} workingScheduleId
-   * @param {InlineObject11} body
+   * @param {string} id
+   * @param {InlineObject10} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WorkingScheduleServiceApi
    */
   public updateWorkingScheduleAddAgents(
-    workingScheduleId: string,
-    body: InlineObject11,
+    id: string,
+    body: InlineObject10,
     options?: any
   ) {
     return WorkingScheduleServiceApiFp(this.configuration)
-      .updateWorkingScheduleAddAgents(workingScheduleId, body, options)
+      .updateWorkingScheduleAddAgents(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} workingScheduleId
+   * @param {string} id
+   * @param {string} agentId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WorkingScheduleServiceApi
    */
-  public updateWorkingScheduleRemoveAgents(
-    workingScheduleId: string,
+  public updateWorkingScheduleRemoveAgent(
+    id: string,
+    agentId: string,
     options?: any
   ) {
     return WorkingScheduleServiceApiFp(this.configuration)
-      .updateWorkingScheduleRemoveAgents(workingScheduleId, options)
+      .updateWorkingScheduleRemoveAgent(id, agentId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -22,7 +22,7 @@ export interface CasesInputCatalog {
    * @type {string}
    * @memberof CasesInputCatalog
    */
-  closeReasonId?: string
+  close_reason_id?: string
   /**
    *
    * @type {string}
@@ -52,13 +52,13 @@ export interface CasesInputCatalog {
    * @type {Array<string>}
    * @memberof CasesInputCatalog
    */
-  skillIds?: Array<string>
+  skill_ids?: Array<string>
   /**
    *
    * @type {string}
    * @memberof CasesInputCatalog
    */
-  slaId?: string
+  sla_id?: string
   /**
    *
    * @type {boolean}
@@ -70,11 +70,11 @@ export interface CasesInputCatalog {
    * @type {string}
    * @memberof CasesInputCatalog
    */
-  statusId?: string
+  status_id?: string
   /**
    *
    * @type {Array<string>}
    * @memberof CasesInputCatalog
    */
-  teamIds?: Array<string>
+  team_ids?: Array<string>
 }

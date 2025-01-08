@@ -12,11 +12,15 @@
  */
 
 /**
- *  - PARTIAL: Only essential fields like [ Id, Name, Description, Created/Updated at ].  Partial info includes only essential fields.  - FULL: The fetch type indicates whether to retrieve all available data for the catalog ( FULL ) or only essential fields ( PARTIAL ).  Full info includes all fields of the catalog.
+ *
  * @export
- * @enum {string}
+ * @interface WfmUpdateWorkingScheduleRemoveAgentResponse
  */
-export enum CasesFetchType {
-  PARTIAL = 'PARTIAL',
-  FULL = 'FULL',
+export interface WfmUpdateWorkingScheduleRemoveAgentResponse {
+  /**
+   *
+   * @type {string}
+   * @memberof WfmUpdateWorkingScheduleRemoveAgentResponse
+   */
+  id?: string
 }

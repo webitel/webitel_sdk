@@ -30,13 +30,13 @@ export interface CasesSLA {
    * @type {string}
    * @memberof CasesSLA
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesSLA
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -60,35 +60,35 @@ export interface CasesSLA {
    * @type {string}
    * @memberof CasesSLA
    */
-  reactionTime?: string
+  reaction_time?: string
   /**
    *
    * @type {string}
    * @memberof CasesSLA
    */
-  resolutionTime?: string
+  resolution_time?: string
   /**
    *
    * @type {string}
    * @memberof CasesSLA
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesSLA
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
   /**
    *
    * @type {string}
    * @memberof CasesSLA
    */
-  validFrom?: string
+  valid_from?: string
   /**
    *
    * @type {string}
    * @memberof CasesSLA
    */
-  validTo?: string
+  valid_to?: string
 }

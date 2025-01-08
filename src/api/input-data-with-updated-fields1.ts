@@ -41,7 +41,7 @@ export interface InputDataWithUpdatedFields1 {
    * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields1
    */
-  closeReason?: GeneralLookup
+  close_reason?: GeneralLookup
   /**
    *
    * @type {Array<CasesInputCaseComment>}
@@ -53,7 +53,7 @@ export interface InputDataWithUpdatedFields1 {
    * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  contactInfo?: string
+  contact_info?: string
   /**
    *
    * @type {string}

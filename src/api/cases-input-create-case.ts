@@ -39,13 +39,13 @@ export interface CasesInputCreateCase {
    * @type {string}
    * @memberof CasesInputCreateCase
    */
-  closeReason?: string
+  close_reason?: string
   /**
    * Optional contact information.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
-  contactInfo?: string
+  contact_info?: string
   /**
    * Optional description of the case.
    * @type {string}

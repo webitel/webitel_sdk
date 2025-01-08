@@ -11,8 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { CasesSourceType } from './cases-source-type'
 import { GeneralLookup } from './general-lookup'
-import { WebitelcasesType } from './webitelcases-type'
 
 /**
  * Represents a source entity in the contact system.
@@ -25,13 +25,13 @@ export interface CasesSource {
    * @type {string}
    * @memberof CasesSource
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesSource
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -52,20 +52,20 @@ export interface CasesSource {
   name?: string
   /**
    *
-   * @type {WebitelcasesType}
+   * @type {CasesSourceType}
    * @memberof CasesSource
    */
-  type?: WebitelcasesType
+  type?: CasesSourceType
   /**
    *
    * @type {string}
    * @memberof CasesSource
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesSource
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

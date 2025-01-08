@@ -26,13 +26,13 @@ export interface CasesRelatedCase {
    * @type {string}
    * @memberof CasesRelatedCase
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesRelatedCase
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    * Unique identifier for the related case.
    * @type {string}
@@ -44,31 +44,31 @@ export interface CasesRelatedCase {
    * @type {CasesRelatedCaseLookup}
    * @memberof CasesRelatedCase
    */
-  primaryCase?: CasesRelatedCaseLookup
+  primary_case?: CasesRelatedCaseLookup
   /**
    *
    * @type {CasesRelatedCaseLookup}
    * @memberof CasesRelatedCase
    */
-  relatedCase?: CasesRelatedCaseLookup
+  related_case?: CasesRelatedCaseLookup
   /**
    *
    * @type {CasesRelationType}
    * @memberof CasesRelatedCase
    */
-  relationType?: CasesRelationType
+  relation_type?: CasesRelationType
   /**
    * Timestamp (in milliseconds) of the last update.
    * @type {string}
    * @memberof CasesRelatedCase
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesRelatedCase
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
   /**
    * Version number of the related case, used for concurrency control.
    * @type {number}

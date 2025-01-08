@@ -11,30 +11,18 @@
  * Do not edit the class manually.
  */
 
-import { ProtobufAny } from './protobuf-any'
+import { WfmWorkingScheduleForecast } from './wfm-working-schedule-forecast'
 
 /**
  *
  * @export
- * @interface RpcStatus
+ * @interface WfmReadWorkingScheduleForecastResponse
  */
-export interface RpcStatus {
+export interface WfmReadWorkingScheduleForecastResponse {
   /**
    *
-   * @type {number}
-   * @memberof RpcStatus
+   * @type {{ [key: string]: WfmWorkingScheduleForecast; }}
+   * @memberof WfmReadWorkingScheduleForecastResponse
    */
-  code?: number
-  /**
-   *
-   * @type {Array<ProtobufAny>}
-   * @memberof RpcStatus
-   */
-  details?: Array<ProtobufAny>
-  /**
-   *
-   * @type {string}
-   * @memberof RpcStatus
-   */
-  message?: string
+  items?: { [key: string]: WfmWorkingScheduleForecast }
 }

@@ -24,5 +24,5 @@ export interface CasesLocateSLAConditionResponse {
    * @type {CasesSLACondition}
    * @memberof CasesLocateSLAConditionResponse
    */
-  slaCondition?: CasesSLACondition
+  sla_condition?: CasesSLACondition
 }

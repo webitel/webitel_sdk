@@ -30,13 +30,13 @@ export interface CasesCaseLink {
    * @type {string}
    * @memberof CasesCaseLink
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCaseLink
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -54,13 +54,13 @@ export interface CasesCaseLink {
    * @type {string}
    * @memberof CasesCaseLink
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCaseLink
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
   /**
    *
    * @type {string}

@@ -22,7 +22,7 @@ export interface CasesCreateSLARequest {
    * @type {string}
    * @memberof CasesCreateSLARequest
    */
-  calendarId: string
+  calendar_id: string
   /**
    *
    * @type {string}
@@ -40,23 +40,23 @@ export interface CasesCreateSLARequest {
    * @type {string}
    * @memberof CasesCreateSLARequest
    */
-  reactionTime: string
+  reaction_time: string
   /**
    *
    * @type {string}
    * @memberof CasesCreateSLARequest
    */
-  resolutionTime: string
+  resolution_time: string
   /**
    *
    * @type {string}
    * @memberof CasesCreateSLARequest
    */
-  validFrom?: string
+  valid_from?: string
   /**
    *
    * @type {string}
    * @memberof CasesCreateSLARequest
    */
-  validTo?: string
+  valid_to?: string
 }

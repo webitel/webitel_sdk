@@ -63,8 +63,8 @@ export const CaseFilesApiAxiosParamCreator = function(
           'Required parameter caseId was null or undefined when calling listFiles.'
         )
       }
-      const localVarPath = `/cases/{caseId}/files`.replace(
-        `{${'caseId'}}`,
+      const localVarPath = `/cases/{case_id}/files`.replace(
+        `{${'case_id'}}`,
         encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)

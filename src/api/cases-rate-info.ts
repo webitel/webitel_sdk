@@ -28,5 +28,5 @@ export interface CasesRateInfo {
    * @type {string}
    * @memberof CasesRateInfo
    */
-  ratingComment?: string
+  rating_comment?: string
 }

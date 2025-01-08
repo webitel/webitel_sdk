@@ -70,8 +70,8 @@ export const RelatedCasesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling createRelatedCase.'
         )
       }
-      const localVarPath = `/cases/{primaryCaseId}/related`.replace(
-        `{${'primaryCaseId'}}`,
+      const localVarPath = `/cases/{primary_case_id}/related`.replace(
+        `{${'primary_case_id'}}`,
         encodeURIComponent(String(primaryCaseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -222,8 +222,8 @@ export const RelatedCasesApiAxiosParamCreator = function(
           'Required parameter primaryCaseId was null or undefined when calling listRelatedCases.'
         )
       }
-      const localVarPath = `/cases/{primaryCaseId}/related`.replace(
-        `{${'primaryCaseId'}}`,
+      const localVarPath = `/cases/{primary_case_id}/related`.replace(
+        `{${'primary_case_id'}}`,
         encodeURIComponent(String(primaryCaseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)

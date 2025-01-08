@@ -24,19 +24,19 @@ export interface CasesCloseReason {
    * @type {string}
    * @memberof CasesCloseReason
    */
-  closeReasonGroupId?: string
+  close_reason_group_id?: string
   /**
    *
    * @type {string}
    * @memberof CasesCloseReason
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCloseReason
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -60,11 +60,11 @@ export interface CasesCloseReason {
    * @type {string}
    * @memberof CasesCloseReason
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCloseReason
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

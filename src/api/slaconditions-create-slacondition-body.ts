@@ -34,11 +34,11 @@ export interface SLAConditionsCreateSLAConditionBody {
    * @type {string}
    * @memberof SLAConditionsCreateSLAConditionBody
    */
-  reactionTime: string
+  reaction_time: string
   /**
    *
    * @type {string}
    * @memberof SLAConditionsCreateSLAConditionBody
    */
-  resolutionTime: string
+  resolution_time: string
 }

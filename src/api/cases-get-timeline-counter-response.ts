@@ -22,29 +22,29 @@ export interface CasesGetTimelineCounterResponse {
    * @type {string}
    * @memberof CasesGetTimelineCounterResponse
    */
-  callsCount?: string
+  calls_count?: string
   /**
    *
    * @type {string}
    * @memberof CasesGetTimelineCounterResponse
    */
-  chatsCount?: string
+  chats_count?: string
   /**
    *
    * @type {string}
    * @memberof CasesGetTimelineCounterResponse
    */
-  dateFrom?: string
+  date_from?: string
   /**
    *
    * @type {string}
    * @memberof CasesGetTimelineCounterResponse
    */
-  dateTo?: string
+  date_to?: string
   /**
    *
    * @type {string}
    * @memberof CasesGetTimelineCounterResponse
    */
-  emailsCount?: string
+  emails_count?: string
 }

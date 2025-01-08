@@ -30,13 +30,13 @@ export interface CasesPriority {
    * @type {string}
    * @memberof CasesPriority
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesPriority
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -60,11 +60,11 @@ export interface CasesPriority {
    * @type {string}
    * @memberof CasesPriority
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesPriority
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

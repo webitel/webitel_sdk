@@ -15,9 +15,9 @@ import { CasesCaseCommentList } from './cases-case-comment-list'
 import { CasesCaseFileList } from './cases-case-file-list'
 import { CasesCaseLinkList } from './cases-case-link-list'
 import { CasesCloseInfo } from './cases-close-info'
+import { CasesPriority } from './cases-priority'
 import { CasesRateInfo } from './cases-rate-info'
 import { CasesRelatedCaseList } from './cases-related-case-list'
-import { CasesSLACondition } from './cases-slacondition'
 import { CasesSourceTypeLookup } from './cases-source-type-lookup'
 import { CasesTimingInfo } from './cases-timing-info'
 import { GeneralLookup } from './general-lookup'
@@ -51,7 +51,7 @@ export interface CasesCase {
    * @type {GeneralLookup}
    * @memberof CasesCase
    */
-  closeReasonGroup?: GeneralLookup
+  close_reason_group?: GeneralLookup
   /**
    *
    * @type {CasesCaseCommentList}
@@ -63,19 +63,19 @@ export interface CasesCase {
    * @type {string}
    * @memberof CasesCase
    */
-  contactInfo?: string
+  contact_info?: string
   /**
    *
    * @type {string}
    * @memberof CasesCase
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCase
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    * Detailed description of the case.
    * @type {string}
@@ -123,19 +123,19 @@ export interface CasesCase {
    * @type {string}
    * @memberof CasesCase
    */
-  plannedReactionAt?: string
+  planned_reaction_at?: string
   /**
    * Planned resolution time (in milliseconds).
    * @type {string}
    * @memberof CasesCase
    */
-  plannedResolveAt?: string
+  planned_resolve_at?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {CasesPriority}
    * @memberof CasesCase
    */
-  priority?: GeneralLookup
+  priority?: CasesPriority
   /**
    *
    * @type {CasesRateInfo}
@@ -167,11 +167,11 @@ export interface CasesCase {
    */
   sla?: GeneralLookup
   /**
-   * List of SLA conditions.
-   * @type {Array<CasesSLACondition>}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesCase
    */
-  slaCondition?: Array<CasesSLACondition>
+  sla_condition?: GeneralLookup
   /**
    *
    * @type {CasesSourceTypeLookup}
@@ -189,7 +189,7 @@ export interface CasesCase {
    * @type {GeneralLookup}
    * @memberof CasesCase
    */
-  statusCondition?: GeneralLookup
+  status_condition?: GeneralLookup
   /**
    * Subject of the case.
    * @type {string}
@@ -207,13 +207,13 @@ export interface CasesCase {
    * @type {string}
    * @memberof CasesCase
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCase
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
   /**
    *
    * @type {number}

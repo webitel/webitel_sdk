@@ -11,24 +11,18 @@
  * Do not edit the class manually.
  */
 
-import { CasesFetchType } from './cases-fetch-type'
+import { WfmWorkingScheduleForecastForecast } from './wfm-working-schedule-forecast-forecast'
 
 /**
  *
  * @export
- * @interface CasesSearch
+ * @interface WfmWorkingScheduleForecast
  */
-export interface CasesSearch {
+export interface WfmWorkingScheduleForecast {
   /**
    *
-   * @type {CasesFetchType}
-   * @memberof CasesSearch
+   * @type {Array<WfmWorkingScheduleForecastForecast>}
+   * @memberof WfmWorkingScheduleForecast
    */
-  fetchType?: CasesFetchType
-  /**
-   *
-   * @type {string}
-   * @memberof CasesSearch
-   */
-  query?: string
+  forecast?: Array<WfmWorkingScheduleForecastForecast>
 }

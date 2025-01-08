@@ -22,23 +22,23 @@ export interface CasesTimingInfo {
    * @type {string}
    * @memberof CasesTimingInfo
    */
-  differenceInReaction?: string
+  difference_in_reaction?: string
   /**
    * Difference between actual and planned resolution time.
    * @type {string}
    * @memberof CasesTimingInfo
    */
-  differenceInResolve?: string
+  difference_in_resolve?: string
   /**
    * Actual reaction timestamp (in milliseconds).
    * @type {string}
    * @memberof CasesTimingInfo
    */
-  reactedAt?: string
+  reacted_at?: string
   /**
    * Actual resolution timestamp (in milliseconds).
    * @type {string}
    * @memberof CasesTimingInfo
    */
-  resolvedAt?: string
+  resolved_at?: string
 }

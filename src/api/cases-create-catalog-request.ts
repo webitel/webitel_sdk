@@ -22,7 +22,7 @@ export interface CasesCreateCatalogRequest {
    * @type {string}
    * @memberof CasesCreateCatalogRequest
    */
-  closeReasonId?: string
+  close_reason_id?: string
   /**
    *
    * @type {string}
@@ -52,13 +52,13 @@ export interface CasesCreateCatalogRequest {
    * @type {Array<string>}
    * @memberof CasesCreateCatalogRequest
    */
-  skillIds?: Array<string>
+  skill_ids?: Array<string>
   /**
    *
    * @type {string}
    * @memberof CasesCreateCatalogRequest
    */
-  slaId?: string
+  sla_id?: string
   /**
    *
    * @type {boolean}
@@ -70,11 +70,11 @@ export interface CasesCreateCatalogRequest {
    * @type {string}
    * @memberof CasesCreateCatalogRequest
    */
-  statusId?: string
+  status_id?: string
   /**
    *
    * @type {Array<string>}
    * @memberof CasesCreateCatalogRequest
    */
-  teamIds?: Array<string>
+  team_ids?: Array<string>
 }

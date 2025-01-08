@@ -24,13 +24,13 @@ export interface CasesStatusCondition {
    * @type {string}
    * @memberof CasesStatusCondition
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesStatusCondition
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    *
    * @type {string}
@@ -66,17 +66,17 @@ export interface CasesStatusCondition {
    * @type {string}
    * @memberof CasesStatusCondition
    */
-  statusId?: string
+  status_id?: string
   /**
    *
    * @type {string}
    * @memberof CasesStatusCondition
    */
-  updatedAt?: string
+  updated_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesStatusCondition
    */
-  updatedBy?: GeneralLookup
+  updated_by?: GeneralLookup
 }

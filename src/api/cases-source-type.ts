@@ -16,7 +16,7 @@
  * @export
  * @enum {string}
  */
-export enum WebitelcasesType {
+export enum CasesSourceType {
   TYPEUNSPECIFIED = 'TYPE_UNSPECIFIED',
   CALL = 'CALL',
   CHAT = 'CHAT',

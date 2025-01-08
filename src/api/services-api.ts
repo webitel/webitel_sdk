@@ -245,7 +245,7 @@ export const ServicesApiAxiosParamCreator = function(
       }
 
       if (rootId !== undefined) {
-        localVarQueryParameter['rootId'] = rootId
+        localVarQueryParameter['root_id'] = rootId
       }
 
       if (state !== undefined) {

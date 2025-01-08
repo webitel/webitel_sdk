@@ -70,8 +70,8 @@ export const CloseReasonsApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createCloseReason.'
         )
       }
-      const localVarPath = `/close_reason_groups/{closeReasonGroupId}/close_reasons`.replace(
-        `{${'closeReasonGroupId'}}`,
+      const localVarPath = `/close_reason_groups/{close_reason_group_id}/close_reasons`.replace(
+        `{${'close_reason_group_id'}}`,
         encodeURIComponent(String(closeReasonGroupId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -151,9 +151,9 @@ export const CloseReasonsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling deleteCloseReason.'
         )
       }
-      const localVarPath = `/close_reason_groups/{closeReasonGroupId}/close_reasons/{id}`
+      const localVarPath = `/close_reason_groups/{close_reason_group_id}/close_reasons/{id}`
         .replace(
-          `{${'closeReasonGroupId'}}`,
+          `{${'close_reason_group_id'}}`,
           encodeURIComponent(String(closeReasonGroupId))
         )
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
@@ -229,8 +229,8 @@ export const CloseReasonsApiAxiosParamCreator = function(
           'Required parameter closeReasonGroupId was null or undefined when calling listCloseReasons.'
         )
       }
-      const localVarPath = `/close_reason_groups/{closeReasonGroupId}/close_reasons`.replace(
-        `{${'closeReasonGroupId'}}`,
+      const localVarPath = `/close_reason_groups/{close_reason_group_id}/close_reasons`.replace(
+        `{${'close_reason_group_id'}}`,
         encodeURIComponent(String(closeReasonGroupId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -328,9 +328,9 @@ export const CloseReasonsApiAxiosParamCreator = function(
           'Required parameter id was null or undefined when calling locateCloseReason.'
         )
       }
-      const localVarPath = `/close_reason_groups/{closeReasonGroupId}/close_reasons/{id}`
+      const localVarPath = `/close_reason_groups/{close_reason_group_id}/close_reasons/{id}`
         .replace(
-          `{${'closeReasonGroupId'}}`,
+          `{${'close_reason_group_id'}}`,
           encodeURIComponent(String(closeReasonGroupId))
         )
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
@@ -416,9 +416,9 @@ export const CloseReasonsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateCloseReason.'
         )
       }
-      const localVarPath = `/close_reason_groups/{closeReasonGroupId}/close_reasons/{id}`
+      const localVarPath = `/close_reason_groups/{close_reason_group_id}/close_reasons/{id}`
         .replace(
-          `{${'closeReasonGroupId'}}`,
+          `{${'close_reason_group_id'}}`,
           encodeURIComponent(String(closeReasonGroupId))
         )
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))
@@ -508,9 +508,9 @@ export const CloseReasonsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateCloseReason2.'
         )
       }
-      const localVarPath = `/close_reason_groups/{closeReasonGroupId}/close_reasons/{id}`
+      const localVarPath = `/close_reason_groups/{close_reason_group_id}/close_reasons/{id}`
         .replace(
-          `{${'closeReasonGroupId'}}`,
+          `{${'close_reason_group_id'}}`,
           encodeURIComponent(String(closeReasonGroupId))
         )
         .replace(`{${'id'}}`, encodeURIComponent(String(id)))

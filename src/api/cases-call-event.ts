@@ -26,7 +26,7 @@ export interface CasesCallEvent {
    * @type {string}
    * @memberof CasesCallEvent
    */
-  closedAt?: string
+  closed_at?: string
   /**
    *
    * @type {string}
@@ -44,7 +44,7 @@ export interface CasesCallEvent {
    * @type {GeneralLookup}
    * @memberof CasesCallEvent
    */
-  flowScheme?: GeneralLookup
+  flow_scheme?: GeneralLookup
   /**
    *
    * @type {GeneralLookup}
@@ -62,19 +62,19 @@ export interface CasesCallEvent {
    * @type {boolean}
    * @memberof CasesCallEvent
    */
-  isDetailed?: boolean
+  is_detailed?: boolean
   /**
    *
    * @type {boolean}
    * @memberof CasesCallEvent
    */
-  isInbound?: boolean
+  is_inbound?: boolean
   /**
    *
    * @type {boolean}
    * @memberof CasesCallEvent
    */
-  isMissed?: boolean
+  is_missed?: boolean
   /**
    *
    * @type {Array<GeneralLookup>}
@@ -92,7 +92,7 @@ export interface CasesCallEvent {
    * @type {string}
    * @memberof CasesCallEvent
    */
-  totalDuration?: string
+  total_duration?: string
   /**
    *
    * @type {Array<CasesTranscriptLookup>}

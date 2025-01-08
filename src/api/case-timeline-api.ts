@@ -72,8 +72,8 @@ export const CaseTimelineApiAxiosParamCreator = function(
           'Required parameter caseEtag was null or undefined when calling getTimeline.'
         )
       }
-      const localVarPath = `/cases/{caseEtag}/timeline`.replace(
-        `{${'caseEtag'}}`,
+      const localVarPath = `/cases/{case_etag}/timeline`.replace(
+        `{${'case_etag'}}`,
         encodeURIComponent(String(caseEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -123,11 +123,11 @@ export const CaseTimelineApiAxiosParamCreator = function(
       }
 
       if (dateFrom !== undefined) {
-        localVarQueryParameter['dateFrom'] = dateFrom
+        localVarQueryParameter['date_from'] = dateFrom
       }
 
       if (dateTo !== undefined) {
-        localVarQueryParameter['dateTo'] = dateTo
+        localVarQueryParameter['date_to'] = dateTo
       }
 
       if (type) {
@@ -171,8 +171,8 @@ export const CaseTimelineApiAxiosParamCreator = function(
           'Required parameter caseEtag was null or undefined when calling getTimelineCounter.'
         )
       }
-      const localVarPath = `/cases/{caseEtag}/timeline/counter`.replace(
-        `{${'caseEtag'}}`,
+      const localVarPath = `/cases/{case_etag}/timeline/counter`.replace(
+        `{${'case_etag'}}`,
         encodeURIComponent(String(caseEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)

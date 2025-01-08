@@ -25,7 +25,7 @@ export interface CasesChatEvent {
    * @type {string}
    * @memberof CasesChatEvent
    */
-  closedAt?: string
+  closed_at?: string
   /**
    *
    * @type {string}
@@ -37,7 +37,7 @@ export interface CasesChatEvent {
    * @type {GeneralLookup}
    * @memberof CasesChatEvent
    */
-  flowScheme?: GeneralLookup
+  flow_scheme?: GeneralLookup
   /**
    *
    * @type {GeneralExtendedLookup}
@@ -55,19 +55,19 @@ export interface CasesChatEvent {
    * @type {boolean}
    * @memberof CasesChatEvent
    */
-  isDetailed?: boolean
+  is_detailed?: boolean
   /**
    *
    * @type {boolean}
    * @memberof CasesChatEvent
    */
-  isInbound?: boolean
+  is_inbound?: boolean
   /**
    *
    * @type {boolean}
    * @memberof CasesChatEvent
    */
-  isMissed?: boolean
+  is_missed?: boolean
   /**
    *
    * @type {Array<GeneralLookup>}

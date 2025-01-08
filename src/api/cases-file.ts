@@ -30,13 +30,13 @@ export interface CasesFile {
    * @type {string}
    * @memberof CasesFile
    */
-  createdAt?: string
+  created_at?: string
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesFile
    */
-  createdBy?: GeneralLookup
+  created_by?: GeneralLookup
   /**
    * Storage file ID.
    * @type {string}

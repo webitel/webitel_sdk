@@ -143,8 +143,8 @@ export const CaseCommentsApiAxiosParamCreator = function(
           'Required parameter caseId was null or undefined when calling listComments.'
         )
       }
-      const localVarPath = `/cases/{caseId}/comments`.replace(
-        `{${'caseId'}}`,
+      const localVarPath = `/cases/{case_id}/comments`.replace(
+        `{${'case_id'}}`,
         encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
@@ -312,8 +312,8 @@ export const CaseCommentsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling publishComment.'
         )
       }
-      const localVarPath = `/cases/{caseId}/comments`.replace(
-        `{${'caseId'}}`,
+      const localVarPath = `/cases/{case_id}/comments`.replace(
+        `{${'case_id'}}`,
         encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
