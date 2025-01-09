@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { CasesCloseInfo } from './cases-close-info'
+import { CasesCloseInfoInput } from './cases-close-info-input'
 import { CasesRateInfo } from './cases-rate-info'
 
 /**
@@ -28,10 +28,10 @@ export interface InputDataWithUpdatedFields1 {
   assignee?: string
   /**
    *
-   * @type {CasesCloseInfo}
+   * @type {CasesCloseInfoInput}
    * @memberof InputDataWithUpdatedFields1
    */
-  close?: CasesCloseInfo
+  close?: CasesCloseInfoInput
   /**
    *
    * @type {string}
