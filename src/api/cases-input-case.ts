@@ -12,11 +12,7 @@
  */
 
 import { CasesCloseInfo } from './cases-close-info'
-import { CasesInputCaseComment } from './cases-input-case-comment'
-import { CasesInputCaseLink } from './cases-input-case-link'
-import { CasesInputRelatedCase } from './cases-input-related-case'
 import { CasesRateInfo } from './cases-rate-info'
-import { GeneralLookup } from './general-lookup'
 
 /**
  *
@@ -26,10 +22,10 @@ import { GeneralLookup } from './general-lookup'
 export interface CasesInputCase {
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  assignee?: GeneralLookup
+  assignee?: string
   /**
    *
    * @type {CasesCloseInfo}
@@ -38,16 +34,10 @@ export interface CasesInputCase {
   close?: CasesCloseInfo
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  close_reason?: GeneralLookup
-  /**
-   *
-   * @type {Array<CasesInputCaseComment>}
-   * @memberof CasesInputCase
-   */
-  comments?: Array<CasesInputCaseComment>
+  close_reason?: string
   /**
    *
    * @type {string}
@@ -62,10 +52,10 @@ export interface CasesInputCase {
   description?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  group?: GeneralLookup
+  group?: string
   /**
    *
    * @type {string}
@@ -74,16 +64,10 @@ export interface CasesInputCase {
   id?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  impacted?: GeneralLookup
-  /**
-   *
-   * @type {Array<CasesInputCaseLink>}
-   * @memberof CasesInputCase
-   */
-  links?: Array<CasesInputCaseLink>
+  impacted?: string
   /**
    *
    * @type {string}
@@ -92,10 +76,10 @@ export interface CasesInputCase {
   name?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  priority?: GeneralLookup
+  priority?: string
   /**
    *
    * @type {CasesRateInfo}
@@ -104,34 +88,28 @@ export interface CasesInputCase {
   rate?: CasesRateInfo
   /**
    *
-   * @type {Array<CasesInputRelatedCase>}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  related?: Array<CasesInputRelatedCase>
+  reporter?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  reporter?: GeneralLookup
+  service?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  service?: GeneralLookup
+  source?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  source?: GeneralLookup
-  /**
-   *
-   * @type {GeneralLookup}
-   * @memberof CasesInputCase
-   */
-  status?: GeneralLookup
+  status?: string
   /**
    *
    * @type {string}

@@ -12,11 +12,7 @@
  */
 
 import { CasesCloseInfo } from './cases-close-info'
-import { CasesInputCaseComment } from './cases-input-case-comment'
-import { CasesInputCaseLink } from './cases-input-case-link'
-import { CasesInputRelatedCase } from './cases-input-related-case'
 import { CasesRateInfo } from './cases-rate-info'
-import { GeneralLookup } from './general-lookup'
 
 /**
  *
@@ -26,10 +22,10 @@ import { GeneralLookup } from './general-lookup'
 export interface InputDataWithUpdatedFields1 {
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  assignee?: GeneralLookup
+  assignee?: string
   /**
    *
    * @type {CasesCloseInfo}
@@ -38,16 +34,10 @@ export interface InputDataWithUpdatedFields1 {
   close?: CasesCloseInfo
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  close_reason?: GeneralLookup
-  /**
-   *
-   * @type {Array<CasesInputCaseComment>}
-   * @memberof InputDataWithUpdatedFields1
-   */
-  comments?: Array<CasesInputCaseComment>
+  close_reason?: string
   /**
    *
    * @type {string}
@@ -62,22 +52,16 @@ export interface InputDataWithUpdatedFields1 {
   description?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  group?: GeneralLookup
+  group?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  impacted?: GeneralLookup
-  /**
-   *
-   * @type {Array<CasesInputCaseLink>}
-   * @memberof InputDataWithUpdatedFields1
-   */
-  links?: Array<CasesInputCaseLink>
+  impacted?: string
   /**
    *
    * @type {string}
@@ -86,10 +70,10 @@ export interface InputDataWithUpdatedFields1 {
   name?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  priority?: GeneralLookup
+  priority?: string
   /**
    *
    * @type {CasesRateInfo}
@@ -98,34 +82,28 @@ export interface InputDataWithUpdatedFields1 {
   rate?: CasesRateInfo
   /**
    *
-   * @type {Array<CasesInputRelatedCase>}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  related?: Array<CasesInputRelatedCase>
+  reporter?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  reporter?: GeneralLookup
+  service?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  service?: GeneralLookup
+  source?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */
-  source?: GeneralLookup
-  /**
-   *
-   * @type {GeneralLookup}
-   * @memberof InputDataWithUpdatedFields1
-   */
-  status?: GeneralLookup
+  status?: string
   /**
    *
    * @type {string}
