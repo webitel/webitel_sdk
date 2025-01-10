@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  * Structure for close information when a case is closed.
  * @export
@@ -18,11 +20,11 @@
  */
 export interface CasesCreateCaseCloseInput {
   /**
-   * Close reason ID from lookup.
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesCreateCaseCloseInput
    */
-  close_reason?: string
+  close_reason?: GeneralLookup
   /**
    * Comment or reason for closing the case.
    * @type {string}
