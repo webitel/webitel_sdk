@@ -33,11 +33,11 @@ export interface WebitelContactsInputCondition {
    */
   expression?: string
   /**
-   * The ID of the static group that should be assigned if the condition is met.
-   * @type {string}
+   *
+   * @type {WebitelContactsLookup}
    * @memberof WebitelContactsInputCondition
    */
-  group?: string
+  group?: WebitelContactsLookup
   /**
    *
    * @type {WebitelContactsPosition}

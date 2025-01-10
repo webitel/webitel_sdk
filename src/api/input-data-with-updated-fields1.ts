@@ -101,6 +101,12 @@ export interface InputDataWithUpdatedFields1 {
   status?: GeneralLookup
   /**
    *
+   * @type {GeneralLookup}
+   * @memberof InputDataWithUpdatedFields1
+   */
+  status_condition?: GeneralLookup
+  /**
+   *
    * @type {string}
    * @memberof InputDataWithUpdatedFields1
    */

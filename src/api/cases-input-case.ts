@@ -107,6 +107,12 @@ export interface CasesInputCase {
   status?: GeneralLookup
   /**
    *
+   * @type {GeneralLookup}
+   * @memberof CasesInputCase
+   */
+  status_condition?: GeneralLookup
+  /**
+   *
    * @type {string}
    * @memberof CasesInputCase
    */

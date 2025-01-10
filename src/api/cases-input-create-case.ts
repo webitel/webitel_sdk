@@ -40,7 +40,7 @@ export interface CasesInputCreateCase {
    * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  close_reason?: GeneralLookup
+  close_reason_group?: GeneralLookup
   /**
    * Optional contact information.
    * @type {string}
