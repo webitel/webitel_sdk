@@ -73,12 +73,6 @@ export interface CasesInputCase {
    * @type {string}
    * @memberof CasesInputCase
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCase
-   */
   priority?: string
   /**
    *

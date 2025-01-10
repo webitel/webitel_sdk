@@ -67,12 +67,6 @@ export interface InputDataWithUpdatedFields {
    * @type {string}
    * @memberof InputDataWithUpdatedFields
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof InputDataWithUpdatedFields
-   */
   priority?: string
   /**
    *
