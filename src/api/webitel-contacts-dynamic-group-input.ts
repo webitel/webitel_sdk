@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsLookup } from './webitel-contacts-lookup'
+
 /**
  * Input message for creating/updating a dynamic group.
  * @export
@@ -18,11 +20,11 @@
  */
 export interface WebitelContactsDynamicGroupInput {
   /**
-   * Default static group to assign if no conditions are met.
-   * @type {string}
+   *
+   * @type {WebitelContactsLookup}
    * @memberof WebitelContactsDynamicGroupInput
    */
-  default_group?: string
+  default_group?: WebitelContactsLookup
   /**
    * The description of the dynamic group.
    * @type {string}

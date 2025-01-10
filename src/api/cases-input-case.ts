@@ -11,8 +11,9 @@
  * Do not edit the class manually.
  */
 
-import { CasesCloseInfoInput } from './cases-close-info-input'
+import { CasesCloseInfo } from './cases-close-info'
 import { CasesRateInfo } from './cases-rate-info'
+import { GeneralLookup } from './general-lookup'
 
 /**
  *
@@ -22,22 +23,22 @@ import { CasesRateInfo } from './cases-rate-info'
 export interface CasesInputCase {
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  assignee?: string
+  assignee?: GeneralLookup
   /**
    *
-   * @type {CasesCloseInfoInput}
+   * @type {CasesCloseInfo}
    * @memberof CasesInputCase
    */
-  close?: CasesCloseInfoInput
+  close?: CasesCloseInfo
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  close_reason?: string
+  close_reason?: GeneralLookup
   /**
    *
    * @type {string}
@@ -52,10 +53,10 @@ export interface CasesInputCase {
   description?: string
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  group?: string
+  group?: GeneralLookup
   /**
    *
    * @type {string}
@@ -64,16 +65,16 @@ export interface CasesInputCase {
   id?: string
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  impacted?: string
+  impacted?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  priority?: string
+  priority?: GeneralLookup
   /**
    *
    * @type {CasesRateInfo}
@@ -82,28 +83,28 @@ export interface CasesInputCase {
   rate?: CasesRateInfo
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  reporter?: string
+  reporter?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  service?: string
+  service?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  source?: string
+  source?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
-  status?: string
+  status?: GeneralLookup
   /**
    *
    * @type {string}

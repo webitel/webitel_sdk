@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  *
  * @export
@@ -19,10 +21,10 @@
 export interface CasesInputCatalog {
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCatalog
    */
-  close_reason_id?: string
+  close_reason?: GeneralLookup
   /**
    *
    * @type {string}
@@ -49,16 +51,16 @@ export interface CasesInputCatalog {
   prefix?: string
   /**
    *
-   * @type {Array<string>}
+   * @type {Array<GeneralLookup>}
    * @memberof CasesInputCatalog
    */
-  skill_ids?: Array<string>
+  skills?: Array<GeneralLookup>
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCatalog
    */
-  sla_id?: string
+  sla?: GeneralLookup
   /**
    *
    * @type {boolean}
@@ -67,14 +69,14 @@ export interface CasesInputCatalog {
   state?: boolean
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputCatalog
    */
-  status_id?: string
+  status?: GeneralLookup
   /**
    *
-   * @type {Array<string>}
+   * @type {Array<GeneralLookup>}
    * @memberof CasesInputCatalog
    */
-  team_ids?: Array<string>
+  teams?: Array<GeneralLookup>
 }

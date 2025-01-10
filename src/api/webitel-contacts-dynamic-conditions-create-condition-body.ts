@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsLookup } from './webitel-contacts-lookup'
+
 /**
  * Request message for creating a new condition.
  * @export
@@ -18,11 +20,11 @@
  */
 export interface WebitelContactsDynamicConditionsCreateConditionBody {
   /**
-   * The ID of the assignee that should be assigned if the condition is met (optional).
-   * @type {string}
+   *
+   * @type {WebitelContactsLookup}
    * @memberof WebitelContactsDynamicConditionsCreateConditionBody
    */
-  assignee?: string
+  assignee?: WebitelContactsLookup
   /**
    * The query or condition expression used to evaluate the group.
    * @type {string}
@@ -30,9 +32,9 @@ export interface WebitelContactsDynamicConditionsCreateConditionBody {
    */
   expression?: string
   /**
-   * The ID of the static group that should be assigned if the condition is met.
-   * @type {string}
+   *
+   * @type {WebitelContactsLookup}
    * @memberof WebitelContactsDynamicConditionsCreateConditionBody
    */
-  group?: string
+  group?: WebitelContactsLookup
 }

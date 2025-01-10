@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  *
  * @export
@@ -19,10 +21,10 @@
 export interface CasesInputSLA {
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesInputSLA
    */
-  calendar_id?: string
+  calendar?: GeneralLookup
   /**
    *
    * @type {string}

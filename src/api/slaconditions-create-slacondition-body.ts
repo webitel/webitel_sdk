@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  *
  * @export
@@ -25,10 +27,10 @@ export interface SLAConditionsCreateSLAConditionBody {
   name: string
   /**
    *
-   * @type {Array<string>}
+   * @type {Array<GeneralLookup>}
    * @memberof SLAConditionsCreateSLAConditionBody
    */
-  priorities: Array<string>
+  priorities: Array<GeneralLookup>
   /**
    *
    * @type {string}

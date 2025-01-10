@@ -11,8 +11,9 @@
  * Do not edit the class manually.
  */
 
-import { CasesCloseInfoInput } from './cases-close-info-input'
+import { CasesCloseInfo } from './cases-close-info'
 import { CasesRateInfo } from './cases-rate-info'
+import { GeneralLookup } from './general-lookup'
 
 /**
  *
@@ -22,22 +23,22 @@ import { CasesRateInfo } from './cases-rate-info'
 export interface InputDataWithUpdatedFields {
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  assignee?: string
+  assignee?: GeneralLookup
   /**
    *
-   * @type {CasesCloseInfoInput}
+   * @type {CasesCloseInfo}
    * @memberof InputDataWithUpdatedFields
    */
-  close?: CasesCloseInfoInput
+  close?: CasesCloseInfo
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  close_reason?: string
+  close_reason?: GeneralLookup
   /**
    *
    * @type {string}
@@ -52,22 +53,22 @@ export interface InputDataWithUpdatedFields {
   description?: string
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  group?: string
+  group?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  impacted?: string
+  impacted?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  priority?: string
+  priority?: GeneralLookup
   /**
    *
    * @type {CasesRateInfo}
@@ -76,28 +77,28 @@ export interface InputDataWithUpdatedFields {
   rate?: CasesRateInfo
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  reporter?: string
+  reporter?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  service?: string
+  service?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  source?: string
+  source?: GeneralLookup
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof InputDataWithUpdatedFields
    */
-  status?: string
+  status?: GeneralLookup
   /**
    *
    * @type {string}

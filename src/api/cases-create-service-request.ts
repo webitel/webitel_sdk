@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  *
  * @export
@@ -19,10 +21,10 @@
 export interface CasesCreateServiceRequest {
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesCreateServiceRequest
    */
-  assignee_id?: string
+  assignee?: GeneralLookup
   /**
    *
    * @type {string}
@@ -43,10 +45,10 @@ export interface CasesCreateServiceRequest {
   description?: string
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesCreateServiceRequest
    */
-  group_id?: string
+  group?: GeneralLookup
   /**
    *
    * @type {string}
@@ -61,10 +63,10 @@ export interface CasesCreateServiceRequest {
   root_id?: string
   /**
    *
-   * @type {string}
+   * @type {GeneralLookup}
    * @memberof CasesCreateServiceRequest
    */
-  sla_id?: string
+  sla?: GeneralLookup
   /**
    *
    * @type {boolean}

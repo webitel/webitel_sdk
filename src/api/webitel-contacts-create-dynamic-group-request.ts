@@ -12,6 +12,7 @@
  */
 
 import { WebitelContactsInputDynamicCondition } from './webitel-contacts-input-dynamic-condition'
+import { WebitelContactsLookup } from './webitel-contacts-lookup'
 
 /**
  * Request message for creating a new dynamic group.
@@ -26,11 +27,11 @@ export interface WebitelContactsCreateDynamicGroupRequest {
    */
   condition?: Array<WebitelContactsInputDynamicCondition>
   /**
-   * Default static group to assign if no conditions are met.
-   * @type {string}
+   *
+   * @type {WebitelContactsLookup}
    * @memberof WebitelContactsCreateDynamicGroupRequest
    */
-  default_group_id?: string
+  default_group?: WebitelContactsLookup
   /**
    * The description of the dynamic group.
    * @type {string}

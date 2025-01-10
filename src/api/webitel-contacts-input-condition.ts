@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+import { WebitelContactsLookup } from './webitel-contacts-lookup'
 import { WebitelContactsPosition } from './webitel-contacts-position'
 
 /**
@@ -20,11 +21,11 @@ import { WebitelContactsPosition } from './webitel-contacts-position'
  */
 export interface WebitelContactsInputCondition {
   /**
-   * The ID of the assignee that should be assigned if the condition is met (optional).
-   * @type {string}
+   *
+   * @type {WebitelContactsLookup}
    * @memberof WebitelContactsInputCondition
    */
-  assignee?: string
+  assignee?: WebitelContactsLookup
   /**
    * The query or condition expression used to evaluate the group.
    * @type {string}

@@ -12,6 +12,7 @@
  */
 
 import { CasesRelationType } from './cases-relation-type'
+import { GeneralLookup } from './general-lookup'
 
 /**
  * Input for creating a related case.
@@ -20,11 +21,11 @@ import { CasesRelationType } from './cases-relation-type'
  */
 export interface CasesCreateInputRelatedCase {
   /**
-   * Related case details.
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesCreateInputRelatedCase
    */
-  related_case_id?: string
+  related_case?: GeneralLookup
   /**
    *
    * @type {CasesRelationType}

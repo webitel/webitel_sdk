@@ -15,6 +15,7 @@ import { CasesCreateCaseCloseInput } from './cases-create-case-close-input'
 import { CasesCreateCaseRelatedCaseInput } from './cases-create-case-related-case-input'
 import { CasesInputCaseLink } from './cases-input-case-link'
 import { CasesRateInfo } from './cases-rate-info'
+import { GeneralLookup } from './general-lookup'
 
 /**
  * Input structure for creating a new case.
@@ -23,11 +24,11 @@ import { CasesRateInfo } from './cases-rate-info'
  */
 export interface CasesInputCreateCase {
   /**
-   * Optional assignee ID.
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  assignee?: string
+  assignee?: GeneralLookup
   /**
    *
    * @type {CasesCreateCaseCloseInput}
@@ -35,11 +36,11 @@ export interface CasesInputCreateCase {
    */
   close?: CasesCreateCaseCloseInput
   /**
-   * Optional close reason.
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  close_reason?: string
+  close_reason?: GeneralLookup
   /**
    * Optional contact information.
    * @type {string}
@@ -53,17 +54,17 @@ export interface CasesInputCreateCase {
    */
   description?: string
   /**
-   * Optional group ID.
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  group?: string
+  group?: GeneralLookup
   /**
-   * Required impacted user ID (default: reporter).
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  impacted?: string
+  impacted?: GeneralLookup
   /**
    * List of links attached to the case.
    * @type {Array<CasesInputCaseLink>}
@@ -71,11 +72,11 @@ export interface CasesInputCreateCase {
    */
   links?: Array<CasesInputCaseLink>
   /**
-   * Optional priority level.
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  priority?: string
+  priority?: GeneralLookup
   /**
    *
    * @type {CasesRateInfo}
@@ -89,29 +90,29 @@ export interface CasesInputCreateCase {
    */
   related?: Array<CasesCreateCaseRelatedCaseInput>
   /**
-   * Required reporter ID (if empty, anonymous contact).
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  reporter?: string
+  reporter?: GeneralLookup
   /**
-   * Service ID (affects many other readonly fields).
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  service?: string
+  service?: GeneralLookup
   /**
-   * Source of the case.
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  source?: string
+  source?: GeneralLookup
   /**
-   * Initial case status (default from lookup or UI).
-   * @type {string}
+   *
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  status?: string
+  status?: GeneralLookup
   /**
    * Required subject of the case.
    * @type {string}

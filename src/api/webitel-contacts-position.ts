@@ -18,15 +18,15 @@
  */
 export interface WebitelContactsPosition {
   /**
-   * The current position of the condition in the list.
+   *
    * @type {string}
    * @memberof WebitelContactsPosition
    */
-  current_position?: string
+  cond_down?: string
   /**
-   * The target position where the condition should be moved.
+   *
    * @type {string}
    * @memberof WebitelContactsPosition
    */
-  target_position?: string
+  cond_up?: string
 }
