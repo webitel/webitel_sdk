@@ -12,39 +12,39 @@
  */
 
 /**
- * RelatedCaseLookup is created specifically to include the subject field.
+ *
  * @export
- * @interface CasesRelatedCaseLookup
+ * @interface EngineCreateQuickReplyRequest
  */
-export interface CasesRelatedCaseLookup {
+export interface EngineCreateQuickReplyRequest {
   /**
    *
    * @type {string}
-   * @memberof CasesRelatedCaseLookup
+   * @memberof EngineCreateQuickReplyRequest
    */
-  etag?: string
+  article?: string
   /**
    *
    * @type {string}
-   * @memberof CasesRelatedCaseLookup
-   */
-  id?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesRelatedCaseLookup
+   * @memberof EngineCreateQuickReplyRequest
    */
   name?: string
   /**
    *
-   * @type {string}
-   * @memberof CasesRelatedCaseLookup
+   * @type {number}
+   * @memberof EngineCreateQuickReplyRequest
    */
-  subject?: string
+  queue?: number
   /**
    *
-   * @type {number}
-   * @memberof CasesRelatedCaseLookup
+   * @type {string}
+   * @memberof EngineCreateQuickReplyRequest
    */
-  ver?: number
+  team?: string
+  /**
+   *
+   * @type {string}
+   * @memberof EngineCreateQuickReplyRequest
+   */
+  text?: string
 }

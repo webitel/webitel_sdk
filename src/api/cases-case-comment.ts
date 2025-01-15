@@ -56,6 +56,12 @@ export interface CasesCaseComment {
    */
   edited?: boolean
   /**
+   *
+   * @type {string}
+   * @memberof CasesCaseComment
+   */
+  etag?: string
+  /**
    * Main identifier for read, update, and delete operations.
    * @type {string}
    * @memberof CasesCaseComment

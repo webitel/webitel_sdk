@@ -11,28 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { RpcStatus } from './rpc-status'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface EngineBroadcastV2Error
  */
-export interface CasesInputCaseLink {
+export interface EngineBroadcastV2Error {
+  /**
+   *
+   * @type {RpcStatus}
+   * @memberof EngineBroadcastV2Error
+   */
+  error?: RpcStatus
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof EngineBroadcastV2Error
    */
-  etag?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  peer_id?: string
 }

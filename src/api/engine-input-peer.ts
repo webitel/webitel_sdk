@@ -12,39 +12,33 @@
  */
 
 /**
- * RelatedCaseLookup is created specifically to include the subject field.
+ *
  * @export
- * @interface CasesRelatedCaseLookup
+ * @interface EngineInputPeer
  */
-export interface CasesRelatedCaseLookup {
+export interface EngineInputPeer {
   /**
    *
    * @type {string}
-   * @memberof CasesRelatedCaseLookup
-   */
-  etag?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesRelatedCaseLookup
+   * @memberof EngineInputPeer
    */
   id?: string
   /**
    *
    * @type {string}
-   * @memberof CasesRelatedCaseLookup
+   * @memberof EngineInputPeer
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof CasesRelatedCaseLookup
+   * @memberof EngineInputPeer
    */
-  subject?: string
+  type?: string
   /**
    *
-   * @type {number}
-   * @memberof CasesRelatedCaseLookup
+   * @type {string}
+   * @memberof EngineInputPeer
    */
-  ver?: number
+  via?: string
 }

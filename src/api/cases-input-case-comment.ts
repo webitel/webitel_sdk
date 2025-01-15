@@ -22,7 +22,7 @@ export interface CasesInputCaseComment {
    * @type {string}
    * @memberof CasesInputCaseComment
    */
-  id?: string
+  etag?: string
   /**
    * Content of the comment.
    * @type {string}

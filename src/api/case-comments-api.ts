@@ -45,27 +45,27 @@ export const CaseCommentsApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @summary Delete a specific comment by its id
-     * @param {string} id Identifier of the comment to delete.
+     * @summary Delete a specific comment by its etag
+     * @param {string} etag Identifier of the comment to delete.
      * @param {Array<string>} [fields] Fields to return after deletion.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteComment: async (
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'etag' is not null or undefined
+      if (etag === null || etag === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling deleteComment.'
+          'etag',
+          'Required parameter etag was null or undefined when calling deleteComment.'
         )
       }
-      const localVarPath = `/cases/comments/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/cases/comments/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -116,7 +116,7 @@ export const CaseCommentsApiAxiosParamCreator = function(
     /**
      *
      * @summary Retrieve a list of comments associated with a specific case
-     * @param {string} caseId Etag or ID of the case for which comments are requested.
+     * @param {string} caseEtag Etag or ID of the case for which comments are requested.
      * @param {number} [page] Page number for pagination.
      * @param {number} [size] Number of comments per page.
      * @param {string} [q] Query string for search.
@@ -127,7 +127,7 @@ export const CaseCommentsApiAxiosParamCreator = function(
      * @throws {RequiredError}
      */
     listComments: async (
-      caseId: string,
+      caseEtag: string,
       page?: number,
       size?: number,
       q?: string,
@@ -136,16 +136,16 @@ export const CaseCommentsApiAxiosParamCreator = function(
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'caseId' is not null or undefined
-      if (caseId === null || caseId === undefined) {
+      // verify required parameter 'caseEtag' is not null or undefined
+      if (caseEtag === null || caseEtag === undefined) {
         throw new RequiredError(
-          'caseId',
-          'Required parameter caseId was null or undefined when calling listComments.'
+          'caseEtag',
+          'Required parameter caseEtag was null or undefined when calling listComments.'
         )
       }
-      const localVarPath = `/cases/{case_id}/comments`.replace(
-        `{${'case_id'}}`,
-        encodeURIComponent(String(caseId))
+      const localVarPath = `/cases/{case_etag}/comments`.replace(
+        `{${'case_etag'}}`,
+        encodeURIComponent(String(caseEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -215,27 +215,27 @@ export const CaseCommentsApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Retrieve a specific comment by its id
-     * @param {string} id Identifier of the comment to retrieve.
+     * @summary Retrieve a specific comment by its etag
+     * @param {string} etag Identifier of the comment to retrieve.
      * @param {Array<string>} [fields] Specific fields to return for the comment.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateComment: async (
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'etag' is not null or undefined
+      if (etag === null || etag === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling locateComment.'
+          'etag',
+          'Required parameter etag was null or undefined when calling locateComment.'
         )
       }
-      const localVarPath = `/cases/comments/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/cases/comments/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -286,23 +286,23 @@ export const CaseCommentsApiAxiosParamCreator = function(
     /**
      *
      * @summary Publish comment into a specific case
-     * @param {string} caseId Etag or ID of the case to which comments belong.
+     * @param {string} caseEtag Etag or ID of the case to which comments belong.
      * @param {CasesInputCaseComment} input Comment to publish.
      * @param {Array<string>} [fields] Result fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     publishComment: async (
-      caseId: string,
+      caseEtag: string,
       input: CasesInputCaseComment,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'caseId' is not null or undefined
-      if (caseId === null || caseId === undefined) {
+      // verify required parameter 'caseEtag' is not null or undefined
+      if (caseEtag === null || caseEtag === undefined) {
         throw new RequiredError(
-          'caseId',
-          'Required parameter caseId was null or undefined when calling publishComment.'
+          'caseEtag',
+          'Required parameter caseEtag was null or undefined when calling publishComment.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -312,9 +312,9 @@ export const CaseCommentsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling publishComment.'
         )
       }
-      const localVarPath = `/cases/{case_id}/comments`.replace(
-        `{${'case_id'}}`,
-        encodeURIComponent(String(caseId))
+      const localVarPath = `/cases/{case_etag}/comments`.replace(
+        `{${'case_etag'}}`,
+        encodeURIComponent(String(caseEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -372,24 +372,24 @@ export const CaseCommentsApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update a specific comment by its id
-     * @param {string} inputId Identifier for the comment.
+     * @summary Update a specific comment by its etag
+     * @param {string} inputEtag Identifier for the comment.
      * @param {DataForTheCommentToUpdate} input
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateComment: async (
-      inputId: string,
+      inputEtag: string,
       input: DataForTheCommentToUpdate,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'inputId' is not null or undefined
-      if (inputId === null || inputId === undefined) {
+      // verify required parameter 'inputEtag' is not null or undefined
+      if (inputEtag === null || inputEtag === undefined) {
         throw new RequiredError(
-          'inputId',
-          'Required parameter inputId was null or undefined when calling updateComment.'
+          'inputEtag',
+          'Required parameter inputEtag was null or undefined when calling updateComment.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -399,9 +399,9 @@ export const CaseCommentsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateComment.'
         )
       }
-      const localVarPath = `/cases/comments/{input.id}`.replace(
-        `{${'input.id'}}`,
-        encodeURIComponent(String(inputId))
+      const localVarPath = `/cases/comments/{input.etag}`.replace(
+        `{${'input.etag'}}`,
+        encodeURIComponent(String(inputEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -459,24 +459,24 @@ export const CaseCommentsApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary Update a specific comment by its id
-     * @param {string} inputId Identifier for the comment.
+     * @summary Update a specific comment by its etag
+     * @param {string} inputEtag Identifier for the comment.
      * @param {DataForTheCommentToUpdate1} input
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateComment2: async (
-      inputId: string,
+      inputEtag: string,
       input: DataForTheCommentToUpdate1,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'inputId' is not null or undefined
-      if (inputId === null || inputId === undefined) {
+      // verify required parameter 'inputEtag' is not null or undefined
+      if (inputEtag === null || inputEtag === undefined) {
         throw new RequiredError(
-          'inputId',
-          'Required parameter inputId was null or undefined when calling updateComment2.'
+          'inputEtag',
+          'Required parameter inputEtag was null or undefined when calling updateComment2.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -486,9 +486,9 @@ export const CaseCommentsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateComment2.'
         )
       }
-      const localVarPath = `/cases/comments/{input.id}`.replace(
-        `{${'input.id'}}`,
-        encodeURIComponent(String(inputId))
+      const localVarPath = `/cases/comments/{input.etag}`.replace(
+        `{${'input.etag'}}`,
+        encodeURIComponent(String(inputEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -555,14 +555,14 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @summary Delete a specific comment by its id
-     * @param {string} id Identifier of the comment to delete.
+     * @summary Delete a specific comment by its etag
+     * @param {string} etag Identifier of the comment to delete.
      * @param {Array<string>} [fields] Fields to return after deletion.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteComment(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -573,7 +573,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
-      ).deleteComment(id, fields, options)
+      ).deleteComment(etag, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -588,7 +588,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Retrieve a list of comments associated with a specific case
-     * @param {string} caseId Etag or ID of the case for which comments are requested.
+     * @param {string} caseEtag Etag or ID of the case for which comments are requested.
      * @param {number} [page] Page number for pagination.
      * @param {number} [size] Number of comments per page.
      * @param {string} [q] Query string for search.
@@ -599,7 +599,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async listComments(
-      caseId: string,
+      caseEtag: string,
       page?: number,
       size?: number,
       q?: string,
@@ -615,7 +615,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
-      ).listComments(caseId, page, size, q, ids, sort, fields, options)
+      ).listComments(caseEtag, page, size, q, ids, sort, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -629,14 +629,14 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Retrieve a specific comment by its id
-     * @param {string} id Identifier of the comment to retrieve.
+     * @summary Retrieve a specific comment by its etag
+     * @param {string} etag Identifier of the comment to retrieve.
      * @param {Array<string>} [fields] Specific fields to return for the comment.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async locateComment(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -647,7 +647,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
-      ).locateComment(id, fields, options)
+      ).locateComment(etag, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -662,14 +662,14 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Publish comment into a specific case
-     * @param {string} caseId Etag or ID of the case to which comments belong.
+     * @param {string} caseEtag Etag or ID of the case to which comments belong.
      * @param {CasesInputCaseComment} input Comment to publish.
      * @param {Array<string>} [fields] Result fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async publishComment(
-      caseId: string,
+      caseEtag: string,
       input: CasesInputCaseComment,
       fields?: Array<string>,
       options?: any
@@ -681,7 +681,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
-      ).publishComment(caseId, input, fields, options)
+      ).publishComment(caseEtag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -695,15 +695,15 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Update a specific comment by its id
-     * @param {string} inputId Identifier for the comment.
+     * @summary Update a specific comment by its etag
+     * @param {string} inputEtag Identifier for the comment.
      * @param {DataForTheCommentToUpdate} input
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateComment(
-      inputId: string,
+      inputEtag: string,
       input: DataForTheCommentToUpdate,
       fields?: Array<string>,
       options?: any
@@ -715,7 +715,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
-      ).updateComment(inputId, input, fields, options)
+      ).updateComment(inputEtag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -729,15 +729,15 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @summary Update a specific comment by its id
-     * @param {string} inputId Identifier for the comment.
+     * @summary Update a specific comment by its etag
+     * @param {string} inputEtag Identifier for the comment.
      * @param {DataForTheCommentToUpdate1} input
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateComment2(
-      inputId: string,
+      inputEtag: string,
       input: DataForTheCommentToUpdate1,
       fields?: Array<string>,
       options?: any
@@ -749,7 +749,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
-      ).updateComment2(inputId, input, fields, options)
+      ).updateComment2(inputEtag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -776,25 +776,25 @@ export const CaseCommentsApiFactory = function(
   return {
     /**
      *
-     * @summary Delete a specific comment by its id
-     * @param {string} id Identifier of the comment to delete.
+     * @summary Delete a specific comment by its etag
+     * @param {string} etag Identifier of the comment to delete.
      * @param {Array<string>} [fields] Fields to return after deletion.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteComment(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseComment> {
       return CaseCommentsApiFp(configuration)
-        .deleteComment(id, fields, options)
+        .deleteComment(etag, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary Retrieve a list of comments associated with a specific case
-     * @param {string} caseId Etag or ID of the case for which comments are requested.
+     * @param {string} caseEtag Etag or ID of the case for which comments are requested.
      * @param {number} [page] Page number for pagination.
      * @param {number} [size] Number of comments per page.
      * @param {string} [q] Query string for search.
@@ -805,7 +805,7 @@ export const CaseCommentsApiFactory = function(
      * @throws {RequiredError}
      */
     listComments(
-      caseId: string,
+      caseEtag: string,
       page?: number,
       size?: number,
       q?: string,
@@ -815,81 +815,81 @@ export const CaseCommentsApiFactory = function(
       options?: any
     ): AxiosPromise<CasesCaseCommentList> {
       return CaseCommentsApiFp(configuration)
-        .listComments(caseId, page, size, q, ids, sort, fields, options)
+        .listComments(caseEtag, page, size, q, ids, sort, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Retrieve a specific comment by its id
-     * @param {string} id Identifier of the comment to retrieve.
+     * @summary Retrieve a specific comment by its etag
+     * @param {string} etag Identifier of the comment to retrieve.
      * @param {Array<string>} [fields] Specific fields to return for the comment.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateComment(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseComment> {
       return CaseCommentsApiFp(configuration)
-        .locateComment(id, fields, options)
+        .locateComment(etag, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary Publish comment into a specific case
-     * @param {string} caseId Etag or ID of the case to which comments belong.
+     * @param {string} caseEtag Etag or ID of the case to which comments belong.
      * @param {CasesInputCaseComment} input Comment to publish.
      * @param {Array<string>} [fields] Result fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     publishComment(
-      caseId: string,
+      caseEtag: string,
       input: CasesInputCaseComment,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseComment> {
       return CaseCommentsApiFp(configuration)
-        .publishComment(caseId, input, fields, options)
+        .publishComment(caseEtag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Update a specific comment by its id
-     * @param {string} inputId Identifier for the comment.
+     * @summary Update a specific comment by its etag
+     * @param {string} inputEtag Identifier for the comment.
      * @param {DataForTheCommentToUpdate} input
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateComment(
-      inputId: string,
+      inputEtag: string,
       input: DataForTheCommentToUpdate,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseComment> {
       return CaseCommentsApiFp(configuration)
-        .updateComment(inputId, input, fields, options)
+        .updateComment(inputEtag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary Update a specific comment by its id
-     * @param {string} inputId Identifier for the comment.
+     * @summary Update a specific comment by its etag
+     * @param {string} inputEtag Identifier for the comment.
      * @param {DataForTheCommentToUpdate1} input
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateComment2(
-      inputId: string,
+      inputEtag: string,
       input: DataForTheCommentToUpdate1,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseComment> {
       return CaseCommentsApiFp(configuration)
-        .updateComment2(inputId, input, fields, options)
+        .updateComment2(inputEtag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -904,23 +904,23 @@ export const CaseCommentsApiFactory = function(
 export class CaseCommentsApi extends BaseAPI {
   /**
    *
-   * @summary Delete a specific comment by its id
-   * @param {string} id Identifier of the comment to delete.
+   * @summary Delete a specific comment by its etag
+   * @param {string} etag Identifier of the comment to delete.
    * @param {Array<string>} [fields] Fields to return after deletion.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseCommentsApi
    */
-  public deleteComment(id: string, fields?: Array<string>, options?: any) {
+  public deleteComment(etag: string, fields?: Array<string>, options?: any) {
     return CaseCommentsApiFp(this.configuration)
-      .deleteComment(id, fields, options)
+      .deleteComment(etag, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary Retrieve a list of comments associated with a specific case
-   * @param {string} caseId Etag or ID of the case for which comments are requested.
+   * @param {string} caseEtag Etag or ID of the case for which comments are requested.
    * @param {number} [page] Page number for pagination.
    * @param {number} [size] Number of comments per page.
    * @param {string} [q] Query string for search.
@@ -932,7 +932,7 @@ export class CaseCommentsApi extends BaseAPI {
    * @memberof CaseCommentsApi
    */
   public listComments(
-    caseId: string,
+    caseEtag: string,
     page?: number,
     size?: number,
     q?: string,
@@ -942,29 +942,29 @@ export class CaseCommentsApi extends BaseAPI {
     options?: any
   ) {
     return CaseCommentsApiFp(this.configuration)
-      .listComments(caseId, page, size, q, ids, sort, fields, options)
+      .listComments(caseEtag, page, size, q, ids, sort, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Retrieve a specific comment by its id
-   * @param {string} id Identifier of the comment to retrieve.
+   * @summary Retrieve a specific comment by its etag
+   * @param {string} etag Identifier of the comment to retrieve.
    * @param {Array<string>} [fields] Specific fields to return for the comment.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseCommentsApi
    */
-  public locateComment(id: string, fields?: Array<string>, options?: any) {
+  public locateComment(etag: string, fields?: Array<string>, options?: any) {
     return CaseCommentsApiFp(this.configuration)
-      .locateComment(id, fields, options)
+      .locateComment(etag, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary Publish comment into a specific case
-   * @param {string} caseId Etag or ID of the case to which comments belong.
+   * @param {string} caseEtag Etag or ID of the case to which comments belong.
    * @param {CasesInputCaseComment} input Comment to publish.
    * @param {Array<string>} [fields] Result fields to include in the response.
    * @param {*} [options] Override http request option.
@@ -972,20 +972,20 @@ export class CaseCommentsApi extends BaseAPI {
    * @memberof CaseCommentsApi
    */
   public publishComment(
-    caseId: string,
+    caseEtag: string,
     input: CasesInputCaseComment,
     fields?: Array<string>,
     options?: any
   ) {
     return CaseCommentsApiFp(this.configuration)
-      .publishComment(caseId, input, fields, options)
+      .publishComment(caseEtag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Update a specific comment by its id
-   * @param {string} inputId Identifier for the comment.
+   * @summary Update a specific comment by its etag
+   * @param {string} inputEtag Identifier for the comment.
    * @param {DataForTheCommentToUpdate} input
    * @param {Array<string>} [fields] Fields to include in the response.
    * @param {*} [options] Override http request option.
@@ -993,20 +993,20 @@ export class CaseCommentsApi extends BaseAPI {
    * @memberof CaseCommentsApi
    */
   public updateComment(
-    inputId: string,
+    inputEtag: string,
     input: DataForTheCommentToUpdate,
     fields?: Array<string>,
     options?: any
   ) {
     return CaseCommentsApiFp(this.configuration)
-      .updateComment(inputId, input, fields, options)
+      .updateComment(inputEtag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary Update a specific comment by its id
-   * @param {string} inputId Identifier for the comment.
+   * @summary Update a specific comment by its etag
+   * @param {string} inputEtag Identifier for the comment.
    * @param {DataForTheCommentToUpdate1} input
    * @param {Array<string>} [fields] Fields to include in the response.
    * @param {*} [options] Override http request option.
@@ -1014,13 +1014,13 @@ export class CaseCommentsApi extends BaseAPI {
    * @memberof CaseCommentsApi
    */
   public updateComment2(
-    inputId: string,
+    inputEtag: string,
     input: DataForTheCommentToUpdate1,
     fields?: Array<string>,
     options?: any
   ) {
     return CaseCommentsApiFp(this.configuration)
-      .updateComment2(inputId, input, fields, options)
+      .updateComment2(inputEtag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

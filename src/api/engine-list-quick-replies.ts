@@ -11,28 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { EngineQuickReply } from './engine-quick-reply'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface EngineListQuickReplies
  */
-export interface CasesInputCaseLink {
+export interface EngineListQuickReplies {
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {Array<EngineQuickReply>}
+   * @memberof EngineListQuickReplies
    */
-  etag?: string
+  items?: Array<EngineQuickReply>
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {boolean}
+   * @memberof EngineListQuickReplies
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  next?: boolean
 }

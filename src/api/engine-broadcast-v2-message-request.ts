@@ -11,28 +11,25 @@
  * Do not edit the class manually.
  */
 
+import { EngineInputMessage } from './engine-input-message'
+import { EngineInputPeer } from './engine-input-peer'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface EngineBroadcastV2MessageRequest
  */
-export interface CasesInputCaseLink {
+export interface EngineBroadcastV2MessageRequest {
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {EngineInputMessage}
+   * @memberof EngineBroadcastV2MessageRequest
    */
-  etag?: string
+  message?: EngineInputMessage
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {Array<EngineInputPeer>}
+   * @memberof EngineBroadcastV2MessageRequest
    */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  peers?: Array<EngineInputPeer>
 }

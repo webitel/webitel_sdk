@@ -11,22 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { EngineInputButtonRow } from './engine-input-button-row'
+
 /**
- * Message representing close information for a case.
+ *
  * @export
- * @interface CasesCloseInfoInput
+ * @interface EngineInputKeyboard
  */
-export interface CasesCloseInfoInput {
+export interface EngineInputKeyboard {
   /**
-   * Lookup for the close reason.
-   * @type {string}
-   * @memberof CasesCloseInfoInput
+   *
+   * @type {Array<EngineInputButtonRow>}
+   * @memberof EngineInputKeyboard
    */
-  close_reason?: string
-  /**
-   * Result or reason for closing the case.
-   * @type {string}
-   * @memberof CasesCloseInfoInput
-   */
-  close_result?: string
+  rows?: Array<EngineInputButtonRow>
 }

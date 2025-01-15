@@ -42,6 +42,12 @@ export interface CasesCaseLink {
    * @type {string}
    * @memberof CasesCaseLink
    */
+  etag?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCaseLink
+   */
   id?: string
   /**
    *

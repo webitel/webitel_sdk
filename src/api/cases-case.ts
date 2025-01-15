@@ -19,6 +19,7 @@ import { CasesPriority } from './cases-priority'
 import { CasesRateInfo } from './cases-rate-info'
 import { CasesRelatedCaseList } from './cases-related-case-list'
 import { CasesSourceTypeLookup } from './cases-source-type-lookup'
+import { CasesStatusCondition } from './cases-status-condition'
 import { CasesTimingInfo } from './cases-timing-info'
 import { GeneralLookup } from './general-lookup'
 
@@ -65,7 +66,7 @@ export interface CasesCase {
    */
   contact_info?: string
   /**
-   *
+   * Creation timestamp (in milliseconds since Unix epoch).
    * @type {string}
    * @memberof CasesCase
    */
@@ -83,6 +84,12 @@ export interface CasesCase {
    */
   description?: string
   /**
+   * Unique etag identifier.
+   * @type {string}
+   * @memberof CasesCase
+   */
+  etag?: string
+  /**
    *
    * @type {CasesCaseFileList}
    * @memberof CasesCase
@@ -95,7 +102,7 @@ export interface CasesCase {
    */
   group?: GeneralLookup
   /**
-   *
+   * Unique case ID.
    * @type {string}
    * @memberof CasesCase
    */
@@ -186,10 +193,10 @@ export interface CasesCase {
   status?: GeneralLookup
   /**
    *
-   * @type {GeneralLookup}
+   * @type {CasesStatusCondition}
    * @memberof CasesCase
    */
-  status_condition?: GeneralLookup
+  status_condition?: CasesStatusCondition
   /**
    * Subject of the case.
    * @type {string}
@@ -203,7 +210,7 @@ export interface CasesCase {
    */
   timing?: CasesTimingInfo
   /**
-   *
+   * Last update timestamp (in milliseconds since Unix epoch).
    * @type {string}
    * @memberof CasesCase
    */
@@ -215,7 +222,7 @@ export interface CasesCase {
    */
   updated_by?: GeneralLookup
   /**
-   *
+   * Version number of the case.
    * @type {number}
    * @memberof CasesCase
    */

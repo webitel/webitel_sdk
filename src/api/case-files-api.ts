@@ -38,7 +38,7 @@ export const CaseFilesApiAxiosParamCreator = function(
     /**
      *
      * @summary Retrieve a list of files associated with a case
-     * @param {string} caseId ID of the case to fetch files for (required).
+     * @param {string} caseEtag ID of the case to fetch files for (required).
      * @param {number} [page] The page number to retrieve.
      * @param {number} [size] Number of items per page.
      * @param {string} [q] Search term.
@@ -48,7 +48,7 @@ export const CaseFilesApiAxiosParamCreator = function(
      * @throws {RequiredError}
      */
     listFiles: async (
-      caseId: string,
+      caseEtag: string,
       page?: number,
       size?: number,
       q?: string,
@@ -56,16 +56,16 @@ export const CaseFilesApiAxiosParamCreator = function(
       ids?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'caseId' is not null or undefined
-      if (caseId === null || caseId === undefined) {
+      // verify required parameter 'caseEtag' is not null or undefined
+      if (caseEtag === null || caseEtag === undefined) {
         throw new RequiredError(
-          'caseId',
-          'Required parameter caseId was null or undefined when calling listFiles.'
+          'caseEtag',
+          'Required parameter caseEtag was null or undefined when calling listFiles.'
         )
       }
-      const localVarPath = `/cases/{case_id}/files`.replace(
-        `{${'case_id'}}`,
-        encodeURIComponent(String(caseId))
+      const localVarPath = `/cases/{case_etag}/files`.replace(
+        `{${'case_etag'}}`,
+        encodeURIComponent(String(caseEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -141,7 +141,7 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Retrieve a list of files associated with a case
-     * @param {string} caseId ID of the case to fetch files for (required).
+     * @param {string} caseEtag ID of the case to fetch files for (required).
      * @param {number} [page] The page number to retrieve.
      * @param {number} [size] Number of items per page.
      * @param {string} [q] Search term.
@@ -151,7 +151,7 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async listFiles(
-      caseId: string,
+      caseEtag: string,
       page?: number,
       size?: number,
       q?: string,
@@ -166,7 +166,7 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseFilesApiAxiosParamCreator(
         configuration
-      ).listFiles(caseId, page, size, q, fields, ids, options)
+      ).listFiles(caseEtag, page, size, q, fields, ids, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -194,7 +194,7 @@ export const CaseFilesApiFactory = function(
     /**
      *
      * @summary Retrieve a list of files associated with a case
-     * @param {string} caseId ID of the case to fetch files for (required).
+     * @param {string} caseEtag ID of the case to fetch files for (required).
      * @param {number} [page] The page number to retrieve.
      * @param {number} [size] Number of items per page.
      * @param {string} [q] Search term.
@@ -204,7 +204,7 @@ export const CaseFilesApiFactory = function(
      * @throws {RequiredError}
      */
     listFiles(
-      caseId: string,
+      caseEtag: string,
       page?: number,
       size?: number,
       q?: string,
@@ -213,7 +213,7 @@ export const CaseFilesApiFactory = function(
       options?: any
     ): AxiosPromise<CasesCaseFileList> {
       return CaseFilesApiFp(configuration)
-        .listFiles(caseId, page, size, q, fields, ids, options)
+        .listFiles(caseEtag, page, size, q, fields, ids, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -229,7 +229,7 @@ export class CaseFilesApi extends BaseAPI {
   /**
    *
    * @summary Retrieve a list of files associated with a case
-   * @param {string} caseId ID of the case to fetch files for (required).
+   * @param {string} caseEtag ID of the case to fetch files for (required).
    * @param {number} [page] The page number to retrieve.
    * @param {number} [size] Number of items per page.
    * @param {string} [q] Search term.
@@ -240,7 +240,7 @@ export class CaseFilesApi extends BaseAPI {
    * @memberof CaseFilesApi
    */
   public listFiles(
-    caseId: string,
+    caseEtag: string,
     page?: number,
     size?: number,
     q?: string,
@@ -249,7 +249,7 @@ export class CaseFilesApi extends BaseAPI {
     options?: any
   ) {
     return CaseFilesApiFp(this.configuration)
-      .listFiles(caseId, page, size, q, fields, ids, options)
+      .listFiles(caseEtag, page, size, q, fields, ids, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

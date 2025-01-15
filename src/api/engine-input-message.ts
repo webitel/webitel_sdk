@@ -11,28 +11,31 @@
  * Do not edit the class manually.
  */
 
+import { EngineInputFile } from './engine-input-file'
+import { EngineInputKeyboard } from './engine-input-keyboard'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface EngineInputMessage
  */
-export interface CasesInputCaseLink {
+export interface EngineInputMessage {
+  /**
+   *
+   * @type {EngineInputFile}
+   * @memberof EngineInputMessage
+   */
+  file?: EngineInputFile
+  /**
+   *
+   * @type {EngineInputKeyboard}
+   * @memberof EngineInputMessage
+   */
+  keyboard?: EngineInputKeyboard
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof EngineInputMessage
    */
-  etag?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  text?: string
 }

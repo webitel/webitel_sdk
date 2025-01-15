@@ -14,25 +14,19 @@
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface EngineInputFile
  */
-export interface CasesInputCaseLink {
+export interface EngineInputFile {
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof EngineInputFile
    */
-  etag?: string
+  id?: string
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof EngineInputFile
    */
   url?: string
 }

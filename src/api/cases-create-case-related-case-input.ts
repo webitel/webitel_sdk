@@ -14,19 +14,19 @@
 import { CasesRelationType } from './cases-relation-type'
 
 /**
- *
+ * Structure for related cases input when creating a case.
  * @export
  * @interface CasesCreateCaseRelatedCaseInput
  */
 export interface CasesCreateCaseRelatedCaseInput {
   /**
-   *
+   * Etag of the related case.
    * @type {string}
    * @memberof CasesCreateCaseRelatedCaseInput
    */
-  id?: string
+  etag?: string
   /**
-   *
+   * Identifier of the related case.
    * @type {string}
    * @memberof CasesCreateCaseRelatedCaseInput
    */

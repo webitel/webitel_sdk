@@ -29,4 +29,5 @@ export enum EngineSystemSettingName {
   PasswordRegExp = 'password_reg_exp',
   PasswordValidationText = 'password_validation_text',
   AutolinkCallToContact = 'autolink_call_to_contact',
+  PeriodToPlaybackRecords = 'period_to_playback_records',
 }

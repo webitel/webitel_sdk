@@ -13,6 +13,7 @@
 
 import { CasesCloseInfo } from './cases-close-info'
 import { CasesRateInfo } from './cases-rate-info'
+import { CasesStatusCondition } from './cases-status-condition'
 import { GeneralLookup } from './general-lookup'
 
 /**
@@ -53,16 +54,16 @@ export interface CasesInputCase {
   description?: string
   /**
    *
+   * @type {string}
+   * @memberof CasesInputCase
+   */
+  etag?: string
+  /**
+   *
    * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
   group?: GeneralLookup
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCase
-   */
-  id?: string
   /**
    *
    * @type {GeneralLookup}
@@ -107,10 +108,10 @@ export interface CasesInputCase {
   status?: GeneralLookup
   /**
    *
-   * @type {GeneralLookup}
+   * @type {CasesStatusCondition}
    * @memberof CasesInputCase
    */
-  status_condition?: GeneralLookup
+  status_condition?: CasesStatusCondition
   /**
    *
    * @type {string}

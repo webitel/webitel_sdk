@@ -24,52 +24,43 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCaseLink } from '../api'
+import { EngineApiError } from '../api'
 // @ts-ignore
-import { CasesCaseLinkList } from '../api'
+import { EngineCreateQuickReplyRequest } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { EngineListQuickReplies } from '../api'
 // @ts-ignore
-import { InlineObject } from '../api'
+import { EnginePatchQuickReplyRequest } from '../api'
 // @ts-ignore
-import { InlineObject1 } from '../api'
+import { EngineQuickReply } from '../api'
+// @ts-ignore
+import { EngineUpdateQuickReplyRequest } from '../api'
 /**
- * CaseLinksApi - axios parameter creator
+ * QuickRepliesServiceApi - axios parameter creator
  * @export
  */
-export const CaseLinksApiAxiosParamCreator = function(
+export const QuickRepliesServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {string} caseEtag new comment link
-     * @param {Array<string>} [fields] result fields needed on the front-end for each comment
-     * @param {string} [inputEtag]
-     * @param {string} [inputUrl]
-     * @param {string} [inputName]
+     * @param {EngineCreateQuickReplyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createLink: async (
-      caseEtag: string,
-      fields?: Array<string>,
-      inputEtag?: string,
-      inputUrl?: string,
-      inputName?: string,
+    createQuickReply: async (
+      body: EngineCreateQuickReplyRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'caseEtag' is not null or undefined
-      if (caseEtag === null || caseEtag === undefined) {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
         throw new RequiredError(
-          'caseEtag',
-          'Required parameter caseEtag was null or undefined when calling createLink.'
+          'body',
+          'Required parameter body was null or undefined when calling createQuickReply.'
         )
       }
-      const localVarPath = `/cases/links/{case_etag}`.replace(
-        `{${'case_etag'}}`,
-        encodeURIComponent(String(caseEtag))
-      )
+      const localVarPath = `/call_center/quick_replies`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -92,21 +83,7 @@ export const CaseLinksApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      if (inputEtag !== undefined) {
-        localVarQueryParameter['input.etag'] = inputEtag
-      }
-
-      if (inputUrl !== undefined) {
-        localVarQueryParameter['input.url'] = inputUrl
-      }
-
-      if (inputName !== undefined) {
-        localVarQueryParameter['input.name'] = inputName
-      }
+      localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
@@ -122,6 +99,12 @@ export const CaseLinksApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -130,24 +113,24 @@ export const CaseLinksApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} etag
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteLink: async (
-      etag: string,
+    deleteQuickReply: async (
+      id: number,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'etag' is not null or undefined
-      if (etag === null || etag === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'etag',
-          'Required parameter etag was null or undefined when calling deleteLink.'
+          'id',
+          'Required parameter id was null or undefined when calling deleteQuickReply.'
         )
       }
-      const localVarPath = `/cases/links/{etag}`.replace(
-        `{${'etag'}}`,
-        encodeURIComponent(String(etag))
+      const localVarPath = `/call_center/quick_replies/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -193,38 +176,168 @@ export const CaseLinksApiAxiosParamCreator = function(
     },
     /**
      *
-     * @summary With Case
-     * @param {string} caseEtag
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {Array<string>} [ids]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
+     * @param {number} id
+     * @param {EnginePatchQuickReplyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listLinks: async (
-      caseEtag: string,
+    patchQuickReply: async (
+      id: number,
+      body: EnginePatchQuickReplyRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling patchQuickReply.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling patchQuickReply.'
+        )
+      }
+      const localVarPath = `/call_center/quick_replies/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQuickReply: async (
+      id: number,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readQuickReply.'
+        )
+      }
+      const localVarPath = `/call_center/quick_replies/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchQuickReplies: async (
       page?: number,
       size?: number,
       q?: string,
-      ids?: Array<string>,
       sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'caseEtag' is not null or undefined
-      if (caseEtag === null || caseEtag === undefined) {
-        throw new RequiredError(
-          'caseEtag',
-          'Required parameter caseEtag was null or undefined when calling listLinks.'
-        )
-      }
-      const localVarPath = `/cases/{case_etag}/links`.replace(
-        `{${'case_etag'}}`,
-        encodeURIComponent(String(caseEtag))
-      )
+      const localVarPath = `/call_center/quick_replies`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -259,10 +372,6 @@ export const CaseLinksApiAxiosParamCreator = function(
         localVarQueryParameter['q'] = q
       }
 
-      if (ids) {
-        localVarQueryParameter['ids'] = ids
-      }
-
       if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
       }
@@ -271,73 +380,8 @@ export const CaseLinksApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {string} etag (id allowed)
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    locateLink: async (
-      etag: string,
-      fields?: Array<string>,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'etag' is not null or undefined
-      if (etag === null || etag === undefined) {
-        throw new RequiredError(
-          'etag',
-          'Required parameter etag was null or undefined when calling locateLink.'
-        )
-      }
-      const localVarPath = `/cases/links/{etag}`.replace(
-        `{${'etag'}}`,
-        encodeURIComponent(String(etag))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
+      if (id) {
+        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -362,35 +406,33 @@ export const CaseLinksApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} inputEtag
-     * @param {InlineObject} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+     * @param {number} id
+     * @param {EngineUpdateQuickReplyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateLink: async (
-      inputEtag: string,
-      input: InlineObject,
-      fields?: Array<string>,
+    updateQuickReply: async (
+      id: number,
+      body: EngineUpdateQuickReplyRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'inputEtag' is not null or undefined
-      if (inputEtag === null || inputEtag === undefined) {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
         throw new RequiredError(
-          'inputEtag',
-          'Required parameter inputEtag was null or undefined when calling updateLink.'
+          'id',
+          'Required parameter id was null or undefined when calling updateQuickReply.'
         )
       }
-      // verify required parameter 'input' is not null or undefined
-      if (input === null || input === undefined) {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
         throw new RequiredError(
-          'input',
-          'Required parameter input was null or undefined when calling updateLink.'
+          'body',
+          'Required parameter body was null or undefined when calling updateQuickReply.'
         )
       }
-      const localVarPath = `/cases/links/{input.etag}`.replace(
-        `{${'input.etag'}}`,
-        encodeURIComponent(String(inputEtag))
+      const localVarPath = `/call_center/quick_replies/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -414,10 +456,6 @@ export const CaseLinksApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -435,97 +473,11 @@ export const CaseLinksApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof input !== 'string' ||
+        typeof body !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(input !== undefined ? input : {})
-        : input || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @param {string} inputEtag
-     * @param {InlineObject1} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateLink2: async (
-      inputEtag: string,
-      input: InlineObject1,
-      fields?: Array<string>,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'inputEtag' is not null or undefined
-      if (inputEtag === null || inputEtag === undefined) {
-        throw new RequiredError(
-          'inputEtag',
-          'Required parameter inputEtag was null or undefined when calling updateLink2.'
-        )
-      }
-      // verify required parameter 'input' is not null or undefined
-      if (input === null || input === undefined) {
-        throw new RequiredError(
-          'input',
-          'Required parameter input was null or undefined when calling updateLink2.'
-        )
-      }
-      const localVarPath = `/cases/links/{input.etag}`.replace(
-        `{${'input.etag'}}`,
-        encodeURIComponent(String(inputEtag))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PATCH',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof input !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(input !== undefined ? input : {})
-        : input || ''
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -536,102 +488,31 @@ export const CaseLinksApiAxiosParamCreator = function(
 }
 
 /**
- * CaseLinksApi - functional programming interface
+ * QuickRepliesServiceApi - functional programming interface
  * @export
  */
-export const CaseLinksApiFp = function(configuration?: Configuration) {
+export const QuickRepliesServiceApiFp = function(
+  configuration?: Configuration
+) {
   return {
     /**
      *
-     * @param {string} caseEtag new comment link
-     * @param {Array<string>} [fields] result fields needed on the front-end for each comment
-     * @param {string} [inputEtag]
-     * @param {string} [inputUrl]
-     * @param {string} [inputName]
+     * @param {EngineCreateQuickReplyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createLink(
-      caseEtag: string,
-      fields?: Array<string>,
-      inputEtag?: string,
-      inputUrl?: string,
-      inputName?: string,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
-    > {
-      const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
-        configuration
-      ).createLink(caseEtag, fields, inputEtag, inputUrl, inputName, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {string} etag
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async deleteLink(
-      etag: string,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
-    > {
-      const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
-        configuration
-      ).deleteLink(etag, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary With Case
-     * @param {string} caseEtag
-     * @param {number} [page]
-     * @param {number} [size]
-     * @param {string} [q]
-     * @param {Array<string>} [ids]
-     * @param {string} [sort]
-     * @param {Array<string>} [fields]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async listLinks(
-      caseEtag: string,
-      page?: number,
-      size?: number,
-      q?: string,
-      ids?: Array<string>,
-      sort?: string,
-      fields?: Array<string>,
+    async createQuickReply(
+      body: EngineCreateQuickReplyRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseLinkList>
+      ) => AxiosPromise<EngineQuickReply>
     > {
-      const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
+      const localVarAxiosArgs = await QuickRepliesServiceApiAxiosParamCreator(
         configuration
-      ).listLinks(caseEtag, page, size, q, ids, sort, fields, options)
+      ).createQuickReply(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -645,21 +526,121 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {string} etag (id allowed)
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteQuickReply(
+      id: number,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQuickReply>
+    > {
+      const localVarAxiosArgs = await QuickRepliesServiceApiAxiosParamCreator(
+        configuration
+      ).deleteQuickReply(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} id
+     * @param {EnginePatchQuickReplyRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async patchQuickReply(
+      id: number,
+      body: EnginePatchQuickReplyRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQuickReply>
+    > {
+      const localVarAxiosArgs = await QuickRepliesServiceApiAxiosParamCreator(
+        configuration
+      ).patchQuickReply(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async readQuickReply(
+      id: number,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQuickReply>
+    > {
+      const localVarAxiosArgs = await QuickRepliesServiceApiAxiosParamCreator(
+        configuration
+      ).readQuickReply(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async locateLink(
-      etag: string,
+    async searchQuickReplies(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListQuickReplies>
     > {
-      const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
+      const localVarAxiosArgs = await QuickRepliesServiceApiAxiosParamCreator(
         configuration
-      ).locateLink(etag, fields, options)
+      ).searchQuickReplies(page, size, q, sort, fields, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -673,53 +654,24 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {string} inputEtag
-     * @param {InlineObject} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+     * @param {number} id
+     * @param {EngineUpdateQuickReplyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async updateLink(
-      inputEtag: string,
-      input: InlineObject,
-      fields?: Array<string>,
+    async updateQuickReply(
+      id: number,
+      body: EngineUpdateQuickReplyRequest,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineQuickReply>
     > {
-      const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
+      const localVarAxiosArgs = await QuickRepliesServiceApiAxiosParamCreator(
         configuration
-      ).updateLink(inputEtag, input, fields, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @param {string} inputEtag
-     * @param {InlineObject1} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateLink2(
-      inputEtag: string,
-      input: InlineObject1,
-      fields?: Array<string>,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
-    > {
-      const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
-        configuration
-      ).updateLink2(inputEtag, input, fields, options)
+      ).updateQuickReply(id, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -735,10 +687,10 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
 }
 
 /**
- * CaseLinksApi - factory interface
+ * QuickRepliesServiceApi - factory interface
  * @export
  */
-export const CaseLinksApiFactory = function(
+export const QuickRepliesServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -746,243 +698,207 @@ export const CaseLinksApiFactory = function(
   return {
     /**
      *
-     * @param {string} caseEtag new comment link
-     * @param {Array<string>} [fields] result fields needed on the front-end for each comment
-     * @param {string} [inputEtag]
-     * @param {string} [inputUrl]
-     * @param {string} [inputName]
+     * @param {EngineCreateQuickReplyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createLink(
-      caseEtag: string,
-      fields?: Array<string>,
-      inputEtag?: string,
-      inputUrl?: string,
-      inputName?: string,
+    createQuickReply(
+      body: EngineCreateQuickReplyRequest,
       options?: any
-    ): AxiosPromise<CasesCaseLink> {
-      return CaseLinksApiFp(configuration)
-        .createLink(caseEtag, fields, inputEtag, inputUrl, inputName, options)
+    ): AxiosPromise<EngineQuickReply> {
+      return QuickRepliesServiceApiFp(configuration)
+        .createQuickReply(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} etag
+     * @param {number} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteLink(etag: string, options?: any): AxiosPromise<CasesCaseLink> {
-      return CaseLinksApiFp(configuration)
-        .deleteLink(etag, options)
+    deleteQuickReply(
+      id: number,
+      options?: any
+    ): AxiosPromise<EngineQuickReply> {
+      return QuickRepliesServiceApiFp(configuration)
+        .deleteQuickReply(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @summary With Case
-     * @param {string} caseEtag
+     * @param {number} id
+     * @param {EnginePatchQuickReplyRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    patchQuickReply(
+      id: number,
+      body: EnginePatchQuickReplyRequest,
+      options?: any
+    ): AxiosPromise<EngineQuickReply> {
+      return QuickRepliesServiceApiFp(configuration)
+        .patchQuickReply(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    readQuickReply(id: number, options?: any): AxiosPromise<EngineQuickReply> {
+      return QuickRepliesServiceApiFp(configuration)
+        .readQuickReply(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
-     * @param {Array<string>} [ids]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
+     * @param {Array<number>} [id]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    listLinks(
-      caseEtag: string,
+    searchQuickReplies(
       page?: number,
       size?: number,
       q?: string,
-      ids?: Array<string>,
       sort?: string,
       fields?: Array<string>,
+      id?: Array<number>,
       options?: any
-    ): AxiosPromise<CasesCaseLinkList> {
-      return CaseLinksApiFp(configuration)
-        .listLinks(caseEtag, page, size, q, ids, sort, fields, options)
+    ): AxiosPromise<EngineListQuickReplies> {
+      return QuickRepliesServiceApiFp(configuration)
+        .searchQuickReplies(page, size, q, sort, fields, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} etag (id allowed)
-     * @param {Array<string>} [fields]
+     * @param {number} id
+     * @param {EngineUpdateQuickReplyRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    locateLink(
-      etag: string,
-      fields?: Array<string>,
+    updateQuickReply(
+      id: number,
+      body: EngineUpdateQuickReplyRequest,
       options?: any
-    ): AxiosPromise<CasesCaseLink> {
-      return CaseLinksApiFp(configuration)
-        .locateLink(etag, fields, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {string} inputEtag
-     * @param {InlineObject} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateLink(
-      inputEtag: string,
-      input: InlineObject,
-      fields?: Array<string>,
-      options?: any
-    ): AxiosPromise<CasesCaseLink> {
-      return CaseLinksApiFp(configuration)
-        .updateLink(inputEtag, input, fields, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @param {string} inputEtag
-     * @param {InlineObject1} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateLink2(
-      inputEtag: string,
-      input: InlineObject1,
-      fields?: Array<string>,
-      options?: any
-    ): AxiosPromise<CasesCaseLink> {
-      return CaseLinksApiFp(configuration)
-        .updateLink2(inputEtag, input, fields, options)
+    ): AxiosPromise<EngineQuickReply> {
+      return QuickRepliesServiceApiFp(configuration)
+        .updateQuickReply(id, body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * CaseLinksApi - object-oriented interface
+ * QuickRepliesServiceApi - object-oriented interface
  * @export
- * @class CaseLinksApi
+ * @class QuickRepliesServiceApi
  * @extends {BaseAPI}
  */
-export class CaseLinksApi extends BaseAPI {
+export class QuickRepliesServiceApi extends BaseAPI {
   /**
    *
-   * @param {string} caseEtag new comment link
-   * @param {Array<string>} [fields] result fields needed on the front-end for each comment
-   * @param {string} [inputEtag]
-   * @param {string} [inputUrl]
-   * @param {string} [inputName]
+   * @param {EngineCreateQuickReplyRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof CaseLinksApi
+   * @memberof QuickRepliesServiceApi
    */
-  public createLink(
-    caseEtag: string,
-    fields?: Array<string>,
-    inputEtag?: string,
-    inputUrl?: string,
-    inputName?: string,
+  public createQuickReply(body: EngineCreateQuickReplyRequest, options?: any) {
+    return QuickRepliesServiceApiFp(this.configuration)
+      .createQuickReply(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QuickRepliesServiceApi
+   */
+  public deleteQuickReply(id: number, options?: any) {
+    return QuickRepliesServiceApiFp(this.configuration)
+      .deleteQuickReply(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} id
+   * @param {EnginePatchQuickReplyRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof QuickRepliesServiceApi
+   */
+  public patchQuickReply(
+    id: number,
+    body: EnginePatchQuickReplyRequest,
     options?: any
   ) {
-    return CaseLinksApiFp(this.configuration)
-      .createLink(caseEtag, fields, inputEtag, inputUrl, inputName, options)
+    return QuickRepliesServiceApiFp(this.configuration)
+      .patchQuickReply(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} etag
+   * @param {number} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof CaseLinksApi
+   * @memberof QuickRepliesServiceApi
    */
-  public deleteLink(etag: string, options?: any) {
-    return CaseLinksApiFp(this.configuration)
-      .deleteLink(etag, options)
+  public readQuickReply(id: number, options?: any) {
+    return QuickRepliesServiceApiFp(this.configuration)
+      .readQuickReply(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @summary With Case
-   * @param {string} caseEtag
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
-   * @param {Array<string>} [ids]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
+   * @param {Array<number>} [id]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof CaseLinksApi
+   * @memberof QuickRepliesServiceApi
    */
-  public listLinks(
-    caseEtag: string,
+  public searchQuickReplies(
     page?: number,
     size?: number,
     q?: string,
-    ids?: Array<string>,
     sort?: string,
     fields?: Array<string>,
+    id?: Array<number>,
     options?: any
   ) {
-    return CaseLinksApiFp(this.configuration)
-      .listLinks(caseEtag, page, size, q, ids, sort, fields, options)
+    return QuickRepliesServiceApiFp(this.configuration)
+      .searchQuickReplies(page, size, q, sort, fields, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} etag (id allowed)
-   * @param {Array<string>} [fields]
+   * @param {number} id
+   * @param {EngineUpdateQuickReplyRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof CaseLinksApi
+   * @memberof QuickRepliesServiceApi
    */
-  public locateLink(etag: string, fields?: Array<string>, options?: any) {
-    return CaseLinksApiFp(this.configuration)
-      .locateLink(etag, fields, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {string} inputEtag
-   * @param {InlineObject} input
-   * @param {Array<string>} [fields] string id &#x3D; 1;  on return
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CaseLinksApi
-   */
-  public updateLink(
-    inputEtag: string,
-    input: InlineObject,
-    fields?: Array<string>,
+  public updateQuickReply(
+    id: number,
+    body: EngineUpdateQuickReplyRequest,
     options?: any
   ) {
-    return CaseLinksApiFp(this.configuration)
-      .updateLink(inputEtag, input, fields, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @param {string} inputEtag
-   * @param {InlineObject1} input
-   * @param {Array<string>} [fields] string id &#x3D; 1;  on return
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CaseLinksApi
-   */
-  public updateLink2(
-    inputEtag: string,
-    input: InlineObject1,
-    fields?: Array<string>,
-    options?: any
-  ) {
-    return CaseLinksApiFp(this.configuration)
-      .updateLink2(inputEtag, input, fields, options)
+    return QuickRepliesServiceApiFp(this.configuration)
+      .updateQuickReply(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

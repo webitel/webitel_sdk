@@ -11,28 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { EngineInputButton } from './engine-input-button'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface EngineInputButtonRow
  */
-export interface CasesInputCaseLink {
+export interface EngineInputButtonRow {
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {Array<EngineInputButton>}
+   * @memberof EngineInputButtonRow
    */
-  etag?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  buttons?: Array<EngineInputButton>
 }

@@ -44,23 +44,23 @@ export const RelatedCasesApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new related case
-     * @param {string} primaryCaseId Primary case details.
+     * @param {string} primaryCaseEtag Primary case details.
      * @param {CasesCreateInputRelatedCase} input Input data for the related case.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createRelatedCase: async (
-      primaryCaseId: string,
+      primaryCaseEtag: string,
       input: CasesCreateInputRelatedCase,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'primaryCaseId' is not null or undefined
-      if (primaryCaseId === null || primaryCaseId === undefined) {
+      // verify required parameter 'primaryCaseEtag' is not null or undefined
+      if (primaryCaseEtag === null || primaryCaseEtag === undefined) {
         throw new RequiredError(
-          'primaryCaseId',
-          'Required parameter primaryCaseId was null or undefined when calling createRelatedCase.'
+          'primaryCaseEtag',
+          'Required parameter primaryCaseEtag was null or undefined when calling createRelatedCase.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -70,9 +70,9 @@ export const RelatedCasesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling createRelatedCase.'
         )
       }
-      const localVarPath = `/cases/{primary_case_id}/related`.replace(
-        `{${'primary_case_id'}}`,
-        encodeURIComponent(String(primaryCaseId))
+      const localVarPath = `/cases/{primary_case_etag}/related`.replace(
+        `{${'primary_case_etag'}}`,
+        encodeURIComponent(String(primaryCaseEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -131,24 +131,24 @@ export const RelatedCasesApiAxiosParamCreator = function(
     /**
      *
      * @summary Delete a specific related case
-     * @param {string} id Identifier of the related case to delete.
+     * @param {string} etag Identifier of the related case to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRelatedCase: async (
-      id: string,
+      etag: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'etag' is not null or undefined
+      if (etag === null || etag === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling deleteRelatedCase.'
+          'etag',
+          'Required parameter etag was null or undefined when calling deleteRelatedCase.'
         )
       }
-      const localVarPath = `/cases/related/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/cases/related/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -295,26 +295,26 @@ export const RelatedCasesApiAxiosParamCreator = function(
     /**
      *
      * @summary Retrieve a specific related case by ID
-     * @param {string} id Identifier of the related case.
+     * @param {string} etag Identifier of the related case.
      * @param {Array<string>} [fields] Fields to return in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateRelatedCase: async (
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'etag' is not null or undefined
+      if (etag === null || etag === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling locateRelatedCase.'
+          'etag',
+          'Required parameter etag was null or undefined when calling locateRelatedCase.'
         )
       }
-      const localVarPath = `/cases/related/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/cases/related/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -365,23 +365,23 @@ export const RelatedCasesApiAxiosParamCreator = function(
     /**
      *
      * @summary Update an existing related case
-     * @param {string} id Identifier of the related case to update.
+     * @param {string} etag Identifier of the related case to update.
      * @param {CasesInputRelatedCase} input Input data for the related case update.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRelatedCase: async (
-      id: string,
+      etag: string,
       input: CasesInputRelatedCase,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'etag' is not null or undefined
+      if (etag === null || etag === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling updateRelatedCase.'
+          'etag',
+          'Required parameter etag was null or undefined when calling updateRelatedCase.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -391,9 +391,9 @@ export const RelatedCasesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateRelatedCase.'
         )
       }
-      const localVarPath = `/cases/related/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/cases/related/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -452,23 +452,23 @@ export const RelatedCasesApiAxiosParamCreator = function(
     /**
      *
      * @summary Update an existing related case
-     * @param {string} id Identifier of the related case to update.
+     * @param {string} etag Identifier of the related case to update.
      * @param {CasesInputRelatedCase} input Input data for the related case update.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRelatedCase2: async (
-      id: string,
+      etag: string,
       input: CasesInputRelatedCase,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'etag' is not null or undefined
+      if (etag === null || etag === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling updateRelatedCase2.'
+          'etag',
+          'Required parameter etag was null or undefined when calling updateRelatedCase2.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -478,9 +478,9 @@ export const RelatedCasesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateRelatedCase2.'
         )
       }
-      const localVarPath = `/cases/related/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/cases/related/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -548,14 +548,14 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new related case
-     * @param {string} primaryCaseId Primary case details.
+     * @param {string} primaryCaseEtag Primary case details.
      * @param {CasesCreateInputRelatedCase} input Input data for the related case.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createRelatedCase(
-      primaryCaseId: string,
+      primaryCaseEtag: string,
       input: CasesCreateInputRelatedCase,
       fields?: Array<string>,
       options?: any
@@ -567,7 +567,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
-      ).createRelatedCase(primaryCaseId, input, fields, options)
+      ).createRelatedCase(primaryCaseEtag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -582,12 +582,12 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Delete a specific related case
-     * @param {string} id Identifier of the related case to delete.
+     * @param {string} etag Identifier of the related case to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteRelatedCase(
-      id: string,
+      etag: string,
       options?: any
     ): Promise<
       (
@@ -597,7 +597,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
-      ).deleteRelatedCase(id, options)
+      ).deleteRelatedCase(etag, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -663,13 +663,13 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Retrieve a specific related case by ID
-     * @param {string} id Identifier of the related case.
+     * @param {string} etag Identifier of the related case.
      * @param {Array<string>} [fields] Fields to return in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async locateRelatedCase(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -680,7 +680,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
-      ).locateRelatedCase(id, fields, options)
+      ).locateRelatedCase(etag, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -695,14 +695,14 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update an existing related case
-     * @param {string} id Identifier of the related case to update.
+     * @param {string} etag Identifier of the related case to update.
      * @param {CasesInputRelatedCase} input Input data for the related case update.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateRelatedCase(
-      id: string,
+      etag: string,
       input: CasesInputRelatedCase,
       fields?: Array<string>,
       options?: any
@@ -714,7 +714,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
-      ).updateRelatedCase(id, input, fields, options)
+      ).updateRelatedCase(etag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -729,14 +729,14 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Update an existing related case
-     * @param {string} id Identifier of the related case to update.
+     * @param {string} etag Identifier of the related case to update.
      * @param {CasesInputRelatedCase} input Input data for the related case update.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateRelatedCase2(
-      id: string,
+      etag: string,
       input: CasesInputRelatedCase,
       fields?: Array<string>,
       options?: any
@@ -748,7 +748,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
-      ).updateRelatedCase2(id, input, fields, options)
+      ).updateRelatedCase2(etag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -776,35 +776,35 @@ export const RelatedCasesApiFactory = function(
     /**
      *
      * @summary Create a new related case
-     * @param {string} primaryCaseId Primary case details.
+     * @param {string} primaryCaseEtag Primary case details.
      * @param {CasesCreateInputRelatedCase} input Input data for the related case.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createRelatedCase(
-      primaryCaseId: string,
+      primaryCaseEtag: string,
       input: CasesCreateInputRelatedCase,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
-        .createRelatedCase(primaryCaseId, input, fields, options)
+        .createRelatedCase(primaryCaseEtag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary Delete a specific related case
-     * @param {string} id Identifier of the related case to delete.
+     * @param {string} etag Identifier of the related case to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRelatedCase(
-      id: string,
+      etag: string,
       options?: any
     ): AxiosPromise<CasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
-        .deleteRelatedCase(id, options)
+        .deleteRelatedCase(etag, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -846,56 +846,56 @@ export const RelatedCasesApiFactory = function(
     /**
      *
      * @summary Retrieve a specific related case by ID
-     * @param {string} id Identifier of the related case.
+     * @param {string} etag Identifier of the related case.
      * @param {Array<string>} [fields] Fields to return in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateRelatedCase(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
-        .locateRelatedCase(id, fields, options)
+        .locateRelatedCase(etag, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary Update an existing related case
-     * @param {string} id Identifier of the related case to update.
+     * @param {string} etag Identifier of the related case to update.
      * @param {CasesInputRelatedCase} input Input data for the related case update.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRelatedCase(
-      id: string,
+      etag: string,
       input: CasesInputRelatedCase,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
-        .updateRelatedCase(id, input, fields, options)
+        .updateRelatedCase(etag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary Update an existing related case
-     * @param {string} id Identifier of the related case to update.
+     * @param {string} etag Identifier of the related case to update.
      * @param {CasesInputRelatedCase} input Input data for the related case update.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRelatedCase2(
-      id: string,
+      etag: string,
       input: CasesInputRelatedCase,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
-        .updateRelatedCase2(id, input, fields, options)
+        .updateRelatedCase2(etag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -911,7 +911,7 @@ export class RelatedCasesApi extends BaseAPI {
   /**
    *
    * @summary Create a new related case
-   * @param {string} primaryCaseId Primary case details.
+   * @param {string} primaryCaseEtag Primary case details.
    * @param {CasesCreateInputRelatedCase} input Input data for the related case.
    * @param {Array<string>} [fields] Fields to include in the response.
    * @param {*} [options] Override http request option.
@@ -919,27 +919,27 @@ export class RelatedCasesApi extends BaseAPI {
    * @memberof RelatedCasesApi
    */
   public createRelatedCase(
-    primaryCaseId: string,
+    primaryCaseEtag: string,
     input: CasesCreateInputRelatedCase,
     fields?: Array<string>,
     options?: any
   ) {
     return RelatedCasesApiFp(this.configuration)
-      .createRelatedCase(primaryCaseId, input, fields, options)
+      .createRelatedCase(primaryCaseEtag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary Delete a specific related case
-   * @param {string} id Identifier of the related case to delete.
+   * @param {string} etag Identifier of the related case to delete.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RelatedCasesApi
    */
-  public deleteRelatedCase(id: string, options?: any) {
+  public deleteRelatedCase(etag: string, options?: any) {
     return RelatedCasesApiFp(this.configuration)
-      .deleteRelatedCase(id, options)
+      .deleteRelatedCase(etag, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -984,22 +984,26 @@ export class RelatedCasesApi extends BaseAPI {
   /**
    *
    * @summary Retrieve a specific related case by ID
-   * @param {string} id Identifier of the related case.
+   * @param {string} etag Identifier of the related case.
    * @param {Array<string>} [fields] Fields to return in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RelatedCasesApi
    */
-  public locateRelatedCase(id: string, fields?: Array<string>, options?: any) {
+  public locateRelatedCase(
+    etag: string,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return RelatedCasesApiFp(this.configuration)
-      .locateRelatedCase(id, fields, options)
+      .locateRelatedCase(etag, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary Update an existing related case
-   * @param {string} id Identifier of the related case to update.
+   * @param {string} etag Identifier of the related case to update.
    * @param {CasesInputRelatedCase} input Input data for the related case update.
    * @param {Array<string>} [fields] Fields to include in the response.
    * @param {*} [options] Override http request option.
@@ -1007,20 +1011,20 @@ export class RelatedCasesApi extends BaseAPI {
    * @memberof RelatedCasesApi
    */
   public updateRelatedCase(
-    id: string,
+    etag: string,
     input: CasesInputRelatedCase,
     fields?: Array<string>,
     options?: any
   ) {
     return RelatedCasesApiFp(this.configuration)
-      .updateRelatedCase(id, input, fields, options)
+      .updateRelatedCase(etag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary Update an existing related case
-   * @param {string} id Identifier of the related case to update.
+   * @param {string} etag Identifier of the related case to update.
    * @param {CasesInputRelatedCase} input Input data for the related case update.
    * @param {Array<string>} [fields] Fields to include in the response.
    * @param {*} [options] Override http request option.
@@ -1028,13 +1032,13 @@ export class RelatedCasesApi extends BaseAPI {
    * @memberof RelatedCasesApi
    */
   public updateRelatedCase2(
-    id: string,
+    etag: string,
     input: CasesInputRelatedCase,
     fields?: Array<string>,
     options?: any
   ) {
     return RelatedCasesApiFp(this.configuration)
-      .updateRelatedCase2(id, input, fields, options)
+      .updateRelatedCase2(etag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

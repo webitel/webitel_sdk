@@ -34,6 +34,12 @@ export interface CasesRelatedCase {
    */
   created_by?: GeneralLookup
   /**
+   * Etag for the related case entity.
+   * @type {string}
+   * @memberof CasesRelatedCase
+   */
+  etag?: string
+  /**
    * Unique identifier for the related case.
    * @type {string}
    * @memberof CasesRelatedCase

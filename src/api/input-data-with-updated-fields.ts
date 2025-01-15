@@ -13,6 +13,7 @@
 
 import { CasesCloseInfo } from './cases-close-info'
 import { CasesRateInfo } from './cases-rate-info'
+import { CasesStatusCondition } from './cases-status-condition'
 import { GeneralLookup } from './general-lookup'
 
 /**
@@ -101,10 +102,10 @@ export interface InputDataWithUpdatedFields {
   status?: GeneralLookup
   /**
    *
-   * @type {GeneralLookup}
+   * @type {CasesStatusCondition}
    * @memberof InputDataWithUpdatedFields
    */
-  status_condition?: GeneralLookup
+  status_condition?: CasesStatusCondition
   /**
    *
    * @type {string}

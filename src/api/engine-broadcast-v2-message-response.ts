@@ -11,28 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { EngineBroadcastV2Error } from './engine-broadcast-v2-error'
+
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface EngineBroadcastV2MessageResponse
  */
-export interface CasesInputCaseLink {
+export interface EngineBroadcastV2MessageResponse {
   /**
    *
-   * @type {string}
-   * @memberof CasesInputCaseLink
+   * @type {Array<EngineBroadcastV2Error>}
+   * @memberof EngineBroadcastV2MessageResponse
    */
-  etag?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
+  failure?: Array<EngineBroadcastV2Error>
 }

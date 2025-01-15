@@ -32,6 +32,12 @@ export interface CasesCaseCommunication {
    */
   communication_type?: CasesCaseCommunicationsTypes
   /**
+   * Version of the communication record.
+   * @type {string}
+   * @memberof CasesCaseCommunication
+   */
+  etag?: string
+  /**
    * Database ID of the communication.
    * @type {string}
    * @memberof CasesCaseCommunication

@@ -121,26 +121,26 @@ export const CasesApiAxiosParamCreator = function(
     /**
      *
      * @summary RPC method for deleting an existing case by its etag.
-     * @param {string} id identifier of the object
-     * @param {Array<string>} [fields] fields to return in deleted object
+     * @param {string} etag Unique etag identifier of the case.
+     * @param {Array<string>} [fields] List of fields to include in the deleted case response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteCase: async (
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'etag' is not null or undefined
+      if (etag === null || etag === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling deleteCase.'
+          'etag',
+          'Required parameter etag was null or undefined when calling deleteCase.'
         )
       }
-      const localVarPath = `/cases/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/cases/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -191,26 +191,26 @@ export const CasesApiAxiosParamCreator = function(
     /**
      *
      * @summary RPC method to retrieve a specific case by its etag identifier.
-     * @param {string} id
-     * @param {Array<string>} [fields]
+     * @param {string} etag Unique etag identifier of the case.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateCase: async (
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
+      // verify required parameter 'etag' is not null or undefined
+      if (etag === null || etag === undefined) {
         throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling locateCase.'
+          'etag',
+          'Required parameter etag was null or undefined when calling locateCase.'
         )
       }
-      const localVarPath = `/cases/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(id))
+      const localVarPath = `/cases/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -355,7 +355,7 @@ export const CasesApiAxiosParamCreator = function(
     /**
      *
      * @summary RPC method for updating an existing case.
-     * @param {string} inputId
+     * @param {string} inputEtag
      * @param {InputDataWithUpdatedFields} input
      * @param {Array<string>} [xJsonMask] List of JSON fields to update.
      * @param {Array<string>} [fields] List of fields to include in the response.
@@ -363,17 +363,17 @@ export const CasesApiAxiosParamCreator = function(
      * @throws {RequiredError}
      */
     updateCase: async (
-      inputId: string,
+      inputEtag: string,
       input: InputDataWithUpdatedFields,
       xJsonMask?: Array<string>,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'inputId' is not null or undefined
-      if (inputId === null || inputId === undefined) {
+      // verify required parameter 'inputEtag' is not null or undefined
+      if (inputEtag === null || inputEtag === undefined) {
         throw new RequiredError(
-          'inputId',
-          'Required parameter inputId was null or undefined when calling updateCase.'
+          'inputEtag',
+          'Required parameter inputEtag was null or undefined when calling updateCase.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -383,9 +383,9 @@ export const CasesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateCase.'
         )
       }
-      const localVarPath = `/cases/{input.id}`.replace(
-        `{${'input.id'}}`,
-        encodeURIComponent(String(inputId))
+      const localVarPath = `/cases/{input.etag}`.replace(
+        `{${'input.etag'}}`,
+        encodeURIComponent(String(inputEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -448,7 +448,7 @@ export const CasesApiAxiosParamCreator = function(
     /**
      *
      * @summary RPC method for updating an existing case.
-     * @param {string} inputId
+     * @param {string} inputEtag
      * @param {InputDataWithUpdatedFields1} input
      * @param {Array<string>} [xJsonMask] List of JSON fields to update.
      * @param {Array<string>} [fields] List of fields to include in the response.
@@ -456,17 +456,17 @@ export const CasesApiAxiosParamCreator = function(
      * @throws {RequiredError}
      */
     updateCase2: async (
-      inputId: string,
+      inputEtag: string,
       input: InputDataWithUpdatedFields1,
       xJsonMask?: Array<string>,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'inputId' is not null or undefined
-      if (inputId === null || inputId === undefined) {
+      // verify required parameter 'inputEtag' is not null or undefined
+      if (inputEtag === null || inputEtag === undefined) {
         throw new RequiredError(
-          'inputId',
-          'Required parameter inputId was null or undefined when calling updateCase2.'
+          'inputEtag',
+          'Required parameter inputEtag was null or undefined when calling updateCase2.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -476,9 +476,9 @@ export const CasesApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateCase2.'
         )
       }
-      const localVarPath = `/cases/{input.id}`.replace(
-        `{${'input.id'}}`,
-        encodeURIComponent(String(inputId))
+      const localVarPath = `/cases/{input.etag}`.replace(
+        `{${'input.etag'}}`,
+        encodeURIComponent(String(inputEtag))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -579,13 +579,13 @@ export const CasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary RPC method for deleting an existing case by its etag.
-     * @param {string} id identifier of the object
-     * @param {Array<string>} [fields] fields to return in deleted object
+     * @param {string} etag Unique etag identifier of the case.
+     * @param {Array<string>} [fields] List of fields to include in the deleted case response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteCase(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -593,7 +593,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).deleteCase(id, fields, options)
+      ).deleteCase(etag, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -608,13 +608,13 @@ export const CasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary RPC method to retrieve a specific case by its etag identifier.
-     * @param {string} id
-     * @param {Array<string>} [fields]
+     * @param {string} etag Unique etag identifier of the case.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async locateCase(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -622,7 +622,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).locateCase(id, fields, options)
+      ).locateCase(etag, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -676,7 +676,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary RPC method for updating an existing case.
-     * @param {string} inputId
+     * @param {string} inputEtag
      * @param {InputDataWithUpdatedFields} input
      * @param {Array<string>} [xJsonMask] List of JSON fields to update.
      * @param {Array<string>} [fields] List of fields to include in the response.
@@ -684,7 +684,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async updateCase(
-      inputId: string,
+      inputEtag: string,
       input: InputDataWithUpdatedFields,
       xJsonMask?: Array<string>,
       fields?: Array<string>,
@@ -694,7 +694,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).updateCase(inputId, input, xJsonMask, fields, options)
+      ).updateCase(inputEtag, input, xJsonMask, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -709,7 +709,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary RPC method for updating an existing case.
-     * @param {string} inputId
+     * @param {string} inputEtag
      * @param {InputDataWithUpdatedFields1} input
      * @param {Array<string>} [xJsonMask] List of JSON fields to update.
      * @param {Array<string>} [fields] List of fields to include in the response.
@@ -717,7 +717,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async updateCase2(
-      inputId: string,
+      inputEtag: string,
       input: InputDataWithUpdatedFields1,
       xJsonMask?: Array<string>,
       fields?: Array<string>,
@@ -727,7 +727,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).updateCase2(inputId, input, xJsonMask, fields, options)
+      ).updateCase2(inputEtag, input, xJsonMask, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -772,35 +772,35 @@ export const CasesApiFactory = function(
     /**
      *
      * @summary RPC method for deleting an existing case by its etag.
-     * @param {string} id identifier of the object
-     * @param {Array<string>} [fields] fields to return in deleted object
+     * @param {string} etag Unique etag identifier of the case.
+     * @param {Array<string>} [fields] List of fields to include in the deleted case response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteCase(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCase> {
       return CasesApiFp(configuration)
-        .deleteCase(id, fields, options)
+        .deleteCase(etag, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary RPC method to retrieve a specific case by its etag identifier.
-     * @param {string} id
-     * @param {Array<string>} [fields]
+     * @param {string} etag Unique etag identifier of the case.
+     * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateCase(
-      id: string,
+      etag: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCase> {
       return CasesApiFp(configuration)
-        .locateCase(id, fields, options)
+        .locateCase(etag, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -833,7 +833,7 @@ export const CasesApiFactory = function(
     /**
      *
      * @summary RPC method for updating an existing case.
-     * @param {string} inputId
+     * @param {string} inputEtag
      * @param {InputDataWithUpdatedFields} input
      * @param {Array<string>} [xJsonMask] List of JSON fields to update.
      * @param {Array<string>} [fields] List of fields to include in the response.
@@ -841,20 +841,20 @@ export const CasesApiFactory = function(
      * @throws {RequiredError}
      */
     updateCase(
-      inputId: string,
+      inputEtag: string,
       input: InputDataWithUpdatedFields,
       xJsonMask?: Array<string>,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCase> {
       return CasesApiFp(configuration)
-        .updateCase(inputId, input, xJsonMask, fields, options)
+        .updateCase(inputEtag, input, xJsonMask, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
      * @summary RPC method for updating an existing case.
-     * @param {string} inputId
+     * @param {string} inputEtag
      * @param {InputDataWithUpdatedFields1} input
      * @param {Array<string>} [xJsonMask] List of JSON fields to update.
      * @param {Array<string>} [fields] List of fields to include in the response.
@@ -862,14 +862,14 @@ export const CasesApiFactory = function(
      * @throws {RequiredError}
      */
     updateCase2(
-      inputId: string,
+      inputEtag: string,
       input: InputDataWithUpdatedFields1,
       xJsonMask?: Array<string>,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCase> {
       return CasesApiFp(configuration)
-        .updateCase2(inputId, input, xJsonMask, fields, options)
+        .updateCase2(inputEtag, input, xJsonMask, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -904,30 +904,30 @@ export class CasesApi extends BaseAPI {
   /**
    *
    * @summary RPC method for deleting an existing case by its etag.
-   * @param {string} id identifier of the object
-   * @param {Array<string>} [fields] fields to return in deleted object
+   * @param {string} etag Unique etag identifier of the case.
+   * @param {Array<string>} [fields] List of fields to include in the deleted case response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
    */
-  public deleteCase(id: string, fields?: Array<string>, options?: any) {
+  public deleteCase(etag: string, fields?: Array<string>, options?: any) {
     return CasesApiFp(this.configuration)
-      .deleteCase(id, fields, options)
+      .deleteCase(etag, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary RPC method to retrieve a specific case by its etag identifier.
-   * @param {string} id
-   * @param {Array<string>} [fields]
+   * @param {string} etag Unique etag identifier of the case.
+   * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
    */
-  public locateCase(id: string, fields?: Array<string>, options?: any) {
+  public locateCase(etag: string, fields?: Array<string>, options?: any) {
     return CasesApiFp(this.configuration)
-      .locateCase(id, fields, options)
+      .locateCase(etag, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -963,7 +963,7 @@ export class CasesApi extends BaseAPI {
   /**
    *
    * @summary RPC method for updating an existing case.
-   * @param {string} inputId
+   * @param {string} inputEtag
    * @param {InputDataWithUpdatedFields} input
    * @param {Array<string>} [xJsonMask] List of JSON fields to update.
    * @param {Array<string>} [fields] List of fields to include in the response.
@@ -972,21 +972,21 @@ export class CasesApi extends BaseAPI {
    * @memberof CasesApi
    */
   public updateCase(
-    inputId: string,
+    inputEtag: string,
     input: InputDataWithUpdatedFields,
     xJsonMask?: Array<string>,
     fields?: Array<string>,
     options?: any
   ) {
     return CasesApiFp(this.configuration)
-      .updateCase(inputId, input, xJsonMask, fields, options)
+      .updateCase(inputEtag, input, xJsonMask, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
    * @summary RPC method for updating an existing case.
-   * @param {string} inputId
+   * @param {string} inputEtag
    * @param {InputDataWithUpdatedFields1} input
    * @param {Array<string>} [xJsonMask] List of JSON fields to update.
    * @param {Array<string>} [fields] List of fields to include in the response.
@@ -995,14 +995,14 @@ export class CasesApi extends BaseAPI {
    * @memberof CasesApi
    */
   public updateCase2(
-    inputId: string,
+    inputEtag: string,
     input: InputDataWithUpdatedFields1,
     xJsonMask?: Array<string>,
     fields?: Array<string>,
     options?: any
   ) {
     return CasesApiFp(this.configuration)
-      .updateCase2(inputId, input, xJsonMask, fields, options)
+      .updateCase2(inputEtag, input, xJsonMask, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
