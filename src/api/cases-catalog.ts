@@ -25,7 +25,7 @@ export interface CasesCatalog {
    * @type {GeneralLookup}
    * @memberof CasesCatalog
    */
-  close_reason?: GeneralLookup
+  close_reason_group?: GeneralLookup
   /**
    *
    * @type {string}

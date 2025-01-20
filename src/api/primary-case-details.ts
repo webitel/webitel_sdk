@@ -11,18 +11,16 @@
  * Do not edit the class manually.
  */
 
-import { EngineInputButtonRow } from './engine-input-button-row'
-
 /**
- *
+ * Primary case details.
  * @export
- * @interface EngineInputKeyboard
+ * @interface PrimaryCaseDetails
  */
-export interface EngineInputKeyboard {
+export interface PrimaryCaseDetails {
   /**
    *
-   * @type {Array<EngineInputButtonRow>}
-   * @memberof EngineInputKeyboard
+   * @type {string}
+   * @memberof PrimaryCaseDetails
    */
-  rows?: Array<EngineInputButtonRow>
+  name?: string
 }

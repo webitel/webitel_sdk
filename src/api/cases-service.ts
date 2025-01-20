@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+import { GeneralExtendedLookup } from './general-extended-lookup'
 import { GeneralLookup } from './general-lookup'
 
 /**
@@ -57,10 +58,10 @@ export interface CasesService {
   description?: string
   /**
    *
-   * @type {GeneralLookup}
+   * @type {GeneralExtendedLookup}
    * @memberof CasesService
    */
-  group?: GeneralLookup
+  group?: GeneralExtendedLookup
   /**
    *
    * @type {string}

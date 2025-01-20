@@ -61,6 +61,12 @@ export interface EngineAttemptCallbackRequest {
   min_offering_at?: string
   /**
    *
+   * @type {boolean}
+   * @memberof EngineAttemptCallbackRequest
+   */
+  only_current_communication?: boolean
+  /**
+   *
    * @type {string}
    * @memberof EngineAttemptCallbackRequest
    */

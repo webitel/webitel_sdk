@@ -21,10 +21,10 @@ import { EngineLookup } from './engine-lookup'
 export interface EngineQuickReply {
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineQuickReply
    */
-  article?: string
+  article?: EngineLookup
   /**
    *
    * @type {string}
@@ -51,16 +51,16 @@ export interface EngineQuickReply {
   name?: string
   /**
    *
-   * @type {number}
+   * @type {EngineLookup}
    * @memberof EngineQuickReply
    */
-  queue?: number
+  queue?: EngineLookup
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineQuickReply
    */
-  team?: string
+  team?: EngineLookup
   /**
    *
    * @type {string}

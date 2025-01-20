@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineLookup } from './engine-lookup'
+
 /**
  *
  * @export
@@ -19,10 +21,10 @@
 export interface EngineCreateQuickReplyRequest {
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineCreateQuickReplyRequest
    */
-  article?: string
+  article?: EngineLookup
   /**
    *
    * @type {string}
@@ -31,16 +33,16 @@ export interface EngineCreateQuickReplyRequest {
   name?: string
   /**
    *
-   * @type {number}
+   * @type {EngineLookup}
    * @memberof EngineCreateQuickReplyRequest
    */
-  queue?: number
+  queue?: EngineLookup
   /**
    *
-   * @type {string}
+   * @type {EngineLookup}
    * @memberof EngineCreateQuickReplyRequest
    */
-  team?: string
+  team?: EngineLookup
   /**
    *
    * @type {string}

@@ -188,6 +188,7 @@ export const CatalogsApiAxiosParamCreator = function(
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
      * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is limited by 3,   meaning all nested services and sub-services will be included.
      * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
+     * @param {boolean} [hasSubservices] Filter catalogs with subservices
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -201,6 +202,7 @@ export const CatalogsApiAxiosParamCreator = function(
       state?: boolean,
       depth?: string,
       subFields?: Array<string>,
+      hasSubservices?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/cases/catalogs`
@@ -260,6 +262,10 @@ export const CatalogsApiAxiosParamCreator = function(
 
       if (subFields) {
         localVarQueryParameter['sub_fields'] = subFields
+      }
+
+      if (hasSubservices !== undefined) {
+        localVarQueryParameter['hasSubservices'] = hasSubservices
       }
 
       localVarUrlObj.query = {
@@ -598,6 +604,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
      * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is limited by 3,   meaning all nested services and sub-services will be included.
      * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
+     * @param {boolean} [hasSubservices] Filter catalogs with subservices
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -611,6 +618,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
       state?: boolean,
       depth?: string,
       subFields?: Array<string>,
+      hasSubservices?: boolean,
       options?: any
     ): Promise<
       (
@@ -630,6 +638,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
         state,
         depth,
         subFields,
+        hasSubservices,
         options
       )
       return (
@@ -790,6 +799,7 @@ export const CatalogsApiFactory = function(
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
      * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is limited by 3,   meaning all nested services and sub-services will be included.
      * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
+     * @param {boolean} [hasSubservices] Filter catalogs with subservices
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -803,6 +813,7 @@ export const CatalogsApiFactory = function(
       state?: boolean,
       depth?: string,
       subFields?: Array<string>,
+      hasSubservices?: boolean,
       options?: any
     ): AxiosPromise<CasesCatalogList> {
       return CatalogsApiFp(configuration)
@@ -816,6 +827,7 @@ export const CatalogsApiFactory = function(
           state,
           depth,
           subFields,
+          hasSubservices,
           options
         )
         .then((request) => request(axios, basePath))
@@ -923,6 +935,7 @@ export class CatalogsApi extends BaseAPI {
    * @param {boolean} [state] Filter by state (true for active, false for inactive)
    * @param {string} [depth] Filter by the depth of the hierarchy to retrieve services. The depth indicates how many ancestor levels of services will be included for each catalog. - A depth of 0 includes only the direct catalog. - A depth of 1 includes the catalog and its immediate services. - By default the depth is limited by 3,   meaning all nested services and sub-services will be included.
    * @param {Array<string>} [subFields] Fields to be retrieved as a result for [SUBSERVICES]. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog subservices.
+   * @param {boolean} [hasSubservices] Filter catalogs with subservices
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogsApi
@@ -937,6 +950,7 @@ export class CatalogsApi extends BaseAPI {
     state?: boolean,
     depth?: string,
     subFields?: Array<string>,
+    hasSubservices?: boolean,
     options?: any
   ) {
     return CatalogsApiFp(this.configuration)
@@ -950,6 +964,7 @@ export class CatalogsApi extends BaseAPI {
         state,
         depth,
         subFields,
+        hasSubservices,
         options
       )
       .then((request) => request(this.axios, this.basePath))

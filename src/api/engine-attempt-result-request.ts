@@ -73,6 +73,12 @@ export interface EngineAttemptResultRequest {
   next_member_id?: string
   /**
    *
+   * @type {boolean}
+   * @memberof EngineAttemptResultRequest
+   */
+  only_current_communication?: boolean
+  /**
+   *
    * @type {number}
    * @memberof EngineAttemptResultRequest
    */

@@ -66,7 +66,7 @@ export const CaseLinksApiAxiosParamCreator = function(
           'Required parameter caseEtag was null or undefined when calling createLink.'
         )
       }
-      const localVarPath = `/cases/links/{case_etag}`.replace(
+      const localVarPath = `/cases/{case_etag}/links`.replace(
         `{${'case_etag'}}`,
         encodeURIComponent(String(caseEtag))
       )
@@ -130,14 +130,23 @@ export const CaseLinksApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} etag
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteLink: async (
+      caseEtag: string,
       etag: string,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'caseEtag' is not null or undefined
+      if (caseEtag === null || caseEtag === undefined) {
+        throw new RequiredError(
+          'caseEtag',
+          'Required parameter caseEtag was null or undefined when calling deleteLink.'
+        )
+      }
       // verify required parameter 'etag' is not null or undefined
       if (etag === null || etag === undefined) {
         throw new RequiredError(
@@ -145,10 +154,9 @@ export const CaseLinksApiAxiosParamCreator = function(
           'Required parameter etag was null or undefined when calling deleteLink.'
         )
       }
-      const localVarPath = `/cases/links/{etag}`.replace(
-        `{${'etag'}}`,
-        encodeURIComponent(String(etag))
-      )
+      const localVarPath = `/cases/{case_etag}/links/{etag}`
+        .replace(`{${'case_etag'}}`, encodeURIComponent(String(caseEtag)))
+        .replace(`{${'etag'}}`, encodeURIComponent(String(etag)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -293,16 +301,25 @@ export const CaseLinksApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} etag (id allowed)
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateLink: async (
+      caseEtag: string,
       etag: string,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'caseEtag' is not null or undefined
+      if (caseEtag === null || caseEtag === undefined) {
+        throw new RequiredError(
+          'caseEtag',
+          'Required parameter caseEtag was null or undefined when calling locateLink.'
+        )
+      }
       // verify required parameter 'etag' is not null or undefined
       if (etag === null || etag === undefined) {
         throw new RequiredError(
@@ -310,10 +327,9 @@ export const CaseLinksApiAxiosParamCreator = function(
           'Required parameter etag was null or undefined when calling locateLink.'
         )
       }
-      const localVarPath = `/cases/links/{etag}`.replace(
-        `{${'etag'}}`,
-        encodeURIComponent(String(etag))
-      )
+      const localVarPath = `/cases/{case_etag}/links/{etag}`
+        .replace(`{${'case_etag'}}`, encodeURIComponent(String(caseEtag)))
+        .replace(`{${'etag'}}`, encodeURIComponent(String(etag)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -362,18 +378,27 @@ export const CaseLinksApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} inputEtag
      * @param {InlineObject} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+     * @param {Array<string>} [fields] on return
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateLink: async (
+      caseEtag: string,
       inputEtag: string,
       input: InlineObject,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'caseEtag' is not null or undefined
+      if (caseEtag === null || caseEtag === undefined) {
+        throw new RequiredError(
+          'caseEtag',
+          'Required parameter caseEtag was null or undefined when calling updateLink.'
+        )
+      }
       // verify required parameter 'inputEtag' is not null or undefined
       if (inputEtag === null || inputEtag === undefined) {
         throw new RequiredError(
@@ -388,10 +413,9 @@ export const CaseLinksApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateLink.'
         )
       }
-      const localVarPath = `/cases/links/{input.etag}`.replace(
-        `{${'input.etag'}}`,
-        encodeURIComponent(String(inputEtag))
-      )
+      const localVarPath = `/cases/{case_etag}/links/{input.etag}`
+        .replace(`{${'case_etag'}}`, encodeURIComponent(String(caseEtag)))
+        .replace(`{${'input.etag'}}`, encodeURIComponent(String(inputEtag)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -448,18 +472,27 @@ export const CaseLinksApiAxiosParamCreator = function(
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} inputEtag
      * @param {InlineObject1} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+     * @param {Array<string>} [fields] on return
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateLink2: async (
+      caseEtag: string,
       inputEtag: string,
       input: InlineObject1,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'caseEtag' is not null or undefined
+      if (caseEtag === null || caseEtag === undefined) {
+        throw new RequiredError(
+          'caseEtag',
+          'Required parameter caseEtag was null or undefined when calling updateLink2.'
+        )
+      }
       // verify required parameter 'inputEtag' is not null or undefined
       if (inputEtag === null || inputEtag === undefined) {
         throw new RequiredError(
@@ -474,10 +507,9 @@ export const CaseLinksApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateLink2.'
         )
       }
-      const localVarPath = `/cases/links/{input.etag}`.replace(
-        `{${'input.etag'}}`,
-        encodeURIComponent(String(inputEtag))
-      )
+      const localVarPath = `/cases/{case_etag}/links/{input.etag}`
+        .replace(`{${'case_etag'}}`, encodeURIComponent(String(caseEtag)))
+        .replace(`{${'input.etag'}}`, encodeURIComponent(String(inputEtag)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -577,11 +609,13 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} etag
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteLink(
+      caseEtag: string,
       etag: string,
       options?: any
     ): Promise<
@@ -589,7 +623,7 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
-      ).deleteLink(etag, options)
+      ).deleteLink(caseEtag, etag, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -645,12 +679,14 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} etag (id allowed)
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async locateLink(
+      caseEtag: string,
       etag: string,
       fields?: Array<string>,
       options?: any
@@ -659,7 +695,7 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
-      ).locateLink(etag, fields, options)
+      ).locateLink(caseEtag, etag, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -673,13 +709,15 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} inputEtag
      * @param {InlineObject} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+     * @param {Array<string>} [fields] on return
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateLink(
+      caseEtag: string,
       inputEtag: string,
       input: InlineObject,
       fields?: Array<string>,
@@ -689,7 +727,7 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
-      ).updateLink(inputEtag, input, fields, options)
+      ).updateLink(caseEtag, inputEtag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -703,13 +741,15 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} inputEtag
      * @param {InlineObject1} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+     * @param {Array<string>} [fields] on return
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateLink2(
+      caseEtag: string,
       inputEtag: string,
       input: InlineObject1,
       fields?: Array<string>,
@@ -719,7 +759,7 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
-      ).updateLink2(inputEtag, input, fields, options)
+      ).updateLink2(caseEtag, inputEtag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -768,13 +808,18 @@ export const CaseLinksApiFactory = function(
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} etag
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteLink(etag: string, options?: any): AxiosPromise<CasesCaseLink> {
+    deleteLink(
+      caseEtag: string,
+      etag: string,
+      options?: any
+    ): AxiosPromise<CasesCaseLink> {
       return CaseLinksApiFp(configuration)
-        .deleteLink(etag, options)
+        .deleteLink(caseEtag, etag, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -806,54 +851,60 @@ export const CaseLinksApiFactory = function(
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} etag (id allowed)
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateLink(
+      caseEtag: string,
       etag: string,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseLink> {
       return CaseLinksApiFp(configuration)
-        .locateLink(etag, fields, options)
+        .locateLink(caseEtag, etag, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} inputEtag
      * @param {InlineObject} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+     * @param {Array<string>} [fields] on return
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateLink(
+      caseEtag: string,
       inputEtag: string,
       input: InlineObject,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseLink> {
       return CaseLinksApiFp(configuration)
-        .updateLink(inputEtag, input, fields, options)
+        .updateLink(caseEtag, inputEtag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @param {string} caseEtag
      * @param {string} inputEtag
      * @param {InlineObject1} input
-     * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+     * @param {Array<string>} [fields] on return
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateLink2(
+      caseEtag: string,
       inputEtag: string,
       input: InlineObject1,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseLink> {
       return CaseLinksApiFp(configuration)
-        .updateLink2(inputEtag, input, fields, options)
+        .updateLink2(caseEtag, inputEtag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -892,14 +943,15 @@ export class CaseLinksApi extends BaseAPI {
 
   /**
    *
+   * @param {string} caseEtag
    * @param {string} etag
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseLinksApi
    */
-  public deleteLink(etag: string, options?: any) {
+  public deleteLink(caseEtag: string, etag: string, options?: any) {
     return CaseLinksApiFp(this.configuration)
-      .deleteLink(etag, options)
+      .deleteLink(caseEtag, etag, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -934,55 +986,65 @@ export class CaseLinksApi extends BaseAPI {
 
   /**
    *
+   * @param {string} caseEtag
    * @param {string} etag (id allowed)
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseLinksApi
    */
-  public locateLink(etag: string, fields?: Array<string>, options?: any) {
+  public locateLink(
+    caseEtag: string,
+    etag: string,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return CaseLinksApiFp(this.configuration)
-      .locateLink(etag, fields, options)
+      .locateLink(caseEtag, etag, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
+   * @param {string} caseEtag
    * @param {string} inputEtag
    * @param {InlineObject} input
-   * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+   * @param {Array<string>} [fields] on return
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseLinksApi
    */
   public updateLink(
+    caseEtag: string,
     inputEtag: string,
     input: InlineObject,
     fields?: Array<string>,
     options?: any
   ) {
     return CaseLinksApiFp(this.configuration)
-      .updateLink(inputEtag, input, fields, options)
+      .updateLink(caseEtag, inputEtag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
+   * @param {string} caseEtag
    * @param {string} inputEtag
    * @param {InlineObject1} input
-   * @param {Array<string>} [fields] string id &#x3D; 1;  on return
+   * @param {Array<string>} [fields] on return
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseLinksApi
    */
   public updateLink2(
+    caseEtag: string,
     inputEtag: string,
     input: InlineObject1,
     fields?: Array<string>,
     options?: any
   ) {
     return CaseLinksApiFp(this.configuration)
-      .updateLink2(inputEtag, input, fields, options)
+      .updateLink2(caseEtag, inputEtag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }
