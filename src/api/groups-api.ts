@@ -257,6 +257,7 @@ export const GroupsApiAxiosParamCreator = function(
      * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {string} [name] Filter by group name.
      * @param {'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC'} [type] Filter by group type.   - GROUP_TYPE_UNSPECIFIED: Default value  - STATIC: Static group  - DYNAMIC: Dynamic group
+     * @param {boolean} [enabled] Filter by only enabled group
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -269,6 +270,7 @@ export const GroupsApiAxiosParamCreator = function(
       q?: string,
       name?: string,
       type?: 'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC',
+      enabled?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/contacts/groups`
@@ -324,6 +326,10 @@ export const GroupsApiAxiosParamCreator = function(
 
       if (type !== undefined) {
         localVarQueryParameter['type'] = type
+      }
+
+      if (enabled !== undefined) {
+        localVarQueryParameter['enabled'] = enabled
       }
 
       localVarUrlObj.query = {
@@ -760,6 +766,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
      * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {string} [name] Filter by group name.
      * @param {'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC'} [type] Filter by group type.   - GROUP_TYPE_UNSPECIFIED: Default value  - STATIC: Static group  - DYNAMIC: Dynamic group
+     * @param {boolean} [enabled] Filter by only enabled group
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -772,6 +779,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
       q?: string,
       name?: string,
       type?: 'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC',
+      enabled?: boolean,
       options?: any
     ): Promise<
       (
@@ -781,7 +789,18 @@ export const GroupsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await GroupsApiAxiosParamCreator(
         configuration
-      ).listGroups(page, size, fields, sort, id, q, name, type, options)
+      ).listGroups(
+        page,
+        size,
+        fields,
+        sort,
+        id,
+        q,
+        name,
+        type,
+        enabled,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -989,6 +1008,7 @@ export const GroupsApiFactory = function(
      * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
      * @param {string} [name] Filter by group name.
      * @param {'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC'} [type] Filter by group type.   - GROUP_TYPE_UNSPECIFIED: Default value  - STATIC: Static group  - DYNAMIC: Dynamic group
+     * @param {boolean} [enabled] Filter by only enabled group
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1001,10 +1021,22 @@ export const GroupsApiFactory = function(
       q?: string,
       name?: string,
       type?: 'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC',
+      enabled?: boolean,
       options?: any
     ): AxiosPromise<WebitelContactsGroupList> {
       return GroupsApiFp(configuration)
-        .listGroups(page, size, fields, sort, id, q, name, type, options)
+        .listGroups(
+          page,
+          size,
+          fields,
+          sort,
+          id,
+          q,
+          name,
+          type,
+          enabled,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1143,6 +1175,7 @@ export class GroupsApi extends BaseAPI {
    * @param {string} [q] Search term: group name; &#x60;?&#x60; - matches any one character &#x60;*&#x60; - matches 0 or more characters
    * @param {string} [name] Filter by group name.
    * @param {'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC'} [type] Filter by group type.   - GROUP_TYPE_UNSPECIFIED: Default value  - STATIC: Static group  - DYNAMIC: Dynamic group
+   * @param {boolean} [enabled] Filter by only enabled group
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof GroupsApi
@@ -1156,10 +1189,11 @@ export class GroupsApi extends BaseAPI {
     q?: string,
     name?: string,
     type?: 'GROUP_TYPE_UNSPECIFIED' | 'STATIC' | 'DYNAMIC',
+    enabled?: boolean,
     options?: any
   ) {
     return GroupsApiFp(this.configuration)
-      .listGroups(page, size, fields, sort, id, q, name, type, options)
+      .listGroups(page, size, fields, sort, id, q, name, type, enabled, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
