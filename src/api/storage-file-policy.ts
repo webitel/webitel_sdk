@@ -12,6 +12,7 @@
  */
 
 import { EngineLookup } from './engine-lookup'
+import { StorageUploadFileChannel } from './storage-upload-file-channel'
 
 /**
  *
@@ -21,10 +22,10 @@ import { EngineLookup } from './engine-lookup'
 export interface StorageFilePolicy {
   /**
    *
-   * @type {Array<string>}
+   * @type {Array<StorageUploadFileChannel>}
    * @memberof StorageFilePolicy
    */
-  channels?: Array<string>
+  channels?: Array<StorageUploadFileChannel>
   /**
    *
    * @type {string}

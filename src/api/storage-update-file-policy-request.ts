@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { StorageUploadFileChannel } from './storage-upload-file-channel'
+
 /**
  *
  * @export
@@ -19,10 +21,10 @@
 export interface StorageUpdateFilePolicyRequest {
   /**
    *
-   * @type {Array<string>}
+   * @type {Array<StorageUploadFileChannel>}
    * @memberof StorageUpdateFilePolicyRequest
    */
-  channels?: Array<string>
+  channels?: Array<StorageUploadFileChannel>
   /**
    *
    * @type {string}

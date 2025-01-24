@@ -11,22 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { StorageGenerateFileLinkResponse } from './storage-generate-file-link-response'
+
 /**
  *
  * @export
- * @interface StorageGenerateFileLinkResponse
+ * @interface StorageBulkGenerateFileLinkResponse
  */
-export interface StorageGenerateFileLinkResponse {
+export interface StorageBulkGenerateFileLinkResponse {
   /**
    *
-   * @type {string}
-   * @memberof StorageGenerateFileLinkResponse
+   * @type {Array<StorageGenerateFileLinkResponse>}
+   * @memberof StorageBulkGenerateFileLinkResponse
    */
-  base_url?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StorageGenerateFileLinkResponse
-   */
-  url?: string
+  links?: Array<StorageGenerateFileLinkResponse>
 }

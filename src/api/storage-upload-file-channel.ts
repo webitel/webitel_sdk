@@ -23,4 +23,6 @@ export enum StorageUploadFileChannel {
   CallChannel = 'CallChannel',
   LogChannel = 'LogChannel',
   MediaChannel = 'MediaChannel',
+  KnowledgebaseChannel = 'KnowledgebaseChannel',
+  CasesChannel = 'CasesChannel',
 }

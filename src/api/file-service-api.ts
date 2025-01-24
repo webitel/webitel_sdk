@@ -25,6 +25,8 @@ import {
 } from '../base'
 // @ts-ignore
 import { StorageDeleteFilesRequest } from '../api'
+// @ts-ignore
+import { StorageListFile } from '../api'
 /**
  * FileServiceApi - axios parameter creator
  * @export
@@ -101,6 +103,144 @@ export const FileServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {string} [uploadedAtFrom]
+     * @param {string} [uploadedAtTo]
+     * @param {Array<string>} [uploadedBy]
+     * @param {Array<string>} [referenceId]
+     * @param {Array<'UnknownChannel' | 'ChatChannel' | 'MailChannel' | 'CallChannel' | 'LogChannel' | 'MediaChannel' | 'KnowledgebaseChannel' | 'CasesChannel'>} [channel]
+     * @param {string} [retentionUntilFrom]
+     * @param {string} [retentionUntilTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchFiles: async (
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      uploadedAtFrom?: string,
+      uploadedAtTo?: string,
+      uploadedBy?: Array<string>,
+      referenceId?: Array<string>,
+      channel?: Array<
+        | 'UnknownChannel'
+        | 'ChatChannel'
+        | 'MailChannel'
+        | 'CallChannel'
+        | 'LogChannel'
+        | 'MediaChannel'
+        | 'KnowledgebaseChannel'
+        | 'CasesChannel'
+      >,
+      retentionUntilFrom?: string,
+      retentionUntilTo?: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/storage/file`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (id) {
+        localVarQueryParameter['id'] = id
+      }
+
+      if (uploadedAtFrom !== undefined) {
+        localVarQueryParameter['uploaded_at.from'] = uploadedAtFrom
+      }
+
+      if (uploadedAtTo !== undefined) {
+        localVarQueryParameter['uploaded_at.to'] = uploadedAtTo
+      }
+
+      if (uploadedBy) {
+        localVarQueryParameter['uploaded_by'] = uploadedBy
+      }
+
+      if (referenceId) {
+        localVarQueryParameter['reference_id'] = referenceId
+      }
+
+      if (channel) {
+        localVarQueryParameter['channel'] = channel
+      }
+
+      if (retentionUntilFrom !== undefined) {
+        localVarQueryParameter['retention_until.from'] = retentionUntilFrom
+      }
+
+      if (retentionUntilTo !== undefined) {
+        localVarQueryParameter['retention_until.to'] = retentionUntilTo
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -125,6 +265,83 @@ export const FileServiceApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = await FileServiceApiAxiosParamCreator(
         configuration
       ).deleteFiles(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {string} [uploadedAtFrom]
+     * @param {string} [uploadedAtTo]
+     * @param {Array<string>} [uploadedBy]
+     * @param {Array<string>} [referenceId]
+     * @param {Array<'UnknownChannel' | 'ChatChannel' | 'MailChannel' | 'CallChannel' | 'LogChannel' | 'MediaChannel' | 'KnowledgebaseChannel' | 'CasesChannel'>} [channel]
+     * @param {string} [retentionUntilFrom]
+     * @param {string} [retentionUntilTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchFiles(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      uploadedAtFrom?: string,
+      uploadedAtTo?: string,
+      uploadedBy?: Array<string>,
+      referenceId?: Array<string>,
+      channel?: Array<
+        | 'UnknownChannel'
+        | 'ChatChannel'
+        | 'MailChannel'
+        | 'CallChannel'
+        | 'LogChannel'
+        | 'MediaChannel'
+        | 'KnowledgebaseChannel'
+        | 'CasesChannel'
+      >,
+      retentionUntilFrom?: string,
+      retentionUntilTo?: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<StorageListFile>
+    > {
+      const localVarAxiosArgs = await FileServiceApiAxiosParamCreator(
+        configuration
+      ).searchFiles(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        uploadedAtFrom,
+        uploadedAtTo,
+        uploadedBy,
+        referenceId,
+        channel,
+        retentionUntilFrom,
+        retentionUntilTo,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -163,6 +380,68 @@ export const FileServiceApiFactory = function(
         .deleteFiles(body, options)
         .then((request) => request(axios, basePath))
     },
+    /**
+     *
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [q]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [id]
+     * @param {string} [uploadedAtFrom]
+     * @param {string} [uploadedAtTo]
+     * @param {Array<string>} [uploadedBy]
+     * @param {Array<string>} [referenceId]
+     * @param {Array<'UnknownChannel' | 'ChatChannel' | 'MailChannel' | 'CallChannel' | 'LogChannel' | 'MediaChannel' | 'KnowledgebaseChannel' | 'CasesChannel'>} [channel]
+     * @param {string} [retentionUntilFrom]
+     * @param {string} [retentionUntilTo]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchFiles(
+      page?: number,
+      size?: number,
+      q?: string,
+      sort?: string,
+      fields?: Array<string>,
+      id?: Array<string>,
+      uploadedAtFrom?: string,
+      uploadedAtTo?: string,
+      uploadedBy?: Array<string>,
+      referenceId?: Array<string>,
+      channel?: Array<
+        | 'UnknownChannel'
+        | 'ChatChannel'
+        | 'MailChannel'
+        | 'CallChannel'
+        | 'LogChannel'
+        | 'MediaChannel'
+        | 'KnowledgebaseChannel'
+        | 'CasesChannel'
+      >,
+      retentionUntilFrom?: string,
+      retentionUntilTo?: string,
+      options?: any
+    ): AxiosPromise<StorageListFile> {
+      return FileServiceApiFp(configuration)
+        .searchFiles(
+          page,
+          size,
+          q,
+          sort,
+          fields,
+          id,
+          uploadedAtFrom,
+          uploadedAtTo,
+          uploadedBy,
+          referenceId,
+          channel,
+          retentionUntilFrom,
+          retentionUntilTo,
+          options
+        )
+        .then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -183,6 +462,70 @@ export class FileServiceApi extends BaseAPI {
   public deleteFiles(body: StorageDeleteFilesRequest, options?: any) {
     return FileServiceApiFp(this.configuration)
       .deleteFiles(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [q]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [id]
+   * @param {string} [uploadedAtFrom]
+   * @param {string} [uploadedAtTo]
+   * @param {Array<string>} [uploadedBy]
+   * @param {Array<string>} [referenceId]
+   * @param {Array<'UnknownChannel' | 'ChatChannel' | 'MailChannel' | 'CallChannel' | 'LogChannel' | 'MediaChannel' | 'KnowledgebaseChannel' | 'CasesChannel'>} [channel]
+   * @param {string} [retentionUntilFrom]
+   * @param {string} [retentionUntilTo]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FileServiceApi
+   */
+  public searchFiles(
+    page?: number,
+    size?: number,
+    q?: string,
+    sort?: string,
+    fields?: Array<string>,
+    id?: Array<string>,
+    uploadedAtFrom?: string,
+    uploadedAtTo?: string,
+    uploadedBy?: Array<string>,
+    referenceId?: Array<string>,
+    channel?: Array<
+      | 'UnknownChannel'
+      | 'ChatChannel'
+      | 'MailChannel'
+      | 'CallChannel'
+      | 'LogChannel'
+      | 'MediaChannel'
+      | 'KnowledgebaseChannel'
+      | 'CasesChannel'
+    >,
+    retentionUntilFrom?: string,
+    retentionUntilTo?: string,
+    options?: any
+  ) {
+    return FileServiceApiFp(this.configuration)
+      .searchFiles(
+        page,
+        size,
+        q,
+        sort,
+        fields,
+        id,
+        uploadedAtFrom,
+        uploadedAtTo,
+        uploadedBy,
+        referenceId,
+        channel,
+        retentionUntilFrom,
+        retentionUntilTo,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 }

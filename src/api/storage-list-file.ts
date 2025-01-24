@@ -11,22 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { StorageFile } from './storage-file'
+
 /**
  *
  * @export
- * @interface StorageGenerateFileLinkResponse
+ * @interface StorageListFile
  */
-export interface StorageGenerateFileLinkResponse {
+export interface StorageListFile {
   /**
    *
-   * @type {string}
-   * @memberof StorageGenerateFileLinkResponse
+   * @type {Array<StorageFile>}
+   * @memberof StorageListFile
    */
-  base_url?: string
+  items?: Array<StorageFile>
   /**
    *
-   * @type {string}
-   * @memberof StorageGenerateFileLinkResponse
+   * @type {boolean}
+   * @memberof StorageListFile
    */
-  url?: string
+  next?: boolean
 }
