@@ -11,9 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentScheduleShift } from './wfm-agent-schedule-shift'
-import { WfmFilterBetween } from './wfm-filter-between'
-import { WfmLookupEntity } from './wfm-lookup-entity'
+import { WebitelProtoDataImportCSVRequestAction } from './webitel-proto-data-import-csvrequest-action'
 
 /**
  *
@@ -23,20 +21,38 @@ import { WfmLookupEntity } from './wfm-lookup-entity'
 export interface InlineObject2 {
   /**
    *
-   * @type {Array<WfmLookupEntity>}
+   * @type {string}
    * @memberof InlineObject2
    */
-  agents?: Array<WfmLookupEntity>
+  data?: string
   /**
    *
-   * @type {WfmFilterBetween}
+   * @type {{ [key: string]: number; }}
    * @memberof InlineObject2
    */
-  date?: WfmFilterBetween
+  fields?: { [key: string]: number }
   /**
-   * Map key is a day of week: 0 - Sunday, ..., 6 - Saturday.
-   * @type {{ [key: string]: WfmAgentScheduleShift; }}
+   *
+   * @type {number}
    * @memberof InlineObject2
    */
-  items?: { [key: string]: WfmAgentScheduleShift }
+  line_begin?: number
+  /**
+   *
+   * @type {number}
+   * @memberof InlineObject2
+   */
+  line_end?: number
+  /**
+   *
+   * @type {WebitelProtoDataImportCSVRequestAction}
+   * @memberof InlineObject2
+   */
+  on_data_error?: WebitelProtoDataImportCSVRequestAction
+  /**
+   *
+   * @type {WebitelProtoDataImportCSVRequestAction}
+   * @memberof InlineObject2
+   */
+  on_empty_line?: WebitelProtoDataImportCSVRequestAction
 }

@@ -11,18 +11,28 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
-
 /**
  *
  * @export
- * @interface InlineObject10
+ * @interface WebitelProtoDataTypeUint
  */
-export interface InlineObject10 {
+export interface WebitelProtoDataTypeUint {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
-   * @memberof InlineObject10
+   * @type {string}
+   * @memberof WebitelProtoDataTypeUint
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  max?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelProtoDataTypeUint
+   */
+  min?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof WebitelProtoDataTypeUint
+   */
+  violation?: { [key: string]: string }
 }

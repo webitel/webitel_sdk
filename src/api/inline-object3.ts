@@ -11,7 +11,9 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
+import { WfmAgentScheduleShift } from './wfm-agent-schedule-shift'
+import { WfmFilterBetween } from './wfm-filter-between'
+import { WfmLookupEntity } from './wfm-lookup-entity'
 
 /**
  *
@@ -21,8 +23,20 @@ import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
 export interface InlineObject3 {
   /**
    *
-   * @type {WfmAgentWorkingConditions}
+   * @type {Array<WfmLookupEntity>}
    * @memberof InlineObject3
    */
-  item?: WfmAgentWorkingConditions
+  agents?: Array<WfmLookupEntity>
+  /**
+   *
+   * @type {WfmFilterBetween}
+   * @memberof InlineObject3
+   */
+  date?: WfmFilterBetween
+  /**
+   * Map key is a day of week: 0 - Sunday, ..., 6 - Saturday.
+   * @type {{ [key: string]: WfmAgentScheduleShift; }}
+   * @memberof InlineObject3
+   */
+  items?: { [key: string]: WfmAgentScheduleShift }
 }

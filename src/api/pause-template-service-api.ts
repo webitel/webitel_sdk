@@ -24,7 +24,7 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject7 } from '../api'
+import { InlineObject8 } from '../api'
 // @ts-ignore
 import { WfmCreatePauseTemplateRequest } from '../api'
 // @ts-ignore
@@ -330,13 +330,13 @@ export const PauseTemplateServiceApiAxiosParamCreator = function(
      *
      * @summary UpdatePauseTemplateCauseBulk updates a pause template with a list of causes. Update existing cause, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject7} body
+     * @param {InlineObject8} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updatePauseTemplate: async (
       itemId: string,
-      body: InlineObject7,
+      body: InlineObject8,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemId' is not null or undefined
@@ -548,13 +548,13 @@ export const PauseTemplateServiceApiFp = function(
      *
      * @summary UpdatePauseTemplateCauseBulk updates a pause template with a list of causes. Update existing cause, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject7} body
+     * @param {InlineObject8} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updatePauseTemplate(
       itemId: string,
-      body: InlineObject7,
+      body: InlineObject8,
       options?: any
     ): Promise<
       (
@@ -659,13 +659,13 @@ export const PauseTemplateServiceApiFactory = function(
      *
      * @summary UpdatePauseTemplateCauseBulk updates a pause template with a list of causes. Update existing cause, create that not exists in database and delete that not exists in the list.
      * @param {string} itemId
-     * @param {InlineObject7} body
+     * @param {InlineObject8} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updatePauseTemplate(
       itemId: string,
-      body: InlineObject7,
+      body: InlineObject8,
       options?: any
     ): AxiosPromise<WfmUpdatePauseTemplateResponse> {
       return PauseTemplateServiceApiFp(configuration)
@@ -753,14 +753,14 @@ export class PauseTemplateServiceApi extends BaseAPI {
    *
    * @summary UpdatePauseTemplateCauseBulk updates a pause template with a list of causes. Update existing cause, create that not exists in database and delete that not exists in the list.
    * @param {string} itemId
-   * @param {InlineObject7} body
+   * @param {InlineObject8} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PauseTemplateServiceApi
    */
   public updatePauseTemplate(
     itemId: string,
-    body: InlineObject7,
+    body: InlineObject8,
     options?: any
   ) {
     return PauseTemplateServiceApiFp(this.configuration)

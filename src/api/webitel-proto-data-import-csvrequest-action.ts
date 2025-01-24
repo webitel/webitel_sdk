@@ -11,18 +11,12 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
-
 /**
  *
  * @export
- * @interface InlineObject10
+ * @enum {string}
  */
-export interface InlineObject10 {
-  /**
-   *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
-   * @memberof InlineObject10
-   */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+export enum WebitelProtoDataImportCSVRequestAction {
+  Continue = 'continue',
+  Break = 'break',
 }

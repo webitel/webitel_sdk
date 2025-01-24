@@ -24,7 +24,7 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject9 } from '../api'
+import { InlineObject10 } from '../api'
 // @ts-ignore
 import { WfmCreateWorkingConditionRequest } from '../api'
 // @ts-ignore
@@ -329,13 +329,13 @@ export const WorkingConditionServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject9} body
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingCondition: async (
       itemId: string,
-      body: InlineObject9,
+      body: InlineObject10,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'itemId' is not null or undefined
@@ -546,13 +546,13 @@ export const WorkingConditionServiceApiFp = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject9} body
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateWorkingCondition(
       itemId: string,
-      body: InlineObject9,
+      body: InlineObject10,
       options?: any
     ): Promise<
       (
@@ -656,13 +656,13 @@ export const WorkingConditionServiceApiFactory = function(
     /**
      *
      * @param {string} itemId
-     * @param {InlineObject9} body
+     * @param {InlineObject10} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWorkingCondition(
       itemId: string,
-      body: InlineObject9,
+      body: InlineObject10,
       options?: any
     ): AxiosPromise<WfmUpdateWorkingConditionResponse> {
       return WorkingConditionServiceApiFp(configuration)
@@ -753,14 +753,14 @@ export class WorkingConditionServiceApi extends BaseAPI {
   /**
    *
    * @param {string} itemId
-   * @param {InlineObject9} body
+   * @param {InlineObject10} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WorkingConditionServiceApi
    */
   public updateWorkingCondition(
     itemId: string,
-    body: InlineObject9,
+    body: InlineObject10,
     options?: any
   ) {
     return WorkingConditionServiceApiFp(this.configuration)

@@ -305,7 +305,7 @@ export interface ConversationListResponse {
  *
  * Цей інтерфейс описує структуру даних, яка містить інформацію про файл, збережений у сховищі.
  */
-export interface StorageFile {
+export interface StorageShareFile {
   /**
    * Унікальний ідентифікатор файлу.
    */
@@ -1093,7 +1093,7 @@ export class Client extends EventEmitter<ClientEvents> {
       formData.append(file.name, file) // todo name
     }
 
-    const result = await Axios.post<StorageFile[]>(
+    const result = await Axios.post<StorageShareFile[]>(
       `${this.basePath}/api/storage/file/${id}/upload`,
       formData,
       {

@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-conditions-item-id-item'
+import { WfmLookupsShiftTemplatesItemIdItem } from './wfm-lookups-shift-templates-item-id-item'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmLookupsWorkingConditionsItemIdItem } from './wfm-lookups-working-con
 export interface InlineObject9 {
   /**
    *
-   * @type {WfmLookupsWorkingConditionsItemIdItem}
+   * @type {WfmLookupsShiftTemplatesItemIdItem}
    * @memberof InlineObject9
    */
-  item?: WfmLookupsWorkingConditionsItemIdItem
+  item?: WfmLookupsShiftTemplatesItemIdItem
 }
