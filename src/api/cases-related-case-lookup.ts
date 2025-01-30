@@ -22,6 +22,12 @@ export interface CasesRelatedCaseLookup {
    * @type {string}
    * @memberof CasesRelatedCaseLookup
    */
+  colour?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesRelatedCaseLookup
+   */
   etag?: string
   /**
    *

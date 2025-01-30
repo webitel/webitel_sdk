@@ -133,23 +133,14 @@ export const RelatedCasesApiAxiosParamCreator = function(
     /**
      *
      * @summary Delete a specific related case
-     * @param {string} primaryCaseEtag Primary case identifier.
      * @param {string} etag Identifier of the related case to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRelatedCase: async (
-      primaryCaseEtag: string,
       etag: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'primaryCaseEtag' is not null or undefined
-      if (primaryCaseEtag === null || primaryCaseEtag === undefined) {
-        throw new RequiredError(
-          'primaryCaseEtag',
-          'Required parameter primaryCaseEtag was null or undefined when calling deleteRelatedCase.'
-        )
-      }
       // verify required parameter 'etag' is not null or undefined
       if (etag === null || etag === undefined) {
         throw new RequiredError(
@@ -157,12 +148,10 @@ export const RelatedCasesApiAxiosParamCreator = function(
           'Required parameter etag was null or undefined when calling deleteRelatedCase.'
         )
       }
-      const localVarPath = `/cases/{primary_case_etag}/related/{etag}`
-        .replace(
-          `{${'primary_case_etag'}}`,
-          encodeURIComponent(String(primaryCaseEtag))
-        )
-        .replace(`{${'etag'}}`, encodeURIComponent(String(etag)))
+      const localVarPath = `/cases/related/{etag}`.replace(
+        `{${'etag'}}`,
+        encodeURIComponent(String(etag))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -628,13 +617,11 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Delete a specific related case
-     * @param {string} primaryCaseEtag Primary case identifier.
      * @param {string} etag Identifier of the related case to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteRelatedCase(
-      primaryCaseEtag: string,
       etag: string,
       options?: any
     ): Promise<
@@ -645,7 +632,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
-      ).deleteRelatedCase(primaryCaseEtag, etag, options)
+      ).deleteRelatedCase(etag, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -849,18 +836,16 @@ export const RelatedCasesApiFactory = function(
     /**
      *
      * @summary Delete a specific related case
-     * @param {string} primaryCaseEtag Primary case identifier.
      * @param {string} etag Identifier of the related case to delete.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteRelatedCase(
-      primaryCaseEtag: string,
       etag: string,
       options?: any
     ): AxiosPromise<CasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
-        .deleteRelatedCase(primaryCaseEtag, etag, options)
+        .deleteRelatedCase(etag, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -994,19 +979,14 @@ export class RelatedCasesApi extends BaseAPI {
   /**
    *
    * @summary Delete a specific related case
-   * @param {string} primaryCaseEtag Primary case identifier.
    * @param {string} etag Identifier of the related case to delete.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RelatedCasesApi
    */
-  public deleteRelatedCase(
-    primaryCaseEtag: string,
-    etag: string,
-    options?: any
-  ) {
+  public deleteRelatedCase(etag: string, options?: any) {
     return RelatedCasesApiFp(this.configuration)
-      .deleteRelatedCase(primaryCaseEtag, etag, options)
+      .deleteRelatedCase(etag, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
