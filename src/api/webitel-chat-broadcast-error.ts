@@ -11,22 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { GoogleRpcStatus } from './google-rpc-status'
+
 /**
  *
  * @export
- * @enum {string}
+ * @interface WebitelChatBroadcastError
  */
-export enum LoggerAvailableSystemObjects {
-  CcQueue = 'cc_queue',
-  Schema = 'schema',
-  Users = 'users',
-  Devices = 'devices',
-  Calendars = 'calendars',
-  CcList = 'cc_list',
-  CcTeam = 'cc_team',
-  CcAgent = 'cc_agent',
-  CcResource = 'cc_resource',
-  CcResourceGroup = 'cc_resource_group',
-  ChatBots = 'chat_bots',
-  Cases = 'cases',
+export interface WebitelChatBroadcastError {
+  /**
+   *
+   * @type {GoogleRpcStatus}
+   * @memberof WebitelChatBroadcastError
+   */
+  error?: GoogleRpcStatus
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelChatBroadcastError
+   */
+  peer_id?: string
 }

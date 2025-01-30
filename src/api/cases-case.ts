@@ -21,6 +21,7 @@ import { CasesRelatedCaseList } from './cases-related-case-list'
 import { CasesSourceTypeLookup } from './cases-source-type-lookup'
 import { CasesStatusCondition } from './cases-status-condition'
 import { CasesTimingInfo } from './cases-timing-info'
+import { GeneralExtendedLookup } from './general-extended-lookup'
 import { GeneralLookup } from './general-lookup'
 
 /**
@@ -97,10 +98,10 @@ export interface CasesCase {
   files?: CasesCaseFileList
   /**
    *
-   * @type {GeneralLookup}
+   * @type {GeneralExtendedLookup}
    * @memberof CasesCase
    */
-  group?: GeneralLookup
+  group?: GeneralExtendedLookup
   /**
    * Unique case ID.
    * @type {string}

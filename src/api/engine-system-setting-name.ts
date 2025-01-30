@@ -30,4 +30,5 @@ export enum EngineSystemSettingName {
   PasswordValidationText = 'password_validation_text',
   AutolinkCallToContact = 'autolink_call_to_contact',
   PeriodToPlaybackRecords = 'period_to_playback_records',
+  IsFulltextSearchEnabled = 'is_fulltext_search_enabled',
 }

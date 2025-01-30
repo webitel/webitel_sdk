@@ -14,19 +14,19 @@
 /**
  *
  * @export
- * @enum {string}
+ * @interface WebitelChatInputFile
  */
-export enum LoggerAvailableSystemObjects {
-  CcQueue = 'cc_queue',
-  Schema = 'schema',
-  Users = 'users',
-  Devices = 'devices',
-  Calendars = 'calendars',
-  CcList = 'cc_list',
-  CcTeam = 'cc_team',
-  CcAgent = 'cc_agent',
-  CcResource = 'cc_resource',
-  CcResourceGroup = 'cc_resource_group',
-  ChatBots = 'chat_bots',
-  Cases = 'cases',
+export interface WebitelChatInputFile {
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelChatInputFile
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelChatInputFile
+   */
+  url?: string
 }
