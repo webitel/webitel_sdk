@@ -22,7 +22,7 @@ export interface CasesRelatedCaseLookup {
    * @type {string}
    * @memberof CasesRelatedCaseLookup
    */
-  colour?: string
+  color?: string
   /**
    *
    * @type {string}

@@ -190,6 +190,7 @@ export const PrioritiesApiAxiosParamCreator = function(
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [notInSla] Filter priorities that are not in filtered SLA
+     * @param {string} [inSla] Filter priorities that are in filtered SLA
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -201,6 +202,7 @@ export const PrioritiesApiAxiosParamCreator = function(
       id?: Array<string>,
       q?: string,
       notInSla?: string,
+      inSla?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/cases/priorities`
@@ -252,6 +254,10 @@ export const PrioritiesApiAxiosParamCreator = function(
 
       if (notInSla !== undefined) {
         localVarQueryParameter['notInSla'] = notInSla
+      }
+
+      if (inSla !== undefined) {
+        localVarQueryParameter['inSla'] = inSla
       }
 
       localVarUrlObj.query = {
@@ -593,6 +599,7 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [notInSla] Filter priorities that are not in filtered SLA
+     * @param {string} [inSla] Filter priorities that are in filtered SLA
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -604,6 +611,7 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
       id?: Array<string>,
       q?: string,
       notInSla?: string,
+      inSla?: string,
       options?: any
     ): Promise<
       (
@@ -613,7 +621,17 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await PrioritiesApiAxiosParamCreator(
         configuration
-      ).listPriorities(page, size, fields, sort, id, q, notInSla, options)
+      ).listPriorities(
+        page,
+        size,
+        fields,
+        sort,
+        id,
+        q,
+        notInSla,
+        inSla,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -771,6 +789,7 @@ export const PrioritiesApiFactory = function(
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [notInSla] Filter priorities that are not in filtered SLA
+     * @param {string} [inSla] Filter priorities that are in filtered SLA
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -782,10 +801,21 @@ export const PrioritiesApiFactory = function(
       id?: Array<string>,
       q?: string,
       notInSla?: string,
+      inSla?: string,
       options?: any
     ): AxiosPromise<CasesPriorityList> {
       return PrioritiesApiFp(configuration)
-        .listPriorities(page, size, fields, sort, id, q, notInSla, options)
+        .listPriorities(
+          page,
+          size,
+          fields,
+          sort,
+          id,
+          q,
+          notInSla,
+          inSla,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -896,6 +926,7 @@ export class PrioritiesApi extends BaseAPI {
    * @param {Array<string>} [id] Filter by unique IDs.
    * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {string} [notInSla] Filter priorities that are not in filtered SLA
+   * @param {string} [inSla] Filter priorities that are in filtered SLA
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PrioritiesApi
@@ -908,10 +939,11 @@ export class PrioritiesApi extends BaseAPI {
     id?: Array<string>,
     q?: string,
     notInSla?: string,
+    inSla?: string,
     options?: any
   ) {
     return PrioritiesApiFp(this.configuration)
-      .listPriorities(page, size, fields, sort, id, q, notInSla, options)
+      .listPriorities(page, size, fields, sort, id, q, notInSla, inSla, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

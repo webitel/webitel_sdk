@@ -38,4 +38,10 @@ export interface WebitelChatBroadcastMessageRequest {
    * @memberof WebitelChatBroadcastMessageRequest
    */
   timeout?: string
+  /**
+   *
+   * @type {{ [key: string]: string; }}
+   * @memberof WebitelChatBroadcastMessageRequest
+   */
+  variables?: { [key: string]: string }
 }
