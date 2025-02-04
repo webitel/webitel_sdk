@@ -528,7 +528,7 @@ export class Agent {
         if (task) {
           this.task.delete(task.id)
           task.id = transfer.attempt_id!
-          task.setTransferred(transfer.distribute)
+          task.setTransferred(transfer.distribute, transfer.form)
 
           this.task.set(task.id, task)
         }

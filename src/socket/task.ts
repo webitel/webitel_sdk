@@ -470,6 +470,8 @@ export interface TransferEvent extends ChannelEvent {
    * @type {Distribute}
    */
   distribute: Distribute
+
+  form?: Form
 }
 
 export interface MissedEvent extends ChannelEvent {
@@ -852,9 +854,10 @@ export class Task {
    * Встановити новий розподіл.
    * @param {Distribute} d - Інформація про новий розподіл.
    */
-  setTransferred(d: Distribute) {
+  setTransferred(d: Distribute, f?: Form) {
     this.distribute = d
     this.history.push(d)
+    this.form = f || null
   }
 
   /**
