@@ -1106,7 +1106,8 @@ export class Conversation {
     const storedFiles = await this.client.storeFile(
       this.conversationId,
       [file],
-      cb
+      cb,
+      'chat'
     )
     const f = storedFiles[0]
 

@@ -1082,7 +1082,12 @@ export class Client extends EventEmitter<ClientEvents> {
     return this.request(WEBSOCKET_DEFAULT_DEVICE_CONFIG, { name })
   }
 
-  async storeFile(id: string, files: File[], cb?: FileUploadProgress) {
+  async storeFile(
+    id: string,
+    files: File[],
+    cb?: FileUploadProgress,
+    channel?: string
+  ) {
     if (!files || files.length < 1) {
       throw new Error('no files')
     }
@@ -1093,16 +1098,17 @@ export class Client extends EventEmitter<ClientEvents> {
       formData.append(file.name, file) // todo name
     }
 
-    const result = await Axios.post<StorageShareFile[]>(
-      `${this.basePath}/api/storage/file/${id}/upload`,
-      formData,
-      {
-        headers: {
-          [API_HEADER_TOKEN]: this._config.token as string,
-        },
-        onUploadProgress: cb,
-      }
-    )
+    let url = `${this.basePath}/api/storage/file/${id}/upload`
+    if (channel) {
+      url += `?channel=${channel}`
+    }
+
+    const result = await Axios.post<StorageShareFile[]>(url, formData, {
+      headers: {
+        [API_HEADER_TOKEN]: this._config.token as string,
+      },
+      onUploadProgress: cb,
+    })
 
     const data = result.data
     for (const f of data) {
