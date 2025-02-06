@@ -10,7 +10,7 @@ export interface Form {
   id: string
   actions: object[]
   view: object
-  fields?: Map<string, string>
+  fields?: Map<string, string | number | object | any[]>
 }
 
 /**
