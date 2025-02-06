@@ -1076,21 +1076,43 @@ export class Task {
       throw new Error('not found active form')
     }
 
-    const res = {} as object
-
-    for (const [key, value] of Object.entries(fields)) {
-      if (typeof value === 'object') {
-        ;(res as any)[key] = JSON.stringify(value)
-      } else {
-        ;(res as any)[key] = value
-      }
-    }
-
     return this.client.request('cc_form_action', {
       attempt_id: this.id,
       app_id: this.distribute.app_id,
       action,
-      fields: res,
+      fields: formFields(fields),
     })
   }
+
+  async saveForm(
+    fields: Map<string, string | number | object | any[]> | undefined
+  ) {
+    if (!this.form) {
+      return
+    }
+
+    return this.client.request('cc_form_save', {
+      attempt_id: this.id,
+      app_id: this.distribute.app_id,
+      fields: formFields(fields || this.form.fields),
+    })
+  }
+}
+
+function formFields(
+  fields: Map<string, string | number | object | any[]> | undefined
+) {
+  const res = {} as object
+
+  if (!fields) return res
+
+  for (const [key, value] of Object.entries(fields)) {
+    if (typeof value === 'object') {
+      ;(res as any)[key] = JSON.stringify(value)
+    } else {
+      ;(res as any)[key] = value
+    }
+  }
+
+  return res
 }

@@ -1359,6 +1359,10 @@ export class Call {
    * @returns Результат створення мосту.
    */
   async bridgeTo(call: Call, variables?: object) {
+    if (this.task) {
+      await this.task.saveForm(undefined)
+    }
+
     return this.client.request('call_bridge', {
       from_id: this.id,
       from_app_id: this.appId,
