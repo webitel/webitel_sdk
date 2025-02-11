@@ -181,7 +181,7 @@ export const ServicesApiAxiosParamCreator = function(
      * @summary Retrieve a list of services or search services within a catalog
      * @param {number} [page] Page number for pagination
      * @param {number} [size] Number of records per page
-     * @param {Array<string>} [sort] Sorting options by fields
+     * @param {string} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the services
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [rootId] Filter services by catalog ID (required)
@@ -193,7 +193,7 @@ export const ServicesApiAxiosParamCreator = function(
     listServices: async (
       page?: number,
       size?: number,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       rootId?: string,
@@ -232,7 +232,7 @@ export const ServicesApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (sort) {
+      if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
       }
 
@@ -579,7 +579,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
      * @summary Retrieve a list of services or search services within a catalog
      * @param {number} [page] Page number for pagination
      * @param {number} [size] Number of records per page
-     * @param {Array<string>} [sort] Sorting options by fields
+     * @param {string} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the services
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [rootId] Filter services by catalog ID (required)
@@ -591,7 +591,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
     async listServices(
       page?: number,
       size?: number,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       rootId?: string,
@@ -756,7 +756,7 @@ export const ServicesApiFactory = function(
      * @summary Retrieve a list of services or search services within a catalog
      * @param {number} [page] Page number for pagination
      * @param {number} [size] Number of records per page
-     * @param {Array<string>} [sort] Sorting options by fields
+     * @param {string} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the services
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [rootId] Filter services by catalog ID (required)
@@ -768,7 +768,7 @@ export const ServicesApiFactory = function(
     listServices(
       page?: number,
       size?: number,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       rootId?: string,
@@ -874,7 +874,7 @@ export class ServicesApi extends BaseAPI {
    * @summary Retrieve a list of services or search services within a catalog
    * @param {number} [page] Page number for pagination
    * @param {number} [size] Number of records per page
-   * @param {Array<string>} [sort] Sorting options by fields
+   * @param {string} [sort] Sorting options by fields
    * @param {Array<string>} [id] List of IDs to filter the services
    * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {string} [rootId] Filter services by catalog ID (required)
@@ -887,7 +887,7 @@ export class ServicesApi extends BaseAPI {
   public listServices(
     page?: number,
     size?: number,
-    sort?: Array<string>,
+    sort?: string,
     id?: Array<string>,
     q?: string,
     rootId?: string,

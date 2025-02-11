@@ -186,11 +186,11 @@ export const PrioritiesApiAxiosParamCreator = function(
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [notInSla] Filter priorities that are not in filtered SLA
-     * @param {string} [inSla] Filter priorities that are in filtered SLA
+     * @param {string} [inSlaCond] Filter priorities that are in filtered SlaCondition and not in current SLA
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -198,11 +198,11 @@ export const PrioritiesApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       notInSla?: string,
-      inSla?: string,
+      inSlaCond?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/cases/priorities`
@@ -240,7 +240,7 @@ export const PrioritiesApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (sort) {
+      if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
       }
 
@@ -256,8 +256,8 @@ export const PrioritiesApiAxiosParamCreator = function(
         localVarQueryParameter['notInSla'] = notInSla
       }
 
-      if (inSla !== undefined) {
-        localVarQueryParameter['inSla'] = inSla
+      if (inSlaCond !== undefined) {
+        localVarQueryParameter['inSlaCond'] = inSlaCond
       }
 
       localVarUrlObj.query = {
@@ -595,11 +595,11 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [notInSla] Filter priorities that are not in filtered SLA
-     * @param {string} [inSla] Filter priorities that are in filtered SLA
+     * @param {string} [inSlaCond] Filter priorities that are in filtered SlaCondition and not in current SLA
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -607,11 +607,11 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       notInSla?: string,
-      inSla?: string,
+      inSlaCond?: string,
       options?: any
     ): Promise<
       (
@@ -629,7 +629,7 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
         id,
         q,
         notInSla,
-        inSla,
+        inSlaCond,
         options
       )
       return (
@@ -785,11 +785,11 @@ export const PrioritiesApiFactory = function(
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {string} [notInSla] Filter priorities that are not in filtered SLA
-     * @param {string} [inSla] Filter priorities that are in filtered SLA
+     * @param {string} [inSlaCond] Filter priorities that are in filtered SlaCondition and not in current SLA
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -797,11 +797,11 @@ export const PrioritiesApiFactory = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       notInSla?: string,
-      inSla?: string,
+      inSlaCond?: string,
       options?: any
     ): AxiosPromise<CasesPriorityList> {
       return PrioritiesApiFp(configuration)
@@ -813,7 +813,7 @@ export const PrioritiesApiFactory = function(
           id,
           q,
           notInSla,
-          inSla,
+          inSlaCond,
           options
         )
         .then((request) => request(axios, basePath))
@@ -922,11 +922,11 @@ export class PrioritiesApi extends BaseAPI {
    * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
    * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
-   * @param {Array<string>} [sort] Sort the result according to fields.
+   * @param {string} [sort] Sort the result according to fields.
    * @param {Array<string>} [id] Filter by unique IDs.
    * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {string} [notInSla] Filter priorities that are not in filtered SLA
-   * @param {string} [inSla] Filter priorities that are in filtered SLA
+   * @param {string} [inSlaCond] Filter priorities that are in filtered SlaCondition and not in current SLA
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PrioritiesApi
@@ -935,15 +935,25 @@ export class PrioritiesApi extends BaseAPI {
     page?: number,
     size?: number,
     fields?: Array<string>,
-    sort?: Array<string>,
+    sort?: string,
     id?: Array<string>,
     q?: string,
     notInSla?: string,
-    inSla?: string,
+    inSlaCond?: string,
     options?: any
   ) {
     return PrioritiesApiFp(this.configuration)
-      .listPriorities(page, size, fields, sort, id, q, notInSla, inSla, options)
+      .listPriorities(
+        page,
+        size,
+        fields,
+        sort,
+        id,
+        q,
+        notInSla,
+        inSlaCond,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

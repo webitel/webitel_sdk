@@ -26,6 +26,8 @@ import {
 // @ts-ignore
 import { CasesCaseFileList } from '../api'
 // @ts-ignore
+import { CasesFile } from '../api'
+// @ts-ignore
 import { GooglerpcStatus } from '../api'
 /**
  * CaseFilesApi - axios parameter creator
@@ -37,6 +39,78 @@ export const CaseFilesApiAxiosParamCreator = function(
   return {
     /**
      *
+     * @summary Delete a file
+     * @param {string} caseEtag
+     * @param {string} id The unique ID of the file to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteFile: async (
+      caseEtag: string,
+      id: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'caseEtag' is not null or undefined
+      if (caseEtag === null || caseEtag === undefined) {
+        throw new RequiredError(
+          'caseEtag',
+          'Required parameter caseEtag was null or undefined when calling deleteFile.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteFile.'
+        )
+      }
+      const localVarPath = `/cases/{case_etag}/files/{id}`
+        .replace(`{${'case_etag'}}`, encodeURIComponent(String(caseEtag)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Retrieve a list of files associated with a case
      * @param {string} caseEtag ID of the case to fetch files for (required).
      * @param {number} [page] The page number to retrieve.
@@ -44,6 +118,7 @@ export const CaseFilesApiAxiosParamCreator = function(
      * @param {string} [q] Search term.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {Array<string>} [ids] Array of requested id.
+     * @param {string} [sort] Sorting
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -54,6 +129,7 @@ export const CaseFilesApiAxiosParamCreator = function(
       q?: string,
       fields?: Array<string>,
       ids?: Array<string>,
+      sort?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'caseEtag' is not null or undefined
@@ -109,6 +185,10 @@ export const CaseFilesApiAxiosParamCreator = function(
         localVarQueryParameter['ids'] = ids
       }
 
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -140,6 +220,35 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
+     * @summary Delete a file
+     * @param {string} caseEtag
+     * @param {string} id The unique ID of the file to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteFile(
+      caseEtag: string,
+      id: string,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesFile>
+    > {
+      const localVarAxiosArgs = await CaseFilesApiAxiosParamCreator(
+        configuration
+      ).deleteFile(caseEtag, id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary Retrieve a list of files associated with a case
      * @param {string} caseEtag ID of the case to fetch files for (required).
      * @param {number} [page] The page number to retrieve.
@@ -147,6 +256,7 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
      * @param {string} [q] Search term.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {Array<string>} [ids] Array of requested id.
+     * @param {string} [sort] Sorting
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -157,6 +267,7 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
       q?: string,
       fields?: Array<string>,
       ids?: Array<string>,
+      sort?: string,
       options?: any
     ): Promise<
       (
@@ -166,7 +277,7 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseFilesApiAxiosParamCreator(
         configuration
-      ).listFiles(caseEtag, page, size, q, fields, ids, options)
+      ).listFiles(caseEtag, page, size, q, fields, ids, sort, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -193,6 +304,23 @@ export const CaseFilesApiFactory = function(
   return {
     /**
      *
+     * @summary Delete a file
+     * @param {string} caseEtag
+     * @param {string} id The unique ID of the file to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteFile(
+      caseEtag: string,
+      id: string,
+      options?: any
+    ): AxiosPromise<CasesFile> {
+      return CaseFilesApiFp(configuration)
+        .deleteFile(caseEtag, id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Retrieve a list of files associated with a case
      * @param {string} caseEtag ID of the case to fetch files for (required).
      * @param {number} [page] The page number to retrieve.
@@ -200,6 +328,7 @@ export const CaseFilesApiFactory = function(
      * @param {string} [q] Search term.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {Array<string>} [ids] Array of requested id.
+     * @param {string} [sort] Sorting
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -210,10 +339,11 @@ export const CaseFilesApiFactory = function(
       q?: string,
       fields?: Array<string>,
       ids?: Array<string>,
+      sort?: string,
       options?: any
     ): AxiosPromise<CasesCaseFileList> {
       return CaseFilesApiFp(configuration)
-        .listFiles(caseEtag, page, size, q, fields, ids, options)
+        .listFiles(caseEtag, page, size, q, fields, ids, sort, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -228,6 +358,21 @@ export const CaseFilesApiFactory = function(
 export class CaseFilesApi extends BaseAPI {
   /**
    *
+   * @summary Delete a file
+   * @param {string} caseEtag
+   * @param {string} id The unique ID of the file to delete.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CaseFilesApi
+   */
+  public deleteFile(caseEtag: string, id: string, options?: any) {
+    return CaseFilesApiFp(this.configuration)
+      .deleteFile(caseEtag, id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary Retrieve a list of files associated with a case
    * @param {string} caseEtag ID of the case to fetch files for (required).
    * @param {number} [page] The page number to retrieve.
@@ -235,6 +380,7 @@ export class CaseFilesApi extends BaseAPI {
    * @param {string} [q] Search term.
    * @param {Array<string>} [fields] Fields to include in the response.
    * @param {Array<string>} [ids] Array of requested id.
+   * @param {string} [sort] Sorting
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseFilesApi
@@ -246,10 +392,11 @@ export class CaseFilesApi extends BaseAPI {
     q?: string,
     fields?: Array<string>,
     ids?: Array<string>,
+    sort?: string,
     options?: any
   ) {
     return CaseFilesApiFp(this.configuration)
-      .listFiles(caseEtag, page, size, q, fields, ids, options)
+      .listFiles(caseEtag, page, size, q, fields, ids, sort, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

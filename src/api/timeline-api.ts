@@ -40,7 +40,7 @@ export const TimelineApiAxiosParamCreator = function(
      * @param {string} contactId
      * @param {string} [page]
      * @param {string} [size]
-     * @param {string} [search]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [ids]
@@ -54,7 +54,7 @@ export const TimelineApiAxiosParamCreator = function(
       contactId: string,
       page?: string,
       size?: string,
-      search?: string,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
       ids?: Array<string>,
@@ -104,8 +104,8 @@ export const TimelineApiAxiosParamCreator = function(
         localVarQueryParameter['size'] = size
       }
 
-      if (search !== undefined) {
-        localVarQueryParameter['search'] = search
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
       }
 
       if (sort !== undefined) {
@@ -229,7 +229,7 @@ export const TimelineApiFp = function(configuration?: Configuration) {
      * @param {string} contactId
      * @param {string} [page]
      * @param {string} [size]
-     * @param {string} [search]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [ids]
@@ -243,7 +243,7 @@ export const TimelineApiFp = function(configuration?: Configuration) {
       contactId: string,
       page?: string,
       size?: string,
-      search?: string,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
       ids?: Array<string>,
@@ -263,7 +263,7 @@ export const TimelineApiFp = function(configuration?: Configuration) {
         contactId,
         page,
         size,
-        search,
+        q,
         sort,
         fields,
         ids,
@@ -330,7 +330,7 @@ export const TimelineApiFactory = function(
      * @param {string} contactId
      * @param {string} [page]
      * @param {string} [size]
-     * @param {string} [search]
+     * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<string>} [ids]
@@ -344,7 +344,7 @@ export const TimelineApiFactory = function(
       contactId: string,
       page?: string,
       size?: string,
-      search?: string,
+      q?: string,
       sort?: string,
       fields?: Array<string>,
       ids?: Array<string>,
@@ -358,7 +358,7 @@ export const TimelineApiFactory = function(
           contactId,
           page,
           size,
-          search,
+          q,
           sort,
           fields,
           ids,
@@ -398,7 +398,7 @@ export class TimelineApi extends BaseAPI {
    * @param {string} contactId
    * @param {string} [page]
    * @param {string} [size]
-   * @param {string} [search]
+   * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<string>} [ids]
@@ -413,7 +413,7 @@ export class TimelineApi extends BaseAPI {
     contactId: string,
     page?: string,
     size?: string,
-    search?: string,
+    q?: string,
     sort?: string,
     fields?: Array<string>,
     ids?: Array<string>,
@@ -427,7 +427,7 @@ export class TimelineApi extends BaseAPI {
         contactId,
         page,
         size,
-        search,
+        q,
         sort,
         fields,
         ids,

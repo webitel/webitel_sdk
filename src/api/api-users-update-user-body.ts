@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { BodyModificationsChanges } from './body-modifications-changes'
+import { BodyModificationsChanges2 } from './body-modifications-changes2'
 
 /**
  *
@@ -27,8 +27,8 @@ export interface ApiUsersUpdateUserBody {
   fields?: Array<string>
   /**
    *
-   * @type {BodyModificationsChanges}
+   * @type {BodyModificationsChanges2}
    * @memberof ApiUsersUpdateUserBody
    */
-  user?: BodyModificationsChanges
+  user?: BodyModificationsChanges2
 }

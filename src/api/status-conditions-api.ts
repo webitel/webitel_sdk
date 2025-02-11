@@ -203,7 +203,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {*} [options] Override http request option.
@@ -214,7 +214,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       options: any = {}
@@ -264,7 +264,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (sort) {
+      if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
       }
 
@@ -632,7 +632,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {*} [options] Override http request option.
@@ -643,7 +643,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       options?: any
@@ -823,7 +823,7 @@ export const StatusConditionsApiFactory = function(
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {*} [options] Override http request option.
@@ -834,7 +834,7 @@ export const StatusConditionsApiFactory = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       options?: any
@@ -960,7 +960,7 @@ export class StatusConditionsApi extends BaseAPI {
    * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
    * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
-   * @param {Array<string>} [sort] Sort the result according to fields.
+   * @param {string} [sort] Sort the result according to fields.
    * @param {Array<string>} [id] Filter by unique IDs.
    * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {*} [options] Override http request option.
@@ -972,7 +972,7 @@ export class StatusConditionsApi extends BaseAPI {
     page?: number,
     size?: number,
     fields?: Array<string>,
-    sort?: Array<string>,
+    sort?: string,
     id?: Array<string>,
     q?: string,
     options?: any

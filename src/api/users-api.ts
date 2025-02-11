@@ -36,9 +36,11 @@ import { ApiSearchUsersRequest } from '../api'
 // @ts-ignore
 import { ApiSearchUsersResponse } from '../api'
 // @ts-ignore
-import { ApiUpdateUserResponse } from '../api'
+import { ApiUser } from '../api'
 // @ts-ignore
-import { ApiUsersUpdateUserBody } from '../api'
+import { BodyModificationsChanges } from '../api'
+// @ts-ignore
+import { BodyModificationsChanges1 } from '../api'
 /**
  * UsersApi - axios parameter creator
  * @export
@@ -694,13 +696,15 @@ export const UsersApiAxiosParamCreator = function(
     /**
      *
      * @param {string} userId Object ID
-     * @param {ApiUsersUpdateUserBody} body
+     * @param {BodyModificationsChanges} user
+     * @param {Array<string>} [fields] PATCH: partial update
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateUser: async (
       userId: string,
-      body: ApiUsersUpdateUserBody,
+      user: BodyModificationsChanges,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'userId' is not null or undefined
@@ -710,11 +714,11 @@ export const UsersApiAxiosParamCreator = function(
           'Required parameter userId was null or undefined when calling updateUser.'
         )
       }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'user' is not null or undefined
+      if (user === null || user === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling updateUser.'
+          'user',
+          'Required parameter user was null or undefined when calling updateUser.'
         )
       }
       const localVarPath = `/users/{user.id}`.replace(
@@ -743,6 +747,10 @@ export const UsersApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -760,11 +768,97 @@ export const UsersApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof user !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(user !== undefined ? user : {})
+        : user || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} userId Object ID
+     * @param {BodyModificationsChanges1} user
+     * @param {Array<string>} [fields] PATCH: partial update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateUser2: async (
+      userId: string,
+      user: BodyModificationsChanges1,
+      fields?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'userId' is not null or undefined
+      if (userId === null || userId === undefined) {
+        throw new RequiredError(
+          'userId',
+          'Required parameter userId was null or undefined when calling updateUser2.'
+        )
+      }
+      // verify required parameter 'user' is not null or undefined
+      if (user === null || user === undefined) {
+        throw new RequiredError(
+          'user',
+          'Required parameter user was null or undefined when calling updateUser2.'
+        )
+      }
+      const localVarPath = `/users/{user.id}`.replace(
+        `{${'user.id'}}`,
+        encodeURIComponent(String(userId))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PATCH',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof user !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(user !== undefined ? user : {})
+        : user || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -1071,23 +1165,52 @@ export const UsersApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} userId Object ID
-     * @param {ApiUsersUpdateUserBody} body
+     * @param {BodyModificationsChanges} user
+     * @param {Array<string>} [fields] PATCH: partial update
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateUser(
       userId: string,
-      body: ApiUsersUpdateUserBody,
+      user: BodyModificationsChanges,
+      fields?: Array<string>,
       options?: any
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<ApiUpdateUserResponse>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiUser>
     > {
       const localVarAxiosArgs = await UsersApiAxiosParamCreator(
         configuration
-      ).updateUser(userId, body, options)
+      ).updateUser(userId, user, fields, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} userId Object ID
+     * @param {BodyModificationsChanges1} user
+     * @param {Array<string>} [fields] PATCH: partial update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateUser2(
+      userId: string,
+      user: BodyModificationsChanges1,
+      fields?: Array<string>,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiUser>
+    > {
+      const localVarAxiosArgs = await UsersApiAxiosParamCreator(
+        configuration
+      ).updateUser2(userId, user, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1282,17 +1405,37 @@ export const UsersApiFactory = function(
     /**
      *
      * @param {string} userId Object ID
-     * @param {ApiUsersUpdateUserBody} body
+     * @param {BodyModificationsChanges} user
+     * @param {Array<string>} [fields] PATCH: partial update
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateUser(
       userId: string,
-      body: ApiUsersUpdateUserBody,
+      user: BodyModificationsChanges,
+      fields?: Array<string>,
       options?: any
-    ): AxiosPromise<ApiUpdateUserResponse> {
+    ): AxiosPromise<ApiUser> {
       return UsersApiFp(configuration)
-        .updateUser(userId, body, options)
+        .updateUser(userId, user, fields, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} userId Object ID
+     * @param {BodyModificationsChanges1} user
+     * @param {Array<string>} [fields] PATCH: partial update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateUser2(
+      userId: string,
+      user: BodyModificationsChanges1,
+      fields?: Array<string>,
+      options?: any
+    ): AxiosPromise<ApiUser> {
+      return UsersApiFp(configuration)
+        .updateUser2(userId, user, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1477,18 +1620,40 @@ export class UsersApi extends BaseAPI {
   /**
    *
    * @param {string} userId Object ID
-   * @param {ApiUsersUpdateUserBody} body
+   * @param {BodyModificationsChanges} user
+   * @param {Array<string>} [fields] PATCH: partial update
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UsersApi
    */
   public updateUser(
     userId: string,
-    body: ApiUsersUpdateUserBody,
+    user: BodyModificationsChanges,
+    fields?: Array<string>,
     options?: any
   ) {
     return UsersApiFp(this.configuration)
-      .updateUser(userId, body, options)
+      .updateUser(userId, user, fields, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} userId Object ID
+   * @param {BodyModificationsChanges1} user
+   * @param {Array<string>} [fields] PATCH: partial update
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof UsersApi
+   */
+  public updateUser2(
+    userId: string,
+    user: BodyModificationsChanges1,
+    fields?: Array<string>,
+    options?: any
+  ) {
+    return UsersApiFp(this.configuration)
+      .updateUser2(userId, user, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

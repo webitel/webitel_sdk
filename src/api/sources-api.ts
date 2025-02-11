@@ -182,7 +182,7 @@ export const SourcesApiAxiosParamCreator = function(
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {Array<'TYPE_UNSPECIFIED' | 'CALL' | 'CHAT' | 'SOCIAL_MEDIA' | 'EMAIL' | 'API' | 'MANUAL'>} [type] Filter by source type.   - TYPE_UNSPECIFIED: Unspecified source type.  - CALL: Phone call source type.  - CHAT: Chat source type.  - SOCIAL_MEDIA: Social media source type.  - EMAIL: Email source type.  - API: API source type.  - MANUAL: Manual source type.
@@ -193,7 +193,7 @@ export const SourcesApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       type?: Array<
@@ -242,7 +242,7 @@ export const SourcesApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (sort) {
+      if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
       }
 
@@ -579,7 +579,7 @@ export const SourcesApiFp = function(configuration?: Configuration) {
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {Array<'TYPE_UNSPECIFIED' | 'CALL' | 'CHAT' | 'SOCIAL_MEDIA' | 'EMAIL' | 'API' | 'MANUAL'>} [type] Filter by source type.   - TYPE_UNSPECIFIED: Unspecified source type.  - CALL: Phone call source type.  - CHAT: Chat source type.  - SOCIAL_MEDIA: Social media source type.  - EMAIL: Email source type.  - API: API source type.  - MANUAL: Manual source type.
@@ -590,7 +590,7 @@ export const SourcesApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       type?: Array<
@@ -759,7 +759,7 @@ export const SourcesApiFactory = function(
      * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
      * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
-     * @param {Array<string>} [sort] Sort the result according to fields.
+     * @param {string} [sort] Sort the result according to fields.
      * @param {Array<string>} [id] Filter by unique IDs.
      * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {Array<'TYPE_UNSPECIFIED' | 'CALL' | 'CHAT' | 'SOCIAL_MEDIA' | 'EMAIL' | 'API' | 'MANUAL'>} [type] Filter by source type.   - TYPE_UNSPECIFIED: Unspecified source type.  - CALL: Phone call source type.  - CHAT: Chat source type.  - SOCIAL_MEDIA: Social media source type.  - EMAIL: Email source type.  - API: API source type.  - MANUAL: Manual source type.
@@ -770,7 +770,7 @@ export const SourcesApiFactory = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       type?: Array<
@@ -883,7 +883,7 @@ export class SourcesApi extends BaseAPI {
    * @param {number} [page] Page number of result dataset records. offset &#x3D; (page*size)
    * @param {number} [size] Size count of records on result page. limit &#x3D; (size++)
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
-   * @param {Array<string>} [sort] Sort the result according to fields.
+   * @param {string} [sort] Sort the result according to fields.
    * @param {Array<string>} [id] Filter by unique IDs.
    * @param {string} [q] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {Array<'TYPE_UNSPECIFIED' | 'CALL' | 'CHAT' | 'SOCIAL_MEDIA' | 'EMAIL' | 'API' | 'MANUAL'>} [type] Filter by source type.   - TYPE_UNSPECIFIED: Unspecified source type.  - CALL: Phone call source type.  - CHAT: Chat source type.  - SOCIAL_MEDIA: Social media source type.  - EMAIL: Email source type.  - API: API source type.  - MANUAL: Manual source type.
@@ -895,7 +895,7 @@ export class SourcesApi extends BaseAPI {
     page?: number,
     size?: number,
     fields?: Array<string>,
-    sort?: Array<string>,
+    sort?: string,
     id?: Array<string>,
     q?: string,
     type?: Array<

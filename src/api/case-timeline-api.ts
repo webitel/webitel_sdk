@@ -39,7 +39,7 @@ export const CaseTimelineApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @param {string} caseEtag
+     * @param {string} caseId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -48,12 +48,12 @@ export const CaseTimelineApiAxiosParamCreator = function(
      * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<'TIMELINE_CHAT' | 'TIMELINE_CALL' | 'TIMELINE_EMAIL'>} [type]
+     * @param {Array<'chat' | 'call' | 'email'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getTimeline: async (
-      caseEtag: string,
+      caseId: string,
       page?: number,
       size?: number,
       q?: string,
@@ -62,19 +62,19 @@ export const CaseTimelineApiAxiosParamCreator = function(
       ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<'TIMELINE_CHAT' | 'TIMELINE_CALL' | 'TIMELINE_EMAIL'>,
+      type?: Array<'chat' | 'call' | 'email'>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'caseEtag' is not null or undefined
-      if (caseEtag === null || caseEtag === undefined) {
+      // verify required parameter 'caseId' is not null or undefined
+      if (caseId === null || caseId === undefined) {
         throw new RequiredError(
-          'caseEtag',
-          'Required parameter caseEtag was null or undefined when calling getTimeline.'
+          'caseId',
+          'Required parameter caseId was null or undefined when calling getTimeline.'
         )
       }
-      const localVarPath = `/cases/{case_etag}/timeline`.replace(
-        `{${'case_etag'}}`,
-        encodeURIComponent(String(caseEtag))
+      const localVarPath = `/cases/{case_id}/timeline`.replace(
+        `{${'case_id'}}`,
+        encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -156,24 +156,24 @@ export const CaseTimelineApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} caseEtag
+     * @param {string} caseId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getTimelineCounter: async (
-      caseEtag: string,
+      caseId: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'caseEtag' is not null or undefined
-      if (caseEtag === null || caseEtag === undefined) {
+      // verify required parameter 'caseId' is not null or undefined
+      if (caseId === null || caseId === undefined) {
         throw new RequiredError(
-          'caseEtag',
-          'Required parameter caseEtag was null or undefined when calling getTimelineCounter.'
+          'caseId',
+          'Required parameter caseId was null or undefined when calling getTimelineCounter.'
         )
       }
-      const localVarPath = `/cases/{case_etag}/timeline/counter`.replace(
-        `{${'case_etag'}}`,
-        encodeURIComponent(String(caseEtag))
+      const localVarPath = `/cases/{case_id}/timeline/counter`.replace(
+        `{${'case_id'}}`,
+        encodeURIComponent(String(caseId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -228,7 +228,7 @@ export const CaseTimelineApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {string} caseEtag
+     * @param {string} caseId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -237,12 +237,12 @@ export const CaseTimelineApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<'TIMELINE_CHAT' | 'TIMELINE_CALL' | 'TIMELINE_EMAIL'>} [type]
+     * @param {Array<'chat' | 'call' | 'email'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getTimeline(
-      caseEtag: string,
+      caseId: string,
       page?: number,
       size?: number,
       q?: string,
@@ -251,7 +251,7 @@ export const CaseTimelineApiFp = function(configuration?: Configuration) {
       ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<'TIMELINE_CHAT' | 'TIMELINE_CALL' | 'TIMELINE_EMAIL'>,
+      type?: Array<'chat' | 'call' | 'email'>,
       options?: any
     ): Promise<
       (
@@ -262,7 +262,7 @@ export const CaseTimelineApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = await CaseTimelineApiAxiosParamCreator(
         configuration
       ).getTimeline(
-        caseEtag,
+        caseId,
         page,
         size,
         q,
@@ -287,12 +287,12 @@ export const CaseTimelineApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {string} caseEtag
+     * @param {string} caseId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getTimelineCounter(
-      caseEtag: string,
+      caseId: string,
       options?: any
     ): Promise<
       (
@@ -302,7 +302,7 @@ export const CaseTimelineApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseTimelineApiAxiosParamCreator(
         configuration
-      ).getTimelineCounter(caseEtag, options)
+      ).getTimelineCounter(caseId, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -329,7 +329,7 @@ export const CaseTimelineApiFactory = function(
   return {
     /**
      *
-     * @param {string} caseEtag
+     * @param {string} caseId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
@@ -338,12 +338,12 @@ export const CaseTimelineApiFactory = function(
      * @param {Array<string>} [ids]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
-     * @param {Array<'TIMELINE_CHAT' | 'TIMELINE_CALL' | 'TIMELINE_EMAIL'>} [type]
+     * @param {Array<'chat' | 'call' | 'email'>} [type]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getTimeline(
-      caseEtag: string,
+      caseId: string,
       page?: number,
       size?: number,
       q?: string,
@@ -352,12 +352,12 @@ export const CaseTimelineApiFactory = function(
       ids?: Array<string>,
       dateFrom?: string,
       dateTo?: string,
-      type?: Array<'TIMELINE_CHAT' | 'TIMELINE_CALL' | 'TIMELINE_EMAIL'>,
+      type?: Array<'chat' | 'call' | 'email'>,
       options?: any
     ): AxiosPromise<CasesGetTimelineResponse> {
       return CaseTimelineApiFp(configuration)
         .getTimeline(
-          caseEtag,
+          caseId,
           page,
           size,
           q,
@@ -373,16 +373,16 @@ export const CaseTimelineApiFactory = function(
     },
     /**
      *
-     * @param {string} caseEtag
+     * @param {string} caseId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getTimelineCounter(
-      caseEtag: string,
+      caseId: string,
       options?: any
     ): AxiosPromise<CasesGetTimelineCounterResponse> {
       return CaseTimelineApiFp(configuration)
-        .getTimelineCounter(caseEtag, options)
+        .getTimelineCounter(caseId, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -397,7 +397,7 @@ export const CaseTimelineApiFactory = function(
 export class CaseTimelineApi extends BaseAPI {
   /**
    *
-   * @param {string} caseEtag
+   * @param {string} caseId
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
@@ -406,13 +406,13 @@ export class CaseTimelineApi extends BaseAPI {
    * @param {Array<string>} [ids]
    * @param {string} [dateFrom]
    * @param {string} [dateTo]
-   * @param {Array<'TIMELINE_CHAT' | 'TIMELINE_CALL' | 'TIMELINE_EMAIL'>} [type]
+   * @param {Array<'chat' | 'call' | 'email'>} [type]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseTimelineApi
    */
   public getTimeline(
-    caseEtag: string,
+    caseId: string,
     page?: number,
     size?: number,
     q?: string,
@@ -421,12 +421,12 @@ export class CaseTimelineApi extends BaseAPI {
     ids?: Array<string>,
     dateFrom?: string,
     dateTo?: string,
-    type?: Array<'TIMELINE_CHAT' | 'TIMELINE_CALL' | 'TIMELINE_EMAIL'>,
+    type?: Array<'chat' | 'call' | 'email'>,
     options?: any
   ) {
     return CaseTimelineApiFp(this.configuration)
       .getTimeline(
-        caseEtag,
+        caseId,
         page,
         size,
         q,
@@ -443,14 +443,14 @@ export class CaseTimelineApi extends BaseAPI {
 
   /**
    *
-   * @param {string} caseEtag
+   * @param {string} caseId
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseTimelineApi
    */
-  public getTimelineCounter(caseEtag: string, options?: any) {
+  public getTimelineCounter(caseId: string, options?: any) {
     return CaseTimelineApiFp(this.configuration)
-      .getTimelineCounter(caseEtag, options)
+      .getTimelineCounter(caseId, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

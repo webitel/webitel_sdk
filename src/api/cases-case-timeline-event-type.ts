@@ -17,7 +17,7 @@
  * @enum {string}
  */
 export enum CasesCaseTimelineEventType {
-  CHAT = 'TIMELINE_CHAT',
-  CALL = 'TIMELINE_CALL',
-  EMAIL = 'TIMELINE_EMAIL',
+  Chat = 'chat',
+  Call = 'call',
+  Email = 'email',
 }

@@ -182,7 +182,7 @@ export const CloseReasonGroupsApiAxiosParamCreator = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [sort]
+     * @param {string} [sort]
      * @param {Array<string>} [id]
      * @param {string} [q]
      * @param {*} [options] Override http request option.
@@ -192,7 +192,7 @@ export const CloseReasonGroupsApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       options: any = {}
@@ -232,7 +232,7 @@ export const CloseReasonGroupsApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (sort) {
+      if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
       }
 
@@ -571,7 +571,7 @@ export const CloseReasonGroupsApiFp = function(configuration?: Configuration) {
      * @param {number} [page]
      * @param {number} [size]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [sort]
+     * @param {string} [sort]
      * @param {Array<string>} [id]
      * @param {string} [q]
      * @param {*} [options] Override http request option.
@@ -581,7 +581,7 @@ export const CloseReasonGroupsApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       options?: any
@@ -750,7 +750,7 @@ export const CloseReasonGroupsApiFactory = function(
      * @param {number} [page]
      * @param {number} [size]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [sort]
+     * @param {string} [sort]
      * @param {Array<string>} [id]
      * @param {string} [q]
      * @param {*} [options] Override http request option.
@@ -760,7 +760,7 @@ export const CloseReasonGroupsApiFactory = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       q?: string,
       options?: any
@@ -867,7 +867,7 @@ export class CloseReasonGroupsApi extends BaseAPI {
    * @param {number} [page]
    * @param {number} [size]
    * @param {Array<string>} [fields]
-   * @param {Array<string>} [sort]
+   * @param {string} [sort]
    * @param {Array<string>} [id]
    * @param {string} [q]
    * @param {*} [options] Override http request option.
@@ -878,7 +878,7 @@ export class CloseReasonGroupsApi extends BaseAPI {
     page?: number,
     size?: number,
     fields?: Array<string>,
-    sort?: Array<string>,
+    sort?: string,
     id?: Array<string>,
     q?: string,
     options?: any

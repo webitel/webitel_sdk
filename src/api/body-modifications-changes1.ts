@@ -20,139 +20,139 @@ import { ApiUserPresence } from './api-user-presence'
 /**
  *
  * @export
- * @interface BodyModificationsChanges
+ * @interface BodyModificationsChanges1
  */
-export interface BodyModificationsChanges {
+export interface BodyModificationsChanges1 {
   /**
    * The \"chat_name\" field is used to store the name displayed externally on the platform. For example, \"chat_name\" is shown when an agent connects to chats with clients.
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   chat_name?: string
   /**
    *
    * @type {ApiObjectId}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   contact?: ApiObjectId
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   created_at?: string
   /**
    *
    * @type {ApiUserId}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   created_by?: ApiUserId
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   deleted_at?: string
   /**
    *
    * @type {ApiUserId}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   deleted_by?: ApiUserId
   /**
    *
    * @type {ApiObjectId}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   device?: ApiObjectId
   /**
    * [editable] list of unique `regular` devices, attached to this user
    * @type {Array<ApiObjectId>}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   devices?: Array<ApiObjectId>
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   email?: string
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   extension?: string
   /**
    *
    * @type {Array<ApiObjectId>}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   hotdesks?: Array<ApiObjectId>
   /**
    *
    * @type {Array<ApiLicenseUser>}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   license?: Array<ApiLicenseUser>
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   password?: string
   /**
    *
    * @type {Array<ApiPermission>}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   permissions?: Array<ApiPermission>
   /**
    *
    * @type {ApiUserPresence}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   presence?: ApiUserPresence
   /**
    *
    * @type {{ [key: string]: string; }}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   profile?: { [key: string]: string }
   /**
    *
    * @type {Array<ApiObjectId>}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   roles?: Array<ApiObjectId>
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   totp_url?: string
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   updated_at?: string
   /**
    *
    * @type {ApiUserId}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   updated_by?: ApiUserId
   /**
    *
    * @type {string}
-   * @memberof BodyModificationsChanges
+   * @memberof BodyModificationsChanges1
    */
   username?: string
 }

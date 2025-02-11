@@ -182,7 +182,7 @@ export const CatalogsApiAxiosParamCreator = function(
      * @param {number} [page] Page number for pagination
      * @param {number} [size] Number of records per page
      * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
-     * @param {Array<string>} [sort] Sorting options by fields
+     * @param {string} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the catalogs
      * @param {string} [query] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
@@ -196,7 +196,7 @@ export const CatalogsApiAxiosParamCreator = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       query?: string,
       state?: boolean,
@@ -240,7 +240,7 @@ export const CatalogsApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (sort) {
+      if (sort !== undefined) {
         localVarQueryParameter['sort'] = sort
       }
 
@@ -598,7 +598,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
      * @param {number} [page] Page number for pagination
      * @param {number} [size] Number of records per page
      * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
-     * @param {Array<string>} [sort] Sorting options by fields
+     * @param {string} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the catalogs
      * @param {string} [query] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
@@ -612,7 +612,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       query?: string,
       state?: boolean,
@@ -793,7 +793,7 @@ export const CatalogsApiFactory = function(
      * @param {number} [page] Page number for pagination
      * @param {number} [size] Number of records per page
      * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
-     * @param {Array<string>} [sort] Sorting options by fields
+     * @param {string} [sort] Sorting options by fields
      * @param {Array<string>} [id] List of IDs to filter the catalogs
      * @param {string} [query] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
      * @param {boolean} [state] Filter by state (true for active, false for inactive)
@@ -807,7 +807,7 @@ export const CatalogsApiFactory = function(
       page?: number,
       size?: number,
       fields?: Array<string>,
-      sort?: Array<string>,
+      sort?: string,
       id?: Array<string>,
       query?: string,
       state?: boolean,
@@ -929,7 +929,7 @@ export class CatalogsApi extends BaseAPI {
    * @param {number} [page] Page number for pagination
    * @param {number} [size] Number of records per page
    * @param {Array<string>} [fields] Fields to be retrieved as a result. If the user passes \&quot;-\&quot; as the value for fields, it will retrieve all available fields for each catalog.
-   * @param {Array<string>} [sort] Sorting options by fields
+   * @param {string} [sort] Sorting options by fields
    * @param {Array<string>} [id] List of IDs to filter the catalogs
    * @param {string} [query] Search query string for filtering by name. Supports: - Wildcards (*) for substring matching - Placeholder (?) for single character substitution - Exact match for full names
    * @param {boolean} [state] Filter by state (true for active, false for inactive)
@@ -944,7 +944,7 @@ export class CatalogsApi extends BaseAPI {
     page?: number,
     size?: number,
     fields?: Array<string>,
-    sort?: Array<string>,
+    sort?: string,
     id?: Array<string>,
     query?: string,
     state?: boolean,

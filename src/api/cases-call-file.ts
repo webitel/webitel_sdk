@@ -22,12 +22,6 @@ export interface CasesCallFile {
    * @type {string}
    * @memberof CasesCallFile
    */
-  created_at?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesCallFile
-   */
   id?: string
   /**
    *
@@ -47,4 +41,16 @@ export interface CasesCallFile {
    * @memberof CasesCallFile
    */
   size?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCallFile
+   */
+  start_at?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCallFile
+   */
+  stop_at?: string
 }
