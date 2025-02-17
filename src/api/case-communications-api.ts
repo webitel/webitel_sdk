@@ -24,6 +24,8 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { CasesInputCaseCommunication } from '../api'
+// @ts-ignore
 import { CasesLinkCommunicationResponse } from '../api'
 // @ts-ignore
 import { CasesListCommunicationsResponse } from '../api'
@@ -43,12 +45,14 @@ export const CaseCommunicationsApiAxiosParamCreator = function(
      *
      * @summary Links a communication to a specific case.
      * @param {string} caseEtag Case identifier.
+     * @param {CasesInputCaseCommunication} input Input data for the communications to link.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     linkCommunication: async (
       caseEtag: string,
+      input: CasesInputCaseCommunication,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -57,6 +61,13 @@ export const CaseCommunicationsApiAxiosParamCreator = function(
         throw new RequiredError(
           'caseEtag',
           'Required parameter caseEtag was null or undefined when calling linkCommunication.'
+        )
+      }
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
+        throw new RequiredError(
+          'input',
+          'Required parameter input was null or undefined when calling linkCommunication.'
         )
       }
       const localVarPath = `/cases/{case_etag}/communication`.replace(
@@ -89,6 +100,8 @@ export const CaseCommunicationsApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -103,6 +116,12 @@ export const CaseCommunicationsApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+      const needsSerialization =
+        typeof input !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -294,12 +313,14 @@ export const CaseCommunicationsApiFp = function(configuration?: Configuration) {
      *
      * @summary Links a communication to a specific case.
      * @param {string} caseEtag Case identifier.
+     * @param {CasesInputCaseCommunication} input Input data for the communications to link.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async linkCommunication(
       caseEtag: string,
+      input: CasesInputCaseCommunication,
       fields?: Array<string>,
       options?: any
     ): Promise<
@@ -310,7 +331,7 @@ export const CaseCommunicationsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CaseCommunicationsApiAxiosParamCreator(
         configuration
-      ).linkCommunication(caseEtag, fields, options)
+      ).linkCommunication(caseEtag, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -413,17 +434,19 @@ export const CaseCommunicationsApiFactory = function(
      *
      * @summary Links a communication to a specific case.
      * @param {string} caseEtag Case identifier.
+     * @param {CasesInputCaseCommunication} input Input data for the communications to link.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     linkCommunication(
       caseEtag: string,
+      input: CasesInputCaseCommunication,
       fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesLinkCommunicationResponse> {
       return CaseCommunicationsApiFp(configuration)
-        .linkCommunication(caseEtag, fields, options)
+        .linkCommunication(caseEtag, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -484,6 +507,7 @@ export class CaseCommunicationsApi extends BaseAPI {
    *
    * @summary Links a communication to a specific case.
    * @param {string} caseEtag Case identifier.
+   * @param {CasesInputCaseCommunication} input Input data for the communications to link.
    * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -491,11 +515,12 @@ export class CaseCommunicationsApi extends BaseAPI {
    */
   public linkCommunication(
     caseEtag: string,
+    input: CasesInputCaseCommunication,
     fields?: Array<string>,
     options?: any
   ) {
     return CaseCommunicationsApiFp(this.configuration)
-      .linkCommunication(caseEtag, fields, options)
+      .linkCommunication(caseEtag, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 

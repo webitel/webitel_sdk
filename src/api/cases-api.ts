@@ -267,7 +267,7 @@ export const CasesApiAxiosParamCreator = function(
      * @param {Array<string>} [ids] List of specific case IDs to retrieve.
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
-     * @param {string} [filtersString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
+     * @param {string} [filtersString] Key-value pairs for additional filtering.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -643,7 +643,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [ids] List of specific case IDs to retrieve.
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
-     * @param {string} [filtersString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
+     * @param {string} [filtersString] Key-value pairs for additional filtering.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -812,7 +812,7 @@ export const CasesApiFactory = function(
      * @param {Array<string>} [ids] List of specific case IDs to retrieve.
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
-     * @param {string} [filtersString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
+     * @param {string} [filtersString] Key-value pairs for additional filtering.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -940,7 +940,7 @@ export class CasesApi extends BaseAPI {
    * @param {Array<string>} [ids] List of specific case IDs to retrieve.
    * @param {string} [sort] Sorting criteria (e.g., field:asc).
    * @param {Array<string>} [fields] List of fields to include in the response.
-   * @param {string} [filtersString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
+   * @param {string} [filtersString] Key-value pairs for additional filtering.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi

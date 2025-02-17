@@ -14,37 +14,19 @@
 /**
  *
  * @export
- * @interface WebitelChatInputButton
+ * @interface WebitelChatGetCaseChatHistoryRequestOffset
  */
-export interface WebitelChatInputButton {
+export interface WebitelChatGetCaseChatHistoryRequestOffset {
+  /**
+   * Messages ONLY been sent before the specified epochtime(milli).
+   * @type {string}
+   * @memberof WebitelChatGetCaseChatHistoryRequestOffset
+   */
+  date?: string
   /**
    *
    * @type {string}
-   * @memberof WebitelChatInputButton
+   * @memberof WebitelChatGetCaseChatHistoryRequestOffset
    */
-  caption?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatInputButton
-   */
-  code?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatInputButton
-   */
-  text?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatInputButton
-   */
-  type?: string
-  /**
-   *
-   * @type {string}
-   * @memberof WebitelChatInputButton
-   */
-  url?: string
+  id?: string
 }
