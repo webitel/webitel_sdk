@@ -1070,7 +1070,7 @@ export class Task {
    */
   async formAction(
     action: string,
-    fields: Map<string, string | number | object | any[]>
+    fields: Map<string, string | number | object | any[]> | undefined
   ) {
     if (!this.form) {
       throw new Error('not found active form')
@@ -1080,7 +1080,7 @@ export class Task {
       attempt_id: this.id,
       app_id: this.distribute.app_id,
       action,
-      fields: formFields(fields),
+      fields: formFields(fields || this.form.fields),
     })
   }
 

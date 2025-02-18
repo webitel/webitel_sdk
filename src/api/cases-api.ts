@@ -267,7 +267,7 @@ export const CasesApiAxiosParamCreator = function(
      * @param {Array<string>} [ids] List of specific case IDs to retrieve.
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
-     * @param {string} [filtersString] Key-value pairs for additional filtering.
+     * @param {Array<string>} [filters] Key-value pairs for additional filtering.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -278,7 +278,7 @@ export const CasesApiAxiosParamCreator = function(
       ids?: Array<string>,
       sort?: string,
       fields?: Array<string>,
-      filtersString?: string,
+      filters?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/cases`
@@ -328,8 +328,8 @@ export const CasesApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (filtersString !== undefined) {
-        localVarQueryParameter['filters[string]'] = filtersString
+      if (filters) {
+        localVarQueryParameter['filters'] = filters
       }
 
       localVarUrlObj.query = {
@@ -643,7 +643,7 @@ export const CasesApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [ids] List of specific case IDs to retrieve.
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
-     * @param {string} [filtersString] Key-value pairs for additional filtering.
+     * @param {Array<string>} [filters] Key-value pairs for additional filtering.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -654,14 +654,14 @@ export const CasesApiFp = function(configuration?: Configuration) {
       ids?: Array<string>,
       sort?: string,
       fields?: Array<string>,
-      filtersString?: string,
+      filters?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseList>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).searchCases(page, size, q, ids, sort, fields, filtersString, options)
+      ).searchCases(page, size, q, ids, sort, fields, filters, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -812,7 +812,7 @@ export const CasesApiFactory = function(
      * @param {Array<string>} [ids] List of specific case IDs to retrieve.
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
-     * @param {string} [filtersString] Key-value pairs for additional filtering.
+     * @param {Array<string>} [filters] Key-value pairs for additional filtering.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -823,11 +823,11 @@ export const CasesApiFactory = function(
       ids?: Array<string>,
       sort?: string,
       fields?: Array<string>,
-      filtersString?: string,
+      filters?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCaseList> {
       return CasesApiFp(configuration)
-        .searchCases(page, size, q, ids, sort, fields, filtersString, options)
+        .searchCases(page, size, q, ids, sort, fields, filters, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -940,7 +940,7 @@ export class CasesApi extends BaseAPI {
    * @param {Array<string>} [ids] List of specific case IDs to retrieve.
    * @param {string} [sort] Sorting criteria (e.g., field:asc).
    * @param {Array<string>} [fields] List of fields to include in the response.
-   * @param {string} [filtersString] Key-value pairs for additional filtering.
+   * @param {Array<string>} [filters] Key-value pairs for additional filtering.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
@@ -952,11 +952,11 @@ export class CasesApi extends BaseAPI {
     ids?: Array<string>,
     sort?: string,
     fields?: Array<string>,
-    filtersString?: string,
+    filters?: Array<string>,
     options?: any
   ) {
     return CasesApiFp(this.configuration)
-      .searchCases(page, size, q, ids, sort, fields, filtersString, options)
+      .searchCases(page, size, q, ids, sort, fields, filters, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
