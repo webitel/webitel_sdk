@@ -367,16 +367,14 @@ export const DictionariesApiAxiosParamCreator = function(
     /**
      * (DictionaryList) {
      * @summary Delete custom dictionaries.
-     * @param {Array<string>} repo &#x60;types.repo&#x60;
+     * @param {Array<string>} repo &#x60;types.repo&#x60;  // &#x60;record.pk&#x60;  repeated string id &#x3D; 3;
      * @param {Array<string>} [fields] Fields to retrive into result dataset.
-     * @param {Array<string>} [id] &#x60;record.pk&#x60;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteType: async (
       repo: Array<string>,
       fields?: Array<string>,
-      id?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'repo' is not null or undefined
@@ -415,10 +413,6 @@ export const DictionariesApiAxiosParamCreator = function(
 
       if (repo) {
         localVarQueryParameter['repo'] = repo
-      }
-
-      if (id) {
-        localVarQueryParameter['id'] = id
       }
 
       localVarUrlObj.query = {
@@ -897,9 +891,10 @@ export const DictionariesApiAxiosParamCreator = function(
     /**
      * (Record) {
      * @summary Update a dictionary record.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
+     * @param {string} repo [&#x60;types.repo&#x60;] data source
+     * @param {string} id [&#x60;record.id&#x60;] for update
+     * @param {object} record Record data fields changes.
+     * @param {Array<string>} [fields] Source Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -907,6 +902,7 @@ export const DictionariesApiAxiosParamCreator = function(
       repo: string,
       id: string,
       record: object,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'repo' is not null or undefined
@@ -955,6 +951,10 @@ export const DictionariesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -986,9 +986,10 @@ export const DictionariesApiAxiosParamCreator = function(
     /**
      * (Record) {
      * @summary Update a dictionary record.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
+     * @param {string} repo [&#x60;types.repo&#x60;] data source
+     * @param {string} id [&#x60;record.id&#x60;] for update
+     * @param {object} record Record data fields changes.
+     * @param {Array<string>} [fields] Source Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -996,6 +997,7 @@ export const DictionariesApiAxiosParamCreator = function(
       repo: string,
       id: string,
       record: object,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'repo' is not null or undefined
@@ -1044,6 +1046,10 @@ export const DictionariesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -1075,14 +1081,16 @@ export const DictionariesApiAxiosParamCreator = function(
     /**
      * (Dictionary) {
      * @summary Update custom dictionary.
-     * @param {string} repo [**types.dictionaries.id**] type name, e.g.: &#x60;country&#x60;.
-     * @param {WebitelProtoDataInputDictionary} input The dictionary [type] changes.
+     * @param {string} repo [**repo**] name of the dataset type, e.g.: &#x60;countries&#x60;.
+     * @param {WebitelProtoDataInputDictionary} input The dictionary [**type**] changes.
+     * @param {Array<string>} [fields] Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateType: async (
       repo: string,
       input: WebitelProtoDataInputDictionary,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'repo' is not null or undefined
@@ -1109,87 +1117,6 @@ export const DictionariesApiAxiosParamCreator = function(
         baseOptions = configuration.baseOptions
       }
       const localVarRequestOptions = {
-        method: 'PATCH',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof input !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(input !== undefined ? input : {})
-        : input || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * (Dictionary) {
-     * @summary Update custom dictionary.
-     * @param {string} repo [**types.dictionaries.id**] type name, e.g.: &#x60;country&#x60;.
-     * @param {WebitelProtoDataInputDictionary} input The dictionary [type] changes.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateType2: async (
-      repo: string,
-      input: WebitelProtoDataInputDictionary,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'repo' is not null or undefined
-      if (repo === null || repo === undefined) {
-        throw new RequiredError(
-          'repo',
-          'Required parameter repo was null or undefined when calling updateType2.'
-        )
-      }
-      // verify required parameter 'input' is not null or undefined
-      if (input === null || input === undefined) {
-        throw new RequiredError(
-          'input',
-          'Required parameter input was null or undefined when calling updateType2.'
-        )
-      }
-      const localVarPath = `/types/dictionaries/{repo}`.replace(
-        `{${'repo'}}`,
-        encodeURIComponent(String(repo))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
         method: 'PUT',
         ...baseOptions,
         ...options,
@@ -1204,6 +1131,10 @@ export const DictionariesApiAxiosParamCreator = function(
             ? await configuration.apiKey('X-Webitel-Access')
             : await configuration.apiKey
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
       }
 
       localVarHeaderParameter['Content-Type'] = 'application/json'
@@ -1375,16 +1306,14 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
     /**
      * (DictionaryList) {
      * @summary Delete custom dictionaries.
-     * @param {Array<string>} repo &#x60;types.repo&#x60;
+     * @param {Array<string>} repo &#x60;types.repo&#x60;  // &#x60;record.pk&#x60;  repeated string id &#x3D; 3;
      * @param {Array<string>} [fields] Fields to retrive into result dataset.
-     * @param {Array<string>} [id] &#x60;record.pk&#x60;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteType(
       repo: Array<string>,
       fields?: Array<string>,
-      id?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -1394,7 +1323,7 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await DictionariesApiAxiosParamCreator(
         configuration
-      ).deleteType(repo, fields, id, options)
+      ).deleteType(repo, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1613,9 +1542,10 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
     /**
      * (Record) {
      * @summary Update a dictionary record.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
+     * @param {string} repo [&#x60;types.repo&#x60;] data source
+     * @param {string} id [&#x60;record.id&#x60;] for update
+     * @param {object} record Record data fields changes.
+     * @param {Array<string>} [fields] Source Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1623,13 +1553,14 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
       repo: string,
       id: string,
       record: object,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
     > {
       const localVarAxiosArgs = await DictionariesApiAxiosParamCreator(
         configuration
-      ).updateData(repo, id, record, options)
+      ).updateData(repo, id, record, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1644,9 +1575,10 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
     /**
      * (Record) {
      * @summary Update a dictionary record.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
+     * @param {string} repo [&#x60;types.repo&#x60;] data source
+     * @param {string} id [&#x60;record.id&#x60;] for update
+     * @param {object} record Record data fields changes.
+     * @param {Array<string>} [fields] Source Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1654,13 +1586,14 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
       repo: string,
       id: string,
       record: object,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
     > {
       const localVarAxiosArgs = await DictionariesApiAxiosParamCreator(
         configuration
-      ).updateData2(repo, id, record, options)
+      ).updateData2(repo, id, record, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1675,14 +1608,16 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
     /**
      * (Dictionary) {
      * @summary Update custom dictionary.
-     * @param {string} repo [**types.dictionaries.id**] type name, e.g.: &#x60;country&#x60;.
-     * @param {WebitelProtoDataInputDictionary} input The dictionary [type] changes.
+     * @param {string} repo [**repo**] name of the dataset type, e.g.: &#x60;countries&#x60;.
+     * @param {WebitelProtoDataInputDictionary} input The dictionary [**type**] changes.
+     * @param {Array<string>} [fields] Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateType(
       repo: string,
       input: WebitelProtoDataInputDictionary,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -1692,39 +1627,7 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await DictionariesApiAxiosParamCreator(
         configuration
-      ).updateType(repo, input, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     * (Dictionary) {
-     * @summary Update custom dictionary.
-     * @param {string} repo [**types.dictionaries.id**] type name, e.g.: &#x60;country&#x60;.
-     * @param {WebitelProtoDataInputDictionary} input The dictionary [type] changes.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateType2(
-      repo: string,
-      input: WebitelProtoDataInputDictionary,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WebitelProtoDataStruct>
-    > {
-      const localVarAxiosArgs = await DictionariesApiAxiosParamCreator(
-        configuration
-      ).updateType2(repo, input, options)
+      ).updateType(repo, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1824,20 +1727,18 @@ export const DictionariesApiFactory = function(
     /**
      * (DictionaryList) {
      * @summary Delete custom dictionaries.
-     * @param {Array<string>} repo &#x60;types.repo&#x60;
+     * @param {Array<string>} repo &#x60;types.repo&#x60;  // &#x60;record.pk&#x60;  repeated string id &#x3D; 3;
      * @param {Array<string>} [fields] Fields to retrive into result dataset.
-     * @param {Array<string>} [id] &#x60;record.pk&#x60;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteType(
       repo: Array<string>,
       fields?: Array<string>,
-      id?: Array<string>,
       options?: any
     ): AxiosPromise<WebitelProtoDataStructList> {
       return DictionariesApiFp(configuration)
-        .deleteType(repo, fields, id, options)
+        .deleteType(repo, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1975,9 +1876,10 @@ export const DictionariesApiFactory = function(
     /**
      * (Record) {
      * @summary Update a dictionary record.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
+     * @param {string} repo [&#x60;types.repo&#x60;] data source
+     * @param {string} id [&#x60;record.id&#x60;] for update
+     * @param {object} record Record data fields changes.
+     * @param {Array<string>} [fields] Source Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1985,18 +1887,20 @@ export const DictionariesApiFactory = function(
       repo: string,
       id: string,
       record: object,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<object> {
       return DictionariesApiFp(configuration)
-        .updateData(repo, id, record, options)
+        .updateData(repo, id, record, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * (Record) {
      * @summary Update a dictionary record.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
+     * @param {string} repo [&#x60;types.repo&#x60;] data source
+     * @param {string} id [&#x60;record.id&#x60;] for update
+     * @param {object} record Record data fields changes.
+     * @param {Array<string>} [fields] Source Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2004,44 +1908,30 @@ export const DictionariesApiFactory = function(
       repo: string,
       id: string,
       record: object,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<object> {
       return DictionariesApiFp(configuration)
-        .updateData2(repo, id, record, options)
+        .updateData2(repo, id, record, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
      * (Dictionary) {
      * @summary Update custom dictionary.
-     * @param {string} repo [**types.dictionaries.id**] type name, e.g.: &#x60;country&#x60;.
-     * @param {WebitelProtoDataInputDictionary} input The dictionary [type] changes.
+     * @param {string} repo [**repo**] name of the dataset type, e.g.: &#x60;countries&#x60;.
+     * @param {WebitelProtoDataInputDictionary} input The dictionary [**type**] changes.
+     * @param {Array<string>} [fields] Fields to return into result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateType(
       repo: string,
       input: WebitelProtoDataInputDictionary,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<WebitelProtoDataStruct> {
       return DictionariesApiFp(configuration)
-        .updateType(repo, input, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * (Dictionary) {
-     * @summary Update custom dictionary.
-     * @param {string} repo [**types.dictionaries.id**] type name, e.g.: &#x60;country&#x60;.
-     * @param {WebitelProtoDataInputDictionary} input The dictionary [type] changes.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateType2(
-      repo: string,
-      input: WebitelProtoDataInputDictionary,
-      options?: any
-    ): AxiosPromise<WebitelProtoDataStruct> {
-      return DictionariesApiFp(configuration)
-        .updateType2(repo, input, options)
+        .updateType(repo, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -2133,9 +2023,8 @@ export class DictionariesApi extends BaseAPI {
   /**
    * (DictionaryList) {
    * @summary Delete custom dictionaries.
-   * @param {Array<string>} repo &#x60;types.repo&#x60;
+   * @param {Array<string>} repo &#x60;types.repo&#x60;  // &#x60;record.pk&#x60;  repeated string id &#x3D; 3;
    * @param {Array<string>} [fields] Fields to retrive into result dataset.
-   * @param {Array<string>} [id] &#x60;record.pk&#x60;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DictionariesApi
@@ -2143,11 +2032,10 @@ export class DictionariesApi extends BaseAPI {
   public deleteType(
     repo: Array<string>,
     fields?: Array<string>,
-    id?: Array<string>,
     options?: any
   ) {
     return DictionariesApiFp(this.configuration)
-      .deleteType(repo, fields, id, options)
+      .deleteType(repo, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -2289,40 +2177,55 @@ export class DictionariesApi extends BaseAPI {
   /**
    * (Record) {
    * @summary Update a dictionary record.
-   * @param {string} repo [&#x60;types.repo&#x60;]
-   * @param {string} id [&#x60;record.id&#x60;]
-   * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
+   * @param {string} repo [&#x60;types.repo&#x60;] data source
+   * @param {string} id [&#x60;record.id&#x60;] for update
+   * @param {object} record Record data fields changes.
+   * @param {Array<string>} [fields] Source Fields to return into result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DictionariesApi
    */
-  public updateData(repo: string, id: string, record: object, options?: any) {
+  public updateData(
+    repo: string,
+    id: string,
+    record: object,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return DictionariesApiFp(this.configuration)
-      .updateData(repo, id, record, options)
+      .updateData(repo, id, record, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * (Record) {
    * @summary Update a dictionary record.
-   * @param {string} repo [&#x60;types.repo&#x60;]
-   * @param {string} id [&#x60;record.id&#x60;]
-   * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
+   * @param {string} repo [&#x60;types.repo&#x60;] data source
+   * @param {string} id [&#x60;record.id&#x60;] for update
+   * @param {object} record Record data fields changes.
+   * @param {Array<string>} [fields] Source Fields to return into result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DictionariesApi
    */
-  public updateData2(repo: string, id: string, record: object, options?: any) {
+  public updateData2(
+    repo: string,
+    id: string,
+    record: object,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return DictionariesApiFp(this.configuration)
-      .updateData2(repo, id, record, options)
+      .updateData2(repo, id, record, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    * (Dictionary) {
    * @summary Update custom dictionary.
-   * @param {string} repo [**types.dictionaries.id**] type name, e.g.: &#x60;country&#x60;.
-   * @param {WebitelProtoDataInputDictionary} input The dictionary [type] changes.
+   * @param {string} repo [**repo**] name of the dataset type, e.g.: &#x60;countries&#x60;.
+   * @param {WebitelProtoDataInputDictionary} input The dictionary [**type**] changes.
+   * @param {Array<string>} [fields] Fields to return into result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DictionariesApi
@@ -2330,29 +2233,11 @@ export class DictionariesApi extends BaseAPI {
   public updateType(
     repo: string,
     input: WebitelProtoDataInputDictionary,
+    fields?: Array<string>,
     options?: any
   ) {
     return DictionariesApiFp(this.configuration)
-      .updateType(repo, input, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * (Dictionary) {
-   * @summary Update custom dictionary.
-   * @param {string} repo [**types.dictionaries.id**] type name, e.g.: &#x60;country&#x60;.
-   * @param {WebitelProtoDataInputDictionary} input The dictionary [type] changes.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof DictionariesApi
-   */
-  public updateType2(
-    repo: string,
-    input: WebitelProtoDataInputDictionary,
-    options?: any
-  ) {
-    return DictionariesApiFp(this.configuration)
-      .updateType2(repo, input, options)
+      .updateType(repo, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

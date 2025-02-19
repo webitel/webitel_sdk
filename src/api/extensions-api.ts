@@ -24,13 +24,11 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { WebitelProtoDataDataset } from '../api'
-// @ts-ignore
-import { WebitelProtoDataExtension } from '../api'
-// @ts-ignore
-import { WebitelProtoDataExtensionList } from '../api'
-// @ts-ignore
 import { WebitelProtoDataInputExtension } from '../api'
+// @ts-ignore
+import { WebitelProtoDataStruct } from '../api'
+// @ts-ignore
+import { WebitelProtoDataStructList } from '../api'
 /**
  * ExtensionsApi - axios parameter creator
  * @export
@@ -40,90 +38,7 @@ export const ExtensionsApiAxiosParamCreator = function(
 ) {
   return {
     /**
-     *
-     * @summary Delete records extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {Array<string>} id [&#x60;record.id&#x60;]
-     * @param {Array<string>} [fields] Fields to be retrieved into result dataset.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    _delete: async (
-      repo: string,
-      id: Array<string>,
-      fields?: Array<string>,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'repo' is not null or undefined
-      if (repo === null || repo === undefined) {
-        throw new RequiredError(
-          'repo',
-          'Required parameter repo was null or undefined when calling _delete.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling _delete.'
-        )
-      }
-      const localVarPath = `/extensions/{repo}`.replace(
-        `{${'repo'}}`,
-        encodeURIComponent(String(repo))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'DELETE',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      if (id) {
-        localVarQueryParameter['id'] = id
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
+     * returns (Extension) {
      * @summary Create type extension.
      * @param {string} repo SUPER &#x60;types.repo&#x60; to extend, e.g.: &#x60;contacts&#x60;. Lookup: GET /types?extendable&#x3D;true
      * @param {WebitelProtoDataInputExtension} input Extension type fields.
@@ -204,25 +119,88 @@ export const ExtensionsApiAxiosParamCreator = function(
       }
     },
     /**
-     *
+     * returns (ExtensionList) {
      * @summary Delete extension for types.
-     * @param {Array<string>} type extension.type.id
+     * @param {Array<string>} repo &#x60;type.repo&#x60;
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteType: async (
-      type: Array<string>,
+      repo: Array<string>,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'type' is not null or undefined
-      if (type === null || type === undefined) {
+      // verify required parameter 'repo' is not null or undefined
+      if (repo === null || repo === undefined) {
         throw new RequiredError(
-          'type',
-          'Required parameter type was null or undefined when calling deleteType.'
+          'repo',
+          'Required parameter repo was null or undefined when calling deleteType.'
         )
       }
+      const localVarPath = `/types/extensions/{repo}`.replace(
+        `{${'repo'}}`,
+        encodeURIComponent(String(repo))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * returns (ExtensionList) {
+     * @summary Delete extension for types.
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [repo] &#x60;type.repo&#x60;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteType2: async (
+      fields?: Array<string>,
+      repo?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
       const localVarPath = `/types/extensions`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -250,8 +228,8 @@ export const ExtensionsApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (type) {
-        localVarQueryParameter['type'] = type
+      if (repo) {
+        localVarQueryParameter['repo'] = repo
       }
 
       localVarUrlObj.query = {
@@ -275,104 +253,26 @@ export const ExtensionsApiAxiosParamCreator = function(
       }
     },
     /**
-     * (Record) {
-     * @summary Record extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {Array<string>} [fields] Fields [Q]uery to build result dataset record. &#x60;&#x60;&#x60; fields ::&#x3D; field [ *( \&quot;,\&quot; field ) ] field  ::&#x3D; name [ *( func ) ] [ inner ] inner  ::&#x3D; \&quot;{\&quot; fields \&quot;}\&quot; funcs  ::&#x3D; *( func ) func   ::&#x3D; \&quot;.\&quot; name \&quot;(\&quot; [ args ] \&quot;)\&quot; name   ::&#x3D; ALPHA / DIGIT / USCORE  ALPHA    &#x3D; %x41-5A / %x61-7A  ; \&quot;A\&quot;-\&quot;Z\&quot; / \&quot;a\&quot;-\&quot;z\&quot; DIGIT    &#x3D; %x30-39            ; \&quot;0\&quot;-\&quot;9\&quot; USCORE   &#x3D; %x5F ; underscore  ; \&quot;_\&quot; &#x60;&#x60;&#x60;
+     * returns (Extension) {
+     * @summary Type extension details.
+     * @param {string} repo &#x60;type.repo&#x60;  id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    locate: async (
+    locateType: async (
       repo: string,
-      id: string,
-      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'repo' is not null or undefined
       if (repo === null || repo === undefined) {
         throw new RequiredError(
           'repo',
-          'Required parameter repo was null or undefined when calling locate.'
+          'Required parameter repo was null or undefined when calling locateType.'
         )
       }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling locate.'
-        )
-      }
-      const localVarPath = `/extensions/{repo}/{id}`
-        .replace(`{${'repo'}}`, encodeURIComponent(String(repo)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      if (fields) {
-        localVarQueryParameter['fields'] = fields
-      }
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary Type extension details.
-     * @param {string} type extension.type.id as type.  id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    locateType: async (
-      type: string,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'type' is not null or undefined
-      if (type === null || type === undefined) {
-        throw new RequiredError(
-          'type',
-          'Required parameter type was null or undefined when calling locateType.'
-        )
-      }
-      const localVarPath = `/types/extensions/{type}`.replace(
-        `{${'type'}}`,
-        encodeURIComponent(String(type))
+      const localVarPath = `/types/extensions/{repo}`.replace(
+        `{${'repo'}}`,
+        encodeURIComponent(String(repo))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -417,7 +317,7 @@ export const ExtensionsApiAxiosParamCreator = function(
       }
     },
     /**
-     *
+     * (ExtensionList) {
      * @summary Search for type extensions.
      * @param {number} [size] Number of result records (per page). Default: 16.
      * @param {number} [page] Page number of result set of records. Default: 1.
@@ -505,201 +405,23 @@ export const ExtensionsApiAxiosParamCreator = function(
       }
     },
     /**
-     * (Record) {
-     * @summary Update extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    update: async (
-      repo: string,
-      id: string,
-      record: object,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'repo' is not null or undefined
-      if (repo === null || repo === undefined) {
-        throw new RequiredError(
-          'repo',
-          'Required parameter repo was null or undefined when calling update.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling update.'
-        )
-      }
-      // verify required parameter 'record' is not null or undefined
-      if (record === null || record === undefined) {
-        throw new RequiredError(
-          'record',
-          'Required parameter record was null or undefined when calling update.'
-        )
-      }
-      const localVarPath = `/extensions/{repo}/{id}`
-        .replace(`{${'repo'}}`, encodeURIComponent(String(repo)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PATCH',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof record !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(record !== undefined ? record : {})
-        : record || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     * (Record) {
-     * @summary Update extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    update2: async (
-      repo: string,
-      id: string,
-      record: object,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'repo' is not null or undefined
-      if (repo === null || repo === undefined) {
-        throw new RequiredError(
-          'repo',
-          'Required parameter repo was null or undefined when calling update2.'
-        )
-      }
-      // verify required parameter 'id' is not null or undefined
-      if (id === null || id === undefined) {
-        throw new RequiredError(
-          'id',
-          'Required parameter id was null or undefined when calling update2.'
-        )
-      }
-      // verify required parameter 'record' is not null or undefined
-      if (record === null || record === undefined) {
-        throw new RequiredError(
-          'record',
-          'Required parameter record was null or undefined when calling update2.'
-        )
-      }
-      const localVarPath = `/extensions/{repo}/{id}`
-        .replace(`{${'repo'}}`, encodeURIComponent(String(repo)))
-        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PUT',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof record !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(record !== undefined ? record : {})
-        : record || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
+     * returns (Extension) {
      * @summary Update type extension.
-     * @param {string} type extension.type.id
+     * @param {string} repo &#x60;type.repo&#x60;
      * @param {WebitelProtoDataInputExtension} input
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateType: async (
-      type: string,
+      repo: string,
       input: WebitelProtoDataInputExtension,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'type' is not null or undefined
-      if (type === null || type === undefined) {
+      // verify required parameter 'repo' is not null or undefined
+      if (repo === null || repo === undefined) {
         throw new RequiredError(
-          'type',
-          'Required parameter type was null or undefined when calling updateType.'
+          'repo',
+          'Required parameter repo was null or undefined when calling updateType.'
         )
       }
       // verify required parameter 'input' is not null or undefined
@@ -709,90 +431,9 @@ export const ExtensionsApiAxiosParamCreator = function(
           'Required parameter input was null or undefined when calling updateType.'
         )
       }
-      const localVarPath = `/types/extensions/{type}`.replace(
-        `{${'type'}}`,
-        encodeURIComponent(String(type))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'PATCH',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof input !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(input !== undefined ? input : {})
-        : input || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
-     * @summary Update type extension.
-     * @param {string} type extension.type.id
-     * @param {WebitelProtoDataInputExtension} input
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateType2: async (
-      type: string,
-      input: WebitelProtoDataInputExtension,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'type' is not null or undefined
-      if (type === null || type === undefined) {
-        throw new RequiredError(
-          'type',
-          'Required parameter type was null or undefined when calling updateType2.'
-        )
-      }
-      // verify required parameter 'input' is not null or undefined
-      if (input === null || input === undefined) {
-        throw new RequiredError(
-          'input',
-          'Required parameter input was null or undefined when calling updateType2.'
-        )
-      }
-      const localVarPath = `/types/extensions/{type}`.replace(
-        `{${'type'}}`,
-        encodeURIComponent(String(type))
+      const localVarPath = `/types/extensions/{repo}`.replace(
+        `{${'repo'}}`,
+        encodeURIComponent(String(repo))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -854,41 +495,7 @@ export const ExtensionsApiAxiosParamCreator = function(
 export const ExtensionsApiFp = function(configuration?: Configuration) {
   return {
     /**
-     *
-     * @summary Delete records extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {Array<string>} id [&#x60;record.id&#x60;]
-     * @param {Array<string>} [fields] Fields to be retrieved into result dataset.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async _delete(
-      repo: string,
-      id: Array<string>,
-      fields?: Array<string>,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WebitelProtoDataDataset>
-    > {
-      const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
-        configuration
-      )._delete(repo, id, fields, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
+     * returns (Extension) {
      * @summary Create type extension.
      * @param {string} repo SUPER &#x60;types.repo&#x60; to extend, e.g.: &#x60;contacts&#x60;. Lookup: GET /types?extendable&#x3D;true
      * @param {WebitelProtoDataInputExtension} input Extension type fields.
@@ -903,7 +510,7 @@ export const ExtensionsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelProtoDataExtension>
+      ) => AxiosPromise<WebitelProtoDataStruct>
     > {
       const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
         configuration
@@ -920,26 +527,26 @@ export const ExtensionsApiFp = function(configuration?: Configuration) {
       }
     },
     /**
-     *
+     * returns (ExtensionList) {
      * @summary Delete extension for types.
-     * @param {Array<string>} type extension.type.id
+     * @param {Array<string>} repo &#x60;type.repo&#x60;
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteType(
-      type: Array<string>,
+      repo: Array<string>,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelProtoDataExtensionList>
+      ) => AxiosPromise<WebitelProtoDataStructList>
     > {
       const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
         configuration
-      ).deleteType(type, fields, options)
+      ).deleteType(repo, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -952,25 +559,26 @@ export const ExtensionsApiFp = function(configuration?: Configuration) {
       }
     },
     /**
-     * (Record) {
-     * @summary Record extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {Array<string>} [fields] Fields [Q]uery to build result dataset record. &#x60;&#x60;&#x60; fields ::&#x3D; field [ *( \&quot;,\&quot; field ) ] field  ::&#x3D; name [ *( func ) ] [ inner ] inner  ::&#x3D; \&quot;{\&quot; fields \&quot;}\&quot; funcs  ::&#x3D; *( func ) func   ::&#x3D; \&quot;.\&quot; name \&quot;(\&quot; [ args ] \&quot;)\&quot; name   ::&#x3D; ALPHA / DIGIT / USCORE  ALPHA    &#x3D; %x41-5A / %x61-7A  ; \&quot;A\&quot;-\&quot;Z\&quot; / \&quot;a\&quot;-\&quot;z\&quot; DIGIT    &#x3D; %x30-39            ; \&quot;0\&quot;-\&quot;9\&quot; USCORE   &#x3D; %x5F ; underscore  ; \&quot;_\&quot; &#x60;&#x60;&#x60;
+     * returns (ExtensionList) {
+     * @summary Delete extension for types.
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [repo] &#x60;type.repo&#x60;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async locate(
-      repo: string,
-      id: string,
+    async deleteType2(
       fields?: Array<string>,
+      repo?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelProtoDataStructList>
     > {
       const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
         configuration
-      ).locate(repo, id, fields, options)
+      ).deleteType2(fields, repo, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -983,24 +591,24 @@ export const ExtensionsApiFp = function(configuration?: Configuration) {
       }
     },
     /**
-     *
+     * returns (Extension) {
      * @summary Type extension details.
-     * @param {string} type extension.type.id as type.  id
+     * @param {string} repo &#x60;type.repo&#x60;  id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async locateType(
-      type: string,
+      repo: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelProtoDataExtension>
+      ) => AxiosPromise<WebitelProtoDataStruct>
     > {
       const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
         configuration
-      ).locateType(type, options)
+      ).locateType(repo, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1013,7 +621,7 @@ export const ExtensionsApiFp = function(configuration?: Configuration) {
       }
     },
     /**
-     *
+     * (ExtensionList) {
      * @summary Search for type extensions.
      * @param {number} [size] Number of result records (per page). Default: 16.
      * @param {number} [page] Page number of result set of records. Default: 1.
@@ -1036,7 +644,7 @@ export const ExtensionsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelProtoDataExtensionList>
+      ) => AxiosPromise<WebitelProtoDataStructList>
     > {
       const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
         configuration
@@ -1053,120 +661,26 @@ export const ExtensionsApiFp = function(configuration?: Configuration) {
       }
     },
     /**
-     * (Record) {
-     * @summary Update extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async update(
-      repo: string,
-      id: string,
-      record: object,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
-    > {
-      const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
-        configuration
-      ).update(repo, id, record, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     * (Record) {
-     * @summary Update extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async update2(
-      repo: string,
-      id: string,
-      record: object,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
-    > {
-      const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
-        configuration
-      ).update2(repo, id, record, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
+     * returns (Extension) {
      * @summary Update type extension.
-     * @param {string} type extension.type.id
+     * @param {string} repo &#x60;type.repo&#x60;
      * @param {WebitelProtoDataInputExtension} input
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateType(
-      type: string,
+      repo: string,
       input: WebitelProtoDataInputExtension,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelProtoDataExtension>
+      ) => AxiosPromise<WebitelProtoDataStruct>
     > {
       const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
         configuration
-      ).updateType(type, input, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
-     * @summary Update type extension.
-     * @param {string} type extension.type.id
-     * @param {WebitelProtoDataInputExtension} input
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async updateType2(
-      type: string,
-      input: WebitelProtoDataInputExtension,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<WebitelProtoDataExtension>
-    > {
-      const localVarAxiosArgs = await ExtensionsApiAxiosParamCreator(
-        configuration
-      ).updateType2(type, input, options)
+      ).updateType(repo, input, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1192,26 +706,7 @@ export const ExtensionsApiFactory = function(
 ) {
   return {
     /**
-     *
-     * @summary Delete records extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {Array<string>} id [&#x60;record.id&#x60;]
-     * @param {Array<string>} [fields] Fields to be retrieved into result dataset.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    _delete(
-      repo: string,
-      id: Array<string>,
-      fields?: Array<string>,
-      options?: any
-    ): AxiosPromise<WebitelProtoDataDataset> {
-      return ExtensionsApiFp(configuration)
-        ._delete(repo, id, fields, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
+     * returns (Extension) {
      * @summary Create type extension.
      * @param {string} repo SUPER &#x60;types.repo&#x60; to extend, e.g.: &#x60;contacts&#x60;. Lookup: GET /types?extendable&#x3D;true
      * @param {WebitelProtoDataInputExtension} input Extension type fields.
@@ -1222,64 +717,62 @@ export const ExtensionsApiFactory = function(
       repo: string,
       input: WebitelProtoDataInputExtension,
       options?: any
-    ): AxiosPromise<WebitelProtoDataExtension> {
+    ): AxiosPromise<WebitelProtoDataStruct> {
       return ExtensionsApiFp(configuration)
         .createType(repo, input, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
+     * returns (ExtensionList) {
      * @summary Delete extension for types.
-     * @param {Array<string>} type extension.type.id
+     * @param {Array<string>} repo &#x60;type.repo&#x60;
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteType(
-      type: Array<string>,
+      repo: Array<string>,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WebitelProtoDataExtensionList> {
+    ): AxiosPromise<WebitelProtoDataStructList> {
       return ExtensionsApiFp(configuration)
-        .deleteType(type, fields, options)
+        .deleteType(repo, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     * (Record) {
-     * @summary Record extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {Array<string>} [fields] Fields [Q]uery to build result dataset record. &#x60;&#x60;&#x60; fields ::&#x3D; field [ *( \&quot;,\&quot; field ) ] field  ::&#x3D; name [ *( func ) ] [ inner ] inner  ::&#x3D; \&quot;{\&quot; fields \&quot;}\&quot; funcs  ::&#x3D; *( func ) func   ::&#x3D; \&quot;.\&quot; name \&quot;(\&quot; [ args ] \&quot;)\&quot; name   ::&#x3D; ALPHA / DIGIT / USCORE  ALPHA    &#x3D; %x41-5A / %x61-7A  ; \&quot;A\&quot;-\&quot;Z\&quot; / \&quot;a\&quot;-\&quot;z\&quot; DIGIT    &#x3D; %x30-39            ; \&quot;0\&quot;-\&quot;9\&quot; USCORE   &#x3D; %x5F ; underscore  ; \&quot;_\&quot; &#x60;&#x60;&#x60;
+     * returns (ExtensionList) {
+     * @summary Delete extension for types.
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [repo] &#x60;type.repo&#x60;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    locate(
-      repo: string,
-      id: string,
+    deleteType2(
       fields?: Array<string>,
+      repo?: Array<string>,
       options?: any
-    ): AxiosPromise<object> {
+    ): AxiosPromise<WebitelProtoDataStructList> {
       return ExtensionsApiFp(configuration)
-        .locate(repo, id, fields, options)
+        .deleteType2(fields, repo, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
+     * returns (Extension) {
      * @summary Type extension details.
-     * @param {string} type extension.type.id as type.  id
+     * @param {string} repo &#x60;type.repo&#x60;  id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     locateType(
-      type: string,
+      repo: string,
       options?: any
-    ): AxiosPromise<WebitelProtoDataExtension> {
+    ): AxiosPromise<WebitelProtoDataStruct> {
       return ExtensionsApiFp(configuration)
-        .locateType(type, options)
+        .locateType(repo, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     *
+     * (ExtensionList) {
      * @summary Search for type extensions.
      * @param {number} [size] Number of result records (per page). Default: 16.
      * @param {number} [page] Page number of result set of records. Default: 1.
@@ -1298,81 +791,26 @@ export const ExtensionsApiFactory = function(
       q?: string,
       id?: Array<string>,
       options?: any
-    ): AxiosPromise<WebitelProtoDataExtensionList> {
+    ): AxiosPromise<WebitelProtoDataStructList> {
       return ExtensionsApiFp(configuration)
         .searchType(size, page, sort, fields, q, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
-     * (Record) {
-     * @summary Update extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    update(
-      repo: string,
-      id: string,
-      record: object,
-      options?: any
-    ): AxiosPromise<object> {
-      return ExtensionsApiFp(configuration)
-        .update(repo, id, record, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     * (Record) {
-     * @summary Update extension data.
-     * @param {string} repo [&#x60;types.repo&#x60;]
-     * @param {string} id [&#x60;record.id&#x60;]
-     * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    update2(
-      repo: string,
-      id: string,
-      record: object,
-      options?: any
-    ): AxiosPromise<object> {
-      return ExtensionsApiFp(configuration)
-        .update2(repo, id, record, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
+     * returns (Extension) {
      * @summary Update type extension.
-     * @param {string} type extension.type.id
+     * @param {string} repo &#x60;type.repo&#x60;
      * @param {WebitelProtoDataInputExtension} input
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateType(
-      type: string,
+      repo: string,
       input: WebitelProtoDataInputExtension,
       options?: any
-    ): AxiosPromise<WebitelProtoDataExtension> {
+    ): AxiosPromise<WebitelProtoDataStruct> {
       return ExtensionsApiFp(configuration)
-        .updateType(type, input, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
-     * @summary Update type extension.
-     * @param {string} type extension.type.id
-     * @param {WebitelProtoDataInputExtension} input
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateType2(
-      type: string,
-      input: WebitelProtoDataInputExtension,
-      options?: any
-    ): AxiosPromise<WebitelProtoDataExtension> {
-      return ExtensionsApiFp(configuration)
-        .updateType2(type, input, options)
+        .updateType(repo, input, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -1386,28 +824,7 @@ export const ExtensionsApiFactory = function(
  */
 export class ExtensionsApi extends BaseAPI {
   /**
-   *
-   * @summary Delete records extension data.
-   * @param {string} repo [&#x60;types.repo&#x60;]
-   * @param {Array<string>} id [&#x60;record.id&#x60;]
-   * @param {Array<string>} [fields] Fields to be retrieved into result dataset.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ExtensionsApi
-   */
-  public _delete(
-    repo: string,
-    id: Array<string>,
-    fields?: Array<string>,
-    options?: any
-  ) {
-    return ExtensionsApiFp(this.configuration)
-      ._delete(repo, id, fields, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
+   * returns (Extension) {
    * @summary Create type extension.
    * @param {string} repo SUPER &#x60;types.repo&#x60; to extend, e.g.: &#x60;contacts&#x60;. Lookup: GET /types?extendable&#x3D;true
    * @param {WebitelProtoDataInputExtension} input Extension type fields.
@@ -1426,61 +843,59 @@ export class ExtensionsApi extends BaseAPI {
   }
 
   /**
-   *
+   * returns (ExtensionList) {
    * @summary Delete extension for types.
-   * @param {Array<string>} type extension.type.id
+   * @param {Array<string>} repo &#x60;type.repo&#x60;
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ExtensionsApi
    */
   public deleteType(
-    type: Array<string>,
+    repo: Array<string>,
     fields?: Array<string>,
     options?: any
   ) {
     return ExtensionsApiFp(this.configuration)
-      .deleteType(type, fields, options)
+      .deleteType(repo, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   * (Record) {
-   * @summary Record extension data.
-   * @param {string} repo [&#x60;types.repo&#x60;]
-   * @param {string} id [&#x60;record.id&#x60;]
-   * @param {Array<string>} [fields] Fields [Q]uery to build result dataset record. &#x60;&#x60;&#x60; fields ::&#x3D; field [ *( \&quot;,\&quot; field ) ] field  ::&#x3D; name [ *( func ) ] [ inner ] inner  ::&#x3D; \&quot;{\&quot; fields \&quot;}\&quot; funcs  ::&#x3D; *( func ) func   ::&#x3D; \&quot;.\&quot; name \&quot;(\&quot; [ args ] \&quot;)\&quot; name   ::&#x3D; ALPHA / DIGIT / USCORE  ALPHA    &#x3D; %x41-5A / %x61-7A  ; \&quot;A\&quot;-\&quot;Z\&quot; / \&quot;a\&quot;-\&quot;z\&quot; DIGIT    &#x3D; %x30-39            ; \&quot;0\&quot;-\&quot;9\&quot; USCORE   &#x3D; %x5F ; underscore  ; \&quot;_\&quot; &#x60;&#x60;&#x60;
+   * returns (ExtensionList) {
+   * @summary Delete extension for types.
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [repo] &#x60;type.repo&#x60;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ExtensionsApi
    */
-  public locate(
-    repo: string,
-    id: string,
+  public deleteType2(
     fields?: Array<string>,
+    repo?: Array<string>,
     options?: any
   ) {
     return ExtensionsApiFp(this.configuration)
-      .locate(repo, id, fields, options)
+      .deleteType2(fields, repo, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
+   * returns (Extension) {
    * @summary Type extension details.
-   * @param {string} type extension.type.id as type.  id
+   * @param {string} repo &#x60;type.repo&#x60;  id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ExtensionsApi
    */
-  public locateType(type: string, options?: any) {
+  public locateType(repo: string, options?: any) {
     return ExtensionsApiFp(this.configuration)
-      .locateType(type, options)
+      .locateType(repo, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
-   *
+   * (ExtensionList) {
    * @summary Search for type extensions.
    * @param {number} [size] Number of result records (per page). Default: 16.
    * @param {number} [page] Page number of result set of records. Default: 1.
@@ -1507,72 +922,21 @@ export class ExtensionsApi extends BaseAPI {
   }
 
   /**
-   * (Record) {
-   * @summary Update extension data.
-   * @param {string} repo [&#x60;types.repo&#x60;]
-   * @param {string} id [&#x60;record.id&#x60;]
-   * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ExtensionsApi
-   */
-  public update(repo: string, id: string, record: object, options?: any) {
-    return ExtensionsApiFp(this.configuration)
-      .update(repo, id, record, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   * (Record) {
-   * @summary Update extension data.
-   * @param {string} repo [&#x60;types.repo&#x60;]
-   * @param {string} id [&#x60;record.id&#x60;]
-   * @param {object} record Record data changes.  InputRecord input &#x3D; 3;
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ExtensionsApi
-   */
-  public update2(repo: string, id: string, record: object, options?: any) {
-    return ExtensionsApiFp(this.configuration)
-      .update2(repo, id, record, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
+   * returns (Extension) {
    * @summary Update type extension.
-   * @param {string} type extension.type.id
+   * @param {string} repo &#x60;type.repo&#x60;
    * @param {WebitelProtoDataInputExtension} input
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ExtensionsApi
    */
   public updateType(
-    type: string,
+    repo: string,
     input: WebitelProtoDataInputExtension,
     options?: any
   ) {
     return ExtensionsApiFp(this.configuration)
-      .updateType(type, input, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
-   * @summary Update type extension.
-   * @param {string} type extension.type.id
-   * @param {WebitelProtoDataInputExtension} input
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ExtensionsApi
-   */
-  public updateType2(
-    type: string,
-    input: WebitelProtoDataInputExtension,
-    options?: any
-  ) {
-    return ExtensionsApiFp(this.configuration)
-      .updateType2(type, input, options)
+      .updateType(repo, input, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

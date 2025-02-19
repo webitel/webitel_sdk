@@ -31,5 +31,5 @@ export interface WebitelProtoDataInputExtension {
    * @type {{ [key: string]: WebitelProtoDataIndex; }}
    * @memberof WebitelProtoDataInputExtension
    */
-  index?: { [key: string]: WebitelProtoDataIndex }
+  indices?: { [key: string]: WebitelProtoDataIndex }
 }
