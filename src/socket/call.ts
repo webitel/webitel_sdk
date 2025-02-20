@@ -1360,7 +1360,10 @@ export class Call {
    */
   async bridgeTo(call: Call, variables?: object) {
     if (this.task) {
-      await this.task.saveForm(undefined)
+      await this.task.saveForm(null, null)
+    }
+    if (call.task) {
+      await call.task.saveForm(null, null)
     }
 
     return this.client.request('call_bridge', {

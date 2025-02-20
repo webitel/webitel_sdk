@@ -1085,16 +1085,18 @@ export class Task {
   }
 
   async saveForm(
-    fields: Map<string, string | number | object | any[]> | undefined
+    form: Form | null,
+    fields: Map<string, string | number | object | any[]> | null
   ) {
     if (!this.form) {
-      return
+      throw new Error('no form')
     }
 
     return this.client.request('cc_form_save', {
       attempt_id: this.id,
       app_id: this.distribute.app_id,
       fields: formFields(fields || this.form.fields),
+      form: form || this.form,
     })
   }
 }
