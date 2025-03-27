@@ -68,6 +68,12 @@ export interface CasesCaseComment {
    */
   id?: string
   /**
+   *
+   * @type {Array<string>}
+   * @memberof CasesCaseComment
+   */
+  role_ids?: Array<string>
+  /**
    * The content of the comment.
    * @type {string}
    * @memberof CasesCaseComment

@@ -325,7 +325,7 @@ export const PresetQueryServiceApiAxiosParamCreator = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
-     * @param {Array<'section_default' | 'section_calls'>} [section]
+     * @param {Array<string>} [section]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -336,7 +336,7 @@ export const PresetQueryServiceApiAxiosParamCreator = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
-      section?: Array<'section_default' | 'section_calls'>,
+      section?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/preset/query`
@@ -625,7 +625,7 @@ export const PresetQueryServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
-     * @param {Array<'section_default' | 'section_calls'>} [section]
+     * @param {Array<string>} [section]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -636,7 +636,7 @@ export const PresetQueryServiceApiFp = function(configuration?: Configuration) {
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
-      section?: Array<'section_default' | 'section_calls'>,
+      section?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -768,7 +768,7 @@ export const PresetQueryServiceApiFactory = function(
      * @param {string} [sort]
      * @param {Array<string>} [fields]
      * @param {Array<number>} [id]
-     * @param {Array<'section_default' | 'section_calls'>} [section]
+     * @param {Array<string>} [section]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -779,7 +779,7 @@ export const PresetQueryServiceApiFactory = function(
       sort?: string,
       fields?: Array<string>,
       id?: Array<number>,
-      section?: Array<'section_default' | 'section_calls'>,
+      section?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListPresetQuery> {
       return PresetQueryServiceApiFp(configuration)
@@ -880,7 +880,7 @@ export class PresetQueryServiceApi extends BaseAPI {
    * @param {string} [sort]
    * @param {Array<string>} [fields]
    * @param {Array<number>} [id]
-   * @param {Array<'section_default' | 'section_calls'>} [section]
+   * @param {Array<string>} [section]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PresetQueryServiceApi
@@ -892,7 +892,7 @@ export class PresetQueryServiceApi extends BaseAPI {
     sort?: string,
     fields?: Array<string>,
     id?: Array<number>,
-    section?: Array<'section_default' | 'section_calls'>,
+    section?: Array<string>,
     options?: any
   ) {
     return PresetQueryServiceApiFp(this.configuration)

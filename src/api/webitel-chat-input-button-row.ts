@@ -11,22 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { WebitelChatInputButton } from './webitel-chat-input-button'
+
 /**
  *
  * @export
- * @interface StatusConditionsCreateStatusConditionBody
+ * @interface WebitelChatInputButtonRow
  */
-export interface StatusConditionsCreateStatusConditionBody {
+export interface WebitelChatInputButtonRow {
   /**
    *
-   * @type {string}
-   * @memberof StatusConditionsCreateStatusConditionBody
+   * @type {Array<WebitelChatInputButton>}
+   * @memberof WebitelChatInputButtonRow
    */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof StatusConditionsCreateStatusConditionBody
-   */
-  name: string
+  buttons?: Array<WebitelChatInputButton>
 }

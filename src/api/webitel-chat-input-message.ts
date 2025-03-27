@@ -11,36 +11,31 @@
  * Do not edit the class manually.
  */
 
-import { GeneralLookup } from './general-lookup'
+import { WebitelChatInputFile } from './webitel-chat-input-file'
+import { WebitelChatInputKeyboard } from './webitel-chat-input-keyboard'
 
 /**
  *
  * @export
- * @interface CasesInputCaseLink
+ * @interface WebitelChatInputMessage
  */
-export interface CasesInputCaseLink {
+export interface WebitelChatInputMessage {
+  /**
+   *
+   * @type {WebitelChatInputFile}
+   * @memberof WebitelChatInputMessage
+   */
+  file?: WebitelChatInputFile
+  /**
+   *
+   * @type {WebitelChatInputKeyboard}
+   * @memberof WebitelChatInputMessage
+   */
+  keyboard?: WebitelChatInputKeyboard
   /**
    *
    * @type {string}
-   * @memberof CasesInputCaseLink
+   * @memberof WebitelChatInputMessage
    */
-  etag?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputCaseLink
-   */
-  url?: string
-  /**
-   *
-   * @type {GeneralLookup}
-   * @memberof CasesInputCaseLink
-   */
-  userID?: GeneralLookup
+  text?: string
 }

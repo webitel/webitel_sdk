@@ -11,24 +11,28 @@
  * Do not edit the class manually.
  */
 
-import { GeneralLookup } from './general-lookup'
-
 /**
- * Message representing close information for a case.
+ * InputPeer identity.
  * @export
- * @interface CasesCloseInfo
+ * @interface WebitelChatInputPeer
  */
-export interface CasesCloseInfo {
+export interface WebitelChatInputPeer {
   /**
    *
-   * @type {GeneralLookup}
-   * @memberof CasesCloseInfo
-   */
-  close_reason?: GeneralLookup
-  /**
-   * Result or reason for closing the case.
    * @type {string}
-   * @memberof CasesCloseInfo
+   * @memberof WebitelChatInputPeer
    */
-  close_result?: string
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelChatInputPeer
+   */
+  type?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelChatInputPeer
+   */
+  via?: string
 }

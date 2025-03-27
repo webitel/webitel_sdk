@@ -12,7 +12,7 @@
  */
 
 /**
- * Basic scalar type.   - none: option allow_alias = true;  - list: [array]  - int: int32  - uint: uint32  - float: float32  - datetime: date &| time
+ * Kind of primitive data types.   - none: option allow_alias = true;  - list: [array]  - int: int32  - uint: uint32  - float: float32  - datetime: date &| time
  * @export
  * @enum {string}
  */

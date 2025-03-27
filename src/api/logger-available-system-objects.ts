@@ -29,4 +29,5 @@ export enum LoggerAvailableSystemObjects {
   CcResourceGroup = 'cc_resource_group',
   ChatBots = 'chat_bots',
   Cases = 'cases',
+  Contacts = 'contacts',
 }

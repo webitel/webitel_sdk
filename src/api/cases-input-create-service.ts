@@ -17,61 +17,61 @@ import { GeneralLookup } from './general-lookup'
 /**
  *
  * @export
- * @interface CasesCreateServiceRequest
+ * @interface CasesInputCreateService
  */
-export interface CasesCreateServiceRequest {
+export interface CasesInputCreateService {
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   assignee?: GeneralLookup
   /**
    *
    * @type {string}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   catalog_id?: string
   /**
    *
    * @type {string}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   code?: string
   /**
    *
    * @type {string}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   description?: string
   /**
    *
    * @type {GeneralExtendedLookup}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   group?: GeneralExtendedLookup
   /**
    *
    * @type {string}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   name?: string
   /**
    *
    * @type {string}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   root_id?: string
   /**
    *
    * @type {GeneralLookup}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   sla?: GeneralLookup
   /**
    *
    * @type {boolean}
-   * @memberof CasesCreateServiceRequest
+   * @memberof CasesInputCreateService
    */
   state?: boolean
 }

@@ -11,10 +11,8 @@
  * Do not edit the class manually.
  */
 
-import { CasesCreateCaseCloseInput } from './cases-create-case-close-input'
 import { CasesCreateCaseRelatedCaseInput } from './cases-create-case-related-case-input'
 import { CasesInputCaseLink } from './cases-input-case-link'
-import { CasesRateInfo } from './cases-rate-info'
 import { GeneralLookup } from './general-lookup'
 
 /**
@@ -31,10 +29,10 @@ export interface CasesInputCreateCase {
   assignee?: GeneralLookup
   /**
    *
-   * @type {CasesCreateCaseCloseInput}
+   * @type {GeneralLookup}
    * @memberof CasesInputCreateCase
    */
-  close?: CasesCreateCaseCloseInput
+  close_reason?: GeneralLookup
   /**
    *
    * @type {GeneralLookup}
@@ -42,11 +40,23 @@ export interface CasesInputCreateCase {
    */
   close_reason_group?: GeneralLookup
   /**
+   * Optional close information.
+   * @type {string}
+   * @memberof CasesInputCreateCase
+   */
+  close_result?: string
+  /**
    * Optional contact information.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   contact_info?: string
+  /**
+   * Custom data extension fields ..
+   * @type {object}
+   * @memberof CasesInputCreateCase
+   */
+  custom?: object
   /**
    * Optional description of the case.
    * @type {string}
@@ -78,11 +88,17 @@ export interface CasesInputCreateCase {
    */
   priority?: GeneralLookup
   /**
-   *
-   * @type {CasesRateInfo}
+   * API-only rating information.
+   * @type {string}
    * @memberof CasesInputCreateCase
    */
-  rate?: CasesRateInfo
+  rating?: string
+  /**
+   * API-only rating information.
+   * @type {string}
+   * @memberof CasesInputCreateCase
+   */
+  rating_comment?: string
   /**
    * List of related cases.
    * @type {Array<CasesCreateCaseRelatedCaseInput>}
@@ -114,9 +130,21 @@ export interface CasesInputCreateCase {
    */
   status?: GeneralLookup
   /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesInputCreateCase
+   */
+  status_condition?: GeneralLookup
+  /**
    * Required subject of the case.
    * @type {string}
    * @memberof CasesInputCreateCase
    */
   subject?: string
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesInputCreateCase
+   */
+  userID?: GeneralLookup
 }

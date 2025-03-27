@@ -45,16 +45,16 @@ export interface EnginePatchQuickReplyRequest {
   name?: string
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EnginePatchQuickReplyRequest
    */
-  queue?: EngineLookup
+  queues?: Array<EngineLookup>
   /**
    *
-   * @type {EngineLookup}
+   * @type {Array<EngineLookup>}
    * @memberof EnginePatchQuickReplyRequest
    */
-  team?: EngineLookup
+  teams?: Array<EngineLookup>
   /**
    *
    * @type {string}

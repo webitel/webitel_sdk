@@ -11,18 +11,22 @@
  * Do not edit the class manually.
  */
 
-import { EngineBroadcastButton } from './engine-broadcast-button'
-
 /**
  *
  * @export
- * @interface EngineBroadcastButtons
+ * @interface EngineUpdateQuestionAnswerRequest
  */
-export interface EngineBroadcastButtons {
+export interface EngineUpdateQuestionAnswerRequest {
   /**
    *
-   * @type {Array<EngineBroadcastButton>}
-   * @memberof EngineBroadcastButtons
+   * @type {string}
+   * @memberof EngineUpdateQuestionAnswerRequest
    */
-  button?: Array<EngineBroadcastButton>
+  comment?: string
+  /**
+   *
+   * @type {number}
+   * @memberof EngineUpdateQuestionAnswerRequest
+   */
+  score?: number
 }

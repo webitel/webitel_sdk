@@ -14,7 +14,7 @@
 import { WebitelProtoDataStruct } from './webitel-proto-data-struct'
 
 /**
- *
+ * Dataset records page view.
  * @export
  * @interface WebitelProtoDataDataset
  */

@@ -11,22 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { GoogleRpcStatus } from './google-rpc-status'
+
 /**
  *
  * @export
- * @interface CasesCreateCloseReasonGroupRequest
+ * @interface WebitelChatBroadcastError
  */
-export interface CasesCreateCloseReasonGroupRequest {
+export interface WebitelChatBroadcastError {
+  /**
+   *
+   * @type {GoogleRpcStatus}
+   * @memberof WebitelChatBroadcastError
+   */
+  error?: GoogleRpcStatus
   /**
    *
    * @type {string}
-   * @memberof CasesCreateCloseReasonGroupRequest
+   * @memberof WebitelChatBroadcastError
    */
-  description?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesCreateCloseReasonGroupRequest
-   */
-  name: string
+  peer_id?: string
 }

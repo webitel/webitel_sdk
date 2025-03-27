@@ -56,6 +56,12 @@ export interface WebitelContactsContact {
    */
   created_by?: WebitelContactsLookup
   /**
+   * Custom extension data fields.
+   * @type {object}
+   * @memberof WebitelContactsContact
+   */
+  custom?: object
+  /**
    *
    * @type {WebitelContactsLookup}
    * @memberof WebitelContactsContact

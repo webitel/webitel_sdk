@@ -43,10 +43,4 @@ export interface CasesInputSLACondition {
    * @memberof CasesInputSLACondition
    */
   resolution_time?: string
-  /**
-   *
-   * @type {string}
-   * @memberof CasesInputSLACondition
-   */
-  sla_id?: string
 }

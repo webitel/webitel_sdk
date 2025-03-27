@@ -246,7 +246,7 @@ export const LoggerServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
@@ -274,7 +274,8 @@ export const LoggerServiceApiAxiosParamCreator = function(
         | 'cc_resource'
         | 'cc_resource_group'
         | 'chat_bots'
-        | 'cases',
+        | 'cases'
+        | 'contacts',
       recordId: number,
       page?: number,
       size?: number,
@@ -617,7 +618,7 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
@@ -645,7 +646,8 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
         | 'cc_resource'
         | 'cc_resource_group'
         | 'chat_bots'
-        | 'cases',
+        | 'cases'
+        | 'contacts',
       recordId: number,
       page?: number,
       size?: number,
@@ -832,7 +834,7 @@ export const LoggerServiceApiFactory = function(
     },
     /**
      *
-     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
@@ -860,7 +862,8 @@ export const LoggerServiceApiFactory = function(
         | 'cc_resource'
         | 'cc_resource_group'
         | 'chat_bots'
-        | 'cases',
+        | 'cases'
+        | 'contacts',
       recordId: number,
       page?: number,
       size?: number,
@@ -1024,7 +1027,7 @@ export class LoggerServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases'} object SPECIFIC filter
+   * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts'} object SPECIFIC filter
    * @param {number} recordId REQUIRED filter
    * @param {number} [page]
    * @param {number} [size]
@@ -1053,7 +1056,8 @@ export class LoggerServiceApi extends BaseAPI {
       | 'cc_resource'
       | 'cc_resource_group'
       | 'chat_bots'
-      | 'cases',
+      | 'cases'
+      | 'contacts',
     recordId: number,
     page?: number,
     size?: number,

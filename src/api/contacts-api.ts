@@ -271,8 +271,11 @@ export const ContactsApiAxiosParamCreator = function(
      * @param {Array<string>} [id] Records with unique IDentifier(s). Accept: &#x60;id&#x60; -or- &#x60;etag&#x60;.
      * @param {Array<string>} [qin] [Q]uery[IN] is a set of search fields for term &#x60;q&#x60;. Default: &#x60;name{common_name}&#x60;.
      * @param {'READ' | 'WRITE' | 'DELETE'} [mode] Source access mode requirement.   - READ: Can &#x60;fetch&#x60; record. [GET]  - WRITE: Can &#x60;update&#x60; record. [PUT|PATCH]  - DELETE: Can &#x60;delete&#x60; record. [DELETE]
-     * @param {string} [groupId] Filter by group ID.
-     * @param {string} [notIdGroup] Filter contacts that are not attached to the provided group.
+     * @param {string} [notIdGroup] Excludes contacts that belong to the specified group ID. - Filters out contacts associated with the given &#x60;group_id&#x60;.
+     * @param {Array<string>} [group] Filters contacts by the specified group(s). - Includes only contacts that belong to one or more of the given group Group(s).
+     * @param {Array<string>} [owner] Filters contacts by the specified owner(s). - Includes only contacts whose owner matches one or more of the given Owner(s). - The owner ID corresponds to &#x60;contact_id&#x60; in the &#x60;directory.wbt_user&#x60; table.
+     * @param {Array<string>} [label] Filters contacts by the specified label(s). - Includes only contacts that have one or more of the given Label(s).
+     * @param {boolean} [user] Filters contacts based on whether they are user-associated. - &#x60;true&#x60;  → Includes only user-associated contacts. - &#x60;false&#x60; → Includes only contacts that are NOT user-associated. - A contact is considered user-associated if it exists in &#x60;directory.wbt_user&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -285,8 +288,11 @@ export const ContactsApiAxiosParamCreator = function(
       id?: Array<string>,
       qin?: Array<string>,
       mode?: 'READ' | 'WRITE' | 'DELETE',
-      groupId?: string,
       notIdGroup?: string,
+      group?: Array<string>,
+      owner?: Array<string>,
+      label?: Array<string>,
+      user?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/contacts`
@@ -344,12 +350,24 @@ export const ContactsApiAxiosParamCreator = function(
         localVarQueryParameter['mode'] = mode
       }
 
-      if (groupId !== undefined) {
-        localVarQueryParameter['group_id'] = groupId
-      }
-
       if (notIdGroup !== undefined) {
         localVarQueryParameter['not_id_group'] = notIdGroup
+      }
+
+      if (group) {
+        localVarQueryParameter['group'] = group
+      }
+
+      if (owner) {
+        localVarQueryParameter['owner'] = owner
+      }
+
+      if (label) {
+        localVarQueryParameter['label'] = label
+      }
+
+      if (user !== undefined) {
+        localVarQueryParameter['user'] = user
       }
 
       localVarUrlObj.query = {
@@ -577,8 +595,11 @@ export const ContactsApiFp = function(configuration?: Configuration) {
      * @param {Array<string>} [id] Records with unique IDentifier(s). Accept: &#x60;id&#x60; -or- &#x60;etag&#x60;.
      * @param {Array<string>} [qin] [Q]uery[IN] is a set of search fields for term &#x60;q&#x60;. Default: &#x60;name{common_name}&#x60;.
      * @param {'READ' | 'WRITE' | 'DELETE'} [mode] Source access mode requirement.   - READ: Can &#x60;fetch&#x60; record. [GET]  - WRITE: Can &#x60;update&#x60; record. [PUT|PATCH]  - DELETE: Can &#x60;delete&#x60; record. [DELETE]
-     * @param {string} [groupId] Filter by group ID.
-     * @param {string} [notIdGroup] Filter contacts that are not attached to the provided group.
+     * @param {string} [notIdGroup] Excludes contacts that belong to the specified group ID. - Filters out contacts associated with the given &#x60;group_id&#x60;.
+     * @param {Array<string>} [group] Filters contacts by the specified group(s). - Includes only contacts that belong to one or more of the given group Group(s).
+     * @param {Array<string>} [owner] Filters contacts by the specified owner(s). - Includes only contacts whose owner matches one or more of the given Owner(s). - The owner ID corresponds to &#x60;contact_id&#x60; in the &#x60;directory.wbt_user&#x60; table.
+     * @param {Array<string>} [label] Filters contacts by the specified label(s). - Includes only contacts that have one or more of the given Label(s).
+     * @param {boolean} [user] Filters contacts based on whether they are user-associated. - &#x60;true&#x60;  → Includes only user-associated contacts. - &#x60;false&#x60; → Includes only contacts that are NOT user-associated. - A contact is considered user-associated if it exists in &#x60;directory.wbt_user&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -591,8 +612,11 @@ export const ContactsApiFp = function(configuration?: Configuration) {
       id?: Array<string>,
       qin?: Array<string>,
       mode?: 'READ' | 'WRITE' | 'DELETE',
-      groupId?: string,
       notIdGroup?: string,
+      group?: Array<string>,
+      owner?: Array<string>,
+      label?: Array<string>,
+      user?: boolean,
       options?: any
     ): Promise<
       (
@@ -611,8 +635,11 @@ export const ContactsApiFp = function(configuration?: Configuration) {
         id,
         qin,
         mode,
-        groupId,
         notIdGroup,
+        group,
+        owner,
+        label,
+        user,
         options
       )
       return (
@@ -737,8 +764,11 @@ export const ContactsApiFactory = function(
      * @param {Array<string>} [id] Records with unique IDentifier(s). Accept: &#x60;id&#x60; -or- &#x60;etag&#x60;.
      * @param {Array<string>} [qin] [Q]uery[IN] is a set of search fields for term &#x60;q&#x60;. Default: &#x60;name{common_name}&#x60;.
      * @param {'READ' | 'WRITE' | 'DELETE'} [mode] Source access mode requirement.   - READ: Can &#x60;fetch&#x60; record. [GET]  - WRITE: Can &#x60;update&#x60; record. [PUT|PATCH]  - DELETE: Can &#x60;delete&#x60; record. [DELETE]
-     * @param {string} [groupId] Filter by group ID.
-     * @param {string} [notIdGroup] Filter contacts that are not attached to the provided group.
+     * @param {string} [notIdGroup] Excludes contacts that belong to the specified group ID. - Filters out contacts associated with the given &#x60;group_id&#x60;.
+     * @param {Array<string>} [group] Filters contacts by the specified group(s). - Includes only contacts that belong to one or more of the given group Group(s).
+     * @param {Array<string>} [owner] Filters contacts by the specified owner(s). - Includes only contacts whose owner matches one or more of the given Owner(s). - The owner ID corresponds to &#x60;contact_id&#x60; in the &#x60;directory.wbt_user&#x60; table.
+     * @param {Array<string>} [label] Filters contacts by the specified label(s). - Includes only contacts that have one or more of the given Label(s).
+     * @param {boolean} [user] Filters contacts based on whether they are user-associated. - &#x60;true&#x60;  → Includes only user-associated contacts. - &#x60;false&#x60; → Includes only contacts that are NOT user-associated. - A contact is considered user-associated if it exists in &#x60;directory.wbt_user&#x60;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -751,8 +781,11 @@ export const ContactsApiFactory = function(
       id?: Array<string>,
       qin?: Array<string>,
       mode?: 'READ' | 'WRITE' | 'DELETE',
-      groupId?: string,
       notIdGroup?: string,
+      group?: Array<string>,
+      owner?: Array<string>,
+      label?: Array<string>,
+      user?: boolean,
       options?: any
     ): AxiosPromise<WebitelContactsContactList> {
       return ContactsApiFp(configuration)
@@ -765,8 +798,11 @@ export const ContactsApiFactory = function(
           id,
           qin,
           mode,
-          groupId,
           notIdGroup,
+          group,
+          owner,
+          label,
+          user,
           options
         )
         .then((request) => request(axios, basePath))
@@ -866,8 +902,11 @@ export class ContactsApi extends BaseAPI {
    * @param {Array<string>} [id] Records with unique IDentifier(s). Accept: &#x60;id&#x60; -or- &#x60;etag&#x60;.
    * @param {Array<string>} [qin] [Q]uery[IN] is a set of search fields for term &#x60;q&#x60;. Default: &#x60;name{common_name}&#x60;.
    * @param {'READ' | 'WRITE' | 'DELETE'} [mode] Source access mode requirement.   - READ: Can &#x60;fetch&#x60; record. [GET]  - WRITE: Can &#x60;update&#x60; record. [PUT|PATCH]  - DELETE: Can &#x60;delete&#x60; record. [DELETE]
-   * @param {string} [groupId] Filter by group ID.
-   * @param {string} [notIdGroup] Filter contacts that are not attached to the provided group.
+   * @param {string} [notIdGroup] Excludes contacts that belong to the specified group ID. - Filters out contacts associated with the given &#x60;group_id&#x60;.
+   * @param {Array<string>} [group] Filters contacts by the specified group(s). - Includes only contacts that belong to one or more of the given group Group(s).
+   * @param {Array<string>} [owner] Filters contacts by the specified owner(s). - Includes only contacts whose owner matches one or more of the given Owner(s). - The owner ID corresponds to &#x60;contact_id&#x60; in the &#x60;directory.wbt_user&#x60; table.
+   * @param {Array<string>} [label] Filters contacts by the specified label(s). - Includes only contacts that have one or more of the given Label(s).
+   * @param {boolean} [user] Filters contacts based on whether they are user-associated. - &#x60;true&#x60;  → Includes only user-associated contacts. - &#x60;false&#x60; → Includes only contacts that are NOT user-associated. - A contact is considered user-associated if it exists in &#x60;directory.wbt_user&#x60;.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
@@ -881,8 +920,11 @@ export class ContactsApi extends BaseAPI {
     id?: Array<string>,
     qin?: Array<string>,
     mode?: 'READ' | 'WRITE' | 'DELETE',
-    groupId?: string,
     notIdGroup?: string,
+    group?: Array<string>,
+    owner?: Array<string>,
+    label?: Array<string>,
+    user?: boolean,
     options?: any
   ) {
     return ContactsApiFp(this.configuration)
@@ -895,8 +937,11 @@ export class ContactsApi extends BaseAPI {
         id,
         qin,
         mode,
-        groupId,
         notIdGroup,
+        group,
+        owner,
+        label,
+        user,
         options
       )
       .then((request) => request(this.axios, this.basePath))

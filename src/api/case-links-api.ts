@@ -48,6 +48,8 @@ export const CaseLinksApiAxiosParamCreator = function(
      * @param {string} [inputEtag]
      * @param {string} [inputUrl]
      * @param {string} [inputName]
+     * @param {string} [inputUserIDId]
+     * @param {string} [inputUserIDName]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -57,6 +59,8 @@ export const CaseLinksApiAxiosParamCreator = function(
       inputEtag?: string,
       inputUrl?: string,
       inputName?: string,
+      inputUserIDId?: string,
+      inputUserIDName?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'caseEtag' is not null or undefined
@@ -106,6 +110,14 @@ export const CaseLinksApiAxiosParamCreator = function(
 
       if (inputName !== undefined) {
         localVarQueryParameter['input.name'] = inputName
+      }
+
+      if (inputUserIDId !== undefined) {
+        localVarQueryParameter['input.userID.id'] = inputUserIDId
+      }
+
+      if (inputUserIDName !== undefined) {
+        localVarQueryParameter['input.userID.name'] = inputUserIDName
       }
 
       localVarUrlObj.query = {
@@ -580,6 +592,8 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
      * @param {string} [inputEtag]
      * @param {string} [inputUrl]
      * @param {string} [inputName]
+     * @param {string} [inputUserIDId]
+     * @param {string} [inputUserIDName]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -589,13 +603,24 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
       inputEtag?: string,
       inputUrl?: string,
       inputName?: string,
+      inputUserIDId?: string,
+      inputUserIDName?: string,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
-      ).createLink(caseEtag, fields, inputEtag, inputUrl, inputName, options)
+      ).createLink(
+        caseEtag,
+        fields,
+        inputEtag,
+        inputUrl,
+        inputName,
+        inputUserIDId,
+        inputUserIDName,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -791,6 +816,8 @@ export const CaseLinksApiFactory = function(
      * @param {string} [inputEtag]
      * @param {string} [inputUrl]
      * @param {string} [inputName]
+     * @param {string} [inputUserIDId]
+     * @param {string} [inputUserIDName]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -800,10 +827,21 @@ export const CaseLinksApiFactory = function(
       inputEtag?: string,
       inputUrl?: string,
       inputName?: string,
+      inputUserIDId?: string,
+      inputUserIDName?: string,
       options?: any
     ): AxiosPromise<CasesCaseLink> {
       return CaseLinksApiFp(configuration)
-        .createLink(caseEtag, fields, inputEtag, inputUrl, inputName, options)
+        .createLink(
+          caseEtag,
+          fields,
+          inputEtag,
+          inputUrl,
+          inputName,
+          inputUserIDId,
+          inputUserIDName,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -924,6 +962,8 @@ export class CaseLinksApi extends BaseAPI {
    * @param {string} [inputEtag]
    * @param {string} [inputUrl]
    * @param {string} [inputName]
+   * @param {string} [inputUserIDId]
+   * @param {string} [inputUserIDName]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CaseLinksApi
@@ -934,10 +974,21 @@ export class CaseLinksApi extends BaseAPI {
     inputEtag?: string,
     inputUrl?: string,
     inputName?: string,
+    inputUserIDId?: string,
+    inputUserIDName?: string,
     options?: any
   ) {
     return CaseLinksApiFp(this.configuration)
-      .createLink(caseEtag, fields, inputEtag, inputUrl, inputName, options)
+      .createLink(
+        caseEtag,
+        fields,
+        inputEtag,
+        inputUrl,
+        inputName,
+        inputUserIDId,
+        inputUserIDName,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

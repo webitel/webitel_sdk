@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  *
  * @export
@@ -29,4 +31,10 @@ export interface InlineObject {
    * @memberof InlineObject
    */
   url?: string
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof InlineObject
+   */
+  userID?: GeneralLookup
 }

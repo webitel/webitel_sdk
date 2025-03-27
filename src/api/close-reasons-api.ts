@@ -32,8 +32,6 @@ import { CasesInputCloseReason } from '../api'
 // @ts-ignore
 import { CasesLocateCloseReasonResponse } from '../api'
 // @ts-ignore
-import { CloseReasonsCreateCloseReasonBody } from '../api'
-// @ts-ignore
 import { GooglerpcStatus } from '../api'
 /**
  * CloseReasonsApi - axios parameter creator
@@ -47,13 +45,15 @@ export const CloseReasonsApiAxiosParamCreator = function(
      *
      * @summary Create a new close reason
      * @param {string} closeReasonGroupId
-     * @param {CloseReasonsCreateCloseReasonBody} body
+     * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCloseReason: async (
       closeReasonGroupId: string,
-      body: CloseReasonsCreateCloseReasonBody,
+      input: CasesInputCloseReason,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'closeReasonGroupId' is not null or undefined
@@ -63,11 +63,11 @@ export const CloseReasonsApiAxiosParamCreator = function(
           'Required parameter closeReasonGroupId was null or undefined when calling createCloseReason.'
         )
       }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createCloseReason.'
+          'input',
+          'Required parameter input was null or undefined when calling createCloseReason.'
         )
       }
       const localVarPath = `/close_reason_groups/{close_reason_group_id}/close_reasons`.replace(
@@ -96,6 +96,10 @@ export const CloseReasonsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -113,11 +117,11 @@ export const CloseReasonsApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -386,6 +390,7 @@ export const CloseReasonsApiAxiosParamCreator = function(
      * @param {string} closeReasonGroupId
      * @param {string} id
      * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -393,6 +398,7 @@ export const CloseReasonsApiAxiosParamCreator = function(
       closeReasonGroupId: string,
       id: string,
       input: CasesInputCloseReason,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'closeReasonGroupId' is not null or undefined
@@ -444,6 +450,10 @@ export const CloseReasonsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -478,6 +488,7 @@ export const CloseReasonsApiAxiosParamCreator = function(
      * @param {string} closeReasonGroupId
      * @param {string} id
      * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -485,6 +496,7 @@ export const CloseReasonsApiAxiosParamCreator = function(
       closeReasonGroupId: string,
       id: string,
       input: CasesInputCloseReason,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'closeReasonGroupId' is not null or undefined
@@ -536,6 +548,10 @@ export const CloseReasonsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -577,13 +593,15 @@ export const CloseReasonsApiFp = function(configuration?: Configuration) {
      *
      * @summary Create a new close reason
      * @param {string} closeReasonGroupId
-     * @param {CloseReasonsCreateCloseReasonBody} body
+     * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createCloseReason(
       closeReasonGroupId: string,
-      body: CloseReasonsCreateCloseReasonBody,
+      input: CasesInputCloseReason,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -593,7 +611,7 @@ export const CloseReasonsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CloseReasonsApiAxiosParamCreator(
         configuration
-      ).createCloseReason(closeReasonGroupId, body, options)
+      ).createCloseReason(closeReasonGroupId, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -728,6 +746,7 @@ export const CloseReasonsApiFp = function(configuration?: Configuration) {
      * @param {string} closeReasonGroupId
      * @param {string} id
      * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -735,6 +754,7 @@ export const CloseReasonsApiFp = function(configuration?: Configuration) {
       closeReasonGroupId: string,
       id: string,
       input: CasesInputCloseReason,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -744,7 +764,7 @@ export const CloseReasonsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CloseReasonsApiAxiosParamCreator(
         configuration
-      ).updateCloseReason(closeReasonGroupId, id, input, options)
+      ).updateCloseReason(closeReasonGroupId, id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -762,6 +782,7 @@ export const CloseReasonsApiFp = function(configuration?: Configuration) {
      * @param {string} closeReasonGroupId
      * @param {string} id
      * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -769,6 +790,7 @@ export const CloseReasonsApiFp = function(configuration?: Configuration) {
       closeReasonGroupId: string,
       id: string,
       input: CasesInputCloseReason,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -778,7 +800,7 @@ export const CloseReasonsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CloseReasonsApiAxiosParamCreator(
         configuration
-      ).updateCloseReason2(closeReasonGroupId, id, input, options)
+      ).updateCloseReason2(closeReasonGroupId, id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -807,17 +829,19 @@ export const CloseReasonsApiFactory = function(
      *
      * @summary Create a new close reason
      * @param {string} closeReasonGroupId
-     * @param {CloseReasonsCreateCloseReasonBody} body
+     * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCloseReason(
       closeReasonGroupId: string,
-      body: CloseReasonsCreateCloseReasonBody,
+      input: CasesInputCloseReason,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCloseReason> {
       return CloseReasonsApiFp(configuration)
-        .createCloseReason(closeReasonGroupId, body, options)
+        .createCloseReason(closeReasonGroupId, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -898,6 +922,7 @@ export const CloseReasonsApiFactory = function(
      * @param {string} closeReasonGroupId
      * @param {string} id
      * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -905,10 +930,11 @@ export const CloseReasonsApiFactory = function(
       closeReasonGroupId: string,
       id: string,
       input: CasesInputCloseReason,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCloseReason> {
       return CloseReasonsApiFp(configuration)
-        .updateCloseReason(closeReasonGroupId, id, input, options)
+        .updateCloseReason(closeReasonGroupId, id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -917,6 +943,7 @@ export const CloseReasonsApiFactory = function(
      * @param {string} closeReasonGroupId
      * @param {string} id
      * @param {CasesInputCloseReason} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -924,10 +951,11 @@ export const CloseReasonsApiFactory = function(
       closeReasonGroupId: string,
       id: string,
       input: CasesInputCloseReason,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCloseReason> {
       return CloseReasonsApiFp(configuration)
-        .updateCloseReason2(closeReasonGroupId, id, input, options)
+        .updateCloseReason2(closeReasonGroupId, id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -944,18 +972,20 @@ export class CloseReasonsApi extends BaseAPI {
    *
    * @summary Create a new close reason
    * @param {string} closeReasonGroupId
-   * @param {CloseReasonsCreateCloseReasonBody} body
+   * @param {CasesInputCloseReason} input
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CloseReasonsApi
    */
   public createCloseReason(
     closeReasonGroupId: string,
-    body: CloseReasonsCreateCloseReasonBody,
+    input: CasesInputCloseReason,
+    fields?: Array<string>,
     options?: any
   ) {
     return CloseReasonsApiFp(this.configuration)
-      .createCloseReason(closeReasonGroupId, body, options)
+      .createCloseReason(closeReasonGroupId, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1043,6 +1073,7 @@ export class CloseReasonsApi extends BaseAPI {
    * @param {string} closeReasonGroupId
    * @param {string} id
    * @param {CasesInputCloseReason} input
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CloseReasonsApi
@@ -1051,10 +1082,11 @@ export class CloseReasonsApi extends BaseAPI {
     closeReasonGroupId: string,
     id: string,
     input: CasesInputCloseReason,
+    fields?: Array<string>,
     options?: any
   ) {
     return CloseReasonsApiFp(this.configuration)
-      .updateCloseReason(closeReasonGroupId, id, input, options)
+      .updateCloseReason(closeReasonGroupId, id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1064,6 +1096,7 @@ export class CloseReasonsApi extends BaseAPI {
    * @param {string} closeReasonGroupId
    * @param {string} id
    * @param {CasesInputCloseReason} input
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CloseReasonsApi
@@ -1072,10 +1105,11 @@ export class CloseReasonsApi extends BaseAPI {
     closeReasonGroupId: string,
     id: string,
     input: CasesInputCloseReason,
+    fields?: Array<string>,
     options?: any
   ) {
     return CloseReasonsApiFp(this.configuration)
-      .updateCloseReason2(closeReasonGroupId, id, input, options)
+      .updateCloseReason2(closeReasonGroupId, id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

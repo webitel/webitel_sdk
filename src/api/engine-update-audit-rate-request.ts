@@ -11,22 +11,30 @@
  * Do not edit the class manually.
  */
 
+import { EngineUpdateQuestionAnswerRequest } from './engine-update-question-answer-request'
+
 /**
  *
  * @export
- * @interface CloseReasonsCreateCloseReasonBody
+ * @interface EngineUpdateAuditRateRequest
  */
-export interface CloseReasonsCreateCloseReasonBody {
+export interface EngineUpdateAuditRateRequest {
+  /**
+   *
+   * @type {Array<EngineUpdateQuestionAnswerRequest>}
+   * @memberof EngineUpdateAuditRateRequest
+   */
+  answers?: Array<EngineUpdateQuestionAnswerRequest>
   /**
    *
    * @type {string}
-   * @memberof CloseReasonsCreateCloseReasonBody
+   * @memberof EngineUpdateAuditRateRequest
    */
-  description?: string
+  comment?: string
   /**
    *
    * @type {string}
-   * @memberof CloseReasonsCreateCloseReasonBody
+   * @memberof EngineUpdateAuditRateRequest
    */
-  name: string
+  id?: string
 }

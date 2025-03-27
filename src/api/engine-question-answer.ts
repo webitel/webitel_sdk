@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineLookup } from './engine-lookup'
+
 /**
  *
  * @export
@@ -19,8 +21,26 @@
 export interface EngineQuestionAnswer {
   /**
    *
+   * @type {string}
+   * @memberof EngineQuestionAnswer
+   */
+  comment?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineQuestionAnswer
    */
   score?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineQuestionAnswer
+   */
+  updated_at?: string
+  /**
+   *
+   * @type {EngineLookup}
+   * @memberof EngineQuestionAnswer
+   */
+  updated_by?: EngineLookup
 }

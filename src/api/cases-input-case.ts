@@ -11,8 +11,6 @@
  * Do not edit the class manually.
  */
 
-import { CasesCloseInfo } from './cases-close-info'
-import { CasesRateInfo } from './cases-rate-info'
 import { CasesStatusCondition } from './cases-status-condition'
 import { GeneralLookup } from './general-lookup'
 
@@ -30,12 +28,6 @@ export interface CasesInputCase {
   assignee?: GeneralLookup
   /**
    *
-   * @type {CasesCloseInfo}
-   * @memberof CasesInputCase
-   */
-  close?: CasesCloseInfo
-  /**
-   *
    * @type {GeneralLookup}
    * @memberof CasesInputCase
    */
@@ -45,7 +37,19 @@ export interface CasesInputCase {
    * @type {string}
    * @memberof CasesInputCase
    */
+  close_result?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesInputCase
+   */
   contact_info?: string
+  /**
+   * Custom data extension fields ..
+   * @type {object}
+   * @memberof CasesInputCase
+   */
+  custom?: object
   /**
    *
    * @type {string}
@@ -78,10 +82,16 @@ export interface CasesInputCase {
   priority?: GeneralLookup
   /**
    *
-   * @type {CasesRateInfo}
+   * @type {string}
    * @memberof CasesInputCase
    */
-  rate?: CasesRateInfo
+  rating?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesInputCase
+   */
+  rating_comment?: string
   /**
    *
    * @type {GeneralLookup}
@@ -118,4 +128,10 @@ export interface CasesInputCase {
    * @memberof CasesInputCase
    */
   subject?: string
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesInputCase
+   */
+  userID?: GeneralLookup
 }

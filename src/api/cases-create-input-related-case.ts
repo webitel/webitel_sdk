@@ -32,4 +32,10 @@ export interface CasesCreateInputRelatedCase {
    * @memberof CasesCreateInputRelatedCase
    */
   relation_type?: CasesRelationType
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesCreateInputRelatedCase
+   */
+  userID?: GeneralLookup
 }

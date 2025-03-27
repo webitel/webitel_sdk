@@ -43,6 +43,12 @@ export interface WebitelContactsInputContact {
    */
   comments?: Array<WebitelContactsInputComment>
   /**
+   * Custom extension data fields.
+   * @type {object}
+   * @memberof WebitelContactsInputContact
+   */
+  custom?: object
+  /**
    * The Contact\'s email address(es).
    * @type {Array<WebitelContactsInputEmailAddress>}
    * @memberof WebitelContactsInputContact

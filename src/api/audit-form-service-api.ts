@@ -41,6 +41,8 @@ import { EngineListAuditRate } from '../api'
 import { EnginePatchAuditFormRequest } from '../api'
 // @ts-ignore
 import { EngineUpdateAuditFormRequest } from '../api'
+// @ts-ignore
+import { EngineUpdateAuditRateRequest } from '../api'
 /**
  * AuditFormServiceApi - axios parameter creator
  * @export
@@ -203,6 +205,69 @@ export const AuditFormServiceApiAxiosParamCreator = function(
         )
       }
       const localVarPath = `/call_center/audit/forms/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAuditRate: async (
+      id: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling deleteAuditRate.'
+        )
+      }
+      const localVarPath = `/call_center/audit/rate/{id}`.replace(
         `{${'id'}}`,
         encodeURIComponent(String(id))
       )
@@ -768,6 +833,86 @@ export const AuditFormServiceApiAxiosParamCreator = function(
         options: localVarRequestOptions,
       }
     },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineUpdateAuditRateRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAuditRate: async (
+      id: string,
+      body: EngineUpdateAuditRateRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling updateAuditRate.'
+        )
+      }
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling updateAuditRate.'
+        )
+      }
+      const localVarPath = `/call_center/audit/rate/{id}`.replace(
+        `{${'id'}}`,
+        encodeURIComponent(String(id))
+      )
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
   }
 }
 
@@ -853,6 +998,35 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
       const localVarAxiosArgs = await AuditFormServiceApiAxiosParamCreator(
         configuration
       ).deleteAuditForm(id, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteAuditRate(
+      id: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineAuditRate>
+    > {
+      const localVarAxiosArgs = await AuditFormServiceApiAxiosParamCreator(
+        configuration
+      ).deleteAuditRate(id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -1105,6 +1279,37 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
         return axios.request(axiosRequestArgs)
       }
     },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineUpdateAuditRateRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async updateAuditRate(
+      id: string,
+      body: EngineUpdateAuditRateRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineAuditRate>
+    > {
+      const localVarAxiosArgs = await AuditFormServiceApiAxiosParamCreator(
+        configuration
+      ).updateAuditRate(id, body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
   }
 }
 
@@ -1155,6 +1360,17 @@ export const AuditFormServiceApiFactory = function(
     deleteAuditForm(id: number, options?: any): AxiosPromise<EngineAuditForm> {
       return AuditFormServiceApiFp(configuration)
         .deleteAuditForm(id, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAuditRate(id: string, options?: any): AxiosPromise<EngineAuditRate> {
+      return AuditFormServiceApiFp(configuration)
+        .deleteAuditRate(id, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1302,6 +1518,22 @@ export const AuditFormServiceApiFactory = function(
         .updateAuditForm(id, body, options)
         .then((request) => request(axios, basePath))
     },
+    /**
+     *
+     * @param {string} id
+     * @param {EngineUpdateAuditRateRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAuditRate(
+      id: string,
+      body: EngineUpdateAuditRateRequest,
+      options?: any
+    ): AxiosPromise<EngineAuditRate> {
+      return AuditFormServiceApiFp(configuration)
+        .updateAuditRate(id, body, options)
+        .then((request) => request(axios, basePath))
+    },
   }
 }
 
@@ -1351,6 +1583,19 @@ export class AuditFormServiceApi extends BaseAPI {
   public deleteAuditForm(id: number, options?: any) {
     return AuditFormServiceApiFp(this.configuration)
       .deleteAuditForm(id, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AuditFormServiceApi
+   */
+  public deleteAuditRate(id: string, options?: any) {
+    return AuditFormServiceApiFp(this.configuration)
+      .deleteAuditRate(id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1508,6 +1753,24 @@ export class AuditFormServiceApi extends BaseAPI {
   ) {
     return AuditFormServiceApiFp(this.configuration)
       .updateAuditForm(id, body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {string} id
+   * @param {EngineUpdateAuditRateRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AuditFormServiceApi
+   */
+  public updateAuditRate(
+    id: string,
+    body: EngineUpdateAuditRateRequest,
+    options?: any
+  ) {
+    return AuditFormServiceApiFp(this.configuration)
+      .updateAuditRate(id, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

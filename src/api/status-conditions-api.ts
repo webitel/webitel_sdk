@@ -24,6 +24,8 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { CasesInputCreateStatusCondition } from '../api'
+// @ts-ignore
 import { CasesInputStatusCondition } from '../api'
 // @ts-ignore
 import { CasesLocateStatusConditionResponse } from '../api'
@@ -33,8 +35,6 @@ import { CasesStatusCondition } from '../api'
 import { CasesStatusConditionList } from '../api'
 // @ts-ignore
 import { GooglerpcStatus } from '../api'
-// @ts-ignore
-import { StatusConditionsCreateStatusConditionBody } from '../api'
 /**
  * StatusConditionsApi - axios parameter creator
  * @export
@@ -47,13 +47,15 @@ export const StatusConditionsApiAxiosParamCreator = function(
      *
      * @summary Create a new status condition
      * @param {string} statusId
-     * @param {StatusConditionsCreateStatusConditionBody} body
+     * @param {CasesInputCreateStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createStatusCondition: async (
       statusId: string,
-      body: StatusConditionsCreateStatusConditionBody,
+      input: CasesInputCreateStatusCondition,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'statusId' is not null or undefined
@@ -63,11 +65,11 @@ export const StatusConditionsApiAxiosParamCreator = function(
           'Required parameter statusId was null or undefined when calling createStatusCondition.'
         )
       }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createStatusCondition.'
+          'input',
+          'Required parameter input was null or undefined when calling createStatusCondition.'
         )
       }
       const localVarPath = `/statuses/{status_id}/status`.replace(
@@ -96,6 +98,10 @@ export const StatusConditionsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -113,11 +119,11 @@ export const StatusConditionsApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -380,6 +386,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
      * @param {string} statusId
      * @param {string} id
      * @param {CasesInputStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -387,6 +394,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
       statusId: string,
       id: string,
       input: CasesInputStatusCondition,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'statusId' is not null or undefined
@@ -435,6 +443,10 @@ export const StatusConditionsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -469,6 +481,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
      * @param {string} statusId
      * @param {string} id
      * @param {CasesInputStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -476,6 +489,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
       statusId: string,
       id: string,
       input: CasesInputStatusCondition,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'statusId' is not null or undefined
@@ -524,6 +538,10 @@ export const StatusConditionsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -565,13 +583,15 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
      *
      * @summary Create a new status condition
      * @param {string} statusId
-     * @param {StatusConditionsCreateStatusConditionBody} body
+     * @param {CasesInputCreateStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createStatusCondition(
       statusId: string,
-      body: StatusConditionsCreateStatusConditionBody,
+      input: CasesInputCreateStatusCondition,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -581,7 +601,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
-      ).createStatusCondition(statusId, body, options)
+      ).createStatusCondition(statusId, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -707,6 +727,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
      * @param {string} statusId
      * @param {string} id
      * @param {CasesInputStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -714,6 +735,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
       statusId: string,
       id: string,
       input: CasesInputStatusCondition,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -723,7 +745,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
-      ).updateStatusCondition(statusId, id, input, options)
+      ).updateStatusCondition(statusId, id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -741,6 +763,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
      * @param {string} statusId
      * @param {string} id
      * @param {CasesInputStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -748,6 +771,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
       statusId: string,
       id: string,
       input: CasesInputStatusCondition,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -757,7 +781,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
-      ).updateStatusCondition2(statusId, id, input, options)
+      ).updateStatusCondition2(statusId, id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -786,17 +810,19 @@ export const StatusConditionsApiFactory = function(
      *
      * @summary Create a new status condition
      * @param {string} statusId
-     * @param {StatusConditionsCreateStatusConditionBody} body
+     * @param {CasesInputCreateStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createStatusCondition(
       statusId: string,
-      body: StatusConditionsCreateStatusConditionBody,
+      input: CasesInputCreateStatusCondition,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesStatusCondition> {
       return StatusConditionsApiFp(configuration)
-        .createStatusCondition(statusId, body, options)
+        .createStatusCondition(statusId, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -877,6 +903,7 @@ export const StatusConditionsApiFactory = function(
      * @param {string} statusId
      * @param {string} id
      * @param {CasesInputStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -884,10 +911,11 @@ export const StatusConditionsApiFactory = function(
       statusId: string,
       id: string,
       input: CasesInputStatusCondition,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesStatusCondition> {
       return StatusConditionsApiFp(configuration)
-        .updateStatusCondition(statusId, id, input, options)
+        .updateStatusCondition(statusId, id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -896,6 +924,7 @@ export const StatusConditionsApiFactory = function(
      * @param {string} statusId
      * @param {string} id
      * @param {CasesInputStatusCondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -903,10 +932,11 @@ export const StatusConditionsApiFactory = function(
       statusId: string,
       id: string,
       input: CasesInputStatusCondition,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesStatusCondition> {
       return StatusConditionsApiFp(configuration)
-        .updateStatusCondition2(statusId, id, input, options)
+        .updateStatusCondition2(statusId, id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -923,18 +953,20 @@ export class StatusConditionsApi extends BaseAPI {
    *
    * @summary Create a new status condition
    * @param {string} statusId
-   * @param {StatusConditionsCreateStatusConditionBody} body
+   * @param {CasesInputCreateStatusCondition} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StatusConditionsApi
    */
   public createStatusCondition(
     statusId: string,
-    body: StatusConditionsCreateStatusConditionBody,
+    input: CasesInputCreateStatusCondition,
+    fields?: Array<string>,
     options?: any
   ) {
     return StatusConditionsApiFp(this.configuration)
-      .createStatusCondition(statusId, body, options)
+      .createStatusCondition(statusId, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1009,6 +1041,7 @@ export class StatusConditionsApi extends BaseAPI {
    * @param {string} statusId
    * @param {string} id
    * @param {CasesInputStatusCondition} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StatusConditionsApi
@@ -1017,10 +1050,11 @@ export class StatusConditionsApi extends BaseAPI {
     statusId: string,
     id: string,
     input: CasesInputStatusCondition,
+    fields?: Array<string>,
     options?: any
   ) {
     return StatusConditionsApiFp(this.configuration)
-      .updateStatusCondition(statusId, id, input, options)
+      .updateStatusCondition(statusId, id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1030,6 +1064,7 @@ export class StatusConditionsApi extends BaseAPI {
    * @param {string} statusId
    * @param {string} id
    * @param {CasesInputStatusCondition} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StatusConditionsApi
@@ -1038,10 +1073,11 @@ export class StatusConditionsApi extends BaseAPI {
     statusId: string,
     id: string,
     input: CasesInputStatusCondition,
+    fields?: Array<string>,
     options?: any
   ) {
     return StatusConditionsApiFp(this.configuration)
-      .updateStatusCondition2(statusId, id, input, options)
+      .updateStatusCondition2(statusId, id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

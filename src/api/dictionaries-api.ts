@@ -768,6 +768,7 @@ export const DictionariesApiAxiosParamCreator = function(
      * @param {string} [path] &#x60;types.path&#x60;
      * @param {boolean} [readonly] [NOT] [ system / custom ] types only
      * @param {boolean} [extendable] [NOT] Extend[able] types only.
+     * @param {boolean} [extensions] [NOT] include extensions/_* types.
      * @param {boolean} [extended] [NOT] Extend[ed] types only.
      * @param {boolean} [administered] [NOT] Administer access control only
      * @param {number} [size] Number of result records (per page). Default: 16.
@@ -785,6 +786,7 @@ export const DictionariesApiAxiosParamCreator = function(
       path?: string,
       readonly?: boolean,
       extendable?: boolean,
+      extensions?: boolean,
       extended?: boolean,
       administered?: boolean,
       size?: number,
@@ -842,6 +844,10 @@ export const DictionariesApiAxiosParamCreator = function(
 
       if (extendable !== undefined) {
         localVarQueryParameter['extendable'] = extendable
+      }
+
+      if (extensions !== undefined) {
+        localVarQueryParameter['extensions'] = extensions
       }
 
       if (extended !== undefined) {
@@ -1480,6 +1486,7 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
      * @param {string} [path] &#x60;types.path&#x60;
      * @param {boolean} [readonly] [NOT] [ system / custom ] types only
      * @param {boolean} [extendable] [NOT] Extend[able] types only.
+     * @param {boolean} [extensions] [NOT] include extensions/_* types.
      * @param {boolean} [extended] [NOT] Extend[ed] types only.
      * @param {boolean} [administered] [NOT] Administer access control only
      * @param {number} [size] Number of result records (per page). Default: 16.
@@ -1497,6 +1504,7 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
       path?: string,
       readonly?: boolean,
       extendable?: boolean,
+      extensions?: boolean,
       extended?: boolean,
       administered?: boolean,
       size?: number,
@@ -1520,6 +1528,7 @@ export const DictionariesApiFp = function(configuration?: Configuration) {
         path,
         readonly,
         extendable,
+        extensions,
         extended,
         administered,
         size,
@@ -1829,6 +1838,7 @@ export const DictionariesApiFactory = function(
      * @param {string} [path] &#x60;types.path&#x60;
      * @param {boolean} [readonly] [NOT] [ system / custom ] types only
      * @param {boolean} [extendable] [NOT] Extend[able] types only.
+     * @param {boolean} [extensions] [NOT] include extensions/_* types.
      * @param {boolean} [extended] [NOT] Extend[ed] types only.
      * @param {boolean} [administered] [NOT] Administer access control only
      * @param {number} [size] Number of result records (per page). Default: 16.
@@ -1846,6 +1856,7 @@ export const DictionariesApiFactory = function(
       path?: string,
       readonly?: boolean,
       extendable?: boolean,
+      extensions?: boolean,
       extended?: boolean,
       administered?: boolean,
       size?: number,
@@ -1863,6 +1874,7 @@ export const DictionariesApiFactory = function(
           path,
           readonly,
           extendable,
+          extensions,
           extended,
           administered,
           size,
@@ -2128,6 +2140,7 @@ export class DictionariesApi extends BaseAPI {
    * @param {string} [path] &#x60;types.path&#x60;
    * @param {boolean} [readonly] [NOT] [ system / custom ] types only
    * @param {boolean} [extendable] [NOT] Extend[able] types only.
+   * @param {boolean} [extensions] [NOT] include extensions/_* types.
    * @param {boolean} [extended] [NOT] Extend[ed] types only.
    * @param {boolean} [administered] [NOT] Administer access control only
    * @param {number} [size] Number of result records (per page). Default: 16.
@@ -2146,6 +2159,7 @@ export class DictionariesApi extends BaseAPI {
     path?: string,
     readonly?: boolean,
     extendable?: boolean,
+    extensions?: boolean,
     extended?: boolean,
     administered?: boolean,
     size?: number,
@@ -2163,6 +2177,7 @@ export class DictionariesApi extends BaseAPI {
         path,
         readonly,
         extendable,
+        extensions,
         extended,
         administered,
         size,

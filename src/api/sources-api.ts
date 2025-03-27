@@ -24,8 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCreateSourceRequest } from '../api'
-// @ts-ignore
 import { CasesInputSource } from '../api'
 // @ts-ignore
 import { CasesLocateSourceResponse } from '../api'
@@ -46,19 +44,21 @@ export const SourcesApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new source
-     * @param {CasesCreateSourceRequest} body Request message for creating a new source.
+     * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSource: async (
-      body: CasesCreateSourceRequest,
+      input: CasesInputSource,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createSource.'
+          'input',
+          'Required parameter input was null or undefined when calling createSource.'
         )
       }
       const localVarPath = `/cases/sources`
@@ -84,6 +84,10 @@ export const SourcesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -101,11 +105,11 @@ export const SourcesApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -353,12 +357,14 @@ export const SourcesApiAxiosParamCreator = function(
      * @summary Update an existing source
      * @param {string} id
      * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSource: async (
       id: string,
       input: CasesInputSource,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -401,6 +407,10 @@ export const SourcesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -434,12 +444,14 @@ export const SourcesApiAxiosParamCreator = function(
      * @summary Update an existing source
      * @param {string} id
      * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSource2: async (
       id: string,
       input: CasesInputSource,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -482,6 +494,10 @@ export const SourcesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -522,19 +538,21 @@ export const SourcesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new source
-     * @param {CasesCreateSourceRequest} body Request message for creating a new source.
+     * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createSource(
-      body: CasesCreateSourceRequest,
+      input: CasesInputSource,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSource>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
-      ).createSource(body, options)
+      ).createSource(input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -660,19 +678,21 @@ export const SourcesApiFp = function(configuration?: Configuration) {
      * @summary Update an existing source
      * @param {string} id
      * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSource(
       id: string,
       input: CasesInputSource,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSource>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
-      ).updateSource(id, input, options)
+      ).updateSource(id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -689,19 +709,21 @@ export const SourcesApiFp = function(configuration?: Configuration) {
      * @summary Update an existing source
      * @param {string} id
      * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSource2(
       id: string,
       input: CasesInputSource,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSource>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
-      ).updateSource2(id, input, options)
+      ).updateSource2(id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -729,16 +751,18 @@ export const SourcesApiFactory = function(
     /**
      *
      * @summary Create a new source
-     * @param {CasesCreateSourceRequest} body Request message for creating a new source.
+     * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSource(
-      body: CasesCreateSourceRequest,
+      input: CasesInputSource,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSource> {
       return SourcesApiFp(configuration)
-        .createSource(body, options)
+        .createSource(input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -810,16 +834,18 @@ export const SourcesApiFactory = function(
      * @summary Update an existing source
      * @param {string} id
      * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSource(
       id: string,
       input: CasesInputSource,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSource> {
       return SourcesApiFp(configuration)
-        .updateSource(id, input, options)
+        .updateSource(id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -827,16 +853,18 @@ export const SourcesApiFactory = function(
      * @summary Update an existing source
      * @param {string} id
      * @param {CasesInputSource} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSource2(
       id: string,
       input: CasesInputSource,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSource> {
       return SourcesApiFp(configuration)
-        .updateSource2(id, input, options)
+        .updateSource2(id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -852,14 +880,19 @@ export class SourcesApi extends BaseAPI {
   /**
    *
    * @summary Create a new source
-   * @param {CasesCreateSourceRequest} body Request message for creating a new source.
+   * @param {CasesInputSource} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SourcesApi
    */
-  public createSource(body: CasesCreateSourceRequest, options?: any) {
+  public createSource(
+    input: CasesInputSource,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return SourcesApiFp(this.configuration)
-      .createSource(body, options)
+      .createSource(input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -934,13 +967,19 @@ export class SourcesApi extends BaseAPI {
    * @summary Update an existing source
    * @param {string} id
    * @param {CasesInputSource} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SourcesApi
    */
-  public updateSource(id: string, input: CasesInputSource, options?: any) {
+  public updateSource(
+    id: string,
+    input: CasesInputSource,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return SourcesApiFp(this.configuration)
-      .updateSource(id, input, options)
+      .updateSource(id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -949,13 +988,19 @@ export class SourcesApi extends BaseAPI {
    * @summary Update an existing source
    * @param {string} id
    * @param {CasesInputSource} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SourcesApi
    */
-  public updateSource2(id: string, input: CasesInputSource, options?: any) {
+  public updateSource2(
+    id: string,
+    input: CasesInputSource,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return SourcesApiFp(this.configuration)
-      .updateSource2(id, input, options)
+      .updateSource2(id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

@@ -268,6 +268,7 @@ export const CasesApiAxiosParamCreator = function(
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {Array<string>} [filters] Key-value pairs for additional filtering.
+     * @param {string} [contactId] Contact ID for filtering cases.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -279,9 +280,120 @@ export const CasesApiAxiosParamCreator = function(
       sort?: string,
       fields?: Array<string>,
       filters?: Array<string>,
+      contactId?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/cases`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
+      }
+
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (q !== undefined) {
+        localVarQueryParameter['q'] = q
+      }
+
+      if (ids) {
+        localVarQueryParameter['ids'] = ids
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (filters) {
+        localVarQueryParameter['filters'] = filters
+      }
+
+      if (contactId !== undefined) {
+        localVarQueryParameter['contact_id'] = contactId
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary RPC method for searching cases.
+     * @param {string} contactId Contact ID for filtering cases.
+     * @param {number} [page] Page number for pagination.
+     * @param {number} [size] Number of results per page.
+     * @param {string} [q] Query string for searching cases.
+     * @param {Array<string>} [ids] List of specific case IDs to retrieve.
+     * @param {string} [sort] Sorting criteria (e.g., field:asc).
+     * @param {Array<string>} [fields] List of fields to include in the response.
+     * @param {Array<string>} [filters] Key-value pairs for additional filtering.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCases2: async (
+      contactId: string,
+      page?: number,
+      size?: number,
+      q?: string,
+      ids?: Array<string>,
+      sort?: string,
+      fields?: Array<string>,
+      filters?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'contactId' is not null or undefined
+      if (contactId === null || contactId === undefined) {
+        throw new RequiredError(
+          'contactId',
+          'Required parameter contactId was null or undefined when calling searchCases2.'
+        )
+      }
+      const localVarPath = `/contacts/{contact_id}/cases`.replace(
+        `{${'contact_id'}}`,
+        encodeURIComponent(String(contactId))
+      )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -644,10 +756,63 @@ export const CasesApiFp = function(configuration?: Configuration) {
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {Array<string>} [filters] Key-value pairs for additional filtering.
+     * @param {string} [contactId] Contact ID for filtering cases.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async searchCases(
+      page?: number,
+      size?: number,
+      q?: string,
+      ids?: Array<string>,
+      sort?: string,
+      fields?: Array<string>,
+      filters?: Array<string>,
+      contactId?: string,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseList>
+    > {
+      const localVarAxiosArgs = await CasesApiAxiosParamCreator(
+        configuration
+      ).searchCases(
+        page,
+        size,
+        q,
+        ids,
+        sort,
+        fields,
+        filters,
+        contactId,
+        options
+      )
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary RPC method for searching cases.
+     * @param {string} contactId Contact ID for filtering cases.
+     * @param {number} [page] Page number for pagination.
+     * @param {number} [size] Number of results per page.
+     * @param {string} [q] Query string for searching cases.
+     * @param {Array<string>} [ids] List of specific case IDs to retrieve.
+     * @param {string} [sort] Sorting criteria (e.g., field:asc).
+     * @param {Array<string>} [fields] List of fields to include in the response.
+     * @param {Array<string>} [filters] Key-value pairs for additional filtering.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchCases2(
+      contactId: string,
       page?: number,
       size?: number,
       q?: string,
@@ -661,7 +826,17 @@ export const CasesApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
-      ).searchCases(page, size, q, ids, sort, fields, filters, options)
+      ).searchCases2(
+        contactId,
+        page,
+        size,
+        q,
+        ids,
+        sort,
+        fields,
+        filters,
+        options
+      )
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -813,6 +988,7 @@ export const CasesApiFactory = function(
      * @param {string} [sort] Sorting criteria (e.g., field:asc).
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {Array<string>} [filters] Key-value pairs for additional filtering.
+     * @param {string} [contactId] Contact ID for filtering cases.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -824,10 +1000,60 @@ export const CasesApiFactory = function(
       sort?: string,
       fields?: Array<string>,
       filters?: Array<string>,
+      contactId?: string,
       options?: any
     ): AxiosPromise<CasesCaseList> {
       return CasesApiFp(configuration)
-        .searchCases(page, size, q, ids, sort, fields, filters, options)
+        .searchCases(
+          page,
+          size,
+          q,
+          ids,
+          sort,
+          fields,
+          filters,
+          contactId,
+          options
+        )
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary RPC method for searching cases.
+     * @param {string} contactId Contact ID for filtering cases.
+     * @param {number} [page] Page number for pagination.
+     * @param {number} [size] Number of results per page.
+     * @param {string} [q] Query string for searching cases.
+     * @param {Array<string>} [ids] List of specific case IDs to retrieve.
+     * @param {string} [sort] Sorting criteria (e.g., field:asc).
+     * @param {Array<string>} [fields] List of fields to include in the response.
+     * @param {Array<string>} [filters] Key-value pairs for additional filtering.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCases2(
+      contactId: string,
+      page?: number,
+      size?: number,
+      q?: string,
+      ids?: Array<string>,
+      sort?: string,
+      fields?: Array<string>,
+      filters?: Array<string>,
+      options?: any
+    ): AxiosPromise<CasesCaseList> {
+      return CasesApiFp(configuration)
+        .searchCases2(
+          contactId,
+          page,
+          size,
+          q,
+          ids,
+          sort,
+          fields,
+          filters,
+          options
+        )
         .then((request) => request(axios, basePath))
     },
     /**
@@ -941,6 +1167,7 @@ export class CasesApi extends BaseAPI {
    * @param {string} [sort] Sorting criteria (e.g., field:asc).
    * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {Array<string>} [filters] Key-value pairs for additional filtering.
+   * @param {string} [contactId] Contact ID for filtering cases.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
@@ -953,10 +1180,62 @@ export class CasesApi extends BaseAPI {
     sort?: string,
     fields?: Array<string>,
     filters?: Array<string>,
+    contactId?: string,
     options?: any
   ) {
     return CasesApiFp(this.configuration)
-      .searchCases(page, size, q, ids, sort, fields, filters, options)
+      .searchCases(
+        page,
+        size,
+        q,
+        ids,
+        sort,
+        fields,
+        filters,
+        contactId,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary RPC method for searching cases.
+   * @param {string} contactId Contact ID for filtering cases.
+   * @param {number} [page] Page number for pagination.
+   * @param {number} [size] Number of results per page.
+   * @param {string} [q] Query string for searching cases.
+   * @param {Array<string>} [ids] List of specific case IDs to retrieve.
+   * @param {string} [sort] Sorting criteria (e.g., field:asc).
+   * @param {Array<string>} [fields] List of fields to include in the response.
+   * @param {Array<string>} [filters] Key-value pairs for additional filtering.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CasesApi
+   */
+  public searchCases2(
+    contactId: string,
+    page?: number,
+    size?: number,
+    q?: string,
+    ids?: Array<string>,
+    sort?: string,
+    fields?: Array<string>,
+    filters?: Array<string>,
+    options?: any
+  ) {
+    return CasesApiFp(this.configuration)
+      .searchCases2(
+        contactId,
+        page,
+        size,
+        q,
+        ids,
+        sort,
+        fields,
+        filters,
+        options
+      )
       .then((request) => request(this.axios, this.basePath))
   }
 

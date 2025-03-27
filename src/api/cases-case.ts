@@ -14,13 +14,10 @@
 import { CasesCaseCommentList } from './cases-case-comment-list'
 import { CasesCaseFileList } from './cases-case-file-list'
 import { CasesCaseLinkList } from './cases-case-link-list'
-import { CasesCloseInfo } from './cases-close-info'
 import { CasesPriority } from './cases-priority'
-import { CasesRateInfo } from './cases-rate-info'
 import { CasesRelatedCaseList } from './cases-related-case-list'
 import { CasesSourceTypeLookup } from './cases-source-type-lookup'
 import { CasesStatusCondition } from './cases-status-condition'
-import { CasesTimingInfo } from './cases-timing-info'
 import { GeneralExtendedLookup } from './general-extended-lookup'
 import { GeneralLookup } from './general-lookup'
 
@@ -44,16 +41,22 @@ export interface CasesCase {
   author?: GeneralLookup
   /**
    *
-   * @type {CasesCloseInfo}
+   * @type {GeneralLookup}
    * @memberof CasesCase
    */
-  close?: CasesCloseInfo
+  close_reason?: GeneralLookup
   /**
    *
    * @type {GeneralLookup}
    * @memberof CasesCase
    */
   close_reason_group?: GeneralLookup
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCase
+   */
+  close_result?: string
   /**
    *
    * @type {CasesCaseCommentList}
@@ -79,11 +82,29 @@ export interface CasesCase {
    */
   created_by?: GeneralLookup
   /**
+   * Custom data extension fields ..
+   * @type {object}
+   * @memberof CasesCase
+   */
+  custom?: object
+  /**
    * Detailed description of the case.
    * @type {string}
    * @memberof CasesCase
    */
   description?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCase
+   */
+  difference_in_reaction?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCase
+   */
+  difference_in_resolve?: string
   /**
    * Unique etag identifier.
    * @type {string}
@@ -146,10 +167,22 @@ export interface CasesCase {
   priority?: CasesPriority
   /**
    *
-   * @type {CasesRateInfo}
+   * @type {string}
    * @memberof CasesCase
    */
-  rate?: CasesRateInfo
+  rating?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCase
+   */
+  rating_comment?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCase
+   */
+  reacted_at?: string
   /**
    *
    * @type {CasesRelatedCaseList}
@@ -162,6 +195,18 @@ export interface CasesCase {
    * @memberof CasesCase
    */
   reporter?: GeneralLookup
+  /**
+   *
+   * @type {string}
+   * @memberof CasesCase
+   */
+  resolved_at?: string
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof CasesCase
+   */
+  role_ids?: Array<string>
   /**
    *
    * @type {GeneralLookup}
@@ -204,12 +249,6 @@ export interface CasesCase {
    * @memberof CasesCase
    */
   subject?: string
-  /**
-   *
-   * @type {CasesTimingInfo}
-   * @memberof CasesCase
-   */
-  timing?: CasesTimingInfo
   /**
    * Last update timestamp (in milliseconds since Unix epoch).
    * @type {string}

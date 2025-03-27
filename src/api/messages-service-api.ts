@@ -24,47 +24,38 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { EngineBroadcastRequest } from '../api'
+import { WebitelChatBroadcastMessageRequest } from '../api'
+// @ts-ignore
+import { WebitelChatBroadcastMessageResponse } from '../api'
 /**
- * ChatHelperServiceApi - axios parameter creator
+ * MessagesServiceApi - axios parameter creator
  * @export
  */
-export const ChatHelperServiceApiAxiosParamCreator = function(
+export const MessagesServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
     /**
      *
-     * @param {string} profileId
-     * @param {EngineBroadcastRequest} body
+     * @summary Broadcast message send message from via to peer recipients.
+     * @param {WebitelChatBroadcastMessageRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    broadcast: async (
-      profileId: string,
-      body: EngineBroadcastRequest,
+    broadcastMessage: async (
+      body: WebitelChatBroadcastMessageRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'profileId' is not null or undefined
-      if (profileId === null || profileId === undefined) {
-        throw new RequiredError(
-          'profileId',
-          'Required parameter profileId was null or undefined when calling broadcast.'
-        )
-      }
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling broadcast.'
+          'Required parameter body was null or undefined when calling broadcastMessage.'
         )
       }
-      const localVarPath = `/chat/bots/{profile_id}/broadcast`.replace(
-        `{${'profile_id'}}`,
-        encodeURIComponent(String(profileId))
-      )
+      const localVarPath = `/chat/broadcast`
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -119,28 +110,30 @@ export const ChatHelperServiceApiAxiosParamCreator = function(
 }
 
 /**
- * ChatHelperServiceApi - functional programming interface
+ * MessagesServiceApi - functional programming interface
  * @export
  */
-export const ChatHelperServiceApiFp = function(configuration?: Configuration) {
+export const MessagesServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {string} profileId
-     * @param {EngineBroadcastRequest} body
+     * @summary Broadcast message send message from via to peer recipients.
+     * @param {WebitelChatBroadcastMessageRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async broadcast(
-      profileId: string,
-      body: EngineBroadcastRequest,
+    async broadcastMessage(
+      body: WebitelChatBroadcastMessageRequest,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelChatBroadcastMessageResponse>
     > {
-      const localVarAxiosArgs = await ChatHelperServiceApiAxiosParamCreator(
+      const localVarAxiosArgs = await MessagesServiceApiAxiosParamCreator(
         configuration
-      ).broadcast(profileId, body, options)
+      ).broadcastMessage(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -156,10 +149,10 @@ export const ChatHelperServiceApiFp = function(configuration?: Configuration) {
 }
 
 /**
- * ChatHelperServiceApi - factory interface
+ * MessagesServiceApi - factory interface
  * @export
  */
-export const ChatHelperServiceApiFactory = function(
+export const MessagesServiceApiFactory = function(
   configuration?: Configuration,
   basePath?: string,
   axios?: AxiosInstance
@@ -167,45 +160,43 @@ export const ChatHelperServiceApiFactory = function(
   return {
     /**
      *
-     * @param {string} profileId
-     * @param {EngineBroadcastRequest} body
+     * @summary Broadcast message send message from via to peer recipients.
+     * @param {WebitelChatBroadcastMessageRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    broadcast(
-      profileId: string,
-      body: EngineBroadcastRequest,
+    broadcastMessage(
+      body: WebitelChatBroadcastMessageRequest,
       options?: any
-    ): AxiosPromise<object> {
-      return ChatHelperServiceApiFp(configuration)
-        .broadcast(profileId, body, options)
+    ): AxiosPromise<WebitelChatBroadcastMessageResponse> {
+      return MessagesServiceApiFp(configuration)
+        .broadcastMessage(body, options)
         .then((request) => request(axios, basePath))
     },
   }
 }
 
 /**
- * ChatHelperServiceApi - object-oriented interface
+ * MessagesServiceApi - object-oriented interface
  * @export
- * @class ChatHelperServiceApi
+ * @class MessagesServiceApi
  * @extends {BaseAPI}
  */
-export class ChatHelperServiceApi extends BaseAPI {
+export class MessagesServiceApi extends BaseAPI {
   /**
    *
-   * @param {string} profileId
-   * @param {EngineBroadcastRequest} body
+   * @summary Broadcast message send message from via to peer recipients.
+   * @param {WebitelChatBroadcastMessageRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
-   * @memberof ChatHelperServiceApi
+   * @memberof MessagesServiceApi
    */
-  public broadcast(
-    profileId: string,
-    body: EngineBroadcastRequest,
+  public broadcastMessage(
+    body: WebitelChatBroadcastMessageRequest,
     options?: any
   ) {
-    return ChatHelperServiceApiFp(this.configuration)
-      .broadcast(profileId, body, options)
+    return MessagesServiceApiFp(this.configuration)
+      .broadcastMessage(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

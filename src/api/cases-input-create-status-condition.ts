@@ -12,39 +12,21 @@
  */
 
 /**
- * Media File.
+ *
  * @export
- * @interface EngineBroadcastFile
+ * @interface CasesInputCreateStatusCondition
  */
-export interface EngineBroadcastFile {
+export interface CasesInputCreateStatusCondition {
   /**
    *
    * @type {string}
-   * @memberof EngineBroadcastFile
+   * @memberof CasesInputCreateStatusCondition
    */
-  id?: string
+  description?: string
   /**
    *
    * @type {string}
-   * @memberof EngineBroadcastFile
-   */
-  mime?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineBroadcastFile
+   * @memberof CasesInputCreateStatusCondition
    */
   name?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineBroadcastFile
-   */
-  size?: string
-  /**
-   *
-   * @type {string}
-   * @memberof EngineBroadcastFile
-   */
-  url?: string
 }

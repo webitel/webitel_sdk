@@ -11,22 +11,24 @@
  * Do not edit the class manually.
  */
 
+import { WebitelChatBroadcastError } from './webitel-chat-broadcast-error'
+
 /**
  *
  * @export
- * @interface CasesCreateStatusRequest
+ * @interface WebitelChatBroadcastMessageResponse
  */
-export interface CasesCreateStatusRequest {
+export interface WebitelChatBroadcastMessageResponse {
   /**
    *
-   * @type {string}
-   * @memberof CasesCreateStatusRequest
+   * @type {Array<WebitelChatBroadcastError>}
+   * @memberof WebitelChatBroadcastMessageResponse
    */
-  description?: string
+  failure?: Array<WebitelChatBroadcastError>
   /**
    *
-   * @type {string}
-   * @memberof CasesCreateStatusRequest
+   * @type {{ [key: string]: string; }}
+   * @memberof WebitelChatBroadcastMessageResponse
    */
-  name: string
+  variables?: { [key: string]: string }
 }

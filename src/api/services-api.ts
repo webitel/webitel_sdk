@@ -24,7 +24,7 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCreateServiceRequest } from '../api'
+import { CasesInputCreateService } from '../api'
 // @ts-ignore
 import { CasesInputService } from '../api'
 // @ts-ignore
@@ -46,19 +46,21 @@ export const ServicesApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new service within a catalog
-     * @param {CasesCreateServiceRequest} body
+     * @param {CasesInputCreateService} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createService: async (
-      body: CasesCreateServiceRequest,
+      input: CasesInputCreateService,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createService.'
+          'input',
+          'Required parameter input was null or undefined when calling createService.'
         )
       }
       const localVarPath = `/cases/services`
@@ -84,6 +86,10 @@ export const ServicesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -101,11 +107,11 @@ export const ServicesApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -351,12 +357,14 @@ export const ServicesApiAxiosParamCreator = function(
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
      * @param {CasesInputService} input Input data for updating the service
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateService: async (
       id: string,
       input: CasesInputService,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -399,6 +407,10 @@ export const ServicesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -432,12 +444,14 @@ export const ServicesApiAxiosParamCreator = function(
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
      * @param {CasesInputService} input Input data for updating the service
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateService2: async (
       id: string,
       input: CasesInputService,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -480,6 +494,10 @@ export const ServicesApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -520,19 +538,21 @@ export const ServicesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new service within a catalog
-     * @param {CasesCreateServiceRequest} body
+     * @param {CasesInputCreateService} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createService(
-      body: CasesCreateServiceRequest,
+      input: CasesInputCreateService,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesService>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
-      ).createService(body, options)
+      ).createService(input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -655,19 +675,21 @@ export const ServicesApiFp = function(configuration?: Configuration) {
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
      * @param {CasesInputService} input Input data for updating the service
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateService(
       id: string,
       input: CasesInputService,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesService>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
-      ).updateService(id, input, options)
+      ).updateService(id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -684,19 +706,21 @@ export const ServicesApiFp = function(configuration?: Configuration) {
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
      * @param {CasesInputService} input Input data for updating the service
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateService2(
       id: string,
       input: CasesInputService,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesService>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
-      ).updateService2(id, input, options)
+      ).updateService2(id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -724,16 +748,18 @@ export const ServicesApiFactory = function(
     /**
      *
      * @summary Create a new service within a catalog
-     * @param {CasesCreateServiceRequest} body
+     * @param {CasesInputCreateService} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createService(
-      body: CasesCreateServiceRequest,
+      input: CasesInputCreateService,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesService> {
       return ServicesApiFp(configuration)
-        .createService(body, options)
+        .createService(input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -802,16 +828,18 @@ export const ServicesApiFactory = function(
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
      * @param {CasesInputService} input Input data for updating the service
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateService(
       id: string,
       input: CasesInputService,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesService> {
       return ServicesApiFp(configuration)
-        .updateService(id, input, options)
+        .updateService(id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -819,16 +847,18 @@ export const ServicesApiFactory = function(
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
      * @param {CasesInputService} input Input data for updating the service
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateService2(
       id: string,
       input: CasesInputService,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesService> {
       return ServicesApiFp(configuration)
-        .updateService2(id, input, options)
+        .updateService2(id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -844,14 +874,19 @@ export class ServicesApi extends BaseAPI {
   /**
    *
    * @summary Create a new service within a catalog
-   * @param {CasesCreateServiceRequest} body
+   * @param {CasesInputCreateService} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ServicesApi
    */
-  public createService(body: CasesCreateServiceRequest, options?: any) {
+  public createService(
+    input: CasesInputCreateService,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return ServicesApiFp(this.configuration)
-      .createService(body, options)
+      .createService(input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -920,13 +955,19 @@ export class ServicesApi extends BaseAPI {
    * @summary Update an existing service
    * @param {string} id ID of the service to be updated
    * @param {CasesInputService} input Input data for updating the service
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ServicesApi
    */
-  public updateService(id: string, input: CasesInputService, options?: any) {
+  public updateService(
+    id: string,
+    input: CasesInputService,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return ServicesApiFp(this.configuration)
-      .updateService(id, input, options)
+      .updateService(id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -935,13 +976,19 @@ export class ServicesApi extends BaseAPI {
    * @summary Update an existing service
    * @param {string} id ID of the service to be updated
    * @param {CasesInputService} input Input data for updating the service
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ServicesApi
    */
-  public updateService2(id: string, input: CasesInputService, options?: any) {
+  public updateService2(
+    id: string,
+    input: CasesInputService,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return ServicesApiFp(this.configuration)
-      .updateService2(id, input, options)
+      .updateService2(id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

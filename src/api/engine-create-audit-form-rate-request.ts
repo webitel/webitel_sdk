@@ -11,8 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineCreateQuestionAnswerRequest } from './engine-create-question-answer-request'
 import { EngineLookup } from './engine-lookup'
-import { EngineQuestionAnswer } from './engine-question-answer'
 
 /**
  *
@@ -22,10 +22,10 @@ import { EngineQuestionAnswer } from './engine-question-answer'
 export interface EngineCreateAuditFormRateRequest {
   /**
    *
-   * @type {Array<EngineQuestionAnswer>}
+   * @type {Array<EngineCreateQuestionAnswerRequest>}
    * @memberof EngineCreateAuditFormRateRequest
    */
-  answers?: Array<EngineQuestionAnswer>
+  answers?: Array<EngineCreateQuestionAnswerRequest>
   /**
    *
    * @type {string}

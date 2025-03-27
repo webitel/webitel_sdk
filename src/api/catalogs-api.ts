@@ -28,8 +28,6 @@ import { CasesCatalog } from '../api'
 // @ts-ignore
 import { CasesCatalogList } from '../api'
 // @ts-ignore
-import { CasesCreateCatalogRequest } from '../api'
-// @ts-ignore
 import { CasesInputCatalog } from '../api'
 // @ts-ignore
 import { CasesLocateCatalogResponse } from '../api'
@@ -46,19 +44,21 @@ export const CatalogsApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new catalog
-     * @param {CasesCreateCatalogRequest} body
+     * @param {CasesInputCatalog} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCatalog: async (
-      body: CasesCreateCatalogRequest,
+      input: CasesInputCatalog,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createCatalog.'
+          'input',
+          'Required parameter input was null or undefined when calling createCatalog.'
         )
       }
       const localVarPath = `/cases/catalogs`
@@ -84,6 +84,10 @@ export const CatalogsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -101,11 +105,11 @@ export const CatalogsApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -369,12 +373,14 @@ export const CatalogsApiAxiosParamCreator = function(
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
      * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCatalog: async (
       id: string,
       input: CasesInputCatalog,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -417,6 +423,10 @@ export const CatalogsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -450,12 +460,14 @@ export const CatalogsApiAxiosParamCreator = function(
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
      * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCatalog2: async (
       id: string,
       input: CasesInputCatalog,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -498,6 +510,10 @@ export const CatalogsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -538,19 +554,21 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new catalog
-     * @param {CasesCreateCatalogRequest} body
+     * @param {CasesInputCatalog} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createCatalog(
-      body: CasesCreateCatalogRequest,
+      input: CasesInputCatalog,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCatalog>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
-      ).createCatalog(body, options)
+      ).createCatalog(input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -691,19 +709,21 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
      * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCatalog(
       id: string,
       input: CasesInputCatalog,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCatalog>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
-      ).updateCatalog(id, input, options)
+      ).updateCatalog(id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -720,19 +740,21 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
      * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCatalog2(
       id: string,
       input: CasesInputCatalog,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCatalog>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
-      ).updateCatalog2(id, input, options)
+      ).updateCatalog2(id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -760,16 +782,18 @@ export const CatalogsApiFactory = function(
     /**
      *
      * @summary Create a new catalog
-     * @param {CasesCreateCatalogRequest} body
+     * @param {CasesInputCatalog} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCatalog(
-      body: CasesCreateCatalogRequest,
+      input: CasesInputCatalog,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCatalog> {
       return CatalogsApiFp(configuration)
-        .createCatalog(body, options)
+        .createCatalog(input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -856,16 +880,18 @@ export const CatalogsApiFactory = function(
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
      * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCatalog(
       id: string,
       input: CasesInputCatalog,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCatalog> {
       return CatalogsApiFp(configuration)
-        .updateCatalog(id, input, options)
+        .updateCatalog(id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -873,16 +899,18 @@ export const CatalogsApiFactory = function(
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
      * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCatalog2(
       id: string,
       input: CasesInputCatalog,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesCatalog> {
       return CatalogsApiFp(configuration)
-        .updateCatalog2(id, input, options)
+        .updateCatalog2(id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -898,14 +926,19 @@ export class CatalogsApi extends BaseAPI {
   /**
    *
    * @summary Create a new catalog
-   * @param {CasesCreateCatalogRequest} body
+   * @param {CasesInputCatalog} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogsApi
    */
-  public createCatalog(body: CasesCreateCatalogRequest, options?: any) {
+  public createCatalog(
+    input: CasesInputCatalog,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return CatalogsApiFp(this.configuration)
-      .createCatalog(body, options)
+      .createCatalog(input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -996,13 +1029,19 @@ export class CatalogsApi extends BaseAPI {
    * @summary Update an existing catalog
    * @param {string} id ID of the catalog to be updated
    * @param {CasesInputCatalog} input Input data for updating the catalog
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogsApi
    */
-  public updateCatalog(id: string, input: CasesInputCatalog, options?: any) {
+  public updateCatalog(
+    id: string,
+    input: CasesInputCatalog,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return CatalogsApiFp(this.configuration)
-      .updateCatalog(id, input, options)
+      .updateCatalog(id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1011,13 +1050,19 @@ export class CatalogsApi extends BaseAPI {
    * @summary Update an existing catalog
    * @param {string} id ID of the catalog to be updated
    * @param {CasesInputCatalog} input Input data for updating the catalog
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogsApi
    */
-  public updateCatalog2(id: string, input: CasesInputCatalog, options?: any) {
+  public updateCatalog2(
+    id: string,
+    input: CasesInputCatalog,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return CatalogsApiFp(this.configuration)
-      .updateCatalog2(id, input, options)
+      .updateCatalog2(id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

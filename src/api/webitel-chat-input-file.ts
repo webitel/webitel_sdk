@@ -14,9 +14,19 @@
 /**
  *
  * @export
- * @enum {string}
+ * @interface WebitelChatInputFile
  */
-export enum EnginePresetQuerySection {
-  Default = 'section_default',
-  Calls = 'section_calls',
+export interface WebitelChatInputFile {
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelChatInputFile
+   */
+  id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof WebitelChatInputFile
+   */
+  url?: string
 }

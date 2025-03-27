@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  *
  * @export
@@ -23,4 +25,10 @@ export interface DataForTheCommentToUpdate1 {
    * @memberof DataForTheCommentToUpdate1
    */
   text?: string
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof DataForTheCommentToUpdate1
+   */
+  userID?: GeneralLookup
 }

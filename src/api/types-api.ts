@@ -106,6 +106,7 @@ export const TypesApiAxiosParamCreator = function(
      * @param {string} [path] &#x60;types.path&#x60;
      * @param {boolean} [readonly] [NOT] [ system / custom ] types only
      * @param {boolean} [extendable] [NOT] Extend[able] types only.
+     * @param {boolean} [extensions] [NOT] include extensions/_* types.
      * @param {boolean} [extended] [NOT] Extend[ed] types only.
      * @param {boolean} [administered] [NOT] Administer access control only
      * @param {number} [size] Number of result records (per page). Default: 16.
@@ -123,6 +124,7 @@ export const TypesApiAxiosParamCreator = function(
       path?: string,
       readonly?: boolean,
       extendable?: boolean,
+      extensions?: boolean,
       extended?: boolean,
       administered?: boolean,
       size?: number,
@@ -180,6 +182,10 @@ export const TypesApiAxiosParamCreator = function(
 
       if (extendable !== undefined) {
         localVarQueryParameter['extendable'] = extendable
+      }
+
+      if (extensions !== undefined) {
+        localVarQueryParameter['extensions'] = extensions
       }
 
       if (extended !== undefined) {
@@ -275,6 +281,7 @@ export const TypesApiFp = function(configuration?: Configuration) {
      * @param {string} [path] &#x60;types.path&#x60;
      * @param {boolean} [readonly] [NOT] [ system / custom ] types only
      * @param {boolean} [extendable] [NOT] Extend[able] types only.
+     * @param {boolean} [extensions] [NOT] include extensions/_* types.
      * @param {boolean} [extended] [NOT] Extend[ed] types only.
      * @param {boolean} [administered] [NOT] Administer access control only
      * @param {number} [size] Number of result records (per page). Default: 16.
@@ -292,6 +299,7 @@ export const TypesApiFp = function(configuration?: Configuration) {
       path?: string,
       readonly?: boolean,
       extendable?: boolean,
+      extensions?: boolean,
       extended?: boolean,
       administered?: boolean,
       size?: number,
@@ -315,6 +323,7 @@ export const TypesApiFp = function(configuration?: Configuration) {
         path,
         readonly,
         extendable,
+        extensions,
         extended,
         administered,
         size,
@@ -369,6 +378,7 @@ export const TypesApiFactory = function(
      * @param {string} [path] &#x60;types.path&#x60;
      * @param {boolean} [readonly] [NOT] [ system / custom ] types only
      * @param {boolean} [extendable] [NOT] Extend[able] types only.
+     * @param {boolean} [extensions] [NOT] include extensions/_* types.
      * @param {boolean} [extended] [NOT] Extend[ed] types only.
      * @param {boolean} [administered] [NOT] Administer access control only
      * @param {number} [size] Number of result records (per page). Default: 16.
@@ -386,6 +396,7 @@ export const TypesApiFactory = function(
       path?: string,
       readonly?: boolean,
       extendable?: boolean,
+      extensions?: boolean,
       extended?: boolean,
       administered?: boolean,
       size?: number,
@@ -403,6 +414,7 @@ export const TypesApiFactory = function(
           path,
           readonly,
           extendable,
+          extensions,
           extended,
           administered,
           size,
@@ -447,6 +459,7 @@ export class TypesApi extends BaseAPI {
    * @param {string} [path] &#x60;types.path&#x60;
    * @param {boolean} [readonly] [NOT] [ system / custom ] types only
    * @param {boolean} [extendable] [NOT] Extend[able] types only.
+   * @param {boolean} [extensions] [NOT] include extensions/_* types.
    * @param {boolean} [extended] [NOT] Extend[ed] types only.
    * @param {boolean} [administered] [NOT] Administer access control only
    * @param {number} [size] Number of result records (per page). Default: 16.
@@ -465,6 +478,7 @@ export class TypesApi extends BaseAPI {
     path?: string,
     readonly?: boolean,
     extendable?: boolean,
+    extensions?: boolean,
     extended?: boolean,
     administered?: boolean,
     size?: number,
@@ -482,6 +496,7 @@ export class TypesApi extends BaseAPI {
         path,
         readonly,
         extendable,
+        extensions,
         extended,
         administered,
         size,

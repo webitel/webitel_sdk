@@ -24,8 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCreateSLARequest } from '../api'
-// @ts-ignore
 import { CasesInputSLA } from '../api'
 // @ts-ignore
 import { CasesLocateSLAResponse } from '../api'
@@ -46,19 +44,21 @@ export const SLAsApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new SLA
-     * @param {CasesCreateSLARequest} body
+     * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSLA: async (
-      body: CasesCreateSLARequest,
+      input: CasesInputSLA,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createSLA.'
+          'input',
+          'Required parameter input was null or undefined when calling createSLA.'
         )
       }
       const localVarPath = `/cases/slas`
@@ -84,6 +84,10 @@ export const SLAsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -101,11 +105,11 @@ export const SLAsApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -336,12 +340,14 @@ export const SLAsApiAxiosParamCreator = function(
      * @summary Update an existing SLA
      * @param {string} id
      * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSLA: async (
       id: string,
       input: CasesInputSLA,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -384,6 +390,10 @@ export const SLAsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -417,12 +427,14 @@ export const SLAsApiAxiosParamCreator = function(
      * @summary Update an existing SLA
      * @param {string} id
      * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSLA2: async (
       id: string,
       input: CasesInputSLA,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -465,6 +477,10 @@ export const SLAsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -505,19 +521,21 @@ export const SLAsApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new SLA
-     * @param {CasesCreateSLARequest} body
+     * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createSLA(
-      body: CasesCreateSLARequest,
+      input: CasesInputSLA,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLA>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
-      ).createSLA(body, options)
+      ).createSLA(input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -630,19 +648,21 @@ export const SLAsApiFp = function(configuration?: Configuration) {
      * @summary Update an existing SLA
      * @param {string} id
      * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSLA(
       id: string,
       input: CasesInputSLA,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLA>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
-      ).updateSLA(id, input, options)
+      ).updateSLA(id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -659,19 +679,21 @@ export const SLAsApiFp = function(configuration?: Configuration) {
      * @summary Update an existing SLA
      * @param {string} id
      * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSLA2(
       id: string,
       input: CasesInputSLA,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLA>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
-      ).updateSLA2(id, input, options)
+      ).updateSLA2(id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -699,16 +721,18 @@ export const SLAsApiFactory = function(
     /**
      *
      * @summary Create a new SLA
-     * @param {CasesCreateSLARequest} body
+     * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSLA(
-      body: CasesCreateSLARequest,
+      input: CasesInputSLA,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSLA> {
       return SLAsApiFp(configuration)
-        .createSLA(body, options)
+        .createSLA(input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -770,16 +794,18 @@ export const SLAsApiFactory = function(
      * @summary Update an existing SLA
      * @param {string} id
      * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSLA(
       id: string,
       input: CasesInputSLA,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSLA> {
       return SLAsApiFp(configuration)
-        .updateSLA(id, input, options)
+        .updateSLA(id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -787,16 +813,18 @@ export const SLAsApiFactory = function(
      * @summary Update an existing SLA
      * @param {string} id
      * @param {CasesInputSLA} input
+     * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSLA2(
       id: string,
       input: CasesInputSLA,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSLA> {
       return SLAsApiFp(configuration)
-        .updateSLA2(id, input, options)
+        .updateSLA2(id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -812,14 +840,19 @@ export class SLAsApi extends BaseAPI {
   /**
    *
    * @summary Create a new SLA
-   * @param {CasesCreateSLARequest} body
+   * @param {CasesInputSLA} input
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAsApi
    */
-  public createSLA(body: CasesCreateSLARequest, options?: any) {
+  public createSLA(
+    input: CasesInputSLA,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return SLAsApiFp(this.configuration)
-      .createSLA(body, options)
+      .createSLA(input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -884,13 +917,19 @@ export class SLAsApi extends BaseAPI {
    * @summary Update an existing SLA
    * @param {string} id
    * @param {CasesInputSLA} input
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAsApi
    */
-  public updateSLA(id: string, input: CasesInputSLA, options?: any) {
+  public updateSLA(
+    id: string,
+    input: CasesInputSLA,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return SLAsApiFp(this.configuration)
-      .updateSLA(id, input, options)
+      .updateSLA(id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -899,13 +938,19 @@ export class SLAsApi extends BaseAPI {
    * @summary Update an existing SLA
    * @param {string} id
    * @param {CasesInputSLA} input
+   * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAsApi
    */
-  public updateSLA2(id: string, input: CasesInputSLA, options?: any) {
+  public updateSLA2(
+    id: string,
+    input: CasesInputSLA,
+    fields?: Array<string>,
+    options?: any
+  ) {
     return SLAsApiFp(this.configuration)
-      .updateSLA2(id, input, options)
+      .updateSLA2(id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

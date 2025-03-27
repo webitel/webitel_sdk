@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { GeneralLookup } from './general-lookup'
+
 /**
  * Input structure for creating or updating a case comment.
  * @export
@@ -29,4 +31,10 @@ export interface CasesInputCaseComment {
    * @memberof CasesInputCaseComment
    */
   text?: string
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesInputCaseComment
+   */
+  userID?: GeneralLookup
 }

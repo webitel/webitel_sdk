@@ -39,4 +39,10 @@ export interface InputDataForTheRelatedCaseUpdate {
    * @memberof InputDataForTheRelatedCaseUpdate
    */
   relation_type?: CasesRelationType
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof InputDataForTheRelatedCaseUpdate
+   */
+  userID?: GeneralLookup
 }

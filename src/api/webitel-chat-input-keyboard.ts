@@ -11,24 +11,18 @@
  * Do not edit the class manually.
  */
 
-import { GeneralLookup } from './general-lookup'
+import { WebitelChatInputButtonRow } from './webitel-chat-input-button-row'
 
 /**
- * Structure for close information when a case is closed.
+ *
  * @export
- * @interface CasesCreateCaseCloseInput
+ * @interface WebitelChatInputKeyboard
  */
-export interface CasesCreateCaseCloseInput {
+export interface WebitelChatInputKeyboard {
   /**
    *
-   * @type {GeneralLookup}
-   * @memberof CasesCreateCaseCloseInput
+   * @type {Array<WebitelChatInputButtonRow>}
+   * @memberof WebitelChatInputKeyboard
    */
-  close_reason?: GeneralLookup
-  /**
-   * Comment or reason for closing the case.
-   * @type {string}
-   * @memberof CasesCreateCaseCloseInput
-   */
-  close_result?: string
+  rows?: Array<WebitelChatInputButtonRow>
 }

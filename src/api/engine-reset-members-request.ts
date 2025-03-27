@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineFilterBetween } from './engine-filter-between'
+
 /**
  *
  * @export
@@ -31,6 +33,12 @@ export interface EngineResetMembersRequest {
   bucket_id?: Array<string>
   /**
    *
+   * @type {EngineFilterBetween}
+   * @memberof EngineResetMembersRequest
+   */
+  created_at?: EngineFilterBetween
+  /**
+   *
    * @type {Array<string>}
    * @memberof EngineResetMembersRequest
    */
@@ -47,6 +55,12 @@ export interface EngineResetMembersRequest {
    * @memberof EngineResetMembersRequest
    */
   numbers?: Array<string>
+  /**
+   *
+   * @type {EngineFilterBetween}
+   * @memberof EngineResetMembersRequest
+   */
+  priority?: EngineFilterBetween
   /**
    *
    * @type {string}

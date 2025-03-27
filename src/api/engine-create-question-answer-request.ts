@@ -12,21 +12,15 @@
  */
 
 /**
- * Message representing rating information.
+ *
  * @export
- * @interface CasesRateInfo
+ * @interface EngineCreateQuestionAnswerRequest
  */
-export interface CasesRateInfo {
+export interface EngineCreateQuestionAnswerRequest {
   /**
-   * Rating value.
-   * @type {string}
-   * @memberof CasesRateInfo
+   *
+   * @type {number}
+   * @memberof EngineCreateQuestionAnswerRequest
    */
-  rating?: string
-  /**
-   * Optional comment for the rating.
-   * @type {string}
-   * @memberof CasesRateInfo
-   */
-  rating_comment?: string
+  score?: number
 }

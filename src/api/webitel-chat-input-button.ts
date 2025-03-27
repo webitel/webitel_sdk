@@ -14,37 +14,37 @@
 /**
  *
  * @export
- * @interface EngineBroadcastButton
+ * @interface WebitelChatInputButton
  */
-export interface EngineBroadcastButton {
+export interface WebitelChatInputButton {
   /**
    *
    * @type {string}
-   * @memberof EngineBroadcastButton
+   * @memberof WebitelChatInputButton
    */
   caption?: string
   /**
    *
    * @type {string}
-   * @memberof EngineBroadcastButton
+   * @memberof WebitelChatInputButton
    */
   code?: string
   /**
    *
    * @type {string}
-   * @memberof EngineBroadcastButton
+   * @memberof WebitelChatInputButton
    */
   text?: string
   /**
    *
    * @type {string}
-   * @memberof EngineBroadcastButton
+   * @memberof WebitelChatInputButton
    */
   type?: string
   /**
    *
    * @type {string}
-   * @memberof EngineBroadcastButton
+   * @memberof WebitelChatInputButton
    */
   url?: string
 }

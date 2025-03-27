@@ -12,35 +12,41 @@
  */
 
 /**
- *
+ * Lookup ( REFERENCE ) type descriptor. Simplified [webitel.custom.Struct] options.
  * @export
  * @interface WebitelProtoDataTypeLookup
  */
 export interface WebitelProtoDataTypeLookup {
   /**
-   * Optional. Primary [types.fields.id] key.
+   * [Readonly]. Display dataset field. (lookup).{`name`} value relation.
    * @type {string}
    * @memberof WebitelProtoDataTypeLookup
    */
-  id?: string
+  display?: string
   /**
-   * Optional. Display [types.fields.id] key.
+   * [Readonly]. Dataset title.
    * @type {string}
    * @memberof WebitelProtoDataTypeLookup
    */
   name?: string
+  /**
+   * [Required]. Reference dataset relative path e.g.: \"contacts\", \"dictionaries/cities\". (lookup).{`type`} value relation.
+   * @type {string}
+   * @memberof WebitelProtoDataTypeLookup
+   */
+  path?: string
+  /**
+   * [Readonly]. Primary dataset field. (lookup).{`id`} value relation.
+   * @type {string}
+   * @memberof WebitelProtoDataTypeLookup
+   */
+  primary?: string
   /**
    *
    * @type {{ [key: string]: string; }}
    * @memberof WebitelProtoDataTypeLookup
    */
   query?: { [key: string]: string }
-  /**
-   * Required. Dataset [types.repo] to search in.
-   * @type {string}
-   * @memberof WebitelProtoDataTypeLookup
-   */
-  type?: string
   /**
    *
    * @type {{ [key: string]: string; }}

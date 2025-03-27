@@ -33,8 +33,6 @@ import { CasesSLACondition } from '../api'
 import { CasesSLAConditionList } from '../api'
 // @ts-ignore
 import { GooglerpcStatus } from '../api'
-// @ts-ignore
-import { SLAConditionsCreateSLAConditionBody } from '../api'
 /**
  * SLAConditionsApi - axios parameter creator
  * @export
@@ -47,13 +45,15 @@ export const SLAConditionsApiAxiosParamCreator = function(
      *
      * @summary Create a new SLACondition
      * @param {string} slaId
-     * @param {SLAConditionsCreateSLAConditionBody} body
+     * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSLACondition: async (
       slaId: string,
-      body: SLAConditionsCreateSLAConditionBody,
+      input: CasesInputSLACondition,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'slaId' is not null or undefined
@@ -63,11 +63,11 @@ export const SLAConditionsApiAxiosParamCreator = function(
           'Required parameter slaId was null or undefined when calling createSLACondition.'
         )
       }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
+      // verify required parameter 'input' is not null or undefined
+      if (input === null || input === undefined) {
         throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling createSLACondition.'
+          'input',
+          'Required parameter input was null or undefined when calling createSLACondition.'
         )
       }
       const localVarPath = `/slas/{sla_id}/sla_condition`.replace(
@@ -96,6 +96,10 @@ export const SLAConditionsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -113,11 +117,11 @@ export const SLAConditionsApiAxiosParamCreator = function(
         ...options.headers,
       }
       const needsSerialization =
-        typeof body !== 'string' ||
+        typeof input !== 'string' ||
         localVarRequestOptions.headers['Content-Type'] === 'application/json'
       localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
+        ? JSON.stringify(input !== undefined ? input : {})
+        : input || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -392,6 +396,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
      * @param {string} slaId
      * @param {string} id
      * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -399,6 +404,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
       slaId: string,
       id: string,
       input: CasesInputSLACondition,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'slaId' is not null or undefined
@@ -447,6 +453,10 @@ export const SLAConditionsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -481,6 +491,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
      * @param {string} slaId
      * @param {string} id
      * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -488,6 +499,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
       slaId: string,
       id: string,
       input: CasesInputSLACondition,
+      fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'slaId' is not null or undefined
@@ -536,6 +548,10 @@ export const SLAConditionsApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
       localVarHeaderParameter['Content-Type'] = 'application/json'
 
       localVarUrlObj.query = {
@@ -577,13 +593,15 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
      *
      * @summary Create a new SLACondition
      * @param {string} slaId
-     * @param {SLAConditionsCreateSLAConditionBody} body
+     * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createSLACondition(
       slaId: string,
-      body: SLAConditionsCreateSLAConditionBody,
+      input: CasesInputSLACondition,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -593,7 +611,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
-      ).createSLACondition(slaId, body, options)
+      ).createSLACondition(slaId, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -734,6 +752,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
      * @param {string} slaId
      * @param {string} id
      * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -741,6 +760,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
       slaId: string,
       id: string,
       input: CasesInputSLACondition,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -750,7 +770,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
-      ).updateSLACondition(slaId, id, input, options)
+      ).updateSLACondition(slaId, id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -768,6 +788,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
      * @param {string} slaId
      * @param {string} id
      * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -775,6 +796,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
       slaId: string,
       id: string,
       input: CasesInputSLACondition,
+      fields?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -784,7 +806,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
-      ).updateSLACondition2(slaId, id, input, options)
+      ).updateSLACondition2(slaId, id, input, fields, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -813,17 +835,19 @@ export const SLAConditionsApiFactory = function(
      *
      * @summary Create a new SLACondition
      * @param {string} slaId
-     * @param {SLAConditionsCreateSLAConditionBody} body
+     * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSLACondition(
       slaId: string,
-      body: SLAConditionsCreateSLAConditionBody,
+      input: CasesInputSLACondition,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSLACondition> {
       return SLAConditionsApiFp(configuration)
-        .createSLACondition(slaId, body, options)
+        .createSLACondition(slaId, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -910,6 +934,7 @@ export const SLAConditionsApiFactory = function(
      * @param {string} slaId
      * @param {string} id
      * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -917,10 +942,11 @@ export const SLAConditionsApiFactory = function(
       slaId: string,
       id: string,
       input: CasesInputSLACondition,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSLACondition> {
       return SLAConditionsApiFp(configuration)
-        .updateSLACondition(slaId, id, input, options)
+        .updateSLACondition(slaId, id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -929,6 +955,7 @@ export const SLAConditionsApiFactory = function(
      * @param {string} slaId
      * @param {string} id
      * @param {CasesInputSLACondition} input
+     * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -936,10 +963,11 @@ export const SLAConditionsApiFactory = function(
       slaId: string,
       id: string,
       input: CasesInputSLACondition,
+      fields?: Array<string>,
       options?: any
     ): AxiosPromise<CasesSLACondition> {
       return SLAConditionsApiFp(configuration)
-        .updateSLACondition2(slaId, id, input, options)
+        .updateSLACondition2(slaId, id, input, fields, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -956,18 +984,20 @@ export class SLAConditionsApi extends BaseAPI {
    *
    * @summary Create a new SLACondition
    * @param {string} slaId
-   * @param {SLAConditionsCreateSLAConditionBody} body
+   * @param {CasesInputSLACondition} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAConditionsApi
    */
   public createSLACondition(
     slaId: string,
-    body: SLAConditionsCreateSLAConditionBody,
+    input: CasesInputSLACondition,
+    fields?: Array<string>,
     options?: any
   ) {
     return SLAConditionsApiFp(this.configuration)
-      .createSLACondition(slaId, body, options)
+      .createSLACondition(slaId, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1057,6 +1087,7 @@ export class SLAConditionsApi extends BaseAPI {
    * @param {string} slaId
    * @param {string} id
    * @param {CasesInputSLACondition} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAConditionsApi
@@ -1065,10 +1096,11 @@ export class SLAConditionsApi extends BaseAPI {
     slaId: string,
     id: string,
     input: CasesInputSLACondition,
+    fields?: Array<string>,
     options?: any
   ) {
     return SLAConditionsApiFp(this.configuration)
-      .updateSLACondition(slaId, id, input, options)
+      .updateSLACondition(slaId, id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1078,6 +1110,7 @@ export class SLAConditionsApi extends BaseAPI {
    * @param {string} slaId
    * @param {string} id
    * @param {CasesInputSLACondition} input
+   * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAConditionsApi
@@ -1086,10 +1119,11 @@ export class SLAConditionsApi extends BaseAPI {
     slaId: string,
     id: string,
     input: CasesInputSLACondition,
+    fields?: Array<string>,
     options?: any
   ) {
     return SLAConditionsApiFp(this.configuration)
-      .updateSLACondition2(slaId, id, input, options)
+      .updateSLACondition2(slaId, id, input, fields, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

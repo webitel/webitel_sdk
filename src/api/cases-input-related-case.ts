@@ -38,4 +38,10 @@ export interface CasesInputRelatedCase {
    * @memberof CasesInputRelatedCase
    */
   relation_type?: CasesRelationType
+  /**
+   *
+   * @type {GeneralLookup}
+   * @memberof CasesInputRelatedCase
+   */
+  userID?: GeneralLookup
 }

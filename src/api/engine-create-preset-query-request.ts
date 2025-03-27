@@ -11,8 +11,6 @@
  * Do not edit the class manually.
  */
 
-import { EnginePresetQuerySection } from './engine-preset-query-section'
-
 /**
  *
  * @export
@@ -39,8 +37,8 @@ export interface EngineCreatePresetQueryRequest {
   preset?: object
   /**
    *
-   * @type {EnginePresetQuerySection}
+   * @type {string}
    * @memberof EngineCreatePresetQueryRequest
    */
-  section?: EnginePresetQuerySection
+  section?: string
 }
