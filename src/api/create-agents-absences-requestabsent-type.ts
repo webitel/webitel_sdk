@@ -11,30 +11,30 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentAbsenceType } from './wfm-agent-absence-type'
+import { WfmAbsenceType } from './wfm-absence-type'
 
 /**
  *
  * @export
- * @interface CreateAgentsAbsencesBulkRequestabsentType
+ * @interface CreateAgentsAbsencesRequestabsentType
  */
-export interface CreateAgentsAbsencesBulkRequestabsentType {
+export interface CreateAgentsAbsencesRequestabsentType {
   /**
    *
    * @type {string}
-   * @memberof CreateAgentsAbsencesBulkRequestabsentType
+   * @memberof CreateAgentsAbsencesRequestabsentType
    */
-  absent_at_from?: string
+  date_from?: string
   /**
    *
    * @type {string}
-   * @memberof CreateAgentsAbsencesBulkRequestabsentType
+   * @memberof CreateAgentsAbsencesRequestabsentType
    */
-  absent_at_to?: string
+  date_to?: string
   /**
    *
-   * @type {WfmAgentAbsenceType}
-   * @memberof CreateAgentsAbsencesBulkRequestabsentType
+   * @type {WfmAbsenceType}
+   * @memberof CreateAgentsAbsencesRequestabsentType
    */
-  type_id?: WfmAgentAbsenceType
+  type_id?: WfmAbsenceType
 }

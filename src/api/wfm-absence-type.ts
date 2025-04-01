@@ -11,25 +11,14 @@
  * Do not edit the class manually.
  */
 
-import { WfmAbsence } from './wfm-absence'
-import { WfmLookupEntity } from './wfm-lookup-entity'
-
 /**
  *
  * @export
- * @interface WfmAgentAbsence
+ * @enum {string}
  */
-export interface WfmAgentAbsence {
-  /**
-   *
-   * @type {WfmAbsence}
-   * @memberof WfmAgentAbsence
-   */
-  absence?: WfmAbsence
-  /**
-   *
-   * @type {WfmLookupEntity}
-   * @memberof WfmAgentAbsence
-   */
-  agent?: WfmLookupEntity
+export enum WfmAbsenceType {
+  UNSPECIFIED = 'ABSENCE_TYPE_UNSPECIFIED',
+  DAYOFF = 'ABSENCE_TYPE_DAYOFF',
+  VACATION = 'ABSENCE_TYPE_VACATION',
+  SICKDAY = 'ABSENCE_TYPE_SICKDAY',
 }

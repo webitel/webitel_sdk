@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
+import { WfmAbsence } from './wfm-absence'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmAgentWorkingConditions } from './wfm-agent-working-conditions'
 export interface InlineObject4 {
   /**
    *
-   * @type {WfmAgentWorkingConditions}
+   * @type {WfmAbsence}
    * @memberof InlineObject4
    */
-  item?: WfmAgentWorkingConditions
+  item?: WfmAbsence
 }

@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentAbsenceType } from './wfm-agent-absence-type'
+import { WfmAbsenceType } from './wfm-absence-type'
 import { WfmAgentScheduleShift } from './wfm-agent-schedule-shift'
 
 /**
@@ -22,10 +22,10 @@ import { WfmAgentScheduleShift } from './wfm-agent-schedule-shift'
 export interface WfmAgentSchedule {
   /**
    *
-   * @type {WfmAgentAbsenceType}
+   * @type {WfmAbsenceType}
    * @memberof WfmAgentSchedule
    */
-  absence?: WfmAgentAbsenceType
+  absence?: WfmAbsenceType
   /**
    *
    * @type {string}

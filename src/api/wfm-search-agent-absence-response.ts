@@ -12,24 +12,17 @@
  */
 
 import { WfmAbsence } from './wfm-absence'
-import { WfmAgentsItemAgentIdAbsencesItemAgent } from './wfm-agents-item-agent-id-absences-item-agent'
 
 /**
  *
  * @export
- * @interface WfmAgentsItemAgentIdAbsencesItem
+ * @interface WfmSearchAgentAbsenceResponse
  */
-export interface WfmAgentsItemAgentIdAbsencesItem {
+export interface WfmSearchAgentAbsenceResponse {
   /**
    *
-   * @type {WfmAbsence}
-   * @memberof WfmAgentsItemAgentIdAbsencesItem
+   * @type {Array<WfmAbsence>}
+   * @memberof WfmSearchAgentAbsenceResponse
    */
-  absence?: WfmAbsence
-  /**
-   *
-   * @type {WfmAgentsItemAgentIdAbsencesItemAgent}
-   * @memberof WfmAgentsItemAgentIdAbsencesItem
-   */
-  agent?: WfmAgentsItemAgentIdAbsencesItemAgent
+  items?: Array<WfmAbsence>
 }

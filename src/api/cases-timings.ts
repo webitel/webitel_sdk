@@ -11,18 +11,28 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentAbsences } from './wfm-agent-absences'
-
 /**
  *
  * @export
- * @interface WfmCreateAgentsAbsencesBulkResponse
+ * @interface CasesTimings
  */
-export interface WfmCreateAgentsAbsencesBulkResponse {
+export interface CasesTimings {
   /**
    *
-   * @type {Array<WfmAgentAbsences>}
-   * @memberof WfmCreateAgentsAbsencesBulkResponse
+   * @type {string}
+   * @memberof CasesTimings
    */
-  items?: Array<WfmAgentAbsences>
+  dd?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesTimings
+   */
+  hh?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CasesTimings
+   */
+  mm?: string
 }

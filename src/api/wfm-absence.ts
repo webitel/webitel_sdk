@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentAbsenceType } from './wfm-agent-absence-type'
+import { WfmAbsenceType } from './wfm-absence-type'
 import { WfmLookupEntity } from './wfm-lookup-entity'
 
 /**
@@ -52,10 +52,10 @@ export interface WfmAbsence {
   id?: string
   /**
    *
-   * @type {WfmAgentAbsenceType}
+   * @type {WfmAbsenceType}
    * @memberof WfmAbsence
    */
-  type_id?: WfmAgentAbsenceType
+  type_id?: WfmAbsenceType
   /**
    *
    * @type {string}

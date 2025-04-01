@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentAbsence } from './wfm-agent-absence'
+import { WfmAbsence } from './wfm-absence'
 
 /**
  *
@@ -21,8 +21,8 @@ import { WfmAgentAbsence } from './wfm-agent-absence'
 export interface WfmCreateAgentAbsenceResponse {
   /**
    *
-   * @type {WfmAgentAbsence}
+   * @type {WfmAbsence}
    * @memberof WfmCreateAgentAbsenceResponse
    */
-  item?: WfmAgentAbsence
+  item?: WfmAbsence
 }

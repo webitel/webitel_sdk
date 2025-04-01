@@ -24,19 +24,21 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { InlineObject5 } from '../api'
+import { InlineObject4 } from '../api'
 // @ts-ignore
-import { InlineObject6 } from '../api'
+import { InlineObject5 } from '../api'
 // @ts-ignore
 import { WfmCreateAgentAbsenceResponse } from '../api'
 // @ts-ignore
-import { WfmCreateAgentsAbsencesBulkRequest } from '../api'
+import { WfmCreateAgentsAbsencesRequest } from '../api'
 // @ts-ignore
-import { WfmCreateAgentsAbsencesBulkResponse } from '../api'
+import { WfmCreateAgentsAbsencesResponse } from '../api'
 // @ts-ignore
 import { WfmDeleteAgentAbsenceResponse } from '../api'
 // @ts-ignore
-import { WfmReadAgentAbsencesResponse } from '../api'
+import { WfmReadAgentAbsenceResponse } from '../api'
+// @ts-ignore
+import { WfmSearchAgentAbsenceResponse } from '../api'
 // @ts-ignore
 import { WfmSearchAgentsAbsencesResponse } from '../api'
 // @ts-ignore
@@ -51,21 +53,22 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
   return {
     /**
      *
-     * @param {string} itemAgentId
-     * @param {InlineObject5} body
+     * @summary Creates one-day-absence for one agent.
+     * @param {string} agentId
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentAbsence: async (
-      itemAgentId: string,
-      body: InlineObject5,
+      agentId: string,
+      body: InlineObject4,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'itemAgentId' is not null or undefined
-      if (itemAgentId === null || itemAgentId === undefined) {
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
         throw new RequiredError(
-          'itemAgentId',
-          'Required parameter itemAgentId was null or undefined when calling createAgentAbsence.'
+          'agentId',
+          'Required parameter agentId was null or undefined when calling createAgentAbsence.'
         )
       }
       // verify required parameter 'body' is not null or undefined
@@ -75,9 +78,9 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling createAgentAbsence.'
         )
       }
-      const localVarPath = `/wfm/agents/{item.agent.id}/absences`.replace(
-        `{${'item.agent.id'}}`,
-        encodeURIComponent(String(itemAgentId))
+      const localVarPath = `/wfm/agents/{agent_id}/absences`.replace(
+        `{${'agent_id'}}`,
+        encodeURIComponent(String(agentId))
       )
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
@@ -131,19 +134,20 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {WfmCreateAgentsAbsencesBulkRequest} body
+     * @summary Creates absences for multiple specified agents.
+     * @param {WfmCreateAgentsAbsencesRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentsAbsencesBulk: async (
-      body: WfmCreateAgentsAbsencesBulkRequest,
+    createAgentsAbsences: async (
+      body: WfmCreateAgentsAbsencesRequest,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'body' is not null or undefined
       if (body === null || body === undefined) {
         throw new RequiredError(
           'body',
-          'Required parameter body was null or undefined when calling createAgentsAbsencesBulk.'
+          'Required parameter body was null or undefined when calling createAgentsAbsences.'
         )
       }
       const localVarPath = `/wfm/agents/absences`
@@ -199,6 +203,7 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Deletes agent concrete absence by its id.
      * @param {string} agentId
      * @param {string} id
      * @param {*} [options] Override http request option.
@@ -270,23 +275,102 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
     },
     /**
      *
+     * @summary Reads one absence per agent by its id.
      * @param {string} agentId
-     * @param {string} [absentAtFrom]
-     * @param {string} [absentAtTo]
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentAbsences: async (
+    readAgentAbsence: async (
       agentId: string,
-      absentAtFrom?: string,
-      absentAtTo?: string,
+      id: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
       if (agentId === null || agentId === undefined) {
         throw new RequiredError(
           'agentId',
-          'Required parameter agentId was null or undefined when calling readAgentAbsences.'
+          'Required parameter agentId was null or undefined when calling readAgentAbsence.'
+        )
+      }
+      // verify required parameter 'id' is not null or undefined
+      if (id === null || id === undefined) {
+        throw new RequiredError(
+          'id',
+          'Required parameter id was null or undefined when calling readAgentAbsence.'
+        )
+      }
+      const localVarPath = `/wfm/agents/{agent_id}/absences/{id}`
+        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agentId)))
+        .replace(`{${'id'}}`, encodeURIComponent(String(id)))
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Searches agent absences by filters.
+     * @param {string} agentId
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [filters]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentAbsence: async (
+      agentId: string,
+      page?: number,
+      size?: number,
+      sort?: string,
+      fields?: Array<string>,
+      filters?: Array<string>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
+        throw new RequiredError(
+          'agentId',
+          'Required parameter agentId was null or undefined when calling searchAgentAbsence.'
         )
       }
       const localVarPath = `/wfm/agents/{agent_id}/absences`.replace(
@@ -315,12 +399,24 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
         localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
       }
 
-      if (absentAtFrom !== undefined) {
-        localVarQueryParameter['absent_at_from'] = absentAtFrom
+      if (page !== undefined) {
+        localVarQueryParameter['page'] = page
       }
 
-      if (absentAtTo !== undefined) {
-        localVarQueryParameter['absent_at_to'] = absentAtTo
+      if (size !== undefined) {
+        localVarQueryParameter['size'] = size
+      }
+
+      if (sort !== undefined) {
+        localVarQueryParameter['sort'] = sort
+      }
+
+      if (fields) {
+        localVarQueryParameter['fields'] = fields
+      }
+
+      if (filters) {
+        localVarQueryParameter['filters'] = filters
       }
 
       localVarUrlObj.query = {
@@ -345,16 +441,13 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} [q]
+     * @summary Searches absences by filters.
+     * @param {string} [q] Searches by agent name.
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [supervisorId]
-     * @param {Array<string>} [teamId]
-     * @param {Array<string>} [skillId]
-     * @param {string} [absentAtFrom]
-     * @param {string} [absentAtTo]
+     * @param {Array<string>} [filters]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -364,11 +457,7 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
       size?: number,
       sort?: string,
       fields?: Array<string>,
-      supervisorId?: Array<string>,
-      teamId?: Array<string>,
-      skillId?: Array<string>,
-      absentAtFrom?: string,
-      absentAtTo?: string,
+      filters?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/wfm/agents/absences`
@@ -414,24 +503,8 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
         localVarQueryParameter['fields'] = fields
       }
 
-      if (supervisorId) {
-        localVarQueryParameter['supervisor_id'] = supervisorId
-      }
-
-      if (teamId) {
-        localVarQueryParameter['team_id'] = teamId
-      }
-
-      if (skillId) {
-        localVarQueryParameter['skill_id'] = skillId
-      }
-
-      if (absentAtFrom !== undefined) {
-        localVarQueryParameter['absent_at_from'] = absentAtFrom
-      }
-
-      if (absentAtTo !== undefined) {
-        localVarQueryParameter['absent_at_to'] = absentAtTo
+      if (filters) {
+        localVarQueryParameter['filters'] = filters
       }
 
       localVarUrlObj.query = {
@@ -456,30 +529,31 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {string} itemAgentId
-     * @param {string} itemAbsenceId
-     * @param {InlineObject6} body
+     * @summary Updates agent concrete absence by its id.
+     * @param {string} agentId
+     * @param {string} itemId
+     * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentAbsence: async (
-      itemAgentId: string,
-      itemAbsenceId: string,
-      body: InlineObject6,
+      agentId: string,
+      itemId: string,
+      body: InlineObject5,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'itemAgentId' is not null or undefined
-      if (itemAgentId === null || itemAgentId === undefined) {
+      // verify required parameter 'agentId' is not null or undefined
+      if (agentId === null || agentId === undefined) {
         throw new RequiredError(
-          'itemAgentId',
-          'Required parameter itemAgentId was null or undefined when calling updateAgentAbsence.'
+          'agentId',
+          'Required parameter agentId was null or undefined when calling updateAgentAbsence.'
         )
       }
-      // verify required parameter 'itemAbsenceId' is not null or undefined
-      if (itemAbsenceId === null || itemAbsenceId === undefined) {
+      // verify required parameter 'itemId' is not null or undefined
+      if (itemId === null || itemId === undefined) {
         throw new RequiredError(
-          'itemAbsenceId',
-          'Required parameter itemAbsenceId was null or undefined when calling updateAgentAbsence.'
+          'itemId',
+          'Required parameter itemId was null or undefined when calling updateAgentAbsence.'
         )
       }
       // verify required parameter 'body' is not null or undefined
@@ -489,15 +563,9 @@ export const AgentAbsenceServiceApiAxiosParamCreator = function(
           'Required parameter body was null or undefined when calling updateAgentAbsence.'
         )
       }
-      const localVarPath = `/wfm/agents/{item.agent.id}/absences/{item.absence.id}`
-        .replace(
-          `{${'item.agent.id'}}`,
-          encodeURIComponent(String(itemAgentId))
-        )
-        .replace(
-          `{${'item.absence.id'}}`,
-          encodeURIComponent(String(itemAbsenceId))
-        )
+      const localVarPath = `/wfm/agents/{agent_id}/absences/{item.id}`
+        .replace(`{${'agent_id'}}`, encodeURIComponent(String(agentId)))
+        .replace(`{${'item.id'}}`, encodeURIComponent(String(itemId)))
       const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
       let baseOptions
       if (configuration) {
@@ -561,14 +629,15 @@ export const AgentAbsenceServiceApiFp = function(
   return {
     /**
      *
-     * @param {string} itemAgentId
-     * @param {InlineObject5} body
+     * @summary Creates one-day-absence for one agent.
+     * @param {string} agentId
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createAgentAbsence(
-      itemAgentId: string,
-      body: InlineObject5,
+      agentId: string,
+      body: InlineObject4,
       options?: any
     ): Promise<
       (
@@ -578,7 +647,7 @@ export const AgentAbsenceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).createAgentAbsence(itemAgentId, body, options)
+      ).createAgentAbsence(agentId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -592,22 +661,23 @@ export const AgentAbsenceServiceApiFp = function(
     },
     /**
      *
-     * @param {WfmCreateAgentsAbsencesBulkRequest} body
+     * @summary Creates absences for multiple specified agents.
+     * @param {WfmCreateAgentsAbsencesRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async createAgentsAbsencesBulk(
-      body: WfmCreateAgentsAbsencesBulkRequest,
+    async createAgentsAbsences(
+      body: WfmCreateAgentsAbsencesRequest,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmCreateAgentsAbsencesBulkResponse>
+      ) => AxiosPromise<WfmCreateAgentsAbsencesResponse>
     > {
       const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).createAgentsAbsencesBulk(body, options)
+      ).createAgentsAbsences(body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -621,6 +691,7 @@ export const AgentAbsenceServiceApiFp = function(
     },
     /**
      *
+     * @summary Deletes agent concrete absence by its id.
      * @param {string} agentId
      * @param {string} id
      * @param {*} [options] Override http request option.
@@ -652,26 +723,25 @@ export const AgentAbsenceServiceApiFp = function(
     },
     /**
      *
+     * @summary Reads one absence per agent by its id.
      * @param {string} agentId
-     * @param {string} [absentAtFrom]
-     * @param {string} [absentAtTo]
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async readAgentAbsences(
+    async readAgentAbsence(
       agentId: string,
-      absentAtFrom?: string,
-      absentAtTo?: string,
+      id: string,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WfmReadAgentAbsencesResponse>
+      ) => AxiosPromise<WfmReadAgentAbsenceResponse>
     > {
       const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).readAgentAbsences(agentId, absentAtFrom, absentAtTo, options)
+      ).readAgentAbsence(agentId, id, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -685,16 +755,53 @@ export const AgentAbsenceServiceApiFp = function(
     },
     /**
      *
-     * @param {string} [q]
+     * @summary Searches agent absences by filters.
+     * @param {string} agentId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [supervisorId]
-     * @param {Array<string>} [teamId]
-     * @param {Array<string>} [skillId]
-     * @param {string} [absentAtFrom]
-     * @param {string} [absentAtTo]
+     * @param {Array<string>} [filters]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async searchAgentAbsence(
+      agentId: string,
+      page?: number,
+      size?: number,
+      sort?: string,
+      fields?: Array<string>,
+      filters?: Array<string>,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WfmSearchAgentAbsenceResponse>
+    > {
+      const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
+        configuration
+      ).searchAgentAbsence(agentId, page, size, sort, fields, filters, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
+     * @summary Searches absences by filters.
+     * @param {string} [q] Searches by agent name.
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [filters]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -704,11 +811,7 @@ export const AgentAbsenceServiceApiFp = function(
       size?: number,
       sort?: string,
       fields?: Array<string>,
-      supervisorId?: Array<string>,
-      teamId?: Array<string>,
-      skillId?: Array<string>,
-      absentAtFrom?: string,
-      absentAtTo?: string,
+      filters?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -718,19 +821,7 @@ export const AgentAbsenceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).searchAgentsAbsences(
-        q,
-        page,
-        size,
-        sort,
-        fields,
-        supervisorId,
-        teamId,
-        skillId,
-        absentAtFrom,
-        absentAtTo,
-        options
-      )
+      ).searchAgentsAbsences(q, page, size, sort, fields, filters, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -744,16 +835,17 @@ export const AgentAbsenceServiceApiFp = function(
     },
     /**
      *
-     * @param {string} itemAgentId
-     * @param {string} itemAbsenceId
-     * @param {InlineObject6} body
+     * @summary Updates agent concrete absence by its id.
+     * @param {string} agentId
+     * @param {string} itemId
+     * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAgentAbsence(
-      itemAgentId: string,
-      itemAbsenceId: string,
-      body: InlineObject6,
+      agentId: string,
+      itemId: string,
+      body: InlineObject5,
       options?: any
     ): Promise<
       (
@@ -763,7 +855,7 @@ export const AgentAbsenceServiceApiFp = function(
     > {
       const localVarAxiosArgs = await AgentAbsenceServiceApiAxiosParamCreator(
         configuration
-      ).updateAgentAbsence(itemAgentId, itemAbsenceId, body, options)
+      ).updateAgentAbsence(agentId, itemId, body, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -790,36 +882,39 @@ export const AgentAbsenceServiceApiFactory = function(
   return {
     /**
      *
-     * @param {string} itemAgentId
-     * @param {InlineObject5} body
+     * @summary Creates one-day-absence for one agent.
+     * @param {string} agentId
+     * @param {InlineObject4} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentAbsence(
-      itemAgentId: string,
-      body: InlineObject5,
+      agentId: string,
+      body: InlineObject4,
       options?: any
     ): AxiosPromise<WfmCreateAgentAbsenceResponse> {
       return AgentAbsenceServiceApiFp(configuration)
-        .createAgentAbsence(itemAgentId, body, options)
+        .createAgentAbsence(agentId, body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {WfmCreateAgentsAbsencesBulkRequest} body
+     * @summary Creates absences for multiple specified agents.
+     * @param {WfmCreateAgentsAbsencesRequest} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createAgentsAbsencesBulk(
-      body: WfmCreateAgentsAbsencesBulkRequest,
+    createAgentsAbsences(
+      body: WfmCreateAgentsAbsencesRequest,
       options?: any
-    ): AxiosPromise<WfmCreateAgentsAbsencesBulkResponse> {
+    ): AxiosPromise<WfmCreateAgentsAbsencesResponse> {
       return AgentAbsenceServiceApiFp(configuration)
-        .createAgentsAbsencesBulk(body, options)
+        .createAgentsAbsences(body, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
+     * @summary Deletes agent concrete absence by its id.
      * @param {string} agentId
      * @param {string} id
      * @param {*} [options] Override http request option.
@@ -836,34 +931,55 @@ export const AgentAbsenceServiceApiFactory = function(
     },
     /**
      *
+     * @summary Reads one absence per agent by its id.
      * @param {string} agentId
-     * @param {string} [absentAtFrom]
-     * @param {string} [absentAtTo]
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    readAgentAbsences(
+    readAgentAbsence(
       agentId: string,
-      absentAtFrom?: string,
-      absentAtTo?: string,
+      id: string,
       options?: any
-    ): AxiosPromise<WfmReadAgentAbsencesResponse> {
+    ): AxiosPromise<WfmReadAgentAbsenceResponse> {
       return AgentAbsenceServiceApiFp(configuration)
-        .readAgentAbsences(agentId, absentAtFrom, absentAtTo, options)
+        .readAgentAbsence(agentId, id, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} [q]
+     * @summary Searches agent absences by filters.
+     * @param {string} agentId
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [supervisorId]
-     * @param {Array<string>} [teamId]
-     * @param {Array<string>} [skillId]
-     * @param {string} [absentAtFrom]
-     * @param {string} [absentAtTo]
+     * @param {Array<string>} [filters]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchAgentAbsence(
+      agentId: string,
+      page?: number,
+      size?: number,
+      sort?: string,
+      fields?: Array<string>,
+      filters?: Array<string>,
+      options?: any
+    ): AxiosPromise<WfmSearchAgentAbsenceResponse> {
+      return AgentAbsenceServiceApiFp(configuration)
+        .searchAgentAbsence(agentId, page, size, sort, fields, filters, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary Searches absences by filters.
+     * @param {string} [q] Searches by agent name.
+     * @param {number} [page]
+     * @param {number} [size]
+     * @param {string} [sort]
+     * @param {Array<string>} [fields]
+     * @param {Array<string>} [filters]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -873,45 +989,30 @@ export const AgentAbsenceServiceApiFactory = function(
       size?: number,
       sort?: string,
       fields?: Array<string>,
-      supervisorId?: Array<string>,
-      teamId?: Array<string>,
-      skillId?: Array<string>,
-      absentAtFrom?: string,
-      absentAtTo?: string,
+      filters?: Array<string>,
       options?: any
     ): AxiosPromise<WfmSearchAgentsAbsencesResponse> {
       return AgentAbsenceServiceApiFp(configuration)
-        .searchAgentsAbsences(
-          q,
-          page,
-          size,
-          sort,
-          fields,
-          supervisorId,
-          teamId,
-          skillId,
-          absentAtFrom,
-          absentAtTo,
-          options
-        )
+        .searchAgentsAbsences(q, page, size, sort, fields, filters, options)
         .then((request) => request(axios, basePath))
     },
     /**
      *
-     * @param {string} itemAgentId
-     * @param {string} itemAbsenceId
-     * @param {InlineObject6} body
+     * @summary Updates agent concrete absence by its id.
+     * @param {string} agentId
+     * @param {string} itemId
+     * @param {InlineObject5} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentAbsence(
-      itemAgentId: string,
-      itemAbsenceId: string,
-      body: InlineObject6,
+      agentId: string,
+      itemId: string,
+      body: InlineObject5,
       options?: any
     ): AxiosPromise<WfmUpdateAgentAbsenceResponse> {
       return AgentAbsenceServiceApiFp(configuration)
-        .updateAgentAbsence(itemAgentId, itemAbsenceId, body, options)
+        .updateAgentAbsence(agentId, itemId, body, options)
         .then((request) => request(axios, basePath))
     },
   }
@@ -926,40 +1027,43 @@ export const AgentAbsenceServiceApiFactory = function(
 export class AgentAbsenceServiceApi extends BaseAPI {
   /**
    *
-   * @param {string} itemAgentId
-   * @param {InlineObject5} body
+   * @summary Creates one-day-absence for one agent.
+   * @param {string} agentId
+   * @param {InlineObject4} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentAbsenceServiceApi
    */
   public createAgentAbsence(
-    itemAgentId: string,
-    body: InlineObject5,
+    agentId: string,
+    body: InlineObject4,
     options?: any
   ) {
     return AgentAbsenceServiceApiFp(this.configuration)
-      .createAgentAbsence(itemAgentId, body, options)
+      .createAgentAbsence(agentId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {WfmCreateAgentsAbsencesBulkRequest} body
+   * @summary Creates absences for multiple specified agents.
+   * @param {WfmCreateAgentsAbsencesRequest} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentAbsenceServiceApi
    */
-  public createAgentsAbsencesBulk(
-    body: WfmCreateAgentsAbsencesBulkRequest,
+  public createAgentsAbsences(
+    body: WfmCreateAgentsAbsencesRequest,
     options?: any
   ) {
     return AgentAbsenceServiceApiFp(this.configuration)
-      .createAgentsAbsencesBulk(body, options)
+      .createAgentsAbsences(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
+   * @summary Deletes agent concrete absence by its id.
    * @param {string} agentId
    * @param {string} id
    * @param {*} [options] Override http request option.
@@ -974,36 +1078,55 @@ export class AgentAbsenceServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary Reads one absence per agent by its id.
    * @param {string} agentId
-   * @param {string} [absentAtFrom]
-   * @param {string} [absentAtTo]
+   * @param {string} id
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentAbsenceServiceApi
    */
-  public readAgentAbsences(
-    agentId: string,
-    absentAtFrom?: string,
-    absentAtTo?: string,
-    options?: any
-  ) {
+  public readAgentAbsence(agentId: string, id: string, options?: any) {
     return AgentAbsenceServiceApiFp(this.configuration)
-      .readAgentAbsences(agentId, absentAtFrom, absentAtTo, options)
+      .readAgentAbsence(agentId, id, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} [q]
+   * @summary Searches agent absences by filters.
+   * @param {string} agentId
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<string>} [supervisorId]
-   * @param {Array<string>} [teamId]
-   * @param {Array<string>} [skillId]
-   * @param {string} [absentAtFrom]
-   * @param {string} [absentAtTo]
+   * @param {Array<string>} [filters]
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AgentAbsenceServiceApi
+   */
+  public searchAgentAbsence(
+    agentId: string,
+    page?: number,
+    size?: number,
+    sort?: string,
+    fields?: Array<string>,
+    filters?: Array<string>,
+    options?: any
+  ) {
+    return AgentAbsenceServiceApiFp(this.configuration)
+      .searchAgentAbsence(agentId, page, size, sort, fields, filters, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Searches absences by filters.
+   * @param {string} [q] Searches by agent name.
+   * @param {number} [page]
+   * @param {number} [size]
+   * @param {string} [sort]
+   * @param {Array<string>} [fields]
+   * @param {Array<string>} [filters]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentAbsenceServiceApi
@@ -1014,47 +1137,32 @@ export class AgentAbsenceServiceApi extends BaseAPI {
     size?: number,
     sort?: string,
     fields?: Array<string>,
-    supervisorId?: Array<string>,
-    teamId?: Array<string>,
-    skillId?: Array<string>,
-    absentAtFrom?: string,
-    absentAtTo?: string,
+    filters?: Array<string>,
     options?: any
   ) {
     return AgentAbsenceServiceApiFp(this.configuration)
-      .searchAgentsAbsences(
-        q,
-        page,
-        size,
-        sort,
-        fields,
-        supervisorId,
-        teamId,
-        skillId,
-        absentAtFrom,
-        absentAtTo,
-        options
-      )
+      .searchAgentsAbsences(q, page, size, sort, fields, filters, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
   /**
    *
-   * @param {string} itemAgentId
-   * @param {string} itemAbsenceId
-   * @param {InlineObject6} body
+   * @summary Updates agent concrete absence by its id.
+   * @param {string} agentId
+   * @param {string} itemId
+   * @param {InlineObject5} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentAbsenceServiceApi
    */
   public updateAgentAbsence(
-    itemAgentId: string,
-    itemAbsenceId: string,
-    body: InlineObject6,
+    agentId: string,
+    itemId: string,
+    body: InlineObject5,
     options?: any
   ) {
     return AgentAbsenceServiceApiFp(this.configuration)
-      .updateAgentAbsence(itemAgentId, itemAbsenceId, body, options)
+      .updateAgentAbsence(agentId, itemId, body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

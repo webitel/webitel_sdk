@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { CasesCaseCommunicationsTypes } from './cases-case-communications-types'
+import { GeneralLookup } from './general-lookup'
 
 /**
  * Represents a single case communication.
@@ -27,10 +27,10 @@ export interface CasesCaseCommunication {
   communication_id?: string
   /**
    *
-   * @type {CasesCaseCommunicationsTypes}
+   * @type {GeneralLookup}
    * @memberof CasesCaseCommunication
    */
-  communication_type?: CasesCaseCommunicationsTypes
+  communication_type?: GeneralLookup
   /**
    * Version of the communication record.
    * @type {string}

@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+import { CasesTimings } from './cases-timings'
 import { GeneralLookup } from './general-lookup'
 
 /**
@@ -57,16 +58,28 @@ export interface CasesSLA {
   name?: string
   /**
    *
-   * @type {string}
+   * @type {CasesTimings}
    * @memberof CasesSLA
    */
-  reaction_time?: string
+  reaction_time?: CasesTimings
   /**
    *
    * @type {string}
    * @memberof CasesSLA
    */
-  resolution_time?: string
+  reaction_time_millis?: string
+  /**
+   *
+   * @type {CasesTimings}
+   * @memberof CasesSLA
+   */
+  resolution_time?: CasesTimings
+  /**
+   *
+   * @type {string}
+   * @memberof CasesSLA
+   */
+  resolution_time_millis?: string
   /**
    *
    * @type {string}

@@ -11,55 +11,55 @@
  * Do not edit the class manually.
  */
 
-import { WfmAgentAbsenceType } from './wfm-agent-absence-type'
+import { WfmAbsenceType } from './wfm-absence-type'
 import { WfmLookupEntity } from './wfm-lookup-entity'
 
 /**
  *
  * @export
- * @interface WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence
+ * @interface WfmAgentsAgentIdAbsencesItemIdItem
  */
-export interface WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence {
+export interface WfmAgentsAgentIdAbsencesItemIdItem {
   /**
    *
    * @type {string}
-   * @memberof WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence
+   * @memberof WfmAgentsAgentIdAbsencesItemIdItem
    */
   absent_at?: string
   /**
    *
    * @type {string}
-   * @memberof WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence
+   * @memberof WfmAgentsAgentIdAbsencesItemIdItem
    */
   created_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence
+   * @memberof WfmAgentsAgentIdAbsencesItemIdItem
    */
   created_by?: WfmLookupEntity
   /**
    *
    * @type {string}
-   * @memberof WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence
+   * @memberof WfmAgentsAgentIdAbsencesItemIdItem
    */
   domain_id?: string
   /**
    *
-   * @type {WfmAgentAbsenceType}
-   * @memberof WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence
+   * @type {WfmAbsenceType}
+   * @memberof WfmAgentsAgentIdAbsencesItemIdItem
    */
-  type_id?: WfmAgentAbsenceType
+  type_id?: WfmAbsenceType
   /**
    *
    * @type {string}
-   * @memberof WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence
+   * @memberof WfmAgentsAgentIdAbsencesItemIdItem
    */
   updated_at?: string
   /**
    *
    * @type {WfmLookupEntity}
-   * @memberof WfmAgentsItemAgentIdAbsencesItemAbsenceIdItemAbsence
+   * @memberof WfmAgentsAgentIdAbsencesItemIdItem
    */
   updated_by?: WfmLookupEntity
 }

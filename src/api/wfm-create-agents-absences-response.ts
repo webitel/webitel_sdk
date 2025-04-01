@@ -16,13 +16,13 @@ import { WfmAgentAbsences } from './wfm-agent-absences'
 /**
  *
  * @export
- * @interface WfmReadAgentAbsencesResponse
+ * @interface WfmCreateAgentsAbsencesResponse
  */
-export interface WfmReadAgentAbsencesResponse {
+export interface WfmCreateAgentsAbsencesResponse {
   /**
    *
-   * @type {WfmAgentAbsences}
-   * @memberof WfmReadAgentAbsencesResponse
+   * @type {Array<WfmAgentAbsences>}
+   * @memberof WfmCreateAgentsAbsencesResponse
    */
-  item?: WfmAgentAbsences
+  items?: Array<WfmAgentAbsences>
 }

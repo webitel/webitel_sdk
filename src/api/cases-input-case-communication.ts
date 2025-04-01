@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { CasesCaseCommunicationsTypes } from './cases-case-communications-types'
+import { GeneralLookup } from './general-lookup'
 
 /**
  * Represents input data for creating or linking a communication.
@@ -27,8 +27,8 @@ export interface CasesInputCaseCommunication {
   communication_id?: string
   /**
    *
-   * @type {CasesCaseCommunicationsTypes}
+   * @type {GeneralLookup}
    * @memberof CasesInputCaseCommunication
    */
-  communication_type?: CasesCaseCommunicationsTypes
+  communication_type?: GeneralLookup
 }

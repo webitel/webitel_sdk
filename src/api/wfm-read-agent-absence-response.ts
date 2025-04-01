@@ -11,16 +11,18 @@
  * Do not edit the class manually.
  */
 
+import { WfmAbsence } from './wfm-absence'
+
 /**
  *
  * @export
- * @interface WfmAgentsItemAgentIdAbsencesItemAgent
+ * @interface WfmReadAgentAbsenceResponse
  */
-export interface WfmAgentsItemAgentIdAbsencesItemAgent {
+export interface WfmReadAgentAbsenceResponse {
   /**
    *
-   * @type {string}
-   * @memberof WfmAgentsItemAgentIdAbsencesItemAgent
+   * @type {WfmAbsence}
+   * @memberof WfmReadAgentAbsenceResponse
    */
-  name?: string
+  item?: WfmAbsence
 }

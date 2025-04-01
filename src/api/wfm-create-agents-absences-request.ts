@@ -11,24 +11,24 @@
  * Do not edit the class manually.
  */
 
-import { CreateAgentsAbsencesBulkRequestabsentType } from './create-agents-absences-bulk-requestabsent-type'
+import { CreateAgentsAbsencesRequestabsentType } from './create-agents-absences-requestabsent-type'
 
 /**
  *
  * @export
- * @interface WfmCreateAgentsAbsencesBulkRequest
+ * @interface WfmCreateAgentsAbsencesRequest
  */
-export interface WfmCreateAgentsAbsencesBulkRequest {
+export interface WfmCreateAgentsAbsencesRequest {
   /**
    *
    * @type {Array<string>}
-   * @memberof WfmCreateAgentsAbsencesBulkRequest
+   * @memberof WfmCreateAgentsAbsencesRequest
    */
   agent_ids?: Array<string>
   /**
    *
-   * @type {Array<CreateAgentsAbsencesBulkRequestabsentType>}
-   * @memberof WfmCreateAgentsAbsencesBulkRequest
+   * @type {Array<CreateAgentsAbsencesRequestabsentType>}
+   * @memberof WfmCreateAgentsAbsencesRequest
    */
-  items?: Array<CreateAgentsAbsencesBulkRequestabsentType>
+  items?: Array<CreateAgentsAbsencesRequestabsentType>
 }
