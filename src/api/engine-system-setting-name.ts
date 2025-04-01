@@ -31,4 +31,5 @@ export enum EngineSystemSettingName {
   AutolinkCallToContact = 'autolink_call_to_contact',
   PeriodToPlaybackRecords = 'period_to_playback_records',
   IsFulltextSearchEnabled = 'is_fulltext_search_enabled',
+  WbtHideContact = 'wbt_hide_contact',
 }

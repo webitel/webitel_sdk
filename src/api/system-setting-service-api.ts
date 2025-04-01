@@ -407,7 +407,7 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled'>} [name] Filter by setting names.
+     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact'>} [name] Filter by setting names.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -432,6 +432,7 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         | 'autolink_call_to_contact'
         | 'period_to_playback_records'
         | 'is_fulltext_search_enabled'
+        | 'wbt_hide_contact'
       >,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -755,7 +756,7 @@ export const SystemSettingServiceApiFp = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled'>} [name] Filter by setting names.
+     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact'>} [name] Filter by setting names.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -780,6 +781,7 @@ export const SystemSettingServiceApiFp = function(
         | 'autolink_call_to_contact'
         | 'period_to_playback_records'
         | 'is_fulltext_search_enabled'
+        | 'wbt_hide_contact'
       >,
       options?: any
     ): Promise<
@@ -933,7 +935,7 @@ export const SystemSettingServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled'>} [name] Filter by setting names.
+     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact'>} [name] Filter by setting names.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -958,6 +960,7 @@ export const SystemSettingServiceApiFactory = function(
         | 'autolink_call_to_contact'
         | 'period_to_playback_records'
         | 'is_fulltext_search_enabled'
+        | 'wbt_hide_contact'
       >,
       options?: any
     ): AxiosPromise<EngineListSystemSetting> {
@@ -1082,7 +1085,7 @@ export class SystemSettingServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled'>} [name] Filter by setting names.
+   * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact'>} [name] Filter by setting names.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingServiceApi
@@ -1108,6 +1111,7 @@ export class SystemSettingServiceApi extends BaseAPI {
       | 'autolink_call_to_contact'
       | 'period_to_playback_records'
       | 'is_fulltext_search_enabled'
+      | 'wbt_hide_contact'
     >,
     options?: any
   ) {
