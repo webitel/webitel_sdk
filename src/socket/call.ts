@@ -669,6 +669,14 @@ export class Call {
   }
 
   /**
+   * Перевіряє, чи дозволено Transfer.
+   * @returns Чи дозволено Transfer.
+   */
+  get allowTransfer(): boolean {
+    return !(this.answeredAt === 0 && this.queue) && this.allowHangup
+  }
+
+  /**
    * Перевіряє, чи дозволено завершення дзвінка.
    * @returns Чи дозволено завершення дзвінка.
    */
