@@ -32,4 +32,5 @@ export enum EngineSystemSettingName {
   PeriodToPlaybackRecords = 'period_to_playback_records',
   IsFulltextSearchEnabled = 'is_fulltext_search_enabled',
   WbtHideContact = 'wbt_hide_contact',
+  ShowFullContact = 'show_full_contact',
 }

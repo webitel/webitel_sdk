@@ -112,6 +112,12 @@ export interface EngineAttemptHistory {
   member_call_id?: string
   /**
    *
+   * @type {Array<EngineLookup>}
+   * @memberof EngineAttemptHistory
+   */
+  offered_agents?: Array<EngineLookup>
+  /**
+   *
    * @type {string}
    * @memberof EngineAttemptHistory
    */

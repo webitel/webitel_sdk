@@ -42,6 +42,8 @@ import { EngineCreateMemberBulkRequest } from '../api'
 // @ts-ignore
 import { EngineCreateMemberRequest } from '../api'
 // @ts-ignore
+import { EngineDeleteAllMembersRequest } from '../api'
+// @ts-ignore
 import { EngineDeleteMembersRequest } from '../api'
 // @ts-ignore
 import { EngineListAttempt } from '../api'
@@ -539,6 +541,75 @@ export const MemberServiceApiAxiosParamCreator = function(
       }
       const localVarRequestOptions = {
         method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary DeleteAllMembers
+     * @param {EngineDeleteAllMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAllMembers: async (
+      body: EngineDeleteAllMembersRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling deleteAllMembers.'
+        )
+      }
+      const localVarPath = `/call_center/queues/members`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'DELETE',
         ...baseOptions,
         ...options,
       }
@@ -1091,6 +1162,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {string} [offeringAtTo]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
+     * @param {Array<string>} [offeredAgentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1114,6 +1186,7 @@ export const MemberServiceApiAxiosParamCreator = function(
       offeringAtTo?: string,
       durationFrom?: string,
       durationTo?: string,
+      offeredAgentId?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/queues/attempts/active`
@@ -1215,6 +1288,10 @@ export const MemberServiceApiAxiosParamCreator = function(
         localVarQueryParameter['duration.to'] = durationTo
       }
 
+      if (offeredAgentId) {
+        localVarQueryParameter['offered_agent_id'] = offeredAgentId
+      }
+
       localVarUrlObj.query = {
         ...localVarUrlObj.query,
         ...localVarQueryParameter,
@@ -1257,6 +1334,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {string} [offeringAtTo]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
+     * @param {Array<string>} [offeredAgentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1280,6 +1358,7 @@ export const MemberServiceApiAxiosParamCreator = function(
       offeringAtTo?: string,
       durationFrom?: string,
       durationTo?: string,
+      offeredAgentId?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/call_center/queues/attempts/history`
@@ -1379,6 +1458,10 @@ export const MemberServiceApiAxiosParamCreator = function(
 
       if (durationTo !== undefined) {
         localVarQueryParameter['duration.to'] = durationTo
+      }
+
+      if (offeredAgentId) {
+        localVarQueryParameter['offered_agent_id'] = offeredAgentId
       }
 
       localVarUrlObj.query = {
@@ -2121,6 +2204,36 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @summary DeleteAllMembers
+     * @param {EngineDeleteAllMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteAllMembers(
+      body: EngineDeleteAllMembersRequest,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<EngineListMember>
+    > {
+      const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
+        configuration
+      ).deleteAllMembers(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary DeleteMember
      * @param {string} queueId
      * @param {string} id
@@ -2338,6 +2451,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [offeringAtTo]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
+     * @param {Array<string>} [offeredAgentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2361,6 +2475,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       offeringAtTo?: string,
       durationFrom?: string,
       durationTo?: string,
+      offeredAgentId?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -2390,6 +2505,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         offeringAtTo,
         durationFrom,
         durationTo,
+        offeredAgentId,
         options
       )
       return (
@@ -2425,6 +2541,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [offeringAtTo]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
+     * @param {Array<string>} [offeredAgentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2448,6 +2565,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       offeringAtTo?: string,
       durationFrom?: string,
       durationTo?: string,
+      offeredAgentId?: Array<string>,
       options?: any
     ): Promise<
       (
@@ -2477,6 +2595,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         offeringAtTo,
         durationFrom,
         durationTo,
+        offeredAgentId,
         options
       )
       return (
@@ -2858,6 +2977,21 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @summary DeleteAllMembers
+     * @param {EngineDeleteAllMembersRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAllMembers(
+      body: EngineDeleteAllMembersRequest,
+      options?: any
+    ): AxiosPromise<EngineListMember> {
+      return MemberServiceApiFp(configuration)
+        .deleteAllMembers(body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary DeleteMember
      * @param {string} queueId
      * @param {string} id
@@ -2985,6 +3119,7 @@ export const MemberServiceApiFactory = function(
      * @param {string} [offeringAtTo]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
+     * @param {Array<string>} [offeredAgentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3008,6 +3143,7 @@ export const MemberServiceApiFactory = function(
       offeringAtTo?: string,
       durationFrom?: string,
       durationTo?: string,
+      offeredAgentId?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListAttempt> {
       return MemberServiceApiFp(configuration)
@@ -3031,6 +3167,7 @@ export const MemberServiceApiFactory = function(
           offeringAtTo,
           durationFrom,
           durationTo,
+          offeredAgentId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3057,6 +3194,7 @@ export const MemberServiceApiFactory = function(
      * @param {string} [offeringAtTo]
      * @param {string} [durationFrom]
      * @param {string} [durationTo]
+     * @param {Array<string>} [offeredAgentId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3080,6 +3218,7 @@ export const MemberServiceApiFactory = function(
       offeringAtTo?: string,
       durationFrom?: string,
       durationTo?: string,
+      offeredAgentId?: Array<string>,
       options?: any
     ): AxiosPromise<EngineListHistoryAttempt> {
       return MemberServiceApiFp(configuration)
@@ -3103,6 +3242,7 @@ export const MemberServiceApiFactory = function(
           offeringAtTo,
           durationFrom,
           durationTo,
+          offeredAgentId,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3424,6 +3564,20 @@ export class MemberServiceApi extends BaseAPI {
 
   /**
    *
+   * @summary DeleteAllMembers
+   * @param {EngineDeleteAllMembersRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public deleteAllMembers(body: EngineDeleteAllMembersRequest, options?: any) {
+    return MemberServiceApiFp(this.configuration)
+      .deleteAllMembers(body, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
    * @summary DeleteMember
    * @param {string} queueId
    * @param {string} id
@@ -3563,6 +3717,7 @@ export class MemberServiceApi extends BaseAPI {
    * @param {string} [offeringAtTo]
    * @param {string} [durationFrom]
    * @param {string} [durationTo]
+   * @param {Array<string>} [offeredAgentId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3587,6 +3742,7 @@ export class MemberServiceApi extends BaseAPI {
     offeringAtTo?: string,
     durationFrom?: string,
     durationTo?: string,
+    offeredAgentId?: Array<string>,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3610,6 +3766,7 @@ export class MemberServiceApi extends BaseAPI {
         offeringAtTo,
         durationFrom,
         durationTo,
+        offeredAgentId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -3637,6 +3794,7 @@ export class MemberServiceApi extends BaseAPI {
    * @param {string} [offeringAtTo]
    * @param {string} [durationFrom]
    * @param {string} [durationTo]
+   * @param {Array<string>} [offeredAgentId]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3661,6 +3819,7 @@ export class MemberServiceApi extends BaseAPI {
     offeringAtTo?: string,
     durationFrom?: string,
     durationTo?: string,
+    offeredAgentId?: Array<string>,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3684,6 +3843,7 @@ export class MemberServiceApi extends BaseAPI {
         offeringAtTo,
         durationFrom,
         durationTo,
+        offeredAgentId,
         options
       )
       .then((request) => request(this.axios, this.basePath))
