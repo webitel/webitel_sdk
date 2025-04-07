@@ -28,6 +28,12 @@ export interface WebitelContactsGroup {
    */
   conditions?: Array<WebitelContactsDynamicCondition>
   /**
+   *
+   * @type {string}
+   * @memberof WebitelContactsGroup
+   */
+  contactsSize?: string
+  /**
    * Timestamp(milli) of the group\'s creation.
    * @type {string}
    * @memberof WebitelContactsGroup

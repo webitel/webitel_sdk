@@ -19,5 +19,5 @@
 export enum EngineTriggerType {
   DefaultTriggerType = 'default_trigger_type',
   Cron = 'cron',
-  Case = 'case',
+  Event = 'event',
 }

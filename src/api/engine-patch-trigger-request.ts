@@ -12,6 +12,8 @@
  */
 
 import { EngineLookup } from './engine-lookup'
+import { EngineTriggerEventType } from './engine-trigger-event-type'
+import { EngineTriggerObjectType } from './engine-trigger-object-type'
 import { EngineTriggerType } from './engine-trigger-type'
 
 /**
@@ -32,6 +34,12 @@ export interface EnginePatchTriggerRequest {
    * @memberof EnginePatchTriggerRequest
    */
   enabled?: boolean
+  /**
+   *
+   * @type {EngineTriggerEventType}
+   * @memberof EnginePatchTriggerRequest
+   */
+  event?: EngineTriggerEventType
   /**
    *
    * @type {string}
@@ -56,6 +64,12 @@ export interface EnginePatchTriggerRequest {
    * @memberof EnginePatchTriggerRequest
    */
   name?: string
+  /**
+   *
+   * @type {EngineTriggerObjectType}
+   * @memberof EnginePatchTriggerRequest
+   */
+  object?: EngineTriggerObjectType
   /**
    *
    * @type {EngineLookup}
