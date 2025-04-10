@@ -62,6 +62,8 @@ import { EnginePatchMemberOneRequest } from '../api'
 // @ts-ignore
 import { EnginePatchMemberRequest } from '../api'
 // @ts-ignore
+import { EngineResetActiveAttemptsRequest } from '../api'
+// @ts-ignore
 import { EngineResetMembersRequest } from '../api'
 // @ts-ignore
 import { EngineResetMembersResponse } from '../api'
@@ -1053,6 +1055,74 @@ export const MemberServiceApiAxiosParamCreator = function(
         ...headersFromBaseOptions,
         ...options.headers,
       }
+
+      return {
+        url: globalImportUrl.format(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @param {EngineResetActiveAttemptsRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetActiveAttempts: async (
+      body: EngineResetActiveAttemptsRequest,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'body' is not null or undefined
+      if (body === null || body === undefined) {
+        throw new RequiredError(
+          'body',
+          'Required parameter body was null or undefined when calling resetActiveAttempts.'
+        )
+      }
+      const localVarPath = `/call_center/queues/attempts/active/reset`
+      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+      const localVarRequestOptions = {
+        method: 'PUT',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication AccessToken required
+      if (configuration && configuration.apiKey) {
+        const localVarApiKeyValue =
+          typeof configuration.apiKey === 'function'
+            ? await configuration.apiKey('X-Webitel-Access')
+            : await configuration.apiKey
+        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
+      }
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      localVarUrlObj.query = {
+        ...localVarUrlObj.query,
+        ...localVarQueryParameter,
+        ...options.query,
+      }
+      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+      delete localVarUrlObj.search
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      const needsSerialization =
+        typeof body !== 'string' ||
+        localVarRequestOptions.headers['Content-Type'] === 'application/json'
+      localVarRequestOptions.data = needsSerialization
+        ? JSON.stringify(body !== undefined ? body : {})
+        : body || ''
 
       return {
         url: globalImportUrl.format(localVarUrlObj),
@@ -2399,6 +2469,32 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
+     * @param {EngineResetActiveAttemptsRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async resetActiveAttempts(
+      body: EngineResetActiveAttemptsRequest,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
+    > {
+      const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
+        configuration
+      ).resetActiveAttempts(body, options)
+      return (
+        axios: AxiosInstance = globalAxios,
+        basePath: string = BASE_PATH
+      ) => {
+        const axiosRequestArgs = {
+          ...localVarAxiosArgs.options,
+          url: basePath + localVarAxiosArgs.url,
+        }
+        return axios.request(axiosRequestArgs)
+      }
+    },
+    /**
+     *
      * @summary ResetMembers
      * @param {string} queueId
      * @param {EngineResetMembersRequest} body
@@ -3082,6 +3178,20 @@ export const MemberServiceApiFactory = function(
     },
     /**
      *
+     * @param {EngineResetActiveAttemptsRequest} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetActiveAttempts(
+      body: EngineResetActiveAttemptsRequest,
+      options?: any
+    ): AxiosPromise<object> {
+      return MemberServiceApiFp(configuration)
+        .resetActiveAttempts(body, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary ResetMembers
      * @param {string} queueId
      * @param {EngineResetMembersRequest} body
@@ -3673,6 +3783,22 @@ export class MemberServiceApi extends BaseAPI {
   ) {
     return MemberServiceApiFp(this.configuration)
       .readMember(queueId, id, domainId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @param {EngineResetActiveAttemptsRequest} body
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MemberServiceApi
+   */
+  public resetActiveAttempts(
+    body: EngineResetActiveAttemptsRequest,
+    options?: any
+  ) {
+    return MemberServiceApiFp(this.configuration)
+      .resetActiveAttempts(body, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
