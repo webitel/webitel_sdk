@@ -1099,6 +1099,27 @@ export class Task {
       form: form || this.form,
     })
   }
+
+  async componentAction(
+    componentId: string,
+    action: string,
+    vars: Map<string, string | number | object | any[]> | undefined,
+    sync?: boolean
+  ) {
+    if (!this.form) {
+      throw new Error('no form')
+    }
+
+    return this.client.request('cc_component_action', {
+      attempt_id: this.id,
+      app_id: this.distribute.app_id,
+      action,
+      componentId,
+      vars: formFields(vars),
+      formId: this.form.id,
+      sync: !!sync,
+    })
+  }
 }
 
 function formFields(
