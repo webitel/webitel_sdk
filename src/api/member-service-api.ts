@@ -661,6 +661,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {string} queueId
      * @param {string} id
      * @param {string} [domainId]
+     * @param {boolean} [force]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -668,6 +669,7 @@ export const MemberServiceApiAxiosParamCreator = function(
       queueId: string,
       id: string,
       domainId?: string,
+      force?: boolean,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -711,6 +713,10 @@ export const MemberServiceApiAxiosParamCreator = function(
 
       if (domainId !== undefined) {
         localVarQueryParameter['domain_id'] = domainId
+      }
+
+      if (force !== undefined) {
+        localVarQueryParameter['force'] = force
       }
 
       localVarUrlObj.query = {
@@ -2308,6 +2314,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {string} queueId
      * @param {string} id
      * @param {string} [domainId]
+     * @param {boolean} [force]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2315,6 +2322,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       queueId: string,
       id: string,
       domainId?: string,
+      force?: boolean,
       options?: any
     ): Promise<
       (
@@ -2324,7 +2332,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     > {
       const localVarAxiosArgs = await MemberServiceApiAxiosParamCreator(
         configuration
-      ).deleteMember(queueId, id, domainId, options)
+      ).deleteMember(queueId, id, domainId, force, options)
       return (
         axios: AxiosInstance = globalAxios,
         basePath: string = BASE_PATH
@@ -3092,6 +3100,7 @@ export const MemberServiceApiFactory = function(
      * @param {string} queueId
      * @param {string} id
      * @param {string} [domainId]
+     * @param {boolean} [force]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3099,10 +3108,11 @@ export const MemberServiceApiFactory = function(
       queueId: string,
       id: string,
       domainId?: string,
+      force?: boolean,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
-        .deleteMember(queueId, id, domainId, options)
+        .deleteMember(queueId, id, domainId, force, options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -3692,6 +3702,7 @@ export class MemberServiceApi extends BaseAPI {
    * @param {string} queueId
    * @param {string} id
    * @param {string} [domainId]
+   * @param {boolean} [force]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3700,10 +3711,11 @@ export class MemberServiceApi extends BaseAPI {
     queueId: string,
     id: string,
     domainId?: string,
+    force?: boolean,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
-      .deleteMember(queueId, id, domainId, options)
+      .deleteMember(queueId, id, domainId, force, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
