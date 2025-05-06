@@ -131,6 +131,10 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       session.on('failed', () => {
         // this handler will be called for incoming calls too
         this.removeSession(callSession)
+        const stream = session._localMediaStream
+        if (stream) {
+          stream.getTracks().forEach((track: MediaStreamTrack) => track.stop())
+        }
       })
 
       session.on('accepted', () => {

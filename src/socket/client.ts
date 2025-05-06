@@ -1556,7 +1556,11 @@ export class Client extends EventEmitter<ClientEvents> {
     }
 
     if (call) {
-      this.eventHandler.emit(WEBSOCKET_EVENT_CALL, event.event, call)
+      try {
+        this.eventHandler.emit(WEBSOCKET_EVENT_CALL, event.event, call)
+      } catch (e: any) {
+        this.log.error(e.message)
+      }
 
       if (this.callDestroyed(call)) {
         this.destroyCall(call)

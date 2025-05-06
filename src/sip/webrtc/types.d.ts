@@ -4,6 +4,7 @@ export declare class RTCSession {
   connection: any
   answer(params: object): void
   on<T extends keyof any>(type: T, listener: any[T]): this
+  _localMediaStream: MediaStream
 }
 
 export declare class RTCSessionRequest {
