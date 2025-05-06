@@ -453,7 +453,7 @@ export const ConfigServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts'>} [object] NOT USED.
+     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'>} [object] NOT USED.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -477,6 +477,7 @@ export const ConfigServiceApiAxiosParamCreator = function(
         | 'chat_bots'
         | 'cases'
         | 'contacts'
+        | 'cc_list_number'
       >,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -804,7 +805,7 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts'>} [object] NOT USED.
+     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'>} [object] NOT USED.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -828,6 +829,7 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
         | 'chat_bots'
         | 'cases'
         | 'contacts'
+        | 'cc_list_number'
       >,
       options?: any
     ): Promise<
@@ -975,7 +977,7 @@ export const ConfigServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts'>} [object] NOT USED.
+     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'>} [object] NOT USED.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -999,6 +1001,7 @@ export const ConfigServiceApiFactory = function(
         | 'chat_bots'
         | 'cases'
         | 'contacts'
+        | 'cc_list_number'
       >,
       options?: any
     ): AxiosPromise<LoggerConfigs> {
@@ -1122,7 +1125,7 @@ export class ConfigServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts'>} [object] NOT USED.
+   * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'>} [object] NOT USED.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConfigServiceApi
@@ -1147,6 +1150,7 @@ export class ConfigServiceApi extends BaseAPI {
       | 'chat_bots'
       | 'cases'
       | 'contacts'
+      | 'cc_list_number'
     >,
     options?: any
   ) {

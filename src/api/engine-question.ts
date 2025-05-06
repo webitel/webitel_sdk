@@ -22,6 +22,12 @@ import { QuestionOption } from './question-option'
 export interface EngineQuestion {
   /**
    *
+   * @type {string}
+   * @memberof EngineQuestion
+   */
+  description?: string
+  /**
+   *
    * @type {number}
    * @memberof EngineQuestion
    */

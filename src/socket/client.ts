@@ -275,6 +275,16 @@ export interface ConnectionInfo {
    * Вказує на те, чи підтримує сервер Back-to-Back User Agent (необов'язкове).
    */
   b2bua?: boolean
+
+  /**
+   * Вказує, чи дозволено використовувати чат для цього з'єднання (необов'язкове).
+   */
+  use_chat?: boolean
+
+  /**
+   * Вказує, чи дозволено використовувати центр контактів (call center) для цього з'єднання (необов'язкове).
+   */
+  use_cc?: boolean
 }
 
 /**
@@ -831,6 +841,18 @@ export class Client extends EventEmitter<ClientEvents> {
 
   get buildVersion() {
     return version
+  }
+
+  get canUseChat() {
+    const info = this.connectionInfo
+
+    return !!(info && info.use_chat)
+  }
+
+  get canUseCC() {
+    const info = this.connectionInfo
+
+    return !!(info && info.use_cc)
   }
 
   get instanceId(): string {
@@ -1679,7 +1701,7 @@ export class Client extends EventEmitter<ClientEvents> {
     const params = [`access_token=${this._config.token}`]
 
     if (mime) {
-      const source = mime.replace(/.*;source=([-._A-Za-z0-9/]+).*/, '$1')
+      const source = mime.replace(/.*;\s?source=([-._A-Za-z0-9/]+).*/, '$1')
       if (source) {
         params.push(`source=${source}`)
       }

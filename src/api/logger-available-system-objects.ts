@@ -30,4 +30,5 @@ export enum LoggerAvailableSystemObjects {
   ChatBots = 'chat_bots',
   Cases = 'cases',
   Contacts = 'contacts',
+  CcListNumber = 'cc_list_number',
 }

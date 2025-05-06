@@ -49,6 +49,12 @@ export interface EngineAgentInQueue {
    * @type {number}
    * @memberof EngineAgentInQueue
    */
+  max_member_limit?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentInQueue
+   */
   priority?: number
   /**
    *
