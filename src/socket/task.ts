@@ -776,6 +776,13 @@ export class Task {
     this.state = state as JobState
   }
 
+  setForm(form: Form | null) {
+    this.form = form
+    if (!this.allowReporting) {
+      this.distribute.has_form = true
+    }
+  }
+
   /**
    * Встановити час відповіді.
    * @param {number} t - Час відповіді.

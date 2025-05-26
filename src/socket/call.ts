@@ -1434,6 +1434,29 @@ export class Call {
     })
   }
 
+  async processTransferAgent(agentId: number, params: CallParams) {
+    return this.client.request(`call_to_queue`, {
+      parent_id: this.id,
+      agent_id: agentId,
+      params,
+    })
+  }
+
+  async processTransferQueue(queueId: number, params: CallParams) {
+    return this.client.request(`call_to_queue`, {
+      parent_id: this.id,
+      queue_id: queueId,
+      params,
+    })
+  }
+
+  async blindTransferQueue(queueId: number) {
+    return this.client.request(`call_bt_queue`, {
+      id: this.id,
+      queue_id: queueId,
+    })
+  }
+
   /**
    * Встановлює дані контакту.
    * @param e - Дані події контакту.

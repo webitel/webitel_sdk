@@ -1558,7 +1558,8 @@ export class Client extends EventEmitter<ClientEvents> {
     if (call) {
       try {
         this.eventHandler.emit(WEBSOCKET_EVENT_CALL, event.event, call)
-      } catch (e: any) {
+      } catch (e) {
+        // @ts-ignore
         this.log.error(e.message)
       }
 

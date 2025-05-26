@@ -545,7 +545,7 @@ export class Agent {
         const formEvent = e as FormEvent
         task = this.task.get(e.attempt_id!)
         if (task) {
-          task.form = formEvent.form || null
+          task.setForm(formEvent.form || null)
         }
 
         return // todo
