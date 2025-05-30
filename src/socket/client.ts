@@ -60,7 +60,7 @@ import {
 } from './task'
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
-import { SenderSession, ReceiverSession } from '../screen'
+import { SenderSession, ReceiverSession, ScreenResolver } from '../screen'
 
 /**
  * Налаштування клієнта.
@@ -84,6 +84,7 @@ export interface Config {
   phone?: number
   debug?: boolean
   autoAnswerDelayTime?: number
+  screenResolver?: ScreenResolver | null
 }
 
 /**
@@ -514,6 +515,7 @@ export class Client extends EventEmitter<ClientEvents> {
   private conversationStore: Map<string, Conversation>
   private pingTimer: number | null
   private toneTimer: number | null
+  private screenResolver: ScreenResolver | null
 
   /**
    * Конструктор для створення екземпляра клієнта.
@@ -535,6 +537,7 @@ export class Client extends EventEmitter<ClientEvents> {
     )}`
     this.lastError = null
     this.lastLatency = null
+    this.screenResolver = _config.screenResolver || null
   }
 
   async connect() {
@@ -1275,7 +1278,8 @@ export class Client extends EventEmitter<ClientEvents> {
           break
 
         case WEBSOCKET_EVENT_NOTIFICATION:
-          this.handleNotification(message.data.notification as Notification)
+          await this.handleNotification(message.data
+            .notification as Notification)
           break
         default:
           this.log.error(`event ${message.event} not handler`)
@@ -1283,7 +1287,7 @@ export class Client extends EventEmitter<ClientEvents> {
     }
   }
 
-  private handleNotification(e: Notification) {
+  private async handleNotification(e: Notification) {
     switch (e.action) {
       case NotificationActions.HideMember:
         if (this.agent && this.agent._listOfflineMembers) {
@@ -1337,6 +1341,10 @@ export class Client extends EventEmitter<ClientEvents> {
         const body = e.body as MessageScreenShare
         switch (body.state) {
           case 'invite':
+            if (!this.screenResolver) {
+              throw new Error('not found screenResolver')
+            }
+            const stream = await this.screenResolver({})
             const s = new SenderSession(
               body.sdp,
               {
@@ -1363,7 +1371,7 @@ export class Client extends EventEmitter<ClientEvents> {
             this.senderScreenStore.set(s.id, s)
 
             // tslint:disable-next-line: no-floating-promises
-            s.start({})
+            s.start(stream)
 
             break
 

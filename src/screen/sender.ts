@@ -52,7 +52,7 @@ export class SenderSession extends EventEmitter<SenderEvents> {
     this.off('*')
   }
 
-  async start(constraints: DisplayMediaStreamOptions) {
+  async start(stream: MediaStream) {
     const pc = this.pc
     try {
       await pc.setRemoteDescription({
@@ -60,7 +60,6 @@ export class SenderSession extends EventEmitter<SenderEvents> {
         sdp: this.peerSdp,
       })
 
-      const stream = await navigator.mediaDevices.getDisplayMedia(constraints)
       this.stream = stream
       stream.getTracks().forEach((track) => {
         this.onTrackStop(track)
