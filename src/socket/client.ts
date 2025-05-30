@@ -44,6 +44,7 @@ import {
 } from './errors'
 import {
   MessageNotification,
+  MessageScreenShare,
   Notification,
   NotificationActions,
 } from './notification'
@@ -59,6 +60,7 @@ import {
 } from './task'
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
+import { SenderSession, ReceiverSession } from '../screen'
 
 /**
  * Налаштування клієнта.
@@ -507,6 +509,8 @@ export class Client extends EventEmitter<ClientEvents> {
   private log: Log
   private eventHandler: EventEmitter<EventHandler>
   private callStore: Map<string, Call>
+  private receiveScreenStore: Map<string, ReceiverSession>
+  private senderScreenStore: Map<string, SenderSession>
   private conversationStore: Map<string, Conversation>
   private pingTimer: number | null
   private toneTimer: number | null
@@ -521,6 +525,8 @@ export class Client extends EventEmitter<ClientEvents> {
     this.log = new Log()
     this.eventHandler = new EventEmitter()
     this.callStore = new Map<string, Call>()
+    this.receiveScreenStore = new Map<string, ReceiverSession>()
+    this.senderScreenStore = new Map<string, SenderSession>()
     this.conversationStore = new Map<string, Conversation>()
     this.pingTimer = null
     this.toneTimer = null
@@ -1180,6 +1186,33 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, ChatActions.Destroy, conv)
   }
 
+  async requestScreenShare(
+    agentId: number,
+    conf: RTCConfiguration,
+    cb: (m: MediaStream) => void
+  ) {
+    const s = new ReceiverSession(conf, this.log)
+    s.on('close', () => {
+      this.receiveScreenStore.delete(s.id)
+    })
+    s.on('stream', cb)
+    this.receiveScreenStore.set(s.id, s)
+
+    try {
+      const offer = await s.offer()
+      await this.request(`ss_invite`, {
+        id: s.id,
+        sdp: offer.sdp,
+        to_user_id: agentId,
+      })
+    } catch (e) {
+      this.receiveScreenStore.delete(s.id)
+      this.log.error('error ', e)
+    }
+
+    return
+  }
+
   private async onMessage(message: Message) {
     this.log.debug('receive message: ', message)
     if (message.seq_reply! > 0) {
@@ -1300,6 +1333,56 @@ export class Client extends EventEmitter<ClientEvents> {
       case NotificationActions.ShowMessage:
         this.emit(`show_message`, e.body as MessageNotification)
         break
+      case NotificationActions.ScreenShare:
+        const body = e.body as MessageScreenShare
+        switch (body.state) {
+          case 'invite':
+            const s = new SenderSession(
+              body.sdp,
+              {
+                id: body.from_user_id!,
+                sockId: body.sock_id!,
+                sessionId: body.parent_id!,
+              },
+              {},
+              this.log
+            )
+
+            s.on('close', () => {
+              this.senderScreenStore.delete(s.id)
+            })
+            s.on('stream', async (rtc: RTCSessionDescription) => {
+              await this.request(`ss_accept`, {
+                id: s.id,
+                sdp: rtc.sdp,
+                to_user_id: s.from.id,
+                sock_id: s.from.sockId,
+                session_id: s.from.sessionId,
+              })
+            })
+            this.senderScreenStore.set(s.id, s)
+
+            // tslint:disable-next-line: no-floating-promises
+            s.start({})
+
+            break
+
+          case 'accept':
+            const receive = this.receiveScreenStore.get(body.session_id!)
+            if (receive) {
+              // tslint:disable-next-line: no-floating-promises
+              receive.answer({
+                type: 'answer',
+                sdp: body.sdp,
+              })
+            }
+            break
+
+          default:
+            this.log.error(`notification "${e.action}" not handled`)
+        }
+        break
+
       default:
         this.log.error(`notification "${e.action}" not handled`)
     }

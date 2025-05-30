@@ -41,6 +41,17 @@ export interface MessageNotification {
   timeout?: number
 }
 
+export interface MessageScreenShare {
+  state: string
+  sdp: string
+  session_id?: string
+  parent_id?: string
+  from_user_id?: number
+  auto?: boolean
+  sock_id?: string
+  timeout?: number
+}
+
 /**
  * Перелічуваний тип (enum), що представляє можливі дії для повідомлень.
  *
@@ -53,4 +64,5 @@ export enum NotificationActions {
   SetContact = 'set_contact',
   RefreshMissed = 'refresh_missed',
   ShowMessage = 'show_message',
+  ScreenShare = 'screen_share',
 }
