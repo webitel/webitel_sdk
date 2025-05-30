@@ -1,13 +1,15 @@
-import {genId, setVP9Video} from "./utils";
-import {EventEmitter} from "ee-ts";
+import { genId, setVP9Video } from './utils'
+import { EventEmitter } from 'ee-ts'
+import { Log } from '../log'
 
 export interface SenderEvents {
   close(s: SenderSession): void
   stream(s: RTCSessionDescription): void
+  error(s: Error): void
 }
 
 interface FromUser {
-  id: number,
+  id: number
   sockId: string
   sessionId: string
 }
@@ -19,8 +21,15 @@ export class SenderSession extends EventEmitter<SenderEvents> {
   peerSdp: string
   closeReason: string | null
   from: FromUser
-  constructor(peerSdp: string, from: FromUser, conf: RTCConfiguration) {
+  log: Log
+  constructor(
+    peerSdp: string,
+    from: FromUser,
+    conf: RTCConfiguration,
+    log: Log
+  ) {
     super()
+    this.log = log
     this.id = genId()
     this.from = from
     this.pc = new RTCPeerConnection(conf)
@@ -47,7 +56,7 @@ export class SenderSession extends EventEmitter<SenderEvents> {
     const pc = this.pc
     try {
       await pc.setRemoteDescription({
-        type: "offer",
+        type: 'offer',
         sdp: this.peerSdp,
       })
 
@@ -67,39 +76,35 @@ export class SenderSession extends EventEmitter<SenderEvents> {
 
   onTrackStop(t: MediaStreamTrack) {
     t.onmute = () => {
-      this.closeReason = "mute stream"
-      console.error('onmute')
+      this.closeReason = 'mute stream'
       this.close()
     }
     t.onended = () => {
-      this.closeReason = "ended stream"
-      console.error('onended')
+      this.closeReason = 'ended stream'
       this.close()
     }
   }
 
   iceConnectionState(e: Event) {
-    // tslint:disable-next-line: no-console
-    console.error('sender iceConnectionState ', this.pc.iceConnectionState)
+    this.log.debug('sender iceConnectionState ', this.pc.iceConnectionState)
     const pc = this.pc
 
     switch (pc.iceConnectionState) {
-      case "disconnected":
-      case "failed":
+      case 'disconnected':
+      case 'failed':
         this.close()
         break
 
       default:
-        console.error('no handle state ', pc.iceConnectionState)
+        this.log.debug(
+          `unhandled ICE connection state: ${this.pc.iceConnectionState}`
+        )
     }
-
   }
-
 
   async iceCandidate(e: RTCPeerConnectionIceEvent) {
     const pc = this.pc
-    // tslint:disable-next-line: no-console
-    console.error('iceCandidate', pc.iceGatheringState)
+    this.log.debug(`ICE candidate state: ${pc.iceGatheringState}`)
 
     if (pc.iceGatheringState !== 'complete') {
       return
@@ -112,7 +117,6 @@ export class SenderSession extends EventEmitter<SenderEvents> {
       // tslint:disable-next-line: no-console
       // console.info('sender remote sdp\n', this.peerSdp)
       // tslint:disable-next-line: no-console
-
     } catch (e) {
       this.close()
       throw e

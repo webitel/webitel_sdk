@@ -43,7 +43,8 @@ import {
   TypeErrors,
 } from './errors'
 import {
-  MessageNotification, MessageScreenShare,
+  MessageNotification,
+  MessageScreenShare,
   Notification,
   NotificationActions,
 } from './notification'
@@ -1185,9 +1186,13 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, ChatActions.Destroy, conv)
   }
 
-  async requestScreenShare(agentId: number, conf: RTCConfiguration, cb: (m: MediaStream) =>void) {
-    const s = new ReceiverSession(conf)
-    s.on('close', ()=> {
+  async requestScreenShare(
+    agentId: number,
+    conf: RTCConfiguration,
+    cb: (m: MediaStream) => void
+  ) {
+    const s = new ReceiverSession(conf, this.log)
+    s.on('close', () => {
       this.receiveScreenStore.delete(s.id)
     })
     s.on('stream', cb)
@@ -1202,8 +1207,9 @@ export class Client extends EventEmitter<ClientEvents> {
       })
     } catch (e) {
       this.receiveScreenStore.delete(s.id)
-      console.error('error ', e)
+      this.log.error('error ', e)
     }
+
     return
   }
 
@@ -1330,12 +1336,18 @@ export class Client extends EventEmitter<ClientEvents> {
       case NotificationActions.ScreenShare:
         const body = e.body as MessageScreenShare
         switch (body.state) {
-          case "invite":
-            const s = new SenderSession(body.sdp, {
-              id: body.from_user_id!,
-              sockId: body.sock_id!,
-              sessionId: body.parent_id!,
-            }, {})
+          case 'invite':
+            const s = new SenderSession(
+              body.sdp,
+              {
+                id: body.from_user_id!,
+                sockId: body.sock_id!,
+                sessionId: body.parent_id!,
+              },
+              {},
+              this.log
+            )
+
             s.on('close', () => {
               this.senderScreenStore.delete(s.id)
             })
@@ -1349,19 +1361,28 @@ export class Client extends EventEmitter<ClientEvents> {
               })
             })
             this.senderScreenStore.set(s.id, s)
+
+            // tslint:disable-next-line: no-floating-promises
             s.start({})
 
             break
-          case "accept":
+
+          case 'accept':
             const receive = this.receiveScreenStore.get(body.session_id!)
             if (receive) {
+              // tslint:disable-next-line: no-floating-promises
               receive.answer({
-                type: "answer",
+                type: 'answer',
                 sdp: body.sdp,
               })
             }
+            break
+
+          default:
+            this.log.error(`notification "${e.action}" not handled`)
         }
         break
+
       default:
         this.log.error(`notification "${e.action}" not handled`)
     }
