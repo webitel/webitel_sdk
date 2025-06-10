@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesInputCaseCommunication } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesLinkCommunicationResponse } from '../api'
+import { WebitelCasesInputCaseCommunication } from '../api'
 // @ts-ignore
-import { CasesListCommunicationsResponse } from '../api'
+import { WebitelCasesLinkCommunicationResponse } from '../api'
 // @ts-ignore
-import { CasesUnlinkCommunicationResponse } from '../api'
+import { WebitelCasesListCommunicationsResponse } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesUnlinkCommunicationResponse } from '../api'
 /**
  * CaseCommunicationsApi - axios parameter creator
  * @export
@@ -45,14 +45,14 @@ export const CaseCommunicationsApiAxiosParamCreator = function(
      *
      * @summary Links a communication to a specific case.
      * @param {string} caseEtag Case identifier.
-     * @param {CasesInputCaseCommunication} input Input data for the communications to link.
+     * @param {WebitelCasesInputCaseCommunication} input Input data for the communications to link.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     linkCommunication: async (
       caseEtag: string,
-      input: CasesInputCaseCommunication,
+      input: WebitelCasesInputCaseCommunication,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -313,21 +313,21 @@ export const CaseCommunicationsApiFp = function(configuration?: Configuration) {
      *
      * @summary Links a communication to a specific case.
      * @param {string} caseEtag Case identifier.
-     * @param {CasesInputCaseCommunication} input Input data for the communications to link.
+     * @param {WebitelCasesInputCaseCommunication} input Input data for the communications to link.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async linkCommunication(
       caseEtag: string,
-      input: CasesInputCaseCommunication,
+      input: WebitelCasesInputCaseCommunication,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLinkCommunicationResponse>
+      ) => AxiosPromise<WebitelCasesLinkCommunicationResponse>
     > {
       const localVarAxiosArgs = await CaseCommunicationsApiAxiosParamCreator(
         configuration
@@ -367,7 +367,7 @@ export const CaseCommunicationsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesListCommunicationsResponse>
+      ) => AxiosPromise<WebitelCasesListCommunicationsResponse>
     > {
       const localVarAxiosArgs = await CaseCommunicationsApiAxiosParamCreator(
         configuration
@@ -401,7 +401,7 @@ export const CaseCommunicationsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesUnlinkCommunicationResponse>
+      ) => AxiosPromise<WebitelCasesUnlinkCommunicationResponse>
     > {
       const localVarAxiosArgs = await CaseCommunicationsApiAxiosParamCreator(
         configuration
@@ -434,17 +434,17 @@ export const CaseCommunicationsApiFactory = function(
      *
      * @summary Links a communication to a specific case.
      * @param {string} caseEtag Case identifier.
-     * @param {CasesInputCaseCommunication} input Input data for the communications to link.
+     * @param {WebitelCasesInputCaseCommunication} input Input data for the communications to link.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     linkCommunication(
       caseEtag: string,
-      input: CasesInputCaseCommunication,
+      input: WebitelCasesInputCaseCommunication,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLinkCommunicationResponse> {
+    ): AxiosPromise<WebitelCasesLinkCommunicationResponse> {
       return CaseCommunicationsApiFp(configuration)
         .linkCommunication(caseEtag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -469,7 +469,7 @@ export const CaseCommunicationsApiFactory = function(
       page?: number,
       sort?: string,
       options?: any
-    ): AxiosPromise<CasesListCommunicationsResponse> {
+    ): AxiosPromise<WebitelCasesListCommunicationsResponse> {
       return CaseCommunicationsApiFp(configuration)
         .listCommunications(caseEtag, fields, q, size, page, sort, options)
         .then((request) => request(axios, basePath))
@@ -488,7 +488,7 @@ export const CaseCommunicationsApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesUnlinkCommunicationResponse> {
+    ): AxiosPromise<WebitelCasesUnlinkCommunicationResponse> {
       return CaseCommunicationsApiFp(configuration)
         .unlinkCommunication(caseEtag, id, fields, options)
         .then((request) => request(axios, basePath))
@@ -507,7 +507,7 @@ export class CaseCommunicationsApi extends BaseAPI {
    *
    * @summary Links a communication to a specific case.
    * @param {string} caseEtag Case identifier.
-   * @param {CasesInputCaseCommunication} input Input data for the communications to link.
+   * @param {WebitelCasesInputCaseCommunication} input Input data for the communications to link.
    * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -515,7 +515,7 @@ export class CaseCommunicationsApi extends BaseAPI {
    */
   public linkCommunication(
     caseEtag: string,
-    input: CasesInputCaseCommunication,
+    input: WebitelCasesInputCaseCommunication,
     fields?: Array<string>,
     options?: any
   ) {

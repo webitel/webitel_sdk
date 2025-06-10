@@ -24,23 +24,23 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateTriggerJobRequest } from '../api'
-// @ts-ignore
 import { EngineCreateTriggerRequest } from '../api'
 // @ts-ignore
 import { EngineListTrigger } from '../api'
 // @ts-ignore
 import { EngineListTriggerJob } from '../api'
 // @ts-ignore
-import { EnginePatchTriggerRequest } from '../api'
-// @ts-ignore
 import { EngineTrigger } from '../api'
 // @ts-ignore
 import { EngineTriggerJob } from '../api'
 // @ts-ignore
-import { EngineUpdateTriggerRequest } from '../api'
+import { EngineTriggerServiceCreateTriggerJobBody } from '../api'
+// @ts-ignore
+import { EngineTriggerServicePatchTriggerBody } from '../api'
+// @ts-ignore
+import { EngineTriggerServiceUpdateTriggerBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * TriggerServiceApi - axios parameter creator
  * @export
@@ -121,13 +121,13 @@ export const TriggerServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} triggerId
-     * @param {EngineCreateTriggerJobRequest} body
+     * @param {EngineTriggerServiceCreateTriggerJobBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTriggerJob: async (
       triggerId: number,
-      body: EngineCreateTriggerJobRequest,
+      body: EngineTriggerServiceCreateTriggerJobBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'triggerId' is not null or undefined
@@ -265,13 +265,13 @@ export const TriggerServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchTriggerRequest} body
+     * @param {EngineTriggerServicePatchTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchTrigger: async (
       id: number,
-      body: EnginePatchTriggerRequest,
+      body: EngineTriggerServicePatchTriggerBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -639,13 +639,13 @@ export const TriggerServiceApiAxiosParamCreator = function(
      *
      * @summary Update Trigger
      * @param {number} id
-     * @param {EngineUpdateTriggerRequest} body
+     * @param {EngineTriggerServiceUpdateTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateTrigger: async (
       id: number,
-      body: EngineUpdateTriggerRequest,
+      body: EngineTriggerServiceUpdateTriggerBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -755,13 +755,13 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} triggerId
-     * @param {EngineCreateTriggerJobRequest} body
+     * @param {EngineTriggerServiceCreateTriggerJobBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createTriggerJob(
       triggerId: number,
-      body: EngineCreateTriggerJobRequest,
+      body: EngineTriggerServiceCreateTriggerJobBody,
       options?: any
     ): Promise<
       (
@@ -813,13 +813,13 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} id
-     * @param {EnginePatchTriggerRequest} body
+     * @param {EngineTriggerServicePatchTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchTrigger(
       id: number,
-      body: EnginePatchTriggerRequest,
+      body: EngineTriggerServicePatchTriggerBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTrigger>
@@ -979,13 +979,13 @@ export const TriggerServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update Trigger
      * @param {number} id
-     * @param {EngineUpdateTriggerRequest} body
+     * @param {EngineTriggerServiceUpdateTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateTrigger(
       id: number,
-      body: EngineUpdateTriggerRequest,
+      body: EngineTriggerServiceUpdateTriggerBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTrigger>
@@ -1035,13 +1035,13 @@ export const TriggerServiceApiFactory = function(
     /**
      *
      * @param {number} triggerId
-     * @param {EngineCreateTriggerJobRequest} body
+     * @param {EngineTriggerServiceCreateTriggerJobBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTriggerJob(
       triggerId: number,
-      body: EngineCreateTriggerJobRequest,
+      body: EngineTriggerServiceCreateTriggerJobBody,
       options?: any
     ): AxiosPromise<EngineTriggerJob> {
       return TriggerServiceApiFp(configuration)
@@ -1063,13 +1063,13 @@ export const TriggerServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchTriggerRequest} body
+     * @param {EngineTriggerServicePatchTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchTrigger(
       id: number,
-      body: EnginePatchTriggerRequest,
+      body: EngineTriggerServicePatchTriggerBody,
       options?: any
     ): AxiosPromise<EngineTrigger> {
       return TriggerServiceApiFp(configuration)
@@ -1172,13 +1172,13 @@ export const TriggerServiceApiFactory = function(
      *
      * @summary Update Trigger
      * @param {number} id
-     * @param {EngineUpdateTriggerRequest} body
+     * @param {EngineTriggerServiceUpdateTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateTrigger(
       id: number,
-      body: EngineUpdateTriggerRequest,
+      body: EngineTriggerServiceUpdateTriggerBody,
       options?: any
     ): AxiosPromise<EngineTrigger> {
       return TriggerServiceApiFp(configuration)
@@ -1212,14 +1212,14 @@ export class TriggerServiceApi extends BaseAPI {
   /**
    *
    * @param {number} triggerId
-   * @param {EngineCreateTriggerJobRequest} body
+   * @param {EngineTriggerServiceCreateTriggerJobBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
   public createTriggerJob(
     triggerId: number,
-    body: EngineCreateTriggerJobRequest,
+    body: EngineTriggerServiceCreateTriggerJobBody,
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
@@ -1244,14 +1244,14 @@ export class TriggerServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EnginePatchTriggerRequest} body
+   * @param {EngineTriggerServicePatchTriggerBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
   public patchTrigger(
     id: number,
-    body: EnginePatchTriggerRequest,
+    body: EngineTriggerServicePatchTriggerBody,
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)
@@ -1361,14 +1361,14 @@ export class TriggerServiceApi extends BaseAPI {
    *
    * @summary Update Trigger
    * @param {number} id
-   * @param {EngineUpdateTriggerRequest} body
+   * @param {EngineTriggerServiceUpdateTriggerBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TriggerServiceApi
    */
   public updateTrigger(
     id: number,
-    body: EngineUpdateTriggerRequest,
+    body: EngineTriggerServiceUpdateTriggerBody,
     options?: any
   ) {
     return TriggerServiceApiFp(this.configuration)

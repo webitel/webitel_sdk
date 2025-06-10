@@ -12,6 +12,7 @@
  */
 
 import { LoggerLookup } from './logger-lookup'
+import { LoggerRecord } from './logger-record'
 
 /**
  *
@@ -57,10 +58,10 @@ export interface LoggerLog {
   object?: LoggerLookup
   /**
    *
-   * @type {LoggerLookup}
+   * @type {LoggerRecord}
    * @memberof LoggerLog
    */
-  record?: LoggerLookup
+  record?: LoggerRecord
   /**
    *
    * @type {LoggerLookup}

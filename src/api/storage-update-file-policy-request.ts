@@ -39,6 +39,12 @@ export interface StorageUpdateFilePolicyRequest {
   enabled?: boolean
   /**
    *
+   * @type {boolean}
+   * @memberof StorageUpdateFilePolicyRequest
+   */
+  encrypt?: boolean
+  /**
+   *
    * @type {number}
    * @memberof StorageUpdateFilePolicyRequest
    */

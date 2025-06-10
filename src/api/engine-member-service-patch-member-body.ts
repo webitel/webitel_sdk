@@ -49,13 +49,13 @@ export interface EngineMemberServicePatchMemberBody {
    * @type {string}
    * @memberof EngineMemberServicePatchMemberBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberServicePatchMemberBody
    */
-  expireAt?: string
+  expire_at?: string
   /**
    *
    * @type {Array<string>}
@@ -67,7 +67,7 @@ export interface EngineMemberServicePatchMemberBody {
    * @type {string}
    * @memberof EngineMemberServicePatchMemberBody
    */
-  minOfferingAt?: string
+  min_offering_at?: string
   /**
    *
    * @type {string}
@@ -91,7 +91,7 @@ export interface EngineMemberServicePatchMemberBody {
    * @type {string}
    * @memberof EngineMemberServicePatchMemberBody
    */
-  stopCause?: string
+  stop_cause?: string
   /**
    *
    * @type {EngineLookup}

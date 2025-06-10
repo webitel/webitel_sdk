@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateTeamHookRequest } from '../api'
-// @ts-ignore
 import { EngineListTeamHook } from '../api'
-// @ts-ignore
-import { EnginePatchTeamHookRequest } from '../api'
 // @ts-ignore
 import { EngineTeamHook } from '../api'
 // @ts-ignore
-import { EngineUpdateTeamHookRequest } from '../api'
+import { EngineTeamHookServiceCreateTeamHookBody } from '../api'
+// @ts-ignore
+import { EngineTeamHookServicePatchTeamHookBody } from '../api'
+// @ts-ignore
+import { EngineTeamHookServiceUpdateTeamHookBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * TeamHookServiceApi - axios parameter creator
  * @export
@@ -46,13 +46,13 @@ export const TeamHookServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} teamId
-     * @param {EngineCreateTeamHookRequest} body
+     * @param {EngineTeamHookServiceCreateTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTeamHook: async (
       teamId: string,
-      body: EngineCreateTeamHookRequest,
+      body: EngineTeamHookServiceCreateTeamHookBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'teamId' is not null or undefined
@@ -198,14 +198,14 @@ export const TeamHookServiceApiAxiosParamCreator = function(
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EnginePatchTeamHookRequest} body
+     * @param {EngineTeamHookServicePatchTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchTeamHook: async (
       teamId: string,
       id: number,
-      body: EnginePatchTeamHookRequest,
+      body: EngineTeamHookServicePatchTeamHookBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'teamId' is not null or undefined
@@ -468,14 +468,14 @@ export const TeamHookServiceApiAxiosParamCreator = function(
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EngineUpdateTeamHookRequest} body
+     * @param {EngineTeamHookServiceUpdateTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateTeamHook: async (
       teamId: string,
       id: number,
-      body: EngineUpdateTeamHookRequest,
+      body: EngineTeamHookServiceUpdateTeamHookBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'teamId' is not null or undefined
@@ -564,13 +564,13 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} teamId
-     * @param {EngineCreateTeamHookRequest} body
+     * @param {EngineTeamHookServiceCreateTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createTeamHook(
       teamId: string,
-      body: EngineCreateTeamHookRequest,
+      body: EngineTeamHookServiceCreateTeamHookBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTeamHook>
@@ -621,14 +621,14 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EnginePatchTeamHookRequest} body
+     * @param {EngineTeamHookServicePatchTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchTeamHook(
       teamId: string,
       id: number,
-      body: EnginePatchTeamHookRequest,
+      body: EngineTeamHookServicePatchTeamHookBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTeamHook>
@@ -735,14 +735,14 @@ export const TeamHookServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EngineUpdateTeamHookRequest} body
+     * @param {EngineTeamHookServiceUpdateTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateTeamHook(
       teamId: string,
       id: number,
-      body: EngineUpdateTeamHookRequest,
+      body: EngineTeamHookServiceUpdateTeamHookBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineTeamHook>
@@ -777,13 +777,13 @@ export const TeamHookServiceApiFactory = function(
     /**
      *
      * @param {string} teamId
-     * @param {EngineCreateTeamHookRequest} body
+     * @param {EngineTeamHookServiceCreateTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTeamHook(
       teamId: string,
-      body: EngineCreateTeamHookRequest,
+      body: EngineTeamHookServiceCreateTeamHookBody,
       options?: any
     ): AxiosPromise<EngineTeamHook> {
       return TeamHookServiceApiFp(configuration)
@@ -810,14 +810,14 @@ export const TeamHookServiceApiFactory = function(
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EnginePatchTeamHookRequest} body
+     * @param {EngineTeamHookServicePatchTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchTeamHook(
       teamId: string,
       id: number,
-      body: EnginePatchTeamHookRequest,
+      body: EngineTeamHookServicePatchTeamHookBody,
       options?: any
     ): AxiosPromise<EngineTeamHook> {
       return TeamHookServiceApiFp(configuration)
@@ -885,14 +885,14 @@ export const TeamHookServiceApiFactory = function(
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EngineUpdateTeamHookRequest} body
+     * @param {EngineTeamHookServiceUpdateTeamHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateTeamHook(
       teamId: string,
       id: number,
-      body: EngineUpdateTeamHookRequest,
+      body: EngineTeamHookServiceUpdateTeamHookBody,
       options?: any
     ): AxiosPromise<EngineTeamHook> {
       return TeamHookServiceApiFp(configuration)
@@ -912,14 +912,14 @@ export class TeamHookServiceApi extends BaseAPI {
   /**
    *
    * @param {string} teamId
-   * @param {EngineCreateTeamHookRequest} body
+   * @param {EngineTeamHookServiceCreateTeamHookBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamHookServiceApi
    */
   public createTeamHook(
     teamId: string,
-    body: EngineCreateTeamHookRequest,
+    body: EngineTeamHookServiceCreateTeamHookBody,
     options?: any
   ) {
     return TeamHookServiceApiFp(this.configuration)
@@ -945,7 +945,7 @@ export class TeamHookServiceApi extends BaseAPI {
    *
    * @param {string} teamId
    * @param {number} id
-   * @param {EnginePatchTeamHookRequest} body
+   * @param {EngineTeamHookServicePatchTeamHookBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamHookServiceApi
@@ -953,7 +953,7 @@ export class TeamHookServiceApi extends BaseAPI {
   public patchTeamHook(
     teamId: string,
     id: number,
-    body: EnginePatchTeamHookRequest,
+    body: EngineTeamHookServicePatchTeamHookBody,
     options?: any
   ) {
     return TeamHookServiceApiFp(this.configuration)
@@ -1022,7 +1022,7 @@ export class TeamHookServiceApi extends BaseAPI {
    *
    * @param {string} teamId
    * @param {number} id
-   * @param {EngineUpdateTeamHookRequest} body
+   * @param {EngineTeamHookServiceUpdateTeamHookBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamHookServiceApi
@@ -1030,7 +1030,7 @@ export class TeamHookServiceApi extends BaseAPI {
   public updateTeamHook(
     teamId: string,
     id: number,
-    body: EngineUpdateTeamHookRequest,
+    body: EngineTeamHookServiceUpdateTeamHookBody,
     options?: any
   ) {
     return TeamHookServiceApiFp(this.configuration)

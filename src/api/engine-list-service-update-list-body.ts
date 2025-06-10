@@ -28,7 +28,7 @@ export interface EngineListServiceUpdateListBody {
    * @type {string}
    * @memberof EngineListServiceUpdateListBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}

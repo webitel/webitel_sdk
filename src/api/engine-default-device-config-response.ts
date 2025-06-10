@@ -11,8 +11,8 @@
  * Do not edit the class manually.
  */
 
-import { DefaultDeviceConfigResponseSipDeviceConfig } from './default-device-config-response-sip-device-config'
-import { DefaultDeviceConfigResponseWebRTCDeviceConfig } from './default-device-config-response-web-rtcdevice-config'
+import { EngineDefaultDeviceConfigResponseSipDeviceConfig } from './engine-default-device-config-response-sip-device-config'
+import { EngineDefaultDeviceConfigResponseWebRTCDeviceConfig } from './engine-default-device-config-response-web-rtcdevice-config'
 
 /**
  *
@@ -22,14 +22,14 @@ import { DefaultDeviceConfigResponseWebRTCDeviceConfig } from './default-device-
 export interface EngineDefaultDeviceConfigResponse {
   /**
    *
-   * @type {DefaultDeviceConfigResponseSipDeviceConfig}
+   * @type {EngineDefaultDeviceConfigResponseSipDeviceConfig}
    * @memberof EngineDefaultDeviceConfigResponse
    */
-  sip?: DefaultDeviceConfigResponseSipDeviceConfig
+  sip?: EngineDefaultDeviceConfigResponseSipDeviceConfig
   /**
    *
-   * @type {DefaultDeviceConfigResponseWebRTCDeviceConfig}
+   * @type {EngineDefaultDeviceConfigResponseWebRTCDeviceConfig}
    * @memberof EngineDefaultDeviceConfigResponse
    */
-  webrtc?: DefaultDeviceConfigResponseWebRTCDeviceConfig
+  webrtc?: EngineDefaultDeviceConfigResponseWebRTCDeviceConfig
 }

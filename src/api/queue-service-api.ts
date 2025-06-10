@@ -24,8 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateQueueRequest } from '../api'
 // @ts-ignore
 import { EngineListQueue } from '../api'
@@ -34,11 +32,13 @@ import { EngineListReportGeneral } from '../api'
 // @ts-ignore
 import { EngineListTags } from '../api'
 // @ts-ignore
-import { EnginePatchQueueRequest } from '../api'
-// @ts-ignore
 import { EngineQueue } from '../api'
 // @ts-ignore
-import { EngineUpdateQueueRequest } from '../api'
+import { EngineQueueServicePatchQueueBody } from '../api'
+// @ts-ignore
+import { EngineQueueServiceUpdateQueueBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * QueueServiceApi - axios parameter creator
  * @export
@@ -190,13 +190,13 @@ export const QueueServiceApiAxiosParamCreator = function(
      *
      * @summary Patch Queue
      * @param {string} id
-     * @param {EnginePatchQueueRequest} body
+     * @param {EngineQueueServicePatchQueueBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQueue: async (
       id: string,
-      body: EnginePatchQueueRequest,
+      body: EngineQueueServicePatchQueueBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -652,13 +652,13 @@ export const QueueServiceApiAxiosParamCreator = function(
      *
      * @summary Update Queue
      * @param {string} id
-     * @param {EngineUpdateQueueRequest} body
+     * @param {EngineQueueServiceUpdateQueueBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueue: async (
       id: string,
-      body: EngineUpdateQueueRequest,
+      body: EngineQueueServiceUpdateQueueBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -798,13 +798,13 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Patch Queue
      * @param {string} id
-     * @param {EnginePatchQueueRequest} body
+     * @param {EngineQueueServicePatchQueueBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchQueue(
       id: string,
-      body: EnginePatchQueueRequest,
+      body: EngineQueueServicePatchQueueBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>
@@ -1013,13 +1013,13 @@ export const QueueServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update Queue
      * @param {string} id
-     * @param {EngineUpdateQueueRequest} body
+     * @param {EngineQueueServiceUpdateQueueBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateQueue(
       id: string,
-      body: EngineUpdateQueueRequest,
+      body: EngineQueueServiceUpdateQueueBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineQueue>
@@ -1087,13 +1087,13 @@ export const QueueServiceApiFactory = function(
      *
      * @summary Patch Queue
      * @param {string} id
-     * @param {EnginePatchQueueRequest} body
+     * @param {EngineQueueServicePatchQueueBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQueue(
       id: string,
-      body: EnginePatchQueueRequest,
+      body: EngineQueueServicePatchQueueBody,
       options?: any
     ): AxiosPromise<EngineQueue> {
       return QueueServiceApiFp(configuration)
@@ -1236,13 +1236,13 @@ export const QueueServiceApiFactory = function(
      *
      * @summary Update Queue
      * @param {string} id
-     * @param {EngineUpdateQueueRequest} body
+     * @param {EngineQueueServiceUpdateQueueBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueue(
       id: string,
-      body: EngineUpdateQueueRequest,
+      body: EngineQueueServiceUpdateQueueBody,
       options?: any
     ): AxiosPromise<EngineQueue> {
       return QueueServiceApiFp(configuration)
@@ -1292,12 +1292,16 @@ export class QueueServiceApi extends BaseAPI {
    *
    * @summary Patch Queue
    * @param {string} id
-   * @param {EnginePatchQueueRequest} body
+   * @param {EngineQueueServicePatchQueueBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
-  public patchQueue(id: string, body: EnginePatchQueueRequest, options?: any) {
+  public patchQueue(
+    id: string,
+    body: EngineQueueServicePatchQueueBody,
+    options?: any
+  ) {
     return QueueServiceApiFp(this.configuration)
       .patchQueue(id, body, options)
       .then((request) => request(this.axios, this.basePath))
@@ -1443,14 +1447,14 @@ export class QueueServiceApi extends BaseAPI {
    *
    * @summary Update Queue
    * @param {string} id
-   * @param {EngineUpdateQueueRequest} body
+   * @param {EngineQueueServiceUpdateQueueBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueServiceApi
    */
   public updateQueue(
     id: string,
-    body: EngineUpdateQueueRequest,
+    body: EngineQueueServiceUpdateQueueBody,
     options?: any
   ) {
     return QueueServiceApiFp(this.configuration)

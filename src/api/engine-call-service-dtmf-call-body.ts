@@ -22,7 +22,7 @@ export interface EngineCallServiceDtmfCallBody {
    * @type {string}
    * @memberof EngineCallServiceDtmfCallBody
    */
-  appId?: string
+  app_id?: string
   /**
    *
    * @type {string}
@@ -34,5 +34,5 @@ export interface EngineCallServiceDtmfCallBody {
    * @type {string}
    * @memberof EngineCallServiceDtmfCallBody
    */
-  domainId?: string
+  domain_id?: string
 }

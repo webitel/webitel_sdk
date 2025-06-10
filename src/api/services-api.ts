@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesInputCreateService } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesInputService } from '../api'
+import { WebitelCasesInputCreateService } from '../api'
 // @ts-ignore
-import { CasesLocateServiceResponse } from '../api'
+import { WebitelCasesInputService } from '../api'
 // @ts-ignore
-import { CasesService } from '../api'
+import { WebitelCasesLocateServiceResponse } from '../api'
 // @ts-ignore
-import { CasesServiceList } from '../api'
+import { WebitelCasesService } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesServiceList } from '../api'
 /**
  * ServicesApi - axios parameter creator
  * @export
@@ -46,13 +46,13 @@ export const ServicesApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new service within a catalog
-     * @param {CasesInputCreateService} input
+     * @param {WebitelCasesInputCreateService} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createService: async (
-      input: CasesInputCreateService,
+      input: WebitelCasesInputCreateService,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -356,14 +356,14 @@ export const ServicesApiAxiosParamCreator = function(
      *
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
-     * @param {CasesInputService} input Input data for updating the service
+     * @param {WebitelCasesInputService} input Input data for updating the service
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateService: async (
       id: string,
-      input: CasesInputService,
+      input: WebitelCasesInputService,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -443,14 +443,14 @@ export const ServicesApiAxiosParamCreator = function(
      *
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
-     * @param {CasesInputService} input Input data for updating the service
+     * @param {WebitelCasesInputService} input Input data for updating the service
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateService2: async (
       id: string,
-      input: CasesInputService,
+      input: WebitelCasesInputService,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -538,17 +538,20 @@ export const ServicesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new service within a catalog
-     * @param {CasesInputCreateService} input
+     * @param {WebitelCasesInputCreateService} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createService(
-      input: CasesInputCreateService,
+      input: WebitelCasesInputCreateService,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesService>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesService>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
@@ -578,7 +581,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesServiceList>
+      ) => AxiosPromise<WebitelCasesServiceList>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
@@ -622,7 +625,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesServiceList>
+      ) => AxiosPromise<WebitelCasesServiceList>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
@@ -654,7 +657,7 @@ export const ServicesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocateServiceResponse>
+      ) => AxiosPromise<WebitelCasesLocateServiceResponse>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
@@ -674,18 +677,21 @@ export const ServicesApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
-     * @param {CasesInputService} input Input data for updating the service
+     * @param {WebitelCasesInputService} input Input data for updating the service
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateService(
       id: string,
-      input: CasesInputService,
+      input: WebitelCasesInputService,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesService>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesService>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
@@ -705,18 +711,21 @@ export const ServicesApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
-     * @param {CasesInputService} input Input data for updating the service
+     * @param {WebitelCasesInputService} input Input data for updating the service
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateService2(
       id: string,
-      input: CasesInputService,
+      input: WebitelCasesInputService,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesService>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesService>
     > {
       const localVarAxiosArgs = await ServicesApiAxiosParamCreator(
         configuration
@@ -748,16 +757,16 @@ export const ServicesApiFactory = function(
     /**
      *
      * @summary Create a new service within a catalog
-     * @param {CasesInputCreateService} input
+     * @param {WebitelCasesInputCreateService} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createService(
-      input: CasesInputCreateService,
+      input: WebitelCasesInputCreateService,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesService> {
+    ): AxiosPromise<WebitelCasesService> {
       return ServicesApiFp(configuration)
         .createService(input, fields, options)
         .then((request) => request(axios, basePath))
@@ -772,7 +781,7 @@ export const ServicesApiFactory = function(
     deleteService(
       id: Array<string>,
       options?: any
-    ): AxiosPromise<CasesServiceList> {
+    ): AxiosPromise<WebitelCasesServiceList> {
       return ServicesApiFp(configuration)
         .deleteService(id, options)
         .then((request) => request(axios, basePath))
@@ -801,7 +810,7 @@ export const ServicesApiFactory = function(
       state?: boolean,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesServiceList> {
+    ): AxiosPromise<WebitelCasesServiceList> {
       return ServicesApiFp(configuration)
         .listServices(page, size, sort, id, q, rootId, state, fields, options)
         .then((request) => request(axios, basePath))
@@ -818,7 +827,7 @@ export const ServicesApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocateServiceResponse> {
+    ): AxiosPromise<WebitelCasesLocateServiceResponse> {
       return ServicesApiFp(configuration)
         .locateService(id, fields, options)
         .then((request) => request(axios, basePath))
@@ -827,17 +836,17 @@ export const ServicesApiFactory = function(
      *
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
-     * @param {CasesInputService} input Input data for updating the service
+     * @param {WebitelCasesInputService} input Input data for updating the service
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateService(
       id: string,
-      input: CasesInputService,
+      input: WebitelCasesInputService,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesService> {
+    ): AxiosPromise<WebitelCasesService> {
       return ServicesApiFp(configuration)
         .updateService(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -846,17 +855,17 @@ export const ServicesApiFactory = function(
      *
      * @summary Update an existing service
      * @param {string} id ID of the service to be updated
-     * @param {CasesInputService} input Input data for updating the service
+     * @param {WebitelCasesInputService} input Input data for updating the service
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateService2(
       id: string,
-      input: CasesInputService,
+      input: WebitelCasesInputService,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesService> {
+    ): AxiosPromise<WebitelCasesService> {
       return ServicesApiFp(configuration)
         .updateService2(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -874,14 +883,14 @@ export class ServicesApi extends BaseAPI {
   /**
    *
    * @summary Create a new service within a catalog
-   * @param {CasesInputCreateService} input
+   * @param {WebitelCasesInputCreateService} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ServicesApi
    */
   public createService(
-    input: CasesInputCreateService,
+    input: WebitelCasesInputCreateService,
     fields?: Array<string>,
     options?: any
   ) {
@@ -954,7 +963,7 @@ export class ServicesApi extends BaseAPI {
    *
    * @summary Update an existing service
    * @param {string} id ID of the service to be updated
-   * @param {CasesInputService} input Input data for updating the service
+   * @param {WebitelCasesInputService} input Input data for updating the service
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -962,7 +971,7 @@ export class ServicesApi extends BaseAPI {
    */
   public updateService(
     id: string,
-    input: CasesInputService,
+    input: WebitelCasesInputService,
     fields?: Array<string>,
     options?: any
   ) {
@@ -975,7 +984,7 @@ export class ServicesApi extends BaseAPI {
    *
    * @summary Update an existing service
    * @param {string} id ID of the service to be updated
-   * @param {CasesInputService} input Input data for updating the service
+   * @param {WebitelCasesInputService} input Input data for updating the service
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -983,7 +992,7 @@ export class ServicesApi extends BaseAPI {
    */
   public updateService2(
     id: string,
-    input: CasesInputService,
+    input: WebitelCasesInputService,
     fields?: Array<string>,
     options?: any
   ) {

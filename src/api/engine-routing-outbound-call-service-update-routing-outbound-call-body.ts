@@ -36,7 +36,7 @@ export interface EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody {
    * @type {string}
    * @memberof EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}

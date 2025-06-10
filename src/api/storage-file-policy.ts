@@ -52,6 +52,12 @@ export interface StorageFilePolicy {
   enabled?: boolean
   /**
    *
+   * @type {boolean}
+   * @memberof StorageFilePolicy
+   */
+  encrypt?: boolean
+  /**
+   *
    * @type {number}
    * @memberof StorageFilePolicy
    */

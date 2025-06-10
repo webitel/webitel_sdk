@@ -24,11 +24,7 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateOutboundResourceGroupRequest } from '../api'
-// @ts-ignore
-import { EngineCreateOutboundResourceInGroupRequest } from '../api'
 // @ts-ignore
 import { EngineListOutboundResourceGroup } from '../api'
 // @ts-ignore
@@ -36,11 +32,15 @@ import { EngineListOutboundResourceInGroup } from '../api'
 // @ts-ignore
 import { EngineOutboundResourceGroup } from '../api'
 // @ts-ignore
+import { EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody } from '../api'
+// @ts-ignore
+import { EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody } from '../api'
+// @ts-ignore
+import { EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody } from '../api'
+// @ts-ignore
 import { EngineOutboundResourceInGroup } from '../api'
 // @ts-ignore
-import { EngineUpdateOutboundResourceGroupRequest } from '../api'
-// @ts-ignore
-import { EngineUpdateOutboundResourceInGroupRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * OutboundResourceGroupServiceApi - axios parameter creator
  * @export
@@ -122,13 +122,13 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
      *
      * @summary Create OutboundResourceGroup
      * @param {string} groupId
-     * @param {EngineCreateOutboundResourceInGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceInGroup: async (
       groupId: string,
-      body: EngineCreateOutboundResourceInGroupRequest,
+      body: EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'groupId' is not null or undefined
@@ -687,13 +687,13 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
      *
      * @summary Update OutboundResourceGroup
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResourceGroup: async (
       id: string,
-      body: EngineUpdateOutboundResourceGroupRequest,
+      body: EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -769,14 +769,14 @@ export const OutboundResourceGroupServiceApiAxiosParamCreator = function(
      * @summary Update OutboundResourceInGroup
      * @param {string} groupId
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceInGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResourceInGroup: async (
       groupId: string,
       id: string,
-      body: EngineUpdateOutboundResourceInGroupRequest,
+      body: EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'groupId' is not null or undefined
@@ -898,13 +898,13 @@ export const OutboundResourceGroupServiceApiFp = function(
      *
      * @summary Create OutboundResourceGroup
      * @param {string} groupId
-     * @param {EngineCreateOutboundResourceInGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createOutboundResourceInGroup(
       groupId: string,
-      body: EngineCreateOutboundResourceInGroupRequest,
+      body: EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody,
       options?: any
     ): Promise<
       (
@@ -1153,13 +1153,13 @@ export const OutboundResourceGroupServiceApiFp = function(
      *
      * @summary Update OutboundResourceGroup
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateOutboundResourceGroup(
       id: string,
-      body: EngineUpdateOutboundResourceGroupRequest,
+      body: EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody,
       options?: any
     ): Promise<
       (
@@ -1186,14 +1186,14 @@ export const OutboundResourceGroupServiceApiFp = function(
      * @summary Update OutboundResourceInGroup
      * @param {string} groupId
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceInGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateOutboundResourceInGroup(
       groupId: string,
       id: string,
-      body: EngineUpdateOutboundResourceInGroupRequest,
+      body: EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody,
       options?: any
     ): Promise<
       (
@@ -1247,13 +1247,13 @@ export const OutboundResourceGroupServiceApiFactory = function(
      *
      * @summary Create OutboundResourceGroup
      * @param {string} groupId
-     * @param {EngineCreateOutboundResourceInGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceInGroup(
       groupId: string,
-      body: EngineCreateOutboundResourceInGroupRequest,
+      body: EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody,
       options?: any
     ): AxiosPromise<EngineOutboundResourceInGroup> {
       return OutboundResourceGroupServiceApiFp(configuration)
@@ -1397,13 +1397,13 @@ export const OutboundResourceGroupServiceApiFactory = function(
      *
      * @summary Update OutboundResourceGroup
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResourceGroup(
       id: string,
-      body: EngineUpdateOutboundResourceGroupRequest,
+      body: EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody,
       options?: any
     ): AxiosPromise<EngineOutboundResourceGroup> {
       return OutboundResourceGroupServiceApiFp(configuration)
@@ -1415,14 +1415,14 @@ export const OutboundResourceGroupServiceApiFactory = function(
      * @summary Update OutboundResourceInGroup
      * @param {string} groupId
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceInGroupRequest} body
+     * @param {EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResourceInGroup(
       groupId: string,
       id: string,
-      body: EngineUpdateOutboundResourceInGroupRequest,
+      body: EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody,
       options?: any
     ): AxiosPromise<EngineOutboundResourceInGroup> {
       return OutboundResourceGroupServiceApiFp(configuration)
@@ -1460,14 +1460,14 @@ export class OutboundResourceGroupServiceApi extends BaseAPI {
    *
    * @summary Create OutboundResourceGroup
    * @param {string} groupId
-   * @param {EngineCreateOutboundResourceInGroupRequest} body
+   * @param {EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceGroupServiceApi
    */
   public createOutboundResourceInGroup(
     groupId: string,
-    body: EngineCreateOutboundResourceInGroupRequest,
+    body: EngineOutboundResourceGroupServiceCreateOutboundResourceInGroupBody,
     options?: any
   ) {
     return OutboundResourceGroupServiceApiFp(this.configuration)
@@ -1624,14 +1624,14 @@ export class OutboundResourceGroupServiceApi extends BaseAPI {
    *
    * @summary Update OutboundResourceGroup
    * @param {string} id
-   * @param {EngineUpdateOutboundResourceGroupRequest} body
+   * @param {EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceGroupServiceApi
    */
   public updateOutboundResourceGroup(
     id: string,
-    body: EngineUpdateOutboundResourceGroupRequest,
+    body: EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody,
     options?: any
   ) {
     return OutboundResourceGroupServiceApiFp(this.configuration)
@@ -1644,7 +1644,7 @@ export class OutboundResourceGroupServiceApi extends BaseAPI {
    * @summary Update OutboundResourceInGroup
    * @param {string} groupId
    * @param {string} id
-   * @param {EngineUpdateOutboundResourceInGroupRequest} body
+   * @param {EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceGroupServiceApi
@@ -1652,7 +1652,7 @@ export class OutboundResourceGroupServiceApi extends BaseAPI {
   public updateOutboundResourceInGroup(
     groupId: string,
     id: string,
-    body: EngineUpdateOutboundResourceInGroupRequest,
+    body: EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody,
     options?: any
   ) {
     return OutboundResourceGroupServiceApiFp(this.configuration)

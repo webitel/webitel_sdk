@@ -24,9 +24,13 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineAuditForm } from '../api'
+// @ts-ignore
+import { EngineAuditFormServicePatchAuditFormBody } from '../api'
+// @ts-ignore
+import { EngineAuditFormServiceUpdateAuditFormBody } from '../api'
+// @ts-ignore
+import { EngineAuditFormServiceUpdateAuditRateBody } from '../api'
 // @ts-ignore
 import { EngineAuditRate } from '../api'
 // @ts-ignore
@@ -38,11 +42,7 @@ import { EngineListAuditForm } from '../api'
 // @ts-ignore
 import { EngineListAuditRate } from '../api'
 // @ts-ignore
-import { EnginePatchAuditFormRequest } from '../api'
-// @ts-ignore
-import { EngineUpdateAuditFormRequest } from '../api'
-// @ts-ignore
-import { EngineUpdateAuditRateRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * AuditFormServiceApi - axios parameter creator
  * @export
@@ -316,13 +316,13 @@ export const AuditFormServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchAuditFormRequest} body
+     * @param {EngineAuditFormServicePatchAuditFormBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAuditForm: async (
       id: number,
-      body: EnginePatchAuditFormRequest,
+      body: EngineAuditFormServicePatchAuditFormBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -529,7 +529,7 @@ export const AuditFormServiceApiAxiosParamCreator = function(
      * @param {Array<number>} [id]
      * @param {Array<number>} [teamId]
      * @param {boolean} [enabled]
-     * @param {boolean} [editable] bool archive &#x3D; 9;.
+     * @param {boolean} [editable] bool archive &#x3D; 9;  bool active &#x3D; 11; // not archive
      * @param {string} [question]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -756,13 +756,13 @@ export const AuditFormServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateAuditFormRequest} body
+     * @param {EngineAuditFormServiceUpdateAuditFormBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAuditForm: async (
       id: number,
-      body: EngineUpdateAuditFormRequest,
+      body: EngineAuditFormServiceUpdateAuditFormBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -836,13 +836,13 @@ export const AuditFormServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
-     * @param {EngineUpdateAuditRateRequest} body
+     * @param {EngineAuditFormServiceUpdateAuditRateBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAuditRate: async (
       id: string,
-      body: EngineUpdateAuditRateRequest,
+      body: EngineAuditFormServiceUpdateAuditRateBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -1041,13 +1041,13 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} id
-     * @param {EnginePatchAuditFormRequest} body
+     * @param {EngineAuditFormServicePatchAuditFormBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchAuditForm(
       id: number,
-      body: EnginePatchAuditFormRequest,
+      body: EngineAuditFormServicePatchAuditFormBody,
       options?: any
     ): Promise<
       (
@@ -1137,7 +1137,7 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
      * @param {Array<number>} [id]
      * @param {Array<number>} [teamId]
      * @param {boolean} [enabled]
-     * @param {boolean} [editable] bool archive &#x3D; 9;.
+     * @param {boolean} [editable] bool archive &#x3D; 9;  bool active &#x3D; 11; // not archive
      * @param {string} [question]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1251,13 +1251,13 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateAuditFormRequest} body
+     * @param {EngineAuditFormServiceUpdateAuditFormBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAuditForm(
       id: number,
-      body: EngineUpdateAuditFormRequest,
+      body: EngineAuditFormServiceUpdateAuditFormBody,
       options?: any
     ): Promise<
       (
@@ -1282,13 +1282,13 @@ export const AuditFormServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} id
-     * @param {EngineUpdateAuditRateRequest} body
+     * @param {EngineAuditFormServiceUpdateAuditRateBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAuditRate(
       id: string,
-      body: EngineUpdateAuditRateRequest,
+      body: EngineAuditFormServiceUpdateAuditRateBody,
       options?: any
     ): Promise<
       (
@@ -1376,13 +1376,13 @@ export const AuditFormServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchAuditFormRequest} body
+     * @param {EngineAuditFormServicePatchAuditFormBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAuditForm(
       id: number,
-      body: EnginePatchAuditFormRequest,
+      body: EngineAuditFormServicePatchAuditFormBody,
       options?: any
     ): AxiosPromise<EngineAuditForm> {
       return AuditFormServiceApiFp(configuration)
@@ -1421,7 +1421,7 @@ export const AuditFormServiceApiFactory = function(
      * @param {Array<number>} [id]
      * @param {Array<number>} [teamId]
      * @param {boolean} [enabled]
-     * @param {boolean} [editable] bool archive &#x3D; 9;.
+     * @param {boolean} [editable] bool archive &#x3D; 9;  bool active &#x3D; 11; // not archive
      * @param {string} [question]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1505,13 +1505,13 @@ export const AuditFormServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateAuditFormRequest} body
+     * @param {EngineAuditFormServiceUpdateAuditFormBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAuditForm(
       id: number,
-      body: EngineUpdateAuditFormRequest,
+      body: EngineAuditFormServiceUpdateAuditFormBody,
       options?: any
     ): AxiosPromise<EngineAuditForm> {
       return AuditFormServiceApiFp(configuration)
@@ -1521,13 +1521,13 @@ export const AuditFormServiceApiFactory = function(
     /**
      *
      * @param {string} id
-     * @param {EngineUpdateAuditRateRequest} body
+     * @param {EngineAuditFormServiceUpdateAuditRateBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAuditRate(
       id: string,
-      body: EngineUpdateAuditRateRequest,
+      body: EngineAuditFormServiceUpdateAuditRateBody,
       options?: any
     ): AxiosPromise<EngineAuditRate> {
       return AuditFormServiceApiFp(configuration)
@@ -1602,14 +1602,14 @@ export class AuditFormServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EnginePatchAuditFormRequest} body
+   * @param {EngineAuditFormServicePatchAuditFormBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AuditFormServiceApi
    */
   public patchAuditForm(
     id: number,
-    body: EnginePatchAuditFormRequest,
+    body: EngineAuditFormServicePatchAuditFormBody,
     options?: any
   ) {
     return AuditFormServiceApiFp(this.configuration)
@@ -1653,7 +1653,7 @@ export class AuditFormServiceApi extends BaseAPI {
    * @param {Array<number>} [id]
    * @param {Array<number>} [teamId]
    * @param {boolean} [enabled]
-   * @param {boolean} [editable] bool archive &#x3D; 9;.
+   * @param {boolean} [editable] bool archive &#x3D; 9;  bool active &#x3D; 11; // not archive
    * @param {string} [question]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1741,14 +1741,14 @@ export class AuditFormServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EngineUpdateAuditFormRequest} body
+   * @param {EngineAuditFormServiceUpdateAuditFormBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AuditFormServiceApi
    */
   public updateAuditForm(
     id: number,
-    body: EngineUpdateAuditFormRequest,
+    body: EngineAuditFormServiceUpdateAuditFormBody,
     options?: any
   ) {
     return AuditFormServiceApiFp(this.configuration)
@@ -1759,14 +1759,14 @@ export class AuditFormServiceApi extends BaseAPI {
   /**
    *
    * @param {string} id
-   * @param {EngineUpdateAuditRateRequest} body
+   * @param {EngineAuditFormServiceUpdateAuditRateBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AuditFormServiceApi
    */
   public updateAuditRate(
     id: string,
-    body: EngineUpdateAuditRateRequest,
+    body: EngineAuditFormServiceUpdateAuditRateBody,
     options?: any
   ) {
     return AuditFormServiceApiFp(this.configuration)

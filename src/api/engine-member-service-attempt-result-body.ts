@@ -22,7 +22,7 @@ export interface EngineMemberServiceAttemptResultBody {
    * @type {number}
    * @memberof EngineMemberServiceAttemptResultBody
    */
-  agentId?: number
+  agent_id?: number
   /**
    *
    * @type {string}
@@ -40,31 +40,31 @@ export interface EngineMemberServiceAttemptResultBody {
    * @type {boolean}
    * @memberof EngineMemberServiceAttemptResultBody
    */
-  excludeCurrentCommunication?: boolean
+  exclude_current_communication?: boolean
   /**
    *
    * @type {string}
    * @memberof EngineMemberServiceAttemptResultBody
    */
-  expireAt?: string
+  expire_at?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberServiceAttemptResultBody
    */
-  minOfferingAt?: string
+  min_offering_at?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberServiceAttemptResultBody
    */
-  nextMemberId?: string
+  next_member_id?: string
   /**
    *
    * @type {boolean}
    * @memberof EngineMemberServiceAttemptResultBody
    */
-  onlyCurrentCommunication?: boolean
+  only_current_communication?: boolean
   /**
    *
    * @type {string}
@@ -76,7 +76,7 @@ export interface EngineMemberServiceAttemptResultBody {
    * @type {string}
    * @memberof EngineMemberServiceAttemptResultBody
    */
-  transferQueueId?: string
+  transfer_queue_id?: string
   /**
    *
    * @type {{ [key: string]: string; }}
@@ -88,5 +88,5 @@ export interface EngineMemberServiceAttemptResultBody {
    * @type {number}
    * @memberof EngineMemberServiceAttemptResultBody
    */
-  waitBetweenRetries?: number
+  wait_between_retries?: number
 }

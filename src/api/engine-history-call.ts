@@ -15,10 +15,10 @@ import { EngineCallAnnotation } from './engine-call-annotation'
 import { EngineCallFile } from './engine-call-file'
 import { EngineCallHold } from './engine-call-hold'
 import { EngineEndpoint } from './engine-endpoint'
+import { EngineHistoryCallBlindTransfer } from './engine-history-call-blind-transfer'
 import { EngineHistoryFileJob } from './engine-history-file-job'
 import { EngineLookup } from './engine-lookup'
 import { EngineTranscriptLookup } from './engine-transcript-lookup'
-import { HistoryCallBlindTransfer } from './history-call-blind-transfer'
 
 /**
  *
@@ -100,10 +100,10 @@ export interface EngineHistoryCall {
   blind_transfer?: string
   /**
    *
-   * @type {Array<HistoryCallBlindTransfer>}
+   * @type {Array<EngineHistoryCallBlindTransfer>}
    * @memberof EngineHistoryCall
    */
-  blind_transfers?: Array<HistoryCallBlindTransfer>
+  blind_transfers?: Array<EngineHistoryCallBlindTransfer>
   /**
    *
    * @type {string}

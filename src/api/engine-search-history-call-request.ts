@@ -300,5 +300,5 @@ export interface EngineSearchHistoryCallRequest {
    * @type {{ [key: string]: string; }}
    * @memberof EngineSearchHistoryCallRequest
    */
-  variables?: { [key: string]: string }
+  variables_string?: { [key: string]: string }
 }

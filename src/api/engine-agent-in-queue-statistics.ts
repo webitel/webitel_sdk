@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { AgentInQueueStatisticsAgentInQueueStatisticsItem } from './agent-in-queue-statistics-agent-in-queue-statistics-item'
+import { EngineAgentInQueueStatisticsAgentInQueueStatisticsItem } from './engine-agent-in-queue-statistics-agent-in-queue-statistics-item'
 import { EngineLookup } from './engine-lookup'
 
 /**
@@ -28,8 +28,8 @@ export interface EngineAgentInQueueStatistics {
   queue?: EngineLookup
   /**
    *
-   * @type {Array<AgentInQueueStatisticsAgentInQueueStatisticsItem>}
+   * @type {Array<EngineAgentInQueueStatisticsAgentInQueueStatisticsItem>}
    * @memberof EngineAgentInQueueStatistics
    */
-  statistics?: Array<AgentInQueueStatisticsAgentInQueueStatisticsItem>
+  statistics?: Array<EngineAgentInQueueStatisticsAgentInQueueStatisticsItem>
 }

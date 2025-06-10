@@ -37,13 +37,13 @@ export interface EngineOutboundResourceServiceUpdateOutboundResourceBody {
    * @type {Array<string>}
    * @memberof EngineOutboundResourceServiceUpdateOutboundResourceBody
    */
-  errorIds?: Array<string>
+  error_ids?: Array<string>
   /**
    *
    * @type {number}
    * @memberof EngineOutboundResourceServiceUpdateOutboundResourceBody
    */
-  failureDialDelay?: number
+  failure_dial_delay?: number
   /**
    *
    * @type {EngineLookup}
@@ -61,7 +61,7 @@ export interface EngineOutboundResourceServiceUpdateOutboundResourceBody {
    * @type {number}
    * @memberof EngineOutboundResourceServiceUpdateOutboundResourceBody
    */
-  maxSuccessivelyErrors?: number
+  max_successively_errors?: number
   /**
    *
    * @type {string}

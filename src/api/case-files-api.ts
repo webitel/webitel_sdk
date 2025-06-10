@@ -24,11 +24,11 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCaseFileList } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesFile } from '../api'
+import { WebitelCasesCaseFileList } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesFile } from '../api'
 /**
  * CaseFilesApi - axios parameter creator
  * @export
@@ -231,7 +231,10 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
       id: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesFile>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesFile>
     > {
       const localVarAxiosArgs = await CaseFilesApiAxiosParamCreator(
         configuration
@@ -273,7 +276,7 @@ export const CaseFilesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseFileList>
+      ) => AxiosPromise<WebitelCasesCaseFileList>
     > {
       const localVarAxiosArgs = await CaseFilesApiAxiosParamCreator(
         configuration
@@ -314,7 +317,7 @@ export const CaseFilesApiFactory = function(
       caseEtag: string,
       id: string,
       options?: any
-    ): AxiosPromise<CasesFile> {
+    ): AxiosPromise<WebitelCasesFile> {
       return CaseFilesApiFp(configuration)
         .deleteFile(caseEtag, id, options)
         .then((request) => request(axios, basePath))
@@ -341,7 +344,7 @@ export const CaseFilesApiFactory = function(
       ids?: Array<string>,
       sort?: string,
       options?: any
-    ): AxiosPromise<CasesCaseFileList> {
+    ): AxiosPromise<WebitelCasesCaseFileList> {
       return CaseFilesApiFp(configuration)
         .listFiles(caseEtag, page, size, q, fields, ids, sort, options)
         .then((request) => request(axios, basePath))

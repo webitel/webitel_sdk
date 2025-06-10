@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesInputPriority } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesLocatePriorityResponse } from '../api'
+import { WebitelCasesInputPriority } from '../api'
 // @ts-ignore
-import { CasesPriority } from '../api'
+import { WebitelCasesLocatePriorityResponse } from '../api'
 // @ts-ignore
-import { CasesPriorityList } from '../api'
+import { WebitelCasesPriority } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesPriorityList } from '../api'
 /**
  * PrioritiesApi - axios parameter creator
  * @export
@@ -44,13 +44,13 @@ export const PrioritiesApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new priority
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createPriority: async (
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -354,14 +354,14 @@ export const PrioritiesApiAxiosParamCreator = function(
      *
      * @summary Update an existing priority
      * @param {string} id
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updatePriority: async (
       id: string,
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -441,14 +441,14 @@ export const PrioritiesApiAxiosParamCreator = function(
      *
      * @summary Update an existing priority
      * @param {string} id
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updatePriority2: async (
       id: string,
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -536,17 +536,20 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new priority
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createPriority(
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesPriority>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesPriority>
     > {
       const localVarAxiosArgs = await PrioritiesApiAxiosParamCreator(
         configuration
@@ -573,7 +576,10 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
       id: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesPriority>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesPriority>
     > {
       const localVarAxiosArgs = await PrioritiesApiAxiosParamCreator(
         configuration
@@ -617,7 +623,7 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesPriorityList>
+      ) => AxiosPromise<WebitelCasesPriorityList>
     > {
       const localVarAxiosArgs = await PrioritiesApiAxiosParamCreator(
         configuration
@@ -659,7 +665,7 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocatePriorityResponse>
+      ) => AxiosPromise<WebitelCasesLocatePriorityResponse>
     > {
       const localVarAxiosArgs = await PrioritiesApiAxiosParamCreator(
         configuration
@@ -679,18 +685,21 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing priority
      * @param {string} id
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updatePriority(
       id: string,
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesPriority>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesPriority>
     > {
       const localVarAxiosArgs = await PrioritiesApiAxiosParamCreator(
         configuration
@@ -710,18 +719,21 @@ export const PrioritiesApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing priority
      * @param {string} id
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updatePriority2(
       id: string,
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesPriority>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesPriority>
     > {
       const localVarAxiosArgs = await PrioritiesApiAxiosParamCreator(
         configuration
@@ -753,16 +765,16 @@ export const PrioritiesApiFactory = function(
     /**
      *
      * @summary Create a new priority
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createPriority(
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesPriority> {
+    ): AxiosPromise<WebitelCasesPriority> {
       return PrioritiesApiFp(configuration)
         .createPriority(input, fields, options)
         .then((request) => request(axios, basePath))
@@ -774,7 +786,10 @@ export const PrioritiesApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deletePriority(id: string, options?: any): AxiosPromise<CasesPriority> {
+    deletePriority(
+      id: string,
+      options?: any
+    ): AxiosPromise<WebitelCasesPriority> {
       return PrioritiesApiFp(configuration)
         .deletePriority(id, options)
         .then((request) => request(axios, basePath))
@@ -803,7 +818,7 @@ export const PrioritiesApiFactory = function(
       notInSla?: string,
       inSlaCond?: string,
       options?: any
-    ): AxiosPromise<CasesPriorityList> {
+    ): AxiosPromise<WebitelCasesPriorityList> {
       return PrioritiesApiFp(configuration)
         .listPriorities(
           page,
@@ -830,7 +845,7 @@ export const PrioritiesApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocatePriorityResponse> {
+    ): AxiosPromise<WebitelCasesLocatePriorityResponse> {
       return PrioritiesApiFp(configuration)
         .locatePriority(id, fields, options)
         .then((request) => request(axios, basePath))
@@ -839,17 +854,17 @@ export const PrioritiesApiFactory = function(
      *
      * @summary Update an existing priority
      * @param {string} id
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updatePriority(
       id: string,
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesPriority> {
+    ): AxiosPromise<WebitelCasesPriority> {
       return PrioritiesApiFp(configuration)
         .updatePriority(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -858,17 +873,17 @@ export const PrioritiesApiFactory = function(
      *
      * @summary Update an existing priority
      * @param {string} id
-     * @param {CasesInputPriority} input
+     * @param {WebitelCasesInputPriority} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updatePriority2(
       id: string,
-      input: CasesInputPriority,
+      input: WebitelCasesInputPriority,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesPriority> {
+    ): AxiosPromise<WebitelCasesPriority> {
       return PrioritiesApiFp(configuration)
         .updatePriority2(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -886,14 +901,14 @@ export class PrioritiesApi extends BaseAPI {
   /**
    *
    * @summary Create a new priority
-   * @param {CasesInputPriority} input
+   * @param {WebitelCasesInputPriority} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PrioritiesApi
    */
   public createPriority(
-    input: CasesInputPriority,
+    input: WebitelCasesInputPriority,
     fields?: Array<string>,
     options?: any
   ) {
@@ -976,7 +991,7 @@ export class PrioritiesApi extends BaseAPI {
    *
    * @summary Update an existing priority
    * @param {string} id
-   * @param {CasesInputPriority} input
+   * @param {WebitelCasesInputPriority} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -984,7 +999,7 @@ export class PrioritiesApi extends BaseAPI {
    */
   public updatePriority(
     id: string,
-    input: CasesInputPriority,
+    input: WebitelCasesInputPriority,
     fields?: Array<string>,
     options?: any
   ) {
@@ -997,7 +1012,7 @@ export class PrioritiesApi extends BaseAPI {
    *
    * @summary Update an existing priority
    * @param {string} id
-   * @param {CasesInputPriority} input
+   * @param {WebitelCasesInputPriority} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1005,7 +1020,7 @@ export class PrioritiesApi extends BaseAPI {
    */
   public updatePriority2(
     id: string,
-    input: CasesInputPriority,
+    input: WebitelCasesInputPriority,
     fields?: Array<string>,
     options?: any
   ) {

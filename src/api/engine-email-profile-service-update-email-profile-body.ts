@@ -26,7 +26,7 @@ export interface EngineEmailProfileServiceUpdateEmailProfileBody {
    * @type {EngineEmailAuthType}
    * @memberof EngineEmailProfileServiceUpdateEmailProfileBody
    */
-  authType?: EngineEmailAuthType
+  auth_type?: EngineEmailAuthType
   /**
    *
    * @type {string}
@@ -44,19 +44,19 @@ export interface EngineEmailProfileServiceUpdateEmailProfileBody {
    * @type {number}
    * @memberof EngineEmailProfileServiceUpdateEmailProfileBody
    */
-  fetchInterval?: number
+  fetch_interval?: number
   /**
    *
    * @type {string}
    * @memberof EngineEmailProfileServiceUpdateEmailProfileBody
    */
-  imapHost?: string
+  imap_host?: string
   /**
    *
    * @type {number}
    * @memberof EngineEmailProfileServiceUpdateEmailProfileBody
    */
-  imapPort?: number
+  imap_port?: number
   /**
    *
    * @type {boolean}
@@ -104,11 +104,11 @@ export interface EngineEmailProfileServiceUpdateEmailProfileBody {
    * @type {string}
    * @memberof EngineEmailProfileServiceUpdateEmailProfileBody
    */
-  smtpHost?: string
+  smtp_host?: string
   /**
    *
    * @type {number}
    * @memberof EngineEmailProfileServiceUpdateEmailProfileBody
    */
-  smtpPort?: number
+  smtp_port?: number
 }

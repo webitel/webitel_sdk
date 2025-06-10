@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateQueueSkillRequest } from '../api'
-// @ts-ignore
 import { EngineListQueueSkill } from '../api'
-// @ts-ignore
-import { EnginePatchQueueSkillRequest } from '../api'
 // @ts-ignore
 import { EngineQueueSkill } from '../api'
 // @ts-ignore
-import { EngineUpdateQueueSkillRequest } from '../api'
+import { EngineQueueSkillServiceCreateQueueSkillBody } from '../api'
+// @ts-ignore
+import { EngineQueueSkillServicePatchQueueSkillBody } from '../api'
+// @ts-ignore
+import { EngineQueueSkillServiceUpdateQueueSkillBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * QueueSkillServiceApi - axios parameter creator
  * @export
@@ -46,13 +46,13 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} queueId
-     * @param {EngineCreateQueueSkillRequest} body
+     * @param {EngineQueueSkillServiceCreateQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueSkill: async (
       queueId: number,
-      body: EngineCreateQueueSkillRequest,
+      body: EngineQueueSkillServiceCreateQueueSkillBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -198,14 +198,14 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EnginePatchQueueSkillRequest} body
+     * @param {EngineQueueSkillServicePatchQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQueueSkill: async (
       queueId: number,
       id: number,
-      body: EnginePatchQueueSkillRequest,
+      body: EngineQueueSkillServicePatchQueueSkillBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -492,14 +492,14 @@ export const QueueSkillServiceApiAxiosParamCreator = function(
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateQueueSkillRequest} body
+     * @param {EngineQueueSkillServiceUpdateQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueueSkill: async (
       queueId: number,
       id: number,
-      body: EngineUpdateQueueSkillRequest,
+      body: EngineQueueSkillServiceUpdateQueueSkillBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -588,13 +588,13 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} queueId
-     * @param {EngineCreateQueueSkillRequest} body
+     * @param {EngineQueueSkillServiceCreateQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createQueueSkill(
       queueId: number,
-      body: EngineCreateQueueSkillRequest,
+      body: EngineQueueSkillServiceCreateQueueSkillBody,
       options?: any
     ): Promise<
       (
@@ -651,14 +651,14 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EnginePatchQueueSkillRequest} body
+     * @param {EngineQueueSkillServicePatchQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchQueueSkill(
       queueId: number,
       id: number,
-      body: EnginePatchQueueSkillRequest,
+      body: EngineQueueSkillServicePatchQueueSkillBody,
       options?: any
     ): Promise<
       (
@@ -783,14 +783,14 @@ export const QueueSkillServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateQueueSkillRequest} body
+     * @param {EngineQueueSkillServiceUpdateQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateQueueSkill(
       queueId: number,
       id: number,
-      body: EngineUpdateQueueSkillRequest,
+      body: EngineQueueSkillServiceUpdateQueueSkillBody,
       options?: any
     ): Promise<
       (
@@ -828,13 +828,13 @@ export const QueueSkillServiceApiFactory = function(
     /**
      *
      * @param {number} queueId
-     * @param {EngineCreateQueueSkillRequest} body
+     * @param {EngineQueueSkillServiceCreateQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueSkill(
       queueId: number,
-      body: EngineCreateQueueSkillRequest,
+      body: EngineQueueSkillServiceCreateQueueSkillBody,
       options?: any
     ): AxiosPromise<EngineQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
@@ -861,14 +861,14 @@ export const QueueSkillServiceApiFactory = function(
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EnginePatchQueueSkillRequest} body
+     * @param {EngineQueueSkillServicePatchQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQueueSkill(
       queueId: number,
       id: number,
-      body: EnginePatchQueueSkillRequest,
+      body: EngineQueueSkillServicePatchQueueSkillBody,
       options?: any
     ): AxiosPromise<EngineQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
@@ -948,14 +948,14 @@ export const QueueSkillServiceApiFactory = function(
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateQueueSkillRequest} body
+     * @param {EngineQueueSkillServiceUpdateQueueSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueueSkill(
       queueId: number,
       id: number,
-      body: EngineUpdateQueueSkillRequest,
+      body: EngineQueueSkillServiceUpdateQueueSkillBody,
       options?: any
     ): AxiosPromise<EngineQueueSkill> {
       return QueueSkillServiceApiFp(configuration)
@@ -975,14 +975,14 @@ export class QueueSkillServiceApi extends BaseAPI {
   /**
    *
    * @param {number} queueId
-   * @param {EngineCreateQueueSkillRequest} body
+   * @param {EngineQueueSkillServiceCreateQueueSkillBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
    */
   public createQueueSkill(
     queueId: number,
-    body: EngineCreateQueueSkillRequest,
+    body: EngineQueueSkillServiceCreateQueueSkillBody,
     options?: any
   ) {
     return QueueSkillServiceApiFp(this.configuration)
@@ -1008,7 +1008,7 @@ export class QueueSkillServiceApi extends BaseAPI {
    *
    * @param {number} queueId
    * @param {number} id
-   * @param {EnginePatchQueueSkillRequest} body
+   * @param {EngineQueueSkillServicePatchQueueSkillBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
@@ -1016,7 +1016,7 @@ export class QueueSkillServiceApi extends BaseAPI {
   public patchQueueSkill(
     queueId: number,
     id: number,
-    body: EnginePatchQueueSkillRequest,
+    body: EngineQueueSkillServicePatchQueueSkillBody,
     options?: any
   ) {
     return QueueSkillServiceApiFp(this.configuration)
@@ -1097,7 +1097,7 @@ export class QueueSkillServiceApi extends BaseAPI {
    *
    * @param {number} queueId
    * @param {number} id
-   * @param {EngineUpdateQueueSkillRequest} body
+   * @param {EngineQueueSkillServiceUpdateQueueSkillBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueSkillServiceApi
@@ -1105,7 +1105,7 @@ export class QueueSkillServiceApi extends BaseAPI {
   public updateQueueSkill(
     queueId: number,
     id: number,
-    body: EngineUpdateQueueSkillRequest,
+    body: EngineQueueSkillServiceUpdateQueueSkillBody,
     options?: any
   ) {
     return QueueSkillServiceApiFp(this.configuration)

@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { CreateCallRequestCallSettings } from './create-call-request-call-settings'
+import { EngineCreateCallRequestCallSettings } from './engine-create-call-request-call-settings'
 import { EngineCreateCallRequestEndpointRequest } from './engine-create-call-request-endpoint-request'
 
 /**
@@ -40,10 +40,10 @@ export interface EngineCreateCallRequest {
   from?: EngineCreateCallRequestEndpointRequest
   /**
    *
-   * @type {CreateCallRequestCallSettings}
+   * @type {EngineCreateCallRequestCallSettings}
    * @memberof EngineCreateCallRequest
    */
-  params?: CreateCallRequestCallSettings
+  params?: EngineCreateCallRequestCallSettings
   /**
    *
    * @type {EngineCreateCallRequestEndpointRequest}

@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateSchemaVariableRequest } from '../api'
 // @ts-ignore
 import { EngineListSchemaVariable } from '../api'
 // @ts-ignore
-import { EnginePatchSchemaVariableRequest } from '../api'
-// @ts-ignore
 import { EngineSchemaVariable } from '../api'
 // @ts-ignore
-import { EngineUpdateSchemaVariableRequest } from '../api'
+import { EngineSchemaVariablesServicePatchSchemaVariableBody } from '../api'
+// @ts-ignore
+import { EngineSchemaVariablesServiceUpdateSchemaVariableBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * SchemaVariablesServiceApi - axios parameter creator
  * @export
@@ -177,13 +177,13 @@ export const SchemaVariablesServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchSchemaVariableRequest} body
+     * @param {EngineSchemaVariablesServicePatchSchemaVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchSchemaVariable: async (
       id: number,
-      body: EnginePatchSchemaVariableRequest,
+      body: EngineSchemaVariablesServicePatchSchemaVariableBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -401,13 +401,13 @@ export const SchemaVariablesServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateSchemaVariableRequest} body
+     * @param {EngineSchemaVariablesServiceUpdateSchemaVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSchemaVariable: async (
       id: number,
-      body: EngineUpdateSchemaVariableRequest,
+      body: EngineSchemaVariablesServiceUpdateSchemaVariableBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -550,13 +550,13 @@ export const SchemaVariablesServiceApiFp = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchSchemaVariableRequest} body
+     * @param {EngineSchemaVariablesServicePatchSchemaVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchSchemaVariable(
       id: number,
-      body: EnginePatchSchemaVariableRequest,
+      body: EngineSchemaVariablesServicePatchSchemaVariableBody,
       options?: any
     ): Promise<
       (
@@ -647,13 +647,13 @@ export const SchemaVariablesServiceApiFp = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateSchemaVariableRequest} body
+     * @param {EngineSchemaVariablesServiceUpdateSchemaVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSchemaVariable(
       id: number,
-      body: EngineUpdateSchemaVariableRequest,
+      body: EngineSchemaVariablesServiceUpdateSchemaVariableBody,
       options?: any
     ): Promise<
       (
@@ -719,13 +719,13 @@ export const SchemaVariablesServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchSchemaVariableRequest} body
+     * @param {EngineSchemaVariablesServicePatchSchemaVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchSchemaVariable(
       id: number,
-      body: EnginePatchSchemaVariableRequest,
+      body: EngineSchemaVariablesServicePatchSchemaVariableBody,
       options?: any
     ): AxiosPromise<EngineSchemaVariable> {
       return SchemaVariablesServiceApiFp(configuration)
@@ -771,13 +771,13 @@ export const SchemaVariablesServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateSchemaVariableRequest} body
+     * @param {EngineSchemaVariablesServiceUpdateSchemaVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSchemaVariable(
       id: number,
-      body: EngineUpdateSchemaVariableRequest,
+      body: EngineSchemaVariablesServiceUpdateSchemaVariableBody,
       options?: any
     ): AxiosPromise<EngineSchemaVariable> {
       return SchemaVariablesServiceApiFp(configuration)
@@ -826,14 +826,14 @@ export class SchemaVariablesServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EnginePatchSchemaVariableRequest} body
+   * @param {EngineSchemaVariablesServicePatchSchemaVariableBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SchemaVariablesServiceApi
    */
   public patchSchemaVariable(
     id: number,
-    body: EnginePatchSchemaVariableRequest,
+    body: EngineSchemaVariablesServicePatchSchemaVariableBody,
     options?: any
   ) {
     return SchemaVariablesServiceApiFp(this.configuration)
@@ -881,14 +881,14 @@ export class SchemaVariablesServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EngineUpdateSchemaVariableRequest} body
+   * @param {EngineSchemaVariablesServiceUpdateSchemaVariableBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SchemaVariablesServiceApi
    */
   public updateSchemaVariable(
     id: number,
-    body: EngineUpdateSchemaVariableRequest,
+    body: EngineSchemaVariablesServiceUpdateSchemaVariableBody,
     options?: any
   ) {
     return SchemaVariablesServiceApiFp(this.configuration)

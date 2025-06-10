@@ -24,7 +24,7 @@ export interface EngineCallServiceEavesdropCallBody {
    * @type {string}
    * @memberof EngineCallServiceEavesdropCallBody
    */
-  appId?: string
+  app_id?: string
   /**
    *
    * @type {boolean}
@@ -42,23 +42,23 @@ export interface EngineCallServiceEavesdropCallBody {
    * @type {boolean}
    * @memberof EngineCallServiceEavesdropCallBody
    */
-  listenA?: boolean
+  listen_a?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineCallServiceEavesdropCallBody
    */
-  listenB?: boolean
+  listen_b?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineCallServiceEavesdropCallBody
    */
-  whisperA?: boolean
+  whisper_a?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineCallServiceEavesdropCallBody
    */
-  whisperB?: boolean
+  whisper_b?: boolean
 }

@@ -28,5 +28,5 @@ export interface EngineOutboundResourceServiceCreateOutboundResourceDisplayBody 
    * @type {string}
    * @memberof EngineOutboundResourceServiceCreateOutboundResourceDisplayBody
    */
-  domainId?: string
+  domain_id?: string
 }

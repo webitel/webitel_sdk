@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCaseComment } from '../api'
-// @ts-ignore
-import { CasesCaseCommentList } from '../api'
-// @ts-ignore
-import { CasesInputCaseComment } from '../api'
-// @ts-ignore
 import { DataForTheCommentToUpdate } from '../api'
 // @ts-ignore
 import { DataForTheCommentToUpdate1 } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { GoogleRpcStatus } from '../api'
+// @ts-ignore
+import { WebitelCasesCaseComment } from '../api'
+// @ts-ignore
+import { WebitelCasesCaseCommentList } from '../api'
+// @ts-ignore
+import { WebitelCasesInputCaseComment } from '../api'
 /**
  * CaseCommentsApi - axios parameter creator
  * @export
@@ -287,14 +287,14 @@ export const CaseCommentsApiAxiosParamCreator = function(
      *
      * @summary Publish comment into a specific case
      * @param {string} caseEtag Etag or ID of the case to which comments belong.
-     * @param {CasesInputCaseComment} input Comment to publish.
+     * @param {WebitelCasesInputCaseComment} input Comment to publish.
      * @param {Array<string>} [fields] Result fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     publishComment: async (
       caseEtag: string,
-      input: CasesInputCaseComment,
+      input: WebitelCasesInputCaseComment,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -569,7 +569,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseComment>
+      ) => AxiosPromise<WebitelCasesCaseComment>
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
@@ -611,7 +611,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseCommentList>
+      ) => AxiosPromise<WebitelCasesCaseCommentList>
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
@@ -643,7 +643,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseComment>
+      ) => AxiosPromise<WebitelCasesCaseComment>
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
@@ -663,21 +663,21 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
      *
      * @summary Publish comment into a specific case
      * @param {string} caseEtag Etag or ID of the case to which comments belong.
-     * @param {CasesInputCaseComment} input Comment to publish.
+     * @param {WebitelCasesInputCaseComment} input Comment to publish.
      * @param {Array<string>} [fields] Result fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async publishComment(
       caseEtag: string,
-      input: CasesInputCaseComment,
+      input: WebitelCasesInputCaseComment,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseComment>
+      ) => AxiosPromise<WebitelCasesCaseComment>
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
@@ -711,7 +711,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseComment>
+      ) => AxiosPromise<WebitelCasesCaseComment>
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
@@ -745,7 +745,7 @@ export const CaseCommentsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseComment>
+      ) => AxiosPromise<WebitelCasesCaseComment>
     > {
       const localVarAxiosArgs = await CaseCommentsApiAxiosParamCreator(
         configuration
@@ -786,7 +786,7 @@ export const CaseCommentsApiFactory = function(
       etag: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseComment> {
+    ): AxiosPromise<WebitelCasesCaseComment> {
       return CaseCommentsApiFp(configuration)
         .deleteComment(etag, fields, options)
         .then((request) => request(axios, basePath))
@@ -813,7 +813,7 @@ export const CaseCommentsApiFactory = function(
       sort?: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseCommentList> {
+    ): AxiosPromise<WebitelCasesCaseCommentList> {
       return CaseCommentsApiFp(configuration)
         .listComments(caseEtag, page, size, q, ids, sort, fields, options)
         .then((request) => request(axios, basePath))
@@ -830,7 +830,7 @@ export const CaseCommentsApiFactory = function(
       etag: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseComment> {
+    ): AxiosPromise<WebitelCasesCaseComment> {
       return CaseCommentsApiFp(configuration)
         .locateComment(etag, fields, options)
         .then((request) => request(axios, basePath))
@@ -839,17 +839,17 @@ export const CaseCommentsApiFactory = function(
      *
      * @summary Publish comment into a specific case
      * @param {string} caseEtag Etag or ID of the case to which comments belong.
-     * @param {CasesInputCaseComment} input Comment to publish.
+     * @param {WebitelCasesInputCaseComment} input Comment to publish.
      * @param {Array<string>} [fields] Result fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     publishComment(
       caseEtag: string,
-      input: CasesInputCaseComment,
+      input: WebitelCasesInputCaseComment,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseComment> {
+    ): AxiosPromise<WebitelCasesCaseComment> {
       return CaseCommentsApiFp(configuration)
         .publishComment(caseEtag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -868,7 +868,7 @@ export const CaseCommentsApiFactory = function(
       input: DataForTheCommentToUpdate,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseComment> {
+    ): AxiosPromise<WebitelCasesCaseComment> {
       return CaseCommentsApiFp(configuration)
         .updateComment(inputEtag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -887,7 +887,7 @@ export const CaseCommentsApiFactory = function(
       input: DataForTheCommentToUpdate1,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseComment> {
+    ): AxiosPromise<WebitelCasesCaseComment> {
       return CaseCommentsApiFp(configuration)
         .updateComment2(inputEtag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -965,7 +965,7 @@ export class CaseCommentsApi extends BaseAPI {
    *
    * @summary Publish comment into a specific case
    * @param {string} caseEtag Etag or ID of the case to which comments belong.
-   * @param {CasesInputCaseComment} input Comment to publish.
+   * @param {WebitelCasesInputCaseComment} input Comment to publish.
    * @param {Array<string>} [fields] Result fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -973,7 +973,7 @@ export class CaseCommentsApi extends BaseAPI {
    */
   public publishComment(
     caseEtag: string,
-    input: CasesInputCaseComment,
+    input: WebitelCasesInputCaseComment,
     fields?: Array<string>,
     options?: any
   ) {

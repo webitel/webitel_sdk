@@ -11,9 +11,9 @@
  * Do not edit the class manually.
  */
 
-import { CasesRelationType } from './cases-relation-type'
 import { GeneralLookup } from './general-lookup'
 import { PrimaryCaseDetails } from './primary-case-details'
+import { WebitelCasesRelationType } from './webitel-cases-relation-type'
 
 /**
  *
@@ -35,10 +35,10 @@ export interface InputDataForTheRelatedCaseUpdate1 {
   related_case?: GeneralLookup
   /**
    *
-   * @type {CasesRelationType}
+   * @type {WebitelCasesRelationType}
    * @memberof InputDataForTheRelatedCaseUpdate1
    */
-  relation_type?: CasesRelationType
+  relation_type?: WebitelCasesRelationType
   /**
    *
    * @type {GeneralLookup}

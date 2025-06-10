@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCaseLink } from '../api'
-// @ts-ignore
-import { CasesCaseLinkList } from '../api'
-// @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
 import { InlineObject } from '../api'
 // @ts-ignore
 import { InlineObject1 } from '../api'
+// @ts-ignore
+import { WebitelCasesCaseLink } from '../api'
+// @ts-ignore
+import { WebitelCasesCaseLinkList } from '../api'
 /**
  * CaseLinksApi - axios parameter creator
  * @export
@@ -607,7 +607,10 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
       inputUserIDName?: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCaseLink>
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
@@ -644,7 +647,10 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
       etag: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCaseLink>
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
@@ -686,7 +692,7 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCaseLinkList>
+      ) => AxiosPromise<WebitelCasesCaseLinkList>
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
@@ -716,7 +722,10 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCaseLink>
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
@@ -748,7 +757,10 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCaseLink>
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
@@ -780,7 +792,10 @@ export const CaseLinksApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseLink>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCaseLink>
     > {
       const localVarAxiosArgs = await CaseLinksApiAxiosParamCreator(
         configuration
@@ -830,7 +845,7 @@ export const CaseLinksApiFactory = function(
       inputUserIDId?: string,
       inputUserIDName?: string,
       options?: any
-    ): AxiosPromise<CasesCaseLink> {
+    ): AxiosPromise<WebitelCasesCaseLink> {
       return CaseLinksApiFp(configuration)
         .createLink(
           caseEtag,
@@ -855,7 +870,7 @@ export const CaseLinksApiFactory = function(
       caseEtag: string,
       etag: string,
       options?: any
-    ): AxiosPromise<CasesCaseLink> {
+    ): AxiosPromise<WebitelCasesCaseLink> {
       return CaseLinksApiFp(configuration)
         .deleteLink(caseEtag, etag, options)
         .then((request) => request(axios, basePath))
@@ -882,7 +897,7 @@ export const CaseLinksApiFactory = function(
       sort?: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseLinkList> {
+    ): AxiosPromise<WebitelCasesCaseLinkList> {
       return CaseLinksApiFp(configuration)
         .listLinks(caseEtag, page, size, q, ids, sort, fields, options)
         .then((request) => request(axios, basePath))
@@ -900,7 +915,7 @@ export const CaseLinksApiFactory = function(
       etag: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseLink> {
+    ): AxiosPromise<WebitelCasesCaseLink> {
       return CaseLinksApiFp(configuration)
         .locateLink(caseEtag, etag, fields, options)
         .then((request) => request(axios, basePath))
@@ -920,7 +935,7 @@ export const CaseLinksApiFactory = function(
       input: InlineObject,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseLink> {
+    ): AxiosPromise<WebitelCasesCaseLink> {
       return CaseLinksApiFp(configuration)
         .updateLink(caseEtag, inputEtag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -940,7 +955,7 @@ export const CaseLinksApiFactory = function(
       input: InlineObject1,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseLink> {
+    ): AxiosPromise<WebitelCasesCaseLink> {
       return CaseLinksApiFp(configuration)
         .updateLink2(caseEtag, inputEtag, input, fields, options)
         .then((request) => request(axios, basePath))

@@ -47,6 +47,12 @@ export interface EngineAuditRate {
   created_by?: EngineLookup
   /**
    *
+   * @type {string}
+   * @memberof EngineAuditRate
+   */
+  critical_count?: string
+  /**
+   *
    * @type {EngineLookup}
    * @memberof EngineAuditRate
    */
@@ -81,6 +87,12 @@ export interface EngineAuditRate {
    * @memberof EngineAuditRate
    */
   score_required?: number
+  /**
+   *
+   * @type {string}
+   * @memberof EngineAuditRate
+   */
+  select_yes_count?: string
   /**
    *
    * @type {string}

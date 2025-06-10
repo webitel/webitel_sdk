@@ -28,7 +28,7 @@ export interface EngineListServiceCreateListCommunicationBody {
    * @type {string}
    * @memberof EngineListServiceCreateListCommunicationBody
    */
-  expireAt?: string
+  expire_at?: string
   /**
    *
    * @type {string}

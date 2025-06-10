@@ -5,7 +5,21 @@ export interface Index {
   info(primaryMessage: string, ...supportingData: any[]): void
 }
 
+const logLvlVal = {
+  debug: 0,
+  info: 0,
+  warn: 0,
+  error: 1,
+}
+
 export class Log implements Log {
+  private lvl: number
+  constructor(logLvl?: 'debug' | 'info' | 'warn' | 'error') {
+    this.lvl = 0
+    if (logLvl && logLvlVal[logLvl]) {
+      this.lvl = logLvlVal[logLvl]
+    }
+  }
   debug(msg: string, ...supportingDetails: any[]): void {
     this.emitLogMessage('debug', msg, supportingDetails)
   }
@@ -24,6 +38,10 @@ export class Log implements Log {
     msg: string,
     supportingDetails: any[]
   ) {
+    if (this.lvl <= logLvlVal[msgType]) {
+      return
+    }
+
     if (supportingDetails.length > 0) {
       // @ts-ignore
       console[msgType](msg, ...supportingDetails)

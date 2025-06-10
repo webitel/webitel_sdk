@@ -24,7 +24,7 @@ export interface EngineSkillServicePatchSkillAgentBody {
    * @type {Array<string>}
    * @memberof EngineSkillServicePatchSkillAgentBody
    */
-  agentId?: Array<string>
+  agent_id?: Array<string>
   /**
    *
    * @type {number}

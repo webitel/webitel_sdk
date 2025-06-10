@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCreateInputRelatedCase } from '../api'
-// @ts-ignore
-import { CasesRelatedCase } from '../api'
-// @ts-ignore
-import { CasesRelatedCaseList } from '../api'
-// @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
 import { InputDataForTheRelatedCaseUpdate } from '../api'
 // @ts-ignore
 import { InputDataForTheRelatedCaseUpdate1 } from '../api'
+// @ts-ignore
+import { WebitelCasesCreateInputRelatedCase } from '../api'
+// @ts-ignore
+import { WebitelCasesRelatedCase } from '../api'
+// @ts-ignore
+import { WebitelCasesRelatedCaseList } from '../api'
 /**
  * RelatedCasesApi - axios parameter creator
  * @export
@@ -47,14 +47,14 @@ export const RelatedCasesApiAxiosParamCreator = function(
      *
      * @summary Create a new related case
      * @param {string} primaryCaseEtag Primary case details.
-     * @param {CasesCreateInputRelatedCase} input Input data for the related case.
+     * @param {WebitelCasesCreateInputRelatedCase} input Input data for the related case.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createRelatedCase: async (
       primaryCaseEtag: string,
-      input: CasesCreateInputRelatedCase,
+      input: WebitelCasesCreateInputRelatedCase,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -595,21 +595,21 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
      *
      * @summary Create a new related case
      * @param {string} primaryCaseEtag Primary case details.
-     * @param {CasesCreateInputRelatedCase} input Input data for the related case.
+     * @param {WebitelCasesCreateInputRelatedCase} input Input data for the related case.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createRelatedCase(
       primaryCaseEtag: string,
-      input: CasesCreateInputRelatedCase,
+      input: WebitelCasesCreateInputRelatedCase,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesRelatedCase>
+      ) => AxiosPromise<WebitelCasesRelatedCase>
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
@@ -641,7 +641,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesRelatedCase>
+      ) => AxiosPromise<WebitelCasesRelatedCase>
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
@@ -683,7 +683,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesRelatedCaseList>
+      ) => AxiosPromise<WebitelCasesRelatedCaseList>
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
@@ -726,7 +726,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesRelatedCase>
+      ) => AxiosPromise<WebitelCasesRelatedCase>
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
@@ -762,7 +762,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesRelatedCase>
+      ) => AxiosPromise<WebitelCasesRelatedCase>
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
@@ -798,7 +798,7 @@ export const RelatedCasesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesRelatedCase>
+      ) => AxiosPromise<WebitelCasesRelatedCase>
     > {
       const localVarAxiosArgs = await RelatedCasesApiAxiosParamCreator(
         configuration
@@ -831,17 +831,17 @@ export const RelatedCasesApiFactory = function(
      *
      * @summary Create a new related case
      * @param {string} primaryCaseEtag Primary case details.
-     * @param {CasesCreateInputRelatedCase} input Input data for the related case.
+     * @param {WebitelCasesCreateInputRelatedCase} input Input data for the related case.
      * @param {Array<string>} [fields] Fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createRelatedCase(
       primaryCaseEtag: string,
-      input: CasesCreateInputRelatedCase,
+      input: WebitelCasesCreateInputRelatedCase,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesRelatedCase> {
+    ): AxiosPromise<WebitelCasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
         .createRelatedCase(primaryCaseEtag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -858,7 +858,7 @@ export const RelatedCasesApiFactory = function(
       primaryCaseEtag: string,
       etag: string,
       options?: any
-    ): AxiosPromise<CasesRelatedCase> {
+    ): AxiosPromise<WebitelCasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
         .deleteRelatedCase(primaryCaseEtag, etag, options)
         .then((request) => request(axios, basePath))
@@ -885,7 +885,7 @@ export const RelatedCasesApiFactory = function(
       fields?: Array<string>,
       ids?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesRelatedCaseList> {
+    ): AxiosPromise<WebitelCasesRelatedCaseList> {
       return RelatedCasesApiFp(configuration)
         .listRelatedCases(
           primaryCaseEtag,
@@ -913,7 +913,7 @@ export const RelatedCasesApiFactory = function(
       etag: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesRelatedCase> {
+    ): AxiosPromise<WebitelCasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
         .locateRelatedCase(primaryCaseEtag, etag, fields, options)
         .then((request) => request(axios, basePath))
@@ -934,7 +934,7 @@ export const RelatedCasesApiFactory = function(
       input: InputDataForTheRelatedCaseUpdate,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesRelatedCase> {
+    ): AxiosPromise<WebitelCasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
         .updateRelatedCase(inputPrimaryCaseId, etag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -955,7 +955,7 @@ export const RelatedCasesApiFactory = function(
       input: InputDataForTheRelatedCaseUpdate1,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesRelatedCase> {
+    ): AxiosPromise<WebitelCasesRelatedCase> {
       return RelatedCasesApiFp(configuration)
         .updateRelatedCase2(inputPrimaryCaseId, etag, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -974,7 +974,7 @@ export class RelatedCasesApi extends BaseAPI {
    *
    * @summary Create a new related case
    * @param {string} primaryCaseEtag Primary case details.
-   * @param {CasesCreateInputRelatedCase} input Input data for the related case.
+   * @param {WebitelCasesCreateInputRelatedCase} input Input data for the related case.
    * @param {Array<string>} [fields] Fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -982,7 +982,7 @@ export class RelatedCasesApi extends BaseAPI {
    */
   public createRelatedCase(
     primaryCaseEtag: string,
-    input: CasesCreateInputRelatedCase,
+    input: WebitelCasesCreateInputRelatedCase,
     fields?: Array<string>,
     options?: any
   ) {

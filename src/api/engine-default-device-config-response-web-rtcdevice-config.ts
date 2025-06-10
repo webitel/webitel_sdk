@@ -22,13 +22,13 @@ export interface EngineDefaultDeviceConfigResponseWebRTCDeviceConfig {
    * @type {string}
    * @memberof EngineDefaultDeviceConfigResponseWebRTCDeviceConfig
    */
-  authorizationUser?: string
+  authorization_user?: string
   /**
    *
    * @type {string}
    * @memberof EngineDefaultDeviceConfigResponseWebRTCDeviceConfig
    */
-  displayName?: string
+  display_name?: string
   /**
    *
    * @type {string}

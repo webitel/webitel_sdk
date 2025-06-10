@@ -36,7 +36,7 @@ export interface EngineEmailProfileServicePatchEmailProfileBody {
    * @type {number}
    * @memberof EngineEmailProfileServicePatchEmailProfileBody
    */
-  fetchInterval?: number
+  fetch_interval?: number
   /**
    *
    * @type {Array<string>}
@@ -48,13 +48,13 @@ export interface EngineEmailProfileServicePatchEmailProfileBody {
    * @type {string}
    * @memberof EngineEmailProfileServicePatchEmailProfileBody
    */
-  imapHost?: string
+  imap_host?: string
   /**
    *
    * @type {number}
    * @memberof EngineEmailProfileServicePatchEmailProfileBody
    */
-  imapPort?: number
+  imap_port?: number
   /**
    *
    * @type {boolean}
@@ -96,11 +96,11 @@ export interface EngineEmailProfileServicePatchEmailProfileBody {
    * @type {string}
    * @memberof EngineEmailProfileServicePatchEmailProfileBody
    */
-  smtpHost?: string
+  smtp_host?: string
   /**
    *
    * @type {number}
    * @memberof EngineEmailProfileServicePatchEmailProfileBody
    */
-  smtpPort?: number
+  smtp_port?: number
 }

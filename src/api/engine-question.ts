@@ -12,7 +12,7 @@
  */
 
 import { EngineAuditQuestionType } from './engine-audit-question-type'
-import { QuestionOption } from './question-option'
+import { EngineQuestionOption } from './engine-question-option'
 
 /**
  *
@@ -20,6 +20,12 @@ import { QuestionOption } from './question-option'
  * @interface EngineQuestion
  */
 export interface EngineQuestion {
+  /**
+   *
+   * @type {boolean}
+   * @memberof EngineQuestion
+   */
+  critical_violation?: boolean
   /**
    *
    * @type {string}
@@ -40,10 +46,10 @@ export interface EngineQuestion {
   min?: number
   /**
    *
-   * @type {Array<QuestionOption>}
+   * @type {Array<EngineQuestionOption>}
    * @memberof EngineQuestion
    */
-  options?: Array<QuestionOption>
+  options?: Array<EngineQuestionOption>
   /**
    *
    * @type {string}

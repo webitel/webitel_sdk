@@ -30,7 +30,7 @@ export interface EngineAgentInQueueStatisticsAgentInQueueStatisticsItem {
    * @type {number}
    * @memberof EngineAgentInQueueStatisticsAgentInQueueStatisticsItem
    */
-  memberWaiting?: number
+  member_waiting?: number
   /**
    *
    * @type {EngineLookup}

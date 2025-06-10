@@ -22,19 +22,19 @@ export interface EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody {
    * @type {boolean}
    * @memberof EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody
    */
-  allowAdmin?: boolean
+  allow_admin?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody
    */
-  allowAgent?: boolean
+  allow_agent?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody
    */
-  allowSupervisor?: boolean
+  allow_supervisor?: boolean
   /**
    *
    * @type {string}
@@ -46,7 +46,7 @@ export interface EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody {
    * @type {number}
    * @memberof EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody
    */
-  limitMin?: number
+  limit_min?: number
   /**
    *
    * @type {string}

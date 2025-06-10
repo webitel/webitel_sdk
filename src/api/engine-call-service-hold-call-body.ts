@@ -22,11 +22,11 @@ export interface EngineCallServiceHoldCallBody {
    * @type {string}
    * @memberof EngineCallServiceHoldCallBody
    */
-  appId?: string
+  app_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineCallServiceHoldCallBody
    */
-  domainId?: string
+  domain_id?: string
 }

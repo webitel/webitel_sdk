@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCommunicationType } from '../api'
 // @ts-ignore
 import { EngineCommunicationTypeRequest } from '../api'
 // @ts-ignore
+import { EngineCommunicationTypeServicePatchCommunicationTypeBody } from '../api'
+// @ts-ignore
+import { EngineCommunicationTypeServiceUpdateCommunicationTypeBody } from '../api'
+// @ts-ignore
 import { EngineListCommunicationType } from '../api'
 // @ts-ignore
-import { EnginePatchCommunicationTypeRequest } from '../api'
-// @ts-ignore
-import { EngineUpdateCommunicationTypeRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * CommunicationTypeServiceApi - axios parameter creator
  * @export
@@ -185,13 +185,13 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchCommunicationTypeRequest} body
+     * @param {EngineCommunicationTypeServicePatchCommunicationTypeBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchCommunicationType: async (
       id: string,
-      body: EnginePatchCommunicationTypeRequest,
+      body: EngineCommunicationTypeServicePatchCommunicationTypeBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -436,13 +436,13 @@ export const CommunicationTypeServiceApiAxiosParamCreator = function(
      *
      * @summary Update CommunicationType
      * @param {string} id
-     * @param {EngineUpdateCommunicationTypeRequest} body
+     * @param {EngineCommunicationTypeServiceUpdateCommunicationTypeBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCommunicationType: async (
       id: string,
-      body: EngineUpdateCommunicationTypeRequest,
+      body: EngineCommunicationTypeServiceUpdateCommunicationTypeBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -589,13 +589,13 @@ export const CommunicationTypeServiceApiFp = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchCommunicationTypeRequest} body
+     * @param {EngineCommunicationTypeServicePatchCommunicationTypeBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchCommunicationType(
       id: string,
-      body: EnginePatchCommunicationTypeRequest,
+      body: EngineCommunicationTypeServicePatchCommunicationTypeBody,
       options?: any
     ): Promise<
       (
@@ -707,13 +707,13 @@ export const CommunicationTypeServiceApiFp = function(
      *
      * @summary Update CommunicationType
      * @param {string} id
-     * @param {EngineUpdateCommunicationTypeRequest} body
+     * @param {EngineCommunicationTypeServiceUpdateCommunicationTypeBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCommunicationType(
       id: string,
-      body: EngineUpdateCommunicationTypeRequest,
+      body: EngineCommunicationTypeServiceUpdateCommunicationTypeBody,
       options?: any
     ): Promise<
       (
@@ -783,13 +783,13 @@ export const CommunicationTypeServiceApiFactory = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchCommunicationTypeRequest} body
+     * @param {EngineCommunicationTypeServicePatchCommunicationTypeBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchCommunicationType(
       id: string,
-      body: EnginePatchCommunicationTypeRequest,
+      body: EngineCommunicationTypeServicePatchCommunicationTypeBody,
       options?: any
     ): AxiosPromise<EngineCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
@@ -856,13 +856,13 @@ export const CommunicationTypeServiceApiFactory = function(
      *
      * @summary Update CommunicationType
      * @param {string} id
-     * @param {EngineUpdateCommunicationTypeRequest} body
+     * @param {EngineCommunicationTypeServiceUpdateCommunicationTypeBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCommunicationType(
       id: string,
-      body: EngineUpdateCommunicationTypeRequest,
+      body: EngineCommunicationTypeServiceUpdateCommunicationTypeBody,
       options?: any
     ): AxiosPromise<EngineCommunicationType> {
       return CommunicationTypeServiceApiFp(configuration)
@@ -914,14 +914,14 @@ export class CommunicationTypeServiceApi extends BaseAPI {
   /**
    *
    * @param {string} id
-   * @param {EnginePatchCommunicationTypeRequest} body
+   * @param {EngineCommunicationTypeServicePatchCommunicationTypeBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
    */
   public patchCommunicationType(
     id: string,
-    body: EnginePatchCommunicationTypeRequest,
+    body: EngineCommunicationTypeServicePatchCommunicationTypeBody,
     options?: any
   ) {
     return CommunicationTypeServiceApiFp(this.configuration)
@@ -989,14 +989,14 @@ export class CommunicationTypeServiceApi extends BaseAPI {
    *
    * @summary Update CommunicationType
    * @param {string} id
-   * @param {EngineUpdateCommunicationTypeRequest} body
+   * @param {EngineCommunicationTypeServiceUpdateCommunicationTypeBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CommunicationTypeServiceApi
    */
   public updateCommunicationType(
     id: string,
-    body: EngineUpdateCommunicationTypeRequest,
+    body: EngineCommunicationTypeServiceUpdateCommunicationTypeBody,
     options?: any
   ) {
     return CommunicationTypeServiceApiFp(this.configuration)

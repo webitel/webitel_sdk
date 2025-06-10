@@ -37,7 +37,7 @@ export interface EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBo
    * @type {string}
    * @memberof EngineOutboundResourceGroupServiceUpdateOutboundResourceGroupBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}

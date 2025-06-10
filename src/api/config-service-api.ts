@@ -24,21 +24,19 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { ConfigServicePatchConfigBody } from '../api'
+// @ts-ignore
+import { ConfigServiceUpdateConfigBody } from '../api'
+// @ts-ignore
 import { LoggerConfig } from '../api'
 // @ts-ignore
 import { LoggerConfigs } from '../api'
 // @ts-ignore
 import { LoggerCreateConfigRequest } from '../api'
 // @ts-ignore
-import { LoggerDeleteConfigBulkRequest } from '../api'
-// @ts-ignore
-import { LoggerPatchConfigRequest } from '../api'
-// @ts-ignore
 import { LoggerSystemObjects } from '../api'
 // @ts-ignore
-import { LoggerUpdateConfigRequest } from '../api'
-// @ts-ignore
-import { RuntimeError } from '../api'
+import { RpcStatus } from '../api'
 /**
  * ConfigServiceApi - axios parameter creator
  * @export
@@ -180,82 +178,14 @@ export const ConfigServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {LoggerDeleteConfigBulkRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteConfigBulk: async (
-      body: LoggerDeleteConfigBulkRequest,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling deleteConfigBulk.'
-        )
-      }
-      const localVarPath = `/logger/config`
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'DELETE',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof body !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
-    /**
-     *
      * @param {number} configId
-     * @param {LoggerPatchConfigRequest} body
+     * @param {ConfigServicePatchConfigBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchConfig: async (
       configId: number,
-      body: LoggerPatchConfigRequest,
+      body: ConfigServicePatchConfigBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'configId' is not null or undefined
@@ -328,7 +258,7 @@ export const ConfigServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {number} configId
+     * @param {number} configId int32 domainId &#x3D; 8;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -453,7 +383,7 @@ export const ConfigServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'>} [object] NOT USED.
+     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number' | 'case_comments' | 'record_file'>} [object] NOT USED
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -478,6 +408,8 @@ export const ConfigServiceApiAxiosParamCreator = function(
         | 'cases'
         | 'contacts'
         | 'cc_list_number'
+        | 'case_comments'
+        | 'record_file'
       >,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -551,13 +483,13 @@ export const ConfigServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} configId
-     * @param {LoggerUpdateConfigRequest} body
+     * @param {ConfigServiceUpdateConfigBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateConfig: async (
       configId: number,
-      body: LoggerUpdateConfigRequest,
+      body: ConfigServiceUpdateConfigBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'configId' is not null or undefined
@@ -691,40 +623,14 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {LoggerDeleteConfigBulkRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async deleteConfigBulk(
-      body: LoggerDeleteConfigBulkRequest,
-      options?: any
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
-    > {
-      const localVarAxiosArgs = await ConfigServiceApiAxiosParamCreator(
-        configuration
-      ).deleteConfigBulk(body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
      * @param {number} configId
-     * @param {LoggerPatchConfigRequest} body
+     * @param {ConfigServicePatchConfigBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchConfig(
       configId: number,
-      body: LoggerPatchConfigRequest,
+      body: ConfigServicePatchConfigBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerConfig>
@@ -745,7 +651,7 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {number} configId
+     * @param {number} configId int32 domainId &#x3D; 8;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -805,7 +711,7 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'>} [object] NOT USED.
+     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number' | 'case_comments' | 'record_file'>} [object] NOT USED
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -830,6 +736,8 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
         | 'cases'
         | 'contacts'
         | 'cc_list_number'
+        | 'case_comments'
+        | 'record_file'
       >,
       options?: any
     ): Promise<
@@ -852,13 +760,13 @@ export const ConfigServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} configId
-     * @param {LoggerUpdateConfigRequest} body
+     * @param {ConfigServiceUpdateConfigBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateConfig(
       configId: number,
-      body: LoggerUpdateConfigRequest,
+      body: ConfigServiceUpdateConfigBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoggerConfig>
@@ -917,28 +825,14 @@ export const ConfigServiceApiFactory = function(
     },
     /**
      *
-     * @param {LoggerDeleteConfigBulkRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteConfigBulk(
-      body: LoggerDeleteConfigBulkRequest,
-      options?: any
-    ): AxiosPromise<object> {
-      return ConfigServiceApiFp(configuration)
-        .deleteConfigBulk(body, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
      * @param {number} configId
-     * @param {LoggerPatchConfigRequest} body
+     * @param {ConfigServicePatchConfigBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchConfig(
       configId: number,
-      body: LoggerPatchConfigRequest,
+      body: ConfigServicePatchConfigBody,
       options?: any
     ): AxiosPromise<LoggerConfig> {
       return ConfigServiceApiFp(configuration)
@@ -947,7 +841,7 @@ export const ConfigServiceApiFactory = function(
     },
     /**
      *
-     * @param {number} configId
+     * @param {number} configId int32 domainId &#x3D; 8;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -977,7 +871,7 @@ export const ConfigServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'>} [object] NOT USED.
+     * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number' | 'case_comments' | 'record_file'>} [object] NOT USED
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1002,6 +896,8 @@ export const ConfigServiceApiFactory = function(
         | 'cases'
         | 'contacts'
         | 'cc_list_number'
+        | 'case_comments'
+        | 'record_file'
       >,
       options?: any
     ): AxiosPromise<LoggerConfigs> {
@@ -1012,13 +908,13 @@ export const ConfigServiceApiFactory = function(
     /**
      *
      * @param {number} configId
-     * @param {LoggerUpdateConfigRequest} body
+     * @param {ConfigServiceUpdateConfigBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateConfig(
       configId: number,
-      body: LoggerUpdateConfigRequest,
+      body: ConfigServiceUpdateConfigBody,
       options?: any
     ): AxiosPromise<LoggerConfig> {
       return ConfigServiceApiFp(configuration)
@@ -1063,28 +959,15 @@ export class ConfigServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {LoggerDeleteConfigBulkRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ConfigServiceApi
-   */
-  public deleteConfigBulk(body: LoggerDeleteConfigBulkRequest, options?: any) {
-    return ConfigServiceApiFp(this.configuration)
-      .deleteConfigBulk(body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
-  /**
-   *
    * @param {number} configId
-   * @param {LoggerPatchConfigRequest} body
+   * @param {ConfigServicePatchConfigBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConfigServiceApi
    */
   public patchConfig(
     configId: number,
-    body: LoggerPatchConfigRequest,
+    body: ConfigServicePatchConfigBody,
     options?: any
   ) {
     return ConfigServiceApiFp(this.configuration)
@@ -1094,7 +977,7 @@ export class ConfigServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {number} configId
+   * @param {number} configId int32 domainId &#x3D; 8;
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConfigServiceApi
@@ -1125,7 +1008,7 @@ export class ConfigServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'>} [object] NOT USED.
+   * @param {Array<'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number' | 'case_comments' | 'record_file'>} [object] NOT USED
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConfigServiceApi
@@ -1151,6 +1034,8 @@ export class ConfigServiceApi extends BaseAPI {
       | 'cases'
       | 'contacts'
       | 'cc_list_number'
+      | 'case_comments'
+      | 'record_file'
     >,
     options?: any
   ) {
@@ -1162,14 +1047,14 @@ export class ConfigServiceApi extends BaseAPI {
   /**
    *
    * @param {number} configId
-   * @param {LoggerUpdateConfigRequest} body
+   * @param {ConfigServiceUpdateConfigBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConfigServiceApi
    */
   public updateConfig(
     configId: number,
-    body: LoggerUpdateConfigRequest,
+    body: ConfigServiceUpdateConfigBody,
     options?: any
   ) {
     return ConfigServiceApiFp(this.configuration)

@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesInputSLACondition } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesLocateSLAConditionResponse } from '../api'
+import { WebitelCasesInputSLACondition } from '../api'
 // @ts-ignore
-import { CasesSLACondition } from '../api'
+import { WebitelCasesLocateSLAConditionResponse } from '../api'
 // @ts-ignore
-import { CasesSLAConditionList } from '../api'
+import { WebitelCasesSLACondition } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesSLAConditionList } from '../api'
 /**
  * SLAConditionsApi - axios parameter creator
  * @export
@@ -45,14 +45,14 @@ export const SLAConditionsApiAxiosParamCreator = function(
      *
      * @summary Create a new SLACondition
      * @param {string} slaId
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSLACondition: async (
       slaId: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -395,7 +395,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
      * @summary Update an existing SLACondition
      * @param {string} slaId
      * @param {string} id
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -403,7 +403,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
     updateSLACondition: async (
       slaId: string,
       id: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -490,7 +490,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
      * @summary Update an existing SLACondition
      * @param {string} slaId
      * @param {string} id
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -498,7 +498,7 @@ export const SLAConditionsApiAxiosParamCreator = function(
     updateSLACondition2: async (
       slaId: string,
       id: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -593,21 +593,21 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
      *
      * @summary Create a new SLACondition
      * @param {string} slaId
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createSLACondition(
       slaId: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesSLACondition>
+      ) => AxiosPromise<WebitelCasesSLACondition>
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
@@ -639,7 +639,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesSLACondition>
+      ) => AxiosPromise<WebitelCasesSLACondition>
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
@@ -685,7 +685,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesSLAConditionList>
+      ) => AxiosPromise<WebitelCasesSLAConditionList>
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
@@ -730,7 +730,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocateSLAConditionResponse>
+      ) => AxiosPromise<WebitelCasesLocateSLAConditionResponse>
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
@@ -751,7 +751,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
      * @summary Update an existing SLACondition
      * @param {string} slaId
      * @param {string} id
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -759,14 +759,14 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
     async updateSLACondition(
       slaId: string,
       id: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesSLACondition>
+      ) => AxiosPromise<WebitelCasesSLACondition>
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
@@ -787,7 +787,7 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
      * @summary Update an existing SLACondition
      * @param {string} slaId
      * @param {string} id
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -795,14 +795,14 @@ export const SLAConditionsApiFp = function(configuration?: Configuration) {
     async updateSLACondition2(
       slaId: string,
       id: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesSLACondition>
+      ) => AxiosPromise<WebitelCasesSLACondition>
     > {
       const localVarAxiosArgs = await SLAConditionsApiAxiosParamCreator(
         configuration
@@ -835,17 +835,17 @@ export const SLAConditionsApiFactory = function(
      *
      * @summary Create a new SLACondition
      * @param {string} slaId
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSLACondition(
       slaId: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSLACondition> {
+    ): AxiosPromise<WebitelCasesSLACondition> {
       return SLAConditionsApiFp(configuration)
         .createSLACondition(slaId, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -862,7 +862,7 @@ export const SLAConditionsApiFactory = function(
       slaId: string,
       id: string,
       options?: any
-    ): AxiosPromise<CasesSLACondition> {
+    ): AxiosPromise<WebitelCasesSLACondition> {
       return SLAConditionsApiFp(configuration)
         .deleteSLACondition(slaId, id, options)
         .then((request) => request(axios, basePath))
@@ -893,7 +893,7 @@ export const SLAConditionsApiFactory = function(
       slaConditionId?: string,
       priorityId?: string,
       options?: any
-    ): AxiosPromise<CasesSLAConditionList> {
+    ): AxiosPromise<WebitelCasesSLAConditionList> {
       return SLAConditionsApiFp(configuration)
         .listSLAConditions(
           slaId,
@@ -923,7 +923,7 @@ export const SLAConditionsApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocateSLAConditionResponse> {
+    ): AxiosPromise<WebitelCasesLocateSLAConditionResponse> {
       return SLAConditionsApiFp(configuration)
         .locateSLACondition(slaId, id, fields, options)
         .then((request) => request(axios, basePath))
@@ -933,7 +933,7 @@ export const SLAConditionsApiFactory = function(
      * @summary Update an existing SLACondition
      * @param {string} slaId
      * @param {string} id
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -941,10 +941,10 @@ export const SLAConditionsApiFactory = function(
     updateSLACondition(
       slaId: string,
       id: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSLACondition> {
+    ): AxiosPromise<WebitelCasesSLACondition> {
       return SLAConditionsApiFp(configuration)
         .updateSLACondition(slaId, id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -954,7 +954,7 @@ export const SLAConditionsApiFactory = function(
      * @summary Update an existing SLACondition
      * @param {string} slaId
      * @param {string} id
-     * @param {CasesInputSLACondition} input
+     * @param {WebitelCasesInputSLACondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -962,10 +962,10 @@ export const SLAConditionsApiFactory = function(
     updateSLACondition2(
       slaId: string,
       id: string,
-      input: CasesInputSLACondition,
+      input: WebitelCasesInputSLACondition,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSLACondition> {
+    ): AxiosPromise<WebitelCasesSLACondition> {
       return SLAConditionsApiFp(configuration)
         .updateSLACondition2(slaId, id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -984,7 +984,7 @@ export class SLAConditionsApi extends BaseAPI {
    *
    * @summary Create a new SLACondition
    * @param {string} slaId
-   * @param {CasesInputSLACondition} input
+   * @param {WebitelCasesInputSLACondition} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -992,7 +992,7 @@ export class SLAConditionsApi extends BaseAPI {
    */
   public createSLACondition(
     slaId: string,
-    input: CasesInputSLACondition,
+    input: WebitelCasesInputSLACondition,
     fields?: Array<string>,
     options?: any
   ) {
@@ -1086,7 +1086,7 @@ export class SLAConditionsApi extends BaseAPI {
    * @summary Update an existing SLACondition
    * @param {string} slaId
    * @param {string} id
-   * @param {CasesInputSLACondition} input
+   * @param {WebitelCasesInputSLACondition} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1095,7 +1095,7 @@ export class SLAConditionsApi extends BaseAPI {
   public updateSLACondition(
     slaId: string,
     id: string,
-    input: CasesInputSLACondition,
+    input: WebitelCasesInputSLACondition,
     fields?: Array<string>,
     options?: any
   ) {
@@ -1109,7 +1109,7 @@ export class SLAConditionsApi extends BaseAPI {
    * @summary Update an existing SLACondition
    * @param {string} slaId
    * @param {string} id
-   * @param {CasesInputSLACondition} input
+   * @param {WebitelCasesInputSLACondition} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1118,7 +1118,7 @@ export class SLAConditionsApi extends BaseAPI {
   public updateSLACondition2(
     slaId: string,
     id: string,
-    input: CasesInputSLACondition,
+    input: WebitelCasesInputSLACondition,
     fields?: Array<string>,
     options?: any
   ) {

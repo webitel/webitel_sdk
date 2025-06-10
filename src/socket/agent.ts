@@ -228,6 +228,11 @@ export enum ChannelType {
    * Тип каналу - завдання (планується перейменування на job).
    */
   Job = 'task',
+
+  /**
+   * Тип каналу - вихідний дзвінок.
+   */
+  OutCall = 'out_call',
 }
 
 /**
@@ -489,9 +494,20 @@ export class Agent {
         if (task.agentChannelId) {
           switch (task.channel) {
             case ChannelType.Call:
+            case ChannelType.OutCall:
               const call = this.client.callById(task.agentChannelId)
               if (call && !call.task) {
                 call.task = task
+                if (!call.queue) {
+                  call.queue = {
+                    queue_name: task.queue.name,
+                    queue_id: String(task.queue.id),
+                    attempt_id: task.id,
+                    member_id: '',
+                    queue_type: '',
+                    reporting: String(task.hasReporting),
+                  }
+                }
               }
               break
             case ChannelType.Chat:

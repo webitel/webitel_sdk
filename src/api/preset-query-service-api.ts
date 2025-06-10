@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreatePresetQueryRequest } from '../api'
 // @ts-ignore
 import { EngineListPresetQuery } from '../api'
 // @ts-ignore
-import { EnginePatchPresetQueryRequest } from '../api'
-// @ts-ignore
 import { EnginePresetQuery } from '../api'
 // @ts-ignore
-import { EngineUpdatePresetQueryRequest } from '../api'
+import { EnginePresetQueryServicePatchPresetQueryBody } from '../api'
+// @ts-ignore
+import { EnginePresetQueryServiceUpdatePresetQueryBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * PresetQueryServiceApi - axios parameter creator
  * @export
@@ -177,13 +177,13 @@ export const PresetQueryServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchPresetQueryRequest} body
+     * @param {EnginePresetQueryServicePatchPresetQueryBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchPresetQuery: async (
       id: number,
-      body: EnginePatchPresetQueryRequest,
+      body: EnginePresetQueryServicePatchPresetQueryBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -413,13 +413,13 @@ export const PresetQueryServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdatePresetQueryRequest} body
+     * @param {EnginePresetQueryServiceUpdatePresetQueryBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updatePresetQuery: async (
       id: number,
-      body: EngineUpdatePresetQueryRequest,
+      body: EnginePresetQueryServiceUpdatePresetQueryBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -560,13 +560,13 @@ export const PresetQueryServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} id
-     * @param {EnginePatchPresetQueryRequest} body
+     * @param {EnginePresetQueryServicePatchPresetQueryBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchPresetQuery(
       id: number,
-      body: EnginePatchPresetQueryRequest,
+      body: EnginePresetQueryServicePatchPresetQueryBody,
       options?: any
     ): Promise<
       (
@@ -661,13 +661,13 @@ export const PresetQueryServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} id
-     * @param {EngineUpdatePresetQueryRequest} body
+     * @param {EnginePresetQueryServiceUpdatePresetQueryBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updatePresetQuery(
       id: number,
-      body: EngineUpdatePresetQueryRequest,
+      body: EnginePresetQueryServiceUpdatePresetQueryBody,
       options?: any
     ): Promise<
       (
@@ -733,13 +733,13 @@ export const PresetQueryServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchPresetQueryRequest} body
+     * @param {EnginePresetQueryServicePatchPresetQueryBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchPresetQuery(
       id: number,
-      body: EnginePatchPresetQueryRequest,
+      body: EnginePresetQueryServicePatchPresetQueryBody,
       options?: any
     ): AxiosPromise<EnginePresetQuery> {
       return PresetQueryServiceApiFp(configuration)
@@ -789,13 +789,13 @@ export const PresetQueryServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdatePresetQueryRequest} body
+     * @param {EnginePresetQueryServiceUpdatePresetQueryBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updatePresetQuery(
       id: number,
-      body: EngineUpdatePresetQueryRequest,
+      body: EnginePresetQueryServiceUpdatePresetQueryBody,
       options?: any
     ): AxiosPromise<EnginePresetQuery> {
       return PresetQueryServiceApiFp(configuration)
@@ -844,14 +844,14 @@ export class PresetQueryServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EnginePatchPresetQueryRequest} body
+   * @param {EnginePresetQueryServicePatchPresetQueryBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PresetQueryServiceApi
    */
   public patchPresetQuery(
     id: number,
-    body: EnginePatchPresetQueryRequest,
+    body: EnginePresetQueryServicePatchPresetQueryBody,
     options?: any
   ) {
     return PresetQueryServiceApiFp(this.configuration)
@@ -903,14 +903,14 @@ export class PresetQueryServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EngineUpdatePresetQueryRequest} body
+   * @param {EnginePresetQueryServiceUpdatePresetQueryBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PresetQueryServiceApi
    */
   public updatePresetQuery(
     id: number,
-    body: EngineUpdatePresetQueryRequest,
+    body: EnginePresetQueryServiceUpdatePresetQueryBody,
     options?: any
   ) {
     return PresetQueryServiceApiFp(this.configuration)

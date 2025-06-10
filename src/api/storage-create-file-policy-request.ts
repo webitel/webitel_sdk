@@ -39,6 +39,12 @@ export interface StorageCreateFilePolicyRequest {
   enabled?: boolean
   /**
    *
+   * @type {boolean}
+   * @memberof StorageCreateFilePolicyRequest
+   */
+  encrypt?: boolean
+  /**
+   *
    * @type {string}
    * @memberof StorageCreateFilePolicyRequest
    */

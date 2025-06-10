@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesInputCreateStatusCondition } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesInputStatusCondition } from '../api'
+import { WebitelCasesInputCreateStatusCondition } from '../api'
 // @ts-ignore
-import { CasesLocateStatusConditionResponse } from '../api'
+import { WebitelCasesInputStatusCondition } from '../api'
 // @ts-ignore
-import { CasesStatusCondition } from '../api'
+import { WebitelCasesLocateStatusConditionResponse } from '../api'
 // @ts-ignore
-import { CasesStatusConditionList } from '../api'
+import { WebitelCasesStatusCondition } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesStatusConditionList } from '../api'
 /**
  * StatusConditionsApi - axios parameter creator
  * @export
@@ -47,14 +47,14 @@ export const StatusConditionsApiAxiosParamCreator = function(
      *
      * @summary Create a new status condition
      * @param {string} statusId
-     * @param {CasesInputCreateStatusCondition} input
+     * @param {WebitelCasesInputCreateStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createStatusCondition: async (
       statusId: string,
-      input: CasesInputCreateStatusCondition,
+      input: WebitelCasesInputCreateStatusCondition,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -385,7 +385,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
      * @summary Update an existing status condition
      * @param {string} statusId
      * @param {string} id
-     * @param {CasesInputStatusCondition} input
+     * @param {WebitelCasesInputStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -393,7 +393,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
     updateStatusCondition: async (
       statusId: string,
       id: string,
-      input: CasesInputStatusCondition,
+      input: WebitelCasesInputStatusCondition,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -480,7 +480,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
      * @summary Update an existing status condition
      * @param {string} statusId
      * @param {string} id
-     * @param {CasesInputStatusCondition} input
+     * @param {WebitelCasesInputStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -488,7 +488,7 @@ export const StatusConditionsApiAxiosParamCreator = function(
     updateStatusCondition2: async (
       statusId: string,
       id: string,
-      input: CasesInputStatusCondition,
+      input: WebitelCasesInputStatusCondition,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -583,21 +583,21 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
      *
      * @summary Create a new status condition
      * @param {string} statusId
-     * @param {CasesInputCreateStatusCondition} input
+     * @param {WebitelCasesInputCreateStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createStatusCondition(
       statusId: string,
-      input: CasesInputCreateStatusCondition,
+      input: WebitelCasesInputCreateStatusCondition,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesStatusCondition>
+      ) => AxiosPromise<WebitelCasesStatusCondition>
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
@@ -629,7 +629,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesStatusCondition>
+      ) => AxiosPromise<WebitelCasesStatusCondition>
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
@@ -671,7 +671,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesStatusConditionList>
+      ) => AxiosPromise<WebitelCasesStatusConditionList>
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
@@ -705,7 +705,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocateStatusConditionResponse>
+      ) => AxiosPromise<WebitelCasesLocateStatusConditionResponse>
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
@@ -726,7 +726,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
      * @summary Update an existing status condition
      * @param {string} statusId
      * @param {string} id
-     * @param {CasesInputStatusCondition} input
+     * @param {WebitelCasesInputStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -734,14 +734,14 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
     async updateStatusCondition(
       statusId: string,
       id: string,
-      input: CasesInputStatusCondition,
+      input: WebitelCasesInputStatusCondition,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesStatusCondition>
+      ) => AxiosPromise<WebitelCasesStatusCondition>
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
@@ -762,7 +762,7 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
      * @summary Update an existing status condition
      * @param {string} statusId
      * @param {string} id
-     * @param {CasesInputStatusCondition} input
+     * @param {WebitelCasesInputStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -770,14 +770,14 @@ export const StatusConditionsApiFp = function(configuration?: Configuration) {
     async updateStatusCondition2(
       statusId: string,
       id: string,
-      input: CasesInputStatusCondition,
+      input: WebitelCasesInputStatusCondition,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesStatusCondition>
+      ) => AxiosPromise<WebitelCasesStatusCondition>
     > {
       const localVarAxiosArgs = await StatusConditionsApiAxiosParamCreator(
         configuration
@@ -810,17 +810,17 @@ export const StatusConditionsApiFactory = function(
      *
      * @summary Create a new status condition
      * @param {string} statusId
-     * @param {CasesInputCreateStatusCondition} input
+     * @param {WebitelCasesInputCreateStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createStatusCondition(
       statusId: string,
-      input: CasesInputCreateStatusCondition,
+      input: WebitelCasesInputCreateStatusCondition,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesStatusCondition> {
+    ): AxiosPromise<WebitelCasesStatusCondition> {
       return StatusConditionsApiFp(configuration)
         .createStatusCondition(statusId, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -837,7 +837,7 @@ export const StatusConditionsApiFactory = function(
       statusId: string,
       id: string,
       options?: any
-    ): AxiosPromise<CasesStatusCondition> {
+    ): AxiosPromise<WebitelCasesStatusCondition> {
       return StatusConditionsApiFp(configuration)
         .deleteStatusCondition(statusId, id, options)
         .then((request) => request(axios, basePath))
@@ -864,7 +864,7 @@ export const StatusConditionsApiFactory = function(
       id?: Array<string>,
       q?: string,
       options?: any
-    ): AxiosPromise<CasesStatusConditionList> {
+    ): AxiosPromise<WebitelCasesStatusConditionList> {
       return StatusConditionsApiFp(configuration)
         .listStatusConditions(
           statusId,
@@ -892,7 +892,7 @@ export const StatusConditionsApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocateStatusConditionResponse> {
+    ): AxiosPromise<WebitelCasesLocateStatusConditionResponse> {
       return StatusConditionsApiFp(configuration)
         .locateStatusCondition(statusId, id, fields, options)
         .then((request) => request(axios, basePath))
@@ -902,7 +902,7 @@ export const StatusConditionsApiFactory = function(
      * @summary Update an existing status condition
      * @param {string} statusId
      * @param {string} id
-     * @param {CasesInputStatusCondition} input
+     * @param {WebitelCasesInputStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -910,10 +910,10 @@ export const StatusConditionsApiFactory = function(
     updateStatusCondition(
       statusId: string,
       id: string,
-      input: CasesInputStatusCondition,
+      input: WebitelCasesInputStatusCondition,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesStatusCondition> {
+    ): AxiosPromise<WebitelCasesStatusCondition> {
       return StatusConditionsApiFp(configuration)
         .updateStatusCondition(statusId, id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -923,7 +923,7 @@ export const StatusConditionsApiFactory = function(
      * @summary Update an existing status condition
      * @param {string} statusId
      * @param {string} id
-     * @param {CasesInputStatusCondition} input
+     * @param {WebitelCasesInputStatusCondition} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -931,10 +931,10 @@ export const StatusConditionsApiFactory = function(
     updateStatusCondition2(
       statusId: string,
       id: string,
-      input: CasesInputStatusCondition,
+      input: WebitelCasesInputStatusCondition,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesStatusCondition> {
+    ): AxiosPromise<WebitelCasesStatusCondition> {
       return StatusConditionsApiFp(configuration)
         .updateStatusCondition2(statusId, id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -953,7 +953,7 @@ export class StatusConditionsApi extends BaseAPI {
    *
    * @summary Create a new status condition
    * @param {string} statusId
-   * @param {CasesInputCreateStatusCondition} input
+   * @param {WebitelCasesInputCreateStatusCondition} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -961,7 +961,7 @@ export class StatusConditionsApi extends BaseAPI {
    */
   public createStatusCondition(
     statusId: string,
-    input: CasesInputCreateStatusCondition,
+    input: WebitelCasesInputCreateStatusCondition,
     fields?: Array<string>,
     options?: any
   ) {
@@ -1040,7 +1040,7 @@ export class StatusConditionsApi extends BaseAPI {
    * @summary Update an existing status condition
    * @param {string} statusId
    * @param {string} id
-   * @param {CasesInputStatusCondition} input
+   * @param {WebitelCasesInputStatusCondition} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1049,7 +1049,7 @@ export class StatusConditionsApi extends BaseAPI {
   public updateStatusCondition(
     statusId: string,
     id: string,
-    input: CasesInputStatusCondition,
+    input: WebitelCasesInputStatusCondition,
     fields?: Array<string>,
     options?: any
   ) {
@@ -1063,7 +1063,7 @@ export class StatusConditionsApi extends BaseAPI {
    * @summary Update an existing status condition
    * @param {string} statusId
    * @param {string} id
-   * @param {CasesInputStatusCondition} input
+   * @param {WebitelCasesInputStatusCondition} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1072,7 +1072,7 @@ export class StatusConditionsApi extends BaseAPI {
   public updateStatusCondition2(
     statusId: string,
     id: string,
-    input: CasesInputStatusCondition,
+    input: WebitelCasesInputStatusCondition,
     fields?: Array<string>,
     options?: any
   ) {

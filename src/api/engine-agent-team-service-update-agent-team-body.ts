@@ -30,7 +30,7 @@ export interface EngineAgentTeamServiceUpdateAgentTeamBody {
    * @type {number}
    * @memberof EngineAgentTeamServiceUpdateAgentTeamBody
    */
-  callTimeout?: number
+  call_timeout?: number
   /**
    *
    * @type {string}
@@ -42,25 +42,25 @@ export interface EngineAgentTeamServiceUpdateAgentTeamBody {
    * @type {string}
    * @memberof EngineAgentTeamServiceUpdateAgentTeamBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineAgentTeamServiceUpdateAgentTeamBody
    */
-  forecastCalculation?: EngineLookup
+  forecast_calculation?: EngineLookup
   /**
    *
    * @type {number}
    * @memberof EngineAgentTeamServiceUpdateAgentTeamBody
    */
-  inviteChatTimeout?: number
+  invite_chat_timeout?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentTeamServiceUpdateAgentTeamBody
    */
-  maxNoAnswer?: number
+  max_no_answer?: number
   /**
    *
    * @type {string}
@@ -72,7 +72,7 @@ export interface EngineAgentTeamServiceUpdateAgentTeamBody {
    * @type {number}
    * @memberof EngineAgentTeamServiceUpdateAgentTeamBody
    */
-  noAnswerDelayTime?: number
+  no_answer_delay_time?: number
   /**
    *
    * @type {string}
@@ -84,11 +84,11 @@ export interface EngineAgentTeamServiceUpdateAgentTeamBody {
    * @type {number}
    * @memberof EngineAgentTeamServiceUpdateAgentTeamBody
    */
-  taskAcceptTimeout?: number
+  task_accept_timeout?: number
   /**
    *
    * @type {number}
    * @memberof EngineAgentTeamServiceUpdateAgentTeamBody
    */
-  wrapUpTime?: number
+  wrap_up_time?: number
 }

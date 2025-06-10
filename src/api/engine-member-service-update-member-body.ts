@@ -43,19 +43,19 @@ export interface EngineMemberServiceUpdateMemberBody {
    * @type {string}
    * @memberof EngineMemberServiceUpdateMemberBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberServiceUpdateMemberBody
    */
-  expireAt?: string
+  expire_at?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberServiceUpdateMemberBody
    */
-  minOfferingAt?: string
+  min_offering_at?: string
   /**
    *
    * @type {string}
@@ -79,7 +79,7 @@ export interface EngineMemberServiceUpdateMemberBody {
    * @type {string}
    * @memberof EngineMemberServiceUpdateMemberBody
    */
-  stopCause?: string
+  stop_cause?: string
   /**
    *
    * @type {EngineLookup}

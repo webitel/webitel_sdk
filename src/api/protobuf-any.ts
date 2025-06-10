@@ -17,16 +17,12 @@
  * @interface ProtobufAny
  */
 export interface ProtobufAny {
+  [key: string]: object | any
+
   /**
    *
    * @type {string}
    * @memberof ProtobufAny
    */
-  type_url?: string
-  /**
-   *
-   * @type {string}
-   * @memberof ProtobufAny
-   */
-  value?: string
+  type?: string
 }

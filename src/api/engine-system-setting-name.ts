@@ -33,4 +33,12 @@ export enum EngineSystemSettingName {
   IsFulltextSearchEnabled = 'is_fulltext_search_enabled',
   WbtHideContact = 'wbt_hide_contact',
   ShowFullContact = 'show_full_contact',
+  CallEndSoundNotification = 'call_end_sound_notification',
+  CallEndPushNotification = 'call_end_push_notification',
+  ChatEndSoundNotification = 'chat_end_sound_notification',
+  ChatEndPushNotification = 'chat_end_push_notification',
+  TaskEndSoundNotification = 'task_end_sound_notification',
+  TaskEndPushNotification = 'task_end_push_notification',
+  PushNotificationTimeout = 'push_notification_timeout',
+  LabelsToLimitContacts = 'labels_to_limit_contacts',
 }

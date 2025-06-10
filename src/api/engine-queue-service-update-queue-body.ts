@@ -26,7 +26,7 @@ export interface EngineQueueServiceUpdateQueueBody {
    * @type {EngineLookup}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  afterSchema?: EngineLookup
+  after_schema?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -44,19 +44,19 @@ export interface EngineQueueServiceUpdateQueueBody {
    * @type {EngineLookup}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  dncList?: EngineLookup
+  dnc_list?: EngineLookup
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  doSchema?: EngineLookup
+  do_schema?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {boolean}
@@ -68,7 +68,7 @@ export interface EngineQueueServiceUpdateQueueBody {
    * @type {EngineLookup}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  formSchema?: EngineLookup
+  form_schema?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -104,13 +104,13 @@ export interface EngineQueueServiceUpdateQueueBody {
    * @type {number}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  processingRenewalSec?: number
+  processing_renewal_sec?: number
   /**
    *
    * @type {number}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  processingSec?: number
+  processing_sec?: number
   /**
    *
    * @type {EngineLookup}
@@ -128,13 +128,13 @@ export interface EngineQueueServiceUpdateQueueBody {
    * @type {number}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  secLocateAgent?: number
+  sec_locate_agent?: number
   /**
    *
    * @type {boolean}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  stickyAgent?: boolean
+  sticky_agent?: boolean
   /**
    *
    * @type {string}
@@ -152,7 +152,7 @@ export interface EngineQueueServiceUpdateQueueBody {
    * @type {EngineTaskProcessing}
    * @memberof EngineQueueServiceUpdateQueueBody
    */
-  taskProcessing?: EngineTaskProcessing
+  task_processing?: EngineTaskProcessing
   /**
    *
    * @type {EngineLookup}

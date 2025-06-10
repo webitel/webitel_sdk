@@ -30,15 +30,15 @@ import { EngineAgentCallStatisticsList } from '../api'
 // @ts-ignore
 import { EngineAgentInQueueStatisticsList } from '../api'
 // @ts-ignore
-import { EngineAgentSetStateRequest } from '../api'
+import { EngineAgentServicePatchAgentBody } from '../api'
 // @ts-ignore
-import { EngineAgentStatusRequest } from '../api'
+import { EngineAgentServiceUpdateAgentBody } from '../api'
+// @ts-ignore
+import { EngineAgentServiceUpdateAgentStatusBody } from '../api'
 // @ts-ignore
 import { EngineAgentStatusStatisticItem } from '../api'
 // @ts-ignore
 import { EngineAgentTodayStatisticsResponse } from '../api'
-// @ts-ignore
-import { EngineApiError } from '../api'
 // @ts-ignore
 import { EngineCreateAgentRequest } from '../api'
 // @ts-ignore
@@ -58,11 +58,9 @@ import { EngineListAgentUser } from '../api'
 // @ts-ignore
 import { EngineListUserStatus } from '../api'
 // @ts-ignore
-import { EnginePatchAgentRequest } from '../api'
-// @ts-ignore
 import { EngineResponse } from '../api'
 // @ts-ignore
-import { EngineUpdateAgentRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * AgentServiceApi - axios parameter creator
  * @export
@@ -74,13 +72,13 @@ export const AgentServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} agentId
-     * @param {EngineAgentSetStateRequest} body
+     * @param {object} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     agentSetState: async (
       agentId: number,
-      body: EngineAgentSetStateRequest,
+      body: object,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -462,13 +460,13 @@ export const AgentServiceApiAxiosParamCreator = function(
      *
      * @summary Update Agent
      * @param {string} id
-     * @param {EnginePatchAgentRequest} body
+     * @param {EngineAgentServicePatchAgentBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAgent: async (
       id: string,
-      body: EnginePatchAgentRequest,
+      body: EngineAgentServicePatchAgentBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -1694,13 +1692,13 @@ export const AgentServiceApiAxiosParamCreator = function(
      *
      * @summary Update Agent
      * @param {string} id
-     * @param {EngineUpdateAgentRequest} body
+     * @param {EngineAgentServiceUpdateAgentBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgent: async (
       id: string,
-      body: EngineUpdateAgentRequest,
+      body: EngineAgentServiceUpdateAgentBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -1775,13 +1773,13 @@ export const AgentServiceApiAxiosParamCreator = function(
      *
      * @summary Change agent status
      * @param {string} id
-     * @param {EngineAgentStatusRequest} body
+     * @param {EngineAgentServiceUpdateAgentStatusBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentStatus: async (
       id: string,
-      body: EngineAgentStatusRequest,
+      body: EngineAgentServiceUpdateAgentStatusBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -1864,13 +1862,13 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} agentId
-     * @param {EngineAgentSetStateRequest} body
+     * @param {object} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async agentSetState(
       agentId: number,
-      body: EngineAgentSetStateRequest,
+      body: object,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
@@ -2030,13 +2028,13 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update Agent
      * @param {string} id
-     * @param {EnginePatchAgentRequest} body
+     * @param {EngineAgentServicePatchAgentBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchAgent(
       id: string,
-      body: EnginePatchAgentRequest,
+      body: EngineAgentServicePatchAgentBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>
@@ -2613,13 +2611,13 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update Agent
      * @param {string} id
-     * @param {EngineUpdateAgentRequest} body
+     * @param {EngineAgentServiceUpdateAgentBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAgent(
       id: string,
-      body: EngineUpdateAgentRequest,
+      body: EngineAgentServiceUpdateAgentBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineAgent>
@@ -2642,13 +2640,13 @@ export const AgentServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Change agent status
      * @param {string} id
-     * @param {EngineAgentStatusRequest} body
+     * @param {EngineAgentServiceUpdateAgentStatusBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAgentStatus(
       id: string,
-      body: EngineAgentStatusRequest,
+      body: EngineAgentServiceUpdateAgentStatusBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineResponse>
@@ -2683,13 +2681,13 @@ export const AgentServiceApiFactory = function(
     /**
      *
      * @param {number} agentId
-     * @param {EngineAgentSetStateRequest} body
+     * @param {object} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     agentSetState(
       agentId: number,
-      body: EngineAgentSetStateRequest,
+      body: object,
       options?: any
     ): AxiosPromise<object> {
       return AgentServiceApiFp(configuration)
@@ -2783,13 +2781,13 @@ export const AgentServiceApiFactory = function(
      *
      * @summary Update Agent
      * @param {string} id
-     * @param {EnginePatchAgentRequest} body
+     * @param {EngineAgentServicePatchAgentBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAgent(
       id: string,
-      body: EnginePatchAgentRequest,
+      body: EngineAgentServicePatchAgentBody,
       options?: any
     ): AxiosPromise<EngineAgent> {
       return AgentServiceApiFp(configuration)
@@ -3177,13 +3175,13 @@ export const AgentServiceApiFactory = function(
      *
      * @summary Update Agent
      * @param {string} id
-     * @param {EngineUpdateAgentRequest} body
+     * @param {EngineAgentServiceUpdateAgentBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgent(
       id: string,
-      body: EngineUpdateAgentRequest,
+      body: EngineAgentServiceUpdateAgentBody,
       options?: any
     ): AxiosPromise<EngineAgent> {
       return AgentServiceApiFp(configuration)
@@ -3194,13 +3192,13 @@ export const AgentServiceApiFactory = function(
      *
      * @summary Change agent status
      * @param {string} id
-     * @param {EngineAgentStatusRequest} body
+     * @param {EngineAgentServiceUpdateAgentStatusBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentStatus(
       id: string,
-      body: EngineAgentStatusRequest,
+      body: EngineAgentServiceUpdateAgentStatusBody,
       options?: any
     ): AxiosPromise<EngineResponse> {
       return AgentServiceApiFp(configuration)
@@ -3220,16 +3218,12 @@ export class AgentServiceApi extends BaseAPI {
   /**
    *
    * @param {number} agentId
-   * @param {EngineAgentSetStateRequest} body
+   * @param {object} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
-  public agentSetState(
-    agentId: number,
-    body: EngineAgentSetStateRequest,
-    options?: any
-  ) {
+  public agentSetState(agentId: number, body: object, options?: any) {
     return AgentServiceApiFp(this.configuration)
       .agentSetState(agentId, body, options)
       .then((request) => request(this.axios, this.basePath))
@@ -3323,12 +3317,16 @@ export class AgentServiceApi extends BaseAPI {
    *
    * @summary Update Agent
    * @param {string} id
-   * @param {EnginePatchAgentRequest} body
+   * @param {EngineAgentServicePatchAgentBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
-  public patchAgent(id: string, body: EnginePatchAgentRequest, options?: any) {
+  public patchAgent(
+    id: string,
+    body: EngineAgentServicePatchAgentBody,
+    options?: any
+  ) {
     return AgentServiceApiFp(this.configuration)
       .patchAgent(id, body, options)
       .then((request) => request(this.axios, this.basePath))
@@ -3735,14 +3733,14 @@ export class AgentServiceApi extends BaseAPI {
    *
    * @summary Update Agent
    * @param {string} id
-   * @param {EngineUpdateAgentRequest} body
+   * @param {EngineAgentServiceUpdateAgentBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
   public updateAgent(
     id: string,
-    body: EngineUpdateAgentRequest,
+    body: EngineAgentServiceUpdateAgentBody,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration)
@@ -3754,14 +3752,14 @@ export class AgentServiceApi extends BaseAPI {
    *
    * @summary Change agent status
    * @param {string} id
-   * @param {EngineAgentStatusRequest} body
+   * @param {EngineAgentServiceUpdateAgentStatusBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentServiceApi
    */
   public updateAgentStatus(
     id: string,
-    body: EngineAgentStatusRequest,
+    body: EngineAgentServiceUpdateAgentStatusBody,
     options?: any
   ) {
     return AgentServiceApiFp(this.configuration)

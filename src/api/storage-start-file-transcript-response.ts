@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { StartFileTranscriptResponseTranscriptJob } from './start-file-transcript-response-transcript-job'
+import { StorageStartFileTranscriptResponseTranscriptJob } from './storage-start-file-transcript-response-transcript-job'
 
 /**
  *
@@ -21,8 +21,8 @@ import { StartFileTranscriptResponseTranscriptJob } from './start-file-transcrip
 export interface StorageStartFileTranscriptResponse {
   /**
    *
-   * @type {Array<StartFileTranscriptResponseTranscriptJob>}
+   * @type {Array<StorageStartFileTranscriptResponseTranscriptJob>}
    * @memberof StorageStartFileTranscriptResponse
    */
-  items?: Array<StartFileTranscriptResponseTranscriptJob>
+  items?: Array<StorageStartFileTranscriptResponseTranscriptJob>
 }

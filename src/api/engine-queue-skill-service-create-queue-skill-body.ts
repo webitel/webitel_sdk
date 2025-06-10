@@ -42,13 +42,13 @@ export interface EngineQueueSkillServiceCreateQueueSkillBody {
    * @type {number}
    * @memberof EngineQueueSkillServiceCreateQueueSkillBody
    */
-  maxCapacity?: number
+  max_capacity?: number
   /**
    *
    * @type {number}
    * @memberof EngineQueueSkillServiceCreateQueueSkillBody
    */
-  minCapacity?: number
+  min_capacity?: number
   /**
    *
    * @type {EngineLookup}

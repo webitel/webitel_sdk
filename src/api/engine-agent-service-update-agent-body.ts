@@ -24,7 +24,7 @@ export interface EngineAgentServiceUpdateAgentBody {
    * @type {Array<string>}
    * @memberof EngineAgentServiceUpdateAgentBody
    */
-  allowChannels?: Array<string>
+  allow_channels?: Array<string>
   /**
    *
    * @type {Array<EngineLookup>}
@@ -36,7 +36,7 @@ export interface EngineAgentServiceUpdateAgentBody {
    * @type {number}
    * @memberof EngineAgentServiceUpdateAgentBody
    */
-  chatCount?: number
+  chat_count?: number
   /**
    *
    * @type {string}
@@ -48,25 +48,25 @@ export interface EngineAgentServiceUpdateAgentBody {
    * @type {string}
    * @memberof EngineAgentServiceUpdateAgentBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineAgentServiceUpdateAgentBody
    */
-  greetingMedia?: EngineLookup
+  greeting_media?: EngineLookup
   /**
    *
    * @type {boolean}
    * @memberof EngineAgentServiceUpdateAgentBody
    */
-  isSupervisor?: boolean
+  is_supervisor?: boolean
   /**
    *
    * @type {number}
    * @memberof EngineAgentServiceUpdateAgentBody
    */
-  progressiveCount?: number
+  progressive_count?: number
   /**
    *
    * @type {EngineLookup}
@@ -84,7 +84,7 @@ export interface EngineAgentServiceUpdateAgentBody {
    * @type {number}
    * @memberof EngineAgentServiceUpdateAgentBody
    */
-  taskCount?: number
+  task_count?: number
   /**
    *
    * @type {EngineLookup}

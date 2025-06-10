@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateRegionRequest } from '../api'
 // @ts-ignore
 import { EngineListRegion } from '../api'
 // @ts-ignore
-import { EnginePatchRegionRequest } from '../api'
-// @ts-ignore
 import { EngineRegion } from '../api'
 // @ts-ignore
-import { EngineUpdateRegionRequest } from '../api'
+import { EngineRegionServicePatchRegionBody } from '../api'
+// @ts-ignore
+import { EngineRegionServiceUpdateRegionBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * RegionServiceApi - axios parameter creator
  * @export
@@ -177,13 +177,13 @@ export const RegionServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchRegionRequest} body
+     * @param {EngineRegionServicePatchRegionBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchRegion: async (
       id: string,
-      body: EnginePatchRegionRequest,
+      body: EngineRegionServicePatchRegionBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -422,13 +422,13 @@ export const RegionServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
-     * @param {EngineUpdateRegionRequest} body
+     * @param {EngineRegionServiceUpdateRegionBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRegion: async (
       id: string,
-      body: EngineUpdateRegionRequest,
+      body: EngineRegionServiceUpdateRegionBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -563,13 +563,13 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} id
-     * @param {EnginePatchRegionRequest} body
+     * @param {EngineRegionServicePatchRegionBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchRegion(
       id: string,
-      body: EnginePatchRegionRequest,
+      body: EngineRegionServicePatchRegionBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
@@ -673,13 +673,13 @@ export const RegionServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} id
-     * @param {EngineUpdateRegionRequest} body
+     * @param {EngineRegionServiceUpdateRegionBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateRegion(
       id: string,
-      body: EngineUpdateRegionRequest,
+      body: EngineRegionServiceUpdateRegionBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineRegion>
@@ -739,13 +739,13 @@ export const RegionServiceApiFactory = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchRegionRequest} body
+     * @param {EngineRegionServicePatchRegionBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchRegion(
       id: string,
-      body: EnginePatchRegionRequest,
+      body: EngineRegionServicePatchRegionBody,
       options?: any
     ): AxiosPromise<EngineRegion> {
       return RegionServiceApiFp(configuration)
@@ -807,13 +807,13 @@ export const RegionServiceApiFactory = function(
     /**
      *
      * @param {string} id
-     * @param {EngineUpdateRegionRequest} body
+     * @param {EngineRegionServiceUpdateRegionBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRegion(
       id: string,
-      body: EngineUpdateRegionRequest,
+      body: EngineRegionServiceUpdateRegionBody,
       options?: any
     ): AxiosPromise<EngineRegion> {
       return RegionServiceApiFp(configuration)
@@ -859,14 +859,14 @@ export class RegionServiceApi extends BaseAPI {
   /**
    *
    * @param {string} id
-   * @param {EnginePatchRegionRequest} body
+   * @param {EngineRegionServicePatchRegionBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RegionServiceApi
    */
   public patchRegion(
     id: string,
-    body: EnginePatchRegionRequest,
+    body: EngineRegionServicePatchRegionBody,
     options?: any
   ) {
     return RegionServiceApiFp(this.configuration)
@@ -933,14 +933,14 @@ export class RegionServiceApi extends BaseAPI {
   /**
    *
    * @param {string} id
-   * @param {EngineUpdateRegionRequest} body
+   * @param {EngineRegionServiceUpdateRegionBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RegionServiceApi
    */
   public updateRegion(
     id: string,
-    body: EngineUpdateRegionRequest,
+    body: EngineRegionServiceUpdateRegionBody,
     options?: any
   ) {
     return RegionServiceApiFp(this.configuration)

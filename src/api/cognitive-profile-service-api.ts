@@ -24,6 +24,8 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { GrpcGatewayRuntimeError } from '../api'
+// @ts-ignore
 import { StorageCognitiveProfile } from '../api'
 // @ts-ignore
 import { StorageCreateCognitiveProfileRequest } from '../api'

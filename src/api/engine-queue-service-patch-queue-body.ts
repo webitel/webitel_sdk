@@ -26,7 +26,7 @@ export interface EngineQueueServicePatchQueueBody {
    * @type {EngineLookup}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  afterSchema?: EngineLookup
+  after_schema?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -44,19 +44,19 @@ export interface EngineQueueServicePatchQueueBody {
    * @type {EngineLookup}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  dncList?: EngineLookup
+  dnc_list?: EngineLookup
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  doSchema?: EngineLookup
+  do_schema?: EngineLookup
   /**
    *
    * @type {string}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {boolean}
@@ -74,7 +74,7 @@ export interface EngineQueueServicePatchQueueBody {
    * @type {EngineLookup}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  formSchema?: EngineLookup
+  form_schema?: EngineLookup
   /**
    *
    * @type {EngineLookup}
@@ -110,13 +110,13 @@ export interface EngineQueueServicePatchQueueBody {
    * @type {number}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  processingRenewalSec?: number
+  processing_renewal_sec?: number
   /**
    *
    * @type {number}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  processingSec?: number
+  processing_sec?: number
   /**
    *
    * @type {EngineLookup}
@@ -134,13 +134,13 @@ export interface EngineQueueServicePatchQueueBody {
    * @type {number}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  secLocateAgent?: number
+  sec_locate_agent?: number
   /**
    *
    * @type {boolean}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  stickyAgent?: boolean
+  sticky_agent?: boolean
   /**
    *
    * @type {string}
@@ -158,7 +158,7 @@ export interface EngineQueueServicePatchQueueBody {
    * @type {EngineTaskProcessing}
    * @memberof EngineQueueServicePatchQueueBody
    */
-  taskProcessing?: EngineTaskProcessing
+  task_processing?: EngineTaskProcessing
   /**
    *
    * @type {EngineLookup}

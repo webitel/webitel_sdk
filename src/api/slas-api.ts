@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesInputSLA } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesLocateSLAResponse } from '../api'
+import { WebitelCasesInputSLA } from '../api'
 // @ts-ignore
-import { CasesSLA } from '../api'
+import { WebitelCasesLocateSLAResponse } from '../api'
 // @ts-ignore
-import { CasesSLAList } from '../api'
+import { WebitelCasesSLA } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesSLAList } from '../api'
 /**
  * SLAsApi - axios parameter creator
  * @export
@@ -44,13 +44,13 @@ export const SLAsApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new SLA
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSLA: async (
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -339,14 +339,14 @@ export const SLAsApiAxiosParamCreator = function(
      *
      * @summary Update an existing SLA
      * @param {string} id
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSLA: async (
       id: string,
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -426,14 +426,14 @@ export const SLAsApiAxiosParamCreator = function(
      *
      * @summary Update an existing SLA
      * @param {string} id
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSLA2: async (
       id: string,
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -521,17 +521,20 @@ export const SLAsApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new SLA
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createSLA(
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLA>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSLA>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
@@ -558,7 +561,10 @@ export const SLAsApiFp = function(configuration?: Configuration) {
       id: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLA>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSLA>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
@@ -595,7 +601,10 @@ export const SLAsApiFp = function(configuration?: Configuration) {
       q?: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLAList>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSLAList>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
@@ -627,7 +636,7 @@ export const SLAsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocateSLAResponse>
+      ) => AxiosPromise<WebitelCasesLocateSLAResponse>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
@@ -647,18 +656,21 @@ export const SLAsApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing SLA
      * @param {string} id
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSLA(
       id: string,
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLA>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSLA>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
@@ -678,18 +690,21 @@ export const SLAsApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing SLA
      * @param {string} id
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSLA2(
       id: string,
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSLA>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSLA>
     > {
       const localVarAxiosArgs = await SLAsApiAxiosParamCreator(
         configuration
@@ -721,16 +736,16 @@ export const SLAsApiFactory = function(
     /**
      *
      * @summary Create a new SLA
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSLA(
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSLA> {
+    ): AxiosPromise<WebitelCasesSLA> {
       return SLAsApiFp(configuration)
         .createSLA(input, fields, options)
         .then((request) => request(axios, basePath))
@@ -742,7 +757,7 @@ export const SLAsApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSLA(id: string, options?: any): AxiosPromise<CasesSLA> {
+    deleteSLA(id: string, options?: any): AxiosPromise<WebitelCasesSLA> {
       return SLAsApiFp(configuration)
         .deleteSLA(id, options)
         .then((request) => request(axios, basePath))
@@ -767,7 +782,7 @@ export const SLAsApiFactory = function(
       id?: Array<string>,
       q?: string,
       options?: any
-    ): AxiosPromise<CasesSLAList> {
+    ): AxiosPromise<WebitelCasesSLAList> {
       return SLAsApiFp(configuration)
         .listSLAs(page, size, fields, sort, id, q, options)
         .then((request) => request(axios, basePath))
@@ -784,7 +799,7 @@ export const SLAsApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocateSLAResponse> {
+    ): AxiosPromise<WebitelCasesLocateSLAResponse> {
       return SLAsApiFp(configuration)
         .locateSLA(id, fields, options)
         .then((request) => request(axios, basePath))
@@ -793,17 +808,17 @@ export const SLAsApiFactory = function(
      *
      * @summary Update an existing SLA
      * @param {string} id
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSLA(
       id: string,
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSLA> {
+    ): AxiosPromise<WebitelCasesSLA> {
       return SLAsApiFp(configuration)
         .updateSLA(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -812,17 +827,17 @@ export const SLAsApiFactory = function(
      *
      * @summary Update an existing SLA
      * @param {string} id
-     * @param {CasesInputSLA} input
+     * @param {WebitelCasesInputSLA} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSLA2(
       id: string,
-      input: CasesInputSLA,
+      input: WebitelCasesInputSLA,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSLA> {
+    ): AxiosPromise<WebitelCasesSLA> {
       return SLAsApiFp(configuration)
         .updateSLA2(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -840,14 +855,14 @@ export class SLAsApi extends BaseAPI {
   /**
    *
    * @summary Create a new SLA
-   * @param {CasesInputSLA} input
+   * @param {WebitelCasesInputSLA} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SLAsApi
    */
   public createSLA(
-    input: CasesInputSLA,
+    input: WebitelCasesInputSLA,
     fields?: Array<string>,
     options?: any
   ) {
@@ -916,7 +931,7 @@ export class SLAsApi extends BaseAPI {
    *
    * @summary Update an existing SLA
    * @param {string} id
-   * @param {CasesInputSLA} input
+   * @param {WebitelCasesInputSLA} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -924,7 +939,7 @@ export class SLAsApi extends BaseAPI {
    */
   public updateSLA(
     id: string,
-    input: CasesInputSLA,
+    input: WebitelCasesInputSLA,
     fields?: Array<string>,
     options?: any
   ) {
@@ -937,7 +952,7 @@ export class SLAsApi extends BaseAPI {
    *
    * @summary Update an existing SLA
    * @param {string} id
-   * @param {CasesInputSLA} input
+   * @param {WebitelCasesInputSLA} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -945,7 +960,7 @@ export class SLAsApi extends BaseAPI {
    */
   public updateSLA2(
     id: string,
-    input: CasesInputSLA,
+    input: WebitelCasesInputSLA,
     fields?: Array<string>,
     options?: any
   ) {

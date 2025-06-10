@@ -28,13 +28,13 @@ export interface EngineAgentServiceUpdateAgentStatusBody {
    * @type {string}
    * @memberof EngineAgentServiceUpdateAgentStatusBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {boolean}
    * @memberof EngineAgentServiceUpdateAgentStatusBody
    */
-  onDemand?: boolean
+  on_demand?: boolean
   /**
    *
    * @type {string}

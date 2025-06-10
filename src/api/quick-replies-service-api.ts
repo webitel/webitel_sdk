@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateQuickReplyRequest } from '../api'
 // @ts-ignore
 import { EngineListQuickReplies } from '../api'
 // @ts-ignore
-import { EnginePatchQuickReplyRequest } from '../api'
+import { EngineQuickRepliesServicePatchQuickReplyBody } from '../api'
+// @ts-ignore
+import { EngineQuickRepliesServiceUpdateQuickReplyBody } from '../api'
 // @ts-ignore
 import { EngineQuickReply } from '../api'
 // @ts-ignore
-import { EngineUpdateQuickReplyRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * QuickRepliesServiceApi - axios parameter creator
  * @export
@@ -177,13 +177,13 @@ export const QuickRepliesServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchQuickReplyRequest} body
+     * @param {EngineQuickRepliesServicePatchQuickReplyBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQuickReply: async (
       id: number,
-      body: EnginePatchQuickReplyRequest,
+      body: EngineQuickRepliesServicePatchQuickReplyBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -407,13 +407,13 @@ export const QuickRepliesServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateQuickReplyRequest} body
+     * @param {EngineQuickRepliesServiceUpdateQuickReplyBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQuickReply: async (
       id: number,
-      body: EngineUpdateQuickReplyRequest,
+      body: EngineQuickRepliesServiceUpdateQuickReplyBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -556,13 +556,13 @@ export const QuickRepliesServiceApiFp = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchQuickReplyRequest} body
+     * @param {EngineQuickRepliesServicePatchQuickReplyBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchQuickReply(
       id: number,
-      body: EnginePatchQuickReplyRequest,
+      body: EngineQuickRepliesServicePatchQuickReplyBody,
       options?: any
     ): Promise<
       (
@@ -655,13 +655,13 @@ export const QuickRepliesServiceApiFp = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateQuickReplyRequest} body
+     * @param {EngineQuickRepliesServiceUpdateQuickReplyBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateQuickReply(
       id: number,
-      body: EngineUpdateQuickReplyRequest,
+      body: EngineQuickRepliesServiceUpdateQuickReplyBody,
       options?: any
     ): Promise<
       (
@@ -727,13 +727,13 @@ export const QuickRepliesServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchQuickReplyRequest} body
+     * @param {EngineQuickRepliesServicePatchQuickReplyBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQuickReply(
       id: number,
-      body: EnginePatchQuickReplyRequest,
+      body: EngineQuickRepliesServicePatchQuickReplyBody,
       options?: any
     ): AxiosPromise<EngineQuickReply> {
       return QuickRepliesServiceApiFp(configuration)
@@ -778,13 +778,13 @@ export const QuickRepliesServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateQuickReplyRequest} body
+     * @param {EngineQuickRepliesServiceUpdateQuickReplyBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQuickReply(
       id: number,
-      body: EngineUpdateQuickReplyRequest,
+      body: EngineQuickRepliesServiceUpdateQuickReplyBody,
       options?: any
     ): AxiosPromise<EngineQuickReply> {
       return QuickRepliesServiceApiFp(configuration)
@@ -830,14 +830,14 @@ export class QuickRepliesServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EnginePatchQuickReplyRequest} body
+   * @param {EngineQuickRepliesServicePatchQuickReplyBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QuickRepliesServiceApi
    */
   public patchQuickReply(
     id: number,
-    body: EnginePatchQuickReplyRequest,
+    body: EngineQuickRepliesServicePatchQuickReplyBody,
     options?: any
   ) {
     return QuickRepliesServiceApiFp(this.configuration)
@@ -887,14 +887,14 @@ export class QuickRepliesServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EngineUpdateQuickReplyRequest} body
+   * @param {EngineQuickRepliesServiceUpdateQuickReplyBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QuickRepliesServiceApi
    */
   public updateQuickReply(
     id: number,
-    body: EngineUpdateQuickReplyRequest,
+    body: EngineQuickRepliesServiceUpdateQuickReplyBody,
     options?: any
   ) {
     return QuickRepliesServiceApiFp(this.configuration)

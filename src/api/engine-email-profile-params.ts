@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { EmailProfileParamsOAuth2 } from './email-profile-params-oauth2'
+import { EngineEmailProfileParamsOAuth2 } from './engine-email-profile-params-oauth2'
 
 /**
  *
@@ -21,8 +21,8 @@ import { EmailProfileParamsOAuth2 } from './email-profile-params-oauth2'
 export interface EngineEmailProfileParams {
   /**
    *
-   * @type {EmailProfileParamsOAuth2}
+   * @type {EngineEmailProfileParamsOAuth2}
    * @memberof EngineEmailProfileParams
    */
-  oauth2?: EmailProfileParamsOAuth2
+  oauth2?: EngineEmailProfileParamsOAuth2
 }

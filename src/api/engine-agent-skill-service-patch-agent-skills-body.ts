@@ -46,5 +46,5 @@ export interface EngineAgentSkillServicePatchAgentSkillsBody {
    * @type {Array<string>}
    * @memberof EngineAgentSkillServicePatchAgentSkillsBody
    */
-  skillId?: Array<string>
+  skill_id?: Array<string>
 }

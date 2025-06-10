@@ -22,7 +22,7 @@ export interface EngineRoutingVariableServiceUpdateRoutingVariableBody {
    * @type {string}
    * @memberof EngineRoutingVariableServiceUpdateRoutingVariableBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}

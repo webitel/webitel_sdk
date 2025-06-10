@@ -22,7 +22,7 @@ export interface EngineCallServiceBlindTransferCallBody {
    * @type {string}
    * @memberof EngineCallServiceBlindTransferCallBody
    */
-  appId?: string
+  app_id?: string
   /**
    *
    * @type {string}
@@ -34,5 +34,5 @@ export interface EngineCallServiceBlindTransferCallBody {
    * @type {string}
    * @memberof EngineCallServiceBlindTransferCallBody
    */
-  domainId?: string
+  domain_id?: string
 }

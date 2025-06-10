@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateQueueHookRequest } from '../api'
-// @ts-ignore
 import { EngineListQueueHook } from '../api'
-// @ts-ignore
-import { EnginePatchQueueHookRequest } from '../api'
 // @ts-ignore
 import { EngineQueueHook } from '../api'
 // @ts-ignore
-import { EngineUpdateQueueHookRequest } from '../api'
+import { EngineQueueHookServiceCreateQueueHookBody } from '../api'
+// @ts-ignore
+import { EngineQueueHookServicePatchQueueHookBody } from '../api'
+// @ts-ignore
+import { EngineQueueHookServiceUpdateQueueHookBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * QueueHookServiceApi - axios parameter creator
  * @export
@@ -46,13 +46,13 @@ export const QueueHookServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} queueId
-     * @param {EngineCreateQueueHookRequest} body
+     * @param {EngineQueueHookServiceCreateQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueHook: async (
       queueId: number,
-      body: EngineCreateQueueHookRequest,
+      body: EngineQueueHookServiceCreateQueueHookBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -198,14 +198,14 @@ export const QueueHookServiceApiAxiosParamCreator = function(
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EnginePatchQueueHookRequest} body
+     * @param {EngineQueueHookServicePatchQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQueueHook: async (
       queueId: number,
       id: number,
-      body: EnginePatchQueueHookRequest,
+      body: EngineQueueHookServicePatchQueueHookBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -468,14 +468,14 @@ export const QueueHookServiceApiAxiosParamCreator = function(
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateQueueHookRequest} body
+     * @param {EngineQueueHookServiceUpdateQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueueHook: async (
       queueId: number,
       id: number,
-      body: EngineUpdateQueueHookRequest,
+      body: EngineQueueHookServiceUpdateQueueHookBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -564,13 +564,13 @@ export const QueueHookServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} queueId
-     * @param {EngineCreateQueueHookRequest} body
+     * @param {EngineQueueHookServiceCreateQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createQueueHook(
       queueId: number,
-      body: EngineCreateQueueHookRequest,
+      body: EngineQueueHookServiceCreateQueueHookBody,
       options?: any
     ): Promise<
       (
@@ -627,14 +627,14 @@ export const QueueHookServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EnginePatchQueueHookRequest} body
+     * @param {EngineQueueHookServicePatchQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchQueueHook(
       queueId: number,
       id: number,
-      body: EnginePatchQueueHookRequest,
+      body: EngineQueueHookServicePatchQueueHookBody,
       options?: any
     ): Promise<
       (
@@ -747,14 +747,14 @@ export const QueueHookServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateQueueHookRequest} body
+     * @param {EngineQueueHookServiceUpdateQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateQueueHook(
       queueId: number,
       id: number,
-      body: EngineUpdateQueueHookRequest,
+      body: EngineQueueHookServiceUpdateQueueHookBody,
       options?: any
     ): Promise<
       (
@@ -792,13 +792,13 @@ export const QueueHookServiceApiFactory = function(
     /**
      *
      * @param {number} queueId
-     * @param {EngineCreateQueueHookRequest} body
+     * @param {EngineQueueHookServiceCreateQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueHook(
       queueId: number,
-      body: EngineCreateQueueHookRequest,
+      body: EngineQueueHookServiceCreateQueueHookBody,
       options?: any
     ): AxiosPromise<EngineQueueHook> {
       return QueueHookServiceApiFp(configuration)
@@ -825,14 +825,14 @@ export const QueueHookServiceApiFactory = function(
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EnginePatchQueueHookRequest} body
+     * @param {EngineQueueHookServicePatchQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQueueHook(
       queueId: number,
       id: number,
-      body: EnginePatchQueueHookRequest,
+      body: EngineQueueHookServicePatchQueueHookBody,
       options?: any
     ): AxiosPromise<EngineQueueHook> {
       return QueueHookServiceApiFp(configuration)
@@ -900,14 +900,14 @@ export const QueueHookServiceApiFactory = function(
      *
      * @param {number} queueId
      * @param {number} id
-     * @param {EngineUpdateQueueHookRequest} body
+     * @param {EngineQueueHookServiceUpdateQueueHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueueHook(
       queueId: number,
       id: number,
-      body: EngineUpdateQueueHookRequest,
+      body: EngineQueueHookServiceUpdateQueueHookBody,
       options?: any
     ): AxiosPromise<EngineQueueHook> {
       return QueueHookServiceApiFp(configuration)
@@ -927,14 +927,14 @@ export class QueueHookServiceApi extends BaseAPI {
   /**
    *
    * @param {number} queueId
-   * @param {EngineCreateQueueHookRequest} body
+   * @param {EngineQueueHookServiceCreateQueueHookBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueHookServiceApi
    */
   public createQueueHook(
     queueId: number,
-    body: EngineCreateQueueHookRequest,
+    body: EngineQueueHookServiceCreateQueueHookBody,
     options?: any
   ) {
     return QueueHookServiceApiFp(this.configuration)
@@ -960,7 +960,7 @@ export class QueueHookServiceApi extends BaseAPI {
    *
    * @param {number} queueId
    * @param {number} id
-   * @param {EnginePatchQueueHookRequest} body
+   * @param {EngineQueueHookServicePatchQueueHookBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueHookServiceApi
@@ -968,7 +968,7 @@ export class QueueHookServiceApi extends BaseAPI {
   public patchQueueHook(
     queueId: number,
     id: number,
-    body: EnginePatchQueueHookRequest,
+    body: EngineQueueHookServicePatchQueueHookBody,
     options?: any
   ) {
     return QueueHookServiceApiFp(this.configuration)
@@ -1037,7 +1037,7 @@ export class QueueHookServiceApi extends BaseAPI {
    *
    * @param {number} queueId
    * @param {number} id
-   * @param {EngineUpdateQueueHookRequest} body
+   * @param {EngineQueueHookServiceUpdateQueueHookBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueHookServiceApi
@@ -1045,7 +1045,7 @@ export class QueueHookServiceApi extends BaseAPI {
   public updateQueueHook(
     queueId: number,
     id: number,
-    body: EngineUpdateQueueHookRequest,
+    body: EngineQueueHookServiceUpdateQueueHookBody,
     options?: any
   ) {
     return QueueHookServiceApiFp(this.configuration)

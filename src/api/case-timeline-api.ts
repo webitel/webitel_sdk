@@ -24,11 +24,11 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesGetTimelineCounterResponse } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesGetTimelineResponse } from '../api'
+import { WebitelCasesGetTimelineCounterResponse } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesGetTimelineResponse } from '../api'
 /**
  * CaseTimelineApi - axios parameter creator
  * @export
@@ -257,7 +257,7 @@ export const CaseTimelineApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesGetTimelineResponse>
+      ) => AxiosPromise<WebitelCasesGetTimelineResponse>
     > {
       const localVarAxiosArgs = await CaseTimelineApiAxiosParamCreator(
         configuration
@@ -298,7 +298,7 @@ export const CaseTimelineApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesGetTimelineCounterResponse>
+      ) => AxiosPromise<WebitelCasesGetTimelineCounterResponse>
     > {
       const localVarAxiosArgs = await CaseTimelineApiAxiosParamCreator(
         configuration
@@ -354,7 +354,7 @@ export const CaseTimelineApiFactory = function(
       dateTo?: string,
       type?: Array<'chat' | 'call' | 'email'>,
       options?: any
-    ): AxiosPromise<CasesGetTimelineResponse> {
+    ): AxiosPromise<WebitelCasesGetTimelineResponse> {
       return CaseTimelineApiFp(configuration)
         .getTimeline(
           caseId,
@@ -380,7 +380,7 @@ export const CaseTimelineApiFactory = function(
     getTimelineCounter(
       caseId: string,
       options?: any
-    ): AxiosPromise<CasesGetTimelineCounterResponse> {
+    ): AxiosPromise<WebitelCasesGetTimelineCounterResponse> {
       return CaseTimelineApiFp(configuration)
         .getTimelineCounter(caseId, options)
         .then((request) => request(axios, basePath))

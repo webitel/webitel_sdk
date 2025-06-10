@@ -24,21 +24,21 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateEmailProfileRequest } from '../api'
 // @ts-ignore
 import { EngineEmailProfile } from '../api'
+// @ts-ignore
+import { EngineEmailProfileServicePatchEmailProfileBody } from '../api'
+// @ts-ignore
+import { EngineEmailProfileServiceUpdateEmailProfileBody } from '../api'
 // @ts-ignore
 import { EngineListEmailProfile } from '../api'
 // @ts-ignore
 import { EngineLoginEmailProfileResponse } from '../api'
 // @ts-ignore
-import { EnginePatchEmailProfileRequest } from '../api'
-// @ts-ignore
 import { EngineTestEmailProfileResponse } from '../api'
 // @ts-ignore
-import { EngineUpdateEmailProfileRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * EmailProfileServiceApi - axios parameter creator
  * @export
@@ -309,13 +309,13 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchEmailProfileRequest} body
+     * @param {EngineEmailProfileServicePatchEmailProfileBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchEmailProfile: async (
       id: string,
-      body: EnginePatchEmailProfileRequest,
+      body: EngineEmailProfileServicePatchEmailProfileBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -600,13 +600,13 @@ export const EmailProfileServiceApiAxiosParamCreator = function(
      *
      * @summary Update EmailProfile
      * @param {string} id
-     * @param {EngineUpdateEmailProfileRequest} body
+     * @param {EngineEmailProfileServiceUpdateEmailProfileBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateEmailProfile: async (
       id: string,
-      body: EngineUpdateEmailProfileRequest,
+      body: EngineEmailProfileServiceUpdateEmailProfileBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -806,13 +806,13 @@ export const EmailProfileServiceApiFp = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchEmailProfileRequest} body
+     * @param {EngineEmailProfileServicePatchEmailProfileBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchEmailProfile(
       id: string,
-      body: EnginePatchEmailProfileRequest,
+      body: EngineEmailProfileServicePatchEmailProfileBody,
       options?: any
     ): Promise<
       (
@@ -936,13 +936,13 @@ export const EmailProfileServiceApiFp = function(
      *
      * @summary Update EmailProfile
      * @param {string} id
-     * @param {EngineUpdateEmailProfileRequest} body
+     * @param {EngineEmailProfileServiceUpdateEmailProfileBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateEmailProfile(
       id: string,
-      body: EngineUpdateEmailProfileRequest,
+      body: EngineEmailProfileServiceUpdateEmailProfileBody,
       options?: any
     ): Promise<
       (
@@ -1035,13 +1035,13 @@ export const EmailProfileServiceApiFactory = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchEmailProfileRequest} body
+     * @param {EngineEmailProfileServicePatchEmailProfileBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchEmailProfile(
       id: string,
-      body: EnginePatchEmailProfileRequest,
+      body: EngineEmailProfileServicePatchEmailProfileBody,
       options?: any
     ): AxiosPromise<EngineEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
@@ -1105,13 +1105,13 @@ export const EmailProfileServiceApiFactory = function(
      *
      * @summary Update EmailProfile
      * @param {string} id
-     * @param {EngineUpdateEmailProfileRequest} body
+     * @param {EngineEmailProfileServiceUpdateEmailProfileBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateEmailProfile(
       id: string,
-      body: EngineUpdateEmailProfileRequest,
+      body: EngineEmailProfileServiceUpdateEmailProfileBody,
       options?: any
     ): AxiosPromise<EngineEmailProfile> {
       return EmailProfileServiceApiFp(configuration)
@@ -1188,14 +1188,14 @@ export class EmailProfileServiceApi extends BaseAPI {
   /**
    *
    * @param {string} id
-   * @param {EnginePatchEmailProfileRequest} body
+   * @param {EngineEmailProfileServicePatchEmailProfileBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
   public patchEmailProfile(
     id: string,
-    body: EnginePatchEmailProfileRequest,
+    body: EngineEmailProfileServicePatchEmailProfileBody,
     options?: any
   ) {
     return EmailProfileServiceApiFp(this.configuration)
@@ -1260,14 +1260,14 @@ export class EmailProfileServiceApi extends BaseAPI {
    *
    * @summary Update EmailProfile
    * @param {string} id
-   * @param {EngineUpdateEmailProfileRequest} body
+   * @param {EngineEmailProfileServiceUpdateEmailProfileBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof EmailProfileServiceApi
    */
   public updateEmailProfile(
     id: string,
-    body: EngineUpdateEmailProfileRequest,
+    body: EngineEmailProfileServiceUpdateEmailProfileBody,
     options?: any
   ) {
     return EmailProfileServiceApiFp(this.configuration)

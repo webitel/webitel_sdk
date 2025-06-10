@@ -24,21 +24,21 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateRoutingOutboundCallRequest } from '../api'
 // @ts-ignore
 import { EngineListRoutingOutboundCall } from '../api'
 // @ts-ignore
-import { EngineMovePositionRoutingOutboundCallRequest } from '../api'
-// @ts-ignore
 import { EngineMovePositionRoutingOutboundCallResponse } from '../api'
-// @ts-ignore
-import { EnginePatchRoutingOutboundCallRequest } from '../api'
 // @ts-ignore
 import { EngineRoutingOutboundCall } from '../api'
 // @ts-ignore
-import { EngineUpdateRoutingOutboundCallRequest } from '../api'
+import { EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody } from '../api'
+// @ts-ignore
+import { EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody } from '../api'
+// @ts-ignore
+import { EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * RoutingOutboundCallServiceApi - axios parameter creator
  * @export
@@ -191,14 +191,14 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
      * @summary Move RoutingOutboundCall
      * @param {string} fromId
      * @param {string} toId
-     * @param {EngineMovePositionRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     movePositionRoutingOutboundCall: async (
       fromId: string,
       toId: string,
-      body: EngineMovePositionRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'fromId' is not null or undefined
@@ -279,13 +279,13 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
      *
      * @summary Patch RoutingOutboundCall
      * @param {string} id
-     * @param {EnginePatchRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchRoutingOutboundCall: async (
       id: string,
-      body: EnginePatchRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -542,13 +542,13 @@ export const RoutingOutboundCallServiceApiAxiosParamCreator = function(
      *
      * @summary Update RoutingOutboundCall
      * @param {string} id
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingOutboundCall: async (
       id: string,
-      body: EngineUpdateRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -697,14 +697,14 @@ export const RoutingOutboundCallServiceApiFp = function(
      * @summary Move RoutingOutboundCall
      * @param {string} fromId
      * @param {string} toId
-     * @param {EngineMovePositionRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async movePositionRoutingOutboundCall(
       fromId: string,
       toId: string,
-      body: EngineMovePositionRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody,
       options?: any
     ): Promise<
       (
@@ -730,13 +730,13 @@ export const RoutingOutboundCallServiceApiFp = function(
      *
      * @summary Patch RoutingOutboundCall
      * @param {string} id
-     * @param {EnginePatchRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchRoutingOutboundCall(
       id: string,
-      body: EnginePatchRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody,
       options?: any
     ): Promise<
       (
@@ -854,13 +854,13 @@ export const RoutingOutboundCallServiceApiFp = function(
      *
      * @summary Update RoutingOutboundCall
      * @param {string} id
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateRoutingOutboundCall(
       id: string,
-      body: EngineUpdateRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody,
       options?: any
     ): Promise<
       (
@@ -932,14 +932,14 @@ export const RoutingOutboundCallServiceApiFactory = function(
      * @summary Move RoutingOutboundCall
      * @param {string} fromId
      * @param {string} toId
-     * @param {EngineMovePositionRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     movePositionRoutingOutboundCall(
       fromId: string,
       toId: string,
-      body: EngineMovePositionRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody,
       options?: any
     ): AxiosPromise<EngineMovePositionRoutingOutboundCallResponse> {
       return RoutingOutboundCallServiceApiFp(configuration)
@@ -950,13 +950,13 @@ export const RoutingOutboundCallServiceApiFactory = function(
      *
      * @summary Patch RoutingOutboundCall
      * @param {string} id
-     * @param {EnginePatchRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchRoutingOutboundCall(
       id: string,
-      body: EnginePatchRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody,
       options?: any
     ): AxiosPromise<EngineRoutingOutboundCall> {
       return RoutingOutboundCallServiceApiFp(configuration)
@@ -1029,13 +1029,13 @@ export const RoutingOutboundCallServiceApiFactory = function(
      *
      * @summary Update RoutingOutboundCall
      * @param {string} id
-     * @param {EngineUpdateRoutingOutboundCallRequest} body
+     * @param {EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingOutboundCall(
       id: string,
-      body: EngineUpdateRoutingOutboundCallRequest,
+      body: EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody,
       options?: any
     ): AxiosPromise<EngineRoutingOutboundCall> {
       return RoutingOutboundCallServiceApiFp(configuration)
@@ -1093,7 +1093,7 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
    * @summary Move RoutingOutboundCall
    * @param {string} fromId
    * @param {string} toId
-   * @param {EngineMovePositionRoutingOutboundCallRequest} body
+   * @param {EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingOutboundCallServiceApi
@@ -1101,7 +1101,7 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
   public movePositionRoutingOutboundCall(
     fromId: string,
     toId: string,
-    body: EngineMovePositionRoutingOutboundCallRequest,
+    body: EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody,
     options?: any
   ) {
     return RoutingOutboundCallServiceApiFp(this.configuration)
@@ -1113,14 +1113,14 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
    *
    * @summary Patch RoutingOutboundCall
    * @param {string} id
-   * @param {EnginePatchRoutingOutboundCallRequest} body
+   * @param {EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingOutboundCallServiceApi
    */
   public patchRoutingOutboundCall(
     id: string,
-    body: EnginePatchRoutingOutboundCallRequest,
+    body: EngineRoutingOutboundCallServicePatchRoutingOutboundCallBody,
     options?: any
   ) {
     return RoutingOutboundCallServiceApiFp(this.configuration)
@@ -1194,14 +1194,14 @@ export class RoutingOutboundCallServiceApi extends BaseAPI {
    *
    * @summary Update RoutingOutboundCall
    * @param {string} id
-   * @param {EngineUpdateRoutingOutboundCallRequest} body
+   * @param {EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingOutboundCallServiceApi
    */
   public updateRoutingOutboundCall(
     id: string,
-    body: EngineUpdateRoutingOutboundCallRequest,
+    body: EngineRoutingOutboundCallServiceUpdateRoutingOutboundCallBody,
     options?: any
   ) {
     return RoutingOutboundCallServiceApiFp(this.configuration)

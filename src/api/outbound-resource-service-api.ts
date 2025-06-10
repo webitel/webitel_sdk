@@ -24,12 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateOutboundResourceDisplayBulkRequest } from '../api'
-// @ts-ignore
-import { EngineCreateOutboundResourceDisplayRequest } from '../api'
-// @ts-ignore
 import { EngineCreateOutboundResourceRequest } from '../api'
 // @ts-ignore
 import { EngineListOutboundResource } from '../api'
@@ -40,13 +34,19 @@ import { EngineListResourceDisplay } from '../api'
 // @ts-ignore
 import { EngineOutboundResource } from '../api'
 // @ts-ignore
-import { EnginePatchOutboundResourceRequest } from '../api'
+import { EngineOutboundResourceServiceCreateOutboundResourceDisplayBody } from '../api'
+// @ts-ignore
+import { EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody } from '../api'
+// @ts-ignore
+import { EngineOutboundResourceServicePatchOutboundResourceBody } from '../api'
+// @ts-ignore
+import { EngineOutboundResourceServiceUpdateOutboundResourceBody } from '../api'
+// @ts-ignore
+import { EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody } from '../api'
 // @ts-ignore
 import { EngineResourceDisplay } from '../api'
 // @ts-ignore
-import { EngineUpdateOutboundResourceDisplayRequest } from '../api'
-// @ts-ignore
-import { EngineUpdateOutboundResourceRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * OutboundResourceServiceApi - axios parameter creator
  * @export
@@ -128,13 +128,13 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resourceId
-     * @param {EngineCreateOutboundResourceDisplayRequest} body
+     * @param {EngineOutboundResourceServiceCreateOutboundResourceDisplayBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceDisplay: async (
       resourceId: string,
-      body: EngineCreateOutboundResourceDisplayRequest,
+      body: EngineOutboundResourceServiceCreateOutboundResourceDisplayBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'resourceId' is not null or undefined
@@ -209,13 +209,13 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resourceId
-     * @param {EngineCreateOutboundResourceDisplayBulkRequest} body
+     * @param {EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceDisplayBulk: async (
       resourceId: string,
-      body: EngineCreateOutboundResourceDisplayBulkRequest,
+      body: EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'resourceId' is not null or undefined
@@ -508,13 +508,13 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      *
      * @summary Patch OutboundResource
      * @param {string} id
-     * @param {EnginePatchOutboundResourceRequest} body
+     * @param {EngineOutboundResourceServicePatchOutboundResourceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchOutboundResource: async (
       id: string,
-      body: EnginePatchOutboundResourceRequest,
+      body: EngineOutboundResourceServicePatchOutboundResourceBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -925,13 +925,13 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      *
      * @summary Update OutboundResource
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceRequest} body
+     * @param {EngineOutboundResourceServiceUpdateOutboundResourceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResource: async (
       id: string,
-      body: EngineUpdateOutboundResourceRequest,
+      body: EngineOutboundResourceServiceUpdateOutboundResourceBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -1007,14 +1007,14 @@ export const OutboundResourceServiceApiAxiosParamCreator = function(
      * @summary Update ResourceDisplay
      * @param {string} resourceId
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceDisplayRequest} body
+     * @param {EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResourceDisplay: async (
       resourceId: string,
       id: string,
-      body: EngineUpdateOutboundResourceDisplayRequest,
+      body: EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'resourceId' is not null or undefined
@@ -1136,13 +1136,13 @@ export const OutboundResourceServiceApiFp = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resourceId
-     * @param {EngineCreateOutboundResourceDisplayRequest} body
+     * @param {EngineOutboundResourceServiceCreateOutboundResourceDisplayBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createOutboundResourceDisplay(
       resourceId: string,
-      body: EngineCreateOutboundResourceDisplayRequest,
+      body: EngineOutboundResourceServiceCreateOutboundResourceDisplayBody,
       options?: any
     ): Promise<
       (
@@ -1168,13 +1168,13 @@ export const OutboundResourceServiceApiFp = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resourceId
-     * @param {EngineCreateOutboundResourceDisplayBulkRequest} body
+     * @param {EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createOutboundResourceDisplayBulk(
       resourceId: string,
-      body: EngineCreateOutboundResourceDisplayBulkRequest,
+      body: EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody,
       options?: any
     ): Promise<
       (
@@ -1295,13 +1295,13 @@ export const OutboundResourceServiceApiFp = function(
      *
      * @summary Patch OutboundResource
      * @param {string} id
-     * @param {EnginePatchOutboundResourceRequest} body
+     * @param {EngineOutboundResourceServicePatchOutboundResourceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchOutboundResource(
       id: string,
-      body: EnginePatchOutboundResourceRequest,
+      body: EngineOutboundResourceServicePatchOutboundResourceBody,
       options?: any
     ): Promise<
       (
@@ -1484,13 +1484,13 @@ export const OutboundResourceServiceApiFp = function(
      *
      * @summary Update OutboundResource
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceRequest} body
+     * @param {EngineOutboundResourceServiceUpdateOutboundResourceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateOutboundResource(
       id: string,
-      body: EngineUpdateOutboundResourceRequest,
+      body: EngineOutboundResourceServiceUpdateOutboundResourceBody,
       options?: any
     ): Promise<
       (
@@ -1517,14 +1517,14 @@ export const OutboundResourceServiceApiFp = function(
      * @summary Update ResourceDisplay
      * @param {string} resourceId
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceDisplayRequest} body
+     * @param {EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateOutboundResourceDisplay(
       resourceId: string,
       id: string,
-      body: EngineUpdateOutboundResourceDisplayRequest,
+      body: EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody,
       options?: any
     ): Promise<
       (
@@ -1578,13 +1578,13 @@ export const OutboundResourceServiceApiFactory = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resourceId
-     * @param {EngineCreateOutboundResourceDisplayRequest} body
+     * @param {EngineOutboundResourceServiceCreateOutboundResourceDisplayBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceDisplay(
       resourceId: string,
-      body: EngineCreateOutboundResourceDisplayRequest,
+      body: EngineOutboundResourceServiceCreateOutboundResourceDisplayBody,
       options?: any
     ): AxiosPromise<EngineResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
@@ -1595,13 +1595,13 @@ export const OutboundResourceServiceApiFactory = function(
      *
      * @summary Create CreateOutboundResourceDisplay
      * @param {string} resourceId
-     * @param {EngineCreateOutboundResourceDisplayBulkRequest} body
+     * @param {EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createOutboundResourceDisplayBulk(
       resourceId: string,
-      body: EngineCreateOutboundResourceDisplayBulkRequest,
+      body: EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody,
       options?: any
     ): AxiosPromise<EngineListResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
@@ -1665,13 +1665,13 @@ export const OutboundResourceServiceApiFactory = function(
      *
      * @summary Patch OutboundResource
      * @param {string} id
-     * @param {EnginePatchOutboundResourceRequest} body
+     * @param {EngineOutboundResourceServicePatchOutboundResourceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchOutboundResource(
       id: string,
-      body: EnginePatchOutboundResourceRequest,
+      body: EngineOutboundResourceServicePatchOutboundResourceBody,
       options?: any
     ): AxiosPromise<EngineOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
@@ -1779,13 +1779,13 @@ export const OutboundResourceServiceApiFactory = function(
      *
      * @summary Update OutboundResource
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceRequest} body
+     * @param {EngineOutboundResourceServiceUpdateOutboundResourceBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResource(
       id: string,
-      body: EngineUpdateOutboundResourceRequest,
+      body: EngineOutboundResourceServiceUpdateOutboundResourceBody,
       options?: any
     ): AxiosPromise<EngineOutboundResource> {
       return OutboundResourceServiceApiFp(configuration)
@@ -1797,14 +1797,14 @@ export const OutboundResourceServiceApiFactory = function(
      * @summary Update ResourceDisplay
      * @param {string} resourceId
      * @param {string} id
-     * @param {EngineUpdateOutboundResourceDisplayRequest} body
+     * @param {EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateOutboundResourceDisplay(
       resourceId: string,
       id: string,
-      body: EngineUpdateOutboundResourceDisplayRequest,
+      body: EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody,
       options?: any
     ): AxiosPromise<EngineResourceDisplay> {
       return OutboundResourceServiceApiFp(configuration)
@@ -1842,14 +1842,14 @@ export class OutboundResourceServiceApi extends BaseAPI {
    *
    * @summary Create CreateOutboundResourceDisplay
    * @param {string} resourceId
-   * @param {EngineCreateOutboundResourceDisplayRequest} body
+   * @param {EngineOutboundResourceServiceCreateOutboundResourceDisplayBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
   public createOutboundResourceDisplay(
     resourceId: string,
-    body: EngineCreateOutboundResourceDisplayRequest,
+    body: EngineOutboundResourceServiceCreateOutboundResourceDisplayBody,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
@@ -1861,14 +1861,14 @@ export class OutboundResourceServiceApi extends BaseAPI {
    *
    * @summary Create CreateOutboundResourceDisplay
    * @param {string} resourceId
-   * @param {EngineCreateOutboundResourceDisplayBulkRequest} body
+   * @param {EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
   public createOutboundResourceDisplayBulk(
     resourceId: string,
-    body: EngineCreateOutboundResourceDisplayBulkRequest,
+    body: EngineOutboundResourceServiceCreateOutboundResourceDisplayBulkBody,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
@@ -1935,14 +1935,14 @@ export class OutboundResourceServiceApi extends BaseAPI {
    *
    * @summary Patch OutboundResource
    * @param {string} id
-   * @param {EnginePatchOutboundResourceRequest} body
+   * @param {EngineOutboundResourceServicePatchOutboundResourceBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
   public patchOutboundResource(
     id: string,
-    body: EnginePatchOutboundResourceRequest,
+    body: EngineOutboundResourceServicePatchOutboundResourceBody,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
@@ -2055,14 +2055,14 @@ export class OutboundResourceServiceApi extends BaseAPI {
    *
    * @summary Update OutboundResource
    * @param {string} id
-   * @param {EngineUpdateOutboundResourceRequest} body
+   * @param {EngineOutboundResourceServiceUpdateOutboundResourceBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
    */
   public updateOutboundResource(
     id: string,
-    body: EngineUpdateOutboundResourceRequest,
+    body: EngineOutboundResourceServiceUpdateOutboundResourceBody,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)
@@ -2075,7 +2075,7 @@ export class OutboundResourceServiceApi extends BaseAPI {
    * @summary Update ResourceDisplay
    * @param {string} resourceId
    * @param {string} id
-   * @param {EngineUpdateOutboundResourceDisplayRequest} body
+   * @param {EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OutboundResourceServiceApi
@@ -2083,7 +2083,7 @@ export class OutboundResourceServiceApi extends BaseAPI {
   public updateOutboundResourceDisplay(
     resourceId: string,
     id: string,
-    body: EngineUpdateOutboundResourceDisplayRequest,
+    body: EngineOutboundResourceServiceUpdateOutboundResourceDisplayBody,
     options?: any
   ) {
     return OutboundResourceServiceApiFp(this.configuration)

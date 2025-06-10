@@ -38,13 +38,13 @@ export interface EngineCalendarServiceUpdateCalendarBody {
    * @type {string}
    * @memberof EngineCalendarServiceUpdateCalendarBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineCalendarServiceUpdateCalendarBody
    */
-  endAt?: string
+  end_at?: string
   /**
    *
    * @type {Array<EngineExceptDate>}
@@ -68,7 +68,7 @@ export interface EngineCalendarServiceUpdateCalendarBody {
    * @type {string}
    * @memberof EngineCalendarServiceUpdateCalendarBody
    */
-  startAt?: string
+  start_at?: string
   /**
    *
    * @type {EngineLookup}

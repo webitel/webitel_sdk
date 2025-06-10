@@ -30,7 +30,7 @@ export interface EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroup
    * @type {EngineLookup}
    * @memberof EngineOutboundResourceGroupServiceUpdateOutboundResourceInGroupBody
    */
-  reserveResource?: EngineLookup
+  reserve_resource?: EngineLookup
   /**
    *
    * @type {EngineLookup}

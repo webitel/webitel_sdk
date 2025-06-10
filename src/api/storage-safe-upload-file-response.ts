@@ -11,9 +11,9 @@
  * Do not edit the class manually.
  */
 
-import { SafeUploadFileResponsePart } from './safe-upload-file-response-part'
-import { SafeUploadFileResponseProgress } from './safe-upload-file-response-progress'
 import { StorageSafeUploadFileResponseMetadata } from './storage-safe-upload-file-response-metadata'
+import { StorageSafeUploadFileResponsePart } from './storage-safe-upload-file-response-part'
+import { StorageSafeUploadFileResponseProgress } from './storage-safe-upload-file-response-progress'
 
 /**
  *
@@ -29,14 +29,14 @@ export interface StorageSafeUploadFileResponse {
   metadata?: StorageSafeUploadFileResponseMetadata
   /**
    *
-   * @type {SafeUploadFileResponsePart}
+   * @type {StorageSafeUploadFileResponsePart}
    * @memberof StorageSafeUploadFileResponse
    */
-  part?: SafeUploadFileResponsePart
+  part?: StorageSafeUploadFileResponsePart
   /**
    *
-   * @type {SafeUploadFileResponseProgress}
+   * @type {StorageSafeUploadFileResponseProgress}
    * @memberof StorageSafeUploadFileResponse
    */
-  progress?: SafeUploadFileResponseProgress
+  progress?: StorageSafeUploadFileResponseProgress
 }

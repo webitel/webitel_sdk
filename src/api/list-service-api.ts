@@ -24,10 +24,6 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateListCommunicationRequest } from '../api'
-// @ts-ignore
 import { EngineCreateListRequest } from '../api'
 // @ts-ignore
 import { EngineList } from '../api'
@@ -38,9 +34,13 @@ import { EngineListOfList } from '../api'
 // @ts-ignore
 import { EngineListOfListCommunication } from '../api'
 // @ts-ignore
-import { EngineUpdateListCommunicationRequest } from '../api'
+import { EngineListServiceCreateListCommunicationBody } from '../api'
 // @ts-ignore
-import { EngineUpdateListRequest } from '../api'
+import { EngineListServiceUpdateListBody } from '../api'
+// @ts-ignore
+import { EngineListServiceUpdateListCommunicationBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * ListServiceApi - axios parameter creator
  * @export
@@ -122,13 +122,13 @@ export const ListServiceApiAxiosParamCreator = function(
      *
      * @summary Create ListCommunication
      * @param {string} listId
-     * @param {EngineCreateListCommunicationRequest} body
+     * @param {EngineListServiceCreateListCommunicationBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createListCommunication: async (
       listId: string,
-      body: EngineCreateListCommunicationRequest,
+      body: EngineListServiceCreateListCommunicationBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'listId' is not null or undefined
@@ -699,13 +699,13 @@ export const ListServiceApiAxiosParamCreator = function(
      *
      * @summary Update list
      * @param {string} id
-     * @param {EngineUpdateListRequest} body
+     * @param {EngineListServiceUpdateListBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateList: async (
       id: string,
-      body: EngineUpdateListRequest,
+      body: EngineListServiceUpdateListBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -781,14 +781,14 @@ export const ListServiceApiAxiosParamCreator = function(
      * @summary Update ListCommunication
      * @param {string} listId
      * @param {string} id
-     * @param {EngineUpdateListCommunicationRequest} body
+     * @param {EngineListServiceUpdateListCommunicationBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateListCommunication: async (
       listId: string,
       id: string,
-      body: EngineUpdateListCommunicationRequest,
+      body: EngineListServiceUpdateListCommunicationBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'listId' is not null or undefined
@@ -905,13 +905,13 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Create ListCommunication
      * @param {string} listId
-     * @param {EngineCreateListCommunicationRequest} body
+     * @param {EngineListServiceCreateListCommunicationBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createListCommunication(
       listId: string,
-      body: EngineCreateListCommunicationRequest,
+      body: EngineListServiceCreateListCommunicationBody,
       options?: any
     ): Promise<
       (
@@ -1160,13 +1160,13 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update list
      * @param {string} id
-     * @param {EngineUpdateListRequest} body
+     * @param {EngineListServiceUpdateListBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateList(
       id: string,
-      body: EngineUpdateListRequest,
+      body: EngineListServiceUpdateListBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineList>
@@ -1190,14 +1190,14 @@ export const ListServiceApiFp = function(configuration?: Configuration) {
      * @summary Update ListCommunication
      * @param {string} listId
      * @param {string} id
-     * @param {EngineUpdateListCommunicationRequest} body
+     * @param {EngineListServiceUpdateListCommunicationBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateListCommunication(
       listId: string,
       id: string,
-      body: EngineUpdateListCommunicationRequest,
+      body: EngineListServiceUpdateListCommunicationBody,
       options?: any
     ): Promise<
       (
@@ -1251,13 +1251,13 @@ export const ListServiceApiFactory = function(
      *
      * @summary Create ListCommunication
      * @param {string} listId
-     * @param {EngineCreateListCommunicationRequest} body
+     * @param {EngineListServiceCreateListCommunicationBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createListCommunication(
       listId: string,
-      body: EngineCreateListCommunicationRequest,
+      body: EngineListServiceCreateListCommunicationBody,
       options?: any
     ): AxiosPromise<EngineListCommunication> {
       return ListServiceApiFp(configuration)
@@ -1407,13 +1407,13 @@ export const ListServiceApiFactory = function(
      *
      * @summary Update list
      * @param {string} id
-     * @param {EngineUpdateListRequest} body
+     * @param {EngineListServiceUpdateListBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateList(
       id: string,
-      body: EngineUpdateListRequest,
+      body: EngineListServiceUpdateListBody,
       options?: any
     ): AxiosPromise<EngineList> {
       return ListServiceApiFp(configuration)
@@ -1425,14 +1425,14 @@ export const ListServiceApiFactory = function(
      * @summary Update ListCommunication
      * @param {string} listId
      * @param {string} id
-     * @param {EngineUpdateListCommunicationRequest} body
+     * @param {EngineListServiceUpdateListCommunicationBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateListCommunication(
       listId: string,
       id: string,
-      body: EngineUpdateListCommunicationRequest,
+      body: EngineListServiceUpdateListCommunicationBody,
       options?: any
     ): AxiosPromise<EngineListCommunication> {
       return ListServiceApiFp(configuration)
@@ -1467,14 +1467,14 @@ export class ListServiceApi extends BaseAPI {
    *
    * @summary Create ListCommunication
    * @param {string} listId
-   * @param {EngineCreateListCommunicationRequest} body
+   * @param {EngineListServiceCreateListCommunicationBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
   public createListCommunication(
     listId: string,
-    body: EngineCreateListCommunicationRequest,
+    body: EngineListServiceCreateListCommunicationBody,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)
@@ -1629,12 +1629,16 @@ export class ListServiceApi extends BaseAPI {
    *
    * @summary Update list
    * @param {string} id
-   * @param {EngineUpdateListRequest} body
+   * @param {EngineListServiceUpdateListBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ListServiceApi
    */
-  public updateList(id: string, body: EngineUpdateListRequest, options?: any) {
+  public updateList(
+    id: string,
+    body: EngineListServiceUpdateListBody,
+    options?: any
+  ) {
     return ListServiceApiFp(this.configuration)
       .updateList(id, body, options)
       .then((request) => request(this.axios, this.basePath))
@@ -1645,7 +1649,7 @@ export class ListServiceApi extends BaseAPI {
    * @summary Update ListCommunication
    * @param {string} listId
    * @param {string} id
-   * @param {EngineUpdateListCommunicationRequest} body
+   * @param {EngineListServiceUpdateListCommunicationBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ListServiceApi
@@ -1653,7 +1657,7 @@ export class ListServiceApi extends BaseAPI {
   public updateListCommunication(
     listId: string,
     id: string,
-    body: EngineUpdateListCommunicationRequest,
+    body: EngineListServiceUpdateListCommunicationBody,
     options?: any
   ) {
     return ListServiceApiFp(this.configuration)

@@ -26,15 +26,15 @@ import {
 // @ts-ignore
 import { EngineAgentPauseCause } from '../api'
 // @ts-ignore
-import { EngineApiError } from '../api'
+import { EngineAgentPauseCauseServicePatchAgentPauseCauseBody } from '../api'
+// @ts-ignore
+import { EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody } from '../api'
 // @ts-ignore
 import { EngineCreateAgentPauseCauseRequest } from '../api'
 // @ts-ignore
 import { EngineListAgentPauseCause } from '../api'
 // @ts-ignore
-import { EnginePatchAgentPauseCauseRequest } from '../api'
-// @ts-ignore
-import { EngineUpdateAgentPauseCauseRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * AgentPauseCauseServiceApi - axios parameter creator
  * @export
@@ -177,13 +177,13 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchAgentPauseCauseRequest} body
+     * @param {EngineAgentPauseCauseServicePatchAgentPauseCauseBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAgentPauseCause: async (
       id: number,
-      body: EnginePatchAgentPauseCauseRequest,
+      body: EngineAgentPauseCauseServicePatchAgentPauseCauseBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -407,13 +407,13 @@ export const AgentPauseCauseServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateAgentPauseCauseRequest} body
+     * @param {EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentPauseCause: async (
       id: number,
-      body: EngineUpdateAgentPauseCauseRequest,
+      body: EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -556,13 +556,13 @@ export const AgentPauseCauseServiceApiFp = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchAgentPauseCauseRequest} body
+     * @param {EngineAgentPauseCauseServicePatchAgentPauseCauseBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchAgentPauseCause(
       id: number,
-      body: EnginePatchAgentPauseCauseRequest,
+      body: EngineAgentPauseCauseServicePatchAgentPauseCauseBody,
       options?: any
     ): Promise<
       (
@@ -655,13 +655,13 @@ export const AgentPauseCauseServiceApiFp = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateAgentPauseCauseRequest} body
+     * @param {EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAgentPauseCause(
       id: number,
-      body: EngineUpdateAgentPauseCauseRequest,
+      body: EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody,
       options?: any
     ): Promise<
       (
@@ -727,13 +727,13 @@ export const AgentPauseCauseServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchAgentPauseCauseRequest} body
+     * @param {EngineAgentPauseCauseServicePatchAgentPauseCauseBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAgentPauseCause(
       id: number,
-      body: EnginePatchAgentPauseCauseRequest,
+      body: EngineAgentPauseCauseServicePatchAgentPauseCauseBody,
       options?: any
     ): AxiosPromise<EngineAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
@@ -781,13 +781,13 @@ export const AgentPauseCauseServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateAgentPauseCauseRequest} body
+     * @param {EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentPauseCause(
       id: number,
-      body: EngineUpdateAgentPauseCauseRequest,
+      body: EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody,
       options?: any
     ): AxiosPromise<EngineAgentPauseCause> {
       return AgentPauseCauseServiceApiFp(configuration)
@@ -836,14 +836,14 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EnginePatchAgentPauseCauseRequest} body
+   * @param {EngineAgentPauseCauseServicePatchAgentPauseCauseBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentPauseCauseServiceApi
    */
   public patchAgentPauseCause(
     id: number,
-    body: EnginePatchAgentPauseCauseRequest,
+    body: EngineAgentPauseCauseServicePatchAgentPauseCauseBody,
     options?: any
   ) {
     return AgentPauseCauseServiceApiFp(this.configuration)
@@ -893,14 +893,14 @@ export class AgentPauseCauseServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EngineUpdateAgentPauseCauseRequest} body
+   * @param {EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentPauseCauseServiceApi
    */
   public updateAgentPauseCause(
     id: number,
-    body: EngineUpdateAgentPauseCauseRequest,
+    body: EngineAgentPauseCauseServiceUpdateAgentPauseCauseBody,
     options?: any
   ) {
     return AgentPauseCauseServiceApiFp(this.configuration)

@@ -24,7 +24,7 @@ export interface EngineMemberServiceCreateMemberBulkBody {
    * @type {string}
    * @memberof EngineMemberServiceCreateMemberBulkBody
    */
-  fileName?: string
+  file_name?: string
   /**
    *
    * @type {Array<EngineCreateMemberBulkItem>}

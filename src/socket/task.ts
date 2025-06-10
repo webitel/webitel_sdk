@@ -125,6 +125,11 @@ export enum ChannelName {
   Call = 'call',
 
   /**
+   * Назва каналу - вихідний дзвінок.
+   */
+  OutCall = 'out_call',
+
+  /**
    * Назва каналу - чат.
    */
   Chat = 'chat',

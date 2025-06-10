@@ -22,7 +22,7 @@ export interface EngineCallServiceHangupCallBody {
    * @type {string}
    * @memberof EngineCallServiceHangupCallBody
    */
-  appId?: string
+  app_id?: string
   /**
    *
    * @type {string}
@@ -34,5 +34,5 @@ export interface EngineCallServiceHangupCallBody {
    * @type {string}
    * @memberof EngineCallServiceHangupCallBody
    */
-  domainId?: string
+  domain_id?: string
 }

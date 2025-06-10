@@ -524,7 +524,7 @@ export class Client extends EventEmitter<ClientEvents> {
    */
   constructor(protected readonly _config: Config) {
     super()
-    this.log = new Log()
+    this.log = new Log(_config.logLvl)
     this.eventHandler = new EventEmitter()
     this.callStore = new Map<string, Call>()
     this.receiveScreenStore = new Map<string, ReceiverSession>()
@@ -1028,6 +1028,7 @@ export class Client extends EventEmitter<ClientEvents> {
   reportingChannelTask(task: Task) {
     switch (task.channel) {
       case ChannelName.Call:
+      case ChannelName.OutCall:
         for (const call of this.allCall()) {
           if (this.callDestroyed(call)) {
             this.destroyCall(call)

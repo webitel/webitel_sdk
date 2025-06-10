@@ -11,8 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { EngineListSkillAgentListSkillAgg } from './engine-list-skill-agent-list-skill-agg'
 import { EngineSkillAgentItem } from './engine-skill-agent-item'
-import { ListSkillAgentListSkillAgg } from './list-skill-agent-list-skill-agg'
 
 /**
  *
@@ -22,10 +22,10 @@ import { ListSkillAgentListSkillAgg } from './list-skill-agent-list-skill-agg'
 export interface EngineListSkillAgent {
   /**
    *
-   * @type {ListSkillAgentListSkillAgg}
+   * @type {EngineListSkillAgentListSkillAgg}
    * @memberof EngineListSkillAgent
    */
-  aggs?: ListSkillAgentListSkillAgg
+  aggs?: EngineListSkillAgentListSkillAgg
   /**
    *
    * @type {Array<EngineSkillAgentItem>}

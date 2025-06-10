@@ -24,6 +24,8 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
+import { GrpcGatewayRuntimeError } from '../api'
+// @ts-ignore
 import { StorageCreateFilePolicyRequest } from '../api'
 // @ts-ignore
 import { StorageFilePolicy } from '../api'

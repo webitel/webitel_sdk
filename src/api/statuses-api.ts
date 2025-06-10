@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesInputStatus } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesLocateStatusResponse } from '../api'
+import { WebitelCasesInputStatus } from '../api'
 // @ts-ignore
-import { CasesStatusList } from '../api'
+import { WebitelCasesLocateStatusResponse } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesStatus } from '../api'
 // @ts-ignore
-import { WebitelcasesStatus } from '../api'
+import { WebitelCasesStatusList } from '../api'
 /**
  * StatusesApi - axios parameter creator
  * @export
@@ -44,13 +44,13 @@ export const StatusesApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new status
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createStatus: async (
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -342,14 +342,14 @@ export const StatusesApiAxiosParamCreator = function(
      *
      * @summary Update an existing status
      * @param {string} id
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateStatus: async (
       id: string,
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -429,14 +429,14 @@ export const StatusesApiAxiosParamCreator = function(
      *
      * @summary Update an existing status
      * @param {string} id
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateStatus2: async (
       id: string,
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -524,20 +524,20 @@ export const StatusesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new status
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createStatus(
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelcasesStatus>
+      ) => AxiosPromise<WebitelCasesStatus>
     > {
       const localVarAxiosArgs = await StatusesApiAxiosParamCreator(
         configuration
@@ -567,7 +567,7 @@ export const StatusesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelcasesStatus>
+      ) => AxiosPromise<WebitelCasesStatus>
     > {
       const localVarAxiosArgs = await StatusesApiAxiosParamCreator(
         configuration
@@ -607,7 +607,7 @@ export const StatusesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesStatusList>
+      ) => AxiosPromise<WebitelCasesStatusList>
     > {
       const localVarAxiosArgs = await StatusesApiAxiosParamCreator(
         configuration
@@ -639,7 +639,7 @@ export const StatusesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocateStatusResponse>
+      ) => AxiosPromise<WebitelCasesLocateStatusResponse>
     > {
       const localVarAxiosArgs = await StatusesApiAxiosParamCreator(
         configuration
@@ -659,21 +659,21 @@ export const StatusesApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing status
      * @param {string} id
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateStatus(
       id: string,
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelcasesStatus>
+      ) => AxiosPromise<WebitelCasesStatus>
     > {
       const localVarAxiosArgs = await StatusesApiAxiosParamCreator(
         configuration
@@ -693,21 +693,21 @@ export const StatusesApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing status
      * @param {string} id
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateStatus2(
       id: string,
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<WebitelcasesStatus>
+      ) => AxiosPromise<WebitelCasesStatus>
     > {
       const localVarAxiosArgs = await StatusesApiAxiosParamCreator(
         configuration
@@ -739,16 +739,16 @@ export const StatusesApiFactory = function(
     /**
      *
      * @summary Create a new status
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createStatus(
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WebitelcasesStatus> {
+    ): AxiosPromise<WebitelCasesStatus> {
       return StatusesApiFp(configuration)
         .createStatus(input, fields, options)
         .then((request) => request(axios, basePath))
@@ -760,7 +760,7 @@ export const StatusesApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteStatus(id: string, options?: any): AxiosPromise<WebitelcasesStatus> {
+    deleteStatus(id: string, options?: any): AxiosPromise<WebitelCasesStatus> {
       return StatusesApiFp(configuration)
         .deleteStatus(id, options)
         .then((request) => request(axios, basePath))
@@ -785,7 +785,7 @@ export const StatusesApiFactory = function(
       id?: Array<string>,
       q?: string,
       options?: any
-    ): AxiosPromise<CasesStatusList> {
+    ): AxiosPromise<WebitelCasesStatusList> {
       return StatusesApiFp(configuration)
         .listStatuses(page, size, fields, sort, id, q, options)
         .then((request) => request(axios, basePath))
@@ -802,7 +802,7 @@ export const StatusesApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocateStatusResponse> {
+    ): AxiosPromise<WebitelCasesLocateStatusResponse> {
       return StatusesApiFp(configuration)
         .locateStatus(id, fields, options)
         .then((request) => request(axios, basePath))
@@ -811,17 +811,17 @@ export const StatusesApiFactory = function(
      *
      * @summary Update an existing status
      * @param {string} id
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateStatus(
       id: string,
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WebitelcasesStatus> {
+    ): AxiosPromise<WebitelCasesStatus> {
       return StatusesApiFp(configuration)
         .updateStatus(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -830,17 +830,17 @@ export const StatusesApiFactory = function(
      *
      * @summary Update an existing status
      * @param {string} id
-     * @param {CasesInputStatus} input
+     * @param {WebitelCasesInputStatus} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateStatus2(
       id: string,
-      input: CasesInputStatus,
+      input: WebitelCasesInputStatus,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<WebitelcasesStatus> {
+    ): AxiosPromise<WebitelCasesStatus> {
       return StatusesApiFp(configuration)
         .updateStatus2(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -858,14 +858,14 @@ export class StatusesApi extends BaseAPI {
   /**
    *
    * @summary Create a new status
-   * @param {CasesInputStatus} input
+   * @param {WebitelCasesInputStatus} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StatusesApi
    */
   public createStatus(
-    input: CasesInputStatus,
+    input: WebitelCasesInputStatus,
     fields?: Array<string>,
     options?: any
   ) {
@@ -934,7 +934,7 @@ export class StatusesApi extends BaseAPI {
    *
    * @summary Update an existing status
    * @param {string} id
-   * @param {CasesInputStatus} input
+   * @param {WebitelCasesInputStatus} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -942,7 +942,7 @@ export class StatusesApi extends BaseAPI {
    */
   public updateStatus(
     id: string,
-    input: CasesInputStatus,
+    input: WebitelCasesInputStatus,
     fields?: Array<string>,
     options?: any
   ) {
@@ -955,7 +955,7 @@ export class StatusesApi extends BaseAPI {
    *
    * @summary Update an existing status
    * @param {string} id
-   * @param {CasesInputStatus} input
+   * @param {WebitelCasesInputStatus} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -963,7 +963,7 @@ export class StatusesApi extends BaseAPI {
    */
   public updateStatus2(
     id: string,
-    input: CasesInputStatus,
+    input: WebitelCasesInputStatus,
     fields?: Array<string>,
     options?: any
   ) {

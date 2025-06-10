@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCase } from '../api'
-// @ts-ignore
-import { CasesCaseList } from '../api'
-// @ts-ignore
-import { CasesInputCreateCase } from '../api'
-// @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
 import { InputDataWithUpdatedFields } from '../api'
 // @ts-ignore
 import { InputDataWithUpdatedFields1 } from '../api'
+// @ts-ignore
+import { WebitelCasesCase } from '../api'
+// @ts-ignore
+import { WebitelCasesCaseList } from '../api'
+// @ts-ignore
+import { WebitelCasesInputCreateCase } from '../api'
 /**
  * CasesApi - axios parameter creator
  * @export
@@ -46,13 +46,13 @@ export const CasesApiAxiosParamCreator = function(
     /**
      *
      * @summary RPC method for creating a new case.
-     * @param {CasesInputCreateCase} input Input data for creating the case.
+     * @param {WebitelCasesInputCreateCase} input Input data for creating the case.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCase: async (
-      input: CasesInputCreateCase,
+      input: WebitelCasesInputCreateCase,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -662,17 +662,20 @@ export const CasesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary RPC method for creating a new case.
-     * @param {CasesInputCreateCase} input Input data for creating the case.
+     * @param {WebitelCasesInputCreateCase} input Input data for creating the case.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createCase(
-      input: CasesInputCreateCase,
+      input: WebitelCasesInputCreateCase,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCase>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCase>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
@@ -701,7 +704,10 @@ export const CasesApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCase>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCase>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
@@ -730,7 +736,10 @@ export const CasesApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCase>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCase>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
@@ -771,7 +780,10 @@ export const CasesApiFp = function(configuration?: Configuration) {
       contactId?: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseList>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCaseList>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
@@ -822,7 +834,10 @@ export const CasesApiFp = function(configuration?: Configuration) {
       filters?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCaseList>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCaseList>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
@@ -865,7 +880,10 @@ export const CasesApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCase>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCase>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
@@ -898,7 +916,10 @@ export const CasesApiFp = function(configuration?: Configuration) {
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCase>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCase>
     > {
       const localVarAxiosArgs = await CasesApiAxiosParamCreator(
         configuration
@@ -930,16 +951,16 @@ export const CasesApiFactory = function(
     /**
      *
      * @summary RPC method for creating a new case.
-     * @param {CasesInputCreateCase} input Input data for creating the case.
+     * @param {WebitelCasesInputCreateCase} input Input data for creating the case.
      * @param {Array<string>} [fields] List of fields to include in the response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCase(
-      input: CasesInputCreateCase,
+      input: WebitelCasesInputCreateCase,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCase> {
+    ): AxiosPromise<WebitelCasesCase> {
       return CasesApiFp(configuration)
         .createCase(input, fields, options)
         .then((request) => request(axios, basePath))
@@ -956,7 +977,7 @@ export const CasesApiFactory = function(
       etag: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCase> {
+    ): AxiosPromise<WebitelCasesCase> {
       return CasesApiFp(configuration)
         .deleteCase(etag, fields, options)
         .then((request) => request(axios, basePath))
@@ -973,7 +994,7 @@ export const CasesApiFactory = function(
       etag: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCase> {
+    ): AxiosPromise<WebitelCasesCase> {
       return CasesApiFp(configuration)
         .locateCase(etag, fields, options)
         .then((request) => request(axios, basePath))
@@ -1002,7 +1023,7 @@ export const CasesApiFactory = function(
       filters?: Array<string>,
       contactId?: string,
       options?: any
-    ): AxiosPromise<CasesCaseList> {
+    ): AxiosPromise<WebitelCasesCaseList> {
       return CasesApiFp(configuration)
         .searchCases(
           page,
@@ -1041,7 +1062,7 @@ export const CasesApiFactory = function(
       fields?: Array<string>,
       filters?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCaseList> {
+    ): AxiosPromise<WebitelCasesCaseList> {
       return CasesApiFp(configuration)
         .searchCases2(
           contactId,
@@ -1072,7 +1093,7 @@ export const CasesApiFactory = function(
       xJsonMask?: Array<string>,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCase> {
+    ): AxiosPromise<WebitelCasesCase> {
       return CasesApiFp(configuration)
         .updateCase(inputEtag, input, xJsonMask, fields, options)
         .then((request) => request(axios, basePath))
@@ -1093,7 +1114,7 @@ export const CasesApiFactory = function(
       xJsonMask?: Array<string>,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCase> {
+    ): AxiosPromise<WebitelCasesCase> {
       return CasesApiFp(configuration)
         .updateCase2(inputEtag, input, xJsonMask, fields, options)
         .then((request) => request(axios, basePath))
@@ -1111,14 +1132,14 @@ export class CasesApi extends BaseAPI {
   /**
    *
    * @summary RPC method for creating a new case.
-   * @param {CasesInputCreateCase} input Input data for creating the case.
+   * @param {WebitelCasesInputCreateCase} input Input data for creating the case.
    * @param {Array<string>} [fields] List of fields to include in the response.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CasesApi
    */
   public createCase(
-    input: CasesInputCreateCase,
+    input: WebitelCasesInputCreateCase,
     fields?: Array<string>,
     options?: any
   ) {

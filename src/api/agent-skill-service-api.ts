@@ -26,11 +26,15 @@ import {
 // @ts-ignore
 import { EngineAgentSkill } from '../api'
 // @ts-ignore
-import { EngineApiError } from '../api'
+import { EngineAgentSkillServiceCreateAgentSkillBody } from '../api'
 // @ts-ignore
-import { EngineCreateAgentSkillRequest } from '../api'
+import { EngineAgentSkillServiceCreateAgentSkillsBody } from '../api'
 // @ts-ignore
-import { EngineCreateAgentSkillsRequest } from '../api'
+import { EngineAgentSkillServicePatchAgentSkillBody } from '../api'
+// @ts-ignore
+import { EngineAgentSkillServicePatchAgentSkillsBody } from '../api'
+// @ts-ignore
+import { EngineAgentSkillServiceUpdateAgentSkillBody } from '../api'
 // @ts-ignore
 import { EngineCreateAgentSkillsResponse } from '../api'
 // @ts-ignore
@@ -38,11 +42,7 @@ import { EngineListAgentSkill } from '../api'
 // @ts-ignore
 import { EngineListSkill } from '../api'
 // @ts-ignore
-import { EnginePatchAgentSkillRequest } from '../api'
-// @ts-ignore
-import { EnginePatchAgentSkillsRequest } from '../api'
-// @ts-ignore
-import { EngineUpdateAgentSkillRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * AgentSkillServiceApi - axios parameter creator
  * @export
@@ -55,13 +55,13 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      *
      * @summary Create AgentSkill
      * @param {string} agentId
-     * @param {EngineCreateAgentSkillRequest} body
+     * @param {EngineAgentSkillServiceCreateAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentSkill: async (
       agentId: string,
-      body: EngineCreateAgentSkillRequest,
+      body: EngineAgentSkillServiceCreateAgentSkillBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -135,13 +135,13 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} agentId
-     * @param {EngineCreateAgentSkillsRequest} body
+     * @param {EngineAgentSkillServiceCreateAgentSkillsBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentSkills: async (
       agentId: string,
-      body: EngineCreateAgentSkillsRequest,
+      body: EngineAgentSkillServiceCreateAgentSkillsBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -369,14 +369,14 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      *
      * @param {string} agentId
      * @param {string} id
-     * @param {EnginePatchAgentSkillRequest} body
+     * @param {EngineAgentSkillServicePatchAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAgentSkill: async (
       agentId: string,
       id: string,
-      body: EnginePatchAgentSkillRequest,
+      body: EngineAgentSkillServicePatchAgentSkillBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -456,13 +456,13 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} agentId
-     * @param {EnginePatchAgentSkillsRequest} body
+     * @param {EngineAgentSkillServicePatchAgentSkillsBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAgentSkills: async (
       agentId: string,
-      body: EnginePatchAgentSkillsRequest,
+      body: EngineAgentSkillServicePatchAgentSkillsBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -810,14 +810,14 @@ export const AgentSkillServiceApiAxiosParamCreator = function(
      * @summary Update AgentSkill
      * @param {string} agentId
      * @param {string} id
-     * @param {EngineUpdateAgentSkillRequest} body
+     * @param {EngineAgentSkillServiceUpdateAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentSkill: async (
       agentId: string,
       id: string,
-      body: EngineUpdateAgentSkillRequest,
+      body: EngineAgentSkillServiceUpdateAgentSkillBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'agentId' is not null or undefined
@@ -907,13 +907,13 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Create AgentSkill
      * @param {string} agentId
-     * @param {EngineCreateAgentSkillRequest} body
+     * @param {EngineAgentSkillServiceCreateAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createAgentSkill(
       agentId: string,
-      body: EngineCreateAgentSkillRequest,
+      body: EngineAgentSkillServiceCreateAgentSkillBody,
       options?: any
     ): Promise<
       (
@@ -938,13 +938,13 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} agentId
-     * @param {EngineCreateAgentSkillsRequest} body
+     * @param {EngineAgentSkillServiceCreateAgentSkillsBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createAgentSkills(
       agentId: string,
-      body: EngineCreateAgentSkillsRequest,
+      body: EngineAgentSkillServiceCreateAgentSkillsBody,
       options?: any
     ): Promise<
       (
@@ -1037,14 +1037,14 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {string} agentId
      * @param {string} id
-     * @param {EnginePatchAgentSkillRequest} body
+     * @param {EngineAgentSkillServicePatchAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchAgentSkill(
       agentId: string,
       id: string,
-      body: EnginePatchAgentSkillRequest,
+      body: EngineAgentSkillServicePatchAgentSkillBody,
       options?: any
     ): Promise<
       (
@@ -1069,13 +1069,13 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} agentId
-     * @param {EnginePatchAgentSkillsRequest} body
+     * @param {EngineAgentSkillServicePatchAgentSkillsBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchAgentSkills(
       agentId: string,
-      body: EnginePatchAgentSkillsRequest,
+      body: EngineAgentSkillServicePatchAgentSkillsBody,
       options?: any
     ): Promise<
       (
@@ -1235,14 +1235,14 @@ export const AgentSkillServiceApiFp = function(configuration?: Configuration) {
      * @summary Update AgentSkill
      * @param {string} agentId
      * @param {string} id
-     * @param {EngineUpdateAgentSkillRequest} body
+     * @param {EngineAgentSkillServiceUpdateAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAgentSkill(
       agentId: string,
       id: string,
-      body: EngineUpdateAgentSkillRequest,
+      body: EngineAgentSkillServiceUpdateAgentSkillBody,
       options?: any
     ): Promise<
       (
@@ -1281,13 +1281,13 @@ export const AgentSkillServiceApiFactory = function(
      *
      * @summary Create AgentSkill
      * @param {string} agentId
-     * @param {EngineCreateAgentSkillRequest} body
+     * @param {EngineAgentSkillServiceCreateAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentSkill(
       agentId: string,
-      body: EngineCreateAgentSkillRequest,
+      body: EngineAgentSkillServiceCreateAgentSkillBody,
       options?: any
     ): AxiosPromise<EngineAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
@@ -1297,13 +1297,13 @@ export const AgentSkillServiceApiFactory = function(
     /**
      *
      * @param {string} agentId
-     * @param {EngineCreateAgentSkillsRequest} body
+     * @param {EngineAgentSkillServiceCreateAgentSkillsBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAgentSkills(
       agentId: string,
-      body: EngineCreateAgentSkillsRequest,
+      body: EngineAgentSkillServiceCreateAgentSkillsBody,
       options?: any
     ): AxiosPromise<EngineCreateAgentSkillsResponse> {
       return AgentSkillServiceApiFp(configuration)
@@ -1351,14 +1351,14 @@ export const AgentSkillServiceApiFactory = function(
      *
      * @param {string} agentId
      * @param {string} id
-     * @param {EnginePatchAgentSkillRequest} body
+     * @param {EngineAgentSkillServicePatchAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAgentSkill(
       agentId: string,
       id: string,
-      body: EnginePatchAgentSkillRequest,
+      body: EngineAgentSkillServicePatchAgentSkillBody,
       options?: any
     ): AxiosPromise<EngineAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
@@ -1368,13 +1368,13 @@ export const AgentSkillServiceApiFactory = function(
     /**
      *
      * @param {string} agentId
-     * @param {EnginePatchAgentSkillsRequest} body
+     * @param {EngineAgentSkillServicePatchAgentSkillsBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchAgentSkills(
       agentId: string,
-      body: EnginePatchAgentSkillsRequest,
+      body: EngineAgentSkillServicePatchAgentSkillsBody,
       options?: any
     ): AxiosPromise<EngineListAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
@@ -1474,14 +1474,14 @@ export const AgentSkillServiceApiFactory = function(
      * @summary Update AgentSkill
      * @param {string} agentId
      * @param {string} id
-     * @param {EngineUpdateAgentSkillRequest} body
+     * @param {EngineAgentSkillServiceUpdateAgentSkillBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentSkill(
       agentId: string,
       id: string,
-      body: EngineUpdateAgentSkillRequest,
+      body: EngineAgentSkillServiceUpdateAgentSkillBody,
       options?: any
     ): AxiosPromise<EngineAgentSkill> {
       return AgentSkillServiceApiFp(configuration)
@@ -1502,14 +1502,14 @@ export class AgentSkillServiceApi extends BaseAPI {
    *
    * @summary Create AgentSkill
    * @param {string} agentId
-   * @param {EngineCreateAgentSkillRequest} body
+   * @param {EngineAgentSkillServiceCreateAgentSkillBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public createAgentSkill(
     agentId: string,
-    body: EngineCreateAgentSkillRequest,
+    body: EngineAgentSkillServiceCreateAgentSkillBody,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
@@ -1520,14 +1520,14 @@ export class AgentSkillServiceApi extends BaseAPI {
   /**
    *
    * @param {string} agentId
-   * @param {EngineCreateAgentSkillsRequest} body
+   * @param {EngineAgentSkillServiceCreateAgentSkillsBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public createAgentSkills(
     agentId: string,
-    body: EngineCreateAgentSkillsRequest,
+    body: EngineAgentSkillServiceCreateAgentSkillsBody,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
@@ -1580,7 +1580,7 @@ export class AgentSkillServiceApi extends BaseAPI {
    *
    * @param {string} agentId
    * @param {string} id
-   * @param {EnginePatchAgentSkillRequest} body
+   * @param {EngineAgentSkillServicePatchAgentSkillBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
@@ -1588,7 +1588,7 @@ export class AgentSkillServiceApi extends BaseAPI {
   public patchAgentSkill(
     agentId: string,
     id: string,
-    body: EnginePatchAgentSkillRequest,
+    body: EngineAgentSkillServicePatchAgentSkillBody,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
@@ -1599,14 +1599,14 @@ export class AgentSkillServiceApi extends BaseAPI {
   /**
    *
    * @param {string} agentId
-   * @param {EnginePatchAgentSkillsRequest} body
+   * @param {EngineAgentSkillServicePatchAgentSkillsBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
    */
   public patchAgentSkills(
     agentId: string,
-    body: EnginePatchAgentSkillsRequest,
+    body: EngineAgentSkillServicePatchAgentSkillsBody,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)
@@ -1713,7 +1713,7 @@ export class AgentSkillServiceApi extends BaseAPI {
    * @summary Update AgentSkill
    * @param {string} agentId
    * @param {string} id
-   * @param {EngineUpdateAgentSkillRequest} body
+   * @param {EngineAgentSkillServiceUpdateAgentSkillBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentSkillServiceApi
@@ -1721,7 +1721,7 @@ export class AgentSkillServiceApi extends BaseAPI {
   public updateAgentSkill(
     agentId: string,
     id: string,
-    body: EngineUpdateAgentSkillRequest,
+    body: EngineAgentSkillServiceUpdateAgentSkillBody,
     options?: any
   ) {
     return AgentSkillServiceApiFp(this.configuration)

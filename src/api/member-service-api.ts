@@ -24,27 +24,11 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineAttemptCallbackRequest } from '../api'
-// @ts-ignore
-import { EngineAttemptRenewalResultRequest } from '../api'
-// @ts-ignore
-import { EngineAttemptResultRequest } from '../api'
-// @ts-ignore
 import { EngineAttemptResultResponse } from '../api'
-// @ts-ignore
-import { EngineCreateAttemptRequest } from '../api'
 // @ts-ignore
 import { EngineCreateAttemptResponse } from '../api'
 // @ts-ignore
-import { EngineCreateMemberBulkRequest } from '../api'
-// @ts-ignore
-import { EngineCreateMemberRequest } from '../api'
-// @ts-ignore
 import { EngineDeleteAllMembersRequest } from '../api'
-// @ts-ignore
-import { EngineDeleteMembersRequest } from '../api'
 // @ts-ignore
 import { EngineListAttempt } from '../api'
 // @ts-ignore
@@ -58,17 +42,33 @@ import { EngineMemberBulkResponse } from '../api'
 // @ts-ignore
 import { EngineMemberInQueue } from '../api'
 // @ts-ignore
-import { EnginePatchMemberOneRequest } from '../api'
+import { EngineMemberServiceAttemptCallbackBody } from '../api'
 // @ts-ignore
-import { EnginePatchMemberRequest } from '../api'
+import { EngineMemberServiceAttemptResultBody } from '../api'
+// @ts-ignore
+import { EngineMemberServiceAttemptsRenewalResultBody } from '../api'
+// @ts-ignore
+import { EngineMemberServiceCreateAttemptBody } from '../api'
+// @ts-ignore
+import { EngineMemberServiceCreateMemberBody } from '../api'
+// @ts-ignore
+import { EngineMemberServiceCreateMemberBulkBody } from '../api'
+// @ts-ignore
+import { EngineMemberServiceDeleteMembersBody } from '../api'
+// @ts-ignore
+import { EngineMemberServicePatchMemberBody } from '../api'
+// @ts-ignore
+import { EngineMemberServicePatchMemberOneBody } from '../api'
+// @ts-ignore
+import { EngineMemberServiceResetMembersBody } from '../api'
+// @ts-ignore
+import { EngineMemberServiceUpdateMemberBody } from '../api'
 // @ts-ignore
 import { EngineResetActiveAttemptsRequest } from '../api'
 // @ts-ignore
-import { EngineResetMembersRequest } from '../api'
-// @ts-ignore
 import { EngineResetMembersResponse } from '../api'
 // @ts-ignore
-import { EngineUpdateMemberRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * MemberServiceApi - axios parameter creator
  * @export
@@ -80,13 +80,13 @@ export const MemberServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} attemptId
-     * @param {EngineAttemptCallbackRequest} body
+     * @param {EngineMemberServiceAttemptCallbackBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     attemptCallback: async (
       attemptId: string,
-      body: EngineAttemptCallbackRequest,
+      body: EngineMemberServiceAttemptCallbackBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'attemptId' is not null or undefined
@@ -162,7 +162,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {number} queueId
      * @param {string} memberId
      * @param {string} attemptId
-     * @param {EngineAttemptResultRequest} body
+     * @param {EngineMemberServiceAttemptResultBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -170,7 +170,7 @@ export const MemberServiceApiAxiosParamCreator = function(
       queueId: number,
       memberId: string,
       attemptId: string,
-      body: EngineAttemptResultRequest,
+      body: EngineMemberServiceAttemptResultBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -258,13 +258,13 @@ export const MemberServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} attemptId
-     * @param {EngineAttemptRenewalResultRequest} body
+     * @param {EngineMemberServiceAttemptsRenewalResultBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     attemptsRenewalResult: async (
       attemptId: string,
-      body: EngineAttemptRenewalResultRequest,
+      body: EngineMemberServiceAttemptsRenewalResultBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'attemptId' is not null or undefined
@@ -340,14 +340,14 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @summary Offline queue
      * @param {string} queueId
      * @param {string} memberId
-     * @param {EngineCreateAttemptRequest} body
+     * @param {EngineMemberServiceCreateAttemptBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAttempt: async (
       queueId: string,
       memberId: string,
-      body: EngineCreateAttemptRequest,
+      body: EngineMemberServiceCreateAttemptBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -428,13 +428,13 @@ export const MemberServiceApiAxiosParamCreator = function(
      *
      * @summary Create Member
      * @param {string} queueId
-     * @param {EngineCreateMemberRequest} body
+     * @param {EngineMemberServiceCreateMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createMember: async (
       queueId: string,
-      body: EngineCreateMemberRequest,
+      body: EngineMemberServiceCreateMemberBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -509,13 +509,13 @@ export const MemberServiceApiAxiosParamCreator = function(
      *
      * @summary Create Member
      * @param {string} queueId
-     * @param {EngineCreateMemberBulkRequest} body
+     * @param {EngineMemberServiceCreateMemberBulkBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createMemberBulk: async (
       queueId: string,
-      body: EngineCreateMemberBulkRequest,
+      body: EngineMemberServiceCreateMemberBulkBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -743,13 +743,13 @@ export const MemberServiceApiAxiosParamCreator = function(
      *
      * @summary DeleteMembers
      * @param {string} queueId
-     * @param {EngineDeleteMembersRequest} body
+     * @param {EngineMemberServiceDeleteMembersBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteMembers: async (
       queueId: string,
-      body: EngineDeleteMembersRequest,
+      body: EngineMemberServiceDeleteMembersBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -825,14 +825,14 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @summary Patch Member
      * @param {string} queueId
      * @param {string} id
-     * @param {EnginePatchMemberRequest} body
+     * @param {EngineMemberServicePatchMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchMember: async (
       queueId: string,
       id: string,
-      body: EnginePatchMemberRequest,
+      body: EngineMemberServicePatchMemberBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -912,13 +912,13 @@ export const MemberServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchMemberOneRequest} body
+     * @param {EngineMemberServicePatchMemberOneBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchMemberOne: async (
       id: string,
-      body: EnginePatchMemberOneRequest,
+      body: EngineMemberServicePatchMemberOneBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -1139,13 +1139,13 @@ export const MemberServiceApiAxiosParamCreator = function(
      *
      * @summary ResetMembers
      * @param {string} queueId
-     * @param {EngineResetMembersRequest} body
+     * @param {EngineMemberServiceResetMembersBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     resetMembers: async (
       queueId: string,
-      body: EngineResetMembersRequest,
+      body: EngineMemberServiceResetMembersBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -1661,6 +1661,7 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
      * @param {Array<number>} [agentId]
+     * @param {string} [variablesString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1685,6 +1686,7 @@ export const MemberServiceApiAxiosParamCreator = function(
       attemptsFrom?: string,
       attemptsTo?: string,
       agentId?: Array<number>,
+      variablesString?: string,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -1794,6 +1796,10 @@ export const MemberServiceApiAxiosParamCreator = function(
 
       if (agentId) {
         localVarQueryParameter['agent_id'] = agentId
+      }
+
+      if (variablesString !== undefined) {
+        localVarQueryParameter['variables[string]'] = variablesString
       }
 
       localVarUrlObj.query = {
@@ -1993,14 +1999,14 @@ export const MemberServiceApiAxiosParamCreator = function(
      * @summary UpdateMember
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateMemberRequest} body
+     * @param {EngineMemberServiceUpdateMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateMember: async (
       queueId: string,
       id: string,
-      body: EngineUpdateMemberRequest,
+      body: EngineMemberServiceUpdateMemberBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -2089,13 +2095,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} attemptId
-     * @param {EngineAttemptCallbackRequest} body
+     * @param {EngineMemberServiceAttemptCallbackBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async attemptCallback(
       attemptId: string,
-      body: EngineAttemptCallbackRequest,
+      body: EngineMemberServiceAttemptCallbackBody,
       options?: any
     ): Promise<
       (
@@ -2122,7 +2128,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {number} queueId
      * @param {string} memberId
      * @param {string} attemptId
-     * @param {EngineAttemptResultRequest} body
+     * @param {EngineMemberServiceAttemptResultBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2130,7 +2136,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       queueId: number,
       memberId: string,
       attemptId: string,
-      body: EngineAttemptResultRequest,
+      body: EngineMemberServiceAttemptResultBody,
       options?: any
     ): Promise<
       (
@@ -2155,13 +2161,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} attemptId
-     * @param {EngineAttemptRenewalResultRequest} body
+     * @param {EngineMemberServiceAttemptsRenewalResultBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async attemptsRenewalResult(
       attemptId: string,
-      body: EngineAttemptRenewalResultRequest,
+      body: EngineMemberServiceAttemptsRenewalResultBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>
@@ -2185,14 +2191,14 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @summary Offline queue
      * @param {string} queueId
      * @param {string} memberId
-     * @param {EngineCreateAttemptRequest} body
+     * @param {EngineMemberServiceCreateAttemptBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createAttempt(
       queueId: string,
       memberId: string,
-      body: EngineCreateAttemptRequest,
+      body: EngineMemberServiceCreateAttemptBody,
       options?: any
     ): Promise<
       (
@@ -2218,13 +2224,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Create Member
      * @param {string} queueId
-     * @param {EngineCreateMemberRequest} body
+     * @param {EngineMemberServiceCreateMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createMember(
       queueId: string,
-      body: EngineCreateMemberRequest,
+      body: EngineMemberServiceCreateMemberBody,
       options?: any
     ): Promise<
       (
@@ -2250,13 +2256,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Create Member
      * @param {string} queueId
-     * @param {EngineCreateMemberBulkRequest} body
+     * @param {EngineMemberServiceCreateMemberBulkBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createMemberBulk(
       queueId: string,
-      body: EngineCreateMemberBulkRequest,
+      body: EngineMemberServiceCreateMemberBulkBody,
       options?: any
     ): Promise<
       (
@@ -2348,13 +2354,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary DeleteMembers
      * @param {string} queueId
-     * @param {EngineDeleteMembersRequest} body
+     * @param {EngineMemberServiceDeleteMembersBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async deleteMembers(
       queueId: string,
-      body: EngineDeleteMembersRequest,
+      body: EngineMemberServiceDeleteMembersBody,
       options?: any
     ): Promise<
       (
@@ -2381,14 +2387,14 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @summary Patch Member
      * @param {string} queueId
      * @param {string} id
-     * @param {EnginePatchMemberRequest} body
+     * @param {EngineMemberServicePatchMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchMember(
       queueId: string,
       id: string,
-      body: EnginePatchMemberRequest,
+      body: EngineMemberServicePatchMemberBody,
       options?: any
     ): Promise<
       (
@@ -2413,13 +2419,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} id
-     * @param {EnginePatchMemberOneRequest} body
+     * @param {EngineMemberServicePatchMemberOneBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchMemberOne(
       id: string,
-      body: EnginePatchMemberOneRequest,
+      body: EngineMemberServicePatchMemberOneBody,
       options?: any
     ): Promise<
       (
@@ -2505,13 +2511,13 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary ResetMembers
      * @param {string} queueId
-     * @param {EngineResetMembersRequest} body
+     * @param {EngineMemberServiceResetMembersBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async resetMembers(
       queueId: string,
-      body: EngineResetMembersRequest,
+      body: EngineMemberServiceResetMembersBody,
       options?: any
     ): Promise<
       (
@@ -2770,6 +2776,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
      * @param {Array<number>} [agentId]
+     * @param {string} [variablesString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2794,6 +2801,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
       attemptsFrom?: string,
       attemptsTo?: string,
       agentId?: Array<number>,
+      variablesString?: string,
       options?: any
     ): Promise<
       (
@@ -2824,6 +2832,7 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
         attemptsFrom,
         attemptsTo,
         agentId,
+        variablesString,
         options
       )
       return (
@@ -2932,14 +2941,14 @@ export const MemberServiceApiFp = function(configuration?: Configuration) {
      * @summary UpdateMember
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateMemberRequest} body
+     * @param {EngineMemberServiceUpdateMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateMember(
       queueId: string,
       id: string,
-      body: EngineUpdateMemberRequest,
+      body: EngineMemberServiceUpdateMemberBody,
       options?: any
     ): Promise<
       (
@@ -2977,13 +2986,13 @@ export const MemberServiceApiFactory = function(
     /**
      *
      * @param {string} attemptId
-     * @param {EngineAttemptCallbackRequest} body
+     * @param {EngineMemberServiceAttemptCallbackBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     attemptCallback(
       attemptId: string,
-      body: EngineAttemptCallbackRequest,
+      body: EngineMemberServiceAttemptCallbackBody,
       options?: any
     ): AxiosPromise<EngineAttemptResultResponse> {
       return MemberServiceApiFp(configuration)
@@ -2995,7 +3004,7 @@ export const MemberServiceApiFactory = function(
      * @param {number} queueId
      * @param {string} memberId
      * @param {string} attemptId
-     * @param {EngineAttemptResultRequest} body
+     * @param {EngineMemberServiceAttemptResultBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3003,7 +3012,7 @@ export const MemberServiceApiFactory = function(
       queueId: number,
       memberId: string,
       attemptId: string,
-      body: EngineAttemptResultRequest,
+      body: EngineMemberServiceAttemptResultBody,
       options?: any
     ): AxiosPromise<EngineAttemptResultResponse> {
       return MemberServiceApiFp(configuration)
@@ -3013,13 +3022,13 @@ export const MemberServiceApiFactory = function(
     /**
      *
      * @param {string} attemptId
-     * @param {EngineAttemptRenewalResultRequest} body
+     * @param {EngineMemberServiceAttemptsRenewalResultBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     attemptsRenewalResult(
       attemptId: string,
-      body: EngineAttemptRenewalResultRequest,
+      body: EngineMemberServiceAttemptsRenewalResultBody,
       options?: any
     ): AxiosPromise<object> {
       return MemberServiceApiFp(configuration)
@@ -3031,14 +3040,14 @@ export const MemberServiceApiFactory = function(
      * @summary Offline queue
      * @param {string} queueId
      * @param {string} memberId
-     * @param {EngineCreateAttemptRequest} body
+     * @param {EngineMemberServiceCreateAttemptBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createAttempt(
       queueId: string,
       memberId: string,
-      body: EngineCreateAttemptRequest,
+      body: EngineMemberServiceCreateAttemptBody,
       options?: any
     ): AxiosPromise<EngineCreateAttemptResponse> {
       return MemberServiceApiFp(configuration)
@@ -3049,13 +3058,13 @@ export const MemberServiceApiFactory = function(
      *
      * @summary Create Member
      * @param {string} queueId
-     * @param {EngineCreateMemberRequest} body
+     * @param {EngineMemberServiceCreateMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createMember(
       queueId: string,
-      body: EngineCreateMemberRequest,
+      body: EngineMemberServiceCreateMemberBody,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
@@ -3066,13 +3075,13 @@ export const MemberServiceApiFactory = function(
      *
      * @summary Create Member
      * @param {string} queueId
-     * @param {EngineCreateMemberBulkRequest} body
+     * @param {EngineMemberServiceCreateMemberBulkBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createMemberBulk(
       queueId: string,
-      body: EngineCreateMemberBulkRequest,
+      body: EngineMemberServiceCreateMemberBulkBody,
       options?: any
     ): AxiosPromise<EngineMemberBulkResponse> {
       return MemberServiceApiFp(configuration)
@@ -3119,13 +3128,13 @@ export const MemberServiceApiFactory = function(
      *
      * @summary DeleteMembers
      * @param {string} queueId
-     * @param {EngineDeleteMembersRequest} body
+     * @param {EngineMemberServiceDeleteMembersBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     deleteMembers(
       queueId: string,
-      body: EngineDeleteMembersRequest,
+      body: EngineMemberServiceDeleteMembersBody,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
@@ -3137,14 +3146,14 @@ export const MemberServiceApiFactory = function(
      * @summary Patch Member
      * @param {string} queueId
      * @param {string} id
-     * @param {EnginePatchMemberRequest} body
+     * @param {EngineMemberServicePatchMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchMember(
       queueId: string,
       id: string,
-      body: EnginePatchMemberRequest,
+      body: EngineMemberServicePatchMemberBody,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
@@ -3154,13 +3163,13 @@ export const MemberServiceApiFactory = function(
     /**
      *
      * @param {string} id
-     * @param {EnginePatchMemberOneRequest} body
+     * @param {EngineMemberServicePatchMemberOneBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchMemberOne(
       id: string,
-      body: EnginePatchMemberOneRequest,
+      body: EngineMemberServicePatchMemberOneBody,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
@@ -3204,13 +3213,13 @@ export const MemberServiceApiFactory = function(
      *
      * @summary ResetMembers
      * @param {string} queueId
-     * @param {EngineResetMembersRequest} body
+     * @param {EngineMemberServiceResetMembersBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     resetMembers(
       queueId: string,
-      body: EngineResetMembersRequest,
+      body: EngineMemberServiceResetMembersBody,
       options?: any
     ): AxiosPromise<EngineResetMembersResponse> {
       return MemberServiceApiFp(configuration)
@@ -3409,6 +3418,7 @@ export const MemberServiceApiFactory = function(
      * @param {string} [attemptsFrom]
      * @param {string} [attemptsTo]
      * @param {Array<number>} [agentId]
+     * @param {string} [variablesString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -3433,6 +3443,7 @@ export const MemberServiceApiFactory = function(
       attemptsFrom?: string,
       attemptsTo?: string,
       agentId?: Array<number>,
+      variablesString?: string,
       options?: any
     ): AxiosPromise<EngineListMember> {
       return MemberServiceApiFp(configuration)
@@ -3457,6 +3468,7 @@ export const MemberServiceApiFactory = function(
           attemptsFrom,
           attemptsTo,
           agentId,
+          variablesString,
           options
         )
         .then((request) => request(axios, basePath))
@@ -3541,14 +3553,14 @@ export const MemberServiceApiFactory = function(
      * @summary UpdateMember
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateMemberRequest} body
+     * @param {EngineMemberServiceUpdateMemberBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateMember(
       queueId: string,
       id: string,
-      body: EngineUpdateMemberRequest,
+      body: EngineMemberServiceUpdateMemberBody,
       options?: any
     ): AxiosPromise<EngineMemberInQueue> {
       return MemberServiceApiFp(configuration)
@@ -3568,14 +3580,14 @@ export class MemberServiceApi extends BaseAPI {
   /**
    *
    * @param {string} attemptId
-   * @param {EngineAttemptCallbackRequest} body
+   * @param {EngineMemberServiceAttemptCallbackBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
   public attemptCallback(
     attemptId: string,
-    body: EngineAttemptCallbackRequest,
+    body: EngineMemberServiceAttemptCallbackBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3588,7 +3600,7 @@ export class MemberServiceApi extends BaseAPI {
    * @param {number} queueId
    * @param {string} memberId
    * @param {string} attemptId
-   * @param {EngineAttemptResultRequest} body
+   * @param {EngineMemberServiceAttemptResultBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3597,7 +3609,7 @@ export class MemberServiceApi extends BaseAPI {
     queueId: number,
     memberId: string,
     attemptId: string,
-    body: EngineAttemptResultRequest,
+    body: EngineMemberServiceAttemptResultBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3608,14 +3620,14 @@ export class MemberServiceApi extends BaseAPI {
   /**
    *
    * @param {string} attemptId
-   * @param {EngineAttemptRenewalResultRequest} body
+   * @param {EngineMemberServiceAttemptsRenewalResultBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
   public attemptsRenewalResult(
     attemptId: string,
-    body: EngineAttemptRenewalResultRequest,
+    body: EngineMemberServiceAttemptsRenewalResultBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3628,7 +3640,7 @@ export class MemberServiceApi extends BaseAPI {
    * @summary Offline queue
    * @param {string} queueId
    * @param {string} memberId
-   * @param {EngineCreateAttemptRequest} body
+   * @param {EngineMemberServiceCreateAttemptBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3636,7 +3648,7 @@ export class MemberServiceApi extends BaseAPI {
   public createAttempt(
     queueId: string,
     memberId: string,
-    body: EngineCreateAttemptRequest,
+    body: EngineMemberServiceCreateAttemptBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3648,14 +3660,14 @@ export class MemberServiceApi extends BaseAPI {
    *
    * @summary Create Member
    * @param {string} queueId
-   * @param {EngineCreateMemberRequest} body
+   * @param {EngineMemberServiceCreateMemberBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
   public createMember(
     queueId: string,
-    body: EngineCreateMemberRequest,
+    body: EngineMemberServiceCreateMemberBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3667,14 +3679,14 @@ export class MemberServiceApi extends BaseAPI {
    *
    * @summary Create Member
    * @param {string} queueId
-   * @param {EngineCreateMemberBulkRequest} body
+   * @param {EngineMemberServiceCreateMemberBulkBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
   public createMemberBulk(
     queueId: string,
-    body: EngineCreateMemberBulkRequest,
+    body: EngineMemberServiceCreateMemberBulkBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3723,14 +3735,14 @@ export class MemberServiceApi extends BaseAPI {
    *
    * @summary DeleteMembers
    * @param {string} queueId
-   * @param {EngineDeleteMembersRequest} body
+   * @param {EngineMemberServiceDeleteMembersBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
   public deleteMembers(
     queueId: string,
-    body: EngineDeleteMembersRequest,
+    body: EngineMemberServiceDeleteMembersBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3743,7 +3755,7 @@ export class MemberServiceApi extends BaseAPI {
    * @summary Patch Member
    * @param {string} queueId
    * @param {string} id
-   * @param {EnginePatchMemberRequest} body
+   * @param {EngineMemberServicePatchMemberBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -3751,7 +3763,7 @@ export class MemberServiceApi extends BaseAPI {
   public patchMember(
     queueId: string,
     id: string,
-    body: EnginePatchMemberRequest,
+    body: EngineMemberServicePatchMemberBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3762,14 +3774,14 @@ export class MemberServiceApi extends BaseAPI {
   /**
    *
    * @param {string} id
-   * @param {EnginePatchMemberOneRequest} body
+   * @param {EngineMemberServicePatchMemberOneBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
   public patchMemberOne(
     id: string,
-    body: EnginePatchMemberOneRequest,
+    body: EngineMemberServicePatchMemberOneBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -3818,14 +3830,14 @@ export class MemberServiceApi extends BaseAPI {
    *
    * @summary ResetMembers
    * @param {string} queueId
-   * @param {EngineResetMembersRequest} body
+   * @param {EngineMemberServiceResetMembersBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
    */
   public resetMembers(
     queueId: string,
-    body: EngineResetMembersRequest,
+    body: EngineMemberServiceResetMembersBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -4031,6 +4043,7 @@ export class MemberServiceApi extends BaseAPI {
    * @param {string} [attemptsFrom]
    * @param {string} [attemptsTo]
    * @param {Array<number>} [agentId]
+   * @param {string} [variablesString] This is a request variable of the map type. The query format is \&quot;map_name[key]&#x3D;value\&quot;, e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\&quot;bob\&quot;]&#x3D;18
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -4056,6 +4069,7 @@ export class MemberServiceApi extends BaseAPI {
     attemptsFrom?: string,
     attemptsTo?: string,
     agentId?: Array<number>,
+    variablesString?: string,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)
@@ -4080,6 +4094,7 @@ export class MemberServiceApi extends BaseAPI {
         attemptsFrom,
         attemptsTo,
         agentId,
+        variablesString,
         options
       )
       .then((request) => request(this.axios, this.basePath))
@@ -4167,7 +4182,7 @@ export class MemberServiceApi extends BaseAPI {
    * @summary UpdateMember
    * @param {string} queueId
    * @param {string} id
-   * @param {EngineUpdateMemberRequest} body
+   * @param {EngineMemberServiceUpdateMemberBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MemberServiceApi
@@ -4175,7 +4190,7 @@ export class MemberServiceApi extends BaseAPI {
   public updateMember(
     queueId: string,
     id: string,
-    body: EngineUpdateMemberRequest,
+    body: EngineMemberServiceUpdateMemberBody,
     options?: any
   ) {
     return MemberServiceApiFp(this.configuration)

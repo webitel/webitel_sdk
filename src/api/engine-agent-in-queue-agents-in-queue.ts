@@ -22,7 +22,7 @@ export interface EngineAgentInQueueAgentsInQueue {
    * @type {number}
    * @memberof EngineAgentInQueueAgentsInQueue
    */
-  allowPause?: number
+  allow_pause?: number
   /**
    *
    * @type {number}

@@ -37,6 +37,12 @@ export interface StorageGenerateFileLinkRequest {
   file_id?: string
   /**
    *
+   * @type {boolean}
+   * @memberof StorageGenerateFileLinkRequest
+   */
+  metadata?: boolean
+  /**
+   *
    * @type {{ [key: string]: string; }}
    * @memberof StorageGenerateFileLinkRequest
    */

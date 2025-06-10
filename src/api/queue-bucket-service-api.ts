@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateQueueBucketRequest } from '../api'
-// @ts-ignore
 import { EngineListQueueBucket } from '../api'
-// @ts-ignore
-import { EnginePatchQueueBucketRequest } from '../api'
 // @ts-ignore
 import { EngineQueueBucket } from '../api'
 // @ts-ignore
-import { EngineUpdateQueueBucketRequest } from '../api'
+import { EngineQueueBucketServiceCreateQueueBucketBody } from '../api'
+// @ts-ignore
+import { EngineQueueBucketServicePatchQueueBucketBody } from '../api'
+// @ts-ignore
+import { EngineQueueBucketServiceUpdateQueueBucketBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * QueueBucketServiceApi - axios parameter creator
  * @export
@@ -47,13 +47,13 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      *
      * @summary Create QueueBucket
      * @param {string} queueId
-     * @param {EngineCreateQueueBucketRequest} body
+     * @param {EngineQueueBucketServiceCreateQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueBucket: async (
       queueId: string,
-      body: EngineCreateQueueBucketRequest,
+      body: EngineQueueBucketServiceCreateQueueBucketBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -200,14 +200,14 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      *
      * @param {string} queueId
      * @param {string} id
-     * @param {EnginePatchQueueBucketRequest} body
+     * @param {EngineQueueBucketServicePatchQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQueueBucket: async (
       queueId: string,
       id: string,
-      body: EnginePatchQueueBucketRequest,
+      body: EngineQueueBucketServicePatchQueueBucketBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -461,14 +461,14 @@ export const QueueBucketServiceApiAxiosParamCreator = function(
      * @summary UpdateQueueBucket
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateQueueBucketRequest} body
+     * @param {EngineQueueBucketServiceUpdateQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueueBucket: async (
       queueId: string,
       id: string,
-      body: EngineUpdateQueueBucketRequest,
+      body: EngineQueueBucketServiceUpdateQueueBucketBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -558,13 +558,13 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Create QueueBucket
      * @param {string} queueId
-     * @param {EngineCreateQueueBucketRequest} body
+     * @param {EngineQueueBucketServiceCreateQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createQueueBucket(
       queueId: string,
-      body: EngineCreateQueueBucketRequest,
+      body: EngineQueueBucketServiceCreateQueueBucketBody,
       options?: any
     ): Promise<
       (
@@ -622,14 +622,14 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {string} queueId
      * @param {string} id
-     * @param {EnginePatchQueueBucketRequest} body
+     * @param {EngineQueueBucketServicePatchQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchQueueBucket(
       queueId: string,
       id: string,
-      body: EnginePatchQueueBucketRequest,
+      body: EngineQueueBucketServicePatchQueueBucketBody,
       options?: any
     ): Promise<
       (
@@ -730,14 +730,14 @@ export const QueueBucketServiceApiFp = function(configuration?: Configuration) {
      * @summary UpdateQueueBucket
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateQueueBucketRequest} body
+     * @param {EngineQueueBucketServiceUpdateQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateQueueBucket(
       queueId: string,
       id: string,
-      body: EngineUpdateQueueBucketRequest,
+      body: EngineQueueBucketServiceUpdateQueueBucketBody,
       options?: any
     ): Promise<
       (
@@ -776,13 +776,13 @@ export const QueueBucketServiceApiFactory = function(
      *
      * @summary Create QueueBucket
      * @param {string} queueId
-     * @param {EngineCreateQueueBucketRequest} body
+     * @param {EngineQueueBucketServiceCreateQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueBucket(
       queueId: string,
-      body: EngineCreateQueueBucketRequest,
+      body: EngineQueueBucketServiceCreateQueueBucketBody,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
@@ -810,14 +810,14 @@ export const QueueBucketServiceApiFactory = function(
      *
      * @param {string} queueId
      * @param {string} id
-     * @param {EnginePatchQueueBucketRequest} body
+     * @param {EngineQueueBucketServicePatchQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchQueueBucket(
       queueId: string,
       id: string,
-      body: EnginePatchQueueBucketRequest,
+      body: EngineQueueBucketServicePatchQueueBucketBody,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
@@ -873,14 +873,14 @@ export const QueueBucketServiceApiFactory = function(
      * @summary UpdateQueueBucket
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateQueueBucketRequest} body
+     * @param {EngineQueueBucketServiceUpdateQueueBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueueBucket(
       queueId: string,
       id: string,
-      body: EngineUpdateQueueBucketRequest,
+      body: EngineQueueBucketServiceUpdateQueueBucketBody,
       options?: any
     ): AxiosPromise<EngineQueueBucket> {
       return QueueBucketServiceApiFp(configuration)
@@ -901,14 +901,14 @@ export class QueueBucketServiceApi extends BaseAPI {
    *
    * @summary Create QueueBucket
    * @param {string} queueId
-   * @param {EngineCreateQueueBucketRequest} body
+   * @param {EngineQueueBucketServiceCreateQueueBucketBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
    */
   public createQueueBucket(
     queueId: string,
-    body: EngineCreateQueueBucketRequest,
+    body: EngineQueueBucketServiceCreateQueueBucketBody,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)
@@ -935,7 +935,7 @@ export class QueueBucketServiceApi extends BaseAPI {
    *
    * @param {string} queueId
    * @param {string} id
-   * @param {EnginePatchQueueBucketRequest} body
+   * @param {EngineQueueBucketServicePatchQueueBucketBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
@@ -943,7 +943,7 @@ export class QueueBucketServiceApi extends BaseAPI {
   public patchQueueBucket(
     queueId: string,
     id: string,
-    body: EnginePatchQueueBucketRequest,
+    body: EngineQueueBucketServicePatchQueueBucketBody,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)
@@ -1000,7 +1000,7 @@ export class QueueBucketServiceApi extends BaseAPI {
    * @summary UpdateQueueBucket
    * @param {string} queueId
    * @param {string} id
-   * @param {EngineUpdateQueueBucketRequest} body
+   * @param {EngineQueueBucketServiceUpdateQueueBucketBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueBucketServiceApi
@@ -1008,7 +1008,7 @@ export class QueueBucketServiceApi extends BaseAPI {
   public updateQueueBucket(
     queueId: string,
     id: string,
-    body: EngineUpdateQueueBucketRequest,
+    body: EngineQueueBucketServiceUpdateQueueBucketBody,
     options?: any
   ) {
     return QueueBucketServiceApiFp(this.configuration)

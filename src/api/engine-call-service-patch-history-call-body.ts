@@ -22,7 +22,7 @@ export interface EngineCallServicePatchHistoryCallBody {
    * @type {boolean}
    * @memberof EngineCallServicePatchHistoryCallBody
    */
-  hideMissed?: boolean
+  hide_missed?: boolean
   /**
    *
    * @type {{ [key: string]: string; }}

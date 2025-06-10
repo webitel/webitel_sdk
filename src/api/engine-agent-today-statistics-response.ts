@@ -46,6 +46,12 @@ export interface EngineAgentTodayStatisticsResponse {
    * @type {number}
    * @memberof EngineAgentTodayStatisticsResponse
    */
+  call_dialer_queue?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTodayStatisticsResponse
+   */
   call_handled?: number
   /**
    *
@@ -58,7 +64,25 @@ export interface EngineAgentTodayStatisticsResponse {
    * @type {number}
    * @memberof EngineAgentTodayStatisticsResponse
    */
+  call_inbound_queue?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTodayStatisticsResponse
+   */
+  call_manual?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTodayStatisticsResponse
+   */
   call_missed?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineAgentTodayStatisticsResponse
+   */
+  call_queue_missed?: number
   /**
    *
    * @type {number}

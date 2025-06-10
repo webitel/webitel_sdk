@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCatalog } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesCatalogList } from '../api'
+import { WebitelCasesCatalog } from '../api'
 // @ts-ignore
-import { CasesInputCatalog } from '../api'
+import { WebitelCasesCatalogList } from '../api'
 // @ts-ignore
-import { CasesLocateCatalogResponse } from '../api'
+import { WebitelCasesInputCatalog } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesLocateCatalogResponse } from '../api'
 /**
  * CatalogsApi - axios parameter creator
  * @export
@@ -44,13 +44,13 @@ export const CatalogsApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new catalog
-     * @param {CasesInputCatalog} input
+     * @param {WebitelCasesInputCatalog} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCatalog: async (
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -372,14 +372,14 @@ export const CatalogsApiAxiosParamCreator = function(
      *
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
-     * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {WebitelCasesInputCatalog} input Input data for updating the catalog
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCatalog: async (
       id: string,
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -459,14 +459,14 @@ export const CatalogsApiAxiosParamCreator = function(
      *
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
-     * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {WebitelCasesInputCatalog} input Input data for updating the catalog
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCatalog2: async (
       id: string,
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -554,17 +554,20 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new catalog
-     * @param {CasesInputCatalog} input
+     * @param {WebitelCasesInputCatalog} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createCatalog(
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCatalog>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCatalog>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
@@ -594,7 +597,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCatalogList>
+      ) => AxiosPromise<WebitelCasesCatalogList>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
@@ -642,7 +645,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCatalogList>
+      ) => AxiosPromise<WebitelCasesCatalogList>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
@@ -688,7 +691,7 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocateCatalogResponse>
+      ) => AxiosPromise<WebitelCasesLocateCatalogResponse>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
@@ -708,18 +711,21 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
-     * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {WebitelCasesInputCatalog} input Input data for updating the catalog
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCatalog(
       id: string,
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCatalog>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCatalog>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
@@ -739,18 +745,21 @@ export const CatalogsApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
-     * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {WebitelCasesInputCatalog} input Input data for updating the catalog
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCatalog2(
       id: string,
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesCatalog>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesCatalog>
     > {
       const localVarAxiosArgs = await CatalogsApiAxiosParamCreator(
         configuration
@@ -782,16 +791,16 @@ export const CatalogsApiFactory = function(
     /**
      *
      * @summary Create a new catalog
-     * @param {CasesInputCatalog} input
+     * @param {WebitelCasesInputCatalog} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCatalog(
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCatalog> {
+    ): AxiosPromise<WebitelCasesCatalog> {
       return CatalogsApiFp(configuration)
         .createCatalog(input, fields, options)
         .then((request) => request(axios, basePath))
@@ -806,7 +815,7 @@ export const CatalogsApiFactory = function(
     deleteCatalog(
       id: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCatalogList> {
+    ): AxiosPromise<WebitelCasesCatalogList> {
       return CatalogsApiFp(configuration)
         .deleteCatalog(id, options)
         .then((request) => request(axios, basePath))
@@ -839,7 +848,7 @@ export const CatalogsApiFactory = function(
       subFields?: Array<string>,
       hasSubservices?: boolean,
       options?: any
-    ): AxiosPromise<CasesCatalogList> {
+    ): AxiosPromise<WebitelCasesCatalogList> {
       return CatalogsApiFp(configuration)
         .listCatalogs(
           page,
@@ -870,7 +879,7 @@ export const CatalogsApiFactory = function(
       fields?: Array<string>,
       subFields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocateCatalogResponse> {
+    ): AxiosPromise<WebitelCasesLocateCatalogResponse> {
       return CatalogsApiFp(configuration)
         .locateCatalog(id, fields, subFields, options)
         .then((request) => request(axios, basePath))
@@ -879,17 +888,17 @@ export const CatalogsApiFactory = function(
      *
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
-     * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {WebitelCasesInputCatalog} input Input data for updating the catalog
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCatalog(
       id: string,
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCatalog> {
+    ): AxiosPromise<WebitelCasesCatalog> {
       return CatalogsApiFp(configuration)
         .updateCatalog(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -898,17 +907,17 @@ export const CatalogsApiFactory = function(
      *
      * @summary Update an existing catalog
      * @param {string} id ID of the catalog to be updated
-     * @param {CasesInputCatalog} input Input data for updating the catalog
+     * @param {WebitelCasesInputCatalog} input Input data for updating the catalog
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCatalog2(
       id: string,
-      input: CasesInputCatalog,
+      input: WebitelCasesInputCatalog,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCatalog> {
+    ): AxiosPromise<WebitelCasesCatalog> {
       return CatalogsApiFp(configuration)
         .updateCatalog2(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -926,14 +935,14 @@ export class CatalogsApi extends BaseAPI {
   /**
    *
    * @summary Create a new catalog
-   * @param {CasesInputCatalog} input
+   * @param {WebitelCasesInputCatalog} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CatalogsApi
    */
   public createCatalog(
-    input: CasesInputCatalog,
+    input: WebitelCasesInputCatalog,
     fields?: Array<string>,
     options?: any
   ) {
@@ -1028,7 +1037,7 @@ export class CatalogsApi extends BaseAPI {
    *
    * @summary Update an existing catalog
    * @param {string} id ID of the catalog to be updated
-   * @param {CasesInputCatalog} input Input data for updating the catalog
+   * @param {WebitelCasesInputCatalog} input Input data for updating the catalog
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1036,7 +1045,7 @@ export class CatalogsApi extends BaseAPI {
    */
   public updateCatalog(
     id: string,
-    input: CasesInputCatalog,
+    input: WebitelCasesInputCatalog,
     fields?: Array<string>,
     options?: any
   ) {
@@ -1049,7 +1058,7 @@ export class CatalogsApi extends BaseAPI {
    *
    * @summary Update an existing catalog
    * @param {string} id ID of the catalog to be updated
-   * @param {CasesInputCatalog} input Input data for updating the catalog
+   * @param {WebitelCasesInputCatalog} input Input data for updating the catalog
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1057,7 +1066,7 @@ export class CatalogsApi extends BaseAPI {
    */
   public updateCatalog2(
     id: string,
-    input: CasesInputCatalog,
+    input: WebitelCasesInputCatalog,
     fields?: Array<string>,
     options?: any
   ) {

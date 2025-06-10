@@ -43,19 +43,19 @@ export interface EngineMemberServiceCreateMemberBody {
    * @type {string}
    * @memberof EngineMemberServiceCreateMemberBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberServiceCreateMemberBody
    */
-  expireAt?: string
+  expire_at?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberServiceCreateMemberBody
    */
-  minOfferingAt?: string
+  min_offering_at?: string
   /**
    *
    * @type {string}

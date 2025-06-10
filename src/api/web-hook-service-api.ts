@@ -24,17 +24,17 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateWebHookRequest } from '../api'
 // @ts-ignore
 import { EngineListWebHook } from '../api'
 // @ts-ignore
-import { EnginePatchWebHookRequest } from '../api'
-// @ts-ignore
-import { EngineUpdateWebHookRequest } from '../api'
-// @ts-ignore
 import { EngineWebHook } from '../api'
+// @ts-ignore
+import { EngineWebHookServicePatchWebHookBody } from '../api'
+// @ts-ignore
+import { EngineWebHookServiceUpdateWebHookBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * WebHookServiceApi - axios parameter creator
  * @export
@@ -180,13 +180,13 @@ export const WebHookServiceApiAxiosParamCreator = function(
      *
      * @summary Patch WebHook
      * @param {number} id
-     * @param {EnginePatchWebHookRequest} body
+     * @param {EngineWebHookServicePatchWebHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchWebHook: async (
       id: number,
-      body: EnginePatchWebHookRequest,
+      body: EngineWebHookServicePatchWebHookBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -413,13 +413,13 @@ export const WebHookServiceApiAxiosParamCreator = function(
      *
      * @summary Update WebHook
      * @param {number} id
-     * @param {EngineUpdateWebHookRequest} body
+     * @param {EngineWebHookServiceUpdateWebHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWebHook: async (
       id: number,
-      body: EngineUpdateWebHookRequest,
+      body: EngineWebHookServiceUpdateWebHookBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -557,13 +557,13 @@ export const WebHookServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Patch WebHook
      * @param {number} id
-     * @param {EnginePatchWebHookRequest} body
+     * @param {EngineWebHookServicePatchWebHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchWebHook(
       id: number,
-      body: EnginePatchWebHookRequest,
+      body: EngineWebHookServicePatchWebHookBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineWebHook>
@@ -653,13 +653,13 @@ export const WebHookServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update WebHook
      * @param {number} id
-     * @param {EngineUpdateWebHookRequest} body
+     * @param {EngineWebHookServiceUpdateWebHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateWebHook(
       id: number,
-      body: EngineUpdateWebHookRequest,
+      body: EngineWebHookServiceUpdateWebHookBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineWebHook>
@@ -722,13 +722,13 @@ export const WebHookServiceApiFactory = function(
      *
      * @summary Patch WebHook
      * @param {number} id
-     * @param {EnginePatchWebHookRequest} body
+     * @param {EngineWebHookServicePatchWebHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchWebHook(
       id: number,
-      body: EnginePatchWebHookRequest,
+      body: EngineWebHookServicePatchWebHookBody,
       options?: any
     ): AxiosPromise<EngineWebHook> {
       return WebHookServiceApiFp(configuration)
@@ -776,13 +776,13 @@ export const WebHookServiceApiFactory = function(
      *
      * @summary Update WebHook
      * @param {number} id
-     * @param {EngineUpdateWebHookRequest} body
+     * @param {EngineWebHookServiceUpdateWebHookBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateWebHook(
       id: number,
-      body: EngineUpdateWebHookRequest,
+      body: EngineWebHookServiceUpdateWebHookBody,
       options?: any
     ): AxiosPromise<EngineWebHook> {
       return WebHookServiceApiFp(configuration)
@@ -831,14 +831,14 @@ export class WebHookServiceApi extends BaseAPI {
    *
    * @summary Patch WebHook
    * @param {number} id
-   * @param {EnginePatchWebHookRequest} body
+   * @param {EngineWebHookServicePatchWebHookBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WebHookServiceApi
    */
   public patchWebHook(
     id: number,
-    body: EnginePatchWebHookRequest,
+    body: EngineWebHookServicePatchWebHookBody,
     options?: any
   ) {
     return WebHookServiceApiFp(this.configuration)
@@ -891,14 +891,14 @@ export class WebHookServiceApi extends BaseAPI {
    *
    * @summary Update WebHook
    * @param {number} id
-   * @param {EngineUpdateWebHookRequest} body
+   * @param {EngineWebHookServiceUpdateWebHookBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WebHookServiceApi
    */
   public updateWebHook(
     id: number,
-    body: EngineUpdateWebHookRequest,
+    body: EngineWebHookServiceUpdateWebHookBody,
     options?: any
   ) {
     return WebHookServiceApiFp(this.configuration)

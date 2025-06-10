@@ -24,7 +24,7 @@ export interface EngineAgentServicePatchAgentBody {
    * @type {Array<string>}
    * @memberof EngineAgentServicePatchAgentBody
    */
-  allowChannels?: Array<string>
+  allow_channels?: Array<string>
   /**
    *
    * @type {Array<EngineLookup>}
@@ -36,7 +36,7 @@ export interface EngineAgentServicePatchAgentBody {
    * @type {number}
    * @memberof EngineAgentServicePatchAgentBody
    */
-  chatCount?: number
+  chat_count?: number
   /**
    *
    * @type {string}
@@ -54,19 +54,19 @@ export interface EngineAgentServicePatchAgentBody {
    * @type {EngineLookup}
    * @memberof EngineAgentServicePatchAgentBody
    */
-  greetingMedia?: EngineLookup
+  greeting_media?: EngineLookup
   /**
    *
    * @type {boolean}
    * @memberof EngineAgentServicePatchAgentBody
    */
-  isSupervisor?: boolean
+  is_supervisor?: boolean
   /**
    *
    * @type {number}
    * @memberof EngineAgentServicePatchAgentBody
    */
-  progressiveCount?: number
+  progressive_count?: number
   /**
    *
    * @type {EngineLookup}

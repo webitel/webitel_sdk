@@ -22,7 +22,7 @@ export interface EngineSkillServiceDeleteSkillAgentBody {
    * @type {Array<string>}
    * @memberof EngineSkillServiceDeleteSkillAgentBody
    */
-  agentId?: Array<string>
+  agent_id?: Array<string>
   /**
    *
    * @type {Array<string>}

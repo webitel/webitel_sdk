@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesCloseReasonGroup } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesCloseReasonGroupList } from '../api'
+import { WebitelCasesCloseReasonGroup } from '../api'
 // @ts-ignore
-import { CasesInputCloseReasonGroup } from '../api'
+import { WebitelCasesCloseReasonGroupList } from '../api'
 // @ts-ignore
-import { CasesLocateCloseReasonGroupResponse } from '../api'
+import { WebitelCasesInputCloseReasonGroup } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesLocateCloseReasonGroupResponse } from '../api'
 /**
  * CloseReasonGroupsApi - axios parameter creator
  * @export
@@ -44,13 +44,13 @@ export const CloseReasonGroupsApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new close reason group
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCloseReasonGroup: async (
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -342,14 +342,14 @@ export const CloseReasonGroupsApiAxiosParamCreator = function(
      *
      * @summary Update an existing close reason group
      * @param {string} id
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCloseReasonGroup: async (
       id: string,
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -429,14 +429,14 @@ export const CloseReasonGroupsApiAxiosParamCreator = function(
      *
      * @summary Update an existing close reason group
      * @param {string} id
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCloseReasonGroup2: async (
       id: string,
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -524,20 +524,20 @@ export const CloseReasonGroupsApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new close reason group
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createCloseReasonGroup(
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCloseReasonGroup>
+      ) => AxiosPromise<WebitelCasesCloseReasonGroup>
     > {
       const localVarAxiosArgs = await CloseReasonGroupsApiAxiosParamCreator(
         configuration
@@ -567,7 +567,7 @@ export const CloseReasonGroupsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCloseReasonGroup>
+      ) => AxiosPromise<WebitelCasesCloseReasonGroup>
     > {
       const localVarAxiosArgs = await CloseReasonGroupsApiAxiosParamCreator(
         configuration
@@ -607,7 +607,7 @@ export const CloseReasonGroupsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCloseReasonGroupList>
+      ) => AxiosPromise<WebitelCasesCloseReasonGroupList>
     > {
       const localVarAxiosArgs = await CloseReasonGroupsApiAxiosParamCreator(
         configuration
@@ -639,7 +639,7 @@ export const CloseReasonGroupsApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocateCloseReasonGroupResponse>
+      ) => AxiosPromise<WebitelCasesLocateCloseReasonGroupResponse>
     > {
       const localVarAxiosArgs = await CloseReasonGroupsApiAxiosParamCreator(
         configuration
@@ -659,21 +659,21 @@ export const CloseReasonGroupsApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing close reason group
      * @param {string} id
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCloseReasonGroup(
       id: string,
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCloseReasonGroup>
+      ) => AxiosPromise<WebitelCasesCloseReasonGroup>
     > {
       const localVarAxiosArgs = await CloseReasonGroupsApiAxiosParamCreator(
         configuration
@@ -693,21 +693,21 @@ export const CloseReasonGroupsApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing close reason group
      * @param {string} id
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCloseReasonGroup2(
       id: string,
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options?: any
     ): Promise<
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesCloseReasonGroup>
+      ) => AxiosPromise<WebitelCasesCloseReasonGroup>
     > {
       const localVarAxiosArgs = await CloseReasonGroupsApiAxiosParamCreator(
         configuration
@@ -739,16 +739,16 @@ export const CloseReasonGroupsApiFactory = function(
     /**
      *
      * @summary Create a new close reason group
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createCloseReasonGroup(
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCloseReasonGroup> {
+    ): AxiosPromise<WebitelCasesCloseReasonGroup> {
       return CloseReasonGroupsApiFp(configuration)
         .createCloseReasonGroup(input, fields, options)
         .then((request) => request(axios, basePath))
@@ -763,7 +763,7 @@ export const CloseReasonGroupsApiFactory = function(
     deleteCloseReasonGroup(
       id: string,
       options?: any
-    ): AxiosPromise<CasesCloseReasonGroup> {
+    ): AxiosPromise<WebitelCasesCloseReasonGroup> {
       return CloseReasonGroupsApiFp(configuration)
         .deleteCloseReasonGroup(id, options)
         .then((request) => request(axios, basePath))
@@ -788,7 +788,7 @@ export const CloseReasonGroupsApiFactory = function(
       id?: Array<string>,
       q?: string,
       options?: any
-    ): AxiosPromise<CasesCloseReasonGroupList> {
+    ): AxiosPromise<WebitelCasesCloseReasonGroupList> {
       return CloseReasonGroupsApiFp(configuration)
         .listCloseReasonGroups(page, size, fields, sort, id, q, options)
         .then((request) => request(axios, basePath))
@@ -805,7 +805,7 @@ export const CloseReasonGroupsApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocateCloseReasonGroupResponse> {
+    ): AxiosPromise<WebitelCasesLocateCloseReasonGroupResponse> {
       return CloseReasonGroupsApiFp(configuration)
         .locateCloseReasonGroup(id, fields, options)
         .then((request) => request(axios, basePath))
@@ -814,17 +814,17 @@ export const CloseReasonGroupsApiFactory = function(
      *
      * @summary Update an existing close reason group
      * @param {string} id
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCloseReasonGroup(
       id: string,
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCloseReasonGroup> {
+    ): AxiosPromise<WebitelCasesCloseReasonGroup> {
       return CloseReasonGroupsApiFp(configuration)
         .updateCloseReasonGroup(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -833,17 +833,17 @@ export const CloseReasonGroupsApiFactory = function(
      *
      * @summary Update an existing close reason group
      * @param {string} id
-     * @param {CasesInputCloseReasonGroup} input
+     * @param {WebitelCasesInputCloseReasonGroup} input
      * @param {Array<string>} [fields] Fields to be retrieved as a result.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCloseReasonGroup2(
       id: string,
-      input: CasesInputCloseReasonGroup,
+      input: WebitelCasesInputCloseReasonGroup,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesCloseReasonGroup> {
+    ): AxiosPromise<WebitelCasesCloseReasonGroup> {
       return CloseReasonGroupsApiFp(configuration)
         .updateCloseReasonGroup2(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -861,14 +861,14 @@ export class CloseReasonGroupsApi extends BaseAPI {
   /**
    *
    * @summary Create a new close reason group
-   * @param {CasesInputCloseReasonGroup} input
+   * @param {WebitelCasesInputCloseReasonGroup} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CloseReasonGroupsApi
    */
   public createCloseReasonGroup(
-    input: CasesInputCloseReasonGroup,
+    input: WebitelCasesInputCloseReasonGroup,
     fields?: Array<string>,
     options?: any
   ) {
@@ -941,7 +941,7 @@ export class CloseReasonGroupsApi extends BaseAPI {
    *
    * @summary Update an existing close reason group
    * @param {string} id
-   * @param {CasesInputCloseReasonGroup} input
+   * @param {WebitelCasesInputCloseReasonGroup} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -949,7 +949,7 @@ export class CloseReasonGroupsApi extends BaseAPI {
    */
   public updateCloseReasonGroup(
     id: string,
-    input: CasesInputCloseReasonGroup,
+    input: WebitelCasesInputCloseReasonGroup,
     fields?: Array<string>,
     options?: any
   ) {
@@ -962,7 +962,7 @@ export class CloseReasonGroupsApi extends BaseAPI {
    *
    * @summary Update an existing close reason group
    * @param {string} id
-   * @param {CasesInputCloseReasonGroup} input
+   * @param {WebitelCasesInputCloseReasonGroup} input
    * @param {Array<string>} [fields] Fields to be retrieved as a result.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -970,7 +970,7 @@ export class CloseReasonGroupsApi extends BaseAPI {
    */
   public updateCloseReasonGroup2(
     id: string,
-    input: CasesInputCloseReasonGroup,
+    input: WebitelCasesInputCloseReasonGroup,
     fields?: Array<string>,
     options?: any
   ) {

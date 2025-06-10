@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateQueueResourceGroupRequest } from '../api'
-// @ts-ignore
 import { EngineListQueueResourceGroup } from '../api'
 // @ts-ignore
 import { EngineQueueResourceGroup } from '../api'
 // @ts-ignore
-import { EngineUpdateQueueResourceGroupRequest } from '../api'
+import { EngineQueueResourcesServiceCreateQueueResourceGroupBody } from '../api'
+// @ts-ignore
+import { EngineQueueResourcesServiceUpdateQueueResourceGroupBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * QueueResourcesServiceApi - axios parameter creator
  * @export
@@ -45,13 +45,13 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
      *
      * @summary CreateQueueResourceGroup
      * @param {string} queueId
-     * @param {EngineCreateQueueResourceGroupRequest} body
+     * @param {EngineQueueResourcesServiceCreateQueueResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueResourceGroup: async (
       queueId: string,
-      body: EngineCreateQueueResourceGroupRequest,
+      body: EngineQueueResourcesServiceCreateQueueResourceGroupBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -383,14 +383,14 @@ export const QueueResourcesServiceApiAxiosParamCreator = function(
      * @summary UpdateQueueResourceGroup
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateQueueResourceGroupRequest} body
+     * @param {EngineQueueResourcesServiceUpdateQueueResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueueResourceGroup: async (
       queueId: string,
       id: string,
-      body: EngineUpdateQueueResourceGroupRequest,
+      body: EngineQueueResourcesServiceUpdateQueueResourceGroupBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'queueId' is not null or undefined
@@ -482,13 +482,13 @@ export const QueueResourcesServiceApiFp = function(
      *
      * @summary CreateQueueResourceGroup
      * @param {string} queueId
-     * @param {EngineCreateQueueResourceGroupRequest} body
+     * @param {EngineQueueResourcesServiceCreateQueueResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createQueueResourceGroup(
       queueId: string,
-      body: EngineCreateQueueResourceGroupRequest,
+      body: EngineQueueResourcesServiceCreateQueueResourceGroupBody,
       options?: any
     ): Promise<
       (
@@ -634,14 +634,14 @@ export const QueueResourcesServiceApiFp = function(
      * @summary UpdateQueueResourceGroup
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateQueueResourceGroupRequest} body
+     * @param {EngineQueueResourcesServiceUpdateQueueResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateQueueResourceGroup(
       queueId: string,
       id: string,
-      body: EngineUpdateQueueResourceGroupRequest,
+      body: EngineQueueResourcesServiceUpdateQueueResourceGroupBody,
       options?: any
     ): Promise<
       (
@@ -680,13 +680,13 @@ export const QueueResourcesServiceApiFactory = function(
      *
      * @summary CreateQueueResourceGroup
      * @param {string} queueId
-     * @param {EngineCreateQueueResourceGroupRequest} body
+     * @param {EngineQueueResourcesServiceCreateQueueResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createQueueResourceGroup(
       queueId: string,
-      body: EngineCreateQueueResourceGroupRequest,
+      body: EngineQueueResourcesServiceCreateQueueResourceGroupBody,
       options?: any
     ): AxiosPromise<EngineQueueResourceGroup> {
       return QueueResourcesServiceApiFp(configuration)
@@ -772,14 +772,14 @@ export const QueueResourcesServiceApiFactory = function(
      * @summary UpdateQueueResourceGroup
      * @param {string} queueId
      * @param {string} id
-     * @param {EngineUpdateQueueResourceGroupRequest} body
+     * @param {EngineQueueResourcesServiceUpdateQueueResourceGroupBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateQueueResourceGroup(
       queueId: string,
       id: string,
-      body: EngineUpdateQueueResourceGroupRequest,
+      body: EngineQueueResourcesServiceUpdateQueueResourceGroupBody,
       options?: any
     ): AxiosPromise<EngineQueueResourceGroup> {
       return QueueResourcesServiceApiFp(configuration)
@@ -800,14 +800,14 @@ export class QueueResourcesServiceApi extends BaseAPI {
    *
    * @summary CreateQueueResourceGroup
    * @param {string} queueId
-   * @param {EngineCreateQueueResourceGroupRequest} body
+   * @param {EngineQueueResourcesServiceCreateQueueResourceGroupBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueResourcesServiceApi
    */
   public createQueueResourceGroup(
     queueId: string,
-    body: EngineCreateQueueResourceGroupRequest,
+    body: EngineQueueResourcesServiceCreateQueueResourceGroupBody,
     options?: any
   ) {
     return QueueResourcesServiceApiFp(this.configuration)
@@ -900,7 +900,7 @@ export class QueueResourcesServiceApi extends BaseAPI {
    * @summary UpdateQueueResourceGroup
    * @param {string} queueId
    * @param {string} id
-   * @param {EngineUpdateQueueResourceGroupRequest} body
+   * @param {EngineQueueResourcesServiceUpdateQueueResourceGroupBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof QueueResourcesServiceApi
@@ -908,7 +908,7 @@ export class QueueResourcesServiceApi extends BaseAPI {
   public updateQueueResourceGroup(
     queueId: string,
     id: string,
-    body: EngineUpdateQueueResourceGroupRequest,
+    body: EngineQueueResourcesServiceUpdateQueueResourceGroupBody,
     options?: any
   ) {
     return QueueResourcesServiceApiFp(this.configuration)

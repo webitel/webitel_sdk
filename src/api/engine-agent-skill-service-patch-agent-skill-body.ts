@@ -30,7 +30,7 @@ export interface EngineAgentSkillServicePatchAgentSkillBody {
    * @type {string}
    * @memberof EngineAgentSkillServicePatchAgentSkillBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {boolean}

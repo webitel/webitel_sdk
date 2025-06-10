@@ -46,6 +46,12 @@ export interface EngineActivityWorkspaceWidgetResponse {
    * @type {number}
    * @memberof EngineActivityWorkspaceWidgetResponse
    */
+  call_dialer_queue?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActivityWorkspaceWidgetResponse
+   */
   call_handled?: number
   /**
    *
@@ -58,7 +64,25 @@ export interface EngineActivityWorkspaceWidgetResponse {
    * @type {number}
    * @memberof EngineActivityWorkspaceWidgetResponse
    */
+  call_inbound_queue?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActivityWorkspaceWidgetResponse
+   */
+  call_manual?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActivityWorkspaceWidgetResponse
+   */
   call_missed?: number
+  /**
+   *
+   * @type {number}
+   * @memberof EngineActivityWorkspaceWidgetResponse
+   */
+  call_queue_missed?: number
   /**
    *
    * @type {number}

@@ -26,9 +26,9 @@ import {
 // @ts-ignore
 import { EngineActivityWorkspaceWidgetResponse } from '../api'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineDefaultDeviceConfigResponse } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * UserHelperServiceApi - axios parameter creator
  * @export

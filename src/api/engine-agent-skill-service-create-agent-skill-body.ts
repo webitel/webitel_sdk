@@ -30,7 +30,7 @@ export interface EngineAgentSkillServiceCreateAgentSkillBody {
    * @type {string}
    * @memberof EngineAgentSkillServiceCreateAgentSkillBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {boolean}

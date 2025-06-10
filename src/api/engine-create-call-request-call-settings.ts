@@ -28,19 +28,19 @@ export interface EngineCreateCallRequestCallSettings {
    * @type {boolean}
    * @memberof EngineCreateCallRequestCallSettings
    */
-  cancelDistribute?: boolean
+  cancel_distribute?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineCreateCallRequestCallSettings
    */
-  disableAutoAnswer?: boolean
+  disable_auto_answer?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineCreateCallRequestCallSettings
    */
-  disableStun?: boolean
+  disable_stun?: boolean
   /**
    *
    * @type {string}
@@ -52,13 +52,13 @@ export interface EngineCreateCallRequestCallSettings {
    * @type {boolean}
    * @memberof EngineCreateCallRequestCallSettings
    */
-  hideNumber?: boolean
+  hide_number?: boolean
   /**
    *
    * @type {boolean}
    * @memberof EngineCreateCallRequestCallSettings
    */
-  isOnline?: boolean
+  is_online?: boolean
   /**
    *
    * @type {boolean}

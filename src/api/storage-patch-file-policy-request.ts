@@ -39,6 +39,12 @@ export interface StoragePatchFilePolicyRequest {
   enabled?: boolean
   /**
    *
+   * @type {boolean}
+   * @memberof StoragePatchFilePolicyRequest
+   */
+  encrypt?: boolean
+  /**
+   *
    * @type {Array<string>}
    * @memberof StoragePatchFilePolicyRequest
    */

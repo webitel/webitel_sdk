@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { CasesInputSource } from '../api'
+import { GoogleRpcStatus } from '../api'
 // @ts-ignore
-import { CasesLocateSourceResponse } from '../api'
+import { WebitelCasesInputSource } from '../api'
 // @ts-ignore
-import { CasesSource } from '../api'
+import { WebitelCasesLocateSourceResponse } from '../api'
 // @ts-ignore
-import { CasesSourceList } from '../api'
+import { WebitelCasesSource } from '../api'
 // @ts-ignore
-import { GooglerpcStatus } from '../api'
+import { WebitelCasesSourceList } from '../api'
 /**
  * SourcesApi - axios parameter creator
  * @export
@@ -44,13 +44,13 @@ export const SourcesApiAxiosParamCreator = function(
     /**
      *
      * @summary Create a new source
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSource: async (
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -356,14 +356,14 @@ export const SourcesApiAxiosParamCreator = function(
      *
      * @summary Update an existing source
      * @param {string} id
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSource: async (
       id: string,
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -443,14 +443,14 @@ export const SourcesApiAxiosParamCreator = function(
      *
      * @summary Update an existing source
      * @param {string} id
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSource2: async (
       id: string,
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -538,17 +538,20 @@ export const SourcesApiFp = function(configuration?: Configuration) {
     /**
      *
      * @summary Create a new source
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createSource(
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSource>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSource>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
@@ -575,7 +578,10 @@ export const SourcesApiFp = function(configuration?: Configuration) {
       id: string,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSource>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSource>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
@@ -625,7 +631,7 @@ export const SourcesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesSourceList>
+      ) => AxiosPromise<WebitelCasesSourceList>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
@@ -657,7 +663,7 @@ export const SourcesApiFp = function(configuration?: Configuration) {
       (
         axios?: AxiosInstance,
         basePath?: string
-      ) => AxiosPromise<CasesLocateSourceResponse>
+      ) => AxiosPromise<WebitelCasesLocateSourceResponse>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
@@ -677,18 +683,21 @@ export const SourcesApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing source
      * @param {string} id
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSource(
       id: string,
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSource>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSource>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
@@ -708,18 +717,21 @@ export const SourcesApiFp = function(configuration?: Configuration) {
      *
      * @summary Update an existing source
      * @param {string} id
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSource2(
       id: string,
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CasesSource>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<WebitelCasesSource>
     > {
       const localVarAxiosArgs = await SourcesApiAxiosParamCreator(
         configuration
@@ -751,16 +763,16 @@ export const SourcesApiFactory = function(
     /**
      *
      * @summary Create a new source
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createSource(
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSource> {
+    ): AxiosPromise<WebitelCasesSource> {
       return SourcesApiFp(configuration)
         .createSource(input, fields, options)
         .then((request) => request(axios, basePath))
@@ -772,7 +784,7 @@ export const SourcesApiFactory = function(
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteSource(id: string, options?: any): AxiosPromise<CasesSource> {
+    deleteSource(id: string, options?: any): AxiosPromise<WebitelCasesSource> {
       return SourcesApiFp(configuration)
         .deleteSource(id, options)
         .then((request) => request(axios, basePath))
@@ -807,7 +819,7 @@ export const SourcesApiFactory = function(
         | 'MANUAL'
       >,
       options?: any
-    ): AxiosPromise<CasesSourceList> {
+    ): AxiosPromise<WebitelCasesSourceList> {
       return SourcesApiFp(configuration)
         .listSources(page, size, fields, sort, id, q, type, options)
         .then((request) => request(axios, basePath))
@@ -824,7 +836,7 @@ export const SourcesApiFactory = function(
       id: string,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesLocateSourceResponse> {
+    ): AxiosPromise<WebitelCasesLocateSourceResponse> {
       return SourcesApiFp(configuration)
         .locateSource(id, fields, options)
         .then((request) => request(axios, basePath))
@@ -833,17 +845,17 @@ export const SourcesApiFactory = function(
      *
      * @summary Update an existing source
      * @param {string} id
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSource(
       id: string,
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSource> {
+    ): AxiosPromise<WebitelCasesSource> {
       return SourcesApiFp(configuration)
         .updateSource(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -852,17 +864,17 @@ export const SourcesApiFactory = function(
      *
      * @summary Update an existing source
      * @param {string} id
-     * @param {CasesInputSource} input
+     * @param {WebitelCasesInputSource} input
      * @param {Array<string>} [fields]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSource2(
       id: string,
-      input: CasesInputSource,
+      input: WebitelCasesInputSource,
       fields?: Array<string>,
       options?: any
-    ): AxiosPromise<CasesSource> {
+    ): AxiosPromise<WebitelCasesSource> {
       return SourcesApiFp(configuration)
         .updateSource2(id, input, fields, options)
         .then((request) => request(axios, basePath))
@@ -880,14 +892,14 @@ export class SourcesApi extends BaseAPI {
   /**
    *
    * @summary Create a new source
-   * @param {CasesInputSource} input
+   * @param {WebitelCasesInputSource} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SourcesApi
    */
   public createSource(
-    input: CasesInputSource,
+    input: WebitelCasesInputSource,
     fields?: Array<string>,
     options?: any
   ) {
@@ -966,7 +978,7 @@ export class SourcesApi extends BaseAPI {
    *
    * @summary Update an existing source
    * @param {string} id
-   * @param {CasesInputSource} input
+   * @param {WebitelCasesInputSource} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -974,7 +986,7 @@ export class SourcesApi extends BaseAPI {
    */
   public updateSource(
     id: string,
-    input: CasesInputSource,
+    input: WebitelCasesInputSource,
     fields?: Array<string>,
     options?: any
   ) {
@@ -987,7 +999,7 @@ export class SourcesApi extends BaseAPI {
    *
    * @summary Update an existing source
    * @param {string} id
-   * @param {CasesInputSource} input
+   * @param {WebitelCasesInputSource} input
    * @param {Array<string>} [fields]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -995,7 +1007,7 @@ export class SourcesApi extends BaseAPI {
    */
   public updateSource2(
     id: string,
-    input: CasesInputSource,
+    input: WebitelCasesInputSource,
     fields?: Array<string>,
     options?: any
   ) {

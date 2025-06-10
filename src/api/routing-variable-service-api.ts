@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateRoutingVariableRequest } from '../api'
 // @ts-ignore
 import { EngineListRoutingVariable } from '../api'
 // @ts-ignore
 import { EngineRoutingVariable } from '../api'
 // @ts-ignore
-import { EngineUpdateRoutingVariableRequest } from '../api'
+import { EngineRoutingVariableServiceUpdateRoutingVariableBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * RoutingVariableServiceApi - axios parameter creator
  * @export
@@ -324,13 +324,13 @@ export const RoutingVariableServiceApiAxiosParamCreator = function(
      *
      * @summary Update RoutingVariable
      * @param {string} id
-     * @param {EngineUpdateRoutingVariableRequest} body
+     * @param {EngineRoutingVariableServiceUpdateRoutingVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingVariable: async (
       id: string,
-      body: EngineUpdateRoutingVariableRequest,
+      body: EngineRoutingVariableServiceUpdateRoutingVariableBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -544,13 +544,13 @@ export const RoutingVariableServiceApiFp = function(
      *
      * @summary Update RoutingVariable
      * @param {string} id
-     * @param {EngineUpdateRoutingVariableRequest} body
+     * @param {EngineRoutingVariableServiceUpdateRoutingVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateRoutingVariable(
       id: string,
-      body: EngineUpdateRoutingVariableRequest,
+      body: EngineRoutingVariableServiceUpdateRoutingVariableBody,
       options?: any
     ): Promise<
       (
@@ -657,13 +657,13 @@ export const RoutingVariableServiceApiFactory = function(
      *
      * @summary Update RoutingVariable
      * @param {string} id
-     * @param {EngineUpdateRoutingVariableRequest} body
+     * @param {EngineRoutingVariableServiceUpdateRoutingVariableBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateRoutingVariable(
       id: string,
-      body: EngineUpdateRoutingVariableRequest,
+      body: EngineRoutingVariableServiceUpdateRoutingVariableBody,
       options?: any
     ): AxiosPromise<EngineRoutingVariable> {
       return RoutingVariableServiceApiFp(configuration)
@@ -752,14 +752,14 @@ export class RoutingVariableServiceApi extends BaseAPI {
    *
    * @summary Update RoutingVariable
    * @param {string} id
-   * @param {EngineUpdateRoutingVariableRequest} body
+   * @param {EngineRoutingVariableServiceUpdateRoutingVariableBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutingVariableServiceApi
    */
   public updateRoutingVariable(
     id: string,
-    body: EngineUpdateRoutingVariableRequest,
+    body: EngineRoutingVariableServiceUpdateRoutingVariableBody,
     options?: any
   ) {
     return RoutingVariableServiceApiFp(this.configuration)

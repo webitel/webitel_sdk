@@ -24,9 +24,9 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineSearchSchemaVersionResponse } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * SchemaVersionServiceApi - axios parameter creator
  * @export

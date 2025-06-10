@@ -22,11 +22,11 @@ export interface EngineMemberServiceCreateAttemptBody {
    * @type {string}
    * @memberof EngineMemberServiceCreateAttemptBody
    */
-  agentId?: string
+  agent_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineMemberServiceCreateAttemptBody
    */
-  domainId?: string
+  domain_id?: string
 }

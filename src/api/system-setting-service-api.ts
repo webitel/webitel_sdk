@@ -24,19 +24,19 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCreateSystemSettingRequest } from '../api'
 // @ts-ignore
 import { EngineListAvailableSystemSetting } from '../api'
 // @ts-ignore
 import { EngineListSystemSetting } from '../api'
 // @ts-ignore
-import { EnginePatchSystemSettingRequest } from '../api'
-// @ts-ignore
 import { EngineSystemSetting } from '../api'
 // @ts-ignore
-import { EngineUpdateSystemSettingRequest } from '../api'
+import { EngineSystemSettingServicePatchSystemSettingBody } from '../api'
+// @ts-ignore
+import { EngineSystemSettingServiceUpdateSystemSettingBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * SystemSettingServiceApi - axios parameter creator
  * @export
@@ -179,13 +179,13 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
+     * @param {EngineSystemSettingServicePatchSystemSettingBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchSystemSetting: async (
       id: number,
-      body: EnginePatchSystemSettingRequest,
+      body: EngineSystemSettingServicePatchSystemSettingBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -407,7 +407,7 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact' | 'show_full_contact'>} [name] Filter by setting names.
+     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact' | 'show_full_contact' | 'call_end_sound_notification' | 'call_end_push_notification' | 'chat_end_sound_notification' | 'chat_end_push_notification' | 'task_end_sound_notification' | 'task_end_push_notification' | 'push_notification_timeout' | 'labels_to_limit_contacts'>} [name] Filter by setting names
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -434,6 +434,14 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
         | 'is_fulltext_search_enabled'
         | 'wbt_hide_contact'
         | 'show_full_contact'
+        | 'call_end_sound_notification'
+        | 'call_end_push_notification'
+        | 'chat_end_sound_notification'
+        | 'chat_end_push_notification'
+        | 'task_end_sound_notification'
+        | 'task_end_push_notification'
+        | 'push_notification_timeout'
+        | 'labels_to_limit_contacts'
       >,
       options: any = {}
     ): Promise<RequestArgs> => {
@@ -507,13 +515,13 @@ export const SystemSettingServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
+     * @param {EngineSystemSettingServiceUpdateSystemSettingBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSystemSetting: async (
       id: number,
-      body: EngineUpdateSystemSettingRequest,
+      body: EngineSystemSettingServiceUpdateSystemSettingBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -656,13 +664,13 @@ export const SystemSettingServiceApiFp = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
+     * @param {EngineSystemSettingServicePatchSystemSettingBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchSystemSetting(
       id: number,
-      body: EnginePatchSystemSettingRequest,
+      body: EngineSystemSettingServicePatchSystemSettingBody,
       options?: any
     ): Promise<
       (
@@ -757,7 +765,7 @@ export const SystemSettingServiceApiFp = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact' | 'show_full_contact'>} [name] Filter by setting names.
+     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact' | 'show_full_contact' | 'call_end_sound_notification' | 'call_end_push_notification' | 'chat_end_sound_notification' | 'chat_end_push_notification' | 'task_end_sound_notification' | 'task_end_push_notification' | 'push_notification_timeout' | 'labels_to_limit_contacts'>} [name] Filter by setting names
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -784,6 +792,14 @@ export const SystemSettingServiceApiFp = function(
         | 'is_fulltext_search_enabled'
         | 'wbt_hide_contact'
         | 'show_full_contact'
+        | 'call_end_sound_notification'
+        | 'call_end_push_notification'
+        | 'chat_end_sound_notification'
+        | 'chat_end_push_notification'
+        | 'task_end_sound_notification'
+        | 'task_end_push_notification'
+        | 'push_notification_timeout'
+        | 'labels_to_limit_contacts'
       >,
       options?: any
     ): Promise<
@@ -809,13 +825,13 @@ export const SystemSettingServiceApiFp = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
+     * @param {EngineSystemSettingServiceUpdateSystemSettingBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateSystemSetting(
       id: number,
-      body: EngineUpdateSystemSettingRequest,
+      body: EngineSystemSettingServiceUpdateSystemSettingBody,
       options?: any
     ): Promise<
       (
@@ -881,13 +897,13 @@ export const SystemSettingServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EnginePatchSystemSettingRequest} body
+     * @param {EngineSystemSettingServicePatchSystemSettingBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchSystemSetting(
       id: number,
-      body: EnginePatchSystemSettingRequest,
+      body: EngineSystemSettingServicePatchSystemSettingBody,
       options?: any
     ): AxiosPromise<EngineSystemSetting> {
       return SystemSettingServiceApiFp(configuration)
@@ -937,7 +953,7 @@ export const SystemSettingServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact' | 'show_full_contact'>} [name] Filter by setting names.
+     * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact' | 'show_full_contact' | 'call_end_sound_notification' | 'call_end_push_notification' | 'chat_end_sound_notification' | 'chat_end_push_notification' | 'task_end_sound_notification' | 'task_end_push_notification' | 'push_notification_timeout' | 'labels_to_limit_contacts'>} [name] Filter by setting names
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -964,6 +980,14 @@ export const SystemSettingServiceApiFactory = function(
         | 'is_fulltext_search_enabled'
         | 'wbt_hide_contact'
         | 'show_full_contact'
+        | 'call_end_sound_notification'
+        | 'call_end_push_notification'
+        | 'chat_end_sound_notification'
+        | 'chat_end_push_notification'
+        | 'task_end_sound_notification'
+        | 'task_end_push_notification'
+        | 'push_notification_timeout'
+        | 'labels_to_limit_contacts'
       >,
       options?: any
     ): AxiosPromise<EngineListSystemSetting> {
@@ -974,13 +998,13 @@ export const SystemSettingServiceApiFactory = function(
     /**
      *
      * @param {number} id
-     * @param {EngineUpdateSystemSettingRequest} body
+     * @param {EngineSystemSettingServiceUpdateSystemSettingBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateSystemSetting(
       id: number,
-      body: EngineUpdateSystemSettingRequest,
+      body: EngineSystemSettingServiceUpdateSystemSettingBody,
       options?: any
     ): AxiosPromise<EngineSystemSetting> {
       return SystemSettingServiceApiFp(configuration)
@@ -1029,14 +1053,14 @@ export class SystemSettingServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EnginePatchSystemSettingRequest} body
+   * @param {EngineSystemSettingServicePatchSystemSettingBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingServiceApi
    */
   public patchSystemSetting(
     id: number,
-    body: EnginePatchSystemSettingRequest,
+    body: EngineSystemSettingServicePatchSystemSettingBody,
     options?: any
   ) {
     return SystemSettingServiceApiFp(this.configuration)
@@ -1088,7 +1112,7 @@ export class SystemSettingServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact' | 'show_full_contact'>} [name] Filter by setting names.
+   * @param {Array<'empty_system_settings_name' | 'enable_omnichannel' | 'member_chunk_size' | 'amd_cancel_not_human' | 'scheme_version_limit' | 'enable_2fa' | 'export_settings' | 'search_number_length' | 'chat_ai_connection' | 'password_reg_exp' | 'password_validation_text' | 'autolink_call_to_contact' | 'period_to_playback_records' | 'is_fulltext_search_enabled' | 'wbt_hide_contact' | 'show_full_contact' | 'call_end_sound_notification' | 'call_end_push_notification' | 'chat_end_sound_notification' | 'chat_end_push_notification' | 'task_end_sound_notification' | 'task_end_push_notification' | 'push_notification_timeout' | 'labels_to_limit_contacts'>} [name] Filter by setting names
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingServiceApi
@@ -1116,6 +1140,14 @@ export class SystemSettingServiceApi extends BaseAPI {
       | 'is_fulltext_search_enabled'
       | 'wbt_hide_contact'
       | 'show_full_contact'
+      | 'call_end_sound_notification'
+      | 'call_end_push_notification'
+      | 'chat_end_sound_notification'
+      | 'chat_end_push_notification'
+      | 'task_end_sound_notification'
+      | 'task_end_push_notification'
+      | 'push_notification_timeout'
+      | 'labels_to_limit_contacts'
     >,
     options?: any
   ) {
@@ -1127,14 +1159,14 @@ export class SystemSettingServiceApi extends BaseAPI {
   /**
    *
    * @param {number} id
-   * @param {EngineUpdateSystemSettingRequest} body
+   * @param {EngineSystemSettingServiceUpdateSystemSettingBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SystemSettingServiceApi
    */
   public updateSystemSetting(
     id: number,
-    body: EngineUpdateSystemSettingRequest,
+    body: EngineSystemSettingServiceUpdateSystemSettingBody,
     options?: any
   ) {
     return SystemSettingServiceApiFp(this.configuration)

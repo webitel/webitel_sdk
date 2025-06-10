@@ -26,13 +26,13 @@ import {
 // @ts-ignore
 import { EngineAgentTeam } from '../api'
 // @ts-ignore
-import { EngineApiError } from '../api'
+import { EngineAgentTeamServiceUpdateAgentTeamBody } from '../api'
 // @ts-ignore
 import { EngineCreateAgentTeamRequest } from '../api'
 // @ts-ignore
 import { EngineListAgentTeam } from '../api'
 // @ts-ignore
-import { EngineUpdateAgentTeamRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * AgentTeamServiceApi - axios parameter creator
  * @export
@@ -354,13 +354,13 @@ export const AgentTeamServiceApiAxiosParamCreator = function(
      *
      * @summary Update AgentTeam
      * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {EngineAgentTeamServiceUpdateAgentTeamBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentTeam: async (
       id: string,
-      body: EngineUpdateAgentTeamRequest,
+      body: EngineAgentTeamServiceUpdateAgentTeamBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -592,13 +592,13 @@ export const AgentTeamServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update AgentTeam
      * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {EngineAgentTeamServiceUpdateAgentTeamBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateAgentTeam(
       id: string,
-      body: EngineUpdateAgentTeamRequest,
+      body: EngineAgentTeamServiceUpdateAgentTeamBody,
       options?: any
     ): Promise<
       (
@@ -725,13 +725,13 @@ export const AgentTeamServiceApiFactory = function(
      *
      * @summary Update AgentTeam
      * @param {string} id
-     * @param {EngineUpdateAgentTeamRequest} body
+     * @param {EngineAgentTeamServiceUpdateAgentTeamBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateAgentTeam(
       id: string,
-      body: EngineUpdateAgentTeamRequest,
+      body: EngineAgentTeamServiceUpdateAgentTeamBody,
       options?: any
     ): AxiosPromise<EngineAgentTeam> {
       return AgentTeamServiceApiFp(configuration)
@@ -837,14 +837,14 @@ export class AgentTeamServiceApi extends BaseAPI {
    *
    * @summary Update AgentTeam
    * @param {string} id
-   * @param {EngineUpdateAgentTeamRequest} body
+   * @param {EngineAgentTeamServiceUpdateAgentTeamBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AgentTeamServiceApi
    */
   public updateAgentTeam(
     id: string,
-    body: EngineUpdateAgentTeamRequest,
+    body: EngineAgentTeamServiceUpdateAgentTeamBody,
     options?: any
   ) {
     return AgentTeamServiceApiFp(this.configuration)

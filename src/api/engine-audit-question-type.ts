@@ -20,4 +20,5 @@ export enum EngineAuditQuestionType {
   Default = 'question_default',
   Score = 'question_score',
   Option = 'question_option',
+  Yes = 'question_yes',
 }

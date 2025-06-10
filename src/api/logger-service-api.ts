@@ -24,13 +24,9 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { LoggerDeleteConfigLogsRequest } from '../api'
-// @ts-ignore
-import { LoggerDeleteConfigLogsResponse } from '../api'
-// @ts-ignore
 import { LoggerLogs } from '../api'
 // @ts-ignore
-import { RuntimeError } from '../api'
+import { RpcStatus } from '../api'
 /**
  * LoggerServiceApi - axios parameter creator
  * @export
@@ -39,86 +35,6 @@ export const LoggerServiceApiAxiosParamCreator = function(
   configuration?: Configuration
 ) {
   return {
-    /**
-     *
-     * @param {string} configId Required
-     * @param {LoggerDeleteConfigLogsRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteConfigLogs: async (
-      configId: string,
-      body: LoggerDeleteConfigLogsRequest,
-      options: any = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'configId' is not null or undefined
-      if (configId === null || configId === undefined) {
-        throw new RequiredError(
-          'configId',
-          'Required parameter configId was null or undefined when calling deleteConfigLogs.'
-        )
-      }
-      // verify required parameter 'body' is not null or undefined
-      if (body === null || body === undefined) {
-        throw new RequiredError(
-          'body',
-          'Required parameter body was null or undefined when calling deleteConfigLogs.'
-        )
-      }
-      const localVarPath = `/logger/config/{config_id}/logs`.replace(
-        `{${'config_id'}}`,
-        encodeURIComponent(String(configId))
-      )
-      const localVarUrlObj = globalImportUrl.parse(localVarPath, true)
-      let baseOptions
-      if (configuration) {
-        baseOptions = configuration.baseOptions
-      }
-      const localVarRequestOptions = {
-        method: 'DELETE',
-        ...baseOptions,
-        ...options,
-      }
-      const localVarHeaderParameter = {} as any
-      const localVarQueryParameter = {} as any
-
-      // authentication AccessToken required
-      if (configuration && configuration.apiKey) {
-        const localVarApiKeyValue =
-          typeof configuration.apiKey === 'function'
-            ? await configuration.apiKey('X-Webitel-Access')
-            : await configuration.apiKey
-        localVarHeaderParameter['X-Webitel-Access'] = localVarApiKeyValue
-      }
-
-      localVarHeaderParameter['Content-Type'] = 'application/json'
-
-      localVarUrlObj.query = {
-        ...localVarUrlObj.query,
-        ...localVarQueryParameter,
-        ...options.query,
-      }
-      // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-      delete localVarUrlObj.search
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {}
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      }
-      const needsSerialization =
-        typeof body !== 'string' ||
-        localVarRequestOptions.headers['Content-Type'] === 'application/json'
-      localVarRequestOptions.data = needsSerialization
-        ? JSON.stringify(body !== undefined ? body : {})
-        : body || ''
-
-      return {
-        url: globalImportUrl.format(localVarUrlObj),
-        options: localVarRequestOptions,
-      }
-    },
     /**
      *
      * @param {number} configId
@@ -246,14 +162,14 @@ export const LoggerServiceApiAxiosParamCreator = function(
     },
     /**
      *
-     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number' | 'case_comments' | 'record_file'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters
      * @param {Array<string>} [userId]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
@@ -276,7 +192,9 @@ export const LoggerServiceApiAxiosParamCreator = function(
         | 'chat_bots'
         | 'cases'
         | 'contacts'
-        | 'cc_list_number',
+        | 'cc_list_number'
+        | 'case_comments'
+        | 'record_file',
       recordId: number,
       page?: number,
       size?: number,
@@ -399,8 +317,8 @@ export const LoggerServiceApiAxiosParamCreator = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [objectId] SPECIFIC filter.
-     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
+     * @param {Array<string>} [objectId] SPECIFIC filter
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -527,37 +445,6 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
   return {
     /**
      *
-     * @param {string} configId Required
-     * @param {LoggerDeleteConfigLogsRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async deleteConfigLogs(
-      configId: string,
-      body: LoggerDeleteConfigLogsRequest,
-      options?: any
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<LoggerDeleteConfigLogsResponse>
-    > {
-      const localVarAxiosArgs = await LoggerServiceApiAxiosParamCreator(
-        configuration
-      ).deleteConfigLogs(configId, body, options)
-      return (
-        axios: AxiosInstance = globalAxios,
-        basePath: string = BASE_PATH
-      ) => {
-        const axiosRequestArgs = {
-          ...localVarAxiosArgs.options,
-          url: basePath + localVarAxiosArgs.url,
-        }
-        return axios.request(axiosRequestArgs)
-      }
-    },
-    /**
-     *
      * @param {number} configId
      * @param {number} [page]
      * @param {number} [size]
@@ -619,14 +506,14 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
     },
     /**
      *
-     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number' | 'case_comments' | 'record_file'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters
      * @param {Array<string>} [userId]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
@@ -649,7 +536,9 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
         | 'chat_bots'
         | 'cases'
         | 'contacts'
-        | 'cc_list_number',
+        | 'cc_list_number'
+        | 'case_comments'
+        | 'record_file',
       recordId: number,
       page?: number,
       size?: number,
@@ -703,8 +592,8 @@ export const LoggerServiceApiFp = function(configuration?: Configuration) {
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [objectId] SPECIFIC filter.
-     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
+     * @param {Array<string>} [objectId] SPECIFIC filter
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -771,22 +660,6 @@ export const LoggerServiceApiFactory = function(
   return {
     /**
      *
-     * @param {string} configId Required
-     * @param {LoggerDeleteConfigLogsRequest} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteConfigLogs(
-      configId: string,
-      body: LoggerDeleteConfigLogsRequest,
-      options?: any
-    ): AxiosPromise<LoggerDeleteConfigLogsResponse> {
-      return LoggerServiceApiFp(configuration)
-        .deleteConfigLogs(configId, body, options)
-        .then((request) => request(axios, basePath))
-    },
-    /**
-     *
      * @param {number} configId
      * @param {number} [page]
      * @param {number} [size]
@@ -836,14 +709,14 @@ export const LoggerServiceApiFactory = function(
     },
     /**
      *
-     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'} object SPECIFIC filter
+     * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number' | 'case_comments' | 'record_file'} object SPECIFIC filter
      * @param {number} recordId REQUIRED filter
      * @param {number} [page]
      * @param {number} [size]
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters
      * @param {Array<string>} [userId]
      * @param {string} [userIp]
      * @param {string} [dateFrom]
@@ -866,7 +739,9 @@ export const LoggerServiceApiFactory = function(
         | 'chat_bots'
         | 'cases'
         | 'contacts'
-        | 'cc_list_number',
+        | 'cc_list_number'
+        | 'case_comments'
+        | 'record_file',
       recordId: number,
       page?: number,
       size?: number,
@@ -908,8 +783,8 @@ export const LoggerServiceApiFactory = function(
      * @param {string} [q]
      * @param {string} [sort]
      * @param {Array<string>} [fields]
-     * @param {Array<string>} [objectId] SPECIFIC filter.
-     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
+     * @param {Array<string>} [objectId] SPECIFIC filter
+     * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters
      * @param {string} [userIp]
      * @param {string} [dateFrom]
      * @param {string} [dateTo]
@@ -959,24 +834,6 @@ export const LoggerServiceApiFactory = function(
  * @extends {BaseAPI}
  */
 export class LoggerServiceApi extends BaseAPI {
-  /**
-   *
-   * @param {string} configId Required
-   * @param {LoggerDeleteConfigLogsRequest} body
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LoggerServiceApi
-   */
-  public deleteConfigLogs(
-    configId: string,
-    body: LoggerDeleteConfigLogsRequest,
-    options?: any
-  ) {
-    return LoggerServiceApiFp(this.configuration)
-      .deleteConfigLogs(configId, body, options)
-      .then((request) => request(this.axios, this.basePath))
-  }
-
   /**
    *
    * @param {number} configId
@@ -1030,14 +887,14 @@ export class LoggerServiceApi extends BaseAPI {
 
   /**
    *
-   * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number'} object SPECIFIC filter
+   * @param {'cc_queue' | 'schema' | 'users' | 'devices' | 'calendars' | 'cc_list' | 'cc_team' | 'cc_agent' | 'cc_resource' | 'cc_resource_group' | 'chat_bots' | 'cases' | 'contacts' | 'cc_list_number' | 'case_comments' | 'record_file'} object SPECIFIC filter
    * @param {number} recordId REQUIRED filter
    * @param {number} [page]
    * @param {number} [size]
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
+   * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters
    * @param {Array<string>} [userId]
    * @param {string} [userIp]
    * @param {string} [dateFrom]
@@ -1061,7 +918,9 @@ export class LoggerServiceApi extends BaseAPI {
       | 'chat_bots'
       | 'cases'
       | 'contacts'
-      | 'cc_list_number',
+      | 'cc_list_number'
+      | 'case_comments'
+      | 'record_file',
     recordId: number,
     page?: number,
     size?: number,
@@ -1104,8 +963,8 @@ export class LoggerServiceApi extends BaseAPI {
    * @param {string} [q]
    * @param {string} [sort]
    * @param {Array<string>} [fields]
-   * @param {Array<string>} [objectId] SPECIFIC filter.
-   * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters.
+   * @param {Array<string>} [objectId] SPECIFIC filter
+   * @param {Array<'default_no_action' | 'create' | 'update' | 'read' | 'delete'>} [action] GENERAL filters
    * @param {string} [userIp]
    * @param {string} [dateFrom]
    * @param {string} [dateTo]

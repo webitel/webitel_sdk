@@ -24,21 +24,21 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
-import { EngineCreateTeamTriggerRequest } from '../api'
-// @ts-ignore
 import { EngineListTeamTrigger } from '../api'
-// @ts-ignore
-import { EnginePatchTeamTriggerRequest } from '../api'
-// @ts-ignore
-import { EngineRunTeamTriggerRequest } from '../api'
 // @ts-ignore
 import { EngineRunTeamTriggerResponse } from '../api'
 // @ts-ignore
 import { EngineTeamTrigger } from '../api'
 // @ts-ignore
-import { EngineUpdateTeamTriggerRequest } from '../api'
+import { EngineTeamTriggerServiceCreateTeamTriggerBody } from '../api'
+// @ts-ignore
+import { EngineTeamTriggerServicePatchTeamTriggerBody } from '../api'
+// @ts-ignore
+import { EngineTeamTriggerServiceRunTeamTriggerBody } from '../api'
+// @ts-ignore
+import { EngineTeamTriggerServiceUpdateTeamTriggerBody } from '../api'
+// @ts-ignore
+import { GoogleRpcStatus } from '../api'
 /**
  * TeamTriggerServiceApi - axios parameter creator
  * @export
@@ -50,13 +50,13 @@ export const TeamTriggerServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {string} teamId
-     * @param {EngineCreateTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceCreateTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTeamTrigger: async (
       teamId: string,
-      body: EngineCreateTeamTriggerRequest,
+      body: EngineTeamTriggerServiceCreateTeamTriggerBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'teamId' is not null or undefined
@@ -202,14 +202,14 @@ export const TeamTriggerServiceApiAxiosParamCreator = function(
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EnginePatchTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServicePatchTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchTeamTrigger: async (
       teamId: string,
       id: number,
-      body: EnginePatchTeamTriggerRequest,
+      body: EngineTeamTriggerServicePatchTeamTriggerBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'teamId' is not null or undefined
@@ -360,13 +360,13 @@ export const TeamTriggerServiceApiAxiosParamCreator = function(
     /**
      *
      * @param {number} triggerId
-     * @param {EngineRunTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceRunTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     runTeamTrigger: async (
       triggerId: number,
-      body: EngineRunTeamTriggerRequest,
+      body: EngineTeamTriggerServiceRunTeamTriggerBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'triggerId' is not null or undefined
@@ -657,14 +657,14 @@ export const TeamTriggerServiceApiAxiosParamCreator = function(
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EngineUpdateTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceUpdateTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateTeamTrigger: async (
       teamId: string,
       id: number,
-      body: EngineUpdateTeamTriggerRequest,
+      body: EngineTeamTriggerServiceUpdateTeamTriggerBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'teamId' is not null or undefined
@@ -753,13 +753,13 @@ export const TeamTriggerServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {string} teamId
-     * @param {EngineCreateTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceCreateTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async createTeamTrigger(
       teamId: string,
-      body: EngineCreateTeamTriggerRequest,
+      body: EngineTeamTriggerServiceCreateTeamTriggerBody,
       options?: any
     ): Promise<
       (
@@ -816,14 +816,14 @@ export const TeamTriggerServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EnginePatchTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServicePatchTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async patchTeamTrigger(
       teamId: string,
       id: number,
-      body: EnginePatchTeamTriggerRequest,
+      body: EngineTeamTriggerServicePatchTeamTriggerBody,
       options?: any
     ): Promise<
       (
@@ -879,13 +879,13 @@ export const TeamTriggerServiceApiFp = function(configuration?: Configuration) {
     /**
      *
      * @param {number} triggerId
-     * @param {EngineRunTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceRunTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async runTeamTrigger(
       triggerId: number,
-      body: EngineRunTeamTriggerRequest,
+      body: EngineTeamTriggerServiceRunTeamTriggerBody,
       options?: any
     ): Promise<
       (
@@ -1023,14 +1023,14 @@ export const TeamTriggerServiceApiFp = function(configuration?: Configuration) {
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EngineUpdateTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceUpdateTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateTeamTrigger(
       teamId: string,
       id: number,
-      body: EngineUpdateTeamTriggerRequest,
+      body: EngineTeamTriggerServiceUpdateTeamTriggerBody,
       options?: any
     ): Promise<
       (
@@ -1068,13 +1068,13 @@ export const TeamTriggerServiceApiFactory = function(
     /**
      *
      * @param {string} teamId
-     * @param {EngineCreateTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceCreateTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTeamTrigger(
       teamId: string,
-      body: EngineCreateTeamTriggerRequest,
+      body: EngineTeamTriggerServiceCreateTeamTriggerBody,
       options?: any
     ): AxiosPromise<EngineTeamTrigger> {
       return TeamTriggerServiceApiFp(configuration)
@@ -1101,14 +1101,14 @@ export const TeamTriggerServiceApiFactory = function(
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EnginePatchTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServicePatchTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     patchTeamTrigger(
       teamId: string,
       id: number,
-      body: EnginePatchTeamTriggerRequest,
+      body: EngineTeamTriggerServicePatchTeamTriggerBody,
       options?: any
     ): AxiosPromise<EngineTeamTrigger> {
       return TeamTriggerServiceApiFp(configuration)
@@ -1134,13 +1134,13 @@ export const TeamTriggerServiceApiFactory = function(
     /**
      *
      * @param {number} triggerId
-     * @param {EngineRunTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceRunTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     runTeamTrigger(
       triggerId: number,
-      body: EngineRunTeamTriggerRequest,
+      body: EngineTeamTriggerServiceRunTeamTriggerBody,
       options?: any
     ): AxiosPromise<EngineRunTeamTriggerResponse> {
       return TeamTriggerServiceApiFp(configuration)
@@ -1233,14 +1233,14 @@ export const TeamTriggerServiceApiFactory = function(
      *
      * @param {string} teamId
      * @param {number} id
-     * @param {EngineUpdateTeamTriggerRequest} body
+     * @param {EngineTeamTriggerServiceUpdateTeamTriggerBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateTeamTrigger(
       teamId: string,
       id: number,
-      body: EngineUpdateTeamTriggerRequest,
+      body: EngineTeamTriggerServiceUpdateTeamTriggerBody,
       options?: any
     ): AxiosPromise<EngineTeamTrigger> {
       return TeamTriggerServiceApiFp(configuration)
@@ -1260,14 +1260,14 @@ export class TeamTriggerServiceApi extends BaseAPI {
   /**
    *
    * @param {string} teamId
-   * @param {EngineCreateTeamTriggerRequest} body
+   * @param {EngineTeamTriggerServiceCreateTeamTriggerBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamTriggerServiceApi
    */
   public createTeamTrigger(
     teamId: string,
-    body: EngineCreateTeamTriggerRequest,
+    body: EngineTeamTriggerServiceCreateTeamTriggerBody,
     options?: any
   ) {
     return TeamTriggerServiceApiFp(this.configuration)
@@ -1293,7 +1293,7 @@ export class TeamTriggerServiceApi extends BaseAPI {
    *
    * @param {string} teamId
    * @param {number} id
-   * @param {EnginePatchTeamTriggerRequest} body
+   * @param {EngineTeamTriggerServicePatchTeamTriggerBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamTriggerServiceApi
@@ -1301,7 +1301,7 @@ export class TeamTriggerServiceApi extends BaseAPI {
   public patchTeamTrigger(
     teamId: string,
     id: number,
-    body: EnginePatchTeamTriggerRequest,
+    body: EngineTeamTriggerServicePatchTeamTriggerBody,
     options?: any
   ) {
     return TeamTriggerServiceApiFp(this.configuration)
@@ -1326,14 +1326,14 @@ export class TeamTriggerServiceApi extends BaseAPI {
   /**
    *
    * @param {number} triggerId
-   * @param {EngineRunTeamTriggerRequest} body
+   * @param {EngineTeamTriggerServiceRunTeamTriggerBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamTriggerServiceApi
    */
   public runTeamTrigger(
     triggerId: number,
-    body: EngineRunTeamTriggerRequest,
+    body: EngineTeamTriggerServiceRunTeamTriggerBody,
     options?: any
   ) {
     return TeamTriggerServiceApiFp(this.configuration)
@@ -1431,7 +1431,7 @@ export class TeamTriggerServiceApi extends BaseAPI {
    *
    * @param {string} teamId
    * @param {number} id
-   * @param {EngineUpdateTeamTriggerRequest} body
+   * @param {EngineTeamTriggerServiceUpdateTeamTriggerBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof TeamTriggerServiceApi
@@ -1439,7 +1439,7 @@ export class TeamTriggerServiceApi extends BaseAPI {
   public updateTeamTrigger(
     teamId: string,
     id: number,
-    body: EngineUpdateTeamTriggerRequest,
+    body: EngineTeamTriggerServiceUpdateTeamTriggerBody,
     options?: any
   ) {
     return TeamTriggerServiceApiFp(this.configuration)

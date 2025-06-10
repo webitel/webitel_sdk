@@ -11,8 +11,8 @@
  * Do not edit the class manually.
  */
 
-import { CasesStatusCondition } from './cases-status-condition'
 import { GeneralLookup } from './general-lookup'
+import { WebitelCasesStatusCondition } from './webitel-cases-status-condition'
 
 /**
  *
@@ -112,10 +112,10 @@ export interface InputDataWithUpdatedFields1 {
   status?: GeneralLookup
   /**
    *
-   * @type {CasesStatusCondition}
+   * @type {WebitelCasesStatusCondition}
    * @memberof InputDataWithUpdatedFields1
    */
-  status_condition?: CasesStatusCondition
+  status_condition?: WebitelCasesStatusCondition
   /**
    *
    * @type {string}

@@ -24,11 +24,11 @@ export interface EngineQueueResourcesServiceUpdateQueueResourceGroupBody {
    * @type {string}
    * @memberof EngineQueueResourcesServiceUpdateQueueResourceGroupBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {EngineLookup}
    * @memberof EngineQueueResourcesServiceUpdateQueueResourceGroupBody
    */
-  resourceGroup?: EngineLookup
+  resource_group?: EngineLookup
 }

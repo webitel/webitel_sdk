@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import { AggregateRequestGroup } from './aggregate-request-group'
+import { EngineAggregateRequestGroup } from './engine-aggregate-request-group'
 
 /**
  *
@@ -33,10 +33,10 @@ export interface EngineAggregateRequest {
   count?: Array<string>
   /**
    *
-   * @type {Array<AggregateRequestGroup>}
+   * @type {Array<EngineAggregateRequestGroup>}
    * @memberof EngineAggregateRequest
    */
-  group?: Array<AggregateRequestGroup>
+  group?: Array<EngineAggregateRequestGroup>
   /**
    *
    * @type {number}

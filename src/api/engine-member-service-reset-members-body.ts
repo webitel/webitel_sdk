@@ -24,19 +24,19 @@ export interface EngineMemberServiceResetMembersBody {
    * @type {Array<number>}
    * @memberof EngineMemberServiceResetMembersBody
    */
-  agentId?: Array<number>
+  agent_id?: Array<number>
   /**
    *
    * @type {Array<string>}
    * @memberof EngineMemberServiceResetMembersBody
    */
-  bucketId?: Array<string>
+  bucket_id?: Array<string>
   /**
    *
    * @type {EngineFilterBetween}
    * @memberof EngineMemberServiceResetMembersBody
    */
-  createdAt?: EngineFilterBetween
+  created_at?: EngineFilterBetween
   /**
    *
    * @type {Array<string>}
@@ -66,7 +66,7 @@ export interface EngineMemberServiceResetMembersBody {
    * @type {Array<string>}
    * @memberof EngineMemberServiceResetMembersBody
    */
-  stopCause?: Array<string>
+  stop_cause?: Array<string>
   /**
    *
    * @type {{ [key: string]: string; }}

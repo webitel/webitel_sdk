@@ -22,17 +22,17 @@ export interface EngineEmailProfileParamsOAuth2 {
    * @type {string}
    * @memberof EngineEmailProfileParamsOAuth2
    */
-  clientId?: string
+  client_id?: string
   /**
    *
    * @type {string}
    * @memberof EngineEmailProfileParamsOAuth2
    */
-  clientSecret?: string
+  client_secret?: string
   /**
    *
    * @type {string}
    * @memberof EngineEmailProfileParamsOAuth2
    */
-  redirectUrl?: string
+  redirect_url?: string
 }

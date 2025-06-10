@@ -11,6 +11,8 @@
  * Do not edit the class manually.
  */
 
+import { StorageGenerateFileLinkResponseMetadata } from './storage-generate-file-link-response-metadata'
+
 /**
  *
  * @export
@@ -23,6 +25,12 @@ export interface StorageGenerateFileLinkResponse {
    * @memberof StorageGenerateFileLinkResponse
    */
   base_url?: string
+  /**
+   *
+   * @type {StorageGenerateFileLinkResponseMetadata}
+   * @memberof StorageGenerateFileLinkResponse
+   */
+  metadata?: StorageGenerateFileLinkResponseMetadata
   /**
    *
    * @type {string}

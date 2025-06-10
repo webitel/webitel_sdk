@@ -22,7 +22,7 @@ export interface EngineCallServiceCreateCallAnnotationBody {
    * @type {number}
    * @memberof EngineCallServiceCreateCallAnnotationBody
    */
-  endSec?: number
+  end_sec?: number
   /**
    *
    * @type {string}
@@ -34,5 +34,5 @@ export interface EngineCallServiceCreateCallAnnotationBody {
    * @type {number}
    * @memberof EngineCallServiceCreateCallAnnotationBody
    */
-  startSec?: number
+  start_sec?: number
 }

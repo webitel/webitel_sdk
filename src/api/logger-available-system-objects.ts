@@ -31,4 +31,6 @@ export enum LoggerAvailableSystemObjects {
   Cases = 'cases',
   Contacts = 'contacts',
   CcListNumber = 'cc_list_number',
+  CaseComments = 'case_comments',
+  RecordFile = 'record_file',
 }

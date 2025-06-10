@@ -24,7 +24,7 @@ export interface EngineMemberServiceDeleteMembersBody {
    * @type {Array<number>}
    * @memberof EngineMemberServiceDeleteMembersBody
    */
-  agentId?: Array<number>
+  agent_id?: Array<number>
   /**
    *
    * @type {EngineFilterBetween}
@@ -36,13 +36,13 @@ export interface EngineMemberServiceDeleteMembersBody {
    * @type {Array<number>}
    * @memberof EngineMemberServiceDeleteMembersBody
    */
-  bucketId?: Array<number>
+  bucket_id?: Array<number>
   /**
    *
    * @type {EngineFilterBetween}
    * @memberof EngineMemberServiceDeleteMembersBody
    */
-  createdAt?: EngineFilterBetween
+  created_at?: EngineFilterBetween
   /**
    *
    * @type {string}
@@ -78,7 +78,7 @@ export interface EngineMemberServiceDeleteMembersBody {
    * @type {EngineFilterBetween}
    * @memberof EngineMemberServiceDeleteMembersBody
    */
-  offeringAt?: EngineFilterBetween
+  offering_at?: EngineFilterBetween
   /**
    *
    * @type {EngineFilterBetween}
@@ -108,7 +108,7 @@ export interface EngineMemberServiceDeleteMembersBody {
    * @type {Array<string>}
    * @memberof EngineMemberServiceDeleteMembersBody
    */
-  stopCause?: Array<string>
+  stop_cause?: Array<string>
   /**
    *
    * @type {{ [key: string]: string; }}
@@ -120,5 +120,5 @@ export interface EngineMemberServiceDeleteMembersBody {
    * @type {boolean}
    * @memberof EngineMemberServiceDeleteMembersBody
    */
-  withoutMembers?: boolean
+  without_members?: boolean
 }

@@ -22,5 +22,5 @@ export interface EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCall
    * @type {string}
    * @memberof EngineRoutingOutboundCallServiceMovePositionRoutingOutboundCallBody
    */
-  domainId?: string
+  domain_id?: string
 }

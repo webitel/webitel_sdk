@@ -18,5 +18,6 @@
  */
 export enum EngineTriggerObjectType {
   EmptyTriggerObject = 'empty_trigger_object',
-  Case = 'case',
+  Cases = 'cases',
+  CaseFiles = 'case_files',
 }

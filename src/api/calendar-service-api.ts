@@ -24,9 +24,9 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineCalendar } from '../api'
+// @ts-ignore
+import { EngineCalendarServiceUpdateCalendarBody } from '../api'
 // @ts-ignore
 import { EngineCreateCalendarRequest } from '../api'
 // @ts-ignore
@@ -34,7 +34,7 @@ import { EngineListCalendar } from '../api'
 // @ts-ignore
 import { EngineListTimezoneResponse } from '../api'
 // @ts-ignore
-import { EngineUpdateCalendarRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * CalendarServiceApi - axios parameter creator
  * @export
@@ -432,13 +432,13 @@ export const CalendarServiceApiAxiosParamCreator = function(
      *
      * @summary Update calendar
      * @param {string} id
-     * @param {EngineUpdateCalendarRequest} body
+     * @param {EngineCalendarServiceUpdateCalendarBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCalendar: async (
       id: string,
-      body: EngineUpdateCalendarRequest,
+      body: EngineCalendarServiceUpdateCalendarBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -687,13 +687,13 @@ export const CalendarServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update calendar
      * @param {string} id
-     * @param {EngineUpdateCalendarRequest} body
+     * @param {EngineCalendarServiceUpdateCalendarBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateCalendar(
       id: string,
-      body: EngineUpdateCalendarRequest,
+      body: EngineCalendarServiceUpdateCalendarBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineCalendar>
@@ -828,13 +828,13 @@ export const CalendarServiceApiFactory = function(
      *
      * @summary Update calendar
      * @param {string} id
-     * @param {EngineUpdateCalendarRequest} body
+     * @param {EngineCalendarServiceUpdateCalendarBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateCalendar(
       id: string,
-      body: EngineUpdateCalendarRequest,
+      body: EngineCalendarServiceUpdateCalendarBody,
       options?: any
     ): AxiosPromise<EngineCalendar> {
       return CalendarServiceApiFp(configuration)
@@ -953,14 +953,14 @@ export class CalendarServiceApi extends BaseAPI {
    *
    * @summary Update calendar
    * @param {string} id
-   * @param {EngineUpdateCalendarRequest} body
+   * @param {EngineCalendarServiceUpdateCalendarBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarServiceApi
    */
   public updateCalendar(
     id: string,
-    body: EngineUpdateCalendarRequest,
+    body: EngineCalendarServiceUpdateCalendarBody,
     options?: any
   ) {
     return CalendarServiceApiFp(this.configuration)

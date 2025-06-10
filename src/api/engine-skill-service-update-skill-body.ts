@@ -28,7 +28,7 @@ export interface EngineSkillServiceUpdateSkillBody {
    * @type {string}
    * @memberof EngineSkillServiceUpdateSkillBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}

@@ -28,7 +28,7 @@ export interface EngineBucketServiceUpdateBucketBody {
    * @type {string}
    * @memberof EngineBucketServiceUpdateBucketBody
    */
-  domainId?: string
+  domain_id?: string
   /**
    *
    * @type {string}

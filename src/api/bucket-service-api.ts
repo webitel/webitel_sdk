@@ -24,15 +24,15 @@ import {
   RequiredError,
 } from '../base'
 // @ts-ignore
-import { EngineApiError } from '../api'
-// @ts-ignore
 import { EngineBucket } from '../api'
+// @ts-ignore
+import { EngineBucketServiceUpdateBucketBody } from '../api'
 // @ts-ignore
 import { EngineCreateBucketRequest } from '../api'
 // @ts-ignore
 import { EngineListBucket } from '../api'
 // @ts-ignore
-import { EngineUpdateBucketRequest } from '../api'
+import { GoogleRpcStatus } from '../api'
 /**
  * BucketServiceApi - axios parameter creator
  * @export
@@ -342,13 +342,13 @@ export const BucketServiceApiAxiosParamCreator = function(
      *
      * @summary Update Bucket
      * @param {string} id
-     * @param {EngineUpdateBucketRequest} body
+     * @param {EngineBucketServiceUpdateBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateBucket: async (
       id: string,
-      body: EngineUpdateBucketRequest,
+      body: EngineBucketServiceUpdateBucketBody,
       options: any = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'id' is not null or undefined
@@ -557,13 +557,13 @@ export const BucketServiceApiFp = function(configuration?: Configuration) {
      *
      * @summary Update Bucket
      * @param {string} id
-     * @param {EngineUpdateBucketRequest} body
+     * @param {EngineBucketServiceUpdateBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async updateBucket(
       id: string,
-      body: EngineUpdateBucketRequest,
+      body: EngineBucketServiceUpdateBucketBody,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<EngineBucket>
@@ -673,13 +673,13 @@ export const BucketServiceApiFactory = function(
      *
      * @summary Update Bucket
      * @param {string} id
-     * @param {EngineUpdateBucketRequest} body
+     * @param {EngineBucketServiceUpdateBucketBody} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     updateBucket(
       id: string,
-      body: EngineUpdateBucketRequest,
+      body: EngineBucketServiceUpdateBucketBody,
       options?: any
     ): AxiosPromise<EngineBucket> {
       return BucketServiceApiFp(configuration)
@@ -771,14 +771,14 @@ export class BucketServiceApi extends BaseAPI {
    *
    * @summary Update Bucket
    * @param {string} id
-   * @param {EngineUpdateBucketRequest} body
+   * @param {EngineBucketServiceUpdateBucketBody} body
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BucketServiceApi
    */
   public updateBucket(
     id: string,
-    body: EngineUpdateBucketRequest,
+    body: EngineBucketServiceUpdateBucketBody,
     options?: any
   ) {
     return BucketServiceApiFp(this.configuration)
