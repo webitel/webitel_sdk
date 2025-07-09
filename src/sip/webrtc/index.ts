@@ -339,8 +339,13 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     return new Promise<MediaStream>(
       async (resolve: (stream: MediaStream) => void, reject: () => void) => {
         const mediaConstraints = {
-          audio: !(audio === false),
+          audio: undefined as any,
           video: undefined as any,
+        }
+        if (!(audio === false)) {
+          mediaConstraints.audio = {
+            autoGainControl: false,
+          }
         }
         if (video) {
           mediaConstraints.video = {
