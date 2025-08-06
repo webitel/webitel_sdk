@@ -45,6 +45,7 @@ export interface MessageScreenShare {
   state: string
   sdp: string
   session_id?: string
+  from_sock_id?: string
   parent_id?: string
   from_user_id?: number
   auto?: boolean
@@ -65,4 +66,8 @@ export enum NotificationActions {
   RefreshMissed = 'refresh_missed',
   ShowMessage = 'show_message',
   ScreenShare = 'screen_share',
+  Screenshot = 'screenshot',
+  OpenLink = 'open_link',
+  StartScreenRecord = 'ss_record_start',
+  StopScreenRecord = 'ss_record_stop',
 }

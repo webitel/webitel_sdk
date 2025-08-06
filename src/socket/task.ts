@@ -1101,7 +1101,7 @@ export class Task {
     fields: Map<string, string | number | object | any[]> | null
   ) {
     if (!this.form) {
-      throw new Error('no form')
+      return
     }
 
     return this.client.request('cc_form_save', {

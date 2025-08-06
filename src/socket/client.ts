@@ -61,6 +61,7 @@ import {
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
 import { SenderSession, ReceiverSession, ScreenResolver } from '../screen'
+import { SpyScreen } from './screen'
 
 /**
  * Налаштування клієнта.
@@ -85,6 +86,7 @@ export interface Config {
   debug?: boolean
   autoAnswerDelayTime?: number
   screenResolver?: ScreenResolver | null
+  applicationName?: string
 }
 
 /**
@@ -465,6 +467,11 @@ export interface ClientEvents {
    */
   show_message(ev: MessageNotification): void
 
+  screenshot(ev: MessageNotification): void
+  open_link(ev: MessageNotification): void
+  screen_rec_start(ev: MessageNotification): void
+  screen_rec_stop(ev: MessageNotification): void
+
   /**
    * Викликається при отриманні SDP-повідомлення.
    * @param sock - Ідентифікатор сокету.
@@ -510,8 +517,8 @@ export class Client extends EventEmitter<ClientEvents> {
   private log: Log
   private eventHandler: EventEmitter<EventHandler>
   private callStore: Map<string, Call>
-  private receiveScreenStore: Map<string, ReceiverSession>
-  private senderScreenStore: Map<string, SenderSession>
+  private spyScreenSessions: SpyScreen[]
+  private senderScreenStore: SenderSession[]
   private conversationStore: Map<string, Conversation>
   private pingTimer: number | null
   private toneTimer: number | null
@@ -527,8 +534,8 @@ export class Client extends EventEmitter<ClientEvents> {
     this.log = new Log(_config.logLvl)
     this.eventHandler = new EventEmitter()
     this.callStore = new Map<string, Call>()
-    this.receiveScreenStore = new Map<string, ReceiverSession>()
-    this.senderScreenStore = new Map<string, SenderSession>()
+    this.spyScreenSessions = []
+    this.senderScreenStore = []
     this.conversationStore = new Map<string, Conversation>()
     this.pingTimer = null
     this.toneTimer = null
@@ -772,6 +779,10 @@ export class Client extends EventEmitter<ClientEvents> {
 
   allJob(): Task[] {
     return this.allTask().filter(isJobTask)
+  }
+
+  allSpyScreenSessions(): SpyScreen[] {
+    return this.spyScreenSessions
   }
 
   callById(id: string): Call | undefined {
@@ -1190,17 +1201,19 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, ChatActions.Destroy, conv)
   }
 
-  async requestScreenShare(
+  async spyScreen(
     agentId: number,
     conf: RTCConfiguration,
     cb: (m: MediaStream) => void
   ) {
-    const s = new ReceiverSession(conf, this.log)
+    const s = new SpyScreen(this, agentId, conf, this.log)
     s.on('close', () => {
-      this.receiveScreenStore.delete(s.id)
+      this.spyScreenSessions = this.spyScreenSessions.filter(
+        (i) => i.id !== s.id
+      )
     })
     s.on('stream', cb)
-    this.receiveScreenStore.set(s.id, s)
+    this.spyScreenSessions.push(s)
 
     try {
       const offer = await s.offer()
@@ -1210,7 +1223,9 @@ export class Client extends EventEmitter<ClientEvents> {
         to_user_id: agentId,
       })
     } catch (e) {
-      this.receiveScreenStore.delete(s.id)
+      this.spyScreenSessions = this.spyScreenSessions.filter(
+        (i) => i.id !== s.id
+      )
       this.log.error('error ', e)
     }
 
@@ -1338,6 +1353,21 @@ export class Client extends EventEmitter<ClientEvents> {
       case NotificationActions.ShowMessage:
         this.emit(`show_message`, e.body as MessageNotification)
         break
+      case NotificationActions.OpenLink:
+        this.emit(`open_link`, e.body as MessageNotification)
+        break
+
+      case NotificationActions.StartScreenRecord:
+        this.emit(`screen_rec_start`, e.body as MessageNotification)
+        break
+      case NotificationActions.StopScreenRecord:
+        this.emit(`screen_rec_stop`, e.body as MessageNotification)
+        break
+
+      case NotificationActions.Screenshot:
+        this.emit(`screenshot`, e.body as MessageNotification)
+        break
+
       case NotificationActions.ScreenShare:
         const body = e.body as MessageScreenShare
         switch (body.state) {
@@ -1358,7 +1388,9 @@ export class Client extends EventEmitter<ClientEvents> {
             )
 
             s.on('close', () => {
-              this.senderScreenStore.delete(s.id)
+              this.senderScreenStore = this.senderScreenStore.filter(
+                (i) => i.id !== s.id
+              )
             })
             s.on('stream', async (rtc: RTCSessionDescription) => {
               await this.request(`ss_accept`, {
@@ -1369,7 +1401,7 @@ export class Client extends EventEmitter<ClientEvents> {
                 session_id: s.from.sessionId,
               })
             })
-            this.senderScreenStore.set(s.id, s)
+            this.senderScreenStore.push(s)
 
             // tslint:disable-next-line: no-floating-promises
             s.start(stream)
@@ -1377,10 +1409,12 @@ export class Client extends EventEmitter<ClientEvents> {
             break
 
           case 'accept':
-            const receive = this.receiveScreenStore.get(body.session_id!)
+            const receive = this.spyScreenSessions.filter(
+              (i) => i.id === body.session_id!
+            )[0]
             if (receive) {
               // tslint:disable-next-line: no-floating-promises
-              receive.answer({
+              receive.answerSession(body.from_sock_id!, {
                 type: 'answer',
                 sdp: body.sdp,
               })
@@ -1531,7 +1565,10 @@ export class Client extends EventEmitter<ClientEvents> {
   private connectToSocket(): Promise<Error | null> {
     return new Promise<Error | null>((resolve, reject) => {
       try {
-        this.socket = new Socket(this._config.endpoint)
+        this.socket = new Socket(
+          this._config.endpoint,
+          this._config.applicationName
+        )
         this.socket.connect(this._config.token!)
       } catch (e) {
         reject(e)
