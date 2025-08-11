@@ -785,6 +785,7 @@ export class Task {
     this.form = form
     if (!this.allowReporting) {
       this.distribute.has_form = true
+      this.distribute.has_reporting = true
     }
   }
 

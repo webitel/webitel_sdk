@@ -22,7 +22,7 @@ export class ReceiverSession extends EventEmitter<ReceiveEvents> {
     this.id = genId()
     this.pc = new RTCPeerConnection(conf)
     // setVP9Video(this.pc)
-    this.pc.addTransceiver('video', { direction: 'recvonly' })
+    this.pc.addTransceiver('video')
     this.pc.oniceconnectionstatechange = (e) => this.iceConnectionState(e)
     this.pc.onicecandidate = this.iceCandidate.bind(this)
     this.pc.ontrack = this.onTrack.bind(this)
