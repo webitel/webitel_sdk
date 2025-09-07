@@ -178,6 +178,8 @@ export interface CommunicationType {
    * @type {string}
    */
   name: string
+
+  channel?: string
 }
 
 export interface MemberCommunication {

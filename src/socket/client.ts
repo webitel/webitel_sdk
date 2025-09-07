@@ -1029,10 +1029,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
   conversationDestroyed(conv: Conversation) {
     return (
-      conv.closedAt > 0 &&
-      (!this.hasAgentTask(conv.task) || !conv.hasReporting) &&
-      (conv.hasReporting ||
-        !(conv.lastAction === ChatActions.Close && conv.answeredAt > 0))
+      conv.closedAt > 0 && (!this.hasAgentTask(conv.task) || !conv.hasReporting)
     )
   }
 
