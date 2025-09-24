@@ -65,7 +65,9 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
   async call(req: Outbound) {
     const params = {} as Answer
-    let display = null
+    const display = {
+      extraHeaders: new Array<string>(),
+    }
 
     if (req.params) {
       params.audio = req.params.audio
@@ -80,9 +82,14 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
     const invite = await this.callOption(params)
 
-    if (req.params && req.params.display) {
-      display = {
-        extraHeaders: [`X-Webitel-Display: ${req.params.display}`],
+    if (req.params) {
+      if (req.params.display) {
+        display.extraHeaders.push(`X-Webitel-Display: ${req.params.display}`)
+      }
+      if (req.params.contactId) {
+        display.extraHeaders.push(
+          `X-Webitel-Contact-Id: ${req.params.contactId}`
+        )
       }
     }
 

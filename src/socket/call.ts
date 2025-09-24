@@ -25,6 +25,7 @@ export interface CallParameters {
   autoAnswer?: boolean
   display?: string
   variables?: Map<string, string>
+  contactId?: number
 }
 
 /**

@@ -27,6 +27,7 @@ export interface OutboundConfiguration {
   autoAnswer?: boolean
   display?: string
   variables?: Map<string, string>
+  contactId?: number
 }
 
 export interface Outbound {
