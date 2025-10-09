@@ -51,6 +51,8 @@ export interface MessageScreenShare {
   auto?: boolean
   sock_id?: string
   timeout?: number
+  screenConstraints?: any
+  RTCConfiguration?: any
 }
 
 /**

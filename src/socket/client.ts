@@ -60,7 +60,7 @@ import {
 } from './task'
 import { UserStatus } from './user'
 import { formatBaseUri } from './utils'
-import { SenderSession, ReceiverSession, ScreenResolver } from '../screen'
+import { SenderSession, ScreenResolver } from '../screen'
 import { SpyScreen } from './screen'
 
 /**
@@ -1372,7 +1372,18 @@ export class Client extends EventEmitter<ClientEvents> {
             if (!this.screenResolver) {
               throw new Error('not found screenResolver')
             }
-            const stream = await this.screenResolver({})
+            let displayMediaStreamOptions = {}
+            let RTCConfigurationConf = {}
+
+            if (body.screenConstraints) {
+              displayMediaStreamOptions = body.screenConstraints
+            }
+
+            if (body.RTCConfiguration) {
+              RTCConfigurationConf = body.RTCConfiguration
+            }
+
+            const stream = await this.screenResolver(displayMediaStreamOptions)
             const s = new SenderSession(
               body.sdp,
               {
@@ -1380,7 +1391,7 @@ export class Client extends EventEmitter<ClientEvents> {
                 sockId: body.sock_id!,
                 sessionId: body.parent_id!,
               },
-              {},
+              RTCConfigurationConf,
               this.log
             )
 
