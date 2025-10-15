@@ -1205,9 +1205,10 @@ export class Client extends EventEmitter<ClientEvents> {
   ) {
     const s = new SpyScreen(this, agentId, conf, this.log)
     s.on('close', () => {
-      this.spyScreenSessions = this.spyScreenSessions.filter(
-        (i) => i.id !== s.id
-      )
+      const idx = this.spyScreenSessions.findIndex((i) => i.id === s.id)
+      if (idx !== -1) {
+        this.spyScreenSessions.splice(idx, 1)
+      }
     })
     s.on('stream', cb)
     this.spyScreenSessions.push(s)
