@@ -162,7 +162,10 @@ export class SipPhone extends EventEmitter<SipClientEvents>
         this.initPeerStream(callSession, session.connection)
 
         const localStream = new MediaStream()
-        localStream.addTrack(session.connection.getSenders()[0].track)
+        session.connection.getSenders().forEach((t: any) => {
+          localStream.addTrack(t.track)
+        })
+
         callSession.localStream = localStream
         this.emit('localStreams', callSession, callSession.getLocalMedia())
       })
@@ -291,7 +294,9 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   private initPeerStream(sess: Session, connection: any) {
     if (!sess.peerStream) {
       const peerStream = new MediaStream()
-      peerStream.addTrack(connection.getReceivers()[0].track)
+      connection.getReceivers().forEach((t: any) => {
+        peerStream.addTrack(t.track)
+      })
       sess.peerStream = peerStream
       this.emit('peerStreams', sess, sess.getPeerMedia())
     }
