@@ -59,7 +59,7 @@ import {
   TaskData,
 } from './task'
 import { UserStatus } from './user'
-import { formatBaseUri } from './utils'
+import { formatBaseUri, generateId } from './utils'
 import { SenderSession, ScreenResolver } from '../screen'
 import { SpyScreen } from './screen'
 
@@ -93,6 +93,12 @@ export interface Config {
  * Інтерфейс для зворотного виклику обіцянки.
  */
 interface PromiseCallback {
+  resolve: (res: object) => void
+  reject: (err: object) => void
+}
+
+interface AckPromiseCallback {
+  timerId: any
   resolve: (res: object) => void
   reject: (err: object) => void
 }
@@ -513,6 +519,11 @@ export class Client extends EventEmitter<ClientEvents> {
   private queueRequest: Map<number, PromiseCallback> = new Map<
     number,
     PromiseCallback
+  >()
+
+  private ackQueue: Map<string, AckPromiseCallback> = new Map<
+    string,
+    AckPromiseCallback
   >()
   private log: Log
   private eventHandler: EventEmitter<EventHandler>
@@ -1019,6 +1030,40 @@ export class Client extends EventEmitter<ClientEvents> {
     })
   }
 
+  ackRequest(action: string, data?: object, timeout?: number): Promise<object> {
+    // @ts-ignore
+    return new Promise<Error>(
+      // @ts-ignore
+      async (resolve: (res: object) => void, reject: (e: object) => void) => {
+        const id = `${generateId()}/${this.sessionInfo().user_id}/${
+          this.instanceId
+        }`
+        const ack = {
+          resolve,
+          reject,
+          timerId: 0,
+        } as AckPromiseCallback
+        this.ackQueue.set(id, ack)
+        try {
+          await this.request(action, {
+            ...data,
+            ack_id: id,
+          })
+
+          if (timeout && timeout > 0) {
+            ack.timerId = setTimeout(() => {
+              this.ackQueue.delete(id)
+              reject(new Error('timeout'))
+            }, timeout)
+          }
+        } catch (e) {
+          this.ackQueue.delete(id)
+          reject(e as object)
+        }
+      }
+    )
+  }
+
   useWebPhone(): boolean {
     return this._config.registerWebDevice || false
   }
@@ -1198,32 +1243,43 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, ChatActions.Destroy, conv)
   }
 
+  removeSpyScreen(id: string) {
+    const idx = this.spyScreenSessions.findIndex((i) => i.id === id)
+    if (idx !== -1) {
+      this.spyScreenSessions.splice(idx, 1)
+
+      return true
+    }
+
+    return false
+  }
+
   async spyScreen(
     agentId: number,
     conf: RTCConfiguration,
-    cb: (m: MediaStream) => void
+    cb: (m: MediaStream) => void,
+    timeout?: number
   ) {
     const s = new SpyScreen(this, agentId, conf, this.log)
     s.on('close', () => {
-      const idx = this.spyScreenSessions.findIndex((i) => i.id === s.id)
-      if (idx !== -1) {
-        this.spyScreenSessions.splice(idx, 1)
-      }
+      this.removeSpyScreen(s.id)
     })
     s.on('stream', cb)
     this.spyScreenSessions.push(s)
 
     try {
       const offer = await s.offer()
-      await this.request(`ss_invite`, {
-        id: s.id,
-        sdp: offer.sdp,
-        to_user_id: agentId,
-      })
+      await this.ackRequest(
+        `ss_invite`,
+        {
+          id: s.id,
+          sdp: offer.sdp,
+          to_user_id: agentId,
+        },
+        timeout || 5000
+      ) // TODO fix timeout
     } catch (e) {
-      this.spyScreenSessions = this.spyScreenSessions.filter(
-        (i) => i.id !== s.id
-      )
+      this.removeSpyScreen(s.id)
       this.log.error('error ', e)
     }
 
@@ -1356,14 +1412,48 @@ export class Client extends EventEmitter<ClientEvents> {
         break
 
       case NotificationActions.StartScreenRecord:
-        this.emit(`screen_rec_start`, e.body as MessageNotification)
+        const msgRecStart = e.body as MessageNotification
+        this.emit(`screen_rec_start`, msgRecStart)
+        if (msgRecStart.ack_id) {
+          await this.request('ss_ack', {
+            ack_id: msgRecStart.ack_id,
+          })
+        }
         break
       case NotificationActions.StopScreenRecord:
-        this.emit(`screen_rec_stop`, e.body as MessageNotification)
+        const msgRecStop = e.body as MessageNotification
+        this.emit(`screen_rec_stop`, msgRecStop)
+        if (msgRecStop.ack_id) {
+          await this.request('ss_ack', {
+            ack_id: msgRecStop.ack_id,
+          })
+        }
         break
 
       case NotificationActions.Screenshot:
-        this.emit(`screenshot`, e.body as MessageNotification)
+        const msgScreenshot = e.body as MessageNotification
+        this.emit(`screenshot`, msgScreenshot)
+        if (msgScreenshot.ack_id) {
+          await this.request('ss_ack', {
+            ack_id: msgScreenshot.ack_id,
+          })
+        }
+
+        break
+
+      case NotificationActions.ACK:
+        const ackMsg = e.body as MessageNotification
+        const ack = this.ackQueue.get(ackMsg.ack_id!)
+        if (ack) {
+          clearTimeout(ack.timerId)
+          this.ackQueue.delete(ackMsg.ack_id!)
+          if (ackMsg.error) {
+            ack.reject(new Error(ackMsg.error))
+          } else {
+            ack.resolve({})
+          }
+        }
+
         break
 
       case NotificationActions.ScreenShare:
@@ -1414,6 +1504,11 @@ export class Client extends EventEmitter<ClientEvents> {
 
             // tslint:disable-next-line: no-floating-promises
             s.start(stream)
+            if (body.ack_id) {
+              await this.request('ss_ack', {
+                ack_id: body.ack_id,
+              })
+            }
 
             break
 
@@ -1426,6 +1521,11 @@ export class Client extends EventEmitter<ClientEvents> {
               receive.answerSession(body.from_sock_id!, {
                 type: 'answer',
                 sdp: body.sdp,
+              })
+            }
+            if (body.ack_id) {
+              await this.request('ss_ack', {
+                ack_id: body.ack_id,
               })
             }
             break

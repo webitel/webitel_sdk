@@ -39,6 +39,8 @@ export interface MessageNotification {
   message: string
   type?: string
   timeout?: number
+  ack_id?: string
+  error?: string
 }
 
 export interface MessageScreenShare {
@@ -53,6 +55,7 @@ export interface MessageScreenShare {
   timeout?: number
   screenConstraints?: any
   RTCConfiguration?: any
+  ack_id?: string
 }
 
 /**
@@ -72,4 +75,5 @@ export enum NotificationActions {
   OpenLink = 'open_link',
   StartScreenRecord = 'ss_record_start',
   StopScreenRecord = 'ss_record_stop',
+  ACK = 'ss_ack',
 }

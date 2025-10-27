@@ -2,6 +2,8 @@ import { ReceiverSession } from '../screen'
 import { Log } from '../log'
 import { Client } from './client'
 
+const ackRequestTimeout = 5000
+
 export class SpyScreen extends ReceiverSession {
   toUserId: number
   recordings: boolean
@@ -25,9 +27,13 @@ export class SpyScreen extends ReceiverSession {
   }
 
   async screenshot() {
-    return this.cli.request(`screenshot`, {
-      to_user_id: this.toUserId,
-    })
+    return this.cli.ackRequest(
+      `screenshot`,
+      {
+        to_user_id: this.toUserId,
+      },
+      ackRequestTimeout
+    )
   }
 
   async startRecord() {
@@ -35,11 +41,17 @@ export class SpyScreen extends ReceiverSession {
       throw new Error('recordings already exists')
     }
 
-    const res = await this.cli.request(`start_record_screen`, {
-      root_id: this.id,
-      to_user_id: this.toUserId,
-    })
+    const res = await this.cli.ackRequest(
+      `start_record_screen`,
+      {
+        root_id: this.id,
+        to_user_id: this.toUserId,
+      },
+      ackRequestTimeout
+    )
     this.recordings = true
+
+    return res
   }
 
   async stopRecord() {
@@ -47,10 +59,16 @@ export class SpyScreen extends ReceiverSession {
       throw new Error('recordings not exists')
     }
 
-    const res = await this.cli.request(`stop_record_screen`, {
-      root_id: this.id,
-      to_user_id: this.toUserId,
-    })
+    const res = await this.cli.ackRequest(
+      `stop_record_screen`,
+      {
+        root_id: this.id,
+        to_user_id: this.toUserId,
+      },
+      ackRequestTimeout
+    )
     this.recordings = false
+
+    return res
   }
 }
