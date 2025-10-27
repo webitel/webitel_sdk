@@ -81,6 +81,7 @@ export interface AgentSession {
   last_status_change: number
   status_duration: number
   status_payload: any
+  status_comment: string
   channels: Channel[]
   is_supervisor: boolean
   is_admin: boolean
@@ -106,6 +107,7 @@ export interface AgentStatusEvent {
   agent_id: number
   timestamp: number
   status: string
+  status_comment: string
   status_payload?: any
   timeout?: number
   channels: Channel[]
@@ -324,6 +326,10 @@ export class Agent {
    */
   get statusPayload() {
     return this.info.status_payload
+  }
+
+  get statusComment() {
+    return this.info.status_comment
   }
 
   /**
@@ -722,6 +728,7 @@ export class Agent {
     }
 
     this.info.status = e.status
+    this.info.status_comment = e.status_comment
     this.info.status_payload = e.status_payload ? e.status_payload : null
     this.lastStatusChange = Date.now()
   }
