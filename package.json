@@ -1,6 +1,6 @@
 {
   "name": "webitel-sdk",
-  "version": "25.08.8",
+  "version": "25.08.9",
   "description": "A library written in TypeScript",
   "keywords": [],
   "main": "./bundles/index.umd.js",
@@ -85,7 +85,8 @@
     "json-refs": "3.0.13",
     "jssip": "=3.10.1",
     "query-string": "7.0.0",
-    "typedoc-github-theme": "0.1.2"
+    "typedoc-github-theme": "0.1.2",
+    "tslib": "2.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "7.2.1",
@@ -119,7 +120,6 @@
     "shx": "0.3.2",
     "standard-version": "8.0.1",
     "ts-jest": "23.10.5",
-    "tslib": "2.2.0",
     "tslint": "5.12.0",
     "tslint-config-prettier": "1.17.0",
     "tslint-config-standard": "8.0.1",
