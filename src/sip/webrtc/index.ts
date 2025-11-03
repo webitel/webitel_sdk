@@ -138,36 +138,20 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       session.on('failed', () => {
         // this handler will be called for incoming calls too
         this.removeSession(callSession)
-        const stream = session._localMediaStream
-        if (stream) {
-          stream.getTracks().forEach((track: MediaStreamTrack) => track.stop())
-        }
       })
 
-      session.on('accepted', () => {
+      session.on('accepted', (a: any) => {
         // the call has answered
-        if (!callSession.incoming) {
-          this.initPeerStream(callSession, session.connection)
-        }
+        this.setupMedia(callSession, session.connection)
       })
 
       session.on('progress', () => {
-        // the call has answered
-        if (!callSession.incoming) {
-          this.initPeerStream(callSession, session.connection)
-        }
+        // the call has pre answer
+        this.setupMedia(callSession, session.connection)
       })
 
       session.on('confirmed', () => {
-        this.initPeerStream(callSession, session.connection)
-
-        const localStream = new MediaStream()
-        session.connection.getSenders().forEach((t: any) => {
-          localStream.addTrack(t.track)
-        })
-
-        callSession.localStream = localStream
-        this.emit('localStreams', callSession, callSession.getLocalMedia())
+        this.setupMedia(callSession, session.connection)
       })
 
       this.emit('newSession', callSession)
@@ -291,14 +275,25 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     return this.sessionCache.has(id!)
   }
 
-  private initPeerStream(sess: Session, connection: any) {
-    if (!sess.peerStream) {
-      const peerStream = new MediaStream()
-      connection.getReceivers().forEach((t: any) => {
-        peerStream.addTrack(t.track)
-      })
-      sess.peerStream = peerStream
+  private setupMedia(sess: Session, connection: any) {
+    const peerMedia = connection.getRemoteStreams()
+    const localMedia = connection.getLocalStreams()
+
+    if (!sess.peerStream && peerMedia) {
+      sess.peerStream = peerMedia[0]
+      if (peerMedia.length > 1) {
+        this.log.warn('more than 1 peer stream')
+      }
+
       this.emit('peerStreams', sess, sess.getPeerMedia())
+    }
+
+    if (!sess.localStream && localMedia) {
+      sess.localStream = localMedia[0]
+      if (localMedia.length > 1) {
+        this.log.warn('more than 1 local stream')
+      }
+      this.emit('localStreams', sess, sess.getLocalMedia())
     }
   }
 
@@ -355,9 +350,11 @@ export class SipPhone extends EventEmitter<SipClientEvents>
           video: undefined as any,
         }
         if (!(audio === false)) {
-          mediaConstraints.audio = {
-            autoGainControl: false,
-          }
+          // TODO
+          // mediaConstraints.audio = {
+          //   autoGainControl: false,
+          // }
+          mediaConstraints.audio = true
         }
         if (video) {
           mediaConstraints.video = {

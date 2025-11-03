@@ -1281,6 +1281,7 @@ export class Client extends EventEmitter<ClientEvents> {
     } catch (e) {
       this.removeSpyScreen(s.id)
       this.log.error('error ', e)
+      throw e
     }
 
     return
