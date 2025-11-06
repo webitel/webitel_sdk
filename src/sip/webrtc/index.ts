@@ -276,10 +276,8 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   }
 
   private setupMedia(sess: Session, connection: any) {
-    const peerMedia = connection.getRemoteStreams()
-    const localMedia = connection.getLocalStreams()
-
-    if (!sess.peerStream && peerMedia) {
+    if (!sess.peerStream && connection.getRemoteStreams) {
+      const peerMedia = connection.getRemoteStreams()
       sess.peerStream = peerMedia[0]
       if (peerMedia.length > 1) {
         this.log.warn('more than 1 peer stream')
@@ -288,7 +286,8 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       this.emit('peerStreams', sess, sess.getPeerMedia())
     }
 
-    if (!sess.localStream && localMedia) {
+    if (!sess.localStream && connection.getLocalStreams) {
+      const localMedia = connection.getLocalStreams()
       sess.localStream = localMedia[0]
       if (localMedia.length > 1) {
         this.log.warn('more than 1 local stream')

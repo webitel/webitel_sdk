@@ -6,7 +6,7 @@ import { Log } from '../log'
 import { CallSession, SipClient, SipConfiguration } from '../sip'
 import { SipPhone } from '../sip/webrtc'
 import { SipPhone as ExperimentalPhone } from '../sip/webrtc2'
-import version from '../version'
+import { version } from '../version'
 import { Agent, AgentSession, AgentStatusEvent, ChannelState } from './agent'
 import {
   AnswerRequest,
@@ -1677,7 +1677,8 @@ export class Client extends EventEmitter<ClientEvents> {
       try {
         this.socket = new Socket(
           this._config.endpoint,
-          this._config.applicationName
+          this._config.applicationName,
+          this.buildVersion
         )
         this.socket.connect(this._config.token!)
       } catch (e) {

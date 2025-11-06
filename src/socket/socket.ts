@@ -59,7 +59,11 @@ export class Socket extends EventEmitter<SocketEvents> {
    * @param host Хост для підключення.
    * @param appName Імя підключення.
    */
-  constructor(private host: string, private appName?: string) {
+  constructor(
+    private host: string,
+    private appName?: string,
+    private appVer?: string
+  ) {
     super()
     // this.socket = null
   }
@@ -72,7 +76,8 @@ export class Socket extends EventEmitter<SocketEvents> {
     this.socket = new WebSocket(
       `${formatWebSocketUri(
         this.host
-      )}/${SOCKET_URL_SUFFIX}?application_name=${this.appName || 'webitel_sdk'}`
+      )}/${SOCKET_URL_SUFFIX}?application_name=${this.appName ||
+        'webitel_sdk'}&ver=${this.appVer || ''}`
     )
 
     this.socket.onclose = (e) => this.onClose(e.code)
