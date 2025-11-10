@@ -1276,7 +1276,7 @@ export class Client extends EventEmitter<ClientEvents> {
           sdp: offer.sdp,
           to_user_id: agentId,
         },
-        timeout || 5000
+        timeout || 10000
       ) // TODO fix timeout
     } catch (e) {
       this.removeSpyScreen(s.id)

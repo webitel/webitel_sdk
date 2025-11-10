@@ -43,8 +43,9 @@ export class ReceiverSession extends EventEmitter<ReceiveEvents> {
 
   onTrackStop(t: MediaStreamTrack) {
     t.onmute = () => {
-      this.log.debug('onmute')
-      this.close()
+      // TODO
+      // this.log.debug('onmute')
+      // this.close()
     }
     t.onended = () => {
       this.log.debug('onended')

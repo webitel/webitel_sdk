@@ -2,7 +2,7 @@ import { ReceiverSession } from '../screen'
 import { Log } from '../log'
 import { Client } from './client'
 
-const ackRequestTimeout = 5000
+const ackRequestTimeout = 10000
 
 export class SpyScreen extends ReceiverSession {
   toUserId: number

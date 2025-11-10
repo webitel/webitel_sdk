@@ -75,8 +75,9 @@ export class SenderSession extends EventEmitter<SenderEvents> {
 
   onTrackStop(t: MediaStreamTrack) {
     t.onmute = () => {
-      this.closeReason = 'mute stream'
-      this.close()
+      // TODO
+      // this.closeReason = 'mute stream'
+      // this.close()
     }
     t.onended = () => {
       this.closeReason = 'ended stream'
