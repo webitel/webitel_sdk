@@ -296,6 +296,7 @@ export interface ConnectionInfo {
    * Вказує, чи дозволено використовувати центр контактів (call center) для цього з'єднання (необов'язкове).
    */
   use_cc?: boolean
+  rtc_configuration?: RTCConfiguration
 }
 
 /**
@@ -1260,7 +1261,12 @@ export class Client extends EventEmitter<ClientEvents> {
     cb: (m: MediaStream) => void,
     timeout?: number
   ) {
-    const s = new SpyScreen(this, agentId, conf, this.log)
+    let rtcConf = conf
+    if (this.connectionInfo.rtc_configuration) {
+      rtcConf = this.connectionInfo.rtc_configuration
+    }
+
+    const s = new SpyScreen(this, agentId, rtcConf, this.log)
     s.on('close', () => {
       this.removeSpyScreen(s.id)
     })
@@ -1473,6 +1479,8 @@ export class Client extends EventEmitter<ClientEvents> {
 
             if (body.RTCConfiguration) {
               RTCConfigurationConf = body.RTCConfiguration
+            } else if (this.connectionInfo.rtc_configuration) {
+              RTCConfigurationConf = this.connectionInfo.rtc_configuration
             }
 
             const stream = await this.screenResolver(displayMediaStreamOptions)
