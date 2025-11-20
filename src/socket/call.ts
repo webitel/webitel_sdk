@@ -2,7 +2,6 @@ import { CallSession } from '../sip'
 import { Client, SdpEvent, UserCallRequest } from './client'
 import { QueueParameters } from './queue'
 import { MemberCommunication, Reporting, Task, TaskData } from './task'
-import { MessageNotification } from './notification'
 
 /**
  * Параметри виклику
@@ -399,12 +398,20 @@ export interface CallEndpoint {
   name?: string
 }
 
+interface VideoData {
+  video?: VideoMediaFlow
+  remote_video?: VideoMediaFlow
+}
+
 /**
  * Інтерфейс для події з'єднання дзвінків.
  * @interface
  * @extends CallEventData, ContactDataEvent
  */
-export interface CallBridged extends CallEventData, ContactDataEvent {
+export interface CallBridged
+  extends CallEventData,
+    ContactDataEvent,
+    VideoData {
   /** Ідентифікатор з'єднаного дзвінка. */
   bridged_id: string
   /** Вихідний параметр кінцевої точки. */
@@ -420,7 +427,7 @@ export interface CallBridged extends CallEventData, ContactDataEvent {
  * @interface
  * @extends CallEventData, ContactDataEvent
  */
-export interface CallInfo extends CallEventData, ContactDataEvent {
+export interface CallInfo extends CallEventData, ContactDataEvent, VideoData {
   /** SIP-ідентифікатор. */
   sip_id: string
 
@@ -501,6 +508,14 @@ export interface CallEvents {
   hangup(): void
 }
 
+export enum VideoMediaFlow {
+  SendRecv = 'sendrecv',
+  SendOnly = 'sendonly',
+  RecvOnly = 'recvonly',
+  Inactive = 'inactive',
+  Disabled = 'disabled',
+}
+
 /**
  * Клас Call: Описує властивості і методи для роботи з дзвінком,
  * включаючи інформацію про його стан, учасників, медіа потоки, та інші атрибути.
@@ -563,6 +578,8 @@ export class Call {
   _activeCounter: number
   contact: Contact | null
   originate: boolean
+  video: VideoMediaFlow | null
+  remoteVideo: VideoMediaFlow | null
 
   /**
    * Конструктор класу Call.
@@ -613,8 +630,11 @@ export class Call {
     this.digits = []
     this.applications = []
     this.appId = e.app_id
+    this.video = null
+    this.remoteVideo = null
     this.setState(e)
     this.setInfo(callInfo)
+    this.setVideo(callInfo as VideoData)
 
     if (this.queue && this.client.agent) {
       this.task = this.client.agent.task.get(+this.queue.attempt_id) || null
@@ -863,6 +883,7 @@ export class Call {
       this.answeredAt = +e.timestamp
     }
     this.setState(e)
+    this.setVideo(e.data as VideoData)
   }
 
   /**
@@ -894,6 +915,7 @@ export class Call {
     }
 
     this.setContactData(bridged)
+    this.setVideo(bridged)
   }
 
   /**
@@ -1467,5 +1489,13 @@ export class Call {
       id: e.contact_id || null,
       hide: e.hide_contact || false,
     }
+  }
+
+  private setVideo(s: VideoData) {
+    if (!s) {
+      return
+    }
+    this.video = s.video || null
+    this.remoteVideo = s.remote_video || null
   }
 }
