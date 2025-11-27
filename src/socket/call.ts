@@ -2,6 +2,7 @@ import { CallSession } from '../sip'
 import { Client, SdpEvent, UserCallRequest } from './client'
 import { QueueParameters } from './queue'
 import { MemberCommunication, Reporting, Task, TaskData } from './task'
+import { generateTimestampFilename } from './utils'
 
 /**
  * Параметри виклику
@@ -567,6 +568,9 @@ export class Call {
   queue!: QueueParameters | null
 
   _muted!: boolean
+  _mutedVideo!: boolean
+  _recordFile: string | null
+  _userId: number | null
 
   digits!: string[]
   applications!: string[]
@@ -590,6 +594,7 @@ export class Call {
     // FIXME перевірити _muted з каналу
     const callInfo = e.data as CallInfo
     this._muted = false
+    this._mutedVideo = false
     this.voice = true
     this.createdAt = +e.timestamp
     this.task = null
@@ -599,6 +604,8 @@ export class Call {
     this._activeCounter = 0
     this.contact = null
     this.notificationHangup = false
+    this._recordFile = null
+    this._userId = client.sessionInfo().user_id // todo
 
     this.answeredAt = 0
     this.hangupAt = 0
@@ -863,6 +870,22 @@ export class Call {
     return this._activeCounter === 1
   }
 
+  get customRecordings() {
+    return !!this._recordFile
+  }
+
+  get allowRecordings() {
+    return !this._recordFile && this.talking
+  }
+
+  get talking() {
+    return this.answeredAt > 0 && !this.hangupAt
+  }
+
+  get hasVideo() {
+    return this.video === VideoMediaFlow.SendRecv
+  }
+
   /**
    * Встановлює активність дзвінка.
    * @param e - Дані події дзвінка.
@@ -1041,6 +1064,7 @@ export class Call {
     this.notificationHangup = hangup.notification_hangup || false
     this.voice = false
     this.peerStreams = []
+    this._recordFile = null
     if (+hangup.reporting_at) {
       this.reportingAt = +hangup.reporting_at // FIXME тип number
     }
@@ -1383,6 +1407,26 @@ export class Call {
     return res
   }
 
+  /*
+  TODO
+   */
+  async muteVideo(mute = true) {
+    ;(this.localStreams || []).forEach((localStream) => {
+      localStream.getVideoTracks().forEach((track) => {
+        track.enabled = !mute
+        this._mutedVideo = mute
+      })
+    })
+  }
+
+  get mutedVideo() {
+    return this._mutedVideo
+  }
+
+  get allowRecordCall() {
+    return this.talking
+  }
+
   /**
    * Створює міст між дзвінками.
    * @param call - Дзвінок, з яким створюється міст.
@@ -1477,6 +1521,64 @@ export class Call {
     return this.client.request(`call_bt_queue`, {
       id: this.id,
       queue_id: queueId,
+    })
+  }
+
+  async startRecord(name?: string) {
+    let fileName = name
+    let ext = 'mp3'
+
+    if (this._recordFile) {
+      throw new Error('Call already recording')
+    }
+
+    if (this.hasVideo) {
+      ext = 'mp4'
+    }
+
+    if (!fileName) {
+      fileName = `recording_vc_${
+        this._userId
+      }_${generateTimestampFilename()}.${ext}`
+    }
+
+    await this.client.request('call_start_rec', {
+      id: this.parentId || this.id,
+      name: fileName,
+      video: this.video === VideoMediaFlow.SendRecv,
+    })
+
+    this._recordFile = fileName
+  }
+
+  async stopRecord() {
+    if (!this._recordFile) {
+      throw new Error('Call not recording')
+    }
+
+    await this.client.request('call_stop_rec', {
+      id: this.parentId || this.id,
+      name: this._recordFile,
+      video: this.video === VideoMediaFlow.SendRecv,
+    })
+
+    this._recordFile = null
+  }
+
+  async screenshot(name?: string) {
+    if (this.video !== VideoMediaFlow.SendRecv) {
+      throw new Error('No video')
+    }
+    let fileName = name
+    if (!fileName) {
+      fileName = `screenshot_vc_${
+        this._userId
+      }_${generateTimestampFilename()}.png`
+    }
+
+    await this.client.request('call_screenshot', {
+      id: this.parentId || this.id,
+      name: fileName,
     })
   }
 
