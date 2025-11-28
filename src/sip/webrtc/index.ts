@@ -276,6 +276,10 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   }
 
   private setupMedia(sess: Session, connection: any) {
+    if (!connection) {
+      return
+    }
+
     if (!sess.peerStream && connection.getRemoteStreams) {
       const peerMedia = connection.getRemoteStreams()
       sess.peerStream = peerMedia[0]

@@ -57,3 +57,105 @@ export function setVP9Video(pc: RTCPeerConnection): void {
     }
   })
 }
+
+export async function sendWebRTCFrame(
+  media: MediaStream,
+  name: string,
+  basePath: string,
+  callId: string,
+  token: string
+) {
+  const video = document.createElement('video')
+  const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
+
+  if (!context) {
+    throw new Error('canvas context not found')
+  }
+
+  video.srcObject = media
+
+  return new Promise((resolve, reject) => {
+    video.addEventListener('loadeddata', async () => {
+      const { videoWidth, videoHeight } = video
+      canvas.width = videoWidth
+      canvas.height = videoHeight
+
+      try {
+        await video.play()
+        context.drawImage(video, 0, 0, videoWidth, videoHeight)
+        const blob = await new Promise((resolveBlob: (res: any) => void) => {
+          canvas.toBlob(resolveBlob, 'image/png', 1)
+        })
+
+        const formData = new FormData()
+        formData.append('frame', blob as Blob, name)
+
+        const response = await fetch(
+          `${basePath}/api/storage/file/${callId}/upload?channel=call&thumbnail=true`,
+          {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Webitel-Access': token,
+            },
+          }
+        )
+
+        if (response.ok) {
+          resolve(await response.json())
+        } else {
+          throw response
+        }
+      } catch (error) {
+        reject(error)
+      }
+    })
+  })
+}
+
+export async function sendWebRTCFrame2(
+  track: MediaStreamTrack,
+  name: string,
+  basePath: string,
+  callId: string,
+  token: string
+) {
+  // @ts-ignore
+  const imageCapture = new ImageCapture(track)
+  try {
+    const imageBitmap = await imageCapture.grabFrame()
+
+    const canvas = document.createElement('canvas')
+    canvas.width = imageBitmap.width
+    canvas.height = imageBitmap.height
+    // @ts-ignore
+    canvas.getContext('2d').drawImage(imageBitmap, 0, 0)
+
+    const blob = await new Promise((resolve) => {
+      canvas.toBlob(resolve, 'image/png', 1)
+    })
+
+    const formData = new FormData()
+    formData.append('frame', blob as Blob, name)
+
+    const response = await fetch(
+      `${basePath}/api/storage/file/${callId}/upload?channel=call&thumbnail=true`,
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Webitel-Access': token,
+        },
+      }
+    )
+
+    if (response.ok) {
+      return await response.json()
+    } else {
+      throw response
+    }
+  } catch (error) {
+    throw error
+  }
+}

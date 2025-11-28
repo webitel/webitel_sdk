@@ -239,6 +239,7 @@ export interface Session {
    * Список ідентифікаторів ролей, які має користувач у межах цієї сесії.
    */
   role_ids: number[]
+  token: string
 }
 
 /**
@@ -512,9 +513,9 @@ export class Client extends EventEmitter<ClientEvents> {
   phone?: SipClient
   lastError: null | Error
   lastLatency: number | null
+  readonly basePath: string
   private socket!: Socket
   private connectionInfo!: ConnectionInfo
-  private readonly basePath: string
 
   private reqSeq = 0
   private queueRequest: Map<number, PromiseCallback> = new Map<

@@ -3,6 +3,8 @@ import { Client, SdpEvent, UserCallRequest } from './client'
 import { QueueParameters } from './queue'
 import { MemberCommunication, Reporting, Task, TaskData } from './task'
 import { generateTimestampFilename } from './utils'
+import { StorageMediaCapture } from '../screen/storage'
+import { sendWebRTCFrame } from '../screen/utils'
 
 /**
  * Параметри виклику
@@ -570,6 +572,7 @@ export class Call {
   _muted!: boolean
   _mutedVideo!: boolean
   _recordFile: string | null
+  _recordCapture: StorageMediaCapture | null
   _userId: number | null
 
   digits!: string[]
@@ -605,6 +608,7 @@ export class Call {
     this.contact = null
     this.notificationHangup = false
     this._recordFile = null
+    this._recordCapture = null
     this._userId = client.sessionInfo().user_id // todo
 
     this.answeredAt = 0
@@ -1064,10 +1068,14 @@ export class Call {
     this.notificationHangup = hangup.notification_hangup || false
     this.voice = false
     this.peerStreams = []
-    this._recordFile = null
     if (+hangup.reporting_at) {
       this.reportingAt = +hangup.reporting_at // FIXME тип number
     }
+
+    if (this._recordFile) {
+      this.stopRecord()
+    }
+
     this.setState(s)
   }
 
@@ -1524,7 +1532,7 @@ export class Call {
     })
   }
 
-  async startRecord(name?: string) {
+  async startRecordNative(name?: string) {
     let fileName = name
     let ext = 'mp3'
 
@@ -1551,7 +1559,7 @@ export class Call {
     this._recordFile = fileName
   }
 
-  async stopRecord() {
+  async stopRecordNative() {
     if (!this._recordFile) {
       throw new Error('Call not recording')
     }
@@ -1565,21 +1573,95 @@ export class Call {
     this._recordFile = null
   }
 
-  async screenshot(name?: string) {
-    if (this.video !== VideoMediaFlow.SendRecv) {
-      throw new Error('No video')
-    }
+  async startRecord(name: string) {
     let fileName = name
-    if (!fileName) {
-      fileName = `screenshot_vc_${
-        this._userId
-      }_${generateTimestampFilename()}.png`
+    let ext = 'mp3'
+
+    if (!this.peerStreams.length) {
+      return
     }
 
-    await this.client.request('call_screenshot', {
-      id: this.parentId || this.id,
-      name: fileName,
+    if (this.hasVideo) {
+      ext = 'mp4'
+    }
+
+    if (!fileName) {
+      fileName = `recording_vc_${
+        this._userId
+      }_${generateTimestampFilename()}.${ext}`
+    }
+
+    const media = new Array<MediaStream>()
+    this.peerStreams.forEach((stream: MediaStream) => {
+      media.push(stream.clone())
     })
+
+    const localAudio = new MediaStream()
+    this.localStreams.forEach((stream: MediaStream) => {
+      stream.getAudioTracks().forEach((track: MediaStreamTrack) => {
+        localAudio.addTrack(track.clone())
+      })
+    })
+    media.push(localAudio)
+
+    try {
+      const capture = new StorageMediaCapture(
+        this.id,
+        fileName,
+        media,
+        [],
+        this.client.basePath,
+        this.client.sessionInfo().token
+      )
+      // TODO
+      capture.on('close', () => {
+        this._recordFile = null
+        this._recordCapture = null
+      })
+      await capture.cast()
+      this._recordCapture = capture
+      this._recordFile = fileName
+    } catch (e) {
+      media.length = 0 // TODO
+      throw e
+    }
+  }
+
+  stopRecord() {
+    if (!this._recordFile) {
+      throw new Error('Call not recording')
+    }
+
+    if (this._recordCapture) {
+      this._recordCapture.close()
+    }
+
+    this._recordFile = null
+    this._recordCapture = null
+  }
+
+  async screenshot(name: string) {
+    if (this.peerStreams.length) {
+      const imgTrack = this.peerStreams[0].getVideoTracks()[0]
+      if (!imgTrack) {
+        throw new Error('No video')
+      }
+
+      let fileName = name
+      if (!fileName) {
+        fileName = `screenshot_vc_${
+          this._userId
+        }_${generateTimestampFilename()}.png`
+      }
+
+      await sendWebRTCFrame(
+        this.peerStreams[0].clone(),
+        fileName,
+        this.client.basePath,
+        this.id,
+        this.client.sessionInfo().token
+      )
+    }
   }
 
   /**
