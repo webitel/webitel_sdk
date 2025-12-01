@@ -1654,7 +1654,7 @@ export class Call {
         }_${generateTimestampFilename()}.png`
       }
 
-      await sendWebRTCFrame(
+      return sendWebRTCFrame(
         this.peerStreams[0].clone(),
         fileName,
         this.client.basePath,

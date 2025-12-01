@@ -92,7 +92,7 @@ export async function sendWebRTCFrame(
         formData.append('frame', blob as Blob, name)
 
         const response = await fetch(
-          `${basePath}/api/storage/file/${callId}/upload?channel=call&thumbnail=true`,
+          `${basePath}/api/storage/file/${callId}/upload?channel=screenshot&thumbnail=true`,
           {
             method: 'POST',
             body: formData,
@@ -103,7 +103,10 @@ export async function sendWebRTCFrame(
         )
 
         if (response.ok) {
-          resolve(await response.json())
+          resolve({
+            file: (await response.json())[0],
+            blob,
+          })
         } else {
           throw response
         }
