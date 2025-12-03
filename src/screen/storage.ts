@@ -75,7 +75,7 @@ export class StorageMediaCapture extends EventEmitter<
 
       try {
         const sdp = JSON.stringify(request)
-        const response = await fetch(url, {
+        const response = await fetch(`${url}?channel=CallChannel`, {
           method,
           headers: {
             'X-Webitel-Access': this.token,
