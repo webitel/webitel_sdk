@@ -459,6 +459,8 @@ export interface CallInfo extends CallEventData, ContactDataEvent, VideoData {
   eavesdrop?: EavesdropData
   /** Вказує, чи дзвінок був ініційований. */
   originate?: boolean
+
+  meeting_id?: string
 }
 
 /**
@@ -574,6 +576,7 @@ export class Call {
   _recordFile: string | null
   _recordCapture: StorageMediaCapture | null
   _userId: number | null
+  meetingId: string | null
 
   digits!: string[]
   applications!: string[]
@@ -616,6 +619,7 @@ export class Call {
     this.bridgedAt = 0
     this.reportingAt = 0
     this.autoAnswered = false
+    this.meetingId = null
 
     this.peerStreams = []
     this.localStreams = []
@@ -633,6 +637,10 @@ export class Call {
       } else {
         this.setSip(client.phone.sipSessionByCallId(e.id))
       }
+    }
+
+    if (callInfo.meeting_id) {
+      this.meetingId = callInfo.meeting_id
     }
 
     this.params = {}
@@ -1680,6 +1688,10 @@ export class Call {
       return
     }
     this.video = s.video || null
-    this.remoteVideo = s.remote_video || null
+    if (this.meetingId) {
+      this.remoteVideo = VideoMediaFlow.SendRecv // TODO, park variable
+    } else {
+      this.remoteVideo = s.remote_video || null
+    }
   }
 }

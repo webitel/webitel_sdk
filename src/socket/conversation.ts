@@ -610,6 +610,7 @@ export class Conversation {
   task: Task | null
   queue: { [index: string]: any } | null
   contact: Contact | null
+  meetingId: string | null
 
   /**
    * Конструктор для розмови.
@@ -651,6 +652,7 @@ export class Conversation {
       id: null,
       hide: false,
     }
+    this.meetingId = null
 
     for (const k in variables) {
       if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
@@ -664,6 +666,9 @@ export class Conversation {
             break
           case 'wbt_hide_contact':
             this.contact.hide = variables[k] === 'true'
+            break
+          case 'wbt_meeting_id':
+            this.meetingId = variables[k]
             break
           default:
             this.variables[k] = variables[k]
