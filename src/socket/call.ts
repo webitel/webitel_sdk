@@ -882,7 +882,7 @@ export class Call {
     return this._activeCounter === 1
   }
 
-  get customRecordings() {
+  get recordings() {
     return !!this._recordFile
   }
 
@@ -1691,7 +1691,7 @@ export class Call {
     if (this.meetingId) {
       this.remoteVideo = VideoMediaFlow.SendRecv // TODO, park variable
     } else {
-      this.remoteVideo = s.remote_video || null
+      this.remoteVideo = s.remote_video || VideoMediaFlow.Inactive
     }
   }
 }
