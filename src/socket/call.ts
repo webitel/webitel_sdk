@@ -5,6 +5,7 @@ import { MemberCommunication, Reporting, Task, TaskData } from './task'
 import { generateTimestampFilename } from './utils'
 import { StorageMediaCapture } from '../screen/storage'
 import { sendWebRTCFrame } from '../screen/utils'
+import { Conversation } from './conversation'
 
 /**
  * Параметри виклику
@@ -590,6 +591,7 @@ export class Call {
   originate: boolean
   video: VideoMediaFlow | null
   remoteVideo: VideoMediaFlow | null
+  conversation: Conversation | null
 
   /**
    * Конструктор класу Call.
@@ -638,6 +640,7 @@ export class Call {
         this.setSip(client.phone.sipSessionByCallId(e.id))
       }
     }
+    this.conversation = null
 
     if (callInfo.meeting_id) {
       this.meetingId = callInfo.meeting_id
@@ -1614,7 +1617,7 @@ export class Call {
 
     try {
       const capture = new StorageMediaCapture(
-        this.id,
+        this.parentId || this.id,
         fileName,
         media,
         [],
@@ -1666,7 +1669,7 @@ export class Call {
         this.peerStreams[0].clone(),
         fileName,
         this.client.basePath,
-        this.id,
+        this.parentId || this.id,
         this.client.sessionInfo().token
       )
     }

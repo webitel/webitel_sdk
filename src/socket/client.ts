@@ -1929,6 +1929,18 @@ export class Client extends EventEmitter<ClientEvents> {
 
     if (conversation) {
       conversation.lastAction = event.action as ChatActions
+      if (conversation.meetingId) {
+        for (const c of this.allCall()) {
+          if (c.meetingId === conversation.meetingId) {
+            c.conversation = conversation
+          } else {
+            this.log.error('not found')
+          }
+        }
+
+        return
+      }
+
       this.eventHandler.emit(WEBSOCKET_EVENT_CHAT, event.action, conversation)
 
       if (this.conversationDestroyed(conversation)) {
