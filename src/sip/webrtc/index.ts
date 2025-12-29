@@ -361,9 +361,8 @@ export class SipPhone extends EventEmitter<SipClientEvents>
         }
         if (video) {
           mediaConstraints.video = {
-            width: { min: 10, ideal: 1280, max: 1920 },
-            height: { min: 10, ideal: 720, max: 1080 },
-            frameRate: { ideal: 10, max: 15 },
+            width: { min: 1024, ideal: 1280, max: 1920 },
+            height: { min: 776, ideal: 720, max: 1080 },
           }
         }
 
