@@ -37,14 +37,24 @@ export interface Outbound {
   params?: OutboundConfiguration
 }
 
+export interface MediaConfig {
+  videoMuted: boolean
+  audioMuted: boolean
+  hold: boolean
+}
+
 export interface CallSession {
   callId?: string
   incoming: boolean
   id: string
+  remoteVideoMuted?: boolean
+  remoteAudioMuted?: boolean
+  remoteHold?: boolean
 
   getLocalMedia(): MediaStream[]
   getPeerMedia(): MediaStream[]
   answer(s: object): Promise<Error>
+  setMediaConfig?(mediaConfig: MediaConfig): void
   // on(name: string, arg?: object): void
 }
 

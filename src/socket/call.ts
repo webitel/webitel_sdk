@@ -962,6 +962,7 @@ export class Call {
    */
   setHold(e: CallEventData) {
     this.setState(e)
+    this.trySendInfo()
   }
 
   /**
@@ -1422,6 +1423,7 @@ export class Call {
       mute,
     })
     this._muted = mute
+    this.trySendInfo()
 
     return res
   }
@@ -1430,16 +1432,46 @@ export class Call {
   TODO
    */
   async muteVideo(mute = true) {
+    let changed = false
     ;(this.localStreams || []).forEach((localStream) => {
       localStream.getVideoTracks().forEach((track) => {
-        track.enabled = !mute
+        if (track.enabled !== !mute) {
+          changed = true
+          track.enabled = !mute
+        }
         this._mutedVideo = mute
       })
     })
+
+    if (changed) {
+      this.trySendInfo()
+    }
+  }
+
+  trySendInfo() {
+    if (this.bridgedId && this.sip && this.sip.setMediaConfig) {
+      this.sip.setMediaConfig({
+        videoMuted: this.mutedVideo,
+        audioMuted: this.muted,
+        hold: this.isHold,
+      })
+    }
   }
 
   get mutedVideo() {
     return this._mutedVideo
+  }
+
+  get remoteVideoMuted() {
+    return this.sip && !!this.sip.remoteVideoMuted
+  }
+
+  get remoteAudioMuted() {
+    return this.sip && !!this.sip.remoteAudioMuted
+  }
+
+  get remoteHold() {
+    return this.sip && !!this.sip.remoteHold
   }
 
   get allowRecordCall() {

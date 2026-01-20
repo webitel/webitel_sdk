@@ -8,6 +8,9 @@ export class Session implements CallSession {
   instanceId: string
   peerStream: MediaStream | null
   localStream: MediaStream | null
+  remoteVideoMuted: boolean
+  remoteAudioMuted: boolean
+  remoteHold: boolean
 
   private session: RTCSession
 
@@ -18,6 +21,9 @@ export class Session implements CallSession {
     this.instanceId = request.getHeader('X-Webitel-Sock-Id')
     this.peerStream = null
     this.localStream = null
+    this.remoteVideoMuted = false
+    this.remoteAudioMuted = false
+    this.remoteHold = false
   }
 
   get id(): string {
@@ -43,5 +49,11 @@ export class Session implements CallSession {
       this.session.answer(s)
     })
   }
+
+  setMediaConfig(s: object) {
+    // @ts-ignore
+    this.session.sendInfo('application/json', JSON.stringify(s))
+  }
+
   // on(name: string, arg?: object): void
 }

@@ -93,9 +93,47 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       }
     }
 
+    const forceHighQuality = async (sender: any) => {
+      try {
+        const parameters = sender.getParameters()
+
+        if (!parameters.encodings || parameters.encodings.length === 0) {
+          parameters.encodings = [{}]
+        }
+
+        // parameters.encodings[0].scaleResolutionDownBy = 1.0;
+
+        parameters.encodings[0].priority = 'high'
+        parameters.encodings[0].networkPriority = 'high'
+        parameters.encodings[0].maxBitrate = 4000 * 100 * 1000 // 4000kbps
+        // parameters.encodings[0].scalabilityMode = 'L1T3';
+        parameters.degradationPreference = 'maintain-resolution'
+
+        await sender.setParameters(parameters)
+      } catch (e) {
+        this.log.error(`SipPhone Error: ${e}`)
+      }
+    }
+
     await this.ua.call(req.destination, {
       ...invite,
       ...display,
+      eventHandlers: {
+        peerconnection: async (data: any) => {
+          const pc = data.peerconnection
+          pc.addEventListener('track', async (event: any) => {
+            if (event.track.kind === 'video') {
+              const sender = pc
+                .getSenders()
+                // @ts-ignore
+                .find((s: object) => s.track && s.track.kind === 'video')
+              if (sender) {
+                await forceHighQuality(sender)
+              }
+            }
+          })
+        },
+      },
     })
   }
 
@@ -152,6 +190,15 @@ export class SipPhone extends EventEmitter<SipClientEvents>
 
       session.on('confirmed', () => {
         this.setupMedia(callSession, session.connection)
+      })
+
+      session.on('newInfo', (ev: any) => {
+        if (ev.originator === 'remote') {
+          const body = JSON.parse(ev.request.body)
+          callSession.remoteVideoMuted = !!body.videoMuted
+          callSession.remoteAudioMuted = !!body.audioMuted
+          callSession.remoteHold = !!body.hold
+        }
       })
 
       this.emit('newSession', callSession)

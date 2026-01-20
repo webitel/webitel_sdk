@@ -3,6 +3,7 @@ export declare class RTCSession {
   direction: string
   connection: any
   answer(params: object): void
+  sendInfo(s: object): void
   on<T extends keyof any>(type: T, listener: any[T]): this
   _localMediaStream: MediaStream
 }
