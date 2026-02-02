@@ -1152,6 +1152,7 @@ export class Client extends EventEmitter<ClientEvents> {
     )
 
     phone.on('newSession', this.onNewCallSession.bind(this))
+    phone.on('info', this.onCallInfoSession.bind(this))
     phone.on('registered', () => this.emit('phone_registered', true))
     phone.on('connected', () => this.emit('phone_connected', true))
     phone.on('unregistered', () => this.emit('phone_registered', false))
@@ -1654,6 +1655,13 @@ export class Client extends EventEmitter<ClientEvents> {
       if (call.sip && call.sip.id === session.id) {
         return call
       }
+    }
+  }
+
+  private onCallInfoSession(session: CallSession) {
+    const call = this.callBySession(session)
+    if (call) {
+      this.eventHandler.emit(WEBSOCKET_EVENT_CALL, CallActions.Info, call)
     }
   }
 

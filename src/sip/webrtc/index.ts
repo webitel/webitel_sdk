@@ -199,6 +199,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
           callSession.remoteAudioMuted = !!body.audioMuted
           callSession.remoteHold = !!body.hold
         }
+        this.emit('info', callSession)
       })
 
       this.emit('newSession', callSession)

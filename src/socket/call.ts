@@ -286,6 +286,7 @@ export enum CallActions {
    * Прослуховування дзвінка (eavesdrop).
    */
   Eavesdrop = 'eavesdrop',
+  Info = 'info',
 }
 
 /**
