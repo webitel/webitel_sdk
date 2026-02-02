@@ -66,6 +66,7 @@ export interface SipClientEvents {
   peerStreams(session: CallSession, e: MediaStream[] | null): void
   localStreams(session: CallSession, e: MediaStream[] | null): void
   newSession(session: CallSession): void
+  sessionCreated(session: CallSession, mutator: (mutatedSession: CallSession) => void): void
 }
 
 export abstract class SipClient extends EventEmitter<SipClientEvents> {

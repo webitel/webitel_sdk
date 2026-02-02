@@ -164,7 +164,12 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       const session = e.session
       const id = session.id
 
-      const callSession = new Session(session, e.request)
+      let callSession = new Session(session, e.request)
+
+      this.emit('sessionCreated', { callSession, mutator: (mutatedCallSession: Session) => {
+      // see https://webitel.atlassian.net/browse/WTEL-8416?focusedCommentId=723766
+        callSession = mutatedCallSession; 
+      } })
 
       this.storeSession(id, callSession)
 
