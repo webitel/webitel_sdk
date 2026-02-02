@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { EventEmitter } from 'ee-ts'
 
 import { Log } from '../log'
-import { CallSession, SipClient, SipConfiguration } from '../sip'
+import { CallSession, SipClient, SipConfiguration, SipClientEvents } from '../sip'
 import { SipPhone } from '../sip/webrtc'
 import { SipPhone as ExperimentalPhone } from '../sip/webrtc2'
 import { version } from '../version'
@@ -498,6 +498,8 @@ export interface ClientEvents {
    * @param call - Об'єкт дзвінка.
    */
   call_hangup(call: Call): void
+
+  phone_session_created(payload: SipClientEvents["sessionCreated"]): void
 }
 
 /**
@@ -1155,6 +1157,9 @@ export class Client extends EventEmitter<ClientEvents> {
     phone.on('registered', () => this.emit('phone_registered', true))
     phone.on('connected', () => this.emit('phone_connected', true))
     phone.on('unregistered', () => this.emit('phone_registered', false))
+    phone.on('sessionCreated', (payload: SipClientEvents["sessionCreated"]) => {
+      this.emit('phone_session_created', payload);
+    });
   }
 
   phoneIsRegister() {
