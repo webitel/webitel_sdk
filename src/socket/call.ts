@@ -921,6 +921,10 @@ export class Call {
       }
       this.answeredAt = +e.timestamp
     }
+    if (this.isHold) {
+      this.trySendInfo()
+    }
+
     this.setState(e)
     this.setVideo(e.data as VideoData)
   }
