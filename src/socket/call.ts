@@ -921,12 +921,14 @@ export class Call {
       }
       this.answeredAt = +e.timestamp
     }
-    if (this.isHold) {
-      this.trySendInfo()
-    }
+
+    const isHold = this.isHold
 
     this.setState(e)
     this.setVideo(e.data as VideoData)
+    if (isHold) {
+      this.trySendInfo()
+    }
   }
 
   /**
