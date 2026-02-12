@@ -54,6 +54,7 @@ export interface WaitingMemberChat extends WaitingMemberProperties {
   displayName: string
   peer: string
   chat: string
+  member: object
 }
 
 /**
@@ -441,6 +442,7 @@ export class Agent {
           deadline: el.deadline,
           queue: el.queue,
           wait: el.wait,
+          member: el.communication.member,
         })
 
         if (this.waitingListChats.length >= this.maxWaitingListChats) {
