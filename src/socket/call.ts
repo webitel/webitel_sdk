@@ -1,4 +1,4 @@
-import { CallSession } from '../sip'
+import { CallSession, MediaConfig } from '../sip'
 import { Client, SdpEvent, UserCallRequest } from './client'
 import { QueueParameters } from './queue'
 import { MemberCommunication, Reporting, Task, TaskData } from './task'
@@ -922,12 +922,12 @@ export class Call {
       this.answeredAt = +e.timestamp
     }
 
-    const isHold = this.isHold
+    const isHold = this.isHold || this.firstActive
 
     this.setState(e)
     this.setVideo(e.data as VideoData)
     if (isHold) {
-      this.trySendInfo()
+      this.trySendInfo(this.firstActive)
     }
   }
 
@@ -1455,13 +1455,19 @@ export class Call {
     }
   }
 
-  trySendInfo() {
-    if (this.bridgedId && this.sip && this.sip.setMediaConfig) {
-      this.sip.setMediaConfig({
+  trySendInfo(syncRequested?: boolean) {
+    if (this.sip && this.sip.setMediaConfig) {
+      const req = {
         videoMuted: this.mutedVideo,
         audioMuted: this.muted,
         hold: this.isHold,
-      })
+      } as MediaConfig
+
+      if (syncRequested) {
+        req.syncRequested = true
+      }
+
+      this.sip.setMediaConfig(req)
     }
   }
 

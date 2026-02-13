@@ -41,6 +41,7 @@ export interface MediaConfig {
   videoMuted: boolean
   audioMuted: boolean
   hold: boolean
+  syncRequested?: boolean
 }
 
 export interface CallSession {
