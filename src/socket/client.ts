@@ -17,9 +17,11 @@ import {
   CallEventEavesdrop,
   CallEventExecute,
   CallItem,
+  CallMediaStats,
   CallVariables,
   EavesdropRequest,
   OutboundCallRequest,
+  RtpMetrics,
 } from './call'
 import {
   ChatActions,
@@ -185,6 +187,8 @@ const WEBSOCKET_EVENT_ERROR = 'error'
 
 // Подія WebSocket для обробки загальних повідомлень
 const WEBSOCKET_EVENT_NOTIFICATION = 'notification'
+
+export const WEBSOCKET_EVENT_CALL_MEDIA_METRIC = 'call_media_metric'
 
 // Подія WebSocket для обробки завдань
 const TASK_EVENT = 'task'
@@ -498,6 +502,8 @@ export interface ClientEvents {
    * @param call - Об'єкт дзвінка.
    */
   call_hangup(call: Call): void
+
+  [WEBSOCKET_EVENT_CALL_MEDIA_METRIC](rtp: RtpMetrics): void
 }
 
 /**
@@ -1806,6 +1812,12 @@ export class Client extends EventEmitter<ClientEvents> {
             this.generateTone()
           }
         }
+        break
+      case CallActions.Stats:
+        this.emit(
+          WEBSOCKET_EVENT_CALL_MEDIA_METRIC,
+          (event.data as CallMediaStats).rtp
+        )
         break
 
       default:

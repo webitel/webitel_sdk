@@ -287,6 +287,7 @@ export enum CallActions {
    */
   Eavesdrop = 'eavesdrop',
   Info = 'info',
+  Stats = 'stats',
 }
 
 /**
@@ -325,6 +326,25 @@ interface Contact {
   id: number | null
   /** Вказує, чи потрібно ховати контакт. */
   hide: boolean
+}
+
+export interface RTPAggregate {
+  average: number
+  min: number
+  min_at: number
+  max: number
+  max_at: number
+}
+
+export interface RtpMetrics {
+  mos: RTPAggregate
+  jitter: RTPAggregate
+  roundtrip: RTPAggregate
+  packetloss: RTPAggregate
+}
+
+export interface CallMediaStats {
+  rtp: RtpMetrics
 }
 
 /**
