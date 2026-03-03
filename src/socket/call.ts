@@ -1672,13 +1672,9 @@ export class Call {
       media.push(stream.clone())
     })
 
-    const localAudio = new MediaStream()
     this.localStreams.forEach((stream: MediaStream) => {
-      stream.getAudioTracks().forEach((track: MediaStreamTrack) => {
-        localAudio.addTrack(track.clone())
-      })
+      media.push(stream.clone())
     })
-    media.push(localAudio)
 
     try {
       const capture = new StorageMediaCapture(
