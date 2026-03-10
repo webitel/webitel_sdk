@@ -919,7 +919,7 @@ export class Call {
   }
 
   get hasVideo() {
-    return this.video === VideoMediaFlow.SendRecv
+    return this.remoteVideo === VideoMediaFlow.SendRecv
   }
 
   /**
@@ -946,8 +946,8 @@ export class Call {
 
     this.setState(e)
     this.setVideo(e.data as VideoData)
-    if (isHold) {
-      this.trySendInfo(this.firstActive)
+    if (isHold && this.direction === CallDirection.Inbound) {
+      // this.trySendInfo(this.firstActive)
     }
   }
 
