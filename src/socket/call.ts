@@ -947,7 +947,7 @@ export class Call {
     this.setState(e)
     this.setVideo(e.data as VideoData)
     if (isHold && this.direction === CallDirection.Inbound) {
-      // this.trySendInfo(this.firstActive)
+      this.trySendInfo(this.firstActive)
     }
   }
 

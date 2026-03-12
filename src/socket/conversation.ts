@@ -259,6 +259,8 @@ export interface Message {
    * @type {number | null}
    */
   updated_at?: number | null
+
+  conversation?: string
 }
 
 /**
@@ -851,6 +853,10 @@ export class Conversation {
    */
   get messages(): MessageWithChannel[] {
     return this.getMessages()
+  }
+
+  get getConversationId() {
+    return this.conversationId
   }
 
   /**

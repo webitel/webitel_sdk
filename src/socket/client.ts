@@ -1908,8 +1908,19 @@ export class Client extends EventEmitter<ClientEvents> {
         message.timestamp = timestamp
         // fixme
         for (const v of this.allConversations()) {
-          if (!v.closedAt && v.membersId.indexOf(message.channel_id) > -1) {
-            conversation = v
+          if (!v.closedAt) {
+            if (v.membersId.indexOf(message.channel_id) > -1) {
+              conversation = v
+            } else if (
+              !message.channel_id &&
+              v.getConversationId === message.conversation_id
+            ) {
+              conversation = v
+            }
+
+            if (conversation) {
+              break
+            }
           }
         }
         if (conversation) {
