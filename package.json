@@ -75,7 +75,7 @@
     ]
   },
   "peerDependencies": {
-    "axios": "^1.6.8",
+    "axios": "1.7.7",
     "ee-ts": "1.0.1"
   },
   "dependencies": {
