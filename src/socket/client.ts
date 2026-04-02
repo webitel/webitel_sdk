@@ -602,6 +602,7 @@ export class Client extends EventEmitter<ClientEvents> {
             sip_id: '',
 
             parent_id: c.parent_id,
+            hide_number: c.hide_number,
 
             direction: c.direction,
             destination: c.destination,

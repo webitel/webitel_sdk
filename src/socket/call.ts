@@ -145,6 +145,7 @@ export interface CallItem {
   task?: TaskData
   /** Ідентифікатор контакту. */
   contact_id?: number
+  hide_number?: boolean
 }
 
 /**
@@ -483,6 +484,7 @@ export interface CallInfo extends CallEventData, ContactDataEvent, VideoData {
   originate?: boolean
 
   meeting_id?: string
+  hide_number?: boolean
 }
 
 /**
@@ -599,6 +601,7 @@ export class Call {
   _recordCapture: StorageMediaCapture | null
   _userId: number | null
   meetingId: string | null
+  readonly hideNumber: boolean
 
   digits!: string[]
   applications!: string[]
@@ -643,6 +646,7 @@ export class Call {
     this.reportingAt = 0
     this.autoAnswered = false
     this.meetingId = null
+    this.hideNumber = callInfo.hide_number === true
 
     this.peerStreams = []
     this.localStreams = []
@@ -1210,11 +1214,7 @@ export class Call {
     }
   }
 
-  /**
-   * Отримує ім'я для відображення.
-   * @returns Ім'я для відображення.
-   */
-  get displayName() {
+  get _displayNameValue() {
     if (this.direction === 'inbound') {
       return this.from.name
     } else {
@@ -1224,6 +1224,20 @@ export class Call {
 
       return this.destination
     }
+  }
+
+  /**
+   * Отримує ім'я для відображення.
+   * @returns Ім'я для відображення.
+   */
+  get displayName() {
+    const name = this._displayNameValue
+    if (name === this.displayNumber) {
+      // todo, bug fs
+      return ''
+    }
+
+    return name
   }
 
   /**
