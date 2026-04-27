@@ -193,8 +193,18 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       })
 
       session.on('newInfo', (ev: any) => {
-        if (ev.originator === 'remote') {
-          const body = JSON.parse(ev.request.body)
+        if (ev.originator !== 'remote') {
+          return
+        }
+
+        let body = null
+        try {
+          body = JSON.parse(ev.request.body)
+        } catch (e) {
+          return
+        }
+
+        if (body) {
           callSession.remoteVideoMuted = !!body.videoMuted
           callSession.remoteAudioMuted = !!body.audioMuted
           callSession.remoteHold = !!body.hold

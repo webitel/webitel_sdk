@@ -222,6 +222,7 @@ export enum CallActions {
    * Дзвінок у режимі мосту (bridge).
    */
   Bridge = 'bridge',
+  Progress = 'progress',
 
   /**
    * Дзвінок у режимі утримання (hold).
@@ -1232,8 +1233,8 @@ export class Call {
    */
   get displayName() {
     const name = this._displayNameValue
-    if (name === this.displayNumber) {
-      // todo, bug fs
+    // todo, bug fs
+    if (name === 'Outbound Call' || name === this.displayNumber) {
       return ''
     }
 

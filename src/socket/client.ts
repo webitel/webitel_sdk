@@ -1753,6 +1753,8 @@ export class Client extends EventEmitter<ClientEvents> {
           call.setActive(event)
         }
         break
+      case CallActions.Progress:
+        return
 
       case CallActions.Bridge:
         call = this.callById(event.id)
@@ -1822,7 +1824,7 @@ export class Client extends EventEmitter<ClientEvents> {
         break
 
       default:
-        throw new Error('Unhandled action')
+        throw new Error(`Unhandled event ${event.event}`)
     }
 
     if (call) {
