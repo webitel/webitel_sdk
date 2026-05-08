@@ -784,6 +784,9 @@ export class Conversation {
       this._autoAnswerTimerId = null
     }
     this.member = wrapChannelMember(member)
+    if (!this.members.some((m) => m.id === this.member.id)) {
+      this.members.push(this.member)
+    }
     this.inviteId = null // deleted in DB
   }
 
