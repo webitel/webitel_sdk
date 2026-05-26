@@ -953,8 +953,8 @@ export class Conversation {
    * Перевіряє, чи дозволена подача звітності.
    * @type {boolean}
    */
-  get allowReporting() {
-    return this.answeredAt > 0 && this.hasReporting
+  get allowReporting(): boolean {
+    return (this.answeredAt > 0 || !!this._autoAnswerParam) && this.hasReporting
   }
 
   /**

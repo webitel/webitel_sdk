@@ -1127,8 +1127,11 @@ export class Call {
    * Перевіряє, чи дозволена звітність.
    * @returns Чи дозволена звітність.
    */
-  get allowReporting() {
-    return this.answeredAt > 0 && this.hasReporting
+  get allowReporting(): boolean {
+    return (
+      this.hasReporting &&
+      (this.answeredAt > 0 || (!!this.params && !!this.params.autoAnswer))
+    )
   }
 
   /**
