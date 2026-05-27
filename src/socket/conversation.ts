@@ -955,7 +955,10 @@ export class Conversation {
    * @type {boolean}
    */
   get allowReporting(): boolean {
-    return (this.answeredAt > 0 || !!this._autoAnswerParam) && this.hasReporting
+    const isAutoAnswer =
+      this._autoAnswerParam === true || this._autoAnswerParam === 'true'
+
+    return (this.answeredAt > 0 || isAutoAnswer) && this.hasReporting
   }
 
   /**
