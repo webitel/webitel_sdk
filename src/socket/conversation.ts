@@ -555,6 +555,7 @@ export interface ConversationItem {
    * @type {TaskData | undefined}
    */
   task?: TaskData
+  member?: ChatChannel
 }
 
 /**

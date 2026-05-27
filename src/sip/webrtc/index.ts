@@ -12,6 +12,10 @@ interface PeerConnectionEvent {
   peerconnection: RTCPeerConnection
 }
 
+interface LegacyNavigator extends Navigator {
+  getUserMedia?: any
+}
+
 export class SipPhone extends EventEmitter<SipClientEvents>
   implements SipClient {
   static readonly userAgent = `Webitel-Phone/${version}`
@@ -442,18 +446,7 @@ async function getMediaStream(
         .then((stream) => resolve(stream))
         .catch((err) => reject(err))
     } else {
-      /// <reference types="webrtc" />
-      const getUserMedia =
-        navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia ||
-        navigator.msGetUserMedia
-
-      getUserMedia(
-        constraints,
-        (stream) => resolve(stream),
-        (err) => reject(err)
-      )
+      return reject(new Error('getUserMedia is not supported in this browser'))
     }
   })
 }

@@ -716,11 +716,7 @@ export class Client extends EventEmitter<ClientEvents> {
         if (conv.invite_id) {
           c.setInvite(conv.invite_id, conv.created_at)
         } else if (conv.channel_id) {
-          c.setAnswered(conv.channel_id, conv.joined_at, {
-            id: conv.channel_id,
-            name: 'TODO',
-            type: 'webitel',
-          })
+          c.setAnswered(conv.channel_id, conv.joined_at, conv.member!)
           if (conv.closed_at) {
             c.setClosed(conv.closed_at)
           }
