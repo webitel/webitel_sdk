@@ -236,6 +236,7 @@ export enum ChannelType {
    * Тип каналу - вихідний дзвінок.
    */
   OutCall = 'out_call',
+  IM = 'im',
 }
 
 /**

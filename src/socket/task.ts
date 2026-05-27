@@ -812,7 +812,10 @@ export class Task {
   setOffering(e: OfferingEvent) {
     this.offeringAt = e.timestamp
 
-    if (e.offering.auto_answer && this.channel === ChannelType.Job) {
+    if (
+      e.offering.auto_answer &&
+      (this.channel === ChannelType.Job || this.channel === ChannelType.IM)
+    ) {
       this._autoAnswerParam = e.offering.auto_answer
       this.acceptDelay().catch((err) => {
         this.client.emit('error', err)
