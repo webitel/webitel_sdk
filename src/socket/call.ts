@@ -1128,10 +1128,10 @@ export class Call {
    * @returns Чи дозволена звітність.
    */
   get allowReporting(): boolean {
-    return (
-      this.hasReporting &&
-      (this.answeredAt > 0 || (!!this.params && !!this.params.autoAnswer))
-    )
+    const autoAnswer = this.params && this.params.autoAnswer
+    const isAutoAnswerTrue = autoAnswer === true || autoAnswer === 'true'
+
+    return this.hasReporting && (this.answeredAt > 0 || isAutoAnswerTrue)
   }
 
   /**
