@@ -3,7 +3,12 @@ import Axios from 'axios'
 import { EventEmitter } from 'ee-ts'
 
 import { Log } from '../log'
-import { CallSession, SipClient, SipConfiguration } from '../sip'
+import {
+  AudioProcessingConfig,
+  CallSession,
+  SipClient,
+  SipConfiguration,
+} from '../sip'
 import { SipPhone } from '../sip/webrtc'
 import { SipPhone as ExperimentalPhone } from '../sip/webrtc2'
 import { version } from '../version'
@@ -77,6 +82,9 @@ import { SpyScreen } from './screen'
  * @property {number} [phone] - (Необов'язковий) Номер телефону для реєстрації.
  * @property {boolean} [debug] - (Необов'язковий) Вказує, чи слід увімкнути режим налагодження.
  * @property {number} [autoAnswerDelayTime] - (Необов'язковий) Час затримки перед автоматичною відповіддю на дзвінок.
+ * @property {boolean} [echoCancellation] - (Необов'язковий) Вказує, чи слід увімкнути придушення відлуння.
+ * @property {boolean} [noiseSuppression] - (Необов'язковий) Вказує, чи слід увімкнути придушення шуму.
+ * @property {boolean} [autoGainControl] - (Необов'язковий) Вказує, чи слід увімкнути автоматичне регулювання підсилення.
  */
 export interface Config {
   endpoint: string
@@ -89,6 +97,9 @@ export interface Config {
   autoAnswerDelayTime?: number
   screenResolver?: ScreenResolver | null
   applicationName?: string
+  echoCancellation?: boolean
+  noiseSuppression?: boolean
+  autoGainControl?: boolean
 }
 
 /**
@@ -1111,6 +1122,13 @@ export class Client extends EventEmitter<ClientEvents> {
     }
   }
 
+  updateAudioProcessing(processing: AudioProcessingConfig) {
+    this._config.echoCancellation = processing.echoCancellation
+    this._config.noiseSuppression = processing.noiseSuppression
+    this._config.autoGainControl = processing.autoGainControl
+    this.phone?.setAudioProcessing(processing)
+  }
+
   async registerCallClient(phone: SipClient) {
     this.phone = phone
     this.subscribePhone(phone)
@@ -1613,10 +1631,16 @@ export class Client extends EventEmitter<ClientEvents> {
       return
     }
 
+    const audioProcessing = {
+      echoCancellation: this._config.echoCancellation,
+      noiseSuppression: this._config.noiseSuppression,
+      autoGainControl: this._config.autoGainControl,
+    }
+
     return this.registerCallClient(
       this.connectionInfo.b2bua
-        ? new ExperimentalPhone(this)
-        : new SipPhone(this.instanceId, this._config.debug)
+        ? new ExperimentalPhone(this, audioProcessing)
+        : new SipPhone(this.instanceId, this._config.debug, audioProcessing)
     )
   }
 

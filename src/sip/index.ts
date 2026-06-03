@@ -44,6 +44,32 @@ export interface MediaConfig {
   syncRequested?: boolean
 }
 
+export interface AudioProcessingConfig {
+  echoCancellation?: boolean
+  noiseSuppression?: boolean
+  autoGainControl?: boolean
+}
+
+export function buildAudioConstraints(
+  processing: AudioProcessingConfig = {}
+): boolean | MediaTrackConstraints {
+  const { echoCancellation, noiseSuppression, autoGainControl } = processing
+
+  if (
+    echoCancellation === undefined &&
+    noiseSuppression === undefined &&
+    autoGainControl === undefined
+  ) {
+    return true
+  }
+
+  return {
+    echoCancellation: !!echoCancellation,
+    noiseSuppression: !!noiseSuppression,
+    autoGainControl: !!autoGainControl,
+  }
+}
+
 export interface CallSession {
   callId?: string
   incoming: boolean
@@ -79,6 +105,8 @@ export abstract class SipClient extends EventEmitter<SipClientEvents> {
 
   abstract call(req: Outbound): Promise<void | Error>
   abstract isRegistered(): boolean
+
+  abstract setAudioProcessing(processing: AudioProcessingConfig): void
 
   // TODO del me
   abstract sipSessionByCallId(id: string): CallSession | null
