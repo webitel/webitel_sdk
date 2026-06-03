@@ -146,6 +146,7 @@ export interface CallItem {
   /** Ідентифікатор контакту. */
   contact_id?: number
   hide_number?: boolean
+  is_consult_to_queue?: boolean
 }
 
 /**
@@ -486,6 +487,7 @@ export interface CallInfo extends CallEventData, ContactDataEvent, VideoData {
 
   meeting_id?: string
   hide_number?: boolean
+  is_consult_to_queue?: boolean
 }
 
 /**
@@ -591,6 +593,7 @@ export class Call {
   hangupCause!: string
   hangupSipCode!: number
   notificationHangup: boolean
+  isConsultToQueue: boolean
 
   parentId?: string
   bridgedId!: string
@@ -683,6 +686,7 @@ export class Call {
     this.setState(e)
     this.setInfo(callInfo)
     this.setVideo(callInfo as VideoData)
+    this.isConsultToQueue = callInfo.is_consult_to_queue === true
 
     if (this.queue && this.client.agent) {
       this.task = this.client.agent.task.get(+this.queue.attempt_id) || null

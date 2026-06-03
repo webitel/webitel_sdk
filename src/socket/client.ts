@@ -603,6 +603,7 @@ export class Client extends EventEmitter<ClientEvents> {
 
             parent_id: c.parent_id,
             hide_number: c.hide_number,
+            is_consult_to_queue: c.is_consult_to_queue,
 
             direction: c.direction,
             destination: c.destination,
