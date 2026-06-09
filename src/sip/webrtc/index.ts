@@ -149,6 +149,10 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     })
   }
 
+  setAudioProcessing(processing: AudioProcessingConfig) {
+    this.audioProcessing = processing
+  }
+
   async register(sipConf: SipConfiguration) {
     const socket = new WebSocketInterface(sipConf.server)
 
@@ -412,10 +416,6 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     return stream
   }
 
-  setAudioProcessing(processing: AudioProcessingConfig) {
-    this.audioProcessing = processing
-  }
-
   private async getUserMedia(req: Answer): Promise<MediaStream> {
     return new Promise<MediaStream>(
       async (resolve: (stream: MediaStream) => void, reject: () => void) => {
@@ -439,7 +439,6 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       }
     )
   }
-
 }
 
 async function getMediaStream(
