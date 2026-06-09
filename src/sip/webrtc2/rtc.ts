@@ -1,5 +1,7 @@
 import { EventEmitter } from 'events'
 
+import { AudioProcessingConfig, buildAudioConstraints } from '../index'
+
 const RTCState = {
   Init: 0,
   Processing: 1,
@@ -16,7 +18,7 @@ export class RTC extends EventEmitter {
   state = RTCState.Init
   pc: RTCPeerConnection
 
-  constructor() {
+  constructor(private audioProcessing: AudioProcessingConfig = {}) {
     super()
     const configuration = {}
     // const pcConstraints = {"optional": [{"DtlsSrtpKeyAgreement": true}]};
@@ -100,7 +102,7 @@ export class RTC extends EventEmitter {
   async initLocalMediaStream() {
     if (!this.localStream) {
       this.localStream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
+        audio: buildAudioConstraints(this.audioProcessing),
         video: false,
       })
       this.localStream.getTracks().forEach((track) => this.pc.addTrack(track))

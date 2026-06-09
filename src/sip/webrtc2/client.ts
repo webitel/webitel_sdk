@@ -3,6 +3,7 @@ import { Session } from './session'
 import { RPC } from './rpc'
 import {
   Answer,
+  AudioProcessingConfig,
   CallSession,
   Outbound,
   SipClient,
@@ -20,7 +21,10 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   registered: boolean
   ua: object
 
-  constructor(private rpc: RPC) {
+  constructor(
+    private rpc: RPC,
+    public audioProcessing: AudioProcessingConfig = {}
+  ) {
     super()
     this.sessions = []
     this.registered = false
@@ -55,6 +59,10 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     this.rpc.on('call_hangup', async (call: any) => {
       await this.removeSession((call.sipId as string) || (call.id as string))
     })
+  }
+
+  setAudioProcessing(processing: AudioProcessingConfig) {
+    this.audioProcessing = processing
   }
 
   emitSessionMedia(sess: Session) {

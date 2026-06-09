@@ -12,7 +12,7 @@ export class Session implements CallSession {
   id: string
   answered: boolean
   constructor(private cli: SipPhone, rpc: RPC) {
-    this.rtc = new RTC()
+    this.rtc = new RTC(cli.audioProcessing)
     this.id = ''
     this.answered = false
     this.incoming = false

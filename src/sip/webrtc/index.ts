@@ -4,7 +4,11 @@ import { debug, version, UA, WebSocketInterface } from 'jssip/lib-es5/JsSIP'
 
 import { Answer, CallSession, Outbound, SipClient, SipConfiguration } from '../'
 import { Log } from '../../log'
-import { SipClientEvents } from '../index'
+import {
+  AudioProcessingConfig,
+  buildAudioConstraints,
+  SipClientEvents,
+} from '../index'
 import { Session } from './session'
 import { RTCSessionEvent } from './types'
 
@@ -26,7 +30,11 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   private sessionCache = new Map<string, Session>()
   private log: Log
 
-  constructor(private instanceId: string, d?: boolean) {
+  constructor(
+    private instanceId: string,
+    d?: boolean,
+    private audioProcessing: AudioProcessingConfig = {}
+  ) {
     super()
 
     this.log = new Log()
@@ -139,6 +147,10 @@ export class SipPhone extends EventEmitter<SipClientEvents>
         },
       },
     })
+  }
+
+  setAudioProcessing(processing: AudioProcessingConfig) {
+    this.audioProcessing = processing
   }
 
   async register(sipConf: SipConfiguration) {
@@ -386,7 +398,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     }
 
     if (req.audio !== false || req.video) {
-      const camera = await this.getUserMedia(req.audio, req.video)
+      const camera = await this.getUserMedia(req)
 
       if (stream) {
         camera.getTracks().forEach((track) => {
@@ -404,24 +416,17 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     return stream
   }
 
-  private async getUserMedia(
-    audio?: boolean,
-    video?: boolean
-  ): Promise<MediaStream> {
+  private async getUserMedia(req: Answer): Promise<MediaStream> {
     return new Promise<MediaStream>(
       async (resolve: (stream: MediaStream) => void, reject: () => void) => {
         const mediaConstraints = {
           audio: undefined as any,
           video: undefined as any,
         }
-        if (!(audio === false)) {
-          // TODO
-          // mediaConstraints.audio = {
-          //   autoGainControl: false,
-          // }
-          mediaConstraints.audio = true
+        if (!(req.audio === false)) {
+          mediaConstraints.audio = buildAudioConstraints(this.audioProcessing)
         }
-        if (video) {
+        if (req.video) {
           mediaConstraints.video = {
             width: { ideal: 1280 },
             height: { ideal: 720 },
