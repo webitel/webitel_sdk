@@ -1127,7 +1127,9 @@ export class Client extends EventEmitter<ClientEvents> {
     this._config.echoCancellation = processing.echoCancellation
     this._config.noiseSuppression = processing.noiseSuppression
     this._config.autoGainControl = processing.autoGainControl
-    this.phone?.setAudioProcessing(processing)
+    if (this.phone) {
+      this.phone.setAudioProcessing(processing)
+    }
   }
 
   async registerCallClient(phone: SipClient) {

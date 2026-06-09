@@ -1,6 +1,7 @@
 import { EventEmitter } from 'ee-ts/lib/ee'
 import {
   Answer,
+  AudioProcessingConfig,
   CallSession,
   Outbound,
   SipClient,
@@ -49,6 +50,10 @@ export class ExternalClient extends EventEmitter<SipClientEvents>
   }
   sipSessionBySipId(id: string): CallSession | null {
     return null
+  }
+
+  setAudioProcessing(processing: AudioProcessingConfig): void {
+    return
   }
 
   open(token: string) {
