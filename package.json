@@ -40,7 +40,7 @@
     "check": "biome check ./src",
     "fix": "node scripts/sync-version.js && biome check --write ./src",
     "verify": "tsc -p ./config && tsc -p ./scripts && npm run check && npm test",
-    "api": "rm -rf src/api && openapi-generator-cli generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
+    "api": "rm -rf src/api && openapi-generator-cli generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i  && node scripts/patch-api-url-import.js",
     "docs": "typedoc --plugin typedoc-github-theme --exclude \"**/src/**/__tests__/*.*\" --out docs src/socket",
     "release": "npm publish dist",
     "prepare": "husky"
