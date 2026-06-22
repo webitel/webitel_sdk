@@ -4,10 +4,9 @@
 # tools configs
 **/tsconfig.json
 tsconfig.*.json
-tslint.json
-**/webpack.config.js
+biome.json
+tsdown.config.mjs
 **/jest.config.js
-**/prettier.config.js
 
 # build scripts
 config/

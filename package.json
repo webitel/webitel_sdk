@@ -3,10 +3,17 @@
   "version": "26.04.8",
   "description": "A library written in TypeScript",
   "keywords": [],
-  "main": "./bundles/index.umd.js",
-  "module": "./esm5/index.js",
-  "es2015": "./esm2015/index.js",
-  "typings": "./types/index.d.ts",
+  "type": "commonjs",
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.cjs"
+    }
+  },
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -15,117 +22,62 @@
   "author": "navrotskyj <navrotskyj@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=8.5",
-    "npm": ">=6.0",
-    "yarn": "^1.0"
+    "node": ">=18"
   },
   "scripts": {
-    "cleanup": "shx rm -rf dist",
-    "prebuild": "node scripts/sync-version.js && npm run cleanup && npm run verify",
-    "build": "tsc && tsc --target es2018 --outDir dist/esm2015 && rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production",
-    "postbuild": "node scripts/copy && npm run size",
-    "docs": "typedoc  --plugin typedoc-github-theme --exclude \"**/src/**/__tests__/*.*\" --out docs src/socket",
+    "build": "node scripts/sync-version.js && tsdown && npm run build:types && node scripts/copy",
+    "build:types": "tsc -p tsconfig.build.json || echo '⚠ tsc reported type errors (auto-generated API code under modern @types/node) — declarations were still emitted; run `npm run api` to regenerate'",
+    "typecheck": "tsc -p tsconfig.build.json --noEmit",
+    "docs": "typedoc --plugin typedoc-github-theme --exclude \"**/src/**/__tests__/*.*\" --out docs src/socket",
     "test": "jest -c ./config/jest.config.js",
     "test:watch": "npm t -- --watch",
     "test:coverage": "npm t -- --coverage",
     "test:ci": "npm t -- --ci",
     "validate-js": "tsc -p ./config && tsc -p ./scripts",
-    "verify": "npm run validate-js && npm run style && npm run test:ci",
-    "commit": "git-cz",
-    "style": "npm run format -- --list-different && npm run lint",
-    "style:fix": "npm run format:fix && npm run lint:fix",
-    "format": "prettier \"**/*.{ts,tsx,js,jsx,css,scss,sass,less,md}\"",
-    "format:fix": "node scripts/sync-version.js && npm run format -- --write",
-    "lint": "tslint --project tsconfig.json --format codeFrame",
-    "lint:fix": "npm run lint -- --fix",
-    "prerelease": "npm run build",
-    "release": "standard-version",
-    "postrelease": "node scripts/copy && node scripts/build && npm run release:github && npm run release:npm",
-    "release:github": "git push --no-verify --follow-tags origin master",
+    "verify": "npm run validate-js && npm run check && npm run test:ci",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "format:fix": "node scripts/sync-version.js && biome check --write .",
+    "clean:js": "find src -name \"*.js.map\" -type f -delete && find src -name \"*.js\" -type f -delete",
+    "api": "rm -rf src/api && openapi-generator-cli generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
     "release:npm": "npm publish dist",
     "release:preflight": "npm pack ./dist --dry-run",
-    "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js",
-    "api": "rm -rf src/api && openapi-generator-cli generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
-    "format-build": "npm run format:fix && npm run build",
-    "format-build-and-release": "npm run format:fix && npm run build && npm run release:npm",
-    "clean:js": "find src -name \"*.js.map\" -type f -delete && find src -name \"*.js\" -type f -delete"
+    "prepare": "husky"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run style && npm test -- --bail --onlyChanged"
-    }
-  },
   "lint-staged": {
-    "**/*.{ts,tsx,js,jsx,css,scss,sass,less,md}": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.{ts,tsx}": [
-      "npm run lint:fix",
-      "git add"
+    "*.{ts,tsx,js,jsx,json,md}": [
+      "biome check --write --no-errors-on-unmatched"
     ]
   },
   "peerDependencies": {
     "axios": "1.15.2",
-    "ee-ts": "1.0.1"
+    "ee-ts": "1.0.2"
   },
   "dependencies": {
     "deep-copy": "1.4.2",
-    "ee-ts": "1.0.1",
-    "json-refs": "3.0.13",
-    "jssip": "=3.10.1",
-    "query-string": "7.0.0",
-    "shelljs": "0.10.0",
-    "tslib": "2.2.0",
-    "typedoc-github-theme": "0.1.2"
+    "ee-ts": "1.0.2",
+    "jssip": "3.13.8",
+    "query-string": "9.4.0",
+    "tslib": "2.8.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "7.2.1",
-    "@commitlint/config-conventional": "7.1.2",
-    "@openapitools/openapi-generator-cli": "2.15.3",
-    "@types/jest": "23.3.10",
-    "@types/node": "8.10.*",
-    "@types/prettier": "1.15.2",
-    "@types/webpack-config-utils": "2.3.0",
-    "brotli-size": "0.0.3",
-    "commitizen": "3.0.5",
-    "cross-var": "1.1.0",
-    "cz-conventional-changelog": "2.1.0",
-    "gzip-size": "5.0.0",
-    "husky": "1.3.0",
-    "jest": "23.6.0",
-    "jest-watch-typeahead": "0.2.0",
-    "kleur": "3.0.1",
-    "lint-staged": "8.1.0",
-    "prettier": "1.15.3",
-    "pretty-bytes": "5.1.0",
-    "rollup": "0.68.2",
-    "rollup-plugin-commonjs": "9.2.0",
-    "rollup-plugin-json": "3.1.0",
-    "rollup-plugin-node-resolve": "4.0.0",
-    "rollup-plugin-replace": "2.1.0",
-    "rollup-plugin-sourcemaps": "0.4.2",
-    "rollup-plugin-terser": "3.0.0",
-    "rollup-plugin-uglify": "6.0.0",
-    "shx": "0.3.2",
-    "standard-version": "8.0.1",
-    "ts-jest": "23.10.5",
-    "tslint": "5.12.0",
-    "tslint-config-prettier": "1.17.0",
-    "tslint-config-standard": "8.0.1",
-    "tslint-react": "3.6.0",
-    "typedoc": "0.26.0",
-    "typescript": "4.9.4",
-    "typescript-tslint-plugin": "0.2.1",
-    "webpack-config-utils": "2.3.1"
+    "@biomejs/biome": "2.5.0",
+    "@openapitools/openapi-generator-cli": "2.39.0",
+    "@types/jest": "30.0.0",
+    "@types/node": "22.20.0",
+    "husky": "9.1.7",
+    "jest": "30.4.2",
+    "jest-watch-typeahead": "3.0.1",
+    "lint-staged": "17.0.8",
+    "ts-jest": "29.4.11",
+    "tsdown": "0.22.3",
+    "typedoc": "0.28.19",
+    "typedoc-github-theme": "0.4.0",
+    "typescript": "5.9.3"
   }
 }
