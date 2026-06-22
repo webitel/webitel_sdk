@@ -62,12 +62,35 @@ function createDistPackageJson(packageConfig) {
     ...distPackageJson
   } = packageConfig
 
+  // The `development` export condition points at ./src for live consumption
+  // by linked dev consumers (e.g. Vite). src is not shipped, so drop it from
+  // the published manifest.
+  if (distPackageJson.exports) {
+    distPackageJson.exports = /** @type {any} */ (
+      stripDevelopmentCondition(distPackageJson.exports)
+    )
+  }
+
   // Entry points reference ./dist/* so the repo root resolves when linked
   // locally. In the published package dist/ IS the root, so strip the prefix.
-  const json = JSON.stringify(distPackageJson, null, 2).replace(
-    /\.\/dist\//g,
-    './'
-  )
+  return JSON.stringify(distPackageJson, null, 2).replace(/\.\/dist\//g, './')
+}
 
-  return json
+/**
+ * @param {Record<string, any>} exportsMap
+ * @return {Record<string, any>}
+ */
+function stripDevelopmentCondition(exportsMap) {
+  /** @type {Record<string, any>} */
+  const out = {}
+  for (const [key, value] of Object.entries(exportsMap)) {
+    if (value && typeof value === 'object') {
+      const { development, ...rest } = value
+      out[key] = rest
+    } else {
+      out[key] = value
+    }
+  }
+
+  return out
 }
