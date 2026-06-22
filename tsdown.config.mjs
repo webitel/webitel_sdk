@@ -1,7 +1,11 @@
 import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  // Main barrel plus per-file enums entries: enums are intentionally not
+  // re-exported from index.ts, so consumers deep-import them
+  // (e.g. webitel-sdk/enums/messenger-type.enum). Each entry preserves its
+  // path under dist/, matching the "./enums/*" exports subpath.
+  entry: ['src/index.ts', 'src/enums/**/*.ts'],
   outDir: 'dist',
   format: ['esm', 'cjs'],
   target: 'es2018',

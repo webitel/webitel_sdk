@@ -62,5 +62,12 @@ function createDistPackageJson(packageConfig) {
     ...distPackageJson
   } = packageConfig
 
-  return JSON.stringify(distPackageJson, null, 2)
+  // Entry points reference ./dist/* so the repo root resolves when linked
+  // locally. In the published package dist/ IS the root, so strip the prefix.
+  const json = JSON.stringify(distPackageJson, null, 2).replace(
+    /\.\/dist\//g,
+    './'
+  )
+
+  return json
 }
