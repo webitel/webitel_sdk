@@ -25,21 +25,16 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "node scripts/sync-version.js && tsdown && npm run build:types && node scripts/copy",
-    "build:types": "tsc -p tsconfig.build.json || echo '⚠ tsc reported type errors (auto-generated API code under modern @types/node) — declarations were still emitted; run `npm run api` to regenerate'",
+    "build": "node scripts/sync-version.js && tsdown && (tsc -p tsconfig.build.json || echo '⚠ type errors in generated API code; declarations still emitted — run: npm run api') && node scripts/copy",
     "typecheck": "tsc -p tsconfig.build.json --noEmit",
-    "docs": "typedoc --plugin typedoc-github-theme --exclude \"**/src/**/__tests__/*.*\" --out docs src/socket",
     "test": "jest -c ./config/jest.config.js",
     "test:watch": "npm t -- --watch",
-    "test:ci": "npm t -- --ci",
-    "validate-js": "tsc -p ./config && tsc -p ./scripts",
-    "verify": "npm run validate-js && npm run check && npm run test:ci",
     "check": "biome check .",
-    "check:fix": "biome check --write .",
-    "format:fix": "node scripts/sync-version.js && biome check --write .",
+    "fix": "node scripts/sync-version.js && biome check --write .",
+    "verify": "tsc -p ./config && tsc -p ./scripts && npm run check && npm test",
     "api": "rm -rf src/api && openapi-generator-cli generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
-    "release:npm": "npm publish dist",
-    "release:preflight": "npm pack ./dist --dry-run",
+    "docs": "typedoc --plugin typedoc-github-theme --exclude \"**/src/**/__tests__/*.*\" --out docs src/socket",
+    "release": "npm publish dist",
     "prepare": "husky"
   },
   "publishConfig": {
