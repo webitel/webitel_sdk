@@ -2,7 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "esnext",
-    "target": "es6",
+    "target": "es2022",
     "lib": ["dom", "es2022"],
     "strict": true,
     "esModuleInterop": true,
