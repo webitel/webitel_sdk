@@ -22,7 +22,7 @@
   "author": "navrotskyj <navrotskyj@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "scripts": {
     "build": "node scripts/sync-version.js && tsdown && npm run build:types && node scripts/copy",
@@ -31,16 +31,12 @@
     "docs": "typedoc --plugin typedoc-github-theme --exclude \"**/src/**/__tests__/*.*\" --out docs src/socket",
     "test": "jest -c ./config/jest.config.js",
     "test:watch": "npm t -- --watch",
-    "test:coverage": "npm t -- --coverage",
     "test:ci": "npm t -- --ci",
     "validate-js": "tsc -p ./config && tsc -p ./scripts",
     "verify": "npm run validate-js && npm run check && npm run test:ci",
     "check": "biome check .",
     "check:fix": "biome check --write .",
-    "lint": "biome lint .",
-    "format": "biome format --write .",
     "format:fix": "node scripts/sync-version.js && biome check --write .",
-    "clean:js": "find src -name \"*.js.map\" -type f -delete && find src -name \"*.js\" -type f -delete",
     "api": "rm -rf src/api && openapi-generator-cli generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i ",
     "release:npm": "npm publish dist",
     "release:preflight": "npm pack ./dist --dry-run",
