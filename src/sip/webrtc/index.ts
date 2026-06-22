@@ -1,16 +1,23 @@
 import { EventEmitter } from 'ee-ts'
-// @ts-ignore
-import { debug, version, UA, WebSocketInterface } from 'jssip/lib-es5/JsSIP'
+// @ts-ignore - jssip ships as CommonJS; default-import keeps named ESM interop working
+import JsSIP from 'jssip/lib/JsSIP'
+const { debug, version, UA, WebSocketInterface } = JsSIP
 
-import { Answer, CallSession, Outbound, SipClient, SipConfiguration } from '../'
+import type {
+  Answer,
+  CallSession,
+  Outbound,
+  SipClient,
+  SipConfiguration,
+} from '../'
 import { Log } from '../../log'
 import {
-  AudioProcessingConfig,
+  type AudioProcessingConfig,
   buildAudioConstraints,
-  SipClientEvents,
+  type SipClientEvents,
 } from '../index'
 import { Session } from './session'
-import { RTCSessionEvent } from './types'
+import type { RTCSessionEvent } from './types'
 
 interface PeerConnectionEvent {
   peerconnection: RTCPeerConnection
@@ -20,8 +27,10 @@ interface LegacyNavigator extends Navigator {
   getUserMedia?: any
 }
 
-export class SipPhone extends EventEmitter<SipClientEvents>
-  implements SipClient {
+export class SipPhone
+  extends EventEmitter<SipClientEvents>
+  implements SipClient
+{
   static readonly userAgent = `Webitel-Phone/${version}`
   static readonly sipVersion = version
   readonly type = 'webrtc'
@@ -31,7 +40,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   private log: Log
 
   constructor(
-    private instanceId: string,
+    _instanceId: string,
     d?: boolean,
     private audioProcessing: AudioProcessingConfig = {}
   ) {
@@ -78,7 +87,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
   async call(req: Outbound) {
     const params = {} as Answer
     const display = {
-      extraHeaders: new Array<string>(),
+      extraHeaders: [] as string[],
     }
 
     if (req.params) {
@@ -194,7 +203,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
         this.removeSession(callSession)
       })
 
-      session.on('accepted', (a: any) => {
+      session.on('accepted', (_a: any) => {
         // the call has answered
         this.setupMedia(callSession, session.connection)
       })
@@ -216,7 +225,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
         let body = null
         try {
           body = JSON.parse(ev.request.body)
-        } catch (e) {
+        } catch (_e) {
           return
         }
 
@@ -231,13 +240,13 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       this.emit('newSession', callSession)
     })
 
-    ua.on('disconnected', (e: object) => {
+    ua.on('disconnected', (_e: object) => {
       this.emit('unregistered')
     })
 
     // ua.on('registered', (e: object) => {})
 
-    ua.on('unregistered', (e: object) => {
+    ua.on('unregistered', (_e: object) => {
       this.emit('unregistered')
     })
 
@@ -245,12 +254,12 @@ export class SipPhone extends EventEmitter<SipClientEvents>
       this.log.error('registrationFailed', e)
     })
 
-    ua.on('registered', (e: object) => {
+    ua.on('registered', (_e: object) => {
       this.emit('registered')
     })
 
     // fixes WTEL-4236
-    ua.on('connected', (e: object) => {
+    ua.on('connected', (_e: object) => {
       this.emit('connected')
     })
 
@@ -322,33 +331,6 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     return Array.from(this.sessionCache.values())
   }
 
-  private getMediaConstraints(req: Answer): object {
-    if (req.screen) {
-      return {
-        video: false,
-        audio: false,
-        screen: true,
-      }
-    }
-
-    return {
-      video: req.video || false,
-      audio: true,
-    }
-  }
-
-  private getSession(id: string): CallSession | null {
-    if (this.sessionCache.has(id)) {
-      return this.sessionCache.get(id) as CallSession
-    }
-
-    return null
-  }
-
-  private hasSession(id: string | null): boolean {
-    return this.sessionCache.has(id!)
-  }
-
   private setupMedia(sess: Session, connection: any) {
     if (!connection) {
       return
@@ -381,7 +363,9 @@ export class SipPhone extends EventEmitter<SipClientEvents>
         reject: (err: Error) => void
       ) => {
         try {
-          const stream = (await (navigator.mediaDevices as any).getDisplayMedia()) as MediaStream
+          const stream = (await (
+            navigator.mediaDevices as any
+          ).getDisplayMedia()) as MediaStream
           resolve(stream)
         } catch (e) {
           reject(e as Error)
@@ -433,9 +417,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
           }
         }
 
-        return getMediaStream(mediaConstraints)
-          .then(resolve)
-          .catch(reject)
+        return getMediaStream(mediaConstraints).then(resolve).catch(reject)
       }
     )
   }
@@ -445,7 +427,7 @@ async function getMediaStream(
   constraints: MediaStreamConstraints
 ): Promise<MediaStream> {
   return new Promise((resolve, reject) => {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    if (navigator.mediaDevices?.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia(constraints)
         .then((stream) => resolve(stream))

@@ -126,39 +126,36 @@ export async function sendWebRTCFrame2(
 ) {
   // @ts-ignore
   const imageCapture = new ImageCapture(track)
-  try {
-    const imageBitmap = await imageCapture.grabFrame()
+  // @ts-ignore - grabFrame() is dropped from lib.dom's ImageCapture type
+  const imageBitmap = await imageCapture.grabFrame()
 
-    const canvas = document.createElement('canvas')
-    canvas.width = imageBitmap.width
-    canvas.height = imageBitmap.height
-    // @ts-ignore
-    canvas.getContext('2d').drawImage(imageBitmap, 0, 0)
+  const canvas = document.createElement('canvas')
+  canvas.width = imageBitmap.width
+  canvas.height = imageBitmap.height
+  // @ts-ignore
+  canvas.getContext('2d').drawImage(imageBitmap, 0, 0)
 
-    const blob = await new Promise((resolve) => {
-      canvas.toBlob(resolve, 'image/png', 1)
-    })
+  const blob = await new Promise((resolve) => {
+    canvas.toBlob(resolve, 'image/png', 1)
+  })
 
-    const formData = new FormData()
-    formData.append('frame', blob as Blob, name)
+  const formData = new FormData()
+  formData.append('frame', blob as Blob, name)
 
-    const response = await fetch(
-      `${basePath}/api/storage/file/${callId}/upload?channel=call&thumbnail=true`,
-      {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'X-Webitel-Access': token,
-        },
-      }
-    )
-
-    if (response.ok) {
-      return await response.json()
-    } else {
-      throw response
+  const response = await fetch(
+    `${basePath}/api/storage/file/${callId}/upload?channel=call&thumbnail=true`,
+    {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-Webitel-Access': token,
+      },
     }
-  } catch (error) {
-    throw error
+  )
+
+  if (response.ok) {
+    return await response.json()
+  } else {
+    throw response
   }
 }
