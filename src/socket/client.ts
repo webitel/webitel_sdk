@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { EventEmitter } from 'ee-ts'
 
 import { Log } from '../log'
-import {
+import type {
   AudioProcessingConfig,
   CallSession,
   SipClient,
@@ -12,37 +12,42 @@ import {
 import { SipPhone } from '../sip/webrtc'
 import { SipPhone as ExperimentalPhone } from '../sip/webrtc2'
 import { version } from '../version'
-import { Agent, AgentSession, AgentStatusEvent, ChannelState } from './agent'
 import {
-  AnswerRequest,
+  Agent,
+  type AgentSession,
+  type AgentStatusEvent,
+  ChannelState,
+} from './agent'
+import {
+  type AnswerRequest,
   Call,
   CallActions,
-  CallEventData,
-  CallEventDTMF,
-  CallEventEavesdrop,
-  CallEventExecute,
-  CallItem,
-  CallMediaStats,
-  CallVariables,
-  EavesdropRequest,
-  OutboundCallRequest,
-  RtpMetrics,
+  type CallEventData,
+  type CallEventDTMF,
+  type CallEventEavesdrop,
+  type CallEventExecute,
+  type CallItem,
+  type CallMediaStats,
+  type CallVariables,
+  type EavesdropRequest,
+  type OutboundCallRequest,
+  type RtpMetrics,
 } from './call'
 import {
   ChatActions,
-  ChatEvent,
-  CloseEvent,
+  type ChatEvent,
+  type CloseEvent,
   Conversation,
-  ConversationItem,
-  DeclineInviteEvent,
-  InviteEvent,
-  JoinedEvent,
-  LeavedEvent,
-  MessageDeleted,
-  MessageEvent,
+  type ConversationItem,
+  type DeclineInviteEvent,
+  type InviteEvent,
+  type JoinedEvent,
+  type LeavedEvent,
+  type MessageDeleted,
+  type MessageEvent,
 } from './conversation'
 import {
-  BaseError,
+  type BaseError,
   DeviceNotAllowPermissionError,
   DeviceNotFoundError,
   LicencePermissionError,
@@ -50,24 +55,24 @@ import {
   TypeErrors,
 } from './errors'
 import {
-  MessageNotification,
-  MessageScreenShare,
-  Notification,
+  type MessageNotification,
+  type MessageScreenShare,
+  type Notification,
   NotificationActions,
 } from './notification'
-import { QueueJoinMemberEvent } from './queue'
-import { Message, Socket } from './socket'
+import type { QueueJoinMemberEvent } from './queue'
+import { type Message, Socket } from './socket'
 import {
-  ChannelEvent,
+  type ChannelEvent,
   ChannelName,
   JobState,
-  Reporting,
+  type Reporting,
   Task,
-  TaskData,
+  type TaskData,
 } from './task'
-import { UserStatus } from './user'
+import type { UserStatus } from './user'
 import { formatBaseUri, generateId } from './utils'
-import { SenderSession, ScreenResolver } from '../screen'
+import { SenderSession, type ScreenResolver } from '../screen'
 import { SpyScreen } from './screen'
 
 /**
@@ -592,7 +597,7 @@ export class Client extends EventEmitter<ClientEvents> {
     )) as CallListResponse
     this.eventHandler.on(WEBSOCKET_EVENT_CALL, handler)
 
-    if (calls.items && calls.items.length) {
+    if (calls.items?.length) {
       for (const c of calls.items) {
         if (c.hangup_at && c.hangup_at > 0 && !c.task) {
           continue
@@ -683,7 +688,7 @@ export class Client extends EventEmitter<ClientEvents> {
     )) as ConversationListResponse
     this.eventHandler.on(WEBSOCKET_EVENT_CHAT, handler)
 
-    if (res && res.items) {
+    if (res?.items) {
       for (const conv of res.items) {
         // tslint:disable-next-line: no-assign-mutated-array
         const messages = conv.messages.reverse()
@@ -774,7 +779,7 @@ export class Client extends EventEmitter<ClientEvents> {
     this.eventHandler.on(JOB_EVENT, handler)
   }
 
-  async unSubscribe(action: string, handler: CallEventHandler, data?: object) {
+  async unSubscribe(action: string, _handler: CallEventHandler, data?: object) {
     return this.request(`un_subscribe_${action}`, data)
   }
 
@@ -865,7 +870,7 @@ export class Client extends EventEmitter<ClientEvents> {
     const response = (await this.request(WEBSOCKET_PING, {
       ping: 1,
     })) as any
-    if (response && response.server_ts) {
+    if (response?.server_ts) {
       const ack = {
         client_ts: 0,
         client_ack_ts: 0,
@@ -894,13 +899,13 @@ export class Client extends EventEmitter<ClientEvents> {
   get canUseChat() {
     const info = this.connectionInfo
 
-    return !!(info && info.use_chat)
+    return !!info?.use_chat
   }
 
   get canUseCC() {
     const info = this.connectionInfo
 
-    return !!(info && info.use_cc)
+    return !!info?.use_cc
   }
 
   get instanceId(): string {
@@ -1183,7 +1188,7 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   phoneIsRegister() {
-    if (this.phone && this.phone.isRegistered) {
+    if (this.phone?.isRegistered) {
       return this.phone.isRegistered()
     }
 
@@ -1381,8 +1386,9 @@ export class Client extends EventEmitter<ClientEvents> {
           break
 
         case WEBSOCKET_EVENT_NOTIFICATION:
-          await this.handleNotification(message.data
-            .notification as Notification)
+          await this.handleNotification(
+            message.data.notification as Notification
+          )
           break
         default:
           this.log.error(`event ${message.event} not handler`)
@@ -1393,7 +1399,7 @@ export class Client extends EventEmitter<ClientEvents> {
   private async handleNotification(e: Notification) {
     switch (e.action) {
       case NotificationActions.HideMember:
-        if (this.agent && this.agent._listOfflineMembers) {
+        if (this.agent?._listOfflineMembers) {
           const list = this.agent._listOfflineMembers
           if (list.items) {
             for (let i = 0; i < list.items.length; i++) {
@@ -1410,17 +1416,19 @@ export class Client extends EventEmitter<ClientEvents> {
           const contactId = e.body.contact_id as number
           const channel = e.body.channel as string
           switch (channel) {
-            case 'chat':
+            case 'chat': {
               const conv = this.conversationById(e.body.id as string)
               if (conv) {
                 conv.setContactId(contactId)
               }
               break
-            default:
+            }
+            default: {
               const call = this.callById(e.body.id as string)
               if (call) {
                 call.setContactId(contactId)
               }
+            }
           }
         }
         break
@@ -1444,7 +1452,7 @@ export class Client extends EventEmitter<ClientEvents> {
         this.emit(`open_link`, e.body as MessageNotification)
         break
 
-      case NotificationActions.StartScreenRecord:
+      case NotificationActions.StartScreenRecord: {
         const msgRecStart = e.body as MessageNotification
         this.emit(`screen_rec_start`, msgRecStart)
         if (msgRecStart.ack_id) {
@@ -1453,7 +1461,8 @@ export class Client extends EventEmitter<ClientEvents> {
           })
         }
         break
-      case NotificationActions.StopScreenRecord:
+      }
+      case NotificationActions.StopScreenRecord: {
         const msgRecStop = e.body as MessageNotification
         this.emit(`screen_rec_stop`, msgRecStop)
         if (msgRecStop.ack_id) {
@@ -1462,8 +1471,9 @@ export class Client extends EventEmitter<ClientEvents> {
           })
         }
         break
+      }
 
-      case NotificationActions.Screenshot:
+      case NotificationActions.Screenshot: {
         const msgScreenshot = e.body as MessageNotification
         this.emit(`screenshot`, msgScreenshot)
         if (msgScreenshot.ack_id) {
@@ -1473,8 +1483,9 @@ export class Client extends EventEmitter<ClientEvents> {
         }
 
         break
+      }
 
-      case NotificationActions.ACK:
+      case NotificationActions.ACK: {
         const ackMsg = e.body as MessageNotification
         const ack = this.ackQueue.get(ackMsg.ack_id!)
         if (ack) {
@@ -1488,11 +1499,12 @@ export class Client extends EventEmitter<ClientEvents> {
         }
 
         break
+      }
 
-      case NotificationActions.ScreenShare:
+      case NotificationActions.ScreenShare: {
         const body = e.body as MessageScreenShare
         switch (body.state) {
-          case 'invite':
+          case 'invite': {
             if (!this.screenResolver) {
               throw new Error('not found screenResolver')
             }
@@ -1546,8 +1558,9 @@ export class Client extends EventEmitter<ClientEvents> {
             }
 
             break
+          }
 
-          case 'accept':
+          case 'accept': {
             const receive = this.spyScreenSessions.filter(
               (i) => i.id === body.session_id!
             )[0]
@@ -1564,11 +1577,13 @@ export class Client extends EventEmitter<ClientEvents> {
               })
             }
             break
+          }
 
           default:
             this.log.error(`notification "${e.action}" not handled`)
         }
         break
+      }
 
       default:
         this.log.error(`notification "${e.action}" not handled`)
@@ -1645,19 +1660,6 @@ export class Client extends EventEmitter<ClientEvents> {
         ? new ExperimentalPhone(this, audioProcessing)
         : new SipPhone(this.instanceId, this._config.debug, audioProcessing)
     )
-  }
-
-  private async latency() {
-    const ack = {
-      client_ts: 0,
-      client_ack_ts: 0,
-      server_ts: 0,
-      server_ack_ts: 0,
-    }
-
-    Object.assign(ack, await this.request(`latency_start`, ack))
-
-    return this.calculateLatency(ack)
   }
 
   private async calculateLatency(ack: Latency) {
@@ -1891,7 +1893,7 @@ export class Client extends EventEmitter<ClientEvents> {
     const timestamp = Date.now() // todo bug
 
     switch (event.action) {
-      case ChatActions.UserInvite:
+      case ChatActions.UserInvite: {
         const inv = event.data as InviteEvent
         conversation = new Conversation(
           this,
@@ -1904,8 +1906,9 @@ export class Client extends EventEmitter<ClientEvents> {
         conversation.setInvite(inv.invite_id, timestamp)
         this.conversationStore.set(conversation.id, conversation)
         break
+      }
 
-      case ChatActions.MessageDeleted:
+      case ChatActions.MessageDeleted: {
         const deleted = event.data as MessageDeleted
         // fixme
         for (const v of this.allConversations()) {
@@ -1919,8 +1922,9 @@ export class Client extends EventEmitter<ClientEvents> {
         }
 
         return
+      }
 
-      case ChatActions.Joined:
+      case ChatActions.Joined: {
         const joined = event.data as JoinedEvent
         conversation = this.conversationById(joined.member.id!)
         if (conversation) {
@@ -1928,8 +1932,9 @@ export class Client extends EventEmitter<ClientEvents> {
         }
 
         break
+      }
 
-      case ChatActions.Message:
+      case ChatActions.Message: {
         const message = event.data as MessageEvent
         message.timestamp = timestamp
         // fixme
@@ -1953,8 +1958,9 @@ export class Client extends EventEmitter<ClientEvents> {
           conversation.newMessage(message)
         }
         break
+      }
 
-      case ChatActions.Close:
+      case ChatActions.Close: {
         const c = event.data as CloseEvent
         // fixme
         for (const v of this.allConversations()) {
@@ -1966,20 +1972,23 @@ export class Client extends EventEmitter<ClientEvents> {
           conversation.setClosed(timestamp)
         }
         break
-      case ChatActions.Leave:
+      }
+      case ChatActions.Leave: {
         const l = event.data as LeavedEvent
         conversation = this.conversationById(l.leaved_channel_id)
         if (conversation) {
           conversation.setLeave(l)
         }
         break
-      case ChatActions.Decline:
+      }
+      case ChatActions.Decline: {
         const e = event.data as DeclineInviteEvent
         conversation = this.conversationById(e.invite_id)
         if (conversation) {
           conversation.setDecline(e)
         }
         break
+      }
 
       default:
     }

@@ -1,11 +1,11 @@
-import { CallSession, MediaConfig } from '../sip'
-import { Client, SdpEvent, UserCallRequest } from './client'
-import { QueueParameters } from './queue'
-import { MemberCommunication, Reporting, Task, TaskData } from './task'
+import type { CallSession, MediaConfig } from '../sip'
+import type { Client, UserCallRequest } from './client'
+import type { QueueParameters } from './queue'
+import type { MemberCommunication, Reporting, Task, TaskData } from './task'
 import { generateTimestampFilename } from './utils'
 import { StorageMediaCapture } from '../screen/storage'
 import { sendWebRTCFrame } from '../screen/utils'
-import { Conversation } from './conversation'
+import type { Conversation } from './conversation'
 
 /**
  * Параметри виклику
@@ -626,7 +626,10 @@ export class Call {
    * @param client - Клієнт, що керує дзвінком.
    * @param e - Дані події дзвінка.
    */
-  constructor(protected client: Client, e: CallEventData) {
+  constructor(
+    protected client: Client,
+    e: CallEventData
+  ) {
     // FIXME перевірити _muted з каналу
     const callInfo = e.data as CallInfo
     this._muted = false
@@ -870,7 +873,7 @@ export class Call {
    * @returns Ідентифікатор контакту або null.
    */
   get contactId() {
-    return (this.contact && this.contact.id) || null
+    return this.contact?.id || null
   }
 
   /**
@@ -878,7 +881,7 @@ export class Call {
    * @returns Чи контакт потрібно приховати.
    */
   get hideContact() {
-    return this.contact && this.contact.hide
+    return this.contact?.hide
   }
 
   /**
@@ -888,7 +891,7 @@ export class Call {
    * @throws Помилка, якщо дзвінок не з виходу черги.
    */
   // todo
-  async getMember(req: MemberInfoRequest) {
+  async getMember(_req: MemberInfoRequest) {
     if (!this.isMember) {
       throw new Error(`call is not from outbound queue`)
     }
@@ -904,7 +907,7 @@ export class Call {
    * @returns Чи дзвінок є учасником.
    */
   get isMember(): boolean {
-    return !!(this.task && this.task.isMember)
+    return !!this.task?.isMember
   }
 
   /**
@@ -1132,7 +1135,7 @@ export class Call {
    * @returns Чи дозволена звітність.
    */
   get allowReporting(): boolean {
-    const autoAnswer = this.params && this.params.autoAnswer
+    const autoAnswer = this.params?.autoAnswer
     const isAutoAnswerTrue = autoAnswer === true || autoAnswer === 'true'
 
     return this.hasReporting && (this.answeredAt > 0 || isAutoAnswerTrue)
@@ -1264,13 +1267,9 @@ export class Call {
    * @returns Затримка автоматичного відповідання.
    */
   get autoAnswerDelay() {
-    if (
-      !this.params ||
-      !this.params.autoAnswer ||
-      `${this.params.autoAnswer}` === 'false'
-    ) {
+    if (!this.params?.autoAnswer || `${this.params.autoAnswer}` === 'false') {
       return 0
-    } else if (isFinite(+this.params.autoAnswer)) {
+    } else if (Number.isFinite(+this.params.autoAnswer)) {
       return +this.params.autoAnswer
     }
 
@@ -1498,7 +1497,7 @@ export class Call {
   }
 
   trySendInfo(syncRequested?: boolean) {
-    if (this.sip && this.sip.setMediaConfig) {
+    if (this.sip?.setMediaConfig) {
       const req = {
         videoMuted: this.mutedVideo,
         audioMuted: this.muted,
@@ -1689,7 +1688,7 @@ export class Call {
       }_${generateTimestampFilename()}.${ext}`
     }
 
-    const media = new Array<MediaStream>()
+    const media: MediaStream[] = []
     this.peerStreams.forEach((stream: MediaStream) => {
       media.push(stream.clone())
     })

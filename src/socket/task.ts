@@ -1,7 +1,7 @@
 import { ChannelType } from './agent'
-import { CallVariables } from './call'
-import { Client } from './client'
-import { Form } from './form'
+import type { CallVariables } from './call'
+import type { Client } from './client'
+import type { Form } from './form'
 
 export interface Reporting {
   /**
@@ -710,7 +710,8 @@ export class Task {
   get allowAccept() {
     return (
       this.channel === ChannelName.Task &&
-      (this.bridgedAt === 0 && this.closedAt === 0)
+      this.bridgedAt === 0 &&
+      this.closedAt === 0
     )
   }
 
@@ -890,7 +891,7 @@ export class Task {
    * @returns {number | null}
    */
   get processingTimeoutAt() {
-    if (!this._processing || !this._processing.timeout) {
+    if (!this._processing?.timeout) {
       return null
     }
 
@@ -902,7 +903,7 @@ export class Task {
    * @returns {number | null}
    */
   get processingSec() {
-    if (!this._processing || !this._processing.sec) {
+    if (!this._processing?.sec) {
       return null
     }
 
@@ -970,7 +971,7 @@ export class Task {
    * @returns {number | null}
    */
   get renewalSec() {
-    if (!this._processing || !this._processing.renewal_sec) {
+    if (!this._processing?.renewal_sec) {
       return null
     }
 
@@ -992,7 +993,7 @@ export class Task {
   get autoAnswerDelay() {
     if (!this._autoAnswerParam || `${this._autoAnswerParam}` === 'false') {
       return 0
-    } else if (isFinite(+this._autoAnswerParam)) {
+    } else if (Number.isFinite(+this._autoAnswerParam)) {
       return +this._autoAnswerParam
     }
 

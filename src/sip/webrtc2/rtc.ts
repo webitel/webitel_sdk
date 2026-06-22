@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events'
 
-import { AudioProcessingConfig, buildAudioConstraints } from '../index'
+import { type AudioProcessingConfig, buildAudioConstraints } from '../index'
 
 const RTCState = {
   Init: 0,
@@ -94,7 +94,7 @@ export class RTC extends EventEmitter {
     if (this.localStream) {
       this.localStream.getTracks().forEach((track) => track.stop())
     }
-    if (this.peerStream && this.peerStream.getTracks) {
+    if (this.peerStream?.getTracks) {
       this.peerStream.getTracks().forEach((track) => track.stop())
     }
   }
@@ -125,7 +125,7 @@ export class RTC extends EventEmitter {
     this.emit('peerStreams', this.peerStream)
   }
 
-  iceGatherIngStateChange(e: Event) {
+  iceGatherIngStateChange(_e: Event) {
     if (
       this.state !== RTCState.Ready &&
       this.pc.iceGatheringState === 'complete'

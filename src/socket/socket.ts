@@ -72,12 +72,11 @@ export class Socket extends EventEmitter<SocketEvents> {
    * Встановлює з'єднання з WebSocket.
    * @param token Токен для авторизації.
    */
-  connect(token: string) {
+  connect(_token: string) {
     this.socket = new WebSocket(
-      `${formatWebSocketUri(
-        this.host
-      )}/${SOCKET_URL_SUFFIX}?application_name=${this.appName ||
-        'webitel_sdk'}&ver=${this.appVer || ''}`
+      `${formatWebSocketUri(this.host)}/${SOCKET_URL_SUFFIX}?application_name=${
+        this.appName || 'webitel_sdk'
+      }&ver=${this.appVer || ''}`
     )
 
     this.socket.onclose = (e) => this.onClose(e.code)

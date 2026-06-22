@@ -5,9 +5,7 @@ export interface StorageMediaCaptureEvents {
   close(): void
 }
 
-export class StorageMediaCapture extends EventEmitter<
-  StorageMediaCaptureEvents
-> {
+export class StorageMediaCapture extends EventEmitter<StorageMediaCaptureEvents> {
   id: string
   sdpResolver: string
   stream: MediaStream[] | null
@@ -51,7 +49,7 @@ export class StorageMediaCapture extends EventEmitter<
       }
     }
 
-    pc.onicecandidate = async (event) => {
+    pc.onicecandidate = async (_event) => {
       if (pc.iceGatheringState !== 'complete') {
         return
       }
@@ -111,7 +109,7 @@ export class StorageMediaCapture extends EventEmitter<
     let url = this.sdpResolver
     url += `/${this.restartId}`
 
-    const response = await fetch(url, {
+    const _response = await fetch(url, {
       method: 'DELETE',
       headers: {
         'X-Webitel-Access': this.token,

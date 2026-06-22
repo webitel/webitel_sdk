@@ -1,18 +1,18 @@
-import { Client } from './client'
-import { BaseError, PauseNotAllowedError, TypeErrors } from './errors'
-import { keyable } from './notification'
+import type { Client } from './client'
+import { type BaseError, PauseNotAllowedError, TypeErrors } from './errors'
+import type { keyable } from './notification'
 import {
-  BridgedEvent,
-  ChannelEvent,
-  Distribute,
-  DistributeEvent,
-  FormEvent,
-  MissedEvent,
-  OfferingEvent,
-  ProcessingEvent,
+  type BridgedEvent,
+  type ChannelEvent,
+  type Distribute,
+  type DistributeEvent,
+  type FormEvent,
+  type MissedEvent,
+  type OfferingEvent,
+  type ProcessingEvent,
   Task,
-  TransferEvent,
-  WrapTimeEvent,
+  type TransferEvent,
+  type WrapTimeEvent,
 } from './task'
 
 /**
@@ -282,7 +282,10 @@ export class Agent {
    * @param {Client} client - Клієнт.
    * @param {AgentSession} info - Сесія агента.
    */
-  constructor(protected readonly client: Client, protected info: AgentSession) {
+  constructor(
+    protected readonly client: Client,
+    protected info: AgentSession
+  ) {
     this.task = new Map<number, Task>()
     this._channels = new Map<string, Channel>()
     this.initChannels(info.channels)
@@ -491,7 +494,7 @@ export class Agent {
     let task: Task | undefined
 
     switch (e.status) {
-      case ChannelState.Distribute:
+      case ChannelState.Distribute: {
         const distributeEvent: DistributeEvent = e as DistributeEvent
         if (!distributeEvent) {
           throw new Error('bad event')
@@ -503,7 +506,7 @@ export class Agent {
         if (task.agentChannelId) {
           switch (task.channel) {
             case ChannelType.Call:
-            case ChannelType.OutCall:
+            case ChannelType.OutCall: {
               const call = this.client.callById(task.agentChannelId)
               if (call && !call.task) {
                 call.task = task
@@ -519,35 +522,40 @@ export class Agent {
                 }
               }
               break
-            case ChannelType.Chat:
+            }
+            case ChannelType.Chat: {
               const chat = this.client.conversationById(task.agentChannelId)
               if (chat && !chat.task) {
                 chat.task = task
               }
               break
+            }
 
             default:
           }
         }
         break
+      }
 
-      case ChannelState.Offering:
+      case ChannelState.Offering: {
         const evOffering = e as OfferingEvent
         task = this.task.get(e.attempt_id!)
         if (task) {
           task.setOffering(evOffering)
         }
         break
+      }
 
-      case ChannelState.Bridged:
+      case ChannelState.Bridged: {
         const bridged = e as BridgedEvent
         task = this.task.get(bridged.attempt_id!)
         if (task) {
           task.setBridged(bridged)
         }
         break
+      }
 
-      case ChannelState.Transfer:
+      case ChannelState.Transfer: {
         const transfer = e as TransferEvent
         task = this.task.get(transfer.to_attempt_id)
         if (task) {
@@ -558,6 +566,7 @@ export class Agent {
           this.task.set(task.id, task)
         }
         break
+      }
 
       case ChannelState.Answered:
         task = this.task.get(e.attempt_id!)
@@ -566,7 +575,7 @@ export class Agent {
         }
         break
 
-      case ChannelState.Form:
+      case ChannelState.Form: {
         const formEvent = e as FormEvent
         task = this.task.get(e.attempt_id!)
         if (task) {
@@ -574,6 +583,7 @@ export class Agent {
         }
 
         return // todo
+      }
 
       case ChannelState.Missed:
         if (e.attempt_id) {

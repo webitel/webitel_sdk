@@ -1,6 +1,6 @@
-import { CallVariables } from './call'
-import { Client, FileUploadProgress } from './client'
-import { Reporting, Task, TaskData } from './task'
+import type { CallVariables } from './call'
+import type { Client, FileUploadProgress } from './client'
+import type { Reporting, Task, TaskData } from './task'
 import { chunkString } from './utils'
 
 const maxSizeMessage = 4096
@@ -627,7 +627,7 @@ export class Conversation {
   constructor(
     private readonly client: Client,
     private readonly conversationId: string,
-    private readonly title: string,
+    readonly _title: string,
     members: ChatChannel[],
     messages: Message[],
     variables?: CallVariables
@@ -658,7 +658,7 @@ export class Conversation {
     this.meetingId = null
 
     for (const k in variables) {
-      if (!k.startsWith('cc_') && variables.hasOwnProperty(k)) {
+      if (!k.startsWith('cc_') && Object.hasOwn(variables, k)) {
         if (k === 'wbt_auto_answer') {
           this._autoAnswerParam = variables.wbt_auto_answer
         }
@@ -681,7 +681,7 @@ export class Conversation {
 
     if (
       variables &&
-      variables.hasOwnProperty('cc_attempt_id') &&
+      Object.hasOwn(variables, 'cc_attempt_id') &&
       this.client.agent
     ) {
       this.queue = {
@@ -722,7 +722,7 @@ export class Conversation {
    * @type {number | null}
    */
   get contactId() {
-    return (this.contact && this.contact.id) || null
+    return this.contact?.id || null
   }
 
   /**
@@ -730,7 +730,7 @@ export class Conversation {
    * @type {boolean}
    */
   get hideContact() {
-    return this.contact && this.contact.hide
+    return this.contact?.hide
   }
 
   /**
@@ -763,7 +763,7 @@ export class Conversation {
   get autoAnswerDelay() {
     if (!this._autoAnswerParam || `${this._autoAnswerParam}` === 'false') {
       return 0
-    } else if (isFinite(+this._autoAnswerParam)) {
+    } else if (Number.isFinite(+this._autoAnswerParam)) {
       return +this._autoAnswerParam
     }
 
@@ -879,7 +879,7 @@ export class Conversation {
         contact: null,
       } as MessageWithChannel
 
-      if (i.hasOwnProperty('file')) {
+      if (Object.hasOwn(i, 'file')) {
         if (i.file && i.file.id > 0) {
           i.file.url = this.client.fileUrlDownload(i.file.id, i.file.mime)
           i.file.streamUrl = this.client.fileUrlStream(i.file.id, i.file.mime)
@@ -888,11 +888,11 @@ export class Conversation {
         msg.file = i.file
       }
 
-      if (i.hasOwnProperty('text')) {
+      if (Object.hasOwn(i, 'text')) {
         msg.text = i.text
       }
 
-      if (i.hasOwnProperty('contact')) {
+      if (Object.hasOwn(i, 'contact')) {
         msg.contact = i.contact
       }
 
@@ -914,7 +914,7 @@ export class Conversation {
    * @param {number} perPage - Кількість повідомлень на сторінку.
    * @returns {Promise<void>}
    */
-  async pagination(page: number, perPage: number) {
+  async pagination(_page: number, _perPage: number) {
     throw new Error('TODO')
   }
 
@@ -996,7 +996,7 @@ export class Conversation {
    * @type {boolean}
    */
   get isTransferred() {
-    return (this._cause && this._cause.toUpperCase()) === DeclineCause.Transfer
+    return this._cause?.toUpperCase() === DeclineCause.Transfer
   }
 
   /*

@@ -1,4 +1,4 @@
-import { CalendarServiceApi, Configuration, EngineCalendar } from '../'
+import { CalendarServiceApi, Configuration, type EngineCalendar } from '../'
 
 const successCode = 200
 

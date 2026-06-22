@@ -1,6 +1,6 @@
 // import { IncomingRTCSessionEvent, OutgoingRTCSessionEvent } from 'jssip/lib/UA'
-import { CallSession } from '../index'
-import { RTCSession, RTCSessionRequest } from './types'
+import type { CallSession } from '../index'
+import type { RTCSession, RTCSessionRequest } from './types'
 
 export class Session implements CallSession {
   callId?: string

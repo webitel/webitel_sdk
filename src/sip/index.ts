@@ -100,10 +100,10 @@ export abstract class SipClient extends EventEmitter<SipClientEvents> {
   abstract readonly type: string
 
   abstract callOption(req: Answer): Promise<object | Error>
-  abstract register(sipConf: SipConfiguration): Promise<Error | void>
-  abstract unregister(): Promise<void | Error>
+  abstract register(sipConf: SipConfiguration): Promise<Error | undefined>
+  abstract unregister(): Promise<undefined | Error>
 
-  abstract call(req: Outbound): Promise<void | Error>
+  abstract call(req: Outbound): Promise<undefined | Error>
   abstract isRegistered(): boolean
 
   abstract setAudioProcessing(processing: AudioProcessingConfig): void

@@ -1,7 +1,7 @@
 import { RTC } from './rtc'
-import { Keyable, RPC } from './rpc'
-import { CallSession } from '../index'
-import { SipPhone } from './client'
+import type { Keyable, RPC } from './rpc'
+import type { CallSession } from '../index'
+import type { SipPhone } from './client'
 
 export class Session implements CallSession {
   rtc: RTC
@@ -11,7 +11,10 @@ export class Session implements CallSession {
 
   id: string
   answered: boolean
-  constructor(private cli: SipPhone, rpc: RPC) {
+  constructor(
+    private cli: SipPhone,
+    rpc: RPC
+  ) {
     this.rtc = new RTC(cli.audioProcessing)
     this.id = ''
     this.answered = false
