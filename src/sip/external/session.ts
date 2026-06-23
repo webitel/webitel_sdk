@@ -1,13 +1,16 @@
-import { CallSession } from '../index'
+import type { CallSession } from '../index'
 
-import { ExternalClient } from './index'
+import type { ExternalClient } from './index'
 
 export default class Session implements CallSession {
   callId: string
   incoming: boolean
   instanceId: string
 
-  constructor(private client: ExternalClient, id: string) {
+  constructor(
+    private client: ExternalClient,
+    id: string
+  ) {
     this.callId = id
     this.incoming = false
     this.instanceId = 'fixme'
@@ -23,7 +26,7 @@ export default class Session implements CallSession {
   getPeerMedia(): MediaStream[] {
     return []
   }
-  answer(s: object): Promise<Error> {
+  answer(_s: object): Promise<Error> {
     return new Promise<Error>((resolve) => {
       this.client.answer(this.id)
       // @ts-ignore

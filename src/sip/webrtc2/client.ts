@@ -1,10 +1,9 @@
 import { EventEmitter } from 'ee-ts'
 import { Session } from './session'
-import { RPC } from './rpc'
-import {
+import type { RPC } from './rpc'
+import type {
   Answer,
   AudioProcessingConfig,
-  CallSession,
   Outbound,
   SipClient,
   SipClientEvents,
@@ -12,8 +11,10 @@ import {
 
 const version = '0.0.1'
 
-export class SipPhone extends EventEmitter<SipClientEvents>
-  implements SipClient {
+export class SipPhone
+  extends EventEmitter<SipClientEvents>
+  implements SipClient
+{
   static readonly userAgent = `Webitel-Phone/${version}`
   static readonly sipVersion = version
   readonly type = 'webrtc'
@@ -74,7 +75,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     return req
   }
 
-  async answer(id: string, req: Answer) {
+  async answer(_id: string, _req: Answer) {
     return false
   }
 
@@ -89,7 +90,7 @@ export class SipPhone extends EventEmitter<SipClientEvents>
     try {
       await this.rpc.request(`sip_register`, {})
       // tslint:disable-next-line: no-empty
-    } catch (e) {}
+    } catch (_e) {}
 
     this.setRegister(true)
     this.emit('connected')

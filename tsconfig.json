@@ -2,11 +2,8 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "esnext",
-    "target": "es6",
-    "lib": [
-      "dom",
-      "es2018",
-    ],
+    "target": "es2022",
+    "lib": ["dom", "es2022"],
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,16 +16,8 @@
     "stripInternal": true,
     "outDir": "dist/esm5",
     "resolveJsonModule": true,
-    "importHelpers": true,
-    "plugins": [
-      {
-        "name": "typescript-tslint-plugin",
-        "alwaysShowRuleFailuresAsWarnings": false
-      }
-    ]
+    "importHelpers": true
   },
-  "include": [
-    "./src"
-  ],
+  "include": ["./src"],
   "compileOnSave": false
 }

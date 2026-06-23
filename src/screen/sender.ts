@@ -1,6 +1,6 @@
 import { genId, setVP9Video } from './utils'
 import { EventEmitter } from 'ee-ts'
-import { Log } from '../log'
+import type { Log } from '../log'
 
 export interface SenderEvents {
   close(s: SenderSession): void
@@ -54,23 +54,19 @@ export class SenderSession extends EventEmitter<SenderEvents> {
 
   async start(stream: MediaStream) {
     const pc = this.pc
-    try {
-      await pc.setRemoteDescription({
-        type: 'offer',
-        sdp: this.peerSdp,
-      })
+    await pc.setRemoteDescription({
+      type: 'offer',
+      sdp: this.peerSdp,
+    })
 
-      this.stream = stream
-      stream.getTracks().forEach((track) => {
-        this.onTrackStop(track)
-        pc.addTrack(track, stream)
-      })
+    this.stream = stream
+    stream.getTracks().forEach((track) => {
+      this.onTrackStop(track)
+      pc.addTrack(track, stream)
+    })
 
-      const answer = await pc.createAnswer()
-      await pc.setLocalDescription(answer)
-    } catch (e) {
-      throw e
-    }
+    const answer = await pc.createAnswer()
+    await pc.setLocalDescription(answer)
   }
 
   onTrackStop(t: MediaStreamTrack) {
@@ -85,7 +81,7 @@ export class SenderSession extends EventEmitter<SenderEvents> {
     }
   }
 
-  iceConnectionState(e: Event) {
+  iceConnectionState(_e: Event) {
     this.log.debug('sender iceConnectionState ', this.pc.iceConnectionState)
     const pc = this.pc
 
@@ -102,7 +98,7 @@ export class SenderSession extends EventEmitter<SenderEvents> {
     }
   }
 
-  async iceCandidate(e: RTCPeerConnectionIceEvent) {
+  async iceCandidate(_e: RTCPeerConnectionIceEvent) {
     const pc = this.pc
     this.log.debug(`ICE candidate state: ${pc.iceGatheringState}`)
 

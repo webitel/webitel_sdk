@@ -1,6 +1,6 @@
 import { EventEmitter } from 'ee-ts'
-import { genId, setVP9Video } from './utils'
-import { Log } from '../log'
+import { genId } from './utils'
+import type { Log } from '../log'
 
 export interface ReceiveEvents {
   close(s: ReceiverSession): void
@@ -76,15 +76,11 @@ export class ReceiverSession extends EventEmitter<ReceiveEvents> {
 
   async answer(answer: RTCSessionDescriptionInit) {
     const pc = this.pc!
-    try {
-      this.log.debug('answer sdp: ', answer.sdp)
-      await pc.setRemoteDescription(answer)
-    } catch (e) {
-      throw e
-    }
+    this.log.debug('answer sdp: ', answer.sdp)
+    await pc.setRemoteDescription(answer)
   }
 
-  iceConnectionState(e: Event) {
+  iceConnectionState(_e: Event) {
     const pc = this.pc!
 
     this.log.debug('sender iceConnectionState ', pc.iceConnectionState)

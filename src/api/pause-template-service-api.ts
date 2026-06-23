@@ -11,7 +11,7 @@
  * Do not edit the class manually.
  */
 
-import * as globalImportUrl from 'url'
+import * as globalImportUrl from '../url-shim'
 import globalAxios, { AxiosPromise, AxiosInstance } from 'axios'
 import { Configuration } from '../configuration'
 // Some imports not used depending on template conditions

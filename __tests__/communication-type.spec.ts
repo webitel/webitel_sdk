@@ -1,7 +1,7 @@
 import {
   CommunicationTypeServiceApi,
   Configuration,
-  EngineCommunicationType,
+  type EngineCommunicationType,
 } from '../'
 
 const successCode = 200

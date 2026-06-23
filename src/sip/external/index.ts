@@ -1,5 +1,5 @@
 import { EventEmitter } from 'ee-ts/lib/ee'
-import {
+import type {
   Answer,
   AudioProcessingConfig,
   CallSession,
@@ -11,8 +11,10 @@ import {
 
 import Session from './session'
 
-export class ExternalClient extends EventEmitter<SipClientEvents>
-  implements SipClient {
+export class ExternalClient
+  extends EventEmitter<SipClientEvents>
+  implements SipClient
+{
   readonly type = 'external'
   readonly schema = 'wtel://'
   constructor(private config: object | undefined) {
@@ -22,14 +24,14 @@ export class ExternalClient extends EventEmitter<SipClientEvents>
   async callOption(req: Answer): Promise<object | Error> {
     return req
   }
-  async register(sipConf: SipConfiguration): Promise<Error | void> {
+  async register(_sipConf: SipConfiguration): Promise<Error | undefined> {
     return
   }
-  async unregister(): Promise<void | Error> {
+  async unregister(): Promise<undefined | Error> {
     return
   }
 
-  async call(req: Outbound): Promise<void | Error> {
+  async call(req: Outbound): Promise<undefined | Error> {
     if (!req.destination) {
       return
     }
@@ -48,11 +50,11 @@ export class ExternalClient extends EventEmitter<SipClientEvents>
   sipSessionByCallId(id: string): CallSession | null {
     return new Session(this, id)
   }
-  sipSessionBySipId(id: string): CallSession | null {
+  sipSessionBySipId(_id: string): CallSession | null {
     return null
   }
 
-  setAudioProcessing(processing: AudioProcessingConfig): void {
+  setAudioProcessing(_processing: AudioProcessingConfig): void {
     return
   }
 

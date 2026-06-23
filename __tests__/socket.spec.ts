@@ -1,5 +1,5 @@
-import { Call, Client } from '../'
-import { CallActions } from '../socket'
+import { type Call, Client } from '../'
+import type { CallActions } from '../socket'
 
 jest.mock('../environment.ts', () => ({
   IS_DEV: true,
@@ -18,7 +18,7 @@ describe(`WebSocket`, () => {
     await cli.connect()
     await cli.auth()
 
-    const callHandle = (action: CallActions, call: Call) => {
+    const callHandle = (_action: CallActions, _call: Call) => {
       return
     }
 

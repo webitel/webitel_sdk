@@ -1,6 +1,6 @@
 import { ReceiverSession } from '../screen'
-import { Log } from '../log'
-import { Client } from './client'
+import type { Log } from '../log'
+import type { Client } from './client'
 
 const ackRequestTimeout = 10000
 

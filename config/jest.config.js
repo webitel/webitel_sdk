@@ -1,12 +1,15 @@
 /**
- * @type {Partial<jest.InitialOptions>}
+ * @type {import('jest').Config}
  */
 const config = {
   preset: 'ts-jest',
   rootDir: '..',
   verbose: true,
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    // ignoreCodes 2345: @types/jest 30 types jest.fn(() => value) mocks more
+    // strictly than the specs were written against; the runtime behaviour is
+    // unchanged, so we skip just that assignability diagnostic.
+    '^.+\\.tsx?$': ['ts-jest', { diagnostics: { ignoreCodes: [2345] } }],
   },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.ts?(x)',
@@ -22,7 +25,14 @@ const config = {
   //     statements: 80,
   //   },
   // },
-  collectCoverageFrom: ['src/api-consumers/**/*.ts', '!src/**/index.ts'],
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/index.ts',
+    '!src/api/**',
+    '!src/api.ts',
+    '!src/base.ts',
+    '!src/configuration.ts',
+  ],
   setupFiles: ['<rootDir>/config/setup-tests.js'],
   watchPlugins: [
     'jest-watch-typeahead/filename',

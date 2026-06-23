@@ -1,7 +1,7 @@
 import {
   Configuration,
-  EngineOutboundResourceGroup,
-  EngineOutboundResourceInGroup,
+  type EngineOutboundResourceGroup,
+  type EngineOutboundResourceInGroup,
   OutboundResourceGroupServiceApi,
 } from '../'
 
