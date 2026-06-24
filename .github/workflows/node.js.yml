@@ -1,33 +1,38 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Publish NPM
 
 on:
+  #  https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  build:
-
+  publish:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: 'https://registry.npmjs.org'
-        cache: 'npm'
-    - run: npm i
-    - run: npm run fix
-    - run: npm run build
-    - run: mv dist webitel-sdk
-    - run: npm publish webitel-sdk
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: actions/checkout@v6
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - name: Bump, build and publish
+        run: |
+          npm ci
+          echo "VERSION=$(npm version patch --no-git-tag-version)" >> "$GITHUB_ENV"
+          npm run build
+          npm run release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Commit the version bump + synced version.ts back and tag the release.
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: 'chore(release): ${{ env.VERSION }} [skip ci]'
+          commit_options: '--no-verify'
+          tagging_message: ${{ env.VERSION }}
+          file_pattern: 'package.json package-lock.json src/version.ts'
