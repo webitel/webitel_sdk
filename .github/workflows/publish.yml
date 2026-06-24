@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  id-token: write # OIDC for npm trusted publishing, https://docs.npmjs.com/trusted-publishers
+  contents: write # push the version bump + tag back
 
 jobs:
   publish:
@@ -26,8 +27,6 @@ jobs:
           echo "VERSION=$(npm version patch --no-git-tag-version)" >> "$GITHUB_ENV"
           npm run build
           npm run release
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Commit the version bump + synced version.ts back and tag the release.
       - uses: stefanzweifel/git-auto-commit-action@v7
