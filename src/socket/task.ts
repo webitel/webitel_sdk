@@ -1,7 +1,15 @@
+// NOTE: optional peer; not installed in this package. Imported for type augmentation only.
+import type { ThreadModel } from '@webitel/chat-web-sdk'
 import { ChannelType } from './agent'
 import type { CallVariables } from './call'
 import type { Client } from './client'
 import type { Form } from './form'
+
+/**
+ * Превʼю чату, прикріпленого до комунікації завдання.
+ */
+export interface ThreadPreview
+  extends Pick<ThreadModel, 'lastMsg' | 'members' | 'subject'> {}
 
 export interface Reporting {
   /**
@@ -207,6 +215,12 @@ export interface MemberCommunication {
    * @todo
    */
   state?: number
+
+  /**
+   * Превʼю чату, прикріпленого до комунікації.
+   * @type {ThreadPreview}
+   */
+  thread?: ThreadPreview
 }
 
 export interface ChannelEvent {
