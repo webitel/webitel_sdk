@@ -55,19 +55,23 @@ export function buildAudioConstraints(
 ): boolean | MediaTrackConstraints {
   const { echoCancellation, noiseSuppression, autoGainControl } = processing
 
-  if (
-    echoCancellation === undefined &&
-    noiseSuppression === undefined &&
-    autoGainControl === undefined
-  ) {
+  const constraints: MediaTrackConstraints = {}
+
+  if (echoCancellation !== undefined) {
+    constraints.echoCancellation = echoCancellation
+  }
+  if (noiseSuppression !== undefined) {
+    constraints.noiseSuppression = noiseSuppression
+  }
+  if (autoGainControl !== undefined) {
+    constraints.autoGainControl = autoGainControl
+  }
+
+  if (Object.keys(constraints).length === 0) {
     return true
   }
 
-  return {
-    echoCancellation: !!echoCancellation,
-    noiseSuppression: !!noiseSuppression,
-    autoGainControl: !!autoGainControl,
-  }
+  return constraints
 }
 
 export interface CallSession {
