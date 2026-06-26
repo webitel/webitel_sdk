@@ -37,7 +37,8 @@ export function format(urlObj: ParsedPath): string {
     }
     if (Array.isArray(value)) {
       for (const item of value) {
-        params.append(key, String(item))
+        if (item === undefined || item === null) continue;
+         params.append(key, String(item))
       }
     } else {
       params.append(key, String(value))
