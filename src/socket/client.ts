@@ -1003,7 +1003,11 @@ export class Client extends EventEmitter<ClientEvents> {
     return this.request('call_eavesdrop', req)
   }
 
-  async agentSetOnline(agentId: number, channels: string[], onDemand: boolean) {
+  async agentSetOnline(
+    agentId: number,
+    channels?: string[],
+    onDemand?: boolean
+  ) {
     return this.request('cc_agent_online', {
       agent_id: agentId,
       channels,

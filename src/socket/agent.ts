@@ -670,11 +670,11 @@ export class Agent {
   /**
    * Метод, що встановлює статус "Online" для агента.
    * @method
-   * @param {string[]} channels - Список каналів зв'язку.
-   * @param {boolean} onDemand - Статус "On Demand".
+   * @param {string[]} [channels] - Список каналів зв'язку.
+   * @param {boolean} [onDemand] - Статус "On Demand".
    * @returns {Promise<any>} - Об'єкт з інформацією про сесію агента.
    */
-  async online(channels: string[], onDemand: boolean) {
+  async online(channels?: string[], onDemand?: boolean) {
     return this.client.agentSetOnline(this.agentId, channels, onDemand)
   }
 
