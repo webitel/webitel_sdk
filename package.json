@@ -14,7 +14,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./enums/*": {
+    "./enums": {
       "types": "./dist/enums/index.d.ts",
       "development": "./src/enums/index.ts",
       "import": "./dist/enums/index.mjs",
