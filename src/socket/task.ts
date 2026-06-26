@@ -1,10 +1,10 @@
-import { camelCase } from 'case-anything'
 // NOTE: optional peer; not installed in this package. Imported for type augmentation only.
 import type { ThreadModel } from '@webitel/chat-web-sdk'
 import { ChannelType } from './agent'
 import type { CallVariables } from './call'
 import type { Client } from './client'
 import type { Form } from './form'
+import { camelizeKeys } from './utils'
 
 /**
  * Превʼю чату (camelCase), яке віддає геттер `Task.thread`.
@@ -14,11 +14,12 @@ export interface ThreadPreview
 
 /**
  * Сире превʼю чату (snake_case) — як приходить по сокету.
+ * Типи значень успадковані з {@link ThreadPreview}, ключі — snake_case.
  */
 export interface RawThreadPreview {
-  last_msg?: unknown
-  members?: unknown
-  subject?: string
+  last_msg?: ThreadPreview['lastMsg']
+  members?: ThreadPreview['members']
+  subject?: ThreadPreview['subject']
 }
 
 export interface Reporting {
@@ -1177,28 +1178,6 @@ export class Task {
       sync: !!sync,
     })
   }
-}
-
-/**
- * Рекурсивно конвертує ключі обʼєкта/масиву в camelCase.
- */
-function camelizeKeys(input: unknown): unknown {
-  if (Array.isArray(input)) {
-    return input.map(camelizeKeys)
-  }
-
-  if (input && typeof input === 'object') {
-    const res: Record<string, unknown> = {}
-    for (const [key, value] of Object.entries(
-      input as Record<string, unknown>
-    )) {
-      res[camelCase(key)] = camelizeKeys(value)
-    }
-
-    return res
-  }
-
-  return input
 }
 
 function formFields(
