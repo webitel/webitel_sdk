@@ -54,8 +54,14 @@
     ]
   },
   "peerDependencies": {
-    "axios": "^1.18.1",
+    "@webitel/chat-web-sdk": "0.0.19",
+    "axios": "1.81.1",
     "ee-ts": "1.0.2"
+  },
+  "peerDependenciesMeta": {
+    "@webitel/chat-web-sdk": {
+      "optional": true
+    }
   },
   "dependencies": {
     "deep-copy": "1.4.2",
