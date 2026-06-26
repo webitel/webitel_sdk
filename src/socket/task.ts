@@ -1,3 +1,4 @@
+import { camelCase } from 'case-anything'
 // NOTE: optional peer; not installed in this package. Imported for type augmentation only.
 import type { ThreadModel } from '@webitel/chat-web-sdk'
 import { ChannelType } from './agent'
@@ -6,10 +7,19 @@ import type { Client } from './client'
 import type { Form } from './form'
 
 /**
- * Превʼю чату, прикріпленого до комунікації завдання.
+ * Превʼю чату (camelCase), яке віддає геттер `Task.thread`.
  */
 export interface ThreadPreview
   extends Pick<ThreadModel, 'lastMsg' | 'members' | 'subject'> {}
+
+/**
+ * Сире превʼю чату (snake_case) — як приходить по сокету.
+ */
+export interface RawThreadPreview {
+  last_msg?: unknown
+  members?: unknown
+  subject?: string
+}
 
 export interface Reporting {
   /**
@@ -217,10 +227,11 @@ export interface MemberCommunication {
   state?: number
 
   /**
-   * Превʼю чату, прикріпленого до комунікації.
-   * @type {ThreadPreview}
+   * Сире превʼю чату (snake_case), прикріпленого до комунікації.
+   * Для camelCase-представлення використовуйте геттер `Task.thread`.
+   * @type {RawThreadPreview}
    */
-  thread?: ThreadPreview
+  thread?: RawThreadPreview
 }
 
 export interface ChannelEvent {
@@ -965,6 +976,19 @@ export class Task {
   }
 
   /**
+   * Превʼю чату в camelCase (сире значення по сокету — snake_case).
+   * @returns {ThreadPreview | undefined}
+   */
+  get thread(): ThreadPreview | undefined {
+    const raw = this.distribute.communication.thread
+    if (!raw) {
+      return undefined
+    }
+
+    return camelizeKeys(raw) as ThreadPreview
+  }
+
+  /**
    * Отримати ім'я для відображення.
    * @returns {string | null}
    */
@@ -1153,6 +1177,28 @@ export class Task {
       sync: !!sync,
     })
   }
+}
+
+/**
+ * Рекурсивно конвертує ключі обʼєкта/масиву в camelCase.
+ */
+function camelizeKeys(input: unknown): unknown {
+  if (Array.isArray(input)) {
+    return input.map(camelizeKeys)
+  }
+
+  if (input && typeof input === 'object') {
+    const res: Record<string, unknown> = {}
+    for (const [key, value] of Object.entries(
+      input as Record<string, unknown>
+    )) {
+      res[camelCase(key)] = camelizeKeys(value)
+    }
+
+    return res
+  }
+
+  return input
 }
 
 function formFields(
