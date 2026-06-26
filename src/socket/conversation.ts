@@ -261,6 +261,8 @@ export interface Message {
   updated_at?: number | null
 
   conversation?: string
+
+  variables?: object | null
 }
 
 /**
@@ -443,6 +445,8 @@ export interface MessageWithChannel {
    * @type {ChatChannel | null}
    */
   member: ChatChannel | null
+
+  variables?: object | null
 }
 
 /**
@@ -877,6 +881,7 @@ export class Conversation {
         createdAt: i.created_at,
         updatedAt: i.updated_at,
         contact: null,
+        variables: null
       } as MessageWithChannel
 
       if (Object.hasOwn(i, 'file')) {
@@ -894,6 +899,10 @@ export class Conversation {
 
       if (Object.hasOwn(i, 'contact')) {
         msg.contact = i.contact
+      }
+
+      if (Object.hasOwn(i, 'variables')) {
+        msg.variables = i.variables
       }
 
       return msg
