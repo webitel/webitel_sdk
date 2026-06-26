@@ -15,10 +15,10 @@
       "require": "./dist/index.cjs"
     },
     "./enums/*": {
-      "types": "./dist/enums/*.d.ts",
-      "development": "./src/enums/*.ts",
-      "import": "./dist/enums/*.mjs",
-      "require": "./dist/enums/*.cjs"
+      "types": "./dist/enums/index.d.ts",
+      "development": "./src/enums/index.ts",
+      "import": "./dist/enums/index.mjs",
+      "require": "./dist/enums/index.cjs"
     },
     "./package.json": "./package.json"
   },
