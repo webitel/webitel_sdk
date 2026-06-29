@@ -1319,7 +1319,9 @@ function wrapChannelMember(m: ChatChannel): ChatChannel {
   // TODO: Реалізувати додаткову логіку обробки об'єкта ChatChannel
 
   // Встановлює значення властивості messenger як тип каналу
-  m.messenger = m.type
+  if (m) {
+    m.messenger = m.type
+  }
 
   return m
 }
