@@ -1,3 +1,30 @@
+import { camelCase } from 'case-anything'
+
+/**
+ * Рекурсивно конвертує ключі обʼєкта/масиву в camelCase.
+ * @function
+ * @param {unknown} input - Вхідне значення.
+ * @returns {unknown} - Значення з camelCase-ключами.
+ */
+export function camelizeKeys(input: unknown): unknown {
+  if (Array.isArray(input)) {
+    return input.map(camelizeKeys)
+  }
+
+  if (input && typeof input === 'object') {
+    const res: Record<string, unknown> = {}
+    for (const [key, value] of Object.entries(
+      input as Record<string, unknown>
+    )) {
+      res[camelCase(key)] = camelizeKeys(value)
+    }
+
+    return res
+  }
+
+  return input
+}
+
 /**
  * Функція, що форматує URI WebSocket.
  * @function

@@ -4,12 +4,23 @@ import { ChannelType } from './agent'
 import type { CallVariables } from './call'
 import type { Client } from './client'
 import type { Form } from './form'
+import { camelizeKeys } from './utils'
 
 /**
- * Превʼю чату, прикріпленого до комунікації завдання.
+ * Превʼю чату (camelCase), яке віддає геттер `Task.thread`.
  */
 export interface ThreadPreview
   extends Pick<ThreadModel, 'lastMsg' | 'members' | 'subject'> {}
+
+/**
+ * Сире превʼю чату (snake_case) — як приходить по сокету.
+ * Типи значень успадковані з {@link ThreadPreview}, ключі — snake_case.
+ */
+export interface RawThreadPreview {
+  last_msg?: ThreadPreview['lastMsg']
+  members?: ThreadPreview['members']
+  subject?: ThreadPreview['subject']
+}
 
 export interface Reporting {
   /**
@@ -217,10 +228,11 @@ export interface MemberCommunication {
   state?: number
 
   /**
-   * Превʼю чату, прикріпленого до комунікації.
-   * @type {ThreadPreview}
+   * Сире превʼю чату (snake_case), прикріпленого до комунікації.
+   * Для camelCase-представлення використовуйте геттер `Task.thread`.
+   * @type {RawThreadPreview}
    */
-  thread?: ThreadPreview
+  thread?: RawThreadPreview
 }
 
 export interface ChannelEvent {
@@ -962,6 +974,19 @@ export class Task {
    */
   get displayNumber() {
     return this.communication.destination
+  }
+
+  /**
+   * Превʼю чату в camelCase (сире значення по сокету — snake_case).
+   * @returns {ThreadPreview | undefined}
+   */
+  get thread(): ThreadPreview | undefined {
+    const raw = this.distribute.communication.thread
+    if (!raw) {
+      return undefined
+    }
+
+    return camelizeKeys(raw) as ThreadPreview
   }
 
   /**
