@@ -1666,6 +1666,19 @@ export class Client extends EventEmitter<ClientEvents> {
     )
   }
 
+  public async latency() {
+    const ack = {
+      client_ts: 0,
+      client_ack_ts: 0,
+      server_ts: 0,
+      server_ack_ts: 0,
+    }
+
+    Object.assign(ack, await this.request(`latency_start`, ack))
+
+    return this.calculateLatency(ack)
+  }
+
   private async calculateLatency(ack: Latency) {
     ack.client_ts = Date.now()
     Object.assign(
