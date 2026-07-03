@@ -788,7 +788,7 @@ export class Conversation {
       clearTimeout(this._autoAnswerTimerId)
       this._autoAnswerTimerId = null
     }
-    this.member = wrapChannelMember(member)
+    this.member = wrapChannelMember(member) || {}
     if (!this.members.some((m) => m.id === this.member.id)) {
       this.members.push(this.member)
     }
