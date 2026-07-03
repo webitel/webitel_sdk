@@ -1,6 +1,7 @@
 {
   "name": "webitel-sdk",
-  "version": "26.4.19",
+
+  "version": "26.4.21",
   "description": "A library written in TypeScript",
   "keywords": [],
   "type": "commonjs",
@@ -64,6 +65,7 @@
     }
   },
   "dependencies": {
+    "case-anything": "3.1.2",
     "deep-copy": "1.4.2",
     "ee-ts": "1.0.2",
     "jssip": "3.13.8",
