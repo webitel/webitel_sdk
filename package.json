@@ -1,7 +1,6 @@
 {
   "name": "webitel-sdk",
-
-  "version": "26.4.21",
+  "version": "26.4.22",
   "description": "A library written in TypeScript",
   "keywords": [],
   "type": "commonjs",
