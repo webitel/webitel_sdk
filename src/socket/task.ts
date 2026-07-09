@@ -10,16 +10,17 @@ import { camelizeKeys } from './utils'
  * Превʼю чату (camelCase), яке віддає геттер `Task.thread`.
  */
 export interface ThreadPreview
-  extends Pick<ThreadModel, 'lastMsg' | 'members' | 'subject'> {}
+  extends Pick<ThreadModel, 'id' | 'lastMsg' | 'members' | 'subject'> {}
 
 /**
  * Сире превʼю чату (snake_case) — як приходить по сокету.
  * Типи значень успадковані з {@link ThreadPreview}, ключі — snake_case.
  */
 export interface RawThreadPreview {
+  id: ThreadPreview['id']
+  members: ThreadPreview['members']
+  subject: ThreadPreview['subject']
   last_msg?: ThreadPreview['lastMsg']
-  members?: ThreadPreview['members']
-  subject?: ThreadPreview['subject']
 }
 
 export interface Reporting {
