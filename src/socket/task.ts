@@ -10,7 +10,9 @@ import { camelizeKeys } from './utils'
  * Превʼю чату (camelCase), яке віддає геттер `Task.thread`.
  */
 export interface ThreadPreview
-  extends Pick<ThreadModel, 'id' | 'lastMsg' | 'members' | 'subject'> {}
+  extends Pick<ThreadModel, 'id' | 'members' | 'subject'> {
+    lastMsg?: string;
+  }
 
 /**
  * Сире превʼю чату (snake_case) — як приходить по сокету.
