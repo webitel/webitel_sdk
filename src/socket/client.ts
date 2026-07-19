@@ -658,6 +658,7 @@ export class Client extends EventEmitter<ClientEvents> {
                 sec: c.task.processing_sec || 0,
                 timeout: c.task.processing_timeout_at || null,
                 renewal_sec: c.task.processing_renewal_sec || 0,
+                autosave: c.task.processing_autosave || false,
               })
             }
           }
@@ -723,6 +724,7 @@ export class Client extends EventEmitter<ClientEvents> {
                 sec: conv.task.processing_sec || 0,
                 timeout: conv.task.processing_timeout_at || null,
                 renewal_sec: conv.task.processing_renewal_sec || 0,
+                autosave: conv.task.processing_autosave || false,
               })
             }
             task.form = conv.task.form || null
@@ -957,6 +959,7 @@ export class Client extends EventEmitter<ClientEvents> {
           sec: t.processing_sec || 0,
           timeout: t.processing_timeout_at || null,
           renewal_sec: t.processing_renewal_sec || 0,
+          autosave: t.processing_autosave || false,
         })
       }
       task.form = t.form || null
