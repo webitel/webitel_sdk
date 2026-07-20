@@ -376,6 +376,12 @@ export interface TaskData extends Distribute {
   processing_timeout_at?: number
 
   /**
+   * Автоматичне збереження форми постобробки по таймауту.
+   * @type {boolean}
+   */
+  processing_autosave?: boolean
+
+  /**
    * Тривалість завдання в секундах.
    * @type {number}
    */
@@ -460,6 +466,12 @@ export interface Processing {
    * @type {number}
    */
   renewal_sec?: number
+
+  /**
+   * Автоматичне збереження форми постобробки по таймауту.
+   * @type {boolean}
+   */
+  autosave?: boolean
 }
 
 export interface DistributeEvent extends ChannelEvent {
