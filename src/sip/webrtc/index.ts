@@ -209,7 +209,7 @@ export class SipPhone
 
       this.storeSession(id, callSession)
 
-      session.on('sdp', (e) => {
+      session.on('sdp', (e: any) => {
         if (e.originator === 'remote') {
           e.sdp = patchRemoteSdp(e.sdp)
         }
