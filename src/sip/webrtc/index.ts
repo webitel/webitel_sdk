@@ -27,6 +27,16 @@ interface LegacyNavigator extends Navigator {
   getUserMedia?: any
 }
 
+function patchRemoteSdp(sdp: string) {
+  // 1) додаємо packetization-mode=1, якщо H264 без fmtp (offer від FS)
+  sdp = sdp.replace(
+    /a=rtpmap:(\d+) H264\/90000\r\n(?!a=fmtp:\1)/g,
+    'a=rtpmap:$1 H264/90000\r\n' +
+      'a=fmtp:$1 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\n'
+  )
+  return sdp
+}
+
 export class SipPhone
   extends EventEmitter<SipClientEvents>
   implements SipClient
@@ -126,9 +136,9 @@ export class SipPhone
 
         parameters.encodings[0].priority = 'high'
         parameters.encodings[0].networkPriority = 'high'
-        parameters.encodings[0].maxBitrate = 4000 * 100 * 1000 // 4000kbps
+        parameters.encodings[0].maxBitrate = 4000 * 1000 // 4 Mbps
         // parameters.encodings[0].scalabilityMode = 'L1T3';
-        parameters.degradationPreference = 'maintain-resolution'
+        parameters.degradationPreference = 'balanced'
 
         await sender.setParameters(parameters)
       } catch (e) {
@@ -140,6 +150,12 @@ export class SipPhone
       ...invite,
       ...display,
       eventHandlers: {
+        sdp: (e: any) => {
+          // модифікуємо тільки те, що прийшло від сервера (answer)
+          if (e.originator === 'remote') {
+            e.sdp = patchRemoteSdp(e.sdp)
+          }
+        },
         peerconnection: async (data: any) => {
           const pc = data.peerconnection
           pc.addEventListener('track', async (event: any) => {
@@ -192,6 +208,12 @@ export class SipPhone
       const callSession = new Session(session, e.request)
 
       this.storeSession(id, callSession)
+
+      session.on('sdp', (e) => {
+        if (e.originator === 'remote') {
+          e.sdp = patchRemoteSdp(e.sdp)
+        }
+      })
 
       session.on('ended', () => {
         // this handler will be called for incoming calls too

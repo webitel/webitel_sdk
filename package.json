@@ -43,7 +43,8 @@
     "api": "rm -rf src/api && openapi-generator-cli generate -g typescript-axios --remove-operation-id-prefix --additional-properties=modelPropertyNaming=original,fileNaming=camelCase,useSingleRequestParameter=true,withSeparateModelsAndApi=true,supportsES6=true,enablePostProcessFile=true,apiPackage=api,modelPackage=api -o src -i  && node scripts/patch-api-url-import.js",
     "docs": "typedoc --plugin typedoc-github-theme --exclude \"**/src/**/__tests__/*.*\" --out docs src/socket",
     "release": "npm publish ./dist",
-    "prepare": "husky"
+    "prepare": "husky",
+    "clean:js": "find src -name \"*.js.map\" -type f -delete && find src -name \"*.js\" -type f -delete"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
