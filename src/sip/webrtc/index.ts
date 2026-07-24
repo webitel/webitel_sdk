@@ -28,11 +28,14 @@ interface LegacyNavigator extends Navigator {
 }
 
 function patchRemoteSdp(sdp: string) {
-  // 1) додаємо packetization-mode=1, якщо H264 без fmtp (offer від FS)
   sdp = sdp.replace(
     /a=rtpmap:(\d+) H264\/90000\r\n(?!a=fmtp:\1)/g,
     'a=rtpmap:$1 H264/90000\r\n' +
       'a=fmtp:$1 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\n'
+  )
+  sdp = sdp.replace(
+    /(a=fmtp:\d+ [^\r\n]*packetization-mode[^\r\n]*)/g,
+    '$1;x-google-start-bitrate=1500;x-google-min-bitrate=800;x-google-max-bitrate=3000'
   )
   return sdp
 }
