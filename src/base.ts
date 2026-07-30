@@ -71,3 +71,8 @@ export class RequiredError extends Error {
     super(msg)
   }
 }
+
+export interface Lookup {
+  id: number
+  name: string
+}
