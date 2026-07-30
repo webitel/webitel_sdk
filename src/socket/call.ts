@@ -1118,7 +1118,26 @@ export class Call {
     this.hangupSipCode = hangup.sip
     this.notificationHangup = hangup.notification_hangup || false
     this.voice = false
+
+    if (Array.isArray(this.peerStreams)) {
+      this.peerStreams.forEach((stream) => {
+        if (stream && typeof stream.getTracks === 'function') {
+          stream.getTracks().forEach((track) => track.stop())
+        }
+      })
+    }
+
+    if (Array.isArray(this.localStreams)) {
+      this.localStreams.forEach((stream) => {
+        if (stream && typeof stream.getTracks === 'function') {
+          stream.getTracks().forEach((track) => track.stop())
+        }
+      })
+    }
+
     this.peerStreams = []
+    this.localStreams = []
+
     if (+hangup.reporting_at) {
       this.reportingAt = +hangup.reporting_at // FIXME тип number
     }
