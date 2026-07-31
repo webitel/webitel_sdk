@@ -74,6 +74,7 @@ import type { UserStatus } from './user'
 import { formatBaseUri, generateId } from './utils'
 import { SenderSession, type ScreenResolver } from '../screen'
 import { SpyScreen } from './screen'
+import { Lookup } from '../base'
 
 /**
  * Налаштування клієнта.
@@ -1009,12 +1010,14 @@ export class Client extends EventEmitter<ClientEvents> {
   async agentSetOnline(
     agentId: number,
     channels?: string[],
-    onDemand?: boolean
+    onDemand?: boolean,
+    statusPreset?: Lookup
   ) {
     return this.request('cc_agent_online', {
       agent_id: agentId,
       channels,
       on_demand: onDemand,
+      status_preset: statusPreset
     })
   }
 

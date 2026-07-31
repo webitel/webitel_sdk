@@ -1,3 +1,4 @@
+import { Lookup } from '../base'
 import type { Client } from './client'
 import { type BaseError, PauseNotAllowedError, TypeErrors } from './errors'
 import type { keyable } from './notification'
@@ -71,6 +72,7 @@ export interface Channel {
   wrap_time_ids: number[]
 }
 
+
 /**
  * Інтерфейс, що представляє сесію агента.
  * @interface
@@ -89,6 +91,7 @@ export interface AgentSession {
   team: object | null
   supervisor: object | null
   auditor: object | null
+  status_preset?: Lookup
 }
 
 /**
@@ -110,6 +113,7 @@ export interface AgentStatusEvent {
   status: string
   status_comment: string
   status_payload?: any
+  status_preset?: Lookup
   timeout?: number
   channels: Channel[]
   on_demand?: boolean
@@ -255,6 +259,14 @@ type OfflineMember = {
 export interface OfflineMemberList {
   items: OfflineMember[]
   next?: boolean
+}
+
+const formatStatusPreset = (statusPreset?: Lookup):Lookup | undefined => {
+  if (!statusPreset) return undefined
+
+  if (statusPreset.id <= 0 || statusPreset.name === '') return undefined
+
+  return statusPreset
 }
 
 /**
@@ -407,6 +419,10 @@ export class Agent {
    */
   get stateDuration() {
     return Math.round((Date.now() - this.lastStatusChange) / 1000)
+  }
+
+  get statusPreset(): Lookup | undefined {
+    return this.info.status_preset
   }
 
   /**
@@ -674,8 +690,8 @@ export class Agent {
    * @param {boolean} [onDemand] - Статус "On Demand".
    * @returns {Promise<any>} - Об'єкт з інформацією про сесію агента.
    */
-  async online(channels?: string[], onDemand?: boolean) {
-    return this.client.agentSetOnline(this.agentId, channels, onDemand)
+  async online(channels?: string[], onDemand?: boolean, statusPreset?: Lookup) {
+    return this.client.agentSetOnline(this.agentId, channels, onDemand, statusPreset)
   }
 
   /**
@@ -739,6 +755,8 @@ export class Agent {
       this.waitingListCalls.length = 0
       this.waitingListChats.length = 0
     }
+
+    this.info.status_preset = formatStatusPreset(e.status_preset)
 
     this.info.status = e.status
     this.info.status_comment = e.status_comment
