@@ -6,6 +6,7 @@ enum MemberStopCause {
   SUCCESS = 'success',
   CANCEL = 'cancel',
   EXPIRED = 'expired',
+  CANCELED_BY_TIMEOUT = 'canceled_by_timeout'
 }
 
 export default MemberStopCause
