@@ -1011,13 +1011,13 @@ export class Client extends EventEmitter<ClientEvents> {
     agentId: number,
     channels?: string[],
     onDemand?: boolean,
-    statusPreset?: Lookup
+    online_skill?: Lookup
   ) {
     return this.request('cc_agent_online', {
       agent_id: agentId,
       channels,
       on_demand: onDemand,
-      status_preset: statusPreset
+      online_skill: online_skill
     })
   }
 

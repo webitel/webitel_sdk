@@ -91,7 +91,7 @@ export interface AgentSession {
   team: object | null
   supervisor: object | null
   auditor: object | null
-  status_preset?: Lookup
+  online_status?: Lookup
 }
 
 /**
@@ -421,8 +421,8 @@ export class Agent {
     return Math.round((Date.now() - this.lastStatusChange) / 1000)
   }
 
-  get statusPreset(): Lookup | undefined {
-    return this.info.status_preset
+  get onlineSkill(): Lookup | undefined {
+    return this.info.online_status
   }
 
   /**
@@ -690,8 +690,8 @@ export class Agent {
    * @param {boolean} [onDemand] - Статус "On Demand".
    * @returns {Promise<any>} - Об'єкт з інформацією про сесію агента.
    */
-  async online(channels?: string[], onDemand?: boolean, statusPreset?: Lookup) {
-    return this.client.agentSetOnline(this.agentId, channels, onDemand, statusPreset)
+  async online(channels?: string[], onDemand?: boolean, onlineSkill?: Lookup) {
+    return this.client.agentSetOnline(this.agentId, channels, onDemand, onlineSkill)
   }
 
   /**
@@ -756,7 +756,7 @@ export class Agent {
       this.waitingListChats.length = 0
     }
 
-    this.info.status_preset = formatStatusPreset(e.status_preset)
+    this.info.online_status = formatStatusPreset(e.status_preset)
 
     this.info.status = e.status
     this.info.status_comment = e.status_comment
