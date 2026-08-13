@@ -11,15 +11,21 @@
  * Do not edit the class manually.
  */
 
+
+
 /**
- *
+ * 
  * @export
  * @enum {string}
  */
 export enum EngineTriggerEventType {
-  EmptyTriggerEvent = 'empty_trigger_event',
-  Create = 'create',
-  Update = 'update',
-  Remove = 'remove',
-  ResolutionTime = 'resolution_time',
+    EmptyTriggerEvent = 'empty_trigger_event',
+    Create = 'create',
+    Update = 'update',
+    Remove = 'remove',
+    ResolutionTime = 'resolution_time',
+    RecordCall = 'record_call'
 }
+
+
+

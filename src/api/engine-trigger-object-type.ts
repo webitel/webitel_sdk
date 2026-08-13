@@ -11,13 +11,22 @@
  * Do not edit the class manually.
  */
 
+
+
 /**
- *
+ * 
  * @export
  * @enum {string}
  */
 export enum EngineTriggerObjectType {
-  EmptyTriggerObject = 'empty_trigger_object',
-  Cases = 'cases',
-  CaseFiles = 'case_files',
+    EmptyTriggerObject = 'empty_trigger_object',
+    Cases = 'cases',
+    CaseFiles = 'case_files',
+    CaseComments = 'case_comments',
+    CaseLinks = 'case_links',
+    RelatedCases = 'related_cases',
+    Call = 'call'
 }
+
+
+
