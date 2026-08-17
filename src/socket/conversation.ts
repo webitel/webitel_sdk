@@ -905,6 +905,14 @@ export class Conversation {
         msg.variables = i.variables
       }
 
+
+      if (!msg.member) {
+        // @ts-ignore
+        console.error(JSON.stringify(msg, null, 2))
+
+        console.error(JSON.stringify(this.member, null, 2))
+      }
+
       return msg
     })
   }
