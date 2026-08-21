@@ -1301,7 +1301,7 @@ export class Conversation {
     }
 
     for (const m of this.members) {
-      if (m.id === msg.channel_id) {
+      if (msg.channel_id !== '' &&  m.id === msg.channel_id) { //bots has empty channelID in backend
         return m
       }
     }
