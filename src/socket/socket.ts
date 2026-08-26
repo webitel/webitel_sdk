@@ -104,7 +104,7 @@ export class Socket extends EventEmitter<SocketEvents> {
     if (!this.socket) {
       const stackTrace = new Error('Socket is not open').stack
       console.warn(`Socket is not open\n`, stackTrace)
-      return null
+      return
     }
     this.socket!.close(code || 1000)
     delete this.socket
