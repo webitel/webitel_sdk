@@ -101,6 +101,11 @@ export class Socket extends EventEmitter<SocketEvents> {
    * @param code Код закриття з'єднання (необов'язково).
    */
   close(code?: number) {
+    if (!this.socket) {
+      const stackTrace = new Error('Socket is not open').stack
+      console.warn(`Socket is not open\n`, stackTrace)
+      return null
+    }
     this.socket!.close(code || 1000)
     delete this.socket
     this.onClose(code || 1000)
