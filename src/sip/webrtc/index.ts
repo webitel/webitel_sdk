@@ -18,6 +18,7 @@ import {
 } from '../index'
 import { Session } from './session'
 import type { RTCSessionEvent } from './types'
+import { resolveUserAgent } from './user-agent'
 
 interface PeerConnectionEvent {
   peerconnection: RTCPeerConnection
@@ -40,11 +41,15 @@ function patchRemoteSdp(sdp: string) {
   return sdp
 }
 
+export interface SipPhoneOptions {
+  userAgent?: string
+}
+
 export class SipPhone
   extends EventEmitter<SipClientEvents>
   implements SipClient
 {
-  static readonly userAgent = `Webitel-Phone/${version}`
+  private readonly userAgent: string
   static readonly sipVersion = version
   readonly type = 'webrtc'
 
@@ -55,9 +60,12 @@ export class SipPhone
   constructor(
     _instanceId: string,
     d?: boolean,
-    private audioProcessing: AudioProcessingConfig = {}
+    private audioProcessing: AudioProcessingConfig = {},
+    sipPhoneOptions: SipPhoneOptions = {}
   ) {
     super()
+
+    this.userAgent = resolveUserAgent(sipPhoneOptions.userAgent)
 
     this.log = new Log()
     if (d) {
@@ -189,7 +197,7 @@ export class SipPhone
       uri: sipConf.uri,
       authorization_user: sipConf.authorization_user,
       ha1: sipConf.ha1,
-      user_agent: SipPhone.userAgent,
+      user_agent: this.userAgent,
       sockets: [socket],
       session_timers: true,
       // use_preloaded_route: true,
