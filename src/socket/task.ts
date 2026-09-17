@@ -336,6 +336,9 @@ export interface Distribute extends ChannelEvent {
    * @type {{ [key: string]: any }}
    */
   variables?: { [key: string]: any }
+
+  member_joined_at: number
+  queue_max_wait_time?: number
 }
 
 export interface TaskData extends Distribute {
@@ -798,6 +801,14 @@ export class Task {
    */
   get hasReporting() {
     return this.distribute.has_reporting
+  }
+
+  get memberJoinedAt(): number {
+    return this.distribute.member_joined_at
+  }
+
+  get queueMaxWaitTime(): number | undefined {
+    return this.distribute.queue_max_wait_time
   }
 
   /**
