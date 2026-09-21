@@ -583,7 +583,8 @@ export class Client extends EventEmitter<ClientEvents> {
     this.lastError = null
     this.lastLatency = null
     this.screenResolver = _config.screenResolver || null
-    this.userAgent = _config.userAgent ?? ''
+
+    this.userAgent = _config.userAgent || `webitel-web-phone-sdk.${this.buildVersion}`
   }
 
   async connect() {
@@ -1759,6 +1760,7 @@ export class Client extends EventEmitter<ClientEvents> {
           this._config.applicationName,
           this.buildVersion
         )
+
         this.socket.connect(this._config.token!)
       } catch (e) {
         reject(e)
