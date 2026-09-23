@@ -9,7 +9,7 @@ import type {
   SipClient,
   SipConfiguration,
 } from '../sip'
-import { SipPhone } from '../sip/webrtc'
+import { SipPhone, SipPhoneOptions } from '../sip/webrtc'
 import { SipPhone as ExperimentalPhone } from '../sip/webrtc2'
 import { version } from '../version'
 import {
@@ -106,6 +106,7 @@ export interface Config {
   echoCancellation?: boolean
   noiseSuppression?: boolean
   autoGainControl?: boolean
+  userAgent?: string
 }
 
 /**
@@ -559,6 +560,7 @@ export class Client extends EventEmitter<ClientEvents> {
   private pingTimer: number | null
   private toneTimer: number | null
   private screenResolver: ScreenResolver | null
+  private readonly userAgent: string
 
   /**
    * Конструктор для створення екземпляра клієнта.
@@ -581,6 +583,8 @@ export class Client extends EventEmitter<ClientEvents> {
     this.lastError = null
     this.lastLatency = null
     this.screenResolver = _config.screenResolver || null
+
+    this.userAgent = _config.userAgent || `webitel-web-phone-sdk.${this.buildVersion}`
   }
 
   async connect() {
@@ -1665,10 +1669,14 @@ export class Client extends EventEmitter<ClientEvents> {
       autoGainControl: this._config.autoGainControl,
     }
 
+    const sipOptions: SipPhoneOptions = {
+      userAgent: this.userAgent
+    }
+
     return this.registerCallClient(
       this.connectionInfo.b2bua
         ? new ExperimentalPhone(this, audioProcessing)
-        : new SipPhone(this.instanceId, this._config.debug, audioProcessing)
+        : new SipPhone(this.instanceId, this._config.debug, audioProcessing, sipOptions)
     )
   }
 
@@ -1752,6 +1760,7 @@ export class Client extends EventEmitter<ClientEvents> {
           this._config.applicationName,
           this.buildVersion
         )
+
         this.socket.connect(this._config.token!)
       } catch (e) {
         reject(e)
