@@ -287,6 +287,7 @@ export class Agent {
   _channels: Map<string, Channel>
   _listOfflineMembers: OfflineMemberList | null
   lastStatusChange: number
+  private _waitingChatsSize: number = 0
 
   /**
    * Конструктор класу Agent.
@@ -316,6 +317,10 @@ export class Agent {
    */
   get agentId() {
     return this.info.agent_id
+  }
+
+  get waitingChatsSize(): number {
+    return this._waitingChatsSize
   }
 
   /**
@@ -434,6 +439,7 @@ export class Agent {
     if (e) {
       this.waitingListCalls.length = 0
       this.waitingListChats.length = 0
+      this._waitingChatsSize = 0
 
       if (this.status !== AgentStatus.Online) {
         return
@@ -449,6 +455,10 @@ export class Agent {
           queue: el.queue,
           wait: el.wait,
         })
+      }
+
+      if (Array.isArray(e.chats)) {
+        this._waitingChatsSize = e.chats.length
       }
 
       for (const el of (e.chats || []) as WaitingMember[]) {
@@ -481,8 +491,13 @@ export class Agent {
     if (e) {
       const attemptId = e.attempt_id
 
-      if (!removeWaitingList(this.waitingListCalls, attemptId)) {
-        removeWaitingList(this.waitingListChats, attemptId)
+      if (removeWaitingList(this.waitingListCalls, attemptId)) {
+        return
+      }
+
+
+      if (removeWaitingList(this.waitingListChats, attemptId)) {
+        this._waitingChatsSize--
       }
     }
   }
@@ -754,6 +769,7 @@ export class Agent {
     } else {
       this.waitingListCalls.length = 0
       this.waitingListChats.length = 0
+      this._waitingChatsSize = 0
     }
 
     this.info.online_status = formatStatusPreset(e.status_preset)
