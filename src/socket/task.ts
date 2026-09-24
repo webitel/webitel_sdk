@@ -93,6 +93,8 @@ export interface Reporting {
    * @type {object}
    */
   timezone?: object
+
+  draft: boolean
 }
 
 /**
