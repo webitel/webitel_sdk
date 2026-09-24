@@ -62,6 +62,8 @@ function createDistPackageJson(packageConfig) {
     ...distPackageJson
   } = packageConfig
 
+  distPackageJson.type = 'module'
+
   // The `development` export condition points at ./src for live consumption
   // by linked dev consumers (e.g. Vite). src is not shipped, so drop it from
   // the published manifest.
