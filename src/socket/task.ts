@@ -678,6 +678,9 @@ export class Task {
    */
   _autoAnswerTimerId: any | null
 
+  private _baseProcessingSec: number = 0
+  private _renewedSec: number  = 0
+
   /**
    * Конструктор класу.
    * @param {Client} client - Клієнт.
@@ -903,6 +906,7 @@ export class Task {
     this.closedAt = now
     if (!this.startProcessingAt) {
       this.startProcessingAt = Date.now()
+      this._baseProcessingSec = p.sec
     }
 
     if (p.sec && !p.timeout) {
@@ -954,12 +958,8 @@ export class Task {
    * Отримати тривалість обробки в секундах.
    * @returns {number | null}
    */
-  get processingSec() {
-    if (!this._processing?.sec) {
-      return null
-    }
-
-    return this._processing.sec
+  get processingSec(): number | null {
+    return this._processing?.sec ?? null
   }
 
   /**
@@ -1138,11 +1138,21 @@ export class Task {
    * @param {number} [sec] - Кількість секунд для оновлення.
    * @returns {Promise<any>}
    */
-  async renew(sec?: number) {
-    return this.client.request('cc_renewal', {
+  async renew(sec?: number): Promise<any> {
+    const renewSec = sec || this.processingSec
+
+    const res = await this.client.request('cc_renewal', {
       attempt_id: this.id,
-      renewal_sec: sec ? sec : this.processingSec,
+      renewal_sec: renewSec,
     })
+
+    this._renewedSec += renewSec ?? 0
+
+    return res
+  }
+
+  get totalProcessingSec(): number | null {
+    return this._processing ? this._baseProcessingSec + this._renewedSec : null
   }
 
   /**
