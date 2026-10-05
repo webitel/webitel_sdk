@@ -1144,6 +1144,20 @@ export class Task {
   }
 
   /**
+   * Зберегти чернетку звітності без завершення завдання.
+   * Не змінює reportedAt.
+   * @param {Reporting} reporting - Дані звітності.
+   * @returns {Promise<any>}
+   */
+  async reportingDraft(reporting: Reporting) {
+    return this.client.request('cc_reporting', {
+      attempt_id: this.id,
+      ...reporting,
+      draft: true,
+    })
+  }
+
+  /**
    * Оновити завдання.
    * @param {number} [sec] - Кількість секунд для оновлення.
    * @returns {Promise<any>}
