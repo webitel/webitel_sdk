@@ -957,6 +957,14 @@ export class Task {
   }
 
   /**
+   * Чи увімкнене автозбереження постобробки в черзі.
+   * @returns {boolean}
+   */
+  get processingAutosave(): boolean {
+    return !!this._processing?.autosave
+  }
+
+  /**
    * Отримати тривалість обробки в секундах.
    * @returns {number | null}
    */
