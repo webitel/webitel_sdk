@@ -957,6 +957,14 @@ export class Task {
   }
 
   /**
+   * Чи увімкнене автозбереження постобробки в черзі.
+   * @returns {boolean}
+   */
+  get processingAutosave(): boolean {
+    return !!this._processing?.autosave
+  }
+
+  /**
    * Отримати тривалість обробки в секундах.
    * @returns {number | null}
    */
@@ -1133,6 +1141,20 @@ export class Task {
     this.reportedAt = Date.now()
 
     return res
+  }
+
+  /**
+   * Зберегти чернетку звітності без завершення завдання.
+   * Не змінює reportedAt.
+   * @param {Reporting} reporting - Дані звітності.
+   * @returns {Promise<any>}
+   */
+  async reportingDraft(reporting: Reporting) {
+    return this.client.request('cc_reporting', {
+      attempt_id: this.id,
+      ...reporting,
+      draft: true,
+    })
   }
 
   /**
