@@ -1261,10 +1261,24 @@ export class Call {
    * @returns Ім'я для відображення.
    */
   get displayName() {
+    // queue member name is set by admin, never substituted by FS/engine (WTEL-10425)
+    if (this.isMember && this.task?.displayName) {
+      return this.maskNameEqualToHiddenNumber(this.task.displayName)
+    }
+
     const name = this._displayNameValue
     // todo, bug fs
     if (name === 'Outbound Call' || name === this.displayNumber) {
       return ''
+    }
+
+    return this.maskNameEqualToHiddenNumber(name)
+  }
+
+  // a name equal to the hidden number must stay masked (WTEL-10425)
+  private maskNameEqualToHiddenNumber(name?: string) {
+    if (this.hideNumber && name && name === this.memberCommunication?.destination) {
+      return this.displayNumber
     }
 
     return name
