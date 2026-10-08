@@ -1277,7 +1277,7 @@ export class Call {
 
   // a name equal to the hidden number must stay masked (WTEL-10425)
   private maskNameEqualToHiddenNumber(name?: string) {
-    if (this.hideNumber && name === this.memberCommunication?.destination) {
+    if (this.hideNumber && name && name === this.memberCommunication?.destination) {
       return this.displayNumber
     }
 
