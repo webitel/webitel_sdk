@@ -58,6 +58,31 @@ export interface MessageScreenShare {
   ack_id?: string
 }
 
+export type KnownSystemSettingName =
+  | 'call_end_sound_notification'
+  | 'call_end_push_notification'
+  | 'chat_end_sound_notification'
+  | 'chat_end_push_notification'
+  | 'task_end_sound_notification'
+  | 'task_end_push_notification'
+  | 'push_notification_timeout'
+  | 'new_message_sound_notification'
+  | 'new_chat_sound_notification'
+  | 'self_assigned_call_sound_notification'
+  | 'wbt_hide_contact'
+  | 'show_full_contact'
+  | 'expand_contact_tabs'
+  | 'default_workspace_tab'
+  | 'screenshot_interval'
+
+export type SystemSettingName = KnownSystemSettingName | (string & {})
+
+export interface MessageSysSettingsChange<T = unknown> {
+  name: SystemSettingName
+  value?: T
+}
+
+
 /**
  * Перелічуваний тип (enum), що представляє можливі дії для повідомлень.
  *
@@ -76,4 +101,5 @@ export enum NotificationActions {
   StartScreenRecord = 'ss_record_start',
   StopScreenRecord = 'ss_record_stop',
   ACK = 'ss_ack',
+  SysSettings = 'system_settings',
 }
