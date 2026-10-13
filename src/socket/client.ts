@@ -57,6 +57,7 @@ import {
 import {
   type MessageNotification,
   type MessageScreenShare,
+  MessageSysSettingsChange,
   type Notification,
   NotificationActions,
 } from './notification'
@@ -501,6 +502,7 @@ export interface ClientEvents {
   open_link(ev: MessageNotification): void
   screen_rec_start(ev: MessageNotification): void
   screen_rec_stop(ev: MessageNotification): void
+  system_settings_changed(ev: MessageSysSettingsChange): void
 
   /**
    * Викликається при отриманні SDP-повідомлення.
@@ -1515,6 +1517,17 @@ export class Client extends EventEmitter<ClientEvents> {
         break
       }
 
+      case NotificationActions.SysSettings: {
+        const rawBody = e.body
+        if (!isSystemSettingsChange(rawBody)) {
+          console.warn('[SDK] Invalid system settings payload received', rawBody)
+          break
+        }
+
+        this.emit(`system_settings_changed`, rawBody)
+
+        break
+      }
       case NotificationActions.ScreenShare: {
         const body = e.body as MessageScreenShare
         switch (body.state) {
@@ -2089,3 +2102,6 @@ function isDestroyJob(state: string) {
     ].indexOf(state) > -1
   )
 }
+
+const isSystemSettingsChange = (data: unknown): data is MessageSysSettingsChange =>
+      (typeof data === 'object' && data !== null && 'name' in data && typeof (data as MessageSysSettingsChange).name === 'string')
