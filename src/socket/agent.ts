@@ -803,7 +803,7 @@ export class Agent {
    * @param {number} perPage - Кількість елементів на сторінці.
    * @returns {Promise<OfflineMemberList>} - Список абонентів із офлайн черги.
    */
-  async offlineMembers(q: string, page: number, perPage: number) {
+  async offlineMembers(q: string, page: number, perPage: number, sort: string = ''): Promise<OfflineMemberList> {
     this._listOfflineMembers = (await this.client.request(
       `cc_fetch_offline_members`,
       {
@@ -811,6 +811,7 @@ export class Agent {
         page,
         q,
         per_page: perPage,
+        sort: sort,
       }
     )) as OfflineMemberList
 
