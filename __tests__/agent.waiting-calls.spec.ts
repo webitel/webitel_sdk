@@ -1,5 +1,10 @@
-import { Agent, AgentStatus, AgentSession, WaitingCallsSort } from '../src/socket/agent'
-import { Client } from '../src/socket/client'
+import {
+  Agent,
+  AgentStatus,
+  type AgentSession,
+  type WaitingCallsSort,
+} from '../src/socket/agent'
+import type { Client } from '../src/socket/client'
 
 const NOW = 1_700_000_000_000
 
@@ -9,11 +14,24 @@ interface CallSeed {
   destination: string
   wait: number
   queue: string
+  contact?: unknown
 }
 
 const BASE_SEEDS: CallSeed[] = [
-  { id: 1, name: 'Charlie', destination: '+380501112233', wait: 30, queue: 'Support' },
-  { id: 2, name: 'alice', destination: '+380671234567', wait: 120, queue: 'Billing' },
+  {
+    id: 1,
+    name: 'Charlie',
+    destination: '+380501112233',
+    wait: 30,
+    queue: 'Support',
+  },
+  {
+    id: 2,
+    name: 'alice',
+    destination: '+380671234567',
+    wait: 120,
+    queue: 'Billing',
+  },
   { id: 3, name: 'Bob', destination: '0442223344', wait: 60, queue: 'Sales' },
 ]
 
@@ -41,6 +59,7 @@ const createEvent = (seeds: CallSeed[]) => ({
     deadline: 0,
     queue: { id: s.id, name: s.queue },
     wait: s.wait,
+    contact: s.contact,
   })),
   chats: [],
 })
@@ -54,14 +73,18 @@ const createManySeeds = (count: number): CallSeed[] =>
     queue: `Queue ${(i % 3) + 1}`,
   }))
 
-const createAgent = (seeds: CallSeed[] = BASE_SEEDS, status?: string): Agent => {
+const createAgent = (
+  seeds: CallSeed[] = BASE_SEEDS,
+  status?: string
+): Agent => {
   const agent = new Agent({} as Client, createSession(status))
   agent.setWaitingList(createEvent(seeds))
 
   return agent
 }
 
-const ids = (agent: Agent): number[] => agent.waitingListCalls.map((c) => c.attemptId)
+const ids = (agent: Agent): number[] =>
+  agent.waitingListCalls.map((c) => c.attemptId)
 
 const rawSort = (value: string) => value as WaitingCallsSort
 
@@ -398,5 +421,97 @@ describe('Agent waiting calls', () => {
       expect(agent.waitingListCalls).toEqual([])
       expect(agent.waitingCallsTotal).toBe(0)
     })
+  })
+})
+
+describe('all count', () => {
+  it('equals the full list size initially', () => {
+    const agent = createAgent()
+
+    expect(agent.waitingCallsAllCount).toBe(3)
+  })
+
+  it('ignores the search query', () => {
+    const agent = createAgent()
+
+    agent.setWaitingCallsQuery({ q: 'bob' })
+
+    expect(agent.waitingCallsTotal).toBe(1)
+    expect(agent.waitingCallsAllCount).toBe(3)
+  })
+
+  it('ignores pagination', () => {
+    const agent = createAgent(createManySeeds(50))
+
+    expect(agent.waitingListCalls).toHaveLength(20)
+    expect(agent.waitingCallsAllCount).toBe(50)
+  })
+
+  it('follows push updates and deletions', () => {
+    const agent = createAgent()
+
+    agent.setWaitingCallsQuery({ q: 'bob' })
+    agent.deleteWaitingAttempt({ attempt_id: 1 })
+    expect(agent.waitingCallsAllCount).toBe(2)
+
+    agent.setWaitingList(createEvent(createManySeeds(7)))
+    expect(agent.waitingCallsAllCount).toBe(7)
+  })
+
+  it('is zero when the agent goes offline', () => {
+    const agent = createAgent()
+
+    agent.setStatus({
+      user_id: 1,
+      agent_id: 1,
+      timestamp: NOW,
+      status: AgentStatus.Offline,
+      status_comment: '',
+      channels: [],
+    })
+
+    expect(agent.waitingCallsAllCount).toBe(0)
+  })
+
+  it('is zero when the agent is not online', () => {
+    const agent = createAgent(BASE_SEEDS, AgentStatus.Pause)
+
+    expect(agent.waitingCallsAllCount).toBe(0)
+  })
+})
+
+describe('contact', () => {
+  it('passes through a valid contact', () => {
+    const agent = createAgent([
+      { ...BASE_SEEDS[0], contact: { id: 42, name: 'John Doe' } },
+    ])
+
+    expect(agent.waitingListCalls[0].contact).toEqual({
+      id: 42,
+      name: 'John Doe',
+    })
+  })
+
+  it('is undefined when the backend sends nothing', () => {
+    const agent = createAgent()
+
+    expect(agent.waitingListCalls[0].contact).toBeUndefined()
+  })
+
+  it.each([
+    ['null', null],
+    ['an empty object', {}],
+    ['a zero id', { id: 0, name: 'Ghost' }],
+    ['a string instead of an object', 'John'],
+  ])('is undefined for %s', (_, contact) => {
+    const agent = createAgent([{ ...BASE_SEEDS[0], contact }])
+
+    expect(agent.waitingListCalls[0].contact).toBeUndefined()
+  })
+
+  it('falls back to an empty name', () => {
+    const agent = createAgent([{ ...BASE_SEEDS[0], contact: { id: 7 } }])
+
+    expect(agent.waitingListCalls[0].contact).toEqual({ id: 7, name: '' })
   })
 })

@@ -31,6 +31,7 @@ export interface WaitingMember extends WaitingMemberProperties {
   communication: keyable
   channel: string
   session_id: string
+  contact?: Lookup | null
 }
 
 /**
@@ -43,6 +44,7 @@ export interface WaitingMemberCall extends WaitingMemberProperties {
   displayName: string
   displayNumber: string
   joinedAt: number
+  contact?: Lookup
 }
 
 /**
@@ -114,6 +116,18 @@ const parseSort = (sort: string | null): ParsedSort | null => {
 
 const getQueueName = (queue: object | null | undefined): string =>
   queue && 'name' in queue && typeof queue.name === 'string' ? queue.name : ''
+
+const parseContact = (value: unknown): Lookup | undefined => {
+  if (typeof value !== 'object' || value === null) return undefined
+
+  const { id, name } = value as Partial<Record<'id' | 'name', unknown>>
+  if (id === undefined || id === null || id === '' || id === 0) return undefined
+
+  return {
+    id: typeof id === 'number' ? id : 0,
+    name: typeof name === 'string' ? name : '',
+  }
+}
 
 const normalizeSize = (value: number): number =>
   Number.isFinite(value)
@@ -401,6 +415,7 @@ export class Agent {
   }
   private _waitingCallsVisible: number = DEFAULT_WAITING_CALLS_SIZE
   private _waitingCallsTotal: number = 0
+  private _waitingCallsAll: number = 0
 
   /**
    * Конструктор класу Agent.
@@ -515,6 +530,10 @@ export class Agent {
     return this.info.supervisor
   }
 
+  get waitingCallsAllCount(): number {
+    return this._waitingCallsAll
+  }
+
   /**
    * Метод, що повертає аудитора агента.
    * @method
@@ -583,6 +602,7 @@ export class Agent {
           queue: el.queue,
           wait: el.wait,
           joinedAt: now - el.wait * 1000,
+          contact: parseContact(el.contact),
         })
       }
 
@@ -998,6 +1018,7 @@ export class Agent {
     )
 
     this._waitingCallsTotal = result.length
+    this._waitingCallsAll = this._waitingCalls.length
     this.waitingListCalls.splice(
       0,
       this.waitingListCalls.length,
