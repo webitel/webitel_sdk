@@ -1,4 +1,4 @@
-import { Lookup } from '../base'
+import type { Lookup } from '../base'
 import type { Client } from './client'
 import { type BaseError, PauseNotAllowedError, TypeErrors } from './errors'
 import type { keyable } from './notification'
@@ -31,6 +31,7 @@ export interface WaitingMember extends WaitingMemberProperties {
   communication: keyable
   channel: string
   session_id: string
+  contact?: Lookup | null
 }
 
 /**
@@ -42,6 +43,8 @@ export interface WaitingMemberCall extends WaitingMemberProperties {
   sessionId: string
   displayName: string
   displayNumber: string
+  joinedAt: number
+  contact?: Lookup
 }
 
 /**
@@ -58,6 +61,123 @@ export interface WaitingMemberChat extends WaitingMemberProperties {
   member: object
 }
 
+export enum WaitingCallSortField {
+  Name = 'name',
+  DateTime = 'joined_at',
+  Duration = 'duration',
+  Queue = 'queue',
+}
+
+type SortSign = '+' | '-'
+
+export type WaitingCallsSort = `${SortSign}${WaitingCallSortField}`
+
+export interface WaitingCallsQuery {
+  q: string
+  size: number
+  sort: WaitingCallsSort | null
+}
+
+interface ParsedSort {
+  field: WaitingCallSortField
+  direction: 1 | -1
+}
+
+type WaitingCallComparator = (
+  a: WaitingMemberCall,
+  b: WaitingMemberCall
+) => number
+
+const DEFAULT_WAITING_CALLS_SIZE = 20
+
+const nameCollator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: 'base',
+})
+
+const waitingCallSortFields: ReadonlySet<string> = new Set(
+  Object.values(WaitingCallSortField)
+)
+
+const isWaitingCallSortField = (value: string): value is WaitingCallSortField =>
+  waitingCallSortFields.has(value)
+
+const parseSort = (sort: string | null): ParsedSort | null => {
+  if (!sort) return null
+
+  const first = sort.charAt(0)
+  const hasSign = first === '+' || first === '-' || first === ' '
+  const field = (hasSign ? sort.slice(1) : sort).trim()
+
+  if (!isWaitingCallSortField(field)) return null
+
+  return { field, direction: first === '-' ? -1 : 1 }
+}
+
+const getQueueName = (queue: object | null | undefined): string =>
+  queue && 'name' in queue && typeof queue.name === 'string' ? queue.name : ''
+
+const parseContact = (value: unknown): Lookup | undefined => {
+  if (typeof value !== 'object' || value === null) return undefined
+
+  const { id, name } = value as Partial<Record<'id' | 'name', unknown>>
+  if (id === undefined || id === null || id === '' || id === 0) return undefined
+
+  return {
+    id: typeof id === 'number' ? id : 0,
+    name: typeof name === 'string' ? name : '',
+  }
+}
+
+const normalizeSize = (value: number): number =>
+  Number.isFinite(value)
+    ? Math.max(1, Math.floor(value))
+    : DEFAULT_WAITING_CALLS_SIZE
+
+const waitingCallComparators: Record<
+  WaitingCallSortField,
+  WaitingCallComparator
+> = {
+  [WaitingCallSortField.Name]: (a, b) =>
+    nameCollator.compare(a.displayName, b.displayName),
+  [WaitingCallSortField.DateTime]: (a, b) => a.joinedAt - b.joinedAt,
+  [WaitingCallSortField.Duration]: (a, b) => b.joinedAt - a.joinedAt,
+  [WaitingCallSortField.Queue]: (a, b) =>
+    nameCollator.compare(getQueueName(a.queue), getQueueName(b.queue)),
+}
+
+const PHONE_QUERY_PATTERN = /^[\d\s+()\-.]+$/
+
+const filterWaitingCalls = (
+  calls: readonly WaitingMemberCall[],
+  q: string
+): readonly WaitingMemberCall[] => {
+  const text = q.trim().toLocaleLowerCase()
+  if (text === '') return calls
+
+  const digits = PHONE_QUERY_PATTERN.test(text) ? text.replace(/\D/g, '') : ''
+
+  return calls.filter(
+    (call) =>
+      call.displayName.toLocaleLowerCase().includes(text) ||
+      call.displayNumber.toLocaleLowerCase().includes(text) ||
+      (digits !== '' && call.displayNumber.replace(/\D/g, '').includes(digits))
+  )
+}
+
+const sortWaitingCalls = (
+  calls: readonly WaitingMemberCall[],
+  sort: ParsedSort | null
+): WaitingMemberCall[] => {
+  if (!sort) return [...calls]
+
+  const compare = waitingCallComparators[sort.field]
+
+  return [...calls].sort(
+    (a, b) => compare(a, b) * sort.direction || a.attemptId - b.attemptId
+  )
+}
+
 /**
  * Інтерфейс, що представляє канал зв'язку.
  * @interface
@@ -71,7 +191,6 @@ export interface Channel {
   open: number
   wrap_time_ids: number[]
 }
-
 
 /**
  * Інтерфейс, що представляє сесію агента.
@@ -261,7 +380,7 @@ export interface OfflineMemberList {
   next?: boolean
 }
 
-const formatStatusPreset = (statusPreset?: Lookup):Lookup | undefined => {
+const formatStatusPreset = (statusPreset?: Lookup): Lookup | undefined => {
   if (!statusPreset) return undefined
 
   if (statusPreset.id <= 0 || statusPreset.name === '') return undefined
@@ -288,6 +407,15 @@ export class Agent {
   _listOfflineMembers: OfflineMemberList | null
   lastStatusChange: number
   private _waitingChatsSize: number = 0
+  private _waitingCalls: WaitingMemberCall[] = []
+  private _waitingCallsQuery: WaitingCallsQuery = {
+    q: '',
+    size: DEFAULT_WAITING_CALLS_SIZE,
+    sort: null,
+  }
+  private _waitingCallsVisible: number = DEFAULT_WAITING_CALLS_SIZE
+  private _waitingCallsTotal: number = 0
+  private _waitingCallsAll: number = 0
 
   /**
    * Конструктор класу Agent.
@@ -354,6 +482,18 @@ export class Agent {
     return this.info.status_comment
   }
 
+  get waitingCallsTotal(): number {
+    return this._waitingCallsTotal
+  }
+
+  get hasMoreWaitingCalls(): boolean {
+    return this._waitingCallsVisible < this._waitingCallsTotal
+  }
+
+  get waitingCallsQuery(): Readonly<WaitingCallsQuery> {
+    return this._waitingCallsQuery
+  }
+
   /**
    * Метод, що повертає, чи є агент адміністратором.
    * @method
@@ -388,6 +528,10 @@ export class Agent {
    */
   get supervisor() {
     return this.info.supervisor
+  }
+
+  get waitingCallsAllCount(): number {
+    return this._waitingCallsAll
   }
 
   /**
@@ -437,16 +581,19 @@ export class Agent {
    */
   setWaitingList(e: keyable | undefined) {
     if (e) {
-      this.waitingListCalls.length = 0
+      this._waitingCalls.length = 0
       this.waitingListChats.length = 0
       this._waitingChatsSize = 0
 
       if (this.status !== AgentStatus.Online) {
+        this.refreshWaitingCalls()
         return
       }
 
+      const now = Date.now()
+
       for (const el of (e.calls || []) as WaitingMember[]) {
-        this.waitingListCalls.push({
+        this._waitingCalls.push({
           displayName: el.communication.name || '',
           displayNumber: el.communication.destination || '',
           attemptId: el.attempt_id,
@@ -454,8 +601,12 @@ export class Agent {
           deadline: el.deadline,
           queue: el.queue,
           wait: el.wait,
+          joinedAt: now - el.wait * 1000,
+          contact: parseContact(el.contact),
         })
       }
+
+      this.refreshWaitingCalls()
 
       if (Array.isArray(e.chats)) {
         this._waitingChatsSize = e.chats.length
@@ -488,17 +639,17 @@ export class Agent {
    * @param {keyable | undefined} e - Об'єкт зі списком членів, які очікують на відповідь.
    */
   deleteWaitingAttempt(e: keyable | undefined) {
-    if (e) {
-      const attemptId = e.attempt_id
+    if (!e) return
 
-      if (removeWaitingList(this.waitingListCalls, attemptId)) {
-        return
-      }
+    const attemptId = e.attempt_id
 
+    if (removeWaitingList(this._waitingCalls, attemptId)) {
+      this.refreshWaitingCalls()
+      return
+    }
 
-      if (removeWaitingList(this.waitingListChats, attemptId)) {
-        this._waitingChatsSize--
-      }
+    if (removeWaitingList(this.waitingListChats, attemptId)) {
+      this._waitingChatsSize--
     }
   }
 
@@ -706,7 +857,12 @@ export class Agent {
    * @returns {Promise<any>} - Об'єкт з інформацією про сесію агента.
    */
   async online(channels?: string[], onDemand?: boolean, onlineSkill?: Lookup) {
-    return this.client.agentSetOnline(this.agentId, channels, onDemand, onlineSkill)
+    return this.client.agentSetOnline(
+      this.agentId,
+      channels,
+      onDemand,
+      onlineSkill
+    )
   }
 
   /**
@@ -767,7 +923,8 @@ export class Agent {
       this.info.on_demand = e.on_demand || false
       this.initChannels(e.channels)
     } else {
-      this.waitingListCalls.length = 0
+      this._waitingCalls.length = 0
+      this.refreshWaitingCalls()
       this.waitingListChats.length = 0
       this._waitingChatsSize = 0
     }
@@ -803,7 +960,12 @@ export class Agent {
    * @param {number} perPage - Кількість елементів на сторінці.
    * @returns {Promise<OfflineMemberList>} - Список абонентів із офлайн черги.
    */
-  async offlineMembers(q: string, page: number, perPage: number, sort: string = ''): Promise<OfflineMemberList> {
+  async offlineMembers(
+    q: string,
+    page: number,
+    perPage: number,
+    sort: string = ''
+  ): Promise<OfflineMemberList> {
     this._listOfflineMembers = (await this.client.request(
       `cc_fetch_offline_members`,
       {
@@ -824,8 +986,44 @@ export class Agent {
    * @param {Task} task - Задача.
    * @returns {boolean} - true, якщо агент має задачу, false - якщо ні.
    */
-  hasTask(task: Task) {
+  public hasTask(task: Task): boolean {
     return this.task.has(task.id)
+  }
+
+  setWaitingCallsQuery(patch: Partial<WaitingCallsQuery>) {
+    const next: WaitingCallsQuery = { ...this._waitingCallsQuery, ...patch }
+    next.size = normalizeSize(next.size)
+
+    this._waitingCallsQuery = next
+    this._waitingCallsVisible = next.size
+    this.refreshWaitingCalls()
+  }
+
+  loadMoreWaitingCalls(): boolean {
+    if (!this.hasMoreWaitingCalls) {
+      return false
+    }
+
+    this._waitingCallsVisible += this._waitingCallsQuery.size
+    this.refreshWaitingCalls()
+
+    return true
+  }
+
+  private refreshWaitingCalls() {
+    const { q, sort } = this._waitingCallsQuery
+    const result = sortWaitingCalls(
+      filterWaitingCalls(this._waitingCalls, q),
+      parseSort(sort)
+    )
+
+    this._waitingCallsTotal = result.length
+    this._waitingCallsAll = this._waitingCalls.length
+    this.waitingListCalls.splice(
+      0,
+      this.waitingListCalls.length,
+      ...result.slice(0, this._waitingCallsVisible)
+    )
   }
 
   private initChannels(channels: Channel[]) {
