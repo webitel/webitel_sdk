@@ -1277,7 +1277,15 @@ export class Call {
 
   // a name equal to the hidden number must stay masked (WTEL-10425)
   private maskNameEqualToHiddenNumber(name?: string) {
-    if (this.hideNumber && name && name === this.memberCommunication?.destination) {
+    // only a phone-like name, so 'John 380988888888' is not treated as a number
+    if (!this.hideNumber || !name || !/^[\d\s()+\-.]+$/.test(name)) {
+      return name
+    }
+
+    // compare digits only: '+38(098)8888888' and '380988888888' are the same number
+    const nameDigits = name.replace(/\D/g, '')
+    const destinationDigits = (this.memberCommunication?.destination || '').replace(/\D/g, '')
+    if (nameDigits && nameDigits === destinationDigits) {
       return this.displayNumber
     }
 
