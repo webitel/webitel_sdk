@@ -342,6 +342,7 @@ export interface Distribute extends ChannelEvent {
   member_joined_at: number
   queue_max_wait_time?: number
   autosave?: boolean
+  team_accept_timeout: number
 }
 
 export interface TaskData extends Distribute {
@@ -811,6 +812,10 @@ export class Task {
 
   get memberJoinedAt(): number {
     return this.distribute.member_joined_at
+  }
+
+  get acceptTimeoutSec(): number {
+    return this.distribute?.team_accept_timeout || 0
   }
 
   get autosave(): boolean {
