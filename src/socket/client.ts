@@ -1,6 +1,6 @@
 // tslint:disable-next-line: match-default-export-name
 import Axios from 'axios'
-import { EventEmitter } from 'ee-ts'
+import { type Disposable, EventEmitter } from 'ee-ts'
 
 import { Log } from '../log'
 import type {
@@ -92,6 +92,7 @@ import { Lookup } from '../base'
  * @property {boolean} [echoCancellation] - (Необов'язковий) Вказує, чи слід увімкнути придушення відлуння.
  * @property {boolean} [noiseSuppression] - (Необов'язковий) Вказує, чи слід увімкнути придушення шуму.
  * @property {boolean} [autoGainControl] - (Необов'язковий) Вказує, чи слід увімкнути автоматичне регулювання підсилення.
+ * @property {SipClient} [sipPhone] - (Optional) Live web phone from `detachPhone()` of a previous client, reused instead of a new registration.
  */
 export interface Config {
   endpoint: string
@@ -108,6 +109,7 @@ export interface Config {
   noiseSuppression?: boolean
   autoGainControl?: boolean
   userAgent?: string
+  sipPhone?: SipClient
 }
 
 /**
@@ -555,6 +557,7 @@ export class Client extends EventEmitter<ClientEvents> {
   >()
   private log: Log
   private eventHandler: EventEmitter<EventHandler>
+  private phoneSubscriptions: Disposable[] = []
   private callStore: Map<string, Call>
   private spyScreenSessions: SpyScreen[]
   private senderScreenStore: SenderSession[]
@@ -1166,6 +1169,8 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   subscribePhone(phone: SipClient) {
+    const subscriptions = this.phoneSubscriptions
+
     phone.on(
       'peerStreams',
       (session: CallSession, streams: MediaStream[] | null) => {
@@ -1178,7 +1183,8 @@ export class Client extends EventEmitter<ClientEvents> {
             call
           )
         }
-      }
+      },
+      subscriptions
     )
 
     phone.on(
@@ -1193,14 +1199,32 @@ export class Client extends EventEmitter<ClientEvents> {
             call
           )
         }
-      }
+      },
+      subscriptions
     )
 
-    phone.on('newSession', this.onNewCallSession.bind(this))
-    phone.on('info', this.onCallInfoSession.bind(this))
-    phone.on('registered', () => this.emit('phone_registered', true))
-    phone.on('connected', () => this.emit('phone_connected', true))
-    phone.on('unregistered', () => this.emit('phone_registered', false))
+    phone.on('newSession', this.onNewCallSession.bind(this), subscriptions)
+    phone.on('info', this.onCallInfoSession.bind(this), subscriptions)
+    phone.on('registered', () => this.emit('phone_registered', true), subscriptions)
+    phone.on('connected', () => this.emit('phone_connected', true), subscriptions)
+    phone.on(
+      'unregistered',
+      () => this.emit('phone_registered', false),
+      subscriptions
+    )
+  }
+
+  detachPhone(): SipClient | undefined {
+    const phone = this.phone
+    if (!(phone instanceof SipPhone)) {
+      return undefined
+    }
+
+    for (const subscription of this.phoneSubscriptions.splice(0)) {
+      subscription.dispose()
+    }
+    delete this.phone
+    return phone
   }
 
   phoneIsRegister() {
@@ -1672,8 +1696,18 @@ export class Client extends EventEmitter<ClientEvents> {
       await this.pingServer()
     }
 
+    const { sipPhone } = this._config
+
     if (!this.useWebPhone()) {
+      await sipPhone?.unregister()
       return
+    }
+
+    if (sipPhone) {
+      if (!this.connectionInfo.b2bua) {
+        return this.registerCallClient(sipPhone)
+      }
+      await sipPhone.unregister()
     }
 
     const audioProcessing = {
