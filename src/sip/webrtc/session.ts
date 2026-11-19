@@ -55,7 +55,6 @@ export class Session implements CallSession {
       // @ts-ignore
       this.session.sendInfo('application/json', JSON.stringify(s))
     }, 500)
-
   }
 
   // on(name: string, arg?: object): void

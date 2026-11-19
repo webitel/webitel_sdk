@@ -1284,7 +1284,9 @@ export class Call {
 
     // compare digits only: '+38(098)8888888' and '380988888888' are the same number
     const nameDigits = name.replace(/\D/g, '')
-    const destinationDigits = (this.memberCommunication?.destination || '').replace(/\D/g, '')
+    const destinationDigits = (
+      this.memberCommunication?.destination || ''
+    ).replace(/\D/g, '')
     if (nameDigits && nameDigits === destinationDigits) {
       return this.displayNumber
     }
