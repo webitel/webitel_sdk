@@ -5,6 +5,7 @@ import type {
   Answer,
   AudioProcessingConfig,
   Outbound,
+  OutboundCallResult,
   SipClient,
   SipClientEvents,
 } from '../index'
@@ -79,14 +80,21 @@ export class SipPhone
     return false
   }
 
-  async call(req: Outbound) {
+  async call(req: Outbound): Promise<OutboundCallResult | undefined> {
     const sess = new Session(this, this.rpc)
+    // sess.id is the sip_id from the call_sdp response.
     await sess.call(req.destination)
     this.sessions.push(sess)
     this.emit('newSession', sess)
+
+    if (typeof sess.id === 'string' && sess.id) {
+      return { sipId: sess.id }
+    }
+
+    return undefined
   }
 
-  async register() {
+  async register(): Promise<undefined> {
     try {
       await this.rpc.request(`sip_register`, {})
       // tslint:disable-next-line: no-empty
@@ -94,10 +102,12 @@ export class SipPhone
 
     this.setRegister(true)
     this.emit('connected')
+    return undefined
   }
 
-  async unregister() {
+  async unregister(): Promise<undefined> {
     this.setRegister(false)
+    return undefined
   }
 
   isRegistered() {
