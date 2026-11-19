@@ -82,7 +82,6 @@ export interface MessageSysSettingsChange<T = unknown> {
   value?: T
 }
 
-
 /**
  * Перелічуваний тип (enum), що представляє можливі дії для повідомлень.
  *

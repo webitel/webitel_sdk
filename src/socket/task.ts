@@ -11,8 +11,8 @@ import { camelizeKeys } from './utils'
  */
 export interface ThreadPreview
   extends Pick<ThreadModel, 'id' | 'members' | 'subject'> {
-    lastMsg?: string;
-  }
+  lastMsg?: string
+}
 
 /**
  * Сире превʼю чату (snake_case) — як приходить по сокету.
@@ -683,7 +683,7 @@ export class Task {
   _autoAnswerTimerId: any | null
 
   private _baseProcessingSec: number = 0
-  private _renewedSec: number  = 0
+  private _renewedSec: number = 0
 
   /**
    * Конструктор класу.

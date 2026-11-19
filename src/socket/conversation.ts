@@ -881,7 +881,7 @@ export class Conversation {
         createdAt: i.created_at,
         updatedAt: i.updated_at,
         contact: null,
-        variables: null
+        variables: null,
       } as MessageWithChannel
 
       if (Object.hasOwn(i, 'file')) {
@@ -1301,7 +1301,8 @@ export class Conversation {
     }
 
     for (const m of this.members) {
-      if (msg.channel_id !== '' &&  m.id === msg.channel_id) { //bots has empty channelID in backend
+      if (msg.channel_id !== '' && m.id === msg.channel_id) {
+        //bots has empty channelID in backend
         return m
       }
     }

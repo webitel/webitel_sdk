@@ -6,10 +6,11 @@ import { Log } from '../log'
 import type {
   AudioProcessingConfig,
   CallSession,
+  OutboundCallResult,
   SipClient,
   SipConfiguration,
 } from '../sip'
-import { SipPhone, SipPhoneOptions } from '../sip/webrtc'
+import { SipPhone, type SipPhoneOptions } from '../sip/webrtc'
 import { SipPhone as ExperimentalPhone } from '../sip/webrtc2'
 import { version } from '../version'
 import {
@@ -57,7 +58,7 @@ import {
 import {
   type MessageNotification,
   type MessageScreenShare,
-  MessageSysSettingsChange,
+  type MessageSysSettingsChange,
   type Notification,
   NotificationActions,
 } from './notification'
@@ -75,7 +76,7 @@ import type { UserStatus } from './user'
 import { formatBaseUri, generateId } from './utils'
 import { SenderSession, type ScreenResolver } from '../screen'
 import { SpyScreen } from './screen'
-import { Lookup } from '../base'
+import type { Lookup } from '../base'
 
 /**
  * Налаштування клієнта.
@@ -586,7 +587,8 @@ export class Client extends EventEmitter<ClientEvents> {
     this.lastLatency = null
     this.screenResolver = _config.screenResolver || null
 
-    this.userAgent = _config.userAgent || `webitel-web-phone-sdk.${this.buildVersion}`
+    this.userAgent =
+      _config.userAgent || `webitel-web-phone-sdk.${this.buildVersion}`
   }
 
   async connect() {
@@ -993,16 +995,34 @@ export class Client extends EventEmitter<ClientEvents> {
     return this.request(WEBSOCKET_MAKE_OUTBOUND_CALL, req)
   }
 
-  async call(req: OutboundCallRequest) {
+  /**
+   * Makes an outbound call.
+   *
+   * Resolves with the id of the created call, or `undefined` when it is not
+   * known (see {@link OutboundCallResult}):
+   * - no web phone: `{ callId }` from the `call_invite` response. Socket call
+   *   events for this call can arrive before the promise resolves.
+   * - JsSIP web phone: `{ sipId }`, known before the INVITE is sent.
+   * - RPC (b2bua) web phone: `{ sipId }` from the `call_sdp` response.
+   * - external phone: `undefined`.
+   *
+   * Errors from the web phone are not thrown: they are emitted as `error`
+   * and the promise resolves with `undefined`.
+   */
+  async call(
+    req: OutboundCallRequest
+  ): Promise<OutboundCallResult | undefined> {
     if (this.phone) {
       try {
-        await this.phone.call(req)
+        return toOutboundCallResult(await this.phone.call(req))
       } catch (e) {
         this.handleError(e as Error)
+        return undefined
       }
-    } else {
-      await this.invite(req)
     }
+
+    const res = (await this.invite(req)) as { id?: unknown } | undefined
+    return toOutboundCallResult({ callId: res?.id })
   }
 
   async callRecordId(id: string) {
@@ -1023,7 +1043,7 @@ export class Client extends EventEmitter<ClientEvents> {
       agent_id: agentId,
       channels,
       on_demand: onDemand,
-      online_skill: online_skill
+      online_skill: online_skill,
     })
   }
 
@@ -1520,7 +1540,10 @@ export class Client extends EventEmitter<ClientEvents> {
       case NotificationActions.SysSettings: {
         const rawBody = e.body
         if (!isSystemSettingsChange(rawBody)) {
-          console.warn('[SDK] Invalid system settings payload received', rawBody)
+          console.warn(
+            '[SDK] Invalid system settings payload received',
+            rawBody
+          )
           break
         }
 
@@ -1683,13 +1706,18 @@ export class Client extends EventEmitter<ClientEvents> {
     }
 
     const sipOptions: SipPhoneOptions = {
-      userAgent: this.userAgent
+      userAgent: this.userAgent,
     }
 
     return this.registerCallClient(
       this.connectionInfo.b2bua
         ? new ExperimentalPhone(this, audioProcessing)
-        : new SipPhone(this.instanceId, this._config.debug, audioProcessing, sipOptions)
+        : new SipPhone(
+            this.instanceId,
+            this._config.debug,
+            audioProcessing,
+            sipOptions
+          )
     )
   }
 
@@ -2088,6 +2116,27 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 }
 
+/**
+ * Keeps only non-empty string ids. Anything else (`undefined`, an `Error`
+ * returned by a `SipClient`, a response without an id) becomes `undefined`.
+ */
+function toOutboundCallResult(value: unknown): OutboundCallResult | undefined {
+  if (!value || typeof value !== 'object' || value instanceof Error) {
+    return undefined
+  }
+
+  const { callId, sipId } = value as Record<string, unknown>
+  const result: OutboundCallResult = {}
+  if (typeof callId === 'string' && callId) {
+    result.callId = callId
+  }
+  if (typeof sipId === 'string' && sipId) {
+    result.sipId = sipId
+  }
+
+  return result.callId || result.sipId ? result : undefined
+}
+
 function isJobTask(task: Task) {
   return task.channel === ChannelName.Task
 }
@@ -2103,5 +2152,10 @@ function isDestroyJob(state: string) {
   )
 }
 
-const isSystemSettingsChange = (data: unknown): data is MessageSysSettingsChange =>
-      (typeof data === 'object' && data !== null && 'name' in data && typeof (data as MessageSysSettingsChange).name === 'string')
+const isSystemSettingsChange = (
+  data: unknown
+): data is MessageSysSettingsChange =>
+  typeof data === 'object' &&
+  data !== null &&
+  'name' in data &&
+  typeof (data as MessageSysSettingsChange).name === 'string'
