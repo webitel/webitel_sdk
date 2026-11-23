@@ -1,10 +1,12 @@
 import { EventEmitter } from 'ee-ts'
+import { isNonEmptyString } from '../../utils/guards'
 import { Session } from './session'
 import type { RPC } from './rpc'
 import type {
   Answer,
   AudioProcessingConfig,
   Outbound,
+  OutboundCallResult,
   SipClient,
   SipClientEvents,
 } from '../index'
@@ -79,14 +81,21 @@ export class SipPhone
     return false
   }
 
-  async call(req: Outbound) {
+  async call(req: Outbound): Promise<OutboundCallResult | undefined> {
     const sess = new Session(this, this.rpc)
+    // sess.id is the sip_id from the call_sdp response.
     await sess.call(req.destination)
     this.sessions.push(sess)
     this.emit('newSession', sess)
+
+    if (isNonEmptyString(sess.id)) {
+      return { sipId: sess.id }
+    }
+
+    return undefined
   }
 
-  async register() {
+  async register(): Promise<undefined> {
     try {
       await this.rpc.request(`sip_register`, {})
       // tslint:disable-next-line: no-empty
@@ -94,10 +103,12 @@ export class SipPhone
 
     this.setRegister(true)
     this.emit('connected')
+    return undefined
   }
 
-  async unregister() {
+  async unregister(): Promise<undefined> {
     this.setRegister(false)
+    return undefined
   }
 
   isRegistered() {

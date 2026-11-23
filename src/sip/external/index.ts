@@ -31,7 +31,7 @@ export class ExternalClient
     return
   }
 
-  async call(req: Outbound): Promise<undefined | Error> {
+  async call(req: Outbound): Promise<undefined> {
     if (!req.destination) {
       return
     }

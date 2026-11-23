@@ -165,6 +165,14 @@ export interface OutboundCallRequest {
 }
 
 /**
+ * Successful response to `call_invite`. Error responses reject the request.
+ */
+export interface OutboundCallInviteResponse {
+  /** Id of the created call. */
+  id?: string
+}
+
+/**
  * Інтерфейс для запиту прослуховування дзвінка.
  * @interface
  */
@@ -1284,7 +1292,9 @@ export class Call {
 
     // compare digits only: '+38(098)8888888' and '380988888888' are the same number
     const nameDigits = name.replace(/\D/g, '')
-    const destinationDigits = (this.memberCommunication?.destination || '').replace(/\D/g, '')
+    const destinationDigits = (
+      this.memberCommunication?.destination || ''
+    ).replace(/\D/g, '')
     if (nameDigits && nameDigits === destinationDigits) {
       return this.displayNumber
     }
