@@ -20,6 +20,17 @@ import { Session } from './session'
 import type { RTCSessionEvent } from './types'
 import { resolveUserAgent } from './user-agent'
 
+let contactUri: string | undefined
+
+function pageContactUri(): string {
+  if (!contactUri) {
+    const token = crypto.randomUUID().replace(/-/g, '')
+    // same shape as JsSIP's default Contact: 8-char user, 12-char host under .invalid, WebSocket transport
+    contactUri = `sip:${token.slice(0, 8)}@${token.slice(8, 20)}.invalid;transport=ws`
+  }
+  return contactUri
+}
+
 interface PeerConnectionEvent {
   peerconnection: RTCPeerConnection
 }
@@ -206,6 +217,7 @@ export class SipPhone
       connection_recovery_min_interval: 2,
       connection_recovery_max_interval: 30,
       // instance_id: '8f1fa16a-1165-4a96-8341-785b1ef24f13',
+      contact_uri: pageContactUri(),
     }
 
     const ua = (this.ua = new UA(configuration))
