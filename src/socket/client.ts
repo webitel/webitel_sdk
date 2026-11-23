@@ -12,6 +12,7 @@ import type {
 } from '../sip'
 import { SipPhone, type SipPhoneOptions } from '../sip/webrtc'
 import { SipPhone as ExperimentalPhone } from '../sip/webrtc2'
+import { isNonEmptyString } from '../utils/guards'
 import { version } from '../version'
 import {
   Agent,
@@ -31,6 +32,7 @@ import {
   type CallMediaStats,
   type CallVariables,
   type EavesdropRequest,
+  type OutboundCallInviteResponse,
   type OutboundCallRequest,
   type RtpMetrics,
 } from './call'
@@ -991,7 +993,9 @@ export class Client extends EventEmitter<ClientEvents> {
     return this.agent
   }
 
-  async invite(req: OutboundCallRequest) {
+  async invite(
+    req: OutboundCallRequest
+  ): Promise<OutboundCallInviteResponse | undefined> {
     return this.request(WEBSOCKET_MAKE_OUTBOUND_CALL, req)
   }
 
@@ -1014,15 +1018,15 @@ export class Client extends EventEmitter<ClientEvents> {
   ): Promise<OutboundCallResult | undefined> {
     if (this.phone) {
       try {
-        return toOutboundCallResult(await this.phone.call(req))
+        return await this.phone.call(req)
       } catch (e) {
         this.handleError(e as Error)
         return undefined
       }
     }
 
-    const res = (await this.invite(req)) as { id?: unknown } | undefined
-    return toOutboundCallResult({ callId: res?.id })
+    const callId = (await this.invite(req))?.id
+    return isNonEmptyString(callId) ? { callId } : undefined
   }
 
   async callRecordId(id: string) {
@@ -2114,27 +2118,6 @@ export class Client extends EventEmitter<ClientEvents> {
 
     return params
   }
-}
-
-/**
- * Keeps only non-empty string ids. Anything else (`undefined`, an `Error`
- * returned by a `SipClient`, a response without an id) becomes `undefined`.
- */
-function toOutboundCallResult(value: unknown): OutboundCallResult | undefined {
-  if (!value || typeof value !== 'object' || value instanceof Error) {
-    return undefined
-  }
-
-  const { callId, sipId } = value as Record<string, unknown>
-  const result: OutboundCallResult = {}
-  if (typeof callId === 'string' && callId) {
-    result.callId = callId
-  }
-  if (typeof sipId === 'string' && sipId) {
-    result.sipId = sipId
-  }
-
-  return result.callId || result.sipId ? result : undefined
 }
 
 function isJobTask(task: Task) {

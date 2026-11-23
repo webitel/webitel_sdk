@@ -40,19 +40,24 @@ export interface Outbound {
 /**
  * Identifies the call that an outbound dial (`Client.call`) created.
  *
- * Which field is set depends on how the call was dialed:
+ * Exactly one field is set. Which one depends on how the call was dialed:
  * - `callId`: no web phone registered. The id from the `call_invite`
  *   response. It equals `Call.id` of the caller's leg in the call feed.
  * - `sipId`: web phone registered. The SIP session id of the dial. Match it
  *   against the feed the way `Client.callBySipId` does:
  *   `call.sipId && sipId.startsWith(call.sipId)`.
  */
-export interface OutboundCallResult {
-  /** Server call id from the `call_invite` response. Compare with `Call.id`. */
-  callId?: string
-  /** SIP session id of the web phone dial. Compare with `Call.sipId` by prefix. */
-  sipId?: string
-}
+export type OutboundCallResult =
+  | {
+      /** Server call id from the `call_invite` response. Compare with `Call.id`. */
+      callId: string
+      sipId?: never
+    }
+  | {
+      callId?: never
+      /** SIP session id of the web phone dial. Compare with `Call.sipId` by prefix. */
+      sipId: string
+    }
 
 export interface MediaConfig {
   videoMuted: boolean
@@ -126,9 +131,10 @@ export abstract class SipClient extends EventEmitter<SipClientEvents> {
 
   /**
    * Dials `req.destination`. Resolves with the id of the created call when
-   * the implementation knows it, otherwise with `undefined`.
+   * the implementation knows it, otherwise with `undefined`. Errors are
+   * thrown, not returned.
    */
-  abstract call(req: Outbound): Promise<OutboundCallResult | undefined | Error>
+  abstract call(req: Outbound): Promise<OutboundCallResult | undefined>
   abstract isRegistered(): boolean
 
   abstract setAudioProcessing(processing: AudioProcessingConfig): void

@@ -12,6 +12,7 @@ import type {
   SipConfiguration,
 } from '../'
 import { Log } from '../../log'
+import { isNonEmptyString } from '../../utils/guards'
 import {
   type AudioProcessingConfig,
   buildAudioConstraints,
@@ -189,7 +190,7 @@ export class SipPhone
     })
 
     const sipId: unknown = session?.id
-    if (typeof sipId === 'string' && sipId) {
+    if (isNonEmptyString(sipId)) {
       return { sipId }
     }
 

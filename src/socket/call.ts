@@ -165,6 +165,14 @@ export interface OutboundCallRequest {
 }
 
 /**
+ * Successful response to `call_invite`. Error responses reject the request.
+ */
+export interface OutboundCallInviteResponse {
+  /** Id of the created call. */
+  id?: string
+}
+
+/**
  * Інтерфейс для запиту прослуховування дзвінка.
  * @interface
  */

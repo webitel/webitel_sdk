@@ -39,9 +39,13 @@ describe('Client.call', () => {
       expect(request).toHaveBeenCalledWith('call_invite', req)
     })
 
-    it('resolves with undefined when the response has no id', async () => {
+    it.each([
+      ['no data', undefined],
+      ['no id', {}],
+      ['an empty id', { id: '' }],
+    ])('resolves with undefined when the response has %s', async (_, data) => {
       const cli = createClient()
-      jest.spyOn(cli, 'request').mockResolvedValue({})
+      jest.spyOn(cli, 'request').mockResolvedValue(data as object)
 
       await expect(cli.call({ destination: '100' })).resolves.toBeUndefined()
     })
@@ -69,12 +73,11 @@ describe('Client.call', () => {
       expect(request).not.toHaveBeenCalled()
     })
 
-    it.each([
-      ['undefined', undefined],
-      ['an Error value', new Error('returned, not thrown')],
-      ['an empty sip id', { sipId: '' }],
-    ])('resolves with undefined when the phone returns %s', async (_, value) => {
-      const cli = withPhone(createClient(), jest.fn().mockResolvedValue(value))
+    it('resolves with undefined when the phone does not know the id', async () => {
+      const cli = withPhone(
+        createClient(),
+        jest.fn().mockResolvedValue(undefined)
+      )
 
       await expect(cli.call({ destination: '100' })).resolves.toBeUndefined()
     })
@@ -118,8 +121,11 @@ describe('JsSIP SipPhone.call', () => {
     )
   })
 
-  it('resolves with undefined when ua.call returns no session', async () => {
-    const { phone } = createPhone(undefined)
+  it.each([
+    ['no session', undefined],
+    ['a session with an empty id', { id: '' }],
+  ])('resolves with undefined when ua.call returns %s', async (_, session) => {
+    const { phone } = createPhone(session)
 
     await expect(phone.call({ destination: '100' })).resolves.toBeUndefined()
   })

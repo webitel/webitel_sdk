@@ -1,4 +1,5 @@
 import { EventEmitter } from 'ee-ts'
+import { isNonEmptyString } from '../../utils/guards'
 import { Session } from './session'
 import type { RPC } from './rpc'
 import type {
@@ -87,7 +88,7 @@ export class SipPhone
     this.sessions.push(sess)
     this.emit('newSession', sess)
 
-    if (typeof sess.id === 'string' && sess.id) {
+    if (isNonEmptyString(sess.id)) {
       return { sipId: sess.id }
     }
 
