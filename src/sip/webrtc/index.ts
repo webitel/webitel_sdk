@@ -11,6 +11,7 @@ import type {
   SipConfiguration,
 } from '../'
 import { Log } from '../../log'
+import { genId } from '../../screen/utils'
 import {
   type AudioProcessingConfig,
   buildAudioConstraints,
@@ -32,7 +33,7 @@ function tabContactUri(): string {
   } catch {}
 
   if (!contactUri) {
-    const token = crypto.randomUUID().replace(/-/g, '')
+    const token = genId().replace(/-/g, '')
     // same shape as JsSIP's default Contact: 8-char user, 12-char host under .invalid, WebSocket transport
     contactUri = `sip:${token.slice(0, 8)}@${token.slice(8, 20)}.invalid;transport=ws`
     try {
