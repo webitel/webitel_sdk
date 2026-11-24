@@ -12,6 +12,7 @@ import type {
   SipConfiguration,
 } from '../'
 import { Log } from '../../log'
+import { genId } from '../../screen/utils'
 import { isNonEmptyString } from '../../utils/guards'
 import {
   type AudioProcessingConfig,
@@ -21,6 +22,29 @@ import {
 import { Session } from './session'
 import type { RTCSessionEvent } from './types'
 import { resolveUserAgent } from './user-agent'
+
+const CONTACT_URI_KEY = 'webitel-sip-contact-uri'
+
+let contactUri: string | undefined
+
+function tabContactUri(): string {
+  if (contactUri) return contactUri
+
+  try {
+    contactUri = sessionStorage.getItem(CONTACT_URI_KEY) || undefined
+  } catch {}
+
+  if (!contactUri) {
+    const token = genId().replace(/-/g, '')
+    // same shape as JsSIP's default Contact: 8-char user, 12-char host under .invalid, WebSocket transport
+    contactUri = `sip:${token.slice(0, 8)}@${token.slice(8, 20)}.invalid;transport=ws`
+    try {
+      sessionStorage.setItem(CONTACT_URI_KEY, contactUri)
+    } catch {}
+  }
+
+  return contactUri
+}
 
 interface PeerConnectionEvent {
   peerconnection: RTCPeerConnection
@@ -218,6 +242,7 @@ export class SipPhone
       connection_recovery_min_interval: 2,
       connection_recovery_max_interval: 30,
       // instance_id: '8f1fa16a-1165-4a96-8341-785b1ef24f13',
+      contact_uri: tabContactUri(),
     }
 
     const ua = (this.ua = new UA(configuration))
