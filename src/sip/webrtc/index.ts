@@ -7,11 +7,13 @@ import type {
   Answer,
   CallSession,
   Outbound,
+  OutboundCallResult,
   SipClient,
   SipConfiguration,
 } from '../'
 import { Log } from '../../log'
 import { genId } from '../../screen/utils'
+import { isNonEmptyString } from '../../utils/guards'
 import {
   type AudioProcessingConfig,
   buildAudioConstraints,
@@ -129,7 +131,7 @@ export class SipPhone
     return false
   }
 
-  async call(req: Outbound) {
+  async call(req: Outbound): Promise<OutboundCallResult | undefined> {
     const params = {} as Answer
     const display = {
       extraHeaders: [] as string[],
@@ -181,7 +183,10 @@ export class SipPhone
       }
     }
 
-    await this.ua.call(req.destination, {
+    // ua.call() builds the INVITE and sets session.id (Call-ID + from-tag)
+    // synchronously, before the INVITE is sent. No socket call event can
+    // arrive before this method resolves.
+    const session = this.ua.call(req.destination, {
       ...invite,
       ...display,
       eventHandlers: {
@@ -207,13 +212,20 @@ export class SipPhone
         },
       },
     })
+
+    const sipId: unknown = session?.id
+    if (isNonEmptyString(sipId)) {
+      return { sipId }
+    }
+
+    return undefined
   }
 
   setAudioProcessing(processing: AudioProcessingConfig) {
     this.audioProcessing = processing
   }
 
-  async register(sipConf: SipConfiguration) {
+  async register(sipConf: SipConfiguration): Promise<undefined> {
     const socket = new WebSocketInterface(sipConf.server)
 
     const configuration = {
@@ -322,15 +334,17 @@ export class SipPhone
     })
 
     ua.start()
+    return undefined
   }
 
-  async unregister() {
+  async unregister(): Promise<undefined> {
     if (this.ua) {
       this.ua.terminateSessions()
       this.ua.removeAllListeners()
       await this.ua.stop()
       delete this.ua
     }
+    return undefined
   }
 
   isRegistered() {
