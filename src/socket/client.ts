@@ -1180,10 +1180,13 @@ export class Client extends EventEmitter<ClientEvents> {
   async registerCallClient(phone: SipClient) {
     this.phone = phone
     this.subscribePhone(phone)
+    await this.registerPhone(phone)
+  }
 
+  private async registerPhone(phone: SipClient) {
     try {
-      const conf = await this.deviceConfig(this.phone.type)
-      await this.phone.register(conf as SipConfiguration)
+      const conf = await this.deviceConfig(phone.type)
+      await phone.register(conf as SipConfiguration)
     } catch (e) {
       this.emit('error', e as Error)
     }
@@ -1701,6 +1704,16 @@ export class Client extends EventEmitter<ClientEvents> {
 
     if (!this.useWebPhone()) {
       return
+    }
+
+    const phone = this.phone
+    if (phone instanceof SipPhone) {
+      if (!this.connectionInfo.b2bua) {
+        return this.registerPhone(phone)
+      }
+      await phone.unregister()
+      phone.off('*')
+      delete this.phone
     }
 
     const audioProcessing = {

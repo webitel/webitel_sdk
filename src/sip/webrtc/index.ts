@@ -80,6 +80,7 @@ export class SipPhone
   readonly type = 'webrtc'
 
   private ua!: any
+  private sipConf?: SipConfiguration
   private sessionCache = new Map<string, Session>()
   private log: Log
 
@@ -226,6 +227,13 @@ export class SipPhone
   }
 
   async register(sipConf: SipConfiguration): Promise<undefined> {
+    if (this.ua) {
+      // a live UA recovers its transport and re-registers by itself
+      if (this.isSameAccount(sipConf)) return undefined
+      await this.unregister()
+    }
+    this.sipConf = sipConf
+
     const socket = new WebSocketInterface(sipConf.server)
 
     const configuration = {
@@ -343,8 +351,25 @@ export class SipPhone
       this.ua.removeAllListeners()
       await this.ua.stop()
       delete this.ua
+      delete this.sipConf
     }
     return undefined
+  }
+
+  private isSameAccount(sipConf: SipConfiguration): boolean {
+    const prev = this.sipConf
+    if (!prev) return false
+
+    const keys: (keyof SipConfiguration)[] = [
+      'server',
+      'uri',
+      'realm',
+      'authorization_user',
+      'ha1',
+      'display_name',
+      'register_expires',
+    ]
+    return keys.every((key) => prev[key] === sipConf[key])
   }
 
   isRegistered() {
